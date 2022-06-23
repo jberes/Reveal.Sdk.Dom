@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 
 namespace Reveal.Sdk.Dom.Core
 {
@@ -9,8 +9,20 @@ namespace Reveal.Sdk.Dom.Core
         //This is a quick and dirty way to clone an object without needing write a ton of code. May have to replace this in the future
         internal static T Clone<T>(T item)
         {
-            var serialized = JsonSerializer.Serialize(item);
-            return JsonSerializer.Deserialize<T>(serialized);
+            if (ReferenceEquals(item, null))
+                return default(T);
+
+            var deserializeSettings = new JsonSerializerSettings
+            {
+                ObjectCreationHandling = ObjectCreationHandling.Replace
+            };
+            var serializeSettings = new JsonSerializerSettings 
+            { 
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore, 
+                NullValueHandling = NullValueHandling.Ignore 
+            };
+
+            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(item, serializeSettings), deserializeSettings);
         }
 
         internal static List<T> Clone<T>(this List<T> list)

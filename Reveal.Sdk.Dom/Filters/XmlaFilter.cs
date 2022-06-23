@@ -1,6 +1,7 @@
 ﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
@@ -8,9 +9,9 @@ namespace Reveal.Sdk.Dom.Filters
     {
         public Filter Filter { get; set; }
         public string UniqueName { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public DataType DataType { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public XmlaElementType ElementType { get; set; }
         public bool IsDynamic { get; set; }
 

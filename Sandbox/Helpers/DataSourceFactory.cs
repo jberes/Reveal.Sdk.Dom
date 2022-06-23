@@ -57,54 +57,44 @@ namespace Sandbox.Helpers
         {
             List<Field> fields = new List<Field>
             {
-                new Field()
+                new Field("Date")
                 {
-                    FieldName = "Date",
                     DataType = DataType.Date,
                 },
-                new Field()
+                new Field("Number of Inpatients")
                 {
-                    FieldName = "Number of Inpatients",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Number of Outpatients")
                 {
-                    FieldName = "Number of Outpatients",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Treatment Costs ")
                 {
-                    FieldName = "Treatment Costs ",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("ER Wait Time")
                 {
-                    FieldName = "ER Wait Time",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Divison")
                 {
-                    FieldName = "Divison",
                     DataType = DataType.String,
                 },
-                new Field()
+                new Field("Satisfaction")
                 {
-                    FieldName = "Satisfaction",
                     DataType = DataType.String,
                 },
-                new Field()
+                new Field("Length of Stay ")
                 {
-                    FieldName = "Length of Stay ",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Charges per MD")
                 {
-                    FieldName = "Charges per MD",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Current Paitents")
                 {
-                    FieldName = "Current Paitents",
                     DataType = DataType.Number,
                 },
             };
@@ -116,69 +106,56 @@ namespace Sandbox.Helpers
         {
             List<Field> fields = new List<Field>
             {
-                new Field()
+                new Field("Date")
                 {
-                    FieldName = "Date",
                     DataType = DataType.Date,
                 },
-                new Field()
+                new Field("Units Lost")
                 {
-                    FieldName = "Units Lost",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Overall Plant Productivity ")
                 {
-                    FieldName = "Overall Plant Productivity ",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Operators Available ")
                 {
-                    FieldName = "Operators Available ",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Operators by Function")
                 {
-                    FieldName = "Operators by Function",
                     DataType = DataType.String,
                 },
-                new Field()
+                new Field("Units Produced")
                 {
-                    FieldName = "Units Produced",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Product")
                 {
-                    FieldName = "Product",
                     DataType = DataType.String,
                 },
-                new Field()
+                new Field("Efficiency")
                 {
-                    FieldName = "Efficiency",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Line")
                 {
-                    FieldName = "Line",
                     DataType = DataType.String,
                 },
-                new Field()
+                new Field("Orders In")
                 {
-                    FieldName = "Orders In",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Orders Shipped ")
                 {
-                    FieldName = "Orders Shipped ",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Cost of Labor ")
                 {
-                    FieldName = "Cost of Labor ",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Revenue")
                 {
-                    FieldName = "Revenue",
                     DataType = DataType.Number,
                 },
             };
@@ -190,74 +167,60 @@ namespace Sandbox.Helpers
         {
             List<Field> fields = new List<Field>
             {
-                new Field()
+                new Field("Date")
                 {
-                    FieldName = "Date",
                     DataType = DataType.Date,
                 },
-                new Field()
+                new Field("Spend")
                 {
-                    FieldName = "Spend",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Budget")
                 {
-                    FieldName = "Budget",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("CTR")
                 {
-                    FieldName = "CTR",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Avg. CPC")
                 {
-                    FieldName = "Avg. CPC",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Traffic")
                 {
-                    FieldName = "Traffic",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Paid Traffic")
                 {
-                    FieldName = "Paid Traffic",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Other Traffic")
                 {
-                    FieldName = "Other Traffic",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Conversions")
                 {
-                    FieldName = "Conversions",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Territory")
                 {
-                    FieldName = "Territory",
                     DataType = DataType.String,
                 },
-                new Field()
+                new Field("CampaignID")
                 {
-                    FieldName = "CampaignID",
                     DataType = DataType.String,
                 },
-                new Field()
+                new Field("New Seats")
                 {
-                    FieldName = "New Seats",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Paid %")
                 {
-                    FieldName = "Paid %",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Organic %")
                 {
-                    FieldName = "Organic %",
                     DataType = DataType.Number,
                 }
             };
@@ -269,98 +232,62 @@ namespace Sandbox.Helpers
         {
             List<Field> fields = new List<Field>
             {
-                new Field()
+                new Field("Territory"),
+                new Field("Date")
                 {
-                    FieldName = "Territory",
-                },
-                new Field()
-                {
-                    FieldName = "Date",
                     DataType = DataType.Date,
                 },
-                new Field()
+                new Field("Quota")
                 {
-                    FieldName = "Quota",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Leads")
                 {
-                    FieldName = "Leads",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Hot Leads")
                 {
-                    FieldName = "Hot Leads",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("New Seats")
                 {
-                    FieldName = "New Seats",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("New Sales")
                 {
-                    FieldName = "New Sales",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Renewal Seats")
                 {
-                    FieldName = "Renewal Seats",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Renewal Sales ")
                 {
-                    FieldName = "Renewal Sales ",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Employee"),
+                new Field("Pipepline")
                 {
-                    FieldName = "Employee",
-                },
-                new Field()
-                {
-                    FieldName = "Pipepline",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Forecasted")
                 {
-                    FieldName = "Forecasted",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Revenue")
                 {
-                    FieldName = "Revenue",
                     DataType = DataType.Number,
                 },
-                new Field()
+                new Field("Total Opportunites")
                 {
-                    FieldName = "Total Opportunites",
                     DataType = DataType.Number,
                 },
-                new Field()
-                {
-                    FieldName = "Product",
-                },
-                new Field()
-                {
-                    FieldName = "b",
-                },
-                new Field()
-                {
-                    FieldName = "c",
-                },
-                new Field()
-                {
-                    FieldName = "d",
-                },
-                new Field()
-                {
-                    FieldName = "e",
-                },
-                new Field()
-                {
-                    FieldName = "f",
-                }
+                new Field("Product"),
+                new Field("b"),
+                new Field("c"),
+                new Field("d"),
+                new Field("e"),
+                new Field("f")
             };
 
             return fields;

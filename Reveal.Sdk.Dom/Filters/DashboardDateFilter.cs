@@ -1,6 +1,7 @@
-﻿using Reveal.Sdk.Dom.Core.Constants;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Primitives;
-using System.Text.Json.Serialization;
 
 namespace Reveal.Sdk.Dom.Filters
 {
@@ -8,9 +9,10 @@ namespace Reveal.Sdk.Dom.Filters
     {
         public DateRange CustomDateRange { get; set; }
 
-        [JsonConverter(typeof(JsonStringEnumConverter))]
-        public DateRuleType RuleType { get; set; } = DateRuleType.LastYear;
         public bool IncludeToday { get; set; } = true;
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        public DateRuleType RuleType { get; set; } = DateRuleType.LastYear;
 
         public DashboardDateFilter()
         {

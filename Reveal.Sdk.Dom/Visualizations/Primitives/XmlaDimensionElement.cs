@@ -1,7 +1,8 @@
 ﻿using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Primitives
 {
@@ -11,16 +12,16 @@ namespace Reveal.Sdk.Dom.Visualizations.Primitives
         public string Caption { get; set; }
         public string UserCaption { get; set; }
         public string DimensionUniqueName { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public XmlaDimensionType DimensionType { get; set; }
         public List<string> DrillDownElements { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public SortingType Sorting { get; set; }
         public bool FieldSortingByLabel { get; set; }
         public XmlaFilter XmlaFilter { get; set; }
         public int FullyExpandedLevels { get; set; }
         public List<string> ExpandedItems { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public DateAggregationType DateAggregationType { get; set; }
         public int DateFiscalYearStartMonth { get; set; }
         public List<XmlaMember> DrillDownMembers { get; set; }

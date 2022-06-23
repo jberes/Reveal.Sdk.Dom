@@ -1,18 +1,20 @@
-﻿using Reveal.Sdk.Dom.Core;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Serialization.Converters;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Reveal.Sdk.Dom.Data
 {
+    [JsonConverter(typeof(DataSourceItemConverter))]
     public class DataSourceItem : SchemaType
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Title { get; set; }
 
-        [JsonPropertyName("Description")]
+        [JsonProperty("Description")]
         public string Subtitle { get; set; }
         public string DataSourceId { get; set; }
         public bool HasTabularData { get; set; }

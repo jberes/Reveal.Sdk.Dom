@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Primitives
 {
@@ -15,7 +16,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Primitives
         public FormattingSpec Formatting { get; set; }
         public ConditionalFormattingSpec ConditionalFormatting { get; set; }
         public string Description { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public SortingType Sorting { get; set; }
 
         public XmlaMeasure()

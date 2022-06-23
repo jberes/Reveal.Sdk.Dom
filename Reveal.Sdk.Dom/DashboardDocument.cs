@@ -1,11 +1,11 @@
 ﻿using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Serialization;
 using Reveal.Sdk.Dom.Filters;
-using Reveal.Sdk.Dom.Variables;
 using Reveal.Sdk.Dom.Visualizations;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
-using Reveal.Sdk.Dom.Serialization.Attributes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace Reveal.Sdk.Dom
 {
@@ -14,39 +14,28 @@ namespace Reveal.Sdk.Dom
 		public string Title { get; set; }
 		public string Description { get; set; }
 
-        [JsonPropertyName("ThemeName")]
-        [JsonStringEnumSpacesConverter]
+        [JsonProperty("ThemeName")]
+        [JsonConverter(typeof(StringEnumConverter), typeof(EnumWithSpacesNamingStrategy))]
 		public Theme Theme { get; set; }
-
-		[JsonInclude]
 		public string CreatedWith { get; internal set; } = "Reveal.Sdk.DOM";
-
-		[JsonInclude]
 		public string SavedWith { get; internal set; }
-
-		[JsonInclude]
 		public int FormatVersion { get; internal set; }
-
 		public bool UseAutoLayout { get; set; } = true;
 		public int? AutoRefreshInterval { get; set; }
 		public string PasswordHash { get; set; }
 		public string Tags { get; set; }
 
-        [JsonInclude]
-		public List<DataSource> DataSources { get; internal set; } = new List<DataSource>();
+        public List<DataSource> DataSources { get; internal set; } = new List<DataSource>();
 
-		[JsonInclude]
-		[JsonPropertyName("GlobalFilters")]
-		public List<DashboardFilter> Filters { get; internal set; } = new List<DashboardFilter>();
+        [JsonProperty("GlobalFilters")]
+        public List<DashboardFilter> Filters { get; internal set; } = new List<DashboardFilter>();
 
-		[JsonInclude]
-		public List<GlobalVariable> GlobalVariables { get; internal set; } = new List<GlobalVariable>();
+        //public List<GlobalVariable> GlobalVariables { get; internal set; } = new List<GlobalVariable>();
 
-		[JsonInclude]
-		[JsonPropertyName("Widgets")]
-		public List<Visualization> Visualizations { get; internal set; } = new List<Visualization>();
+        [JsonProperty("Widgets")]
+        public List<Visualization> Visualizations { get; internal set; } = new List<Visualization>();
 
-		public DashboardDocument() : this("New Dashboard") { }
+        public DashboardDocument() : this("New Dashboard") { }
 
 		public DashboardDocument(string title) 
 		{

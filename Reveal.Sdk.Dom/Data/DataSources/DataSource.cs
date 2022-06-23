@@ -1,23 +1,25 @@
-﻿using Reveal.Sdk.Dom.Core;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Serialization.Converters;
 using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Reveal.Sdk.Dom.Data
 {
+    [JsonConverter(typeof(DataSourceConverter))]
     public class DataSource : SchemaType, IEquatable<DataSource>
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        [JsonInclude]
         public string Provider { get; internal set; }
 
-        [JsonPropertyName("Description")]
+        [JsonProperty("Description")]
         public string Title { get; set; }
+
         public string Subtitle { get; set; }
 
-        [JsonInclude]
+        
         public Dictionary<string, object> Properties { get; internal set; }
 
         public DataSource()

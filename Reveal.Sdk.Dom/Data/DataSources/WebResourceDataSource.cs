@@ -1,5 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Reveal.Sdk.Dom.Data
 {

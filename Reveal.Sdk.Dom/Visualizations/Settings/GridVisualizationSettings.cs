@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
@@ -7,7 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
     {
         public bool HideGrandTotals { get; set; }
 
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public FontSizeType FontSize { get; set; } = FontSizeType.Small;
         public GridVisualizationStyle Style { get; set; } = new GridVisualizationStyle();
         public List<VisualizationColumnStyle> VisualizationColumns { get; set; } = new List<VisualizationColumnStyle>();

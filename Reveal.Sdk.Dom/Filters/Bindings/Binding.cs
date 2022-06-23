@@ -1,5 +1,6 @@
-﻿using Reveal.Sdk.Dom.Serialization.Converters;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Reveal.Sdk.Dom.Serialization.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
@@ -17,7 +18,7 @@ namespace Reveal.Sdk.Dom.Filters
     [JsonConverter(typeof(BindingConverter))]
     public class Binding
     {
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public BindingOperatorType Operator { get; set; } = BindingOperatorType.Equals;
     }
 }

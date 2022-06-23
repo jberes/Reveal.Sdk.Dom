@@ -1,12 +1,13 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Primitives;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
     public class TimeFilterType : Filter
     {
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public TimeRuleType RuleType { get; set; } = TimeRuleType.AllTime;
         public DateRange CustomTimeRange { get; set; }
 

@@ -1,22 +1,25 @@
-﻿using Reveal.Sdk.Dom.Core.Constants;
+﻿using Newtonsoft.Json.Linq;
+using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Visualizations;
 using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Reveal.Sdk.Dom.Serialization.Converters
 {
     internal class VisualizationConverter : JsonConverter<Visualization>
     {
-        public override Visualization Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override bool CanWrite => false;
+
+        public override void WriteJson(JsonWriter writer, Visualization value, JsonSerializer serializer)
         {
-            var readerAtStart = reader;
+            throw new NotImplementedException();
+        }
 
-            using var jsonDocument = JsonDocument.ParseValue(ref reader);
-            var jsonObject = jsonDocument.RootElement;
-
-            var visualizationSettings = jsonObject.GetProperty("VisualizationSettings");
-            var visualizationType = visualizationSettings.GetProperty("_type").GetString();
+        public override Visualization ReadJson(JsonReader reader, Type objectType, Visualization existingValue, bool hasExistingValue, JsonSerializer serializer)
+        {
+            JObject jObject = JObject.Load(reader);
+            var visualizationSettings = jObject["VisualizationSettings"];
+            var visualizationType = visualizationSettings["_type"].Value<string>();
             Type vizType = visualizationType switch
             {
                 SchemaTypeNames.ChartVisualizationSettingsType => GetChartVsualizationType(visualizationSettings),
@@ -24,16 +27,18 @@ namespace Reveal.Sdk.Dom.Serialization.Converters
                 SchemaTypeNames.IndicatorTargetVisualizationSettingsType => typeof(KpiTargetVisualization),
                 SchemaTypeNames.PivotVisualizationSettingsType => typeof(PivotVisualization),
                 SchemaTypeNames.SparklineVisualizationSettingsType => typeof(SparklineVisualization),
-                SchemaTypeNames.GaugeVisualizationSettingsType => GetGaugeVisualizationType(jsonObject),
+                SchemaTypeNames.GaugeVisualizationSettingsType => GetGaugeVisualizationType(jObject),
                 _ => throw new JsonException($"Visualization not supported: {visualizationType}")
             };
 
-            return JsonSerializer.Deserialize(ref readerAtStart, vizType, options) as Visualization;
+            var item = Activator.CreateInstance(vizType, true);
+            serializer.Populate(jObject.CreateReader(), item);
+            return item as Visualization;
         }
 
-        private static Type GetGaugeVisualizationType(JsonElement jsonElement)
+        private static Type GetGaugeVisualizationType(JToken jToken)
         {
-            var vds = jsonElement.GetProperty("VisualizationDataSpec").GetProperty("_type").GetString();
+            var vds = jToken.SelectToken("VisualizationDataSpec._type").Value<string>();
             Type type = vds switch
             {
                 "SingleGaugeVisualizationDataSpecType" => typeof(CircularGaugeVisualization),
@@ -44,9 +49,9 @@ namespace Reveal.Sdk.Dom.Serialization.Converters
             return type;
         }
 
-        Type GetChartVsualizationType(JsonElement jsonElement)
+        Type GetChartVsualizationType(JToken jToken)
         {
-            var chartType = jsonElement.GetProperty("ChartType").GetString();
+            var chartType = jToken["ChartType"].Value<string>();
             Type type = chartType switch
             {
                 "Bar" => typeof(BarChartVisualization),
@@ -61,40 +66,6 @@ namespace Reveal.Sdk.Dom.Serialization.Converters
             };
 
             return type;
-        }
-
-        public override void Write(Utf8JsonWriter writer, Visualization value, JsonSerializerOptions options)
-        {
-            if (value is GaugeVisualization gv)
-                JsonSerializer.Serialize(writer, gv, options);
-            else if (value is KpiTargetVisualization iTarget)
-                JsonSerializer.Serialize(writer, iTarget, options);
-            else if (value is IndicatorVisualization idc)
-                JsonSerializer.Serialize(writer, idc, options);
-            else if (value is PivotVisualization pivot)
-                JsonSerializer.Serialize(writer, pivot, options);
-            else if (value is BarChartVisualization bar)
-                JsonSerializer.Serialize(writer, bar, options);
-            else if (value is LineChartVisualization line)
-                JsonSerializer.Serialize(writer, line, options);
-            else if (value is PieChartVisualization pie)
-                JsonSerializer.Serialize(writer, pie, options);
-            else if (value is ColumnChartVisualization column)
-                JsonSerializer.Serialize(writer, column, options);
-            else if (value is FunnelChartVisualization funnel)
-                JsonSerializer.Serialize(writer, funnel, options);
-            else if (value is SplineAreaChartVisualization spline)
-                JsonSerializer.Serialize(writer, spline, options);
-            else if (value is StackedColumnChartVisualization stc)
-                JsonSerializer.Serialize(writer, stc, options);
-            else if (value is SparklineVisualization spk)
-                JsonSerializer.Serialize(writer, spk, options);
-            else if (value is DoughnutChartVisualization dnc)
-                JsonSerializer.Serialize(writer, dnc, options);
-            else if (value is CircularGaugeVisualization cgv)
-                JsonSerializer.Serialize(writer, cgv, options);
-            else
-                throw new JsonException($"Visualization not supported: {value}");
         }
     }
 }

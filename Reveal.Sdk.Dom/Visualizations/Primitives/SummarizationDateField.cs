@@ -1,12 +1,13 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Primitives
 {
     public class SummarizationDateField : SummarizationDimensionField
     {
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public DateAggregationType DateAggregationType { get; set; } = DateAggregationType.Year;
         public DateFormattingSpec DateFormatting { get; set; }
 

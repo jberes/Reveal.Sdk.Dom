@@ -1,6 +1,7 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Primitives;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
@@ -9,7 +10,7 @@ namespace Reveal.Sdk.Dom.Filters
         public int DateFiscalYearStartMonth { get; set; }
         public bool DisplayInLocalTimeZone { get; set; }
 
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public DateRuleType RuleType { get; set; } = DateRuleType.AllTime;
         public DateRange CustomDateRange { get; set; }
         public bool IncludeToday { get; set; } = true;
