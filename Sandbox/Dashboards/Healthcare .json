@@ -1,0 +1,1630 @@
+{
+  "Title": "Healthcare",
+  "ThemeName": "Circus",
+  "CreatedWith": "Web 1.0.369.0",
+  "SavedWith": "Web 1.0.400.0",
+  "FormatVersion": 6,
+  "UseAutoLayout": false,
+  "Tags": "u_e1df1c4e-2a5e-41ea-90ec-eb9d31711192",
+  "Widgets": [
+    {
+      "Id": "d3b96d65-4251-40bb-8310-47595331f003",
+      "RowSpan": 14,
+      "ColumnSpan": 15,
+      "IsTitleVisible": true,
+      "Title": "Number of Inpatients",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Healthcare",
+          "Title": "Healthcare",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Healthcare"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1000,
+        "Bindings": {
+          "Bindings": []
+        },
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Inpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Outpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Treatment Costs ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "ER Wait Time",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Divison",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Satisfaction ",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Length of Stay ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Charges per MD",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Current Paitents",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "IndicatorVisualizationSettingsType",
+        "VisualizationType": "INDICATOR",
+        "DifferenceMode": "Percentage",
+        "PositiveIsRed": false,
+        "IncludeToday": true
+      },
+      "VisualizationDataSpec": {
+        "_type": "IndicatorVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [],
+        "Date": {
+          "_type": "DimensionColumnSpecType",
+          "SummarizationField": {
+            "_type": "SummarizationDateFieldType",
+            "FieldName": "Date",
+            "DrillDownElements": [],
+            "ExpandedItems": [],
+            "DateAggregationType": "Year"
+          }
+        },
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Number of Inpatients",
+              "FieldLabel": "Number of Inpatients",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          }
+        ],
+        "IndicatorType": "YearToDatePreviousYear"
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "ba138823-feb4-4811-8b44-386372a26705",
+      "RowSpan": 14,
+      "ColumnSpan": 15,
+      "IsTitleVisible": true,
+      "Title": "Number of Outpatients",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Healthcare",
+          "Title": "Healthcare",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Healthcare"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1000,
+        "Bindings": {
+          "Bindings": []
+        },
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Inpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Outpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Treatment Costs ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "ER Wait Time",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Divison",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Satisfaction ",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Length of Stay ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Charges per MD",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Current Paitents",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "IndicatorVisualizationSettingsType",
+        "VisualizationType": "INDICATOR",
+        "DifferenceMode": "Percentage",
+        "PositiveIsRed": false,
+        "IncludeToday": true
+      },
+      "VisualizationDataSpec": {
+        "_type": "IndicatorVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [],
+        "Date": {
+          "_type": "DimensionColumnSpecType",
+          "SummarizationField": {
+            "_type": "SummarizationDateFieldType",
+            "FieldName": "Date",
+            "DrillDownElements": [],
+            "ExpandedItems": [],
+            "DateAggregationType": "Year"
+          }
+        },
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Number of Outpatients",
+              "FieldLabel": "Number of Outpatients",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          }
+        ],
+        "IndicatorType": "YearToDatePreviousYear"
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "c8459802-fa6b-489a-c35d-63b1e316e2cf",
+      "RowSpan": 14,
+      "ColumnSpan": 15,
+      "IsTitleVisible": true,
+      "Title": "Average ER Wait Time (Min)",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Healthcare",
+          "Title": "Healthcare",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Healthcare"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1000,
+        "Bindings": {
+          "Bindings": []
+        },
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Inpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Outpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Treatment Costs ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "ER Wait Time",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Divison",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Satisfaction ",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Length of Stay ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Charges per MD",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Current Paitents",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "IndicatorVisualizationSettingsType",
+        "VisualizationType": "INDICATOR",
+        "DifferenceMode": "Percentage",
+        "PositiveIsRed": false,
+        "IncludeToday": true
+      },
+      "VisualizationDataSpec": {
+        "_type": "IndicatorVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [],
+        "Date": {
+          "_type": "DimensionColumnSpecType",
+          "SummarizationField": {
+            "_type": "SummarizationDateFieldType",
+            "FieldName": "Date",
+            "DrillDownElements": [],
+            "ExpandedItems": [],
+            "DateAggregationType": "Year"
+          }
+        },
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "ER Wait Time",
+              "FieldLabel": "ER Wait Time",
+              "IsHidden": false,
+              "AggregationType": "Avg",
+              "Sorting": "None",
+              "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "FormatType": "Number",
+                "DecimalDigits": 0,
+                "ShowGroupingSeparator": true,
+                "CurrencySymbol": "$",
+                "NegativeFormat": "MinusSign",
+                "ApplyMkFormat": false
+              }
+            }
+          }
+        ],
+        "IndicatorType": "YearToDatePreviousYear"
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "fa421234-db7e-4f9e-f1b8-81332278987a",
+      "RowSpan": 14,
+      "ColumnSpan": 15,
+      "IsTitleVisible": true,
+      "Title": "Average Days Stayed",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Healthcare",
+          "Title": "Healthcare",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Healthcare"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1000,
+        "Bindings": {
+          "Bindings": []
+        },
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Inpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Outpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Treatment Costs ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "ER Wait Time",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Divison",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Satisfaction ",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Length of Stay ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Charges per MD",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Current Paitents",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "IndicatorVisualizationSettingsType",
+        "VisualizationType": "INDICATOR",
+        "DifferenceMode": "Percentage",
+        "PositiveIsRed": false,
+        "IncludeToday": true
+      },
+      "VisualizationDataSpec": {
+        "_type": "IndicatorVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [],
+        "Date": {
+          "_type": "DimensionColumnSpecType",
+          "SummarizationField": {
+            "_type": "SummarizationDateFieldType",
+            "FieldName": "Date",
+            "DrillDownElements": [],
+            "ExpandedItems": [],
+            "DateAggregationType": "Year"
+          }
+        },
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Length of Stay ",
+              "FieldLabel": "Length of Stay ",
+              "IsHidden": false,
+              "AggregationType": "Avg",
+              "Sorting": "None",
+              "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "FormatType": "Number",
+                "DecimalDigits": 0,
+                "ShowGroupingSeparator": true,
+                "CurrencySymbol": "$",
+                "NegativeFormat": "MinusSign",
+                "ApplyMkFormat": false
+              }
+            }
+          }
+        ],
+        "IndicatorType": "YearToDatePreviousYear"
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "f18794ca-5ad2-492d-bd95-ec97b429d241",
+      "RowSpan": 23,
+      "ColumnSpan": 15,
+      "IsTitleVisible": true,
+      "Title": "Current Patients by Division",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Healthcare",
+          "Title": "Healthcare",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Healthcare"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1000,
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Inpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Outpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Treatment Costs ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "ER Wait Time",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Divison",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Satisfaction ",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Length of Stay ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Charges per MD",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Current Paitents",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "ChartVisualizationSettingsType",
+        "VisualizationType": "CHART",
+        "ChartType": "Doughnut",
+        "AllSeries": false,
+        "ShowLegends": true,
+        "TrendlineType": "None",
+        "SingleAxisMode": false,
+        "Series": [],
+        "LeftAxisFields": [],
+        "RightAxisFields": [],
+        "LeftAxisLogarithmic": false,
+        "RightAxisLogarithmic": false,
+        "LabelDisplayMode": "Percentage",
+        "BrushOffsetIndex": -1,
+        "PieStartPosition": 270,
+        "ShowTotalsInTooltip": true,
+        "CompositeChartType1": "Column",
+        "CompositeChartType2": "Column",
+        "CompositeChartTypesSwapped": false,
+        "ShowZeroValuesInLegend": false
+      },
+      "VisualizationDataSpec": {
+        "_type": "SingleValueLabelsVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [
+          {
+            "_type": "DimensionColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationRegularFieldType",
+              "FieldName": "Divison",
+              "DrillDownElements": [],
+              "ExpandedItems": []
+            }
+          }
+        ],
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Current Paitents",
+              "FieldLabel": "Current Paitents",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          }
+        ]
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "da881085-030a-4cba-bf3d-844dd438cb6b",
+      "RowSpan": 23,
+      "ColumnSpan": 30,
+      "IsTitleVisible": true,
+      "Title": "Treatment Costs vs Charges per MD",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Healthcare",
+          "Title": "Healthcare",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Healthcare"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1000,
+        "Bindings": {
+          "Bindings": [
+            {
+              "Source": {
+                "_type": "FieldBindingSourceType",
+                "FieldName": "Date"
+              },
+              "Operator": "Between",
+              "Target": {
+                "_type": "DateGlobalFilterBindingTargetType",
+                "GlobalFilterFieldName": "Date Filter"
+              }
+            }
+          ]
+        },
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldLabel": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None",
+            "Formatting": {
+              "_type": "DateFormattingSpecType",
+              "DateFormat": "dd-MMM-yyyy"
+            },
+            "Settings": {
+              "_type": "DateTimeFieldSettingsType",
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false
+            }
+          },
+          {
+            "FieldName": "Number of Inpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Outpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Treatment Costs ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "ER Wait Time",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Divison",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Satisfaction ",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Length of Stay ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Charges per MD",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None",
+            "Settings": {
+              "_type": "DateTimeFieldSettingsType",
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false
+            }
+          },
+          {
+            "FieldName": "Current Paitents",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "ChartVisualizationSettingsType",
+        "VisualizationType": "CHART",
+        "ChartType": "SplineArea",
+        "AllSeries": false,
+        "ShowLegends": true,
+        "TrendlineType": "None",
+        "SingleAxisMode": false,
+        "Series": [],
+        "LeftAxisFields": [],
+        "RightAxisFields": [],
+        "LeftAxisLogarithmic": false,
+        "RightAxisLogarithmic": false,
+        "LabelDisplayMode": "Percentage",
+        "BrushOffsetIndex": -1,
+        "PieStartPosition": 270,
+        "ShowTotalsInTooltip": true,
+        "CompositeChartType1": "Column",
+        "CompositeChartType2": "Column",
+        "CompositeChartTypesSwapped": false,
+        "ShowZeroValuesInLegend": false
+      },
+      "VisualizationDataSpec": {
+        "_type": "CategoryVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [
+          {
+            "_type": "DimensionColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationDateFieldType",
+              "FieldName": "Date",
+              "DrillDownElements": [],
+              "ExpandedItems": [],
+              "DateAggregationType": "Month"
+            }
+          }
+        ],
+        "Values": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Charges per MD",
+              "FieldLabel": "Charges per MD",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          },
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Treatment Costs ",
+              "FieldLabel": "Treatment Costs ",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          }
+        ]
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "a22953f3-fdb7-4a60-b5b6-ba524b784ca4",
+      "RowSpan": 23,
+      "ColumnSpan": 15,
+      "IsTitleVisible": true,
+      "Title": "Wait Time by Division",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Healthcare",
+          "Title": "Healthcare",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Healthcare"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1000,
+        "Bindings": {
+          "Bindings": [
+            {
+              "Source": {
+                "_type": "FieldBindingSourceType",
+                "FieldName": "Date"
+              },
+              "Operator": "Between",
+              "Target": {
+                "_type": "DateGlobalFilterBindingTargetType",
+                "GlobalFilterFieldName": "Date Filter"
+              }
+            }
+          ]
+        },
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Inpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Outpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Treatment Costs ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "ER Wait Time",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Divison",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None",
+            "Filter": {
+              "_type": "StringFilterType",
+              "FilterType": "SelectedValues",
+              "SelectedValues": [
+                {
+                  "Name": "Cardiology",
+                  "Value": "Cardiology"
+                },
+                {
+                  "Name": "Dermatology",
+                  "Value": "Dermatology"
+                },
+                {
+                  "Name": "Neurology",
+                  "Value": "Neurology"
+                },
+                {
+                  "Name": "Oncology",
+                  "Value": "Oncology"
+                },
+                {
+                  "Name": "Orthopaedics",
+                  "Value": "Orthopaedics"
+                }
+              ],
+              "RuleType": "None"
+            }
+          },
+          {
+            "FieldName": "Satisfaction ",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Length of Stay ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Charges per MD",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Current Paitents",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "ChartVisualizationSettingsType",
+        "VisualizationType": "CHART",
+        "ChartType": "Funnel",
+        "AllSeries": false,
+        "ShowLegends": true,
+        "TrendlineType": "None",
+        "SingleAxisMode": false,
+        "Series": [],
+        "LeftAxisFields": [],
+        "RightAxisFields": [],
+        "LeftAxisLogarithmic": false,
+        "RightAxisLogarithmic": false,
+        "LabelDisplayMode": "Percentage",
+        "BrushOffsetIndex": -1,
+        "PieStartPosition": 270,
+        "ShowTotalsInTooltip": true,
+        "CompositeChartType1": "Column",
+        "CompositeChartType2": "Column",
+        "CompositeChartTypesSwapped": false,
+        "ShowZeroValuesInLegend": false
+      },
+      "VisualizationDataSpec": {
+        "_type": "SingleValueLabelsVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [
+          {
+            "_type": "DimensionColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationRegularFieldType",
+              "FieldName": "Divison",
+              "DrillDownElements": [],
+              "ExpandedItems": []
+            }
+          }
+        ],
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "ER Wait Time",
+              "FieldLabel": "ER Wait Time",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          }
+        ]
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "f251616b-245c-4848-b70c-c8594f434e2f",
+      "RowSpan": 23,
+      "ColumnSpan": 30,
+      "IsTitleVisible": true,
+      "Title": "Satisfaction by Division",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Healthcare",
+          "Title": "Healthcare",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Healthcare"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1000,
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Inpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Outpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Treatment Costs ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "ER Wait Time",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Divison",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Satisfaction ",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Length of Stay ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Charges per MD",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Current Paitents",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "ChartVisualizationSettingsType",
+        "VisualizationType": "CHART",
+        "ChartType": "StackedColumn",
+        "AllSeries": false,
+        "ShowLegends": true,
+        "TrendlineType": "None",
+        "SingleAxisMode": false,
+        "Series": [],
+        "LeftAxisFields": [],
+        "RightAxisFields": [],
+        "LeftAxisLogarithmic": false,
+        "RightAxisLogarithmic": false,
+        "LabelDisplayMode": "Percentage",
+        "BrushOffsetIndex": -1,
+        "PieStartPosition": 270,
+        "ShowTotalsInTooltip": true,
+        "CompositeChartType1": "Column",
+        "CompositeChartType2": "Column",
+        "CompositeChartTypesSwapped": false,
+        "ShowZeroValuesInLegend": false
+      },
+      "VisualizationDataSpec": {
+        "_type": "CategoryVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [
+          {
+            "_type": "DimensionColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationRegularFieldType",
+              "FieldName": "Divison",
+              "DrillDownElements": [],
+              "ExpandedItems": []
+            }
+          }
+        ],
+        "Category": {
+          "_type": "DimensionColumnSpecType",
+          "SummarizationField": {
+            "_type": "SummarizationRegularFieldType",
+            "FieldName": "Satisfaction ",
+            "DrillDownElements": [],
+            "ExpandedItems": []
+          }
+        },
+        "Values": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Satisfaction ",
+              "FieldLabel": "Satisfaction ",
+              "IsHidden": false,
+              "AggregationType": "CountRows",
+              "Sorting": "None",
+              "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "FormatType": "Number",
+                "DecimalDigits": 0,
+                "ShowGroupingSeparator": true,
+                "CurrencySymbol": "$",
+                "NegativeFormat": "MinusSign",
+                "ApplyMkFormat": false
+              }
+            }
+          }
+        ]
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "d0fd1f38-68b6-43fe-a9a2-ea5844a2dc28",
+      "RowSpan": 23,
+      "ColumnSpan": 30,
+      "IsTitleVisible": true,
+      "Title": "Inpatients vs Outpatients",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Healthcare",
+          "Title": "Healthcare",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Healthcare"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1000,
+        "Bindings": {
+          "Bindings": [
+            {
+              "Source": {
+                "_type": "FieldBindingSourceType",
+                "FieldName": "Date"
+              },
+              "Operator": "Between",
+              "Target": {
+                "_type": "DateGlobalFilterBindingTargetType",
+                "GlobalFilterFieldName": "Date Filter"
+              }
+            }
+          ]
+        },
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldLabel": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None",
+            "Formatting": {
+              "_type": "DateFormattingSpecType",
+              "DateFormat": "dd-MMM-yyyy"
+            },
+            "Settings": {
+              "_type": "DateTimeFieldSettingsType",
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false
+            }
+          },
+          {
+            "FieldName": "Number of Inpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Number of Outpatients",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Treatment Costs ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "ER Wait Time",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Divison",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Satisfaction ",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Length of Stay ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Charges per MD",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Current Paitents",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "ChartVisualizationSettingsType",
+        "VisualizationType": "CHART",
+        "ChartType": "Line",
+        "AllSeries": false,
+        "ShowLegends": true,
+        "TrendlineType": "None",
+        "SingleAxisMode": false,
+        "Series": [],
+        "LeftAxisFields": [],
+        "RightAxisFields": [],
+        "LeftAxisLogarithmic": false,
+        "RightAxisLogarithmic": false,
+        "LabelDisplayMode": "Percentage",
+        "BrushOffsetIndex": -1,
+        "PieStartPosition": 270,
+        "ShowTotalsInTooltip": true,
+        "CompositeChartType1": "Column",
+        "CompositeChartType2": "Column",
+        "CompositeChartTypesSwapped": false,
+        "ShowZeroValuesInLegend": false
+      },
+      "VisualizationDataSpec": {
+        "_type": "CategoryVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [
+          {
+            "_type": "DimensionColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationDateFieldType",
+              "FieldName": "Date",
+              "DrillDownElements": [],
+              "ExpandedItems": [],
+              "DateAggregationType": "Month"
+            }
+          }
+        ],
+        "Values": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Number of Inpatients",
+              "FieldLabel": "Number of Inpatients",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          },
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Number of Outpatients",
+              "FieldLabel": "Number of Outpatients",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          }
+        ]
+      },
+      "PostTransformations": []
+    }
+  ],
+  "DataSources": [
+    {
+      "_type": "DataSourceType",
+      "Id": "__EXCEL",
+      "Provider": "EXCELLOCALFILEPROVIDER",
+      "Properties": {}
+    },
+    {
+      "_type": "DataSourceType",
+      "Id": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+      "Provider": "WEBSERVICE",
+      "Description": "Reveal Sample Data",
+      "Properties": {
+        "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+        "_rpUseAnonymousAuthentication": true
+      }
+    }
+  ],
+  "GlobalFilters": [
+    {
+      "_type": "DateGlobalFilterType",
+      "Id": "29751f9f-e2cd-492c-81af-98fead638e8d",
+      "Title": "Date Filter",
+      "RuleType": "TrailingTwelveMonths",
+      "IncludeToday": true
+    }
+  ],
+  "GlobalVariables": []
+}

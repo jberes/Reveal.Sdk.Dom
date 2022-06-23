@@ -1,0 +1,1690 @@
+{
+  "Title": "Manufacturing",
+  "ThemeName": "Rocky Mountain",
+  "CreatedWith": "Web 1.0.305.0",
+  "SavedWith": "Web 1.0.624.0",
+  "FormatVersion": 6,
+  "UseAutoLayout": false,
+  "Tags": "u_3711ef19-a364-441a-a61d-bd0806f30019",
+  "Widgets": [
+    {
+      "Id": "5aad5824-fef6-41bd-aa18-6f63077bf4de",
+      "RowSpan": 22,
+      "ColumnSpan": 10,
+      "IsTitleVisible": true,
+      "Title": "Productivity",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Manufacturing",
+          "Title": "Manufacturing",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Manufacturing"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1440,
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Lost",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Overall Plant Productivity ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators Available ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators by Function",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Produced",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Product",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Efficiency",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Line",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders In",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders Shipped ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Cost of Labor ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Revenue",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "IndicatorVisualizationSettingsType",
+        "VisualizationType": "INDICATOR",
+        "DifferenceMode": "Percentage",
+        "PositiveIsRed": false,
+        "IncludeToday": true
+      },
+      "VisualizationDataSpec": {
+        "_type": "IndicatorVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [],
+        "Date": {
+          "_type": "DimensionColumnSpecType",
+          "SummarizationField": {
+            "_type": "SummarizationDateFieldType",
+            "FieldName": "Date",
+            "DrillDownElements": [],
+            "ExpandedItems": [],
+            "DateAggregationType": "Year"
+          }
+        },
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Overall Plant Productivity ",
+              "FieldLabel": "Overall Plant Productivity ",
+              "IsHidden": false,
+              "AggregationType": "Avg",
+              "Sorting": "None",
+              "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "FormatType": "Percent",
+                "DecimalDigits": 0,
+                "ShowGroupingSeparator": false,
+                "CurrencySymbol": "$",
+                "NegativeFormat": "MinusSign",
+                "ApplyMkFormat": true
+              }
+            }
+          }
+        ],
+        "IndicatorType": "YearToDatePreviousYear"
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "d3b8caaa-8601-4c55-a2ae-7cb07dfac4bf",
+      "RowSpan": 22,
+      "ColumnSpan": 11,
+      "IsTitleVisible": true,
+      "Title": "Units Lost",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Manufacturing",
+          "Title": "Manufacturing",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Manufacturing"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1440,
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Lost",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Overall Plant Productivity ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators Available ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators by Function",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Produced",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Product",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Efficiency",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Line",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders In",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders Shipped ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Cost of Labor ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Revenue",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "IndicatorVisualizationSettingsType",
+        "VisualizationType": "INDICATOR",
+        "DifferenceMode": "Percentage",
+        "PositiveIsRed": false,
+        "IncludeToday": true
+      },
+      "VisualizationDataSpec": {
+        "_type": "IndicatorVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [],
+        "Date": {
+          "_type": "DimensionColumnSpecType",
+          "SummarizationField": {
+            "_type": "SummarizationDateFieldType",
+            "FieldName": "Date",
+            "DrillDownElements": [],
+            "ExpandedItems": [],
+            "DateAggregationType": "Year"
+          }
+        },
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Units Lost",
+              "FieldLabel": "Units Lost",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          }
+        ],
+        "IndicatorType": "YearToDatePreviousYear"
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "f64d509a-1d61-4e34-b69d-d1ad94f4a842",
+      "RowSpan": 22,
+      "ColumnSpan": 39,
+      "IsTitleVisible": true,
+      "Title": "Cost of Labor vs Revenue",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Manufacturing",
+          "Title": "Manufacturing",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Manufacturing"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1440,
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldLabel": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None",
+            "Filter": {
+              "_type": "DateTimeFilterType",
+              "FilterType": "FilterByRule",
+              "SelectedValues": [],
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false,
+              "RuleType": "LastYear",
+              "IncludeToday": true
+            },
+            "Formatting": {
+              "_type": "DateFormattingSpecType",
+              "DateFormat": "dd-MMM-yyyy"
+            },
+            "Settings": {
+              "_type": "DateTimeFieldSettingsType",
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false
+            }
+          },
+          {
+            "FieldName": "Units Lost",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Overall Plant Productivity ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators Available ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators by Function",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Produced",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Product",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Efficiency",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Line",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders In",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders Shipped ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Cost of Labor ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Revenue",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "ChartVisualizationSettingsType",
+        "VisualizationType": "CHART",
+        "ChartType": "Line",
+        "AllSeries": false,
+        "ShowLegends": true,
+        "TrendlineType": "None",
+        "SingleAxisMode": false,
+        "Series": [],
+        "LeftAxisFields": [],
+        "RightAxisFields": [],
+        "LeftAxisLogarithmic": false,
+        "RightAxisLogarithmic": false,
+        "LabelDisplayMode": "Percentage",
+        "BrushOffsetIndex": -1,
+        "PieStartPosition": 270,
+        "ShowTotalsInTooltip": true,
+        "CompositeChartType1": "Column",
+        "CompositeChartType2": "Column",
+        "CompositeChartTypesSwapped": false,
+        "ShowZeroValuesInLegend": false
+      },
+      "VisualizationDataSpec": {
+        "_type": "CategoryVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [
+          {
+            "_type": "DimensionColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationDateFieldType",
+              "FieldName": "Date",
+              "DrillDownElements": [],
+              "ExpandedItems": [],
+              "DateAggregationType": "Month"
+            }
+          }
+        ],
+        "Values": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Cost of Labor ",
+              "FieldLabel": "Cost of Labor ",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "FormatType": "Currency",
+                "DecimalDigits": 0,
+                "ShowGroupingSeparator": true,
+                "CurrencySymbol": "$",
+                "NegativeFormat": "MinusSign",
+                "ApplyMkFormat": false
+              }
+            }
+          },
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Revenue",
+              "FieldLabel": "Revenue",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "FormatType": "Currency",
+                "DecimalDigits": 0,
+                "ShowGroupingSeparator": true,
+                "CurrencySymbol": "$",
+                "NegativeFormat": "MinusSign",
+                "ApplyMkFormat": false
+              }
+            }
+          }
+        ]
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "44d9fb57-eaa7-4944-b8df-faebfa6f31d5",
+      "RowSpan": 38,
+      "ColumnSpan": 19,
+      "IsTitleVisible": true,
+      "Title": "Units Produced By Line",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Manufacturing",
+          "Title": "Manufacturing",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Manufacturing"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1440,
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None",
+            "Filter": {
+              "_type": "DateTimeFilterType",
+              "FilterType": "FilterByRule",
+              "SelectedValues": [],
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false,
+              "RuleType": "LastMonth",
+              "IncludeToday": true
+            },
+            "Settings": {
+              "_type": "DateTimeFieldSettingsType",
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false
+            }
+          },
+          {
+            "FieldName": "Units Lost",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Overall Plant Productivity ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators Available ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators by Function",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Produced",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Product",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Efficiency",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Line",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders In",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders Shipped ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Cost of Labor ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Revenue",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "ChartVisualizationSettingsType",
+        "VisualizationType": "CHART",
+        "ChartType": "Column",
+        "AllSeries": false,
+        "ShowLegends": true,
+        "TrendlineType": "None",
+        "SingleAxisMode": false,
+        "Series": [],
+        "LeftAxisFields": [],
+        "RightAxisFields": [],
+        "LeftAxisLogarithmic": false,
+        "RightAxisLogarithmic": false,
+        "LabelDisplayMode": "Percentage",
+        "BrushOffsetIndex": -1,
+        "PieStartPosition": 270,
+        "ShowTotalsInTooltip": true,
+        "CompositeChartType1": "Column",
+        "CompositeChartType2": "Column",
+        "CompositeChartTypesSwapped": false,
+        "ShowZeroValuesInLegend": false
+      },
+      "VisualizationDataSpec": {
+        "_type": "CategoryVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [
+          {
+            "_type": "DimensionColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationRegularFieldType",
+              "FieldName": "Line",
+              "DrillDownElements": [],
+              "ExpandedItems": []
+            }
+          }
+        ],
+        "Values": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Units Produced",
+              "FieldLabel": "Units Produced",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "Desc",
+              "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "FormatType": "Number",
+                "DecimalDigits": 0,
+                "ShowGroupingSeparator": true,
+                "CurrencySymbol": "$",
+                "NegativeFormat": "MinusSign",
+                "ApplyMkFormat": false
+              }
+            }
+          }
+        ]
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "02b6a855-9442-467f-9ad5-6db98f83224b",
+      "RowSpan": 38,
+      "ColumnSpan": 21,
+      "IsTitleVisible": true,
+      "Title": "Operators Available by Function",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Manufacturing",
+          "Title": "Manufacturing",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Manufacturing"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1440,
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None",
+            "Filter": {
+              "_type": "DateTimeFilterType",
+              "FilterType": "FilterByRule",
+              "SelectedValues": [],
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false,
+              "RuleType": "LastMonth",
+              "IncludeToday": true
+            },
+            "Settings": {
+              "_type": "DateTimeFieldSettingsType",
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false
+            }
+          },
+          {
+            "FieldName": "Units Lost",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Overall Plant Productivity ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators Available ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators by Function",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Produced",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Product",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Efficiency",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Line",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders In",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders Shipped ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Cost of Labor ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Revenue",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "ChartVisualizationSettingsType",
+        "VisualizationType": "CHART",
+        "ChartType": "Doughnut",
+        "AllSeries": false,
+        "ShowLegends": true,
+        "TrendlineType": "None",
+        "SingleAxisMode": false,
+        "Series": [],
+        "LeftAxisFields": [],
+        "RightAxisFields": [],
+        "LeftAxisLogarithmic": false,
+        "RightAxisLogarithmic": false,
+        "LabelDisplayMode": "Percentage",
+        "BrushOffsetIndex": -1,
+        "PieStartPosition": 270,
+        "ShowTotalsInTooltip": true,
+        "CompositeChartType1": "Column",
+        "CompositeChartType2": "Column",
+        "CompositeChartTypesSwapped": false,
+        "ShowZeroValuesInLegend": false
+      },
+      "VisualizationDataSpec": {
+        "_type": "SingleValueLabelsVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [
+          {
+            "_type": "DimensionColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationRegularFieldType",
+              "FieldName": "Operators by Function",
+              "DrillDownElements": [],
+              "ExpandedItems": []
+            }
+          }
+        ],
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Operators Available ",
+              "FieldLabel": "Operators Available ",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "Asc",
+              "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "FormatType": "Number",
+                "DecimalDigits": 0,
+                "ShowGroupingSeparator": true,
+                "CurrencySymbol": "$",
+                "NegativeFormat": "MinusSign",
+                "ApplyMkFormat": false
+              }
+            }
+          }
+        ]
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "6a753ed6-0c89-439d-6300-24d59484a070",
+      "RowSpan": 19,
+      "ColumnSpan": 20,
+      "IsTitleVisible": true,
+      "Title": "Line 2 Efficiency",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Manufacturing",
+          "Title": "Manufacturing",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Manufacturing"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1440,
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Lost",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Overall Plant Productivity ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators Available ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators by Function",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Produced",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Product",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Efficiency",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Line",
+            "FieldLabel": "Line",
+            "FieldType": "String",
+            "IsHidden": false,
+            "IsCalculated": false,
+            "Sorting": "None",
+            "Filter": {
+              "_type": "StringFilterType",
+              "FilterType": "SelectedValues",
+              "SelectedValues": [
+                {
+                  "Name": "Line 5",
+                  "Value": "Line 5"
+                },
+                {
+                  "Name": "Line 2",
+                  "Value": "Line 2"
+                }
+              ],
+              "RuleType": "None"
+            },
+            "Settings": {
+              "_type": "DateTimeFieldSettingsType",
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false
+            }
+          },
+          {
+            "FieldName": "Orders In",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders Shipped ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Cost of Labor ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Revenue",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "GaugeVisualizationSettingsType",
+        "VisualizationType": "GAUGE",
+        "ViewType": "Circular",
+        "Minimum": {
+          "ValueType": "NumberValue",
+          "Value": 0.0
+        },
+        "Maximum": {
+          "ValueType": "NumberValue",
+          "Value": 1.0
+        },
+        "GaugeBands": [
+          {
+            "_type": "GaugeBandType",
+            "Type": "Percentage",
+            "Color": "Green",
+            "Value": 100.0,
+            "Shape": "None"
+          },
+          {
+            "_type": "GaugeBandType",
+            "Type": "Percentage",
+            "Color": "Yellow",
+            "Value": 0.0,
+            "Shape": "None"
+          },
+          {
+            "_type": "GaugeBandType",
+            "Type": "Percentage",
+            "Color": "Red",
+            "Shape": "None"
+          }
+        ]
+      },
+      "VisualizationDataSpec": {
+        "_type": "SingleGaugeVisualizationDataSpecType",
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Efficiency",
+              "FieldLabel": "Efficiency",
+              "IsHidden": false,
+              "AggregationType": "Avg",
+              "Sorting": "None",
+              "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "FormatType": "Percent",
+                "DecimalDigits": 2,
+                "ShowGroupingSeparator": false,
+                "CurrencySymbol": "$",
+                "NegativeFormat": "MinusSign",
+                "ApplyMkFormat": true
+              }
+            }
+          }
+        ],
+        "Label": {
+          "_type": "DimensionColumnSpecType",
+          "SummarizationField": {
+            "_type": "SummarizationRegularFieldType",
+            "FieldName": "Line",
+            "DrillDownElements": [],
+            "ExpandedItems": []
+          }
+        }
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "fbd7e956-06e4-4720-ba3c-17955b018eb3",
+      "RowSpan": 19,
+      "ColumnSpan": 20,
+      "IsTitleVisible": true,
+      "Title": "Line 1 Efficiency",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Manufacturing",
+          "Title": "Manufacturing",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Manufacturing"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1440,
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldType": "Date",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Lost",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Overall Plant Productivity ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators Available ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators by Function",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Produced",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Product",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Efficiency",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Line",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None",
+            "Filter": {
+              "_type": "StringFilterType",
+              "FilterType": "SelectedValues",
+              "SelectedValues": [
+                {
+                  "Name": "Line 1",
+                  "Value": "Line 1"
+                }
+              ],
+              "RuleType": "None"
+            }
+          },
+          {
+            "FieldName": "Orders In",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders Shipped ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Cost of Labor ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Revenue",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "GaugeVisualizationSettingsType",
+        "VisualizationType": "GAUGE",
+        "ViewType": "Circular",
+        "Minimum": {
+          "ValueType": "NumberValue",
+          "Value": 0.0
+        },
+        "Maximum": {
+          "ValueType": "NumberValue",
+          "Value": 1.0
+        },
+        "GaugeBands": [
+          {
+            "_type": "GaugeBandType",
+            "Type": "Percentage",
+            "Color": "Green",
+            "Value": 1.0,
+            "Shape": "None"
+          },
+          {
+            "_type": "GaugeBandType",
+            "Type": "Percentage",
+            "Color": "Yellow",
+            "Value": 0.0,
+            "Shape": "None"
+          },
+          {
+            "_type": "GaugeBandType",
+            "Type": "Percentage",
+            "Color": "Red",
+            "Shape": "None"
+          }
+        ]
+      },
+      "VisualizationDataSpec": {
+        "_type": "SingleGaugeVisualizationDataSpecType",
+        "Value": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Efficiency",
+              "FieldLabel": "Efficiency",
+              "IsHidden": false,
+              "AggregationType": "Max",
+              "Sorting": "None",
+              "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "FormatType": "Percent",
+                "DecimalDigits": 2,
+                "ShowGroupingSeparator": false,
+                "CurrencySymbol": "$",
+                "NegativeFormat": "MinusSign",
+                "ApplyMkFormat": true
+              }
+            }
+          }
+        ],
+        "Label": {
+          "_type": "DimensionColumnSpecType",
+          "SummarizationField": {
+            "_type": "SummarizationRegularFieldType",
+            "FieldName": "Line",
+            "DrillDownElements": [],
+            "ExpandedItems": []
+          }
+        }
+      },
+      "PostTransformations": []
+    },
+    {
+      "Id": "ad1da9bb-a422-4783-82aa-4ec075ce917d",
+      "RowSpan": 32,
+      "ColumnSpan": 60,
+      "IsTitleVisible": true,
+      "Title": "Orders In vs Orders Shipped",
+      "DataSpec": {
+        "_type": "TabularDataSpecType",
+        "DataSourceItem": {
+          "_type": "DataSourceItemType",
+          "Id": "f678350c-92b5-4fd4-b300-54b95ee2b1a5__2535__https://infragisticsinc297.sharepoint.com/Groups/marketing/_api/Web/GetFileByServerRelativePath(decodedurl='/Groups/marketing/Products/Reveal/Samples.xlsx')/Manufacturing",
+          "Title": "Manufacturing",
+          "DataSourceId": "__EXCEL",
+          "HasTabularData": true,
+          "HasAsset": false,
+          "Properties": {
+            "Sheet": "Manufacturing"
+          },
+          "Parameters": {},
+          "ResourceItem": {
+            "_type": "DataSourceItemType",
+            "Id": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            "Title": "Samples.xlsx",
+            "DataSourceId": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+            "HasTabularData": false,
+            "HasAsset": true,
+            "Properties": {
+              "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            },
+            "Parameters": {}
+          }
+        },
+        "Expiration": 1440,
+        "IsTransposed": false,
+        "Fields": [
+          {
+            "FieldName": "Date",
+            "FieldLabel": "Date",
+            "FieldType": "Date",
+            "IsHidden": false,
+            "IsCalculated": false,
+            "Sorting": "None",
+            "Filter": {
+              "_type": "DateTimeFilterType",
+              "FilterType": "FilterByRule",
+              "SelectedValues": [],
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false,
+              "RuleType": "LastYear",
+              "IncludeToday": true
+            },
+            "Formatting": {
+              "_type": "DateFormattingSpecType",
+              "DateFormat": "dd-MMM-yyyy"
+            },
+            "Settings": {
+              "_type": "DateTimeFieldSettingsType",
+              "DateFiscalYearStartMonth": 0,
+              "DisplayInLocalTimeZone": false
+            }
+          },
+          {
+            "FieldName": "Units Lost",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Overall Plant Productivity ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators Available ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Operators by Function",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Units Produced",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Product",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Efficiency",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Line",
+            "FieldType": "String",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders In",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Orders Shipped ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Cost of Labor ",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          },
+          {
+            "FieldName": "Revenue",
+            "FieldType": "Number",
+            "IsHidden": true,
+            "IsCalculated": false,
+            "Sorting": "None"
+          }
+        ],
+        "TransposedFields": [],
+        "QuickFilters": [],
+        "AdditionalTables": [],
+        "ServiceAdditionalTables": []
+      },
+      "VisualizationSettings": {
+        "_type": "ChartVisualizationSettingsType",
+        "VisualizationType": "CHART",
+        "ChartType": "Column",
+        "AllSeries": false,
+        "ShowLegends": true,
+        "TrendlineType": "None",
+        "SingleAxisMode": false,
+        "Series": [],
+        "LeftAxisFields": [],
+        "RightAxisFields": [],
+        "LeftAxisLogarithmic": false,
+        "RightAxisLogarithmic": false,
+        "LabelDisplayMode": "Percentage",
+        "BrushOffsetIndex": -1,
+        "PieStartPosition": 270,
+        "ShowTotalsInTooltip": true,
+        "CompositeChartType1": "Column",
+        "CompositeChartType2": "Column",
+        "CompositeChartTypesSwapped": false,
+        "ShowZeroValuesInLegend": false
+      },
+      "VisualizationDataSpec": {
+        "_type": "CategoryVisualizationDataSpecType",
+        "AdHocExpandedElements": [],
+        "Rows": [
+          {
+            "_type": "DimensionColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationDateFieldType",
+              "FieldName": "Date",
+              "DrillDownElements": [],
+              "ExpandedItems": [],
+              "DateAggregationType": "Month"
+            }
+          }
+        ],
+        "Values": [
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Orders In",
+              "FieldLabel": "Orders In",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          },
+          {
+            "_type": "MeasureColumnSpecType",
+            "SummarizationField": {
+              "_type": "SummarizationValueFieldType",
+              "FieldName": "Orders Shipped ",
+              "FieldLabel": "Orders Shipped ",
+              "IsHidden": false,
+              "AggregationType": "Sum",
+              "Sorting": "None",
+              "IsCalculated": false
+            }
+          }
+        ]
+      },
+      "PostTransformations": []
+    }
+  ],
+  "DataSources": [
+    {
+      "_type": "DataSourceType",
+      "Id": "__EXCEL",
+      "Provider": "EXCELLOCALFILEPROVIDER",
+      "Properties": {}
+    },
+    {
+      "_type": "DataSourceType",
+      "Id": "61ce395d-7a2e-4838-9f40-06e122505ad5",
+      "Provider": "WEBSERVICE",
+      "Description": "Reveal Sample Data",
+      "Properties": {
+        "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+        "_rpUseAnonymousAuthentication": true
+      }
+    }
+  ],
+  "GlobalFilters": [],
+  "GlobalVariables": []
+}

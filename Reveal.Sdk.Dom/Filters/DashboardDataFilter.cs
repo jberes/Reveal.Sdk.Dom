@@ -1,0 +1,25 @@
+﻿using Reveal.Sdk.Dom.Core;
+using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Visualizations.DataSpecs;
+using System.Text.Json.Serialization;
+
+namespace Reveal.Sdk.Dom.Filters
+{
+    public class DashboardDataFilter : DashboardDataFilterBase
+    {
+        [JsonInclude]
+        public TabularDataSpec DataSpec { get; internal set; } = new TabularDataSpec();
+        public string SelectedFieldName { get; set; }
+
+        public DashboardDataFilter() : this(null) { }
+
+        public DashboardDataFilter(DataSourceItem dataSourceItem)
+        {
+            SchemaTypeName = SchemaTypeNames.TabularGlobalFilterType;
+            DataSpec.DataSourceItem = dataSourceItem;
+            //DataSpec.Fields = dataSourceItem?.Fields;
+            DataSpec.Fields = dataSourceItem?.Fields.Clone();
+        }
+    }
+}
