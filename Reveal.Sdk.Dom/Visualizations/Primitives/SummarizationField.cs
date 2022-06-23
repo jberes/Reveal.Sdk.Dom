@@ -7,7 +7,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Primitives
         public string FieldName { get; set; }
         public string Description { get; set; }
 
-        public SummarizationField() { }
+        internal SummarizationField() { }
 
         public SummarizationField(string fieldName)
         {

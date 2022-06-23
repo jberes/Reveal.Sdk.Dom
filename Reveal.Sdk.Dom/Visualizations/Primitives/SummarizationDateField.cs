@@ -11,7 +11,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Primitives
         public DateAggregationType DateAggregationType { get; set; } = DateAggregationType.Year;
         public DateFormattingSpec DateFormatting { get; set; }
 
-        public SummarizationDateField() : this(string.Empty) { }
+        internal SummarizationDateField() : this(string.Empty) { }
 
         public SummarizationDateField(string fieldName) : base(fieldName)
         {

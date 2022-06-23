@@ -24,7 +24,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Primitives
         public ConditionalFormattingSpec ConditionalFormatting { get; set; }
         public Filter Filter { get; set; }
 
-        public SummarizationValueField() : this(string.Empty) { }
+        internal SummarizationValueField() : this(string.Empty) { }
 
         public SummarizationValueField(string fieldName) : base(fieldName)
         {

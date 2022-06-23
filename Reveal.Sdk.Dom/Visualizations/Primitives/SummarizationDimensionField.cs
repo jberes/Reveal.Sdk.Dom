@@ -8,7 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Primitives
         public List<string> ExpandedItems { get; set; } = new List<string>();
         public string SortByField { get; set; }
 
-        public SummarizationDimensionField() : this(string.Empty) { }
+        internal SummarizationDimensionField() : this(string.Empty) { }
 
         public SummarizationDimensionField(string fieldName) : base(fieldName) { }
     }
