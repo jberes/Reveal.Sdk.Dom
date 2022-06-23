@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class ColumnChartVisualization : Visualization<ColumnChartVisualizationSettings, CategoryVisualizationDataSpec>
     {
-        public ColumnChartVisualization() : base() { }
+        internal ColumnChartVisualization() : this(null) { }
 
         public ColumnChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
     }

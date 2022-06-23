@@ -1,6 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
-using System;
 using System.Collections.Generic;
 
 namespace Sandbox.Helpers
@@ -57,48 +56,17 @@ namespace Sandbox.Helpers
         {
             List<Field> fields = new List<Field>
             {
-                new Field("Date")
-                {
-                    DataType = DataType.Date,
-                },
-                new Field("Number of Inpatients")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Number of Outpatients")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Treatment Costs ")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("ER Wait Time")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Divison")
-                {
-                    DataType = DataType.String,
-                },
-                new Field("Satisfaction")
-                {
-                    DataType = DataType.String,
-                },
-                new Field("Length of Stay ")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Charges per MD")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Current Paitents")
-                {
-                    DataType = DataType.Number,
-                },
+                new DateField("Date"),
+                new NumberField("Number of Inpatients"),
+                new NumberField("Number of Outpatients"),
+                new NumberField("Treatment Costs "),
+                new NumberField("ER Wait Time"),
+                new TextField("Divison"),
+                new TextField("Satisfaction"),
+                new NumberField("Length of Stay "),
+                new NumberField("Charges per MD"),
+                new NumberField("Current Paitents")
             };
-
             return fields;
         }
 
@@ -106,58 +74,19 @@ namespace Sandbox.Helpers
         {
             List<Field> fields = new List<Field>
             {
-                new Field("Date")
-                {
-                    DataType = DataType.Date,
-                },
-                new Field("Units Lost")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Overall Plant Productivity ")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Operators Available ")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Operators by Function")
-                {
-                    DataType = DataType.String,
-                },
-                new Field("Units Produced")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Product")
-                {
-                    DataType = DataType.String,
-                },
-                new Field("Efficiency")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Line")
-                {
-                    DataType = DataType.String,
-                },
-                new Field("Orders In")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Orders Shipped ")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Cost of Labor ")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Revenue")
-                {
-                    DataType = DataType.Number,
-                },
+                new DateField("Date"),
+                new NumberField("Units Lost"),
+                new NumberField("Overall Plant Productivity "),
+                new NumberField("Operators Available "),
+                new TextField("Operators by Function"),
+                new NumberField("Units Produced"),
+                new TextField("Product"),
+                new NumberField("Efficiency"),
+                new TextField("Line"),
+                new NumberField("Orders In"),
+                new NumberField("Orders Shipped "),
+                new NumberField("Cost of Labor "),
+                new NumberField("Revenue")
             };
 
             return fields;
@@ -167,64 +96,21 @@ namespace Sandbox.Helpers
         {
             List<Field> fields = new List<Field>
             {
-                new Field("Date")
-                {
-                    DataType = DataType.Date,
-                },
-                new Field("Spend")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Budget")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("CTR")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Avg. CPC")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Traffic")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Paid Traffic")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Other Traffic")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Conversions")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Territory")
-                {
-                    DataType = DataType.String,
-                },
-                new Field("CampaignID")
-                {
-                    DataType = DataType.String,
-                },
-                new Field("New Seats")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Paid %")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Organic %")
-                {
-                    DataType = DataType.Number,
-                }
+                new DateField("Date"),
+                new NumberField("Spend"),
+                new NumberField("Budget"),
+                new NumberField("CTR"),
+                new NumberField("Avg. CPC"),
+                new NumberField("Traffic"),
+                new NumberField("Paid Traffic"),                
+                new NumberField("Other Traffic"),
+                new NumberField("Conversions"),
+                new TextField("Territory"),
+                new TextField("CampaignID"),
+                new NumberField("New Seats"),
+                new NumberField("Paid %"),
+                new NumberField("Organic %")
             };
-
             return fields;
         }
 
@@ -232,64 +118,27 @@ namespace Sandbox.Helpers
         {
             List<Field> fields = new List<Field>
             {
-                new Field("Territory"),
-                new Field("Date")
-                {
-                    DataType = DataType.Date,
-                },
-                new Field("Quota")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Leads")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Hot Leads")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("New Seats")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("New Sales")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Renewal Seats")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Renewal Sales ")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Employee"),
-                new Field("Pipepline")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Forecasted")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Revenue")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Total Opportunites")
-                {
-                    DataType = DataType.Number,
-                },
-                new Field("Product"),
-                new Field("b"),
-                new Field("c"),
-                new Field("d"),
-                new Field("e"),
-                new Field("f")
+                new TextField("Territory"),
+                new DateField("Date"),
+                new NumberField("Quota"),
+                new NumberField("Leads"),
+                new NumberField("Hot Leads"),
+                new NumberField("New Seats"),
+                new NumberField("New Sales"),
+                new NumberField("Renewal Seats"),
+                new NumberField("Renewal Sales "),
+                new TextField("Employee"),
+                new NumberField("Pipepline"),
+                new NumberField("Forecasted"),
+                new NumberField("Revenue"),
+                new NumberField("Total Opportunites"),
+                new TextField("Product"),
+                new TextField("b"),
+                new TextField("c"),
+                new TextField("d"),
+                new TextField("e"),
+                new TextField("f")
             };
-
             return fields;
         }
     }

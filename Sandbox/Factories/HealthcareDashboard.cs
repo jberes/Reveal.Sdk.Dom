@@ -17,7 +17,7 @@ namespace Sandbox.Factories
             var document = new DashboardDocument()
             {
                 Title = "Healthcare",
-                Theme = Theme.Circus,
+                Theme = ThemeNames.Circus,
                 Description = "I created this in code",
                 UseAutoLayout = false,
             };
@@ -27,7 +27,7 @@ namespace Sandbox.Factories
                 RuleType = DateRuleType.TrailingTwelveMonths
             });
 
-            var globalDateFilterBinding = new DashboardDateFilterBinding();
+            var globalDateFilterBinding = new DashboardDateFilterBinding("Date");
 
             document.Visualizations.Add(CreateIndicatorVisualization("Number of Inpatients", "Number of Inpatients", excelDataSourceItem));
             document.Visualizations.Add(CreateIndicatorVisualization("Number of Outpatients", "Number of Outpatients", excelDataSourceItem));
@@ -51,7 +51,7 @@ namespace Sandbox.Factories
                 RowSpan = 13,
             };
 
-            visualization.VisualizationDataSpec.Date = new DimensionColumnSpec()
+            visualization.Date = new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
             };
@@ -67,7 +67,7 @@ namespace Sandbox.Factories
                 };
             }
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Value.Add(new MeasureColumnSpec()
             {
                 SummarizationField = summarizationtionField
             });

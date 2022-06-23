@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Core
         //This is a quick and dirty way to clone an object without needing write a ton of code. May have to replace this in the future
         internal static T Clone<T>(T item)
         {
-            if (ReferenceEquals(item, null))
+            if (item is null)
                 return default(T);
 
             var deserializeSettings = new JsonSerializerSettings

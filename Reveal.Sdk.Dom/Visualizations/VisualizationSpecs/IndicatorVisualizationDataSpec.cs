@@ -6,6 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
     public class IndicatorVisualizationDataSpec : IndicatorBaseVisualizationDataSpec
     {
+        [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]
         public IndicatorVisualizationType IndicatorType { get; set; } = IndicatorVisualizationType.YearToDatePreviousYear;
 

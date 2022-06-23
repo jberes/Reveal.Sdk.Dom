@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class BarChartVisualization : Visualization<BarChartVisualizationSettings, CategoryVisualizationDataSpec>
     {
-        public BarChartVisualization() : base() { }
+        internal BarChartVisualization() : this(null) { }
 
         public BarChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
     }

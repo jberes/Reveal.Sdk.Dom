@@ -6,14 +6,8 @@ using System;
 
 namespace Reveal.Sdk.Dom.Serialization.Converters
 {
-    internal class DataSourceConverter : JsonConverter<DataSource>
+    internal class DataSourceConverter : CustomJsonConverter<DataSource>
     {
-        public override bool CanWrite => false;
-        public override void WriteJson(JsonWriter writer, DataSource value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
-
         public override DataSource ReadJson(JsonReader reader, Type objectType, DataSource existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             JObject jObject = JObject.Load(reader);

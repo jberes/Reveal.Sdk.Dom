@@ -18,7 +18,7 @@ namespace Sandbox.Factories
             var document = new DashboardDocument("Manufacturing")
             {
                 Title = "Manufacturing",
-                Theme = Theme.RockyMountain,
+                Theme = ThemeNames.RockyMountain,
                 Description = "I created this in code",
                 UseAutoLayout = false,
             };
@@ -44,7 +44,7 @@ namespace Sandbox.Factories
                 RowSpan = 22,
             };
 
-            visualization.VisualizationDataSpec.Date = new DimensionColumnSpec()
+            visualization.Date = new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
             };
@@ -62,7 +62,7 @@ namespace Sandbox.Factories
                 };
             }
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Value.Add(new MeasureColumnSpec()
             {
                 SummarizationField = summarizationtionField
             });

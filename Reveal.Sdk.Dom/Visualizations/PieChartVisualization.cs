@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class PieChartVisualization : Visualization<PieChartVisualizationSettings, SingleValueLabelsVisualizationDataSpec>
     {
-        public PieChartVisualization() : base() { }
+        internal PieChartVisualization() : this(null) { }
 
         public PieChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
     }

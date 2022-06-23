@@ -6,15 +6,8 @@ using Newtonsoft.Json;
 
 namespace Reveal.Sdk.Dom.Serialization.Converters
 {
-    internal class VisualizationConverter : JsonConverter<Visualization>
+    internal class VisualizationConverter : CustomJsonConverter<Visualization>
     {
-        public override bool CanWrite => false;
-
-        public override void WriteJson(JsonWriter writer, Visualization value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Visualization ReadJson(JsonReader reader, Type objectType, Visualization existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             JObject jObject = JObject.Load(reader);

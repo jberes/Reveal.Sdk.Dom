@@ -18,7 +18,7 @@ namespace Sandbox.Factories
             {
                 Title = "Campaigns",
                 Description = "I created this in code",
-                Theme = Theme.TropicalIsland,
+                Theme = ThemeNames.TropicalIsland,
                 UseAutoLayout = false,
             };
 
@@ -37,7 +37,7 @@ namespace Sandbox.Factories
             document.Filters.Add(campaignIdFilter);
 
 
-            var globalDateFilterBinding = new DashboardDateFilterBinding();
+            var globalDateFilterBinding = new DashboardDateFilterBinding("Date");
             var territoryFilterBinding = new DashboardDataFilterBinding(campaignIdFilter);
 
             document.Visualizations.Add(CreateKpiTargetVisualization(excelDataSourceItem, territoryFilterBinding));
@@ -95,7 +95,7 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.Add(territoryFilterBinding);
 
-            visualization.VisualizationDataSpec.Date = new DimensionColumnSpec()
+            visualization.Date = new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
                 {
@@ -103,7 +103,7 @@ namespace Sandbox.Factories
                 }
             };
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Value.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField(field)
             });

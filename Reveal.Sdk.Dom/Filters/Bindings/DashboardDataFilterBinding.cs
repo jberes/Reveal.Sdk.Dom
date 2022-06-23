@@ -2,7 +2,7 @@
 {
     public class DashboardDataFilterBinding : Binding<FieldBindingSource, DashboardDataFilterBindingTarget>
     {
-        public DashboardDataFilterBinding() : this(null) { }
+        internal DashboardDataFilterBinding() : this(null) { }
 
         public DashboardDataFilterBinding(DashboardDataFilter dataFilter)
         {

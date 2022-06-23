@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class KpiTargetVisualization : Visualization<KpiTargetVisualizationSettings, KpiTargetVisualizationDataSpec>
     {
-        public KpiTargetVisualization() : base() { }
+        internal KpiTargetVisualization() : this(null) { }
 
         public KpiTargetVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
     }

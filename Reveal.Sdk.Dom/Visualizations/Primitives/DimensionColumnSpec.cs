@@ -6,7 +6,6 @@ namespace Reveal.Sdk.Dom.Visualizations.Primitives
 {
     public class DimensionColumnSpec : ColumnSpec
     {
-        [JsonConverter(typeof(SummarizationFieldConverter))]
         public SummarizationDimensionField SummarizationField { get; set; }
         public XmlaDimensionElement XmlaElement { get; set; }
 

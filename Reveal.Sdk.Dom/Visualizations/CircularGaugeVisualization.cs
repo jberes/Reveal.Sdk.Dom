@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class CircularGaugeVisualization : Visualization<GaugeVisualizationSettings, SingleGaugeVisualizationDataSpec>
     {
-        public CircularGaugeVisualization() : base() { }
+        internal CircularGaugeVisualization() : this(null) { }
 
         public CircularGaugeVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) 
         {

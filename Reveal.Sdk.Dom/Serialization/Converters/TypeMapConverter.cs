@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Serialization.Converters
 {
-    internal class TypeMapConverter<T> : JsonConverter<T>
+    internal class TypeMapConverter<T> : CustomJsonConverter<T>
         where T : class
     {
         protected Dictionary<string, Type> TypeMap { get; set; }
@@ -16,13 +16,6 @@ namespace Reveal.Sdk.Dom.Serialization.Converters
         public TypeMapConverter(string selector)
         {
             Selector = selector;
-        }
-
-        public override bool CanWrite => false;
-
-        public override void WriteJson(JsonWriter writer, T value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
         }
 
         public override T ReadJson(JsonReader reader, Type objectType, T existingValue, bool hasExistingValue, JsonSerializer serializer)

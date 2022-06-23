@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class GaugeVisualization : Visualization<GaugeVisualizationSettings, LinearGaugeVisualizationDataSpec>
     {
-        public GaugeVisualization() : base() { }
+        internal GaugeVisualization() : this(null) { }
 
         public GaugeVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
     }

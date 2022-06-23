@@ -14,9 +14,14 @@ namespace Reveal.Sdk.Dom
 		public string Title { get; set; }
 		public string Description { get; set; }
 
-        [JsonProperty("ThemeName")]
-        [JsonConverter(typeof(StringEnumConverter), typeof(EnumWithSpacesNamingStrategy))]
-		public Theme Theme { get; set; }
+		//todo: support an enum for the themes - this will require changing themes names in the Reveal product
+		//[JsonProperty("ThemeName")]
+		//[JsonConverter(typeof(StringEnumConverter), typeof(EnumWithSpacesNamingStrategy))]
+		//public Theme Theme { get; set; }
+
+		[JsonProperty("ThemeName")]
+		public string Theme { get; set; }
+
 		public string CreatedWith { get; internal set; } = "Reveal.Sdk.DOM";
 		public string SavedWith { get; internal set; }
 		public int FormatVersion { get; internal set; }

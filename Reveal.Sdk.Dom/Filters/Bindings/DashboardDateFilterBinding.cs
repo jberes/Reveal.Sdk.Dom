@@ -2,7 +2,7 @@
 {
     public class DashboardDateFilterBinding : Binding<FieldBindingSource, DashboardDateFilterBindingTarget>
     {
-        public DashboardDateFilterBinding() : this("Date") { }
+        internal DashboardDateFilterBinding() : this(string.Empty) { }
 
         public DashboardDateFilterBinding(string fieldName)
         {

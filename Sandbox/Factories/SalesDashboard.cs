@@ -169,7 +169,7 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.Add(territoryFilterBinding);
 
-            visualization.VisualizationDataSpec.Date = new DimensionColumnSpec()
+            visualization.Date = new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
                 {
@@ -177,7 +177,7 @@ namespace Sandbox.Factories
                 }
             };
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Value.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Total Opportunites")
             });

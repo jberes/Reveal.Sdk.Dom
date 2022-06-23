@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class LineChartVisualization : Visualization<LineChartVisualizationSettings, CategoryVisualizationDataSpec>
     {
-        public LineChartVisualization() : base() { }
+        internal LineChartVisualization() : this(null) { }
 
         public LineChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
     }

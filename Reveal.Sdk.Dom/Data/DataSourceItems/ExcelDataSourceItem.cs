@@ -6,30 +6,10 @@ namespace Reveal.Sdk.Dom.Data
 {
     public class ExcelDataSourceItem : DataSourceItem
     {
-        [JsonIgnore]
-        public string Sheet
-        {
-            get
-            {
-                if (Properties.TryGetValue("Sheet", out object value))
-                    return (string)value;
-                else
-                    return null;
-            }
-            set
-            {
-                if (Properties.ContainsKey("Sheet"))
-                    Properties["Sheet"] = value;
-                else
-                    Properties.Add("Sheet", value);
-            }
-        }
-
         internal ExcelDataSourceItem() { }
 
         public ExcelDataSourceItem(ExcelDataSource dataSource, List<Field> fields) : this(dataSource, string.Empty, fields) { }
 
-        //todo: research why the title/subtitle isn't working
         public ExcelDataSourceItem(ExcelDataSource dataSource, string sheet, List<Field> fields)
         {
             Sheet = sheet;
@@ -55,6 +35,25 @@ namespace Reveal.Sdk.Dom.Data
                 Subtitle = Subtitle,
             };
             ResourceItem.Properties.Add("Url", dataSource.Url);
+        }
+
+        [JsonIgnore]
+        public string Sheet
+        {
+            get
+            {
+                if (Properties.TryGetValue("Sheet", out object value))
+                    return (string)value;
+                else
+                    return null;
+            }
+            set
+            {
+                if (Properties.ContainsKey("Sheet"))
+                    Properties["Sheet"] = value;
+                else
+                    Properties.Add("Sheet", value);
+            }
         }
     }
 }

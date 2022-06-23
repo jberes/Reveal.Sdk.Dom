@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class StackedColumnChartVisualization : Visualization<StackedColumnChartVisualizationSettings, CategoryVisualizationDataSpec>
     {
-        public StackedColumnChartVisualization() : base() { }
+        internal StackedColumnChartVisualization() : this(null) { }
 
         public StackedColumnChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
     }

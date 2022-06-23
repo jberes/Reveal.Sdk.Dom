@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class PivotVisualization : Visualization<PivotVisualizationSettings, PivotVisualizationDataSpec>
     {
-        public PivotVisualization() : base() { }
+        internal PivotVisualization() : this(null) { }
 
         public PivotVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
     }

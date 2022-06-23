@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Serialization
 {
     internal static class RdashSerializer
     {
-        internal const string RdashJsonFileName = "Dashboard.json";
+        const string _rdashJsonFileName = "Dashboard.json";
 
         internal static DashboardDocument Deserialize(string filePath)
         {
@@ -21,19 +21,19 @@ namespace Reveal.Sdk.Dom.Serialization
             return document;
         }
 
-        internal static DashboardDocument Deserialize(Stream stream)
+        static DashboardDocument Deserialize(Stream stream)
         {
             string json = DeserializeToJson(stream);
             return JsonConvert.DeserializeObject<DashboardDocument>(json);
         }
 
-        internal static string DeserializeToJson(Stream stream)
+        static string DeserializeToJson(Stream stream)
         {
             string json = string.Empty;
 
             using (var zipArchive = new ZipArchive(stream, ZipArchiveMode.Read))
             {
-                var jsonEntry = zipArchive.Entries.FirstOrDefault(e => e.Name == RdashJsonFileName);
+                var jsonEntry = zipArchive.Entries.FirstOrDefault(e => e.Name == _rdashJsonFileName);
                 if (jsonEntry != null)
                 {
                     using (var jsonStream = jsonEntry.Open())
@@ -58,7 +58,7 @@ namespace Reveal.Sdk.Dom.Serialization
             });
         }
 
-        internal static void FixDocumentDataSources(DashboardDocument document)
+        static void FixDocumentDataSources(DashboardDocument document)
         {
             Dictionary<string, DataSource> dataSources = new Dictionary<string, DataSource>();
             foreach(var viz in document.Visualizations)
@@ -87,7 +87,7 @@ namespace Reveal.Sdk.Dom.Serialization
             {
                 using (var zipArchive = new ZipArchive(fileStream, ZipArchiveMode.Create))
                 {
-                    var dashboardEntry = zipArchive.CreateEntry(RdashJsonFileName);
+                    var dashboardEntry = zipArchive.CreateEntry(_rdashJsonFileName);
                     using (var streamWriter = new StreamWriter(dashboardEntry.Open()))
                     {
                         var json = dashboard.ToJsonString();

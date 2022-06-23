@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class FunnelChartVisualization : Visualization<FunnelChartVisualizationSettings, SingleValueLabelsVisualizationDataSpec>
     {
-        public FunnelChartVisualization() : base() { }
+        internal FunnelChartVisualization() : this(null) { }
 
         public FunnelChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
     }

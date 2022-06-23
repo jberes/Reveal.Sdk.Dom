@@ -23,8 +23,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonConverter(typeof(VisualizationDataSpecConverter))]
         public TVisualizationDataSpec VisualizationDataSpec { get; internal set; }
 
-        public Visualization() : this(null) { }
-
         public Visualization(DataSourceItem dataSourceItem) : base(dataSourceItem)
         {
             Settings = new TSettings();
@@ -62,8 +60,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             get { return DataSpec.QuickFilters; }
         }
-
-        public Visualization() : this(null) { }
 
         public Visualization(DataSourceItem dataSourceItem)
         {

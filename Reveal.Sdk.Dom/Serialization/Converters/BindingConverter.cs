@@ -6,15 +6,8 @@ using System;
 
 namespace Reveal.Sdk.Dom.Serialization.Converters
 {
-    internal class BindingConverter : JsonConverter<Binding>
+    internal class BindingConverter : CustomJsonConverter<Binding>
     {
-        public override bool CanWrite => false;
-
-        public override void WriteJson(JsonWriter writer, Binding value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Binding ReadJson(JsonReader reader, Type objectType, Binding existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             JObject jObject = JObject.Load(reader);            

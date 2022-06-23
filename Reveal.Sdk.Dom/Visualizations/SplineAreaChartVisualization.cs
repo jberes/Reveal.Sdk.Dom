@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public class SplineAreaChartVisualization : Visualization<SplineAreaChartVisualizationSettings, CategoryVisualizationDataSpec>
     {
-        public SplineAreaChartVisualization() : base() { }
+        internal SplineAreaChartVisualization() : this(null) { }
 
         public SplineAreaChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
     }
