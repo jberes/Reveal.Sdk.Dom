@@ -2,7 +2,8 @@
 using Reveal.Sdk.Dom.Primitives;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
@@ -10,7 +11,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
     {
 		public List<MeasureColumnSpec> Target { get; set; } = new List<MeasureColumnSpec>();
 
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public IndicatorTargetDateFilterType DateFilterType { get; set; } = IndicatorTargetDateFilterType.YearToDate;
 		public DateRange CustomDateRange { get; set; }
 

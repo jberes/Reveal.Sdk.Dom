@@ -1,7 +1,8 @@
-﻿using Reveal.Sdk.Dom.Core.Constants;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Serialization.Converters;
-using System.Text.Json.Serialization;
 
 namespace Reveal.Sdk.Dom.Visualizations.Primitives
 {
@@ -10,10 +11,10 @@ namespace Reveal.Sdk.Dom.Visualizations.Primitives
         public string FieldLabel { get; set; }
         public bool IsHidden { get; set; }
 
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public AggregationType AggregationType { get; set; } = AggregationType.Sum;
 
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public SortingType Sorting { get; set; } = SortingType.None;
         public bool IsCalculated { get; set; }
         public string Expression { get; set; }

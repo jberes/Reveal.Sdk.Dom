@@ -1,6 +1,6 @@
-﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Reveal.Sdk.Dom.Data
 {
@@ -24,6 +24,8 @@ namespace Reveal.Sdk.Dom.Data
                     Properties.Add("Sheet", value);
             }
         }
+
+        internal ExcelDataSourceItem() { }
 
         public ExcelDataSourceItem(ExcelDataSource dataSource, List<Field> fields) : this(dataSource, string.Empty, fields) { }
 

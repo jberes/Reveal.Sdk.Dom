@@ -1,13 +1,14 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public class GaugeVisualizationSettings : VisualizationSettings
     {
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public GaugeViewType ViewType { get; set; } = GaugeViewType.Circular;
 		public Bound Minimum { get; set; }
 		public Bound Maximum { get; set; }

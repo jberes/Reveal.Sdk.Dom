@@ -1,11 +1,12 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
     public class IndicatorVisualizationDataSpec : IndicatorBaseVisualizationDataSpec
     {
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public IndicatorVisualizationType IndicatorType { get; set; } = IndicatorVisualizationType.YearToDatePreviousYear;
 
         public IndicatorVisualizationDataSpec()

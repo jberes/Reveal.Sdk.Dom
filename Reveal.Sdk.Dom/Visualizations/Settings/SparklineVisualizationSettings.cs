@@ -1,11 +1,12 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public class SparklineVisualizationSettings : GridVisualizationSettings
     {
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public ChartType ChartType { get; set; } = ChartType.Line;
         public bool ShowLastTwoValues { get; set; } = true;
         public bool ShowDifference { get; set; } = true;

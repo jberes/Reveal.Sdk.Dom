@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
@@ -7,7 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 		public string ColumnName { get; set; }
 		public double? Width { get; set; }
 
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public TextAlignment TextAlignment { get; set; } = TextAlignment.Inherit;
 	}
 }

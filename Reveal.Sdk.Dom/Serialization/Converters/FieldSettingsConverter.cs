@@ -1,37 +1,17 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace Reveal.Sdk.Dom.Serialization.Converters
 {
-    internal class FieldSettingsConverter : JsonConverter<FieldSettings>
+    internal class FieldSettingsConverter : TypeMapConverter<FieldSettings>
     {
-        public override FieldSettings Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public FieldSettingsConverter()
         {
-            var readerAtStart = reader;
-
-            using var jsonDocument = JsonDocument.ParseValue(ref reader);
-            var jsonObject = jsonDocument.RootElement;
-
-            var type = jsonObject.GetProperty("_type").GetString();
-
-            Type fieldSettingsType = type switch
+            TypeMap = new System.Collections.Generic.Dictionary<string, Type>()
             {
-                SchemaTypeNames.DateTimeFieldSettingsType => typeof(DateTimeFieldSettings),
-                _ => throw new JsonException($"FieldSettings not supported: {type}")
+                { SchemaTypeNames.DateTimeFieldSettingsType, typeof(DateTimeFieldSettings) }
             };
-
-            return JsonSerializer.Deserialize(ref readerAtStart, fieldSettingsType, options) as FieldSettings;
-        }
-
-        public override void Write(Utf8JsonWriter writer, FieldSettings value, JsonSerializerOptions options)
-        {
-            if (value is DateTimeFieldSettings dtfs)
-                JsonSerializer.Serialize(writer, dtfs, options);
-            else
-                throw new JsonException($"FieldSettings not supported: {value.GetType()}");
         }
     }
 }

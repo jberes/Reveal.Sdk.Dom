@@ -1,11 +1,12 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
     public class XmlaNumberFilterRule : XmlaFilterRule
     {
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public NumberRuleType RuleType { get; set; } = NumberRuleType.None;
         public double? Value { get; set; }
 

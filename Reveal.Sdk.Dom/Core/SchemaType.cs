@@ -1,12 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Reveal.Sdk.Dom.Core
 {
     public abstract class SchemaType
     {
-        [JsonInclude]
-        [JsonPropertyOrder(-1)]
-        [JsonPropertyName("_type")]
+        [JsonProperty("_type", Order = -2)]
         public string SchemaTypeName { get; internal set; }
     }
 }

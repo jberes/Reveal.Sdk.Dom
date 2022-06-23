@@ -1,18 +1,19 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public class ChartVisualizationSettings : VisualizationSettings
     {
-        [JsonInclude]
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+        
+		[JsonConverter(typeof(StringEnumConverter))]
 		public ChartType ChartType { get; internal set; }		
 		public bool AllSeries { get; set; }
 		public bool ShowLegends { get; set; } = true;
 
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public TrendlineType TrendlineType { get; set; }		
 		public bool SingleAxisMode { get; set; }
 		public FinancialSettings Financial { get; set; }
@@ -26,7 +27,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 		public List<string> RightAxisFields { get; set; }
 		public bool LeftAxisLogarithmic { get; set; }
 		public bool RightAxisLogarithmic { get; set; }
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public LabelDisplayMode LabelDisplayMode { get; set; }
 		public bool? IsPercentageDistributed { get; set; }
 		public double? LeftAxisMinValue { get; set; }
@@ -36,9 +37,9 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 		public int? BrushOffsetIndex { get; set; }
 		public int? PieStartPosition { get; set; }
 		public bool ShowTotalsInTooltip { get; set; }
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public ChartType CompositeChartType1 { get; set; }
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public ChartType CompositeChartType2 { get; set; }
 		public bool CompositeChartTypesSwapped { get; set; }
 		public bool ShowZeroValuesInLegend { get; set; }

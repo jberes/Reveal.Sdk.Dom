@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Primitives
 {
@@ -6,7 +7,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Primitives
     {
         public string OutputColumnName { get; set; }
         public string ResultColumnName { get; set; }
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public DataType DataType { get; set; }
         public string FeatureName { get; set; }
         public bool IsBoolean { get; set; }

@@ -1,10 +1,9 @@
-﻿using Reveal.Sdk.Dom.Data;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Data;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace Reveal.Sdk.Dom.Serialization
 {
@@ -25,7 +24,7 @@ namespace Reveal.Sdk.Dom.Serialization
         internal static DashboardDocument Deserialize(Stream stream)
         {
             string json = DeserializeToJson(stream);
-            return JsonSerializer.Deserialize<DashboardDocument>(json);
+            return JsonConvert.DeserializeObject<DashboardDocument>(json);
         }
 
         internal static string DeserializeToJson(Stream stream)
@@ -53,10 +52,9 @@ namespace Reveal.Sdk.Dom.Serialization
         internal static string Serialize(DashboardDocument document)
         {
             FixDocumentDataSources(document);
-            return JsonSerializer.Serialize(document, new JsonSerializerOptions() 
-            { 
-                WriteIndented = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            return JsonConvert.SerializeObject(document, Formatting.Indented, new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore,
             });
         }
 

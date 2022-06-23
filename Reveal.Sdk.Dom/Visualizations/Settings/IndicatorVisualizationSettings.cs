@@ -1,11 +1,12 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public class IndicatorVisualizationSettings : VisualizationSettings
     {
-        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public IndicatorDifferenceMode DifferenceMode { get; set; } = IndicatorDifferenceMode.Percentage;
         public bool PositiveIsRed { get; set; }
         public bool IncludeToday { get; set; } = true;

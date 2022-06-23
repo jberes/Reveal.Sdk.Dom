@@ -1,4 +1,5 @@
-﻿using Reveal.Sdk.Dom.Core;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Serialization.Converters;
@@ -7,8 +8,6 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json.Serialization;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -16,14 +15,11 @@ namespace Reveal.Sdk.Dom.Visualizations
         where TSettings : VisualizationSettings, new()
         where TVisualizationDataSpec : VisualizationDataSpec, new()
     {
-        [JsonInclude]
-        [JsonPropertyOrder(5)]
-        [JsonPropertyName("VisualizationSettings")]
+        [JsonProperty("VisualizationSettings", Order = 5)]
         public TSettings Settings { get; internal set; }
 
         //todo: think of a better name
-        [JsonInclude]
-        [JsonPropertyOrder(7)]
+        [JsonProperty(Order = 7)]
         [JsonConverter(typeof(VisualizationDataSpecConverter))]
         public TVisualizationDataSpec VisualizationDataSpec { get; internal set; }
 
@@ -39,20 +35,19 @@ namespace Reveal.Sdk.Dom.Visualizations
     [JsonConverter(typeof(VisualizationConverter))]
     public abstract class Visualization
     {
-        [JsonPropertyOrder(0)]
+        [JsonProperty(Order = 0)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
-        [JsonPropertyOrder(1)]
+        [JsonProperty(Order = 1)]
         public string Title { get; set; }
-        [JsonPropertyOrder(2)]
+        [JsonProperty(Order = 2)]
         public bool IsTitleVisible { get; set; } = true;
-        [JsonPropertyOrder(3)]
+        [JsonProperty(Order = 3)]
         public int ColumnSpan { get; set; }
-        [JsonPropertyOrder(4)]
+        [JsonProperty(Order = 4)]
         public int RowSpan { get; set; }
 
         //todo: think of a better name - maybe DataSchema since it represents the schema or structure of the data, or DataDefinition
-        [JsonInclude]
-        [JsonPropertyOrder(6)]
+        [JsonProperty(Order = 6)]
         [JsonConverter(typeof(DataSpecConverter))]
         public TabularDataSpec DataSpec { get; internal set; }
 
@@ -72,10 +67,11 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         public Visualization(DataSourceItem dataSourceItem)
         {
-            DataSpec = new TabularDataSpec();
-            DataSpec.DataSourceItem = dataSourceItem;
-            //DataSpec.Fields = dataSourceItem?.Fields;
-            DataSpec.Fields = dataSourceItem?.Fields.Clone();
+            DataSpec = new TabularDataSpec
+            {
+                DataSourceItem = dataSourceItem,
+                Fields = dataSourceItem?.Fields.Clone()
+            };
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Reveal.Sdk.Dom.Data
 {
@@ -11,7 +11,9 @@ namespace Reveal.Sdk.Dom.Data
         [JsonIgnore]
         public bool UseAnonymousAuthentication { get; set; } = true;
 
-        public ExcelDataSource(string url)
+        internal ExcelDataSource() : this(string.Empty) { }
+
+        public ExcelDataSource(string url) : base()
         {
             Id = DataSourceIds.ExcelId;
             Provider = DataSourceProviders.ExcelProvider;
