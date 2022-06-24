@@ -2,6 +2,7 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
+using Reveal.Sdk.Dom.Visualizations.Factories;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
@@ -52,30 +53,10 @@ namespace Sandbox.Factories
             return document;
         }
 
-        private static Visualization CreateKpiTargetVisualization(ExcelDataSourceItem excelDataSourceItem, Binding territoryFilterBinding)
+        private static Visualization CreateKpiTargetVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
-            var visualization = new KpiTargetVisualization(excelDataSourceItem)
-            {
-                Title = "Sales",
-                ColumnSpan = 11,
-                RowSpan = 20,
-            };
-
-            visualization.FilterBindings.Add(territoryFilterBinding);
-
-            visualization.VisualizationDataSpec.DateFilterType = IndicatorTargetDateFilterType.YearToDate;
-
-            visualization.VisualizationDataSpec.Date = new DimensionColumnSpec()
-            {
-                SummarizationField = new SummarizationDateField("Date")
-                {
-                    DateAggregationType = DateAggregationType.Year,
-                }
-            };
-
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("Pipepline")
+            var visualization = VisualizationFactory.CreateKpiTarget("Sales", excelDataSourceItem, "Date",
+                new SummarizationValueField("Pipepline")
                 {
                     FieldLabel = "Actual Sales",
                     AggregationType = AggregationType.Sum,
@@ -88,138 +69,54 @@ namespace Sandbox.Factories
                         NegativeFormat = NegativeFormatType.MinusSign,
                         ApplyMkFormat = true,
                     }
-                }
-            });
+                }, "Forecasted", filterBindings);
 
-            visualization.VisualizationDataSpec.Target.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("Forecasted")
-            });
+            visualization.ColumnSpan = 11;
+            visualization.RowSpan = 20;
 
             return visualization;
         }
 
         private static Visualization CreateSplineAreaChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
-            var visualization = new SplineAreaChartVisualization(excelDataSourceItem)
-            {
-                Title = "New vs Renewal Sales",
-                ColumnSpan = 31,
-                RowSpan = 39,
-            };
+            var visualization = VisualizationFactory.CreateSplineAreaChart("New vs Renewal Sales", excelDataSourceItem,
+                new SummarizationDimensionField[] { new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month } },
+                new SummarizationValueField[] { new SummarizationValueField("New Sales"), new SummarizationValueField("Renewal Sales ") }, filterBindings);
 
-            visualization.FilterBindings.AddRange(filterBindings);
-
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
-            {
-                SummarizationField = new SummarizationDateField("Date")
-                {
-                    DateAggregationType = DateAggregationType.Month
-                }
-            });
-
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("New Sales")
-            });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("Renewal Sales ")
-            });
+            visualization.ColumnSpan = 31;
+            visualization.RowSpan = 39;
 
             return visualization;
         }
 
         private static Visualization CreateStackedColumnChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
-            var visualization = new StackedColumnChartVisualization(excelDataSourceItem)
-            {
-                Title = "Sales by Product",
-                ColumnSpan = 18,
-                RowSpan = 39,
-            };
+            var visualization = VisualizationFactory.CreateStackedColumnChart("Sales by Product", excelDataSourceItem,
+                new string[] { "Product" }, new string[] { "New Sales", "Renewal Sales " }, filterBindings);
 
-            visualization.FilterBindings.AddRange(filterBindings);
-
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
-            {
-                SummarizationField = new SummarizationRegularField("Product")
-            });
-
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("New Sales")
-            });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("Renewal Sales ")
-            });
+            visualization.ColumnSpan = 18;
+            visualization.RowSpan = 39;
 
             return visualization;
         }
 
-        private static Visualization CreateIndicatorVisualization(ExcelDataSourceItem excelDataSourceItem, Binding territoryFilterBinding)
+        private static Visualization CreateIndicatorVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
-            var visualization = new IndicatorVisualization(excelDataSourceItem)
-            {
-                Title = "Total Opportunities",
-                ColumnSpan = 11,
-                RowSpan = 19
-            };
+            var visualization = VisualizationFactory.CreateKpiTime("Total Opportunities", excelDataSourceItem,
+                new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Year },
+                new SummarizationValueField("Total Opportunites"), filterBindings);
 
-            visualization.FilterBindings.Add(territoryFilterBinding);
-
-            visualization.Date = new DimensionColumnSpec()
-            {
-                SummarizationField = new SummarizationDateField("Date")
-                {
-                    DateAggregationType = DateAggregationType.Year,
-                }
-            };
-
-            visualization.Value.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("Total Opportunites")
-            });
+            visualization.ColumnSpan = 11;
+            visualization.RowSpan = 19;
 
             return visualization;
         }
 
         private static Visualization CreateSparklineVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
-            var visualization = new SparklineVisualization(excelDataSourceItem)
-            {
-                Title = "New Seats by Product",
-                ColumnSpan = 31,
-                RowSpan = 30
-            };
-
-            visualization.Settings.Style = new GridVisualizationStyle()
-            {
-                TextAlignment = TextAlignment.Left,
-                NumericAlignment = TextAlignment.Right,
-                DateAlignment = TextAlignment.Left
-            };
-
-            visualization.FilterBindings.AddRange(filterBindings);
-
-            visualization.VisualizationDataSpec.IndicatorType = IndicatorVisualizationType.LastMonths;
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
-            {
-                SummarizationField = new SummarizationRegularField("Product")
-            });
-
-            visualization.VisualizationDataSpec.Date = new DimensionColumnSpec()
-            {
-                SummarizationField = new SummarizationDateField("Date")
-                {
-                    DateAggregationType = DateAggregationType.Month,
-                }
-            };
-
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("New Seats")
+            var visualization = VisualizationFactory.CreateSparkline("New Seats by Product", excelDataSourceItem,
+                new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month },
+                new SummarizationValueField("New Seats")
                 {
                     Formatting = new NumberFormattingSpec()
                     {
@@ -230,73 +127,57 @@ namespace Sandbox.Factories
                         NegativeFormat = NegativeFormatType.MinusSign,
                         ApplyMkFormat = false,
                     }
-                }
-            });
+                },
+                new SummarizationDimensionField[] { new SummarizationRegularField("Product") }, filterBindings);
+
+            visualization.ColumnSpan = 31;
+            visualization.RowSpan = 30;
+
+            visualization.Settings.Style = new GridVisualizationStyle()
+            {
+                TextAlignment = TextAlignment.Left,
+                NumericAlignment = TextAlignment.Right,
+                DateAlignment = TextAlignment.Left
+            };
+
+            visualization.VisualizationDataSpec.IndicatorType = IndicatorVisualizationType.LastMonths;
 
             return visualization;
         }
 
         private static Visualization CreateBarChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
-            var visualization = new BarChartVisualization(excelDataSourceItem)
-            {
-                Title = "Sales",
-                ColumnSpan = 29,
-                RowSpan = 43
-            };
-
-            visualization.FilterBindings.AddRange(filterBindings);
-
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
-            {
-                SummarizationField = new SummarizationRegularField("Employee")
-            });
-
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("Pipepline")
-                {
-                    Sorting = SortingType.Asc,
-                    Formatting = new NumberFormattingSpec()
+            var visualization = VisualizationFactory.CreateBarChart("Sales", excelDataSourceItem,
+                new SummarizationDimensionField[] { new SummarizationRegularField("Employee") },
+                new SummarizationValueField[] 
+                { 
+                    new SummarizationValueField("Pipepline")
                     {
-                        FormatType = NumberFormattingType.Currency,
-                        DecimalDigits = 0,
-                        ShowGroupingSeparator = true,
-                        ApplyMkFormat = true,
+                        Sorting = SortingType.Asc,
+                        Formatting = new NumberFormattingSpec()
+                        {
+                            FormatType = NumberFormattingType.Currency,
+                            DecimalDigits = 0,
+                            ShowGroupingSeparator = true,
+                            ApplyMkFormat = true,
+                        }
                     }
-                }
-            });
+                }, filterBindings);
+
+            visualization.ColumnSpan = 29;
+            visualization.RowSpan = 43;
 
             return visualization;
         }
 
         private static Visualization CreateColumnChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
-            var visualization = new ColumnChartVisualization(excelDataSourceItem)
-            {
-                Title = "Total Leads vs Hot Leads",
-                ColumnSpan = 31,
-                RowSpan = 46
-            };
+            var visualization = VisualizationFactory.CreateColumnChart("Total Leads vs Hot Leads", excelDataSourceItem,
+                new SummarizationDimensionField[] { new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month } },
+                new string[] { "Leads", "Hot Leads" }, filterBindings);
 
-            visualization.FilterBindings.AddRange(filterBindings);
-
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
-            {
-                SummarizationField = new SummarizationDateField("Date")
-                {
-                    DateAggregationType = DateAggregationType.Month,
-                }
-            });
-
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("Leads")
-            });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("Hot Leads")
-            });
+            visualization.ColumnSpan = 31;
+            visualization.RowSpan = 46;
 
             return visualization;
         }

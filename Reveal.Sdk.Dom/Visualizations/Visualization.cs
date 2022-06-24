@@ -11,7 +11,12 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class Visualization<TSettings, TVisualizationDataSpec> : Visualization
+    public interface IVisualizationDataSpec<T>
+    {
+        T VisualizationDataSpec { get; }
+    }
+
+    public abstract class Visualization<TSettings, TVisualizationDataSpec> : Visualization, IVisualizationDataSpec<TVisualizationDataSpec>
         where TSettings : VisualizationSettings, new()
         where TVisualizationDataSpec : VisualizationDataSpec, new()
     {

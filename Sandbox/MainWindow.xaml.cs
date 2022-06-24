@@ -15,7 +15,7 @@ namespace Sandbox
     {
         static string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Sales);
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Campaigns);
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -57,14 +57,15 @@ namespace Sandbox
         private async void Create_Dashboard(object sender, RoutedEventArgs e)
         {
             //var document = MarketingDashboard.CreateDashboard();
-            var document = SalesDashboard.CreateDashboard();
+            //var document = SalesDashboard.CreateDashboard();
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            document.Save(_saveRdashToPath);
+            var document = CustomDashboard.CreateDashboard();
+            //document.Save(_saveRdashToPath);
 
             var json = document.ToJsonString();
-            json.Save(_saveJsonToPath);
+            //json.Save(_saveJsonToPath);
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
         }
     }
