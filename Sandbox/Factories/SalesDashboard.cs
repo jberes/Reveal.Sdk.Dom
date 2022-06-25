@@ -140,7 +140,7 @@ namespace Sandbox.Factories
                 DateAlignment = TextAlignment.Left
             };
 
-            visualization.VisualizationDataSpec.IndicatorType = IndicatorVisualizationType.LastMonths;
+            visualization.IndicatorType = IndicatorVisualizationType.LastMonths;
 
             return visualization;
         }
@@ -227,12 +227,12 @@ namespace Sandbox.Factories
                 Shape = ShapeType.None
             });
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("Employee")
             });
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Quota")
                 {

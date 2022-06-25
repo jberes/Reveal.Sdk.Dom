@@ -1,5 +1,4 @@
 ﻿using Reveal.Sdk.Dom;
-using Reveal.Sdk.Dom.Visualizations;
 using Reveal.Sdk.Dom.Visualizations.Factories;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;

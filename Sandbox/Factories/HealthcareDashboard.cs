@@ -67,7 +67,7 @@ namespace Sandbox.Factories
                 };
             }
 
-            visualization.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = summarizationtionField
             });
@@ -84,12 +84,12 @@ namespace Sandbox.Factories
                 RowSpan = 23,
             };
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("Divison")
             });
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Current Paitents")
             });
@@ -108,7 +108,7 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.AddRange(filterBindings);
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
                 {
@@ -116,11 +116,11 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Charges per MD")
             });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Treatment Costs ")
             });
@@ -139,12 +139,12 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.AddRange(filterBindings);
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("Divison")
             });
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("ER Wait Time")
             });
@@ -161,17 +161,17 @@ namespace Sandbox.Factories
                 RowSpan = 23,
             };
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("Divison")
             });
 
-            visualization.VisualizationDataSpec.Category = new DimensionColumnSpec()
+            visualization.Category = new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("Satisfaction ")
             };
 
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Satisfaction ")
                 {
@@ -198,7 +198,7 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.AddRange(filterBindings);
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
                 {
@@ -206,11 +206,11 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Number of Inpatients")
             });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Number of Outpatients")
             });

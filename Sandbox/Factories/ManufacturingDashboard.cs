@@ -62,7 +62,7 @@ namespace Sandbox.Factories
                 };
             }
 
-            visualization.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = summarizationtionField
             });
@@ -80,10 +80,7 @@ namespace Sandbox.Factories
             };
 
             var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First();
-
-
-            //in the UI these are referred to as a Data Fiter
-            field.Filter = new DateTimeFilter()
+            field.Filter = new DateTimeFilter() //in the UI these are referred to as a Data Fiter
             {
                 FilterType = FilterType.FilterByRule,
                 DateFiscalYearStartMonth = 0,
@@ -101,7 +98,7 @@ namespace Sandbox.Factories
             };
 
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
                 {
@@ -109,7 +106,7 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Cost of Labor ")
                 {
@@ -121,7 +118,7 @@ namespace Sandbox.Factories
                     }
                 }
             });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Revenue")
                 {
@@ -160,12 +157,12 @@ namespace Sandbox.Factories
                 DisplayInLocalTimeZone = false
             };            
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("Line")
             });
 
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Units Produced")
                 {
@@ -204,12 +201,12 @@ namespace Sandbox.Factories
                 DisplayInLocalTimeZone = false
             };
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("Operators by Function")
             });
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Operators Available ")
                 {
@@ -271,7 +268,7 @@ namespace Sandbox.Factories
                 Shape = ShapeType.None
             });
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Efficiency")
                 {
@@ -286,7 +283,7 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.VisualizationDataSpec.Label = new DimensionColumnSpec()
+            visualization.Label = new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("Line")
             };
@@ -334,7 +331,7 @@ namespace Sandbox.Factories
                 Shape = ShapeType.None
             });
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Efficiency")
                 {
@@ -349,7 +346,7 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.VisualizationDataSpec.Label = new DimensionColumnSpec()
+            visualization.Label = new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("Line")
             };
@@ -384,7 +381,7 @@ namespace Sandbox.Factories
                 DisplayInLocalTimeZone = false
             };
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
                 {
@@ -392,11 +389,11 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Orders In")
             });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Orders Shipped ")
             });

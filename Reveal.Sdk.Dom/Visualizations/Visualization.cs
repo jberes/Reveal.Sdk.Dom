@@ -11,27 +11,23 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public interface IVisualizationDataSpec<T>
-    {
-        T VisualizationDataSpec { get; }
-    }
-
     public abstract class Visualization<TSettings, TVisualizationDataSpec> : Visualization, IVisualizationDataSpec<TVisualizationDataSpec>
         where TSettings : VisualizationSettings, new()
         where TVisualizationDataSpec : VisualizationDataSpec, new()
     {
         [JsonProperty("VisualizationSettings", Order = 5)]
-        public TSettings Settings { get; internal set; }
+        public TSettings Settings { get; internal set; } = new TSettings();
 
         //todo: think of a better name
-        [JsonProperty(Order = 7)]
+        [JsonProperty("VisualizationDataSpec", Order = 7)]
         [JsonConverter(typeof(VisualizationDataSpecConverter))]
-        public TVisualizationDataSpec VisualizationDataSpec { get; internal set; }
+        TVisualizationDataSpec IVisualizationDataSpec<TVisualizationDataSpec>.VisualizationDataSpec { get; set; } = new TVisualizationDataSpec();
 
-        public Visualization(DataSourceItem dataSourceItem) : base(dataSourceItem)
+        protected Visualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        protected TVisualizationDataSpec GetVisualizationDataSpec()
         {
-            Settings = new TSettings();
-            VisualizationDataSpec = new TVisualizationDataSpec();
+            return (this as IVisualizationDataSpec<TVisualizationDataSpec>).VisualizationDataSpec;
         }
     }
 
@@ -66,7 +62,7 @@ namespace Reveal.Sdk.Dom.Visualizations
             get { return DataSpec.QuickFilters; }
         }
 
-        public Visualization(DataSourceItem dataSourceItem)
+        protected Visualization(DataSourceItem dataSourceItem)
         {
             DataSpec = new TabularDataSpec
             {

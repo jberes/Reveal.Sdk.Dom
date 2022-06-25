@@ -8,6 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
     {
 		public List<MeasureColumnSpec> Value { get; set; } = new List<MeasureColumnSpec>();
 
+		//todo: what uses this?
 		public List<MeasureColumnSpec> Target { get; set; } = new List<MeasureColumnSpec>();
 
 		public LinearGaugeVisualizationDataSpec()

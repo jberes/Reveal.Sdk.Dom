@@ -30,9 +30,9 @@ namespace Reveal.Sdk.Dom.Visualizations.Factories
 
             visualization.ApplyFilters(filters, filterBindings);
 
-            visualization.VisualizationDataSpec.Date = new DimensionColumnSpec() { SummarizationField = dateField };
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec() { SummarizationField = valueField });
-            visualization.VisualizationDataSpec.Target.Add(new MeasureColumnSpec() { SummarizationField = targetField });
+            visualization.Date = new DimensionColumnSpec() { SummarizationField = dateField };
+            visualization.Values.Add(new MeasureColumnSpec() { SummarizationField = valueField });
+            visualization.Target.Add(new MeasureColumnSpec() { SummarizationField = targetField });
 
             return visualization;
         }

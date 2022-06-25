@@ -28,9 +28,8 @@ namespace Reveal.Sdk.Dom.Visualizations.Factories
 
             visualization.ApplyFilters(filters, filterBindings);
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec() { SummarizationField = labelField });
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec() { SummarizationField = valueField });
-
+            visualization.Labels.Add(new DimensionColumnSpec() { SummarizationField = labelField });
+            visualization.Values.Add(new MeasureColumnSpec() { SummarizationField = valueField });
             return visualization;
         }
 

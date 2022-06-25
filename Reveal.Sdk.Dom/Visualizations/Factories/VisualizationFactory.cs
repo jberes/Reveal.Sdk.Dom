@@ -45,6 +45,8 @@ namespace Reveal.Sdk.Dom.Visualizations.Factories
                 });
             }
 
+            //todo: handle category
+
             return visualization;
         }
 
