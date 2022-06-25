@@ -1,7 +1,7 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public interface IVisualizationDataSpec<T>
+    internal interface IVisualizationDataSpec<T>
     {
-        T VisualizationDataSpec { get; set; }
+        T VisualizationDataSpec { get; }
     }
 }

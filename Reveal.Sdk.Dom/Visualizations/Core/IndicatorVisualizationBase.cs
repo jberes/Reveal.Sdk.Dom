@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class IndicatorVisualizationBase<TSettings> : Visualization<TSettings, IndicatorVisualizationDataSpec>
+    public abstract class IndicatorVisualizationBase<TSettings> : Visualization<TSettings>
         where TSettings : VisualizationSettings, new()
     {
         protected IndicatorVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
@@ -15,28 +15,31 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonIgnore]
         public DimensionColumnSpec Date 
         { 
-            get { return GetVisualizationDataSpec().Date; } 
-            set { GetVisualizationDataSpec().Date = value; } 
+            get { return VisualizationDataSpec.Date; } 
+            set { VisualizationDataSpec.Date = value; } 
         }
 
         [JsonIgnore]
         public IndicatorVisualizationType IndicatorType
         {
-            get { return GetVisualizationDataSpec().IndicatorType; }
-            set { GetVisualizationDataSpec().IndicatorType = value; }
+            get { return VisualizationDataSpec.IndicatorType; }
+            set { VisualizationDataSpec.IndicatorType = value; }
         }
 
         [JsonIgnore]
         public List<MeasureColumnSpec> Values 
         { 
-            get { return GetVisualizationDataSpec().Value; } 
+            get { return VisualizationDataSpec.Value; } 
         }
 
         //todo: confirm that the category is stored as rows
         [JsonIgnore]
         public List<DimensionColumnSpec> Categories 
         {
-            get { return GetVisualizationDataSpec().Rows; }             
+            get { return VisualizationDataSpec.Rows; }             
         }
+
+        [JsonProperty(Order = 7)]
+        IndicatorVisualizationDataSpec VisualizationDataSpec { get; set; } = new IndicatorVisualizationDataSpec();
     }
 }

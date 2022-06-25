@@ -11,29 +11,51 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class Visualization<TSettings, TVisualizationDataSpec> : Visualization, IVisualizationDataSpec<TVisualizationDataSpec>
-        where TSettings : VisualizationSettings, new()
-        where TVisualizationDataSpec : VisualizationDataSpec, new()
+    //todo: drop this
+    //public abstract class Visualization<TSettings, TVisualizationDataSpec> : Visualization, IVisualizationDataSpec<TVisualizationDataSpec>
+    //    where TSettings : VisualizationSettings, new()
+    //    where TVisualizationDataSpec : VisualizationDataSpec, new()
+    //{
+    //    protected Visualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+    //    [JsonProperty("VisualizationSettings", Order = 5)]
+    //    public TSettings Settings { get; internal set; } = new TSettings();
+
+
+    //    TVisualizationDataSpec IVisualizationDataSpec<TVisualizationDataSpec>.VisualizationDataSpec { get { return VisualizationDataSpec; } }
+
+    //    //todo: think of a better name
+    //    [JsonProperty("VisualizationDataSpec", Order = 7)]
+    //    [JsonConverter(typeof(VisualizationDataSpecConverter))]
+    //    TVisualizationDataSpec VisualizationDataSpec { get; set; } = new TVisualizationDataSpec();
+
+    //    protected TVisualizationDataSpec GetVisualizationDataSpec()
+    //    {
+    //        return (this as IVisualizationDataSpec<TVisualizationDataSpec>).VisualizationDataSpec;
+    //    }
+    //}
+
+    public abstract class Visualization<TSettings> : Visualization
+    where TSettings : VisualizationSettings, new()
     {
-        [JsonProperty("VisualizationSettings", Order = 5)]
-        public TSettings Settings { get; internal set; } = new TSettings();
-
-        //todo: think of a better name
-        [JsonProperty("VisualizationDataSpec", Order = 7)]
-        [JsonConverter(typeof(VisualizationDataSpecConverter))]
-        TVisualizationDataSpec IVisualizationDataSpec<TVisualizationDataSpec>.VisualizationDataSpec { get; set; } = new TVisualizationDataSpec();
-
         protected Visualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
 
-        protected TVisualizationDataSpec GetVisualizationDataSpec()
-        {
-            return (this as IVisualizationDataSpec<TVisualizationDataSpec>).VisualizationDataSpec;
-        }
+        [JsonProperty("VisualizationSettings", Order = 5)]
+        public TSettings Settings { get; internal set; } = new TSettings();
     }
 
     [JsonConverter(typeof(VisualizationConverter))]
     public abstract class Visualization
     {
+        protected Visualization(DataSourceItem dataSourceItem)
+        {
+            DataSpec = new TabularDataSpec
+            {
+                DataSourceItem = dataSourceItem,
+                Fields = dataSourceItem?.Fields.Clone()
+            };
+        }
+
         [JsonProperty(Order = 0)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
         [JsonProperty(Order = 1)]
@@ -46,6 +68,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public int RowSpan { get; set; }
 
         //todo: think of a better name - maybe DataSchema since it represents the schema or structure of the data, or DataDefinition
+        //does this even need to be expose? Can the properties be wrapped?
         [JsonProperty(Order = 6)]
         [JsonConverter(typeof(DataSpecConverter))]
         public TabularDataSpec DataSpec { get; internal set; }
@@ -60,15 +83,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         public List<VisualizationFilter> Filters
         {
             get { return DataSpec.QuickFilters; }
-        }
-
-        protected Visualization(DataSourceItem dataSourceItem)
-        {
-            DataSpec = new TabularDataSpec
-            {
-                DataSourceItem = dataSourceItem,
-                Fields = dataSourceItem?.Fields.Clone()
-            };
         }
     }
 }

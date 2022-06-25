@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class ChoroplethMapVisualizationDataSpec : SingleValueLabelsVisualizationDataSpec
+    internal class ChoroplethMapVisualizationDataSpec : SingleValueLabelsVisualizationDataSpec
     {
         public DimensionColumnSpec MapColor { get; set; }
     }

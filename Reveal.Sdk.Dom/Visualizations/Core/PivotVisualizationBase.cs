@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Serialization.Converters;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
@@ -7,25 +8,29 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class PivotVisualizationBase<TSettings> : Visualization<TSettings, PivotVisualizationDataSpec>
+    public abstract class PivotVisualizationBase<TSettings> : Visualization<TSettings>
         where TSettings : VisualizationSettings, new()
     {
         protected PivotVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Columns { get { return GetVisualizationDataSpec().Columns; } }
+        public List<DimensionColumnSpec> Columns { get { return VisualizationDataSpec.Columns; } }
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Rows { get { return GetVisualizationDataSpec().Rows; } }
+        public List<DimensionColumnSpec> Rows { get { return VisualizationDataSpec.Rows; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Values { get { return GetVisualizationDataSpec().Values; } }
+        public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Values; } }
 
         [JsonIgnore]
         public bool ShowGrandTotals 
         { 
-            get { return GetVisualizationDataSpec().ShowGrandTotals; }
-            set { GetVisualizationDataSpec().ShowGrandTotals = value; }
+            get { return VisualizationDataSpec.ShowGrandTotals; }
+            set { VisualizationDataSpec.ShowGrandTotals = value; }
         }
+
+        [JsonProperty(Order = 7)]
+        [JsonConverter(typeof(VisualizationDataSpecConverter))]
+        PivotVisualizationDataSpec VisualizationDataSpec { get; set; } = new PivotVisualizationDataSpec();
     }
 }

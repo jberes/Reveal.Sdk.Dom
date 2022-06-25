@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Serialization.Converters;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class LinearGaugeVisualizationBase<TSettings> : Visualization<TSettings, LinearGaugeVisualizationDataSpec>
+    public abstract class LinearGaugeVisualizationBase<TSettings> : Visualization<TSettings>
         where TSettings : VisualizationSettings, new()
     {
         protected LinearGaugeVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
@@ -16,7 +17,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonIgnore]
         public List<DimensionColumnSpec> Labels 
         { 
-            get { return GetVisualizationDataSpec().Rows; } 
+            get { return VisualizationDataSpec.Rows; } 
         }
 
         //todo: this doesn't seem to be used, why is it on the LinearGaugeVisualizationDataSpec?
@@ -30,7 +31,11 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonIgnore]
         public List<MeasureColumnSpec> Values
         {
-            get { return GetVisualizationDataSpec().Value; }
+            get { return VisualizationDataSpec.Value; }
         }
+
+        [JsonProperty(Order = 7)]
+        [JsonConverter(typeof(VisualizationDataSpecConverter))]
+        LinearGaugeVisualizationDataSpec VisualizationDataSpec { get; set; } = new LinearGaugeVisualizationDataSpec();
     }
 }

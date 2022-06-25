@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class VisualizationDataSpec : SchemaType
+    internal class VisualizationDataSpec : SchemaType
     {
     }
 }

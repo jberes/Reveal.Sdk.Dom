@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class HierarchyVisualizationDataSpec : VisualizationDataSpec
+	internal class HierarchyVisualizationDataSpec : VisualizationDataSpec
     {
 		public int? AdHocFields { get; set; }
 		public int FormatVersion { get; set; }

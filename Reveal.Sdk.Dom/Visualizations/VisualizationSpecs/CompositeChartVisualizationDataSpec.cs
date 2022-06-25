@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class CompositeChartVisualizationDataSpec : LabelsVisualizationDataSpec
+	internal class CompositeChartVisualizationDataSpec : LabelsVisualizationDataSpec
     {
 		public List<MeasureColumnSpec> Chart1 { get; set; }
 		public List<MeasureColumnSpec> Chart2 { get; set; }

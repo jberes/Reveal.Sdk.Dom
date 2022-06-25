@@ -13,7 +13,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Factories
         static T CreateChartVisualization<T>(string title, DataSourceItem dataSourceItem,
             IEnumerable<SummarizationDimensionField> labels, IEnumerable<SummarizationValueField> values,
             IEnumerable<Binding> filterBindings = null, IEnumerable<string> filters = null)
-            where T : Visualization, IVisualizationDataSpec<CategoryVisualizationDataSpec>
+            where T : Visualization
         {
             if (string.IsNullOrEmpty(title))
                 throw new ArgumentException($"'{nameof(title)}' cannot be null or empty.", nameof(title));
@@ -29,9 +29,11 @@ namespace Reveal.Sdk.Dom.Visualizations.Factories
 
             visualization.ApplyFilters(filters, filterBindings);
 
+            var categoryChart = (IVisualizationDataSpec<CategoryVisualizationDataSpec>)visualization;
+
             foreach (var label in labels)
             {
-                visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+                categoryChart.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
                 {
                     SummarizationField = label
                 });
@@ -39,7 +41,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Factories
 
             foreach (var value in values)
             {
-                visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+                categoryChart.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
                 {
                     SummarizationField = value
                 });
@@ -53,7 +55,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Factories
         public static T CreateChartVisualization<T>(string title, DataSourceItem dataSourceItem,
             IEnumerable<SummarizationDimensionField> labels, IEnumerable<string> values,
             IEnumerable<Binding> filterBindings = null, IEnumerable<string> filters = null)
-            where T : Visualization, IVisualizationDataSpec<CategoryVisualizationDataSpec>
+            where T : Visualization
         {
             var valueObjects = values.Select(x => new SummarizationValueField(x)).ToArray();
             return CreateChartVisualization<T>(title, dataSourceItem, labels, valueObjects, filterBindings, filters);
@@ -62,7 +64,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Factories
         public static T CreateChartVisualization<T>(string title, DataSourceItem dataSourceItem,
             IEnumerable<string> labels, IEnumerable<string> values,
             IEnumerable<Binding> filterBindings = null, IEnumerable<string> filters = null)
-            where T : Visualization, IVisualizationDataSpec<CategoryVisualizationDataSpec>
+            where T : Visualization
         {
             //todo: can we make assumptions about the default "simple chart" creation experience?
             var labelObjects = labels.Select(x => new SummarizationRegularField(x)).ToArray();
