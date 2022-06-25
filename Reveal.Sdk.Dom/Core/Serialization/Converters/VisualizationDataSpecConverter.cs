@@ -2,7 +2,7 @@
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using System;
 
-namespace Reveal.Sdk.Dom.Serialization.Converters
+namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
     internal class VisualizationDataSpecConverter : TypeMapConverter<VisualizationDataSpec>
     {

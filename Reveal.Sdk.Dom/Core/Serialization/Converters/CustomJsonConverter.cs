@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Reveal.Sdk.Dom.Serialization.Converters
+namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
-    internal class CustomJsonConverter<T> : JsonConverter<T> 
+    internal class CustomJsonConverter<T> : JsonConverter<T>
         where T : class
     {
         public override void WriteJson(JsonWriter writer, T value, JsonSerializer serializer)

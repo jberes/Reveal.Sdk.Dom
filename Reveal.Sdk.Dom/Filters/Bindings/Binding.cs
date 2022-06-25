@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Reveal.Sdk.Dom.Serialization.Converters;
+using Reveal.Sdk.Dom.Core.Serialization.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {

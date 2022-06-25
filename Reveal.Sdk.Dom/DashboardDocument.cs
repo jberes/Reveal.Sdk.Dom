@@ -1,10 +1,9 @@
 ﻿using Reveal.Sdk.Dom.Data;
-using Reveal.Sdk.Dom.Serialization;
+using Reveal.Sdk.Dom.Core.Serialization;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace Reveal.Sdk.Dom
@@ -13,11 +12,6 @@ namespace Reveal.Sdk.Dom
 	{
 		public string Title { get; set; }
 		public string Description { get; set; }
-
-		//todo: support an enum for the themes - this will require changing themes names in the Reveal product
-		//[JsonProperty("ThemeName")]
-		//[JsonConverter(typeof(StringEnumConverter), typeof(EnumWithSpacesNamingStrategy))]
-		//public Theme Theme { get; set; }
 
 		[JsonProperty("ThemeName")]
 		public string Theme { get; set; }

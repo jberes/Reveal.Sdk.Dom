@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Data;
 using System;
 
-namespace Reveal.Sdk.Dom.Serialization.Converters
+namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
     internal class DataSourceConverter : CustomJsonConverter<DataSource>
     {

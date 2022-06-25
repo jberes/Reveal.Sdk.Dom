@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Reveal.Sdk.Dom.Core.Serialization.Converters;
 using Reveal.Sdk.Dom.Filters;
-using Reveal.Sdk.Dom.Serialization.Converters;
 using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.Primitives

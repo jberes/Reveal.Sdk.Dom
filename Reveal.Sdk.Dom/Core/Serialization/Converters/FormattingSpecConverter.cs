@@ -2,7 +2,7 @@
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System;
 
-namespace Reveal.Sdk.Dom.Serialization.Converters
+namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
     internal class FormattingSpecConverter : TypeMapConverter<FormattingSpec>
     {

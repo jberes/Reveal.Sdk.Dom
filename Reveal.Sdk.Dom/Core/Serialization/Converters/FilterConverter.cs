@@ -2,7 +2,7 @@
 using Reveal.Sdk.Dom.Filters;
 using System;
 
-namespace Reveal.Sdk.Dom.Serialization.Converters
+namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
     internal class FilterConverter : TypeMapConverter<Filter>
     {

@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Variables;
 using System;
 
-namespace Reveal.Sdk.Dom.Serialization.Converters
+namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
     internal class BindingTargetConverter : TypeMapConverter<BindingTarget>
     {

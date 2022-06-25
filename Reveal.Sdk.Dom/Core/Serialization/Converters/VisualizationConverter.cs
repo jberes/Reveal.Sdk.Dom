@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Visualizations;
 using System;
 using Newtonsoft.Json;
 
-namespace Reveal.Sdk.Dom.Serialization.Converters
+namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
     internal class VisualizationConverter : CustomJsonConverter<Visualization>
     {

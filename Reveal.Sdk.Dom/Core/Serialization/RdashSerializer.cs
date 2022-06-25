@@ -5,7 +5,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 
-namespace Reveal.Sdk.Dom.Serialization
+namespace Reveal.Sdk.Dom.Core.Serialization
 {
     internal static class RdashSerializer
     {

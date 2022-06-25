@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Serialization.Converters;
 using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
-using Reveal.Sdk.Dom.Serialization.Converters;
 using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using System;
 using System.Collections.Generic;

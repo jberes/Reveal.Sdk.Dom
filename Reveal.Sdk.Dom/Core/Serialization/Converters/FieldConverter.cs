@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Reveal.Sdk.Dom.Serialization.Converters
+namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
     internal class FieldConverter : TypeMapConverter<Field>
     {
