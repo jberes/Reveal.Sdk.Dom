@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Data;
-using Reveal.Sdk.Dom.Serialization.Converters;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
@@ -35,7 +34,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonProperty(Order = 7)]
-        [JsonConverter(typeof(VisualizationDataSpecConverter))]
         LinearGaugeVisualizationDataSpec VisualizationDataSpec { get; set; } = new LinearGaugeVisualizationDataSpec();
     }
 }

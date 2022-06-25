@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Data;
-using Reveal.Sdk.Dom.Serialization.Converters;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
@@ -24,7 +23,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Value; } }
 
         [JsonProperty(Order = 7)]
-        [JsonConverter(typeof(VisualizationDataSpecConverter))]
         SingleGaugeVisualizationDataSpec VisualizationDataSpec { get; set; } = new SingleGaugeVisualizationDataSpec();
     }
 }

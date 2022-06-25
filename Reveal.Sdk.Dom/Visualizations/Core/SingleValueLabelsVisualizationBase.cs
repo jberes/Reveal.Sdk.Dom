@@ -20,7 +20,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Value; } }
 
         [JsonProperty(Order = 7)]
-        [JsonConverter(typeof(VisualizationDataSpecConverter))]
         SingleValueLabelsVisualizationDataSpec VisualizationDataSpec { get; set; } = new SingleValueLabelsVisualizationDataSpec();
     }
 }

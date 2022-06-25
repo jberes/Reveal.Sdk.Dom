@@ -40,7 +40,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonProperty(Order = 7)]
-        [JsonConverter(typeof(VisualizationDataSpecConverter))]
         KpiTargetVisualizationDataSpec VisualizationDataSpec { get; set; } = new KpiTargetVisualizationDataSpec();
     }
 }
