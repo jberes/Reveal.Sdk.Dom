@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class IndicatorVisualizationDataSpec : IndicatorBaseVisualizationDataSpec
+    internal class IndicatorVisualizationDataSpec : IndicatorBaseVisualizationDataSpec
     {
         [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]

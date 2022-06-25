@@ -1,10 +1,9 @@
 ﻿using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.Settings;
-using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class DoughnutChartVisualization : Visualization<DoughnutChartVisualizationSettings, SingleValueLabelsVisualizationDataSpec>
+    public class DoughnutChartVisualization : SingleValueLabelsVisualizationBase<DoughnutChartVisualizationSettings>
     {
         internal DoughnutChartVisualization() : this(null) { }
 

@@ -1,9 +1,11 @@
-﻿using Reveal.Sdk.Dom.Core;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public class VisualizationSettings : SchemaType
     {
-        public string VisualizationType { get; internal set; }
+        [JsonProperty]
+        internal string VisualizationType { get; set; }
     }
 }

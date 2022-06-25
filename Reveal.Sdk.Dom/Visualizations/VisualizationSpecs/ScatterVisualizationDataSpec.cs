@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class ScatterVisualizationDataSpec : LabelsVisualizationDataSpec
+	internal class ScatterVisualizationDataSpec : LabelsVisualizationDataSpec
     {
 		public DimensionColumnSpec Category { get; set; }
 		public List<MeasureColumnSpec> XAxis { get; set; }

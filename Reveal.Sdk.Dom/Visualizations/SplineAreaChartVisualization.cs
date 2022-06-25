@@ -1,10 +1,9 @@
 ﻿using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.Settings;
-using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class SplineAreaChartVisualization : Visualization<SplineAreaChartVisualizationSettings, CategoryVisualizationDataSpec>
+    public class SplineAreaChartVisualization : CategoryVisualizationBase<SplineAreaChartVisualizationSettings>
     {
         internal SplineAreaChartVisualization() : this(null) { }
 

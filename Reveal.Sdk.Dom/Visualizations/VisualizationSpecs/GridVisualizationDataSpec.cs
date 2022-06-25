@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class GridVisualizationDataSpec : VisualizationDataSpec
+    internal class GridVisualizationDataSpec : VisualizationDataSpec
     {
         public List<TabularColumnSpec> Columns { get; set; }
 

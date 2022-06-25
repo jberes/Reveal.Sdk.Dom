@@ -1,10 +1,9 @@
 ﻿using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.Settings;
-using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class StackedColumnChartVisualization : Visualization<StackedColumnChartVisualizationSettings, CategoryVisualizationDataSpec>
+    public class StackedColumnChartVisualization : CategoryVisualizationBase<StackedColumnChartVisualizationSettings>
     {
         internal StackedColumnChartVisualization() : this(null) { }
 

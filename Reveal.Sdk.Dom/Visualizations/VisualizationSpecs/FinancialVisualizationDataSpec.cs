@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class FinancialVisualizationDataSpec : LabelsVisualizationDataSpec
+	internal class FinancialVisualizationDataSpec : LabelsVisualizationDataSpec
     {
 		public List<MeasureColumnSpec> Open { get; set; }
 		public List<MeasureColumnSpec> High { get; set; }

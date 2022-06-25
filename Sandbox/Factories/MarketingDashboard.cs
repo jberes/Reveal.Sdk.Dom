@@ -46,7 +46,7 @@ namespace Sandbox.Factories
                 RowSpan = 24,
             };
 
-            visualization.VisualizationDataSpec.Date = new DimensionColumnSpec()
+            visualization.Date = new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
                 {
@@ -58,7 +58,7 @@ namespace Sandbox.Factories
                 }
             };
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Spend")
                 {
@@ -74,7 +74,7 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.VisualizationDataSpec.Target.Add(new MeasureColumnSpec()
+            visualization.Target.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Budget")
                 {
@@ -102,7 +102,7 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.Add(_globalDateFilterBinding);
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
                 {
@@ -110,11 +110,11 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Spend")
             });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Budget")
             });
@@ -131,12 +131,12 @@ namespace Sandbox.Factories
                 RowSpan = 24,
             };
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("Territory")
             });
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Spend")
             });
@@ -155,7 +155,7 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.Add(_globalDateFilterBinding);
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationDateField("Date")
                 {
@@ -163,15 +163,15 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Paid Traffic")
             });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Organic Traffic")
             });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Other Traffic")
             });
@@ -190,12 +190,12 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.Add(_globalDateFilterBinding);
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("CampaignID")
             });
 
-            visualization.VisualizationDataSpec.Value.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Conversions")
             });
@@ -223,12 +223,12 @@ namespace Sandbox.Factories
                 TextAlignment = TextAlignment.Inherit
             });
 
-            visualization.VisualizationDataSpec.Rows.Add(new DimensionColumnSpec()
+            visualization.Rows.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("CampaignID")
             });
 
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("CTR")
                 {
@@ -243,7 +243,7 @@ namespace Sandbox.Factories
                     }
                 }
             });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Avg. CPC")
                 {
@@ -258,7 +258,7 @@ namespace Sandbox.Factories
                     }
                 }
             });
-            visualization.VisualizationDataSpec.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("New Seats")
                 {

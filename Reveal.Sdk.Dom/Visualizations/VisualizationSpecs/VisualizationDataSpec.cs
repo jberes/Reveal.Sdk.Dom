@@ -1,8 +1,11 @@
-﻿using Reveal.Sdk.Dom.Core;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core;
+using Reveal.Sdk.Dom.Serialization.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class VisualizationDataSpec : SchemaType
+    [JsonConverter(typeof(VisualizationDataSpecConverter))]
+    internal class VisualizationDataSpec : SchemaType
     {
     }
 }

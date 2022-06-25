@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class ScatterMapVisualizationDataSpec : VisualizationDataSpec
+	internal class ScatterMapVisualizationDataSpec : VisualizationDataSpec
     {
 		public bool IsSingleLocationField { get; set; }
 		public bool IsColorByValue { get; set; }

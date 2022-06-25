@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class SingleValueLabelsVisualizationDataSpec : LabelsVisualizationDataSpec
+    internal class SingleValueLabelsVisualizationDataSpec : LabelsVisualizationDataSpec
     {
         public List<MeasureColumnSpec> Value { get; set; } = new List<MeasureColumnSpec>();
 

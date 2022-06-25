@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class LinearGaugeVisualizationDataSpec : LabelsVisualizationDataSpec
+	internal class LinearGaugeVisualizationDataSpec : LabelsVisualizationDataSpec
     {
 		public List<MeasureColumnSpec> Value { get; set; } = new List<MeasureColumnSpec>();
 
+		//todo: what uses this?
 		public List<MeasureColumnSpec> Target { get; set; } = new List<MeasureColumnSpec>();
 
 		public LinearGaugeVisualizationDataSpec()

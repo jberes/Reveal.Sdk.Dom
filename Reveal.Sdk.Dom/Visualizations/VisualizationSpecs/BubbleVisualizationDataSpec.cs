@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class BubbleVisualizationDataSpec : ScatterVisualizationDataSpec
+    internal class BubbleVisualizationDataSpec : ScatterVisualizationDataSpec
     {
         public List<MeasureColumnSpec> Radius { get; set; }
         

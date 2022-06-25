@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Primitives;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class SingleGaugeVisualizationDataSpec : SingleValueVisualizationDataSpec
+    internal class SingleGaugeVisualizationDataSpec : SingleValueVisualizationDataSpec
     {
         public DimensionColumnSpec Label { get; set; }
 
