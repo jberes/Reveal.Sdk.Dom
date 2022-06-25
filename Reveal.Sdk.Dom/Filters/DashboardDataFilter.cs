@@ -1,8 +1,8 @@
-﻿using Reveal.Sdk.Dom.Core;
-using Reveal.Sdk.Dom.Core.Constants;
+﻿using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Utilities;
 
 namespace Reveal.Sdk.Dom.Filters
 {

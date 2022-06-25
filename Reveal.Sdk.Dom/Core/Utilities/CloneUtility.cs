@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Reveal.Sdk.Dom.Core
+namespace Reveal.Sdk.Dom.Core.Utilities
 {
     internal static class CloneUtility
     {
@@ -10,16 +10,16 @@ namespace Reveal.Sdk.Dom.Core
         internal static T Clone<T>(T item)
         {
             if (item is null)
-                return default(T);
+                return default;
 
             var deserializeSettings = new JsonSerializerSettings
             {
                 ObjectCreationHandling = ObjectCreationHandling.Replace
             };
-            var serializeSettings = new JsonSerializerSettings 
-            { 
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore, 
-                NullValueHandling = NullValueHandling.Ignore 
+            var serializeSettings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore
             };
 
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(item, serializeSettings), deserializeSettings);
