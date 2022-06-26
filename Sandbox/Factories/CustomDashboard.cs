@@ -6,7 +6,7 @@ using Sandbox.Helpers;
 
 namespace Sandbox.Factories
 {
-    internal class CustomDashboardBuilder
+    internal class CustomDashboard
     {
         internal static DashboardDocument CreateDashboard()
         {
