@@ -61,7 +61,8 @@ namespace Sandbox
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            var document = CustomDashboard.CreateDashboard();
+            //var document = CustomDashboard.CreateDashboard();
+            var document = CustomDashboardBuilder.CreateDashboard();
             //document.Save(_saveRdashToPath);
 
             var json = document.ToJsonString();

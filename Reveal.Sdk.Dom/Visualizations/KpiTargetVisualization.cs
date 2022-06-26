@@ -8,5 +8,10 @@ namespace Reveal.Sdk.Dom.Visualizations
         internal KpiTargetVisualization() : this(null) { }
 
         public KpiTargetVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        public KpiTargetVisualization(string title, DataSourceItem dataSourceItem) : base(dataSourceItem) 
+        {
+            Title = title;
+        }
     }
 }

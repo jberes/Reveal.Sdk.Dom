@@ -23,10 +23,10 @@ namespace Sandbox.Factories
             document.Visualizations.Add(VisualizationFactory.CreateKpiTime("Website Traffic", excelDataSourceItem, "Date", "Traffic"));
             document.Visualizations.Add(VisualizationFactory.CreateKpiTime("Conversions", excelDataSourceItem, "Date", "Conversions"));
             document.Visualizations.Add(VisualizationFactory.CreateKpiTime("New Seats", excelDataSourceItem, "Date", "New Seats"));
-            document.Visualizations.Add(VisualizationFactory.CreateSplineAreaChart("Actual Spend vs Budget", excelDataSourceItem, 
+            document.Visualizations.Add(VisualizationFactory.CreateSplineAreaChart("Actual Spend vs Budget", excelDataSourceItem,
                 new SummarizationDimensionField[] { new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month } },
                 new string[] { "Spend", "Budget" }));
-            document.Visualizations.Add(VisualizationFactory.CreateStackedColumnChart("Website Traffic Breakdown", excelDataSourceItem, 
+            document.Visualizations.Add(VisualizationFactory.CreateStackedColumnChart("Website Traffic Breakdown", excelDataSourceItem,
                 new SummarizationDimensionField[] { new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month } },
                 new string[] { "Paid Traffic", "Organic Traffic", "Other Traffic" }));
             document.Visualizations.Add(VisualizationFactory.CreateLineChart("Conversions", excelDataSourceItem,
