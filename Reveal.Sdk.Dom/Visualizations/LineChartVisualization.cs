@@ -8,5 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         internal LineChartVisualization() : this(null) { }
 
         public LineChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        public LineChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

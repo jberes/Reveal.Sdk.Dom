@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Reveal.Sdk.Dom.Core.Serialization.Converters;
 using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
@@ -9,9 +8,14 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    [JsonConverter(typeof(VisualizationConverter))]
-    public abstract class Visualization
+    public abstract class Visualization : IVisualization
     {
+        protected Visualization(string title, DataSourceItem dataSourceItem) 
+            : this (dataSourceItem)
+        {
+            Title = title;
+        }
+
         protected Visualization(DataSourceItem dataSourceItem)
         {
             DataSpec = new TabularDataSpec

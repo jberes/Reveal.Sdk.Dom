@@ -8,5 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         internal SplineAreaChartVisualization() : this(null) { }
 
         public SplineAreaChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        public SplineAreaChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

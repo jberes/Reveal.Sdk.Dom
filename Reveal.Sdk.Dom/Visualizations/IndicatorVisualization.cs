@@ -8,5 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         internal IndicatorVisualization() : this(null) { }
 
         public IndicatorVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        public IndicatorVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

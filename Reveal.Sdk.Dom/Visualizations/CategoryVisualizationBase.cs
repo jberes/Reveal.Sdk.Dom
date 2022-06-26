@@ -7,10 +7,12 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class CategoryVisualizationBase<TSettings> : Visualization<TSettings>, IVisualizationDataSpec<CategoryVisualizationDataSpec>
+    public abstract class CategoryVisualizationBase<TSettings> : Visualization<TSettings>, IVisualizationDataSpec<CategoryVisualizationDataSpec>, ICategoryVisualization
         where TSettings : VisualizationSettings, new()
     {
         protected CategoryVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        protected CategoryVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
         public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }

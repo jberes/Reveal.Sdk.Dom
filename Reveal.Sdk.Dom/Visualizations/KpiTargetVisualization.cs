@@ -9,9 +9,6 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         public KpiTargetVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
 
-        public KpiTargetVisualization(string title, DataSourceItem dataSourceItem) : base(dataSourceItem) 
-        {
-            Title = title;
-        }
+        public KpiTargetVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

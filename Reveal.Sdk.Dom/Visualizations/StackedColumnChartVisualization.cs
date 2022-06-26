@@ -8,5 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         internal StackedColumnChartVisualization() : this(null) { }
 
         public StackedColumnChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        public StackedColumnChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }
