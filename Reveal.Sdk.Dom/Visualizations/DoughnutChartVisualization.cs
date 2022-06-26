@@ -8,5 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         internal DoughnutChartVisualization() : this(null) { }
 
         public DoughnutChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        public DoughnutChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

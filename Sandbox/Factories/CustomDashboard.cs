@@ -1,5 +1,5 @@
 ﻿using Reveal.Sdk.Dom;
-using Reveal.Sdk.Dom.Visualizations.Factories;
+using Reveal.Sdk.Dom.Visualizations;
 using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using Sandbox.Helpers;
@@ -19,20 +19,24 @@ namespace Sandbox.Factories
                 Theme = ThemeNames.TropicalIsland
             };
 
-            document.Visualizations.Add(VisualizationFactory.CreateKpiTarget("Spend vs Budget", excelDataSourceItem, "Date", "Spend", "Budget"));
-            document.Visualizations.Add(VisualizationFactory.CreateKpiTime("Website Traffic", excelDataSourceItem, "Date", "Traffic"));
-            document.Visualizations.Add(VisualizationFactory.CreateKpiTime("Conversions", excelDataSourceItem, "Date", "Conversions"));
-            document.Visualizations.Add(VisualizationFactory.CreateKpiTime("New Seats", excelDataSourceItem, "Date", "New Seats"));
-            document.Visualizations.Add(VisualizationFactory.CreateSplineAreaChart("Actual Spend vs Budget", excelDataSourceItem, 
-                new SummarizationDimensionField[] { new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month } },
-                new string[] { "Spend", "Budget" }));
-            document.Visualizations.Add(VisualizationFactory.CreateStackedColumnChart("Website Traffic Breakdown", excelDataSourceItem, 
-                new SummarizationDimensionField[] { new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month } },
-                new string[] { "Paid Traffic", "Organic Traffic", "Other Traffic" }));
-            document.Visualizations.Add(VisualizationFactory.CreateLineChart("Conversions", excelDataSourceItem,
-                new SummarizationDimensionField[] { new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month } },
-                new string[] { "Conversions" }));
-            document.Visualizations.Add(VisualizationFactory.CreateDoughnutChart("Conversions by Territory", excelDataSourceItem, "Territory", "Conversions"));
+            document.Visualizations.Add(new KpiTargetVisualization("Spend vs Budget", excelDataSourceItem).AddDate("Date").AddValue("Spend").AddTarget("Budget"));
+            document.Visualizations.Add(new IndicatorVisualization("Website Traffic", excelDataSourceItem).AddDate("Date").AddValue("Traffic"));
+            document.Visualizations.Add(new IndicatorVisualization("Conversions", excelDataSourceItem).AddDate("Date").AddValue("Conversions"));
+            document.Visualizations.Add(new IndicatorVisualization("Website Traffic", excelDataSourceItem).AddDate("Date").AddValue("New Seats"));
+
+            document.Visualizations.Add(new SplineAreaChartVisualization("Actual Spend vs Budget", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Spend", "Budget"));
+
+            document.Visualizations.Add(new StackedColumnChartVisualization("Website Traffic Breakdown", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
+
+            document.Visualizations.Add(new LineChartVisualization("Conversions", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValue("Conversions"));
+
+            document.Visualizations.Add(new DoughnutChartVisualization("Conversions by Territory", excelDataSourceItem).AddLabel("Territory").AddValue("Conversions"));
 
             return document;
         }

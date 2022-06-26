@@ -7,9 +7,11 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class KpiTargetVisualizationBase<TSettings> : Visualization<TSettings>
+    public abstract class KpiTargetVisualizationBase<TSettings> : Visualization<TSettings>, IKpiTargetVisualization
         where TSettings : VisualizationSettings, new()
     {
+        protected KpiTargetVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+
         protected KpiTargetVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
 
         [JsonIgnore]

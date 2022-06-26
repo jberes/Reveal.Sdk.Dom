@@ -7,10 +7,12 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class SparklineVisualizationBase<TSettings> : Visualization<TSettings>
+    public abstract class SparklineVisualizationBase<TSettings> : Visualization<TSettings>, ISparklineVisualization
     where TSettings : VisualizationSettings, new()
     {
         protected SparklineVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        protected SparklineVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
         public DimensionColumnSpec Date

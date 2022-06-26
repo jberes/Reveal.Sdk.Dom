@@ -8,5 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         internal BarChartVisualization() : this(null) { }
 
         public BarChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        public BarChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

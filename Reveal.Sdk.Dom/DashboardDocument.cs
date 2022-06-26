@@ -32,7 +32,7 @@ namespace Reveal.Sdk.Dom
         //public List<GlobalVariable> GlobalVariables { get; internal set; } = new List<GlobalVariable>();
 
         [JsonProperty("Widgets")]
-        public List<Visualization> Visualizations { get; internal set; } = new List<Visualization>();
+        public List<IVisualization> Visualizations { get; internal set; } = new List<IVisualization>();
 
         public DashboardDocument() : this("New Dashboard") { }
 

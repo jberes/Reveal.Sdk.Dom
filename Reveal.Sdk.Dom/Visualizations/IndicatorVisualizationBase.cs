@@ -7,10 +7,12 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class IndicatorVisualizationBase<TSettings> : Visualization<TSettings>
+    public abstract class IndicatorVisualizationBase<TSettings> : Visualization<TSettings>, IIndicatorVisualization
         where TSettings : VisualizationSettings, new()
     {
         protected IndicatorVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        protected IndicatorVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
         public DimensionColumnSpec Date 
