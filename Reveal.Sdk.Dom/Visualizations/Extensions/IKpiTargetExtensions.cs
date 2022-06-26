@@ -40,7 +40,6 @@ namespace Reveal.Sdk.Dom.Visualizations
             return visualization;
         }
 
-        //todo: figure out how to share this across all visualizations in a generic way
         public static KpiTargetVisualization ConfigureSettings(this KpiTargetVisualization visualization, Action<KpiTargetVisualizationSettings> setting)
         {
             setting.Invoke(visualization.Settings);

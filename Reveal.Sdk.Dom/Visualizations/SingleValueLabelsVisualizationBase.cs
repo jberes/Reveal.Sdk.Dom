@@ -7,10 +7,12 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class SingleValueLabelsVisualizationBase<TSettings> : Visualization<TSettings>
+    public abstract class SingleValueLabelsVisualizationBase<TSettings> : Visualization<TSettings>, ISingleValueLabelsVisualization
         where TSettings : VisualizationSettings, new()
     {
         protected SingleValueLabelsVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+
+        protected SingleValueLabelsVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
         public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }

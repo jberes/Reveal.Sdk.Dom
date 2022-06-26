@@ -1,4 +1,6 @@
 ﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
+using Reveal.Sdk.Dom.Visualizations.Settings;
+using System;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -51,11 +53,34 @@ namespace Reveal.Sdk.Dom.Visualizations
             return visualization;
         }
 
-        //public static T ConfigureSettings(Action<TSettings> setting)
-        //{
-        //    var vizSettings = (IVisualizationSettings<TSettings>)Visualization;
-        //    setting.Invoke(vizSettings.Settings);
-        //    return this;
-        //}
+        public static BarChartVisualization ConfigureSettings(this BarChartVisualization visualization, Action<BarChartVisualizationSettings> setting)
+        {
+            setting.Invoke(visualization.Settings);
+            return visualization;
+        }
+
+        public static ColumnChartVisualization ConfigureSettings(this ColumnChartVisualization visualization, Action<ColumnChartVisualizationSettings> setting)
+        {
+            setting.Invoke(visualization.Settings);
+            return visualization;
+        }
+
+        public static LineChartVisualization ConfigureSettings(this LineChartVisualization visualization, Action<LineChartVisualizationSettings> setting)
+        {
+            setting.Invoke(visualization.Settings);
+            return visualization;
+        }
+
+        public static SplineAreaChartVisualization ConfigureSettings(this SplineAreaChartVisualization visualization, Action<SplineAreaChartVisualizationSettings> setting)
+        {
+            setting.Invoke(visualization.Settings);
+            return visualization;
+        }
+
+        public static StackedColumnChartVisualization ConfigureSettings(this StackedColumnChartVisualization visualization, Action<StackedColumnChartVisualizationSettings> setting)
+        {
+            setting.Invoke(visualization.Settings);
+            return visualization;
+        }
     }
 }

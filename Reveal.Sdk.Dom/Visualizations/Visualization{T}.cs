@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class Visualization<T> : Visualization, IVisualizationSettings<T>
+    public abstract class Visualization<T> : Visualization
         where T : VisualizationSettings, new()
     {
         protected Visualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }

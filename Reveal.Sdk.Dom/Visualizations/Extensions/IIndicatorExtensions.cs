@@ -1,4 +1,6 @@
 ﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
+using Reveal.Sdk.Dom.Visualizations.Settings;
+using System;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -49,6 +51,12 @@ namespace Reveal.Sdk.Dom.Visualizations
             {
                 visualization.AddValue(value);
             }
+            return visualization;
+        }
+
+        public static IndicatorVisualization ConfigureSettings(this IndicatorVisualization visualization, Action<IndicatorVisualizationSettings> setting)
+        {
+            setting.Invoke(visualization.Settings);
             return visualization;
         }
     }
