@@ -74,9 +74,8 @@ namespace Reveal.Sdk.Dom.Core.Serialization
                 }
             }
 
-            var allDataSources = document.DataSources.Union(dataSources.Values.ToArray());
-
-            document.DataSources = allDataSources.ToList();
+            var allDataSources = document.DataSources?.Union(dataSources.Values.ToArray());
+            document.DataSources = allDataSources?.ToList();
         }
 
         internal static void Save(DashboardDocument dashboard, string filePath)

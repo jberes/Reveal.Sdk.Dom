@@ -8,22 +8,35 @@ using Newtonsoft.Json.Serialization;
 
 namespace Reveal.Sdk.Dom
 {
-    public class DashboardDocument
-	{
-		public string Title { get; set; }
-		public string Description { get; set; }
+    public class DashboardDocument : IDashboardDocument
+    {
+        public DashboardDocument() : this("New Dashboard") { }
 
-		[JsonProperty("ThemeName")]
-		public string Theme { get; set; }
+        public DashboardDocument(string title)
+        {
+            Title = title;
+        }
 
-		public string CreatedWith { get; internal set; } = "Reveal.Sdk.DOM";
-		public string SavedWith { get; internal set; }
-		public int FormatVersion { get; internal set; }
-		public bool UseAutoLayout { get; set; } = true;
-		public int? AutoRefreshInterval { get; set; }
-		public string PasswordHash { get; set; }
-		public string Tags { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
 
+        [JsonProperty("ThemeName")]
+        public string Theme { get; set; }
+
+        [JsonProperty]
+        public string CreatedWith { get; private set; } = "Reveal.Sdk.DOM";
+
+        [JsonProperty]
+        public string SavedWith { get; internal set; } = "Reveal.Sdk.DOM";
+
+        [JsonProperty]
+        public int FormatVersion { get; private set; }
+        public bool UseAutoLayout { get; set; } = true;
+        public int? AutoRefreshInterval { get; set; }
+        public string PasswordHash { get; set; }
+        public string Tags { get; set; }
+
+        [JsonProperty]
         public List<DataSource> DataSources { get; internal set; } = new List<DataSource>();
 
         [JsonProperty("GlobalFilters")]
@@ -34,34 +47,27 @@ namespace Reveal.Sdk.Dom
         [JsonProperty("Widgets")]
         public List<IVisualization> Visualizations { get; internal set; } = new List<IVisualization>();
 
-        public DashboardDocument() : this("New Dashboard") { }
-
-		public DashboardDocument(string title) 
-		{
-			Title = title;
-		}
-
-		public static DashboardDocument Load(string filePath)
-		{
-			return RdashSerializer.Deserialize(filePath);
-		}
-
-		/// <summary>
-		/// Saves the DashboardDocument as an RDASH file.
-		/// </summary>
-		/// <param name="filePath">The file path to save the Dashboard (must include the .rdash extensions)</param>
-		public void Save(string filePath)
-		{
-			RdashSerializer.Save(this, filePath);
-		}
-
-		/// <summary>
-		/// Converts the DashboardDocument to a JSON string.
-		/// </summary>
-		/// <returns>A JSON string representing the DashboardDocument</returns>
-		public string ToJsonString()
+        public static DashboardDocument Load(string filePath)
         {
-			return RdashSerializer.Serialize(this);
+            return RdashSerializer.Deserialize(filePath);
         }
-	}
+
+        /// <summary>
+        /// Saves the DashboardDocument as an RDASH file.
+        /// </summary>
+        /// <param name="filePath">The file path to save the Dashboard (must include the .rdash extensions)</param>
+        public void Save(string filePath)
+        {
+            RdashSerializer.Save(this, filePath);
+        }
+
+        /// <summary>
+        /// Converts the DashboardDocument to a JSON string.
+        /// </summary>
+        /// <returns>A JSON string representing the DashboardDocument</returns>
+        public string ToJsonString()
+        {
+            return RdashSerializer.Serialize(this);
+        }
+    }
 }
