@@ -3,6 +3,7 @@ using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations.DataSpecs;
+using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System;
 using System.Collections.Generic;
 
@@ -40,6 +41,10 @@ namespace Reveal.Sdk.Dom.Visualizations
         //does this even need to be expose? Can the properties be wrapped?
         [JsonProperty(Order = 6)]
         public TabularDataSpec DataSpec { get; internal set; }
+
+        //todo: implement
+        [JsonProperty(Order = 10)]
+        internal ActionsModel ActionsModel { get; set; }
 
         [JsonIgnore]
         public List<Binding> FilterBindings
