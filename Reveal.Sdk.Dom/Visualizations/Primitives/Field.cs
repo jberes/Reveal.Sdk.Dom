@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Core.Serialization.Converters;
 using Reveal.Sdk.Dom.Filters;
 using System.Collections.Generic;
 
-namespace Reveal.Sdk.Dom.Visualizations.Primitives
+namespace Reveal.Sdk.Dom.Visualizations
 {
     [JsonConverter(typeof(FieldConverter))]
     public abstract class Field

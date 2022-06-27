@@ -1,5 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Data;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
+using Reveal.Sdk.Dom.Visualizations;
 using System.Collections.Generic;
 
 namespace Sandbox.Helpers

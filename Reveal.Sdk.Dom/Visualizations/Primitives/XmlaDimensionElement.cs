@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Reveal.Sdk.Dom.Visualizations.Primitives
+namespace Reveal.Sdk.Dom.Visualizations
 {
     public class XmlaDimensionElement
     {

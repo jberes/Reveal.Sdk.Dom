@@ -1,5 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
+using Reveal.Sdk.Dom.Visualizations;
 using System;
 
 namespace Reveal.Sdk.Dom.Core.Serialization.Converters

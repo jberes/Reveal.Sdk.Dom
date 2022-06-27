@@ -2,7 +2,7 @@
 using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Core.Serialization.Converters;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
+using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
 

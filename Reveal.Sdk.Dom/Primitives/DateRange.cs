@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Reveal.Sdk.Dom.Primitives
+namespace Reveal.Sdk.Dom
 {
     public class DateRange
     {

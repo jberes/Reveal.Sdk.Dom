@@ -14,7 +14,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         public void DataSources_AddedToDashboardDocument()
         {
             var excelDataSource = new ExcelDataSource();
-            var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Visualizations.Primitives.Field>());
+            var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Field>());
 
             var document = new DashboardDocument();
             document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
@@ -30,7 +30,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         public void DataSources_FromVisualizationsAreNotDuplicated()
         {
             var excelDataSource = new ExcelDataSource();
-            var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Visualizations.Primitives.Field>());
+            var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Field>());
 
             var document = new DashboardDocument();
             document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
@@ -51,7 +51,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         public void DataSources_FromVisualizations_AndDataSources_AreNotDuplicated()
         {
             var excelDataSource = new ExcelDataSource();
-            var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Visualizations.Primitives.Field>());
+            var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Field>());
 
             var document = new DashboardDocument();
             document.DataSources.Add(excelDataSource);

@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Data;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using System.Collections.Generic;

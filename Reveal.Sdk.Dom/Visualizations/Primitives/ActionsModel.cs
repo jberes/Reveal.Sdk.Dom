@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Reveal.Sdk.Dom.Visualizations.Primitives
+namespace Reveal.Sdk.Dom.Visualizations
 {
     public class ActionsModel
     {

@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Reveal.Sdk.Dom.Core.Constants;
-using Reveal.Sdk.Dom.Primitives;
 
 namespace Reveal.Sdk.Dom.Filters
 {

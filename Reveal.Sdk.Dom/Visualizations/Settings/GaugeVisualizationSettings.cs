@@ -1,5 +1,4 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

@@ -3,7 +3,6 @@ using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations.DataSpecs;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System;
 using System.Collections.Generic;
 

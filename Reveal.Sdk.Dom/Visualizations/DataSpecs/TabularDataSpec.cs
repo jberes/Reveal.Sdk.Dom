@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Filters;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.DataSpecs

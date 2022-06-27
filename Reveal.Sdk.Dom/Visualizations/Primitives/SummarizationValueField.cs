@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Core.Serialization.Converters;
 using Reveal.Sdk.Dom.Filters;
 
-namespace Reveal.Sdk.Dom.Visualizations.Primitives
+namespace Reveal.Sdk.Dom.Visualizations
 {
     public class SummarizationValueField : SummarizationField
     {

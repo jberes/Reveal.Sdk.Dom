@@ -1,5 +1,4 @@
-﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
-
+﻿
 namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class IValuesExtensions

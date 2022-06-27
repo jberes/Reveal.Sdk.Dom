@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Data;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
 
 namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
 {

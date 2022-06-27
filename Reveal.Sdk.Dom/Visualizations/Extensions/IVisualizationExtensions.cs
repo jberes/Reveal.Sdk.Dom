@@ -1,5 +1,4 @@
 ﻿using Reveal.Sdk.Dom.Filters;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System;
 using System.Collections.Generic;
 

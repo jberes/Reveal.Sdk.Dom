@@ -2,7 +2,6 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Sandbox.Helpers;
 
 namespace Sandbox.Factories

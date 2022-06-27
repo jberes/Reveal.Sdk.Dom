@@ -1,6 +1,5 @@
 ﻿using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Visualizations;
-using Reveal.Sdk.Dom.Visualizations.Primitives;
 using Sandbox.Helpers;
 
 namespace Sandbox.Factories

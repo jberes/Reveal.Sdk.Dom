@@ -1,4 +1,4 @@
-﻿namespace Reveal.Sdk.Dom.Visualizations
+﻿namespace Reveal.Sdk.Dom.Filters
 {
     public enum XmlaElementType
     {

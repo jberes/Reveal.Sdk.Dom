@@ -1,6 +1,4 @@
-﻿using Reveal.Sdk.Dom.Filters;
-
-namespace Reveal.Sdk.Dom.Visualizations.Primitives
+﻿namespace Reveal.Sdk.Dom.Filters
 {
     public class ParameterBindingSource : BindingSource
     {
