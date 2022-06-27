@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class SingleValueLabelsVisualizationBase<TSettings> : Visualization<TSettings>, ISingleValueLabelsVisualization
+    public abstract class SingleValueLabelsVisualizationBase<TSettings> : Visualization<TSettings>, ILabels, IValues
         where TSettings : VisualizationSettings, new()
     {
         protected SingleValueLabelsVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }

@@ -8,6 +8,9 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public class GaugeVisualizationSettings : VisualizationSettings
     {
+        [JsonProperty("SingleValueFormattingEnabled")]
+        public bool ConditionalFormattingEnabled { get; set; } = true;
+
         [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]
         internal GaugeViewType ViewType { get; set; } = GaugeViewType.Circular;
@@ -33,10 +36,14 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
             },
         };
 
-        public string ValueColumnName { get; set; }
-        public string LabelColumnName { get; set; }
-        public string TargetColumnName { get; set; }
-        public bool SingleValueFormattingEnabled { get; set; } = true;
+        [JsonProperty]
+        internal string ValueColumnName { get; set; } //todo: what is this for?
+
+        [JsonProperty]
+        internal string LabelColumnName { get; set; } //todo: what is this for?
+
+        [JsonProperty]
+        internal string TargetColumnName { get; set; } //todo: what is this for?
 
         public GaugeVisualizationSettings()
         {
