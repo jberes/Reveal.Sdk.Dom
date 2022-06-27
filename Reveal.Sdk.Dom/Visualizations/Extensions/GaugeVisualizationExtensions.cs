@@ -1,7 +1,5 @@
-﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
-using Reveal.Sdk.Dom.Visualizations.Settings;
+﻿using Reveal.Sdk.Dom.Visualizations.Settings;
 using System;
-using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -19,9 +17,9 @@ namespace Reveal.Sdk.Dom.Visualizations
             return visualization;
         }
 
-        public static CircularGaugeVisualization ConfigureBands(this CircularGaugeVisualization visualization, Action<IList<GaugeBand>> bands)
+        public static LinearGaugeVisualization ConfigureSettings(this LinearGaugeVisualization visualization, Action<GaugeVisualizationSettings> setting)
         {
-            bands.Invoke(visualization.Bands);
+            setting.Invoke(visualization.Settings);
             return visualization;
         }
     }

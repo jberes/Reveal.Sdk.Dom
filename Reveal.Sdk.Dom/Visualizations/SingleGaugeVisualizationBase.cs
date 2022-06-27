@@ -10,7 +10,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     public abstract class SingleGaugeVisualizationBase<TSettings> : Visualization<TSettings>
         where TSettings : VisualizationSettings, new()
     {
-        protected SingleGaugeVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        protected SingleGaugeVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
         public DimensionColumnSpec Label

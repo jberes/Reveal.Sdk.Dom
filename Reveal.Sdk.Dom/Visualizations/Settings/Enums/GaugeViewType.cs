@@ -4,7 +4,7 @@
     {
 		Circular,
 		Linear,
-		SingleValue,
+		SingleValue, //todo: find out what guage this is and implement - maybe the Text
 		BulletGraph
 	}
 }

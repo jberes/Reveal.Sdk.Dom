@@ -10,8 +10,6 @@ namespace Reveal.Sdk.Dom.Visualizations
     public abstract class LinearGaugeVisualizationBase<TSettings> : Visualization<TSettings>, ILabels, IValues
         where TSettings : VisualizationSettings, new()
     {
-        protected LinearGaugeVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
-
         protected LinearGaugeVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]

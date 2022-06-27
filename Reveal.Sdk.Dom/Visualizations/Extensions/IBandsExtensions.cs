@@ -1,4 +1,7 @@
 ﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -11,12 +14,22 @@ namespace Reveal.Sdk.Dom.Visualizations
             return visualization;
         }
 
-        //todo: we should probably only keep this if we have default bands to modify
-        //public static T ConfigureBands<T>(this T visualization, Action<IList<GaugeBand>> bands)
-        //    where T : IBands
-        //{
-        //    bands.Invoke(visualization.Bands);
-        //    return visualization;
-        //}
+        public static T ConfigureBands<T>(this T visualization, Action<IList<GaugeBand>> bands)
+            where T : IBands
+        {
+            bands.Invoke(visualization.Bands);
+            return visualization;
+        }
+
+        public static T ConfigureBands<T>(this T visualization, Action<GaugeBand, GaugeBand, GaugeBand> defaultBands)
+            where T : IBands
+        {
+            var greenBand = visualization.Bands.Where(x => x.Color == BandColorType.Green).FirstOrDefault();
+            var yellowBand = visualization.Bands.Where(x => x.Color == BandColorType.Yellow).FirstOrDefault();
+            var redBand = visualization.Bands.Where(x => x.Color == BandColorType.Red).FirstOrDefault();
+
+            defaultBands.Invoke(greenBand, yellowBand, redBand);
+            return visualization;
+        }
     }
 }

@@ -172,30 +172,18 @@ namespace Sandbox.Factories
                         ApplyMkFormat = true,
                     }
                 })
-                .AddBand(new GaugeBand()
+                .ConfigureBands((greenBand, yellowBand, redBand) =>
                 {
-                    Type = BandType.NumberValue,
-                    Color = BandColorType.Green,
-                    Value = 1.0,
-                    Shape = ShapeType.None
+                    greenBand.Type = BandType.NumberValue;
+                    greenBand.Value = 1.0;
+
+                    yellowBand.Type = BandType.NumberValue;
+                    yellowBand.Value = 0.8;
                 })
-                .AddBand(new GaugeBand()
+                .ConfigureSettings(settings => 
                 {
-                    Type = BandType.NumberValue,
-                    Color = BandColorType.Yellow,
-                    Value = 0.8,
-                    Shape = ShapeType.None
-                })
-                .AddBand(new GaugeBand()
-                {
-                    Type = BandType.Percentage,
-                    Color = BandColorType.Red,
-                    Shape = ShapeType.None
-                })
-                .ConfigureSettings(settings => //todo: should these be exposed on the gauge directly?
-                {
-                    settings.Minimum = new Bound() { Value = 0.8, ValueType = BoundValueType.NumberValue };
-                    settings.Maximum = new Bound() { Value = 2.0, ValueType = BoundValueType.NumberValue };
+                    settings.Minimum = new Bound() { Value = 0.8, ValueType = BoundValueType.NumberValue }; //todo: should these be exposed on the gauge directly?
+                    settings.Maximum = new Bound() { Value = 2.0, ValueType = BoundValueType.NumberValue }; //todo: should these be exposed on the gauge directly?
                 })
                 .AddFilterBindings(filterBindings)
                 .SetPosition(33, 29);

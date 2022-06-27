@@ -35,7 +35,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
             Type type = vds switch
             {
                 "SingleGaugeVisualizationDataSpecType" => typeof(CircularGaugeVisualization),
-                "LinearGaugeVisualizationDataSpecType" => typeof(GaugeVisualization),
+                "LinearGaugeVisualizationDataSpecType" => typeof(LinearGaugeVisualization),
                 _ => throw new JsonException($"Chart type not supported: {vds}")
             };
 
