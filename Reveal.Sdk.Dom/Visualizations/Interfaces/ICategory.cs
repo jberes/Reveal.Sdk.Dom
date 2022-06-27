@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public interface ICategoryVisualization : IVisualization, ILabels, IValues
+    public interface ICategory
     {
         DimensionColumnSpec Category { get; set; }
     }

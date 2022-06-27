@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class IndicatorVisualizationBase<TSettings> : Visualization<TSettings>, IIndicatorVisualization
+    public abstract class IndicatorVisualizationBase<TSettings> : Visualization<TSettings>, IDate, IValues, ICategories
         where TSettings : VisualizationSettings, new()
     {
         protected IndicatorVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
