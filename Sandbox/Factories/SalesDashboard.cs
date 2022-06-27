@@ -182,21 +182,21 @@ namespace Sandbox.Factories
                 })
                 .ConfigureSettings(settings => 
                 {
-                    settings.Minimum = new Bound() { Value = 0.8, ValueType = BoundValueType.NumberValue }; //todo: should these be exposed on the gauge directly?
-                    settings.Maximum = new Bound() { Value = 2.0, ValueType = BoundValueType.NumberValue }; //todo: should these be exposed on the gauge directly?
+                    settings.Minimum = new Bound() { Value = 0.8, ValueType = BoundValueType.NumberValue };
+                    settings.Maximum = new Bound() { Value = 2.0, ValueType = BoundValueType.NumberValue };
+                })
+                .ConfigureFields(fields =>
+                {
+                    var quotaField = fields.Where(x => x.FieldName == "Quota").First();
+                    quotaField.Filter = new NumberFilter()
+                    {
+                        FilterType = FilterType.FilterByRule,
+                        RuleType = NumberRuleType.TopItems,
+                        Value = 10.0
+                    };
                 })
                 .AddFilterBindings(filterBindings)
                 .SetPosition(33, 29);
-
-            //todo: find a better API to handle this - maybe ConfigureFields?
-            //these are Data Filters in the RevealView UI
-            var quotaField = visualization.DataSpec.Fields.Where(x => x.FieldName == "Quota").First();
-            quotaField.Filter = new NumberFilter()
-            {
-                FilterType = FilterType.FilterByRule,
-                RuleType = NumberRuleType.TopItems,
-                Value = 10.0
-            };
 
             return visualization;
         }

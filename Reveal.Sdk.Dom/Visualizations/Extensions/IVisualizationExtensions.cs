@@ -1,4 +1,7 @@
 ﻿using Reveal.Sdk.Dom.Filters;
+using Reveal.Sdk.Dom.Visualizations.Primitives;
+using System;
+using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -32,6 +35,13 @@ namespace Reveal.Sdk.Dom.Visualizations
             where T : IVisualization
         {
             visualization.FilterBindings.AddRange(filterBindings);
+            return visualization;
+        }
+
+        public static T ConfigureFields<T>(this T visualization, Action<IEnumerable<Field>> fields)
+            where T : IVisualization
+        {
+            fields.Invoke(visualization.DataSpec.Fields);
             return visualization;
         }
 
