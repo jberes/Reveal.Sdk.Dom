@@ -1,0 +1,69 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dashboard-document.schema.json",
+  "title": "Product",
+  "type": "object",
+  "properties": {
+    "Title": {
+      "required": true,
+      "type": "string"
+    },
+    "Description": {
+      "required": true,
+      "type": "string"
+    },
+    "ThemeName": {
+      "required": true,
+      "type": "string"
+    },
+    "CreatedWith": {
+      "required": true,
+      "type": "string"
+    },
+    "SavedWith": {
+      "required": true,
+      "type": "string"
+    },
+    "FormatVersion": {
+      "required": true,
+      "type": "integer"
+    },
+    "UseAutoLayout": {
+      "required": true,
+      "type": "boolean"
+    },
+    "AutoRefreshInterval": {
+      "required": true,
+      "type": "integer"
+    },
+    "PasswordHash": {
+      "required": true,
+      "type": "string"
+    },
+    "Tags": {
+      "required": true,
+      "type": "string"
+    },
+    "DataSources": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "any"
+      }
+    },
+    "GlobalFilters": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "any"
+      }
+    },
+    "Widgets": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "any"
+      }
+    }
+  }
+}
