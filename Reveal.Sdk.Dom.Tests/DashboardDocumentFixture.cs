@@ -1,6 +1,6 @@
-﻿using Moq;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
+using Reveal.Sdk.Dom.Core.Constants;
 using System;
 using System.IO;
 using Xunit;
@@ -9,19 +9,11 @@ namespace Reveal.Sdk.Dom.Tests
 {
     public class DashboardDocumentFixture
     {
-
-        public DashboardDocumentFixture()
-        {
-            //JsonSchemaGenerator generator = new JsonSchemaGenerator();
-            //JsonSchema schemaG = generator.Generate(typeof(DashboardDocument));
-        }
-
         [Fact]
         public void NewDashboard_SetsTitle()
         {
             var dashboard = new DashboardDocument("Custom Dashboard");
 
-            Assert.NotNull(dashboard.Title);
             Assert.Equal("Custom Dashboard", dashboard.Title);
         }
 
@@ -31,8 +23,8 @@ namespace Reveal.Sdk.Dom.Tests
             var dashboard = new DashboardDocument();
 
             Assert.Equal("New Dashboard", dashboard.Title);
-            Assert.Equal("Reveal.Sdk.DOM", dashboard.CreatedWith);
-            Assert.Equal("Reveal.Sdk.DOM", dashboard.SavedWith);
+            Assert.Equal(GlobalConstants.DashboardDocument.CreatedWith, dashboard.CreatedWith);
+            Assert.Equal(string.Empty, dashboard.SavedWith);
             Assert.Null(dashboard.Theme);
             Assert.Null(dashboard.Tags);
             Assert.Equal(0, dashboard.FormatVersion);
@@ -57,8 +49,8 @@ namespace Reveal.Sdk.Dom.Tests
             Assert.NotNull(document);
 
             Assert.NotNull(document.Title);
-            Assert.NotEqual("Reveal.Sdk.DOM", document.CreatedWith);
-            Assert.NotEqual("Reveal.Sdk.DOM", document.SavedWith);
+            Assert.NotEqual(GlobalConstants.DashboardDocument.CreatedWith, document.CreatedWith);
+            Assert.NotEqual(string.Empty, document.SavedWith);
             Assert.NotNull(document.Theme);
             Assert.NotNull(document.Tags);
             Assert.NotEqual(0, document.FormatVersion);
@@ -93,11 +85,31 @@ namespace Reveal.Sdk.Dom.Tests
         }
 
         [Fact]
-        public void Save_IsInvoked()
+        public void Save_SavesFile()
         {
-            var mockDashboard = new Mock<IDashboardDocument>();
-            mockDashboard.Object.Save("filePath");
-            mockDashboard.Verify(x => x.Save(It.IsAny<string>()), Times.Once);
+            var filePath = Path.Combine(Path.GetTempPath(), $"{Path.GetTempFileName()}.rdash");
+
+            try
+            {
+                var dashboard = new DashboardDocument();
+
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
+
+                dashboard.Save(filePath);
+
+                Assert.Equal("Reveal.Sdk.Dom", dashboard.SavedWith);
+                Assert.True(File.Exists(filePath));
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
+            }
         }
     }
 }

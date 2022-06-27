@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Reveal.Sdk.Dom.Data;
-using System.Collections.Generic;
+using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Core.Utilities;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization
     {
         const string _rdashJsonFileName = "Dashboard.json";
 
-        internal static DashboardDocument Deserialize(string filePath)
+        internal static DashboardDocument Load(string filePath)
         {
             DashboardDocument document = null;
             using (var stream = File.OpenRead(filePath))
@@ -51,36 +51,16 @@ namespace Reveal.Sdk.Dom.Core.Serialization
 
         internal static string Serialize(DashboardDocument document)
         {
-            FixDocumentDataSources(document);
+            DashboardDocumentValidator.FixDashboardDocument(document);
             return JsonConvert.SerializeObject(document, Formatting.Indented, new JsonSerializerSettings()
             {
                 NullValueHandling = NullValueHandling.Ignore,
             });
         }
 
-        static void FixDocumentDataSources(DashboardDocument document)
-        {
-            Dictionary<string, DataSource> dataSources = new Dictionary<string, DataSource>();
-            foreach(var viz in document.Visualizations)
-            {
-                var dsi = viz.DataSpec?.DataSourceItem;
-                if (dsi != null)
-                {
-                    if (dsi.DataSource != null && !dataSources.ContainsKey(dsi.DataSource.Id))
-                        dataSources.Add(dsi.DataSource.Id, dsi.DataSource);
-
-                    if (dsi.ResourceItemDataSource != null && !dataSources.ContainsKey(dsi.ResourceItemDataSource.Id))
-                        dataSources.Add(dsi.ResourceItemDataSource.Id, dsi.ResourceItemDataSource);
-                }
-            }
-
-            var allDataSources = document.DataSources?.Union(dataSources.Values.ToArray());
-            document.DataSources = allDataSources?.ToList();
-        }
-
         internal static void Save(DashboardDocument dashboard, string filePath)
         {
-            dashboard.SavedWith = "Reveal.Sdk.DOM";
+            dashboard.SavedWith = GlobalConstants.DashboardDocument.SavedWith;
 
             using (var fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
             {

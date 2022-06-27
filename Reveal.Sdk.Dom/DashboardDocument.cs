@@ -5,10 +5,11 @@ using Reveal.Sdk.Dom.Visualizations;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom
 {
-    public class DashboardDocument : IDashboardDocument
+    public class DashboardDocument
     {
         public DashboardDocument() : this("New Dashboard") { }
 
@@ -24,10 +25,10 @@ namespace Reveal.Sdk.Dom
         public string Theme { get; set; }
 
         [JsonProperty]
-        public string CreatedWith { get; private set; } = "Reveal.Sdk.DOM";
+        public string CreatedWith { get; private set; } = GlobalConstants.DashboardDocument.CreatedWith;
 
         [JsonProperty]
-        public string SavedWith { get; internal set; } = "Reveal.Sdk.DOM";
+        public string SavedWith { get; internal set; } = string.Empty;
 
         [JsonProperty]
         public int FormatVersion { get; private set; }
@@ -42,14 +43,14 @@ namespace Reveal.Sdk.Dom
         [JsonProperty("GlobalFilters")]
         public List<DashboardFilter> Filters { get; internal set; } = new List<DashboardFilter>();
 
-        //public List<GlobalVariable> GlobalVariables { get; internal set; } = new List<GlobalVariable>();
+        //public List<Variables.GlobalVariable> GlobalVariables { get; internal set; } = new List<Variables.GlobalVariable>();
 
         [JsonProperty("Widgets")]
         public List<IVisualization> Visualizations { get; internal set; } = new List<IVisualization>();
 
         public static DashboardDocument Load(string filePath)
         {
-            return RdashSerializer.Deserialize(filePath);
+            return RdashSerializer.Load(filePath);
         }
 
         /// <summary>
