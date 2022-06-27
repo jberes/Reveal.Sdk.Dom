@@ -132,12 +132,7 @@ namespace Sandbox.Helpers
                 new NumberField("Forecasted"),
                 new NumberField("Revenue"),
                 new NumberField("Total Opportunites"),
-                new TextField("Product"),
-                new TextField("b"),
-                new TextField("c"),
-                new TextField("d"),
-                new TextField("e"),
-                new TextField("f")
+                new TextField("Product")
             };
             return fields;
         }
