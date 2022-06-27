@@ -7,9 +7,9 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public class ChartVisualizationSettings : VisualizationSettings
     {
-        
+        [JsonProperty]
 		[JsonConverter(typeof(StringEnumConverter))]
-		public ChartType ChartType { get; internal set; }		
+		internal ChartType ChartType { get; set; }		
 		public bool AllSeries { get; set; }
 		public bool ShowLegends { get; set; } = true;
 

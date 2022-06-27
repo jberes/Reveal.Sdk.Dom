@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class LinearGaugeVisualization : LinearGaugeVisualizationBase<GaugeVisualizationSettings>, IGaugeVisualization
+    public class LinearGaugeVisualization : LinearGaugeVisualizationBase<GaugeVisualizationSettings>
     {
         internal LinearGaugeVisualization() : this(null) { }
 
@@ -16,9 +16,5 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             Settings.ViewType = GaugeViewType.Linear;
         }
-
-        //todo: mutliple classes use this, let's create a base class
-        [JsonIgnore]
-        public List<GaugeBand> Bands { get { return Settings.GaugeBands; } }
     }
 }

@@ -7,8 +7,8 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class LinearGaugeVisualizationBase<TSettings> : Visualization<TSettings>, ILabels, IValues
-        where TSettings : VisualizationSettings, new()
+    public abstract class LinearGaugeVisualizationBase<TSettings> : Visualization<TSettings>, ILabels, IValues, IBands
+        where TSettings : GaugeVisualizationSettings, new()
     {
         protected LinearGaugeVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
@@ -23,6 +23,9 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             get { return VisualizationDataSpec.Value; }
         }
+
+        [JsonIgnore]
+        public List<GaugeBand> Bands { get { return Settings.GaugeBands; } }
 
         [JsonProperty(Order = 7)]
         LinearGaugeVisualizationDataSpec VisualizationDataSpec { get; set; } = new LinearGaugeVisualizationDataSpec();
