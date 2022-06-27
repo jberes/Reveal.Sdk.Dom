@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Variables;
 
 namespace Reveal.Sdk.Dom
 {
@@ -43,7 +44,8 @@ namespace Reveal.Sdk.Dom
         [JsonProperty("GlobalFilters")]
         public List<DashboardFilter> Filters { get; internal set; } = new List<DashboardFilter>();
 
-        //public List<Variables.GlobalVariable> GlobalVariables { get; internal set; } = new List<Variables.GlobalVariable>();
+        [JsonProperty]
+        internal List<GlobalVariable> GlobalVariables { get; set; } = new List<GlobalVariable>();
 
         [JsonProperty("Widgets")]
         public List<IVisualization> Visualizations { get; internal set; } = new List<IVisualization>();
