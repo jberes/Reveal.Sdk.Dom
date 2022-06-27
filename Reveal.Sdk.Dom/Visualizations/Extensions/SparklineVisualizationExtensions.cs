@@ -1,5 +1,4 @@
 ﻿using Reveal.Sdk.Dom.Visualizations.Settings;
-using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using System;
 
 namespace Reveal.Sdk.Dom.Visualizations

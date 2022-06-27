@@ -7,7 +7,8 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
 {
     public class DataSpec : SchemaType
     {
-        public DataSourceItem DataSourceItem { get; set; }
+        [JsonProperty]
+        public DataSourceItem DataSourceItem { get; internal set; }
 
         //not sure what this is for yet
         [JsonProperty]

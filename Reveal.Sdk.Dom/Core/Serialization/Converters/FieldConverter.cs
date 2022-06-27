@@ -1,4 +1,5 @@
-﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
+﻿using Reveal.Sdk.Dom.Visualizations;
+using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System;
 using System.Collections.Generic;
 

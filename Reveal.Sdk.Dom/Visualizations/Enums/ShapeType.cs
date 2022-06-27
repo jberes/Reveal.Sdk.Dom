@@ -1,4 +1,4 @@
-﻿namespace Reveal.Sdk.Dom.Visualizations.Primitives
+﻿namespace Reveal.Sdk.Dom.Visualizations
 {
     public enum ShapeType
 	{

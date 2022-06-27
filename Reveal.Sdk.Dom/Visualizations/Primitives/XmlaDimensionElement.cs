@@ -1,5 +1,4 @@
 ﻿using Reveal.Sdk.Dom.Filters;
-using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

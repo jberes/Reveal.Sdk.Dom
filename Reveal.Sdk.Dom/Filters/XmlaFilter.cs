@@ -1,7 +1,7 @@
 ﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
-using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Reveal.Sdk.Dom.Visualizations;
 
 namespace Reveal.Sdk.Dom.Filters
 {

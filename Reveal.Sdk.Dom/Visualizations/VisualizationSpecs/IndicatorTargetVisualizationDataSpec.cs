@@ -7,7 +7,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-	internal class IndicatorTargetVisualizationDataSpec : IndicatorBaseVisualizationDataSpec
+    internal class IndicatorTargetVisualizationDataSpec : IndicatorBaseVisualizationDataSpec
     {
 		public List<MeasureColumnSpec> Target { get; set; } = new List<MeasureColumnSpec>();
 

@@ -12,7 +12,8 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
         [JsonProperty]
         internal bool IsTransposed { get; set; }
 
-        public List<Field> Fields { get; set; } = new List<Field>();
+        [JsonProperty]
+        public List<Field> Fields { get; internal set; } = new List<Field>();
 
         //not sure what this is for yet
         [JsonProperty]
