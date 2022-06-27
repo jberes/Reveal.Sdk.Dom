@@ -1,27 +1,25 @@
 ﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
-using Reveal.Sdk.Dom.Visualizations.Settings;
-using System;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public static class IKpiTargetExtensions
+    public static class ITargetsExtensions
     {
         public static T AddTarget<T>(this T visualization, string targeField)
-            where T : IKpiTargetVisualization
+            where T : ITargets
         {
-            visualization.Target.Add(new MeasureColumnSpec() { SummarizationField = new SummarizationValueField(targeField) });
+            visualization.Targets.Add(new MeasureColumnSpec() { SummarizationField = new SummarizationValueField(targeField) });
             return visualization;
         }
 
         public static T AddTarget<T>(this T visualization, SummarizationValueField targetField)
-            where T : IKpiTargetVisualization
+            where T : ITargets
         {
-            visualization.Target.Add(new MeasureColumnSpec() { SummarizationField = targetField });
+            visualization.Targets.Add(new MeasureColumnSpec() { SummarizationField = targetField });
             return visualization;
         }
 
         public static T AddTargets<T>(this T visualization, params string[] targets)
-            where T : IKpiTargetVisualization
+            where T : ITargets
         {
             foreach (var value in targets)
             {
@@ -31,18 +29,12 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         public static T AddTargets<T>(this T visualization, params SummarizationValueField[] targets)
-            where T : IKpiTargetVisualization
+            where T : ITargets
         {
             foreach (var value in targets)
             {
                 visualization.AddTarget(value);
             }
-            return visualization;
-        }
-
-        public static KpiTargetVisualization ConfigureSettings(this KpiTargetVisualization visualization, Action<KpiTargetVisualizationSettings> setting)
-        {
-            setting.Invoke(visualization.Settings);
             return visualization;
         }
     }

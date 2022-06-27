@@ -1,14 +1,7 @@
-﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
-using System.Collections.Generic;
-
-namespace Reveal.Sdk.Dom.Visualizations
+﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public interface IIndicatorVisualization : IVisualization
+    public interface IIndicatorVisualization : IVisualization, IDate, IValues, ICategories
     {
-        DimensionColumnSpec Date { get; set; }
 
-        List<DimensionColumnSpec> Categories { get; }
-
-        List<MeasureColumnSpec> Values { get; }
     }
 }

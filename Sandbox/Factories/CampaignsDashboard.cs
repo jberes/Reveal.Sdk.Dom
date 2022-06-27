@@ -76,7 +76,7 @@ namespace Sandbox.Factories
                 SummarizationField = new SummarizationValueField("Spend")
             });
 
-            visualization.Target.Add(new MeasureColumnSpec()
+            visualization.Targets.Add(new MeasureColumnSpec()
             {
                 SummarizationField = new SummarizationValueField("Budget")
             });

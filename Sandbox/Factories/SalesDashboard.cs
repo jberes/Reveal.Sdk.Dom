@@ -160,57 +160,9 @@ namespace Sandbox.Factories
 
         private static Visualization CreateGaugeVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
-            var visualization = new GaugeVisualization(excelDataSourceItem)
-            {
-                Title = "Quotas by Sales Rep",
-                ColumnSpan = 29,
-                RowSpan = 33
-            };
-
-            visualization.FilterBindings.AddRange(filterBindings);
-
-            visualization.DataSpec.Fields = DataSourceFactory.GetSalesDataSourceFields();
-
-            var quotaField = visualization.DataSpec.Fields.Where(x => x.FieldName == "Quota").First();
-            quotaField.Filter = new NumberFilter()
-            {
-                FilterType = FilterType.FilterByRule,
-                RuleType = NumberRuleType.TopItems,
-                Value = 10.0
-            };
-
-            visualization.Settings.ViewType = GaugeViewType.BulletGraph;
-            visualization.Settings.Minimum = new Bound() { Value = 0.8, ValueType = BoundValueType.NumberValue };
-            visualization.Settings.Maximum = new Bound() { Value = 2.0, ValueType = BoundValueType.NumberValue };
-            visualization.Settings.GaugeBands.Add(new GaugeBand()
-            {
-                Type = BandType.NumberValue,
-                Color = BandColorType.Green,
-                Value = 1.0,
-                Shape = ShapeType.None
-            });
-            visualization.Settings.GaugeBands.Add(new GaugeBand()
-            {
-                Type = BandType.NumberValue,
-                Color = BandColorType.Yellow,
-                Value = 0.8,
-                Shape = ShapeType.None
-            });
-            visualization.Settings.GaugeBands.Add(new GaugeBand()
-            {
-                Type = BandType.Percentage,
-                Color = BandColorType.Red,
-                Shape = ShapeType.None
-            });
-
-            visualization.Labels.Add(new DimensionColumnSpec()
-            {
-                SummarizationField = new SummarizationRegularField("Employee")
-            });
-
-            visualization.Values.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = new SummarizationValueField("Quota")
+            var visualization = new BulletGraphVisualization("Quotas by Sales Rep", excelDataSourceItem)
+                .AddLabel("Employee")
+                .AddValue(new SummarizationValueField("Quota")
                 {
                     Formatting = new NumberFormattingSpec()
                     {
@@ -219,8 +171,44 @@ namespace Sandbox.Factories
                         ShowGroupingSeparator = false,
                         ApplyMkFormat = true,
                     }
-                }
-            });
+                })
+                .AddBand(new GaugeBand()
+                {
+                    Type = BandType.NumberValue,
+                    Color = BandColorType.Green,
+                    Value = 1.0,
+                    Shape = ShapeType.None
+                })
+                .AddBand(new GaugeBand()
+                {
+                    Type = BandType.NumberValue,
+                    Color = BandColorType.Yellow,
+                    Value = 0.8,
+                    Shape = ShapeType.None
+                })
+                .AddBand(new GaugeBand()
+                {
+                    Type = BandType.Percentage,
+                    Color = BandColorType.Red,
+                    Shape = ShapeType.None
+                })
+                .ConfigureSettings(settings => //todo: should these be exposed on the gauge directly?
+                {
+                    settings.Minimum = new Bound() { Value = 0.8, ValueType = BoundValueType.NumberValue };
+                    settings.Maximum = new Bound() { Value = 2.0, ValueType = BoundValueType.NumberValue };
+                })
+                .AddFilterBindings(filterBindings)
+                .SetPosition(33, 29);
+
+            //todo: find a better API to handle this - maybe ConfigureFields?
+            //these are Data Filters in the RevealView UI
+            var quotaField = visualization.DataSpec.Fields.Where(x => x.FieldName == "Quota").First();
+            quotaField.Filter = new NumberFilter()
+            {
+                FilterType = FilterType.FilterByRule,
+                RuleType = NumberRuleType.TopItems,
+                Value = 10.0
+            };
 
             return visualization;
         }

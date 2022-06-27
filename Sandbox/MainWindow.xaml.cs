@@ -15,7 +15,7 @@ namespace Sandbox
     {
         static string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Sales);
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -56,8 +56,8 @@ namespace Sandbox
 
         private async void Create_Dashboard(object sender, RoutedEventArgs e)
         {
-            var document = MarketingDashboard.CreateDashboard();
-            //var document = SalesDashboard.CreateDashboard();
+            //var document = MarketingDashboard.CreateDashboard();
+            var document = SalesDashboard.CreateDashboard();
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();

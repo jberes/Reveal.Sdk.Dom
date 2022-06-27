@@ -35,7 +35,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Target
+        public List<MeasureColumnSpec> Targets
         {
             get { return VisualizationDataSpec.Target; }
         }

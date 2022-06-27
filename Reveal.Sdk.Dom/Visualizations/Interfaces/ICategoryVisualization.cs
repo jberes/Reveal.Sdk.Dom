@@ -1,14 +1,9 @@
 ﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
-using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public interface ICategoryVisualization : IVisualization
+    public interface ICategoryVisualization : IVisualization, ILabels, IValues
     {
-        List<DimensionColumnSpec> Labels { get; }
-
-        List<MeasureColumnSpec> Values { get; }
-
         DimensionColumnSpec Category { get; set; }
     }
 }

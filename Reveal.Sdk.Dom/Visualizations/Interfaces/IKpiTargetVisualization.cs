@@ -1,10 +1,6 @@
-﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
-using System.Collections.Generic;
-
-namespace Reveal.Sdk.Dom.Visualizations
+﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public interface IKpiTargetVisualization : IIndicatorVisualization
+    public interface IKpiTargetVisualization : IIndicatorVisualization, ITargets
     {
-        List<MeasureColumnSpec> Target { get; }
     }
 }

@@ -7,25 +7,18 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class LinearGaugeVisualizationBase<TSettings> : Visualization<TSettings>
+    public abstract class LinearGaugeVisualizationBase<TSettings> : Visualization<TSettings>, ILabels, IValues
         where TSettings : VisualizationSettings, new()
     {
         protected LinearGaugeVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
 
-        //todo: are these labels, rows, or categories
+        protected LinearGaugeVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+
         [JsonIgnore]
         public List<DimensionColumnSpec> Labels 
         { 
             get { return VisualizationDataSpec.Rows; } 
         }
-
-        //todo: this doesn't seem to be used, why is it on the LinearGaugeVisualizationDataSpec?
-        //maybe another visualization uses it?
-        //[JsonIgnore]
-        //public List<MeasureColumnSpec> Target
-        //{
-        //    get { return GetVisualizationDataSpec().Target; }
-        //}
 
         [JsonIgnore]
         public List<MeasureColumnSpec> Values

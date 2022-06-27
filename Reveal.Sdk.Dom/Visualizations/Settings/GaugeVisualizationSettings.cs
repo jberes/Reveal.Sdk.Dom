@@ -8,11 +8,14 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public class GaugeVisualizationSettings : VisualizationSettings
     {
+        [JsonProperty]
 		[JsonConverter(typeof(StringEnumConverter))]
-		public GaugeViewType ViewType { get; set; } = GaugeViewType.Circular;
+		internal GaugeViewType ViewType { get; set; } = GaugeViewType.Circular;
 		public Bound Minimum { get; set; }
 		public Bound Maximum { get; set; }
-		public List<GaugeBand> GaugeBands { get; set; } = new List<GaugeBand>();
+
+        [JsonProperty]
+		internal List<GaugeBand> GaugeBands { get; set; } = new List<GaugeBand>();
 		public string ValueColumnName { get; set; }
 		public string LabelColumnName { get; set; }
 		public string TargetColumnName { get; set; }

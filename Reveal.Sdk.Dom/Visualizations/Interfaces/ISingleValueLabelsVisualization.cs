@@ -1,11 +1,7 @@
-﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
-using System.Collections.Generic;
-
-namespace Reveal.Sdk.Dom.Visualizations
+﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public interface ISingleValueLabelsVisualization : IVisualization
+    public interface ISingleValueLabelsVisualization : IVisualization, ILabels, IValues
     {
-        List<DimensionColumnSpec> Labels { get; }
-        List<MeasureColumnSpec> Values { get; }
+
     }
 }

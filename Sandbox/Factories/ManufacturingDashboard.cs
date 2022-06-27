@@ -249,19 +249,19 @@ namespace Sandbox.Factories
 
             visualization.Settings.Minimum = new Bound() { Value = 0.0, ValueType = BoundValueType.NumberValue };
             visualization.Settings.Maximum = new Bound() { Value = 1.0, ValueType = BoundValueType.NumberValue };
-            visualization.Settings.GaugeBands.Add(new GaugeBand()
+            visualization.Bands.Add(new GaugeBand()
             {
                 Type = BandType.Percentage,
                 Color = BandColorType.Green,
                 Value = 100.0,
             });
-            visualization.Settings.GaugeBands.Add(new GaugeBand()
+            visualization.Bands.Add(new GaugeBand()
             {
                 Type = BandType.Percentage,
                 Color = BandColorType.Yellow,
                 Value = 0.0
             });
-            visualization.Settings.GaugeBands.Add(new GaugeBand()
+            visualization.Bands.Add(new GaugeBand()
             {
                 Type = BandType.Percentage,
                 Color = BandColorType.Red,
@@ -312,19 +312,19 @@ namespace Sandbox.Factories
 
             visualization.Settings.Minimum = new Bound() { Value = 0.0, ValueType = BoundValueType.NumberValue };
             visualization.Settings.Maximum = new Bound() { Value = 1.0, ValueType = BoundValueType.NumberValue };
-            visualization.Settings.GaugeBands.Add(new GaugeBand()
+            visualization.Bands.Add(new GaugeBand()
             {
                 Type = BandType.Percentage,
                 Color = BandColorType.Green,
                 Value = 1.0,
             });
-            visualization.Settings.GaugeBands.Add(new GaugeBand()
+            visualization.Bands.Add(new GaugeBand()
             {
                 Type = BandType.Percentage,
                 Color = BandColorType.Yellow,
                 Value = 0.0
             });
-            visualization.Settings.GaugeBands.Add(new GaugeBand()
+            visualization.Bands.Add(new GaugeBand()
             {
                 Type = BandType.Percentage,
                 Color = BandColorType.Red,
