@@ -41,6 +41,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonProperty(Order = 7)]
-        KpiTargetVisualizationDataSpec VisualizationDataSpec { get; set; } = new KpiTargetVisualizationDataSpec();
+        IndicatorTargetVisualizationDataSpec VisualizationDataSpec { get; set; } = new IndicatorTargetVisualizationDataSpec();
     }
 }

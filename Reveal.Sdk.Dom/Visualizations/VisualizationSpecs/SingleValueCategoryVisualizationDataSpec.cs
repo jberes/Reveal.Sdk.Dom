@@ -1,4 +1,5 @@
-﻿using Reveal.Sdk.Dom.Visualizations.Primitives;
+﻿using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Visualizations.Primitives;
 using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
@@ -10,6 +11,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 		
 		public SingleValueCategoryVisualizationDataSpec()
 		{
+			SchemaTypeName = SchemaTypeNames.SingleValueCategoryVisualizationDataSpecType;
 			Value = new List<MeasureColumnSpec>();
 		}
 	}

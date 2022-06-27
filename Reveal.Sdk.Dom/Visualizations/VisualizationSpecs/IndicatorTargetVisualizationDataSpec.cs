@@ -7,7 +7,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-	internal class KpiTargetVisualizationDataSpec : IndicatorVisualizationDataSpecBase
+	internal class IndicatorTargetVisualizationDataSpec : IndicatorBaseVisualizationDataSpec
     {
 		public List<MeasureColumnSpec> Target { get; set; } = new List<MeasureColumnSpec>();
 
@@ -15,7 +15,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 		public IndicatorTargetDateFilterType DateFilterType { get; set; } = IndicatorTargetDateFilterType.YearToDate;
 		public DateRange CustomDateRange { get; set; }
 
-		public KpiTargetVisualizationDataSpec()
+		public IndicatorTargetVisualizationDataSpec()
 		{
 			SchemaTypeName = SchemaTypeNames.IndicatorTargetVisualizationDataSpecType;
 		}
