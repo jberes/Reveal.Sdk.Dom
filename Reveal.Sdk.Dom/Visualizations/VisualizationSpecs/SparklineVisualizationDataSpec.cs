@@ -10,6 +10,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 		public SparklineVisualizationDataSpec()
 		{
 			SchemaTypeName = SchemaTypeNames.SparklineVisualizationDataSpecType;
+			IndicatorType = IndicatorVisualizationType.LastMonths;
 		}
 	}
 }

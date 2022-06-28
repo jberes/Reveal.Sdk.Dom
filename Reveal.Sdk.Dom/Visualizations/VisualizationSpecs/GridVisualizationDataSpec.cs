@@ -5,12 +5,11 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
     internal class GridVisualizationDataSpec : VisualizationDataSpec
     {
-        public List<TabularColumnSpec> Columns { get; set; }
+        public List<TabularColumnSpec> Columns { get; set; } = new List<TabularColumnSpec>();
 
         public GridVisualizationDataSpec()
         {
             SchemaTypeName = SchemaTypeNames.GridVisualizationDataSpecType;
-            Columns = new List<TabularColumnSpec>();
         }
     }
 }

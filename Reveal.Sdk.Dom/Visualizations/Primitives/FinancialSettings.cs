@@ -1,4 +1,4 @@
-﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
+﻿namespace Reveal.Sdk.Dom.Visualizations
 {
     public class FinancialSettings
     {

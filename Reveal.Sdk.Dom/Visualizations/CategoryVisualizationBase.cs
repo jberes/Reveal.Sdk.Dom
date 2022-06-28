@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     public abstract class CategoryVisualizationBase<TSettings> : Visualization<TSettings>, ILabels, IValues, ICategory
-        where TSettings : VisualizationSettings, new()
+        where TSettings : ChartVisualizationSettings, new()
     {
         protected CategoryVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
 

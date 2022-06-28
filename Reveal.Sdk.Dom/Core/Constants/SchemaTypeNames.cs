@@ -22,12 +22,23 @@ namespace Reveal.Sdk.Dom.Core.Constants
         internal const string XmlaNumberFilterRuleType = "XmlaNumberFilterRuleType";
 
         //***************** Visualizations - Settings *******************
+        internal const string AssetVisualizationSettingsType = "AssetVisualizationSettingsType";
         internal const string ChartVisualizationSettingsType = "ChartVisualizationSettingsType";
+        internal const string ChoroplethMapVisualizationSettingsType = "ChoroplethMapVisualizationSettingsType";
+        internal const string DiyVisualizationSettingsType = "DIYVisualizationSettingsType";
         internal const string GaugeVisualizationSettingsType = "GaugeVisualizationSettingsType";
+        internal const string GeoMapBaseVisualizationSettingsType = "GeoMapBaseVisualizationSettingsType";
+        internal const string GridVisualizationSettingsType = "GridVisualizationSettingsType";
+        internal const string HeatMapVisualizationSettingsType = "HeatMapVisualizationSettingsType";
         internal const string IndicatorVisualizationSettingsType = "IndicatorVisualizationSettingsType";
         internal const string IndicatorTargetVisualizationSettingsType = "IndicatorTargetVisualizationSettingsType";
+        internal const string MapVisualizationSettingsType = "MapVisualizationSettingsType";
         internal const string PivotVisualizationSettingsType = "PivotVisualizationSettingsType";
+        internal const string ScatterMapVisualizationSettingsType = "ScatterMapVisualizationSettingsType";
+        internal const string ScriptVisualizationSettingsType = "ScriptVisualizationSettingsType";
         internal const string SparklineVisualizationSettingsType = "SparklineVisualizationSettingsType";
+        internal const string TextBoxVisualizationSettingsType = "TextBoxVisualizationSettingsType";
+        internal const string TreeMapVisualizationSettingsType = "TreeMapVisualizationSettingsType";
 
         //***************** Visualizations - Specs *******************
         internal const string AssetVisualizationDataSpecType = "AssetVisualizationDataSpecType";
@@ -45,14 +56,16 @@ namespace Reveal.Sdk.Dom.Core.Constants
         internal const string SingleValueVisualizationDataSpecType = "SingleValueVisualizationDataSpecType";
         internal const string TreeMapVisualizationDataSpecType = "TreeMapVisualizationDataSpecType";
         internal const string CategoryVisualizationDataSpecType = "CategoryVisualizationDataSpecType";
-        internal const string DateFormattingSpecType = "DateFormattingSpecType";
-        internal const string DimensionColumnSpecType = "DimensionColumnSpecType";
         internal const string IndicatorVisualizationDataSpecType = "IndicatorVisualizationDataSpecType";
         internal const string IndicatorTargetVisualizationDataSpecType = "IndicatorTargetVisualizationDataSpecType";
-        internal const string MeasureColumnSpecType = "MeasureColumnSpecType";
         internal const string PivotVisualizationDataSpecType = "PivotVisualizationDataSpecType";
         internal const string SingleValueLabelsVisualizationDataSpecType = "SingleValueLabelsVisualizationDataSpecType";
         internal const string SparklineVisualizationDataSpecType = "SparklineVisualizationDataSpecType";
+        internal const string TimeSeriesVisualizationDataSpecType = "TimeSeriesVisualizationDataSpecType";
+
+        internal const string DateFormattingSpecType = "DateFormattingSpecType";
+        internal const string DimensionColumnSpecType = "DimensionColumnSpecType";
+        internal const string MeasureColumnSpecType = "MeasureColumnSpecType";
         internal const string TabularDataSpecType = "TabularDataSpecType";
         internal const string NumberFormattingSpecType = "NumberFormattingSpecType";
         internal const string ResourceDataSpecType = "ResourceDataSpecType";

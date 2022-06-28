@@ -6,10 +6,11 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class PivotVisualizationBase<TSettings> : Visualization<TSettings>
+    public abstract class PivotVisualizationBase<TSettings> : Visualization<TSettings>, IValues, IRows, IColumns
         where TSettings : VisualizationSettings, new()
     {
-        protected PivotVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        protected PivotVisualizationBase(DataSourceItem dataSourceItem) : base(string.Empty, dataSourceItem) { }
+        protected PivotVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
         public List<DimensionColumnSpec> Columns { get { return VisualizationDataSpec.Columns; } }
@@ -21,8 +22,8 @@ namespace Reveal.Sdk.Dom.Visualizations
         public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Values; } }
 
         [JsonIgnore]
-        public bool ShowGrandTotals 
-        { 
+        public bool ShowGrandTotals
+        {
             get { return VisualizationDataSpec.ShowGrandTotals; }
             set { VisualizationDataSpec.ShowGrandTotals = value; }
         }

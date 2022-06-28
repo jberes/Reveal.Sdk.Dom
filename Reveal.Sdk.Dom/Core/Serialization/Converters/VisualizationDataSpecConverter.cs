@@ -29,8 +29,10 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 { SchemaTypeNames.SingleValueLabelsVisualizationDataSpecType, typeof(SingleValueLabelsVisualizationDataSpec) },
                 { SchemaTypeNames.SingleValueVisualizationDataSpecType, typeof(SingleValueVisualizationDataSpec) },
                 { SchemaTypeNames.SparklineVisualizationDataSpecType, typeof(SparklineVisualizationDataSpec) },
+                { SchemaTypeNames.TimeSeriesVisualizationDataSpecType, typeof(TimeSeriesVisualizationDataSpec) },
                 { SchemaTypeNames.TreeMapVisualizationDataSpecType, typeof(TreeMapVisualizationDataSpec) },
             };
         }
     }
 }
+
