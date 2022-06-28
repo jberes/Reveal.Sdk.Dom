@@ -1,14 +1,44 @@
-﻿using Reveal.Sdk.Dom.Data;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.Settings;
+using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
+using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class KpiTargetVisualization : KpiTargetVisualizationBase<KpiTargetVisualizationSettings>
+    public class KpiTargetVisualization : Visualization<KpiTargetVisualizationSettings>, ITargets, IDate, IValues, ICategories
     {
         internal KpiTargetVisualization() : this(null) { }
-
+        public KpiTargetVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
         public KpiTargetVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
 
-        public KpiTargetVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        [JsonIgnore]
+        public DimensionColumnSpec Date
+        {
+            get { return VisualizationDataSpec.Date; }
+            set { VisualizationDataSpec.Date = value; }
+        }
+
+        [JsonIgnore]
+        public List<MeasureColumnSpec> Values
+        {
+            get { return VisualizationDataSpec.Value; }
+        }
+
+        //todo: confirm that the category is stored as rows
+        [JsonIgnore]
+        public List<DimensionColumnSpec> Categories
+        {
+            get { return VisualizationDataSpec.Rows; }
+        }
+
+        [JsonIgnore]
+        public List<MeasureColumnSpec> Targets
+        {
+            get { return VisualizationDataSpec.Target; }
+        }
+
+        [JsonProperty(Order = 7)]
+        IndicatorTargetVisualizationDataSpec VisualizationDataSpec { get; set; } = new IndicatorTargetVisualizationDataSpec();
     }
 }
