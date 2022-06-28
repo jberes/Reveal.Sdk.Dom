@@ -16,12 +16,12 @@
         OHLC,
         Pie,
         RadialLines,
-        RadialColumns,
-        RadialPie,
+        RadialColumns, //todo: don't think we use this
+        RadialPie, //todo: don't think we use this
         Scatter,
-        PolarArea,
-        PolarLines,
-        PolarScatter,
+        PolarArea, //todo: don't think we use this
+        PolarLines, //todo: don't think we use this
+        PolarScatter, //todo: don't think we use this
         StackedColumn,
         StackedArea,
         StackedBar,
