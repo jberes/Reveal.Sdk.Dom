@@ -2,18 +2,23 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
+using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TreeMapVisualization : Visualization<TreeMapVisualizationSettings>
+    public class TreeMapVisualization : Visualization<TreeMapVisualizationSettings>, ILabels, IValues
     {
         internal TreeMapVisualization() : this(null) { }
         public TreeMapVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
         public TreeMapVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
-        //todo: implement
-
         [JsonProperty(Order = 7)]
         TreeMapVisualizationDataSpec VisualizationDataSpec { get; set; } = new TreeMapVisualizationDataSpec();
+
+        [JsonIgnore]
+        public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }
+        
+        [JsonIgnore]
+        public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Value; } }
     }
 }

@@ -13,6 +13,8 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         //todo: implement
 
+        //todo: where does the map property come from?
+
         [JsonProperty(Order = 7)]
         ScatterMapVisualizationDataSpec VisualizationDataSpec { get; set; } = new ScatterMapVisualizationDataSpec();
     }
