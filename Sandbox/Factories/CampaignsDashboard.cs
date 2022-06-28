@@ -84,7 +84,7 @@ namespace Sandbox.Factories
 
         private static Visualization CreateIndicatorVisualization(string title, string field, ExcelDataSourceItem excelDataSourceItem, Binding territoryFilterBinding)
         {
-            var visualization = new IndicatorVisualization(excelDataSourceItem)
+            var visualization = new KpiTimeVisualization(excelDataSourceItem)
             {
                 Title = title,
                 ColumnSpan = 15,

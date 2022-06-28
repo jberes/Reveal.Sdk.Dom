@@ -18,9 +18,9 @@ namespace Sandbox.Factories
             };
 
             document.Visualizations.Add(new KpiTargetVisualization("Spend vs Budget", excelDataSourceItem).AddDate("Date").AddValue("Spend").AddTarget("Budget"));
-            document.Visualizations.Add(new IndicatorVisualization("Website Traffic", excelDataSourceItem).AddDate("Date").AddValue("Traffic"));
-            document.Visualizations.Add(new IndicatorVisualization("Conversions", excelDataSourceItem).AddDate("Date").AddValue("Conversions"));
-            document.Visualizations.Add(new IndicatorVisualization("Website Traffic", excelDataSourceItem).AddDate("Date").AddValue("New Seats"));
+            document.Visualizations.Add(new KpiTimeVisualization("Website Traffic", excelDataSourceItem).AddDate("Date").AddValue("Traffic"));
+            document.Visualizations.Add(new KpiTimeVisualization("Conversions", excelDataSourceItem).AddDate("Date").AddValue("Conversions"));
+            document.Visualizations.Add(new KpiTimeVisualization("Website Traffic", excelDataSourceItem).AddDate("Date").AddValue("New Seats"));
 
             document.Visualizations.Add(new SplineAreaChartVisualization("Actual Spend vs Budget", excelDataSourceItem)
                 .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })

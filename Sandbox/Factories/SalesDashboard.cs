@@ -92,7 +92,7 @@ namespace Sandbox.Factories
 
         private static Visualization CreateIndicatorVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
-            return new IndicatorVisualization("Total Opportunities", excelDataSourceItem)
+            return new KpiTimeVisualization("Total Opportunities", excelDataSourceItem)
                 .AddDate(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Year })
                 .AddValue("Total Opportunites")
                 .AddFilterBindings(filterBindings)

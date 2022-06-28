@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class IndicatorVisualizationExtensions
     {
-        public static IndicatorVisualization ConfigureSettings(this IndicatorVisualization visualization, Action<IndicatorVisualizationSettings> setting)
+        public static KpiTimeVisualization ConfigureSettings(this KpiTimeVisualization visualization, Action<IndicatorVisualizationSettings> setting)
         {
             setting.Invoke(visualization.Settings);
             return visualization;

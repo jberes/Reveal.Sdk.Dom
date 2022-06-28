@@ -17,7 +17,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
             var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Field>());
 
             var document = new DashboardDocument();
-            document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
 
             Assert.Empty(document.DataSources);
 
@@ -33,10 +33,10 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
             var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Field>());
 
             var document = new DashboardDocument();
-            document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
 
             Assert.Empty(document.DataSources);
 
@@ -56,10 +56,10 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
             var document = new DashboardDocument();
             document.DataSources.Add(excelDataSource);
 
-            document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new IndicatorVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
 
             Assert.Single(document.DataSources);
 
