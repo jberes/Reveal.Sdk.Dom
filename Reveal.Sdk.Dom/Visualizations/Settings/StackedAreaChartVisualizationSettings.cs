@@ -4,7 +4,7 @@
     {
         public StackedAreaChartVisualizationSettings()
         {
-            ChartType = ChartType.Area;
+            ChartType = ChartType.StackedArea;
         }
     }
 }

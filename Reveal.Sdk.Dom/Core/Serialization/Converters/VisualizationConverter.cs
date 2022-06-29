@@ -52,14 +52,22 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
             var chartType = jToken["ChartType"].Value<string>();
             Type type = chartType switch
             {
+                "Area" => typeof(AreaChartVisualization),
                 "Bar" => typeof(BarChartVisualization),
-                "Pie" => typeof(PieChartVisualization),
-                "Line" => typeof(LineChartVisualization),
                 "Column" => typeof(ColumnChartVisualization),
-                "Funnel" => typeof(FunnelChartVisualization),
-                "SplineArea" => typeof(SplineAreaChartVisualization),
-                "StackedColumn" => typeof(StackedColumnChartVisualization),
+                "Composite" => typeof(ComboChartVisualization),
                 "Doughnut" => typeof(DoughnutChartVisualization),
+                "Funnel" => typeof(FunnelChartVisualization),
+                "Line" => typeof(LineChartVisualization),
+                "Pie" => typeof(PieChartVisualization),
+                "RadialLines" => typeof(RadialVisualization),
+                "Spline" => typeof(SplineChartVisualization),
+                "SplineArea" => typeof(SplineAreaChartVisualization),
+                "StackedArea" => typeof(StackedAreaChartVisualization),
+                "StackedBar" => typeof(StackedBarChartVisualization),
+                "StackedColumn" => typeof(StackedColumnChartVisualization),
+                "StepArea" => typeof(StepAreaChartVisualization),
+                "StepLine" => typeof(StepLineChartVisualization),
                 _ => throw new JsonException($"Chart type not supported: {chartType}")
             };
 

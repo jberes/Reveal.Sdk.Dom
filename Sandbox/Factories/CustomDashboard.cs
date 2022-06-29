@@ -17,14 +17,51 @@ namespace Sandbox.Factories
                 Theme = ThemeNames.TropicalIsland
             };
 
-            document.Visualizations.Add(new KpiTargetVisualization("KPI vs Target", excelDataSourceItem).AddDate("Date").AddValue("Spend").AddTarget("Budget"));
-            document.Visualizations.Add(new KpiTimeVisualization("KPI vs Time", excelDataSourceItem).AddDate("Date").AddValue("Traffic"));
+            //grids
+            document.Visualizations.Add(new GridVisualization("Grid", excelDataSourceItem)
+                .AddColumn("Territory").AddColumn("Conversions").AddColumn("Spend"));
 
-            document.Visualizations.Add(new SplineAreaChartVisualization("Spline Area", excelDataSourceItem)
+            document.Visualizations.Add(new TextViewVisualization("TextView", excelDataSourceItem)
+                .AddColumn("Territory").AddColumn("Conversions").AddColumn("Spend"));
+
+            document.Visualizations.Add(new PivotVisualization("Pivot", excelDataSourceItem)
+                .AddRow("Territory").AddValue("New Seats").AddColumn("CampaignID"));
+
+            //category
+            document.Visualizations.Add(new ColumnChartVisualization("Column", excelDataSourceItem)
+                .AddLabel("Date").AddValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
+
+            document.Visualizations.Add(new BarChartVisualization("Bar", excelDataSourceItem)
+                .AddLabel("Date").AddValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
+
+            document.Visualizations.Add(new PieChartVisualization("Pie", excelDataSourceItem)
+                .AddLabel("Territory").AddValue("Conversions"));
+
+            document.Visualizations.Add(new DoughnutChartVisualization("Doughnut", excelDataSourceItem)
+                .AddLabel("Territory").AddValue("Conversions"));
+
+            document.Visualizations.Add(new FunnelChartVisualization("Funnel", excelDataSourceItem)
+                .AddLabel("Territory")
+                .AddValue("Conversions"));
+
+            document.Visualizations.Add(new ComboChartVisualization("Combo", excelDataSourceItem)
                 .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
-                .AddValues("Spend", "Budget"));
+                .AddChart1Value("Spend")
+                .AddChart2Value("Budget"));
 
-            document.Visualizations.Add(new StackedColumnChartVisualization("Column", excelDataSourceItem)
+            document.Visualizations.Add(new StackedColumnChartVisualization("Stacked Column", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
+
+            document.Visualizations.Add(new StackedBarChartVisualization("Stacked Bar", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
+
+            document.Visualizations.Add(new StackedAreaChartVisualization("Stacked Area", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
+
+            document.Visualizations.Add(new AreaChartVisualization("Area", excelDataSourceItem)
                 .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
                 .AddValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
 
@@ -32,22 +69,42 @@ namespace Sandbox.Factories
                 .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
                 .AddValue("Conversions"));
 
-            document.Visualizations.Add(new DoughnutChartVisualization("Doughnut", excelDataSourceItem)
-                .AddLabel("Territory")
-                .AddValue("Conversions"));
+            document.Visualizations.Add(new StepAreaChartVisualization("Step Area", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Spend", "Budget"));
 
-            document.Visualizations.Add(new TextBoxVisualization("TextBox")
-                .SetText("This is some text").SetFontSize(FontSize.Large));
+            document.Visualizations.Add(new StepLineChartVisualization("Step Line", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Spend", "Budget"));
 
-            document.Visualizations.Add(new TextViewVisualization("TextView", excelDataSourceItem)
-                .AddColumn("Territory").AddColumn("Conversions").AddColumn("Spend"));
+            document.Visualizations.Add(new SplineAreaChartVisualization("Spline Area", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Spend", "Budget"));
 
-            document.Visualizations.Add(new GridVisualization("Grid", excelDataSourceItem)
-                .AddColumn("Territory").AddColumn("Conversions").AddColumn("Spend"));
+            document.Visualizations.Add(new SplineChartVisualization("Spline", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Spend", "Budget"));
 
-            document.Visualizations.Add(new ImageVisualization("Image", excelDataSourceItem)
-                .SetUrlColumn("Territory"));
+            //gauges
+            document.Visualizations.Add(new KpiTargetVisualization("KPI vs Target", excelDataSourceItem).AddDate("Date").AddValue("Spend").AddTarget("Budget"));
+            document.Visualizations.Add(new KpiTimeVisualization("KPI vs Time", excelDataSourceItem).AddDate("Date").AddValue("Traffic"));
 
+            //maps
+
+            //scatter
+
+            //financial
+
+            //time
+
+            //other
+            document.Visualizations.Add(new RadialVisualization("Radial", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Spend", "Budget"));
+
+            document.Visualizations.Add(new ImageVisualization("Image", excelDataSourceItem).SetUrlColumn("Territory"));
+
+            document.Visualizations.Add(new TextBoxVisualization("TextBox").SetText("This is some text").SetFontSize(FontSize.Large));
             return document;
         }
     }
