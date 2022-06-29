@@ -5,10 +5,9 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class SparklineVisualizationExtensions
     {
-        public static SparklineVisualization ConfigureSettings(this SparklineVisualization visualization, Action<SparklineVisualizationSettings> setting)
+        public static SparklineVisualization ConfigureSettings(this SparklineVisualization visualization, Action<SparklineVisualizationSettings> settings)
         {
-            setting.Invoke(visualization.Settings);
-            return visualization;
+            return visualization.ConfigureSettings<SparklineVisualization, SparklineVisualizationSettings>(settings);
         }
 
         public static SparklineVisualization SetIndicatorType(this SparklineVisualization visualization, IndicatorVisualizationType indicatorVisualizationType)

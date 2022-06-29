@@ -5,10 +5,9 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class KpiTargetVisualizationExtensions
     {
-        public static KpiTargetVisualization ConfigureSettings(this KpiTargetVisualization visualization, Action<KpiTargetVisualizationSettings> setting)
+        public static KpiTargetVisualization ConfigureSettings(this KpiTargetVisualization visualization, Action<KpiTargetVisualizationSettings> settings)
         {
-            setting.Invoke(visualization.Settings);
-            return visualization;
+            return visualization.ConfigureSettings<KpiTargetVisualization, KpiTargetVisualizationSettings>(settings);
         }
     }
 }

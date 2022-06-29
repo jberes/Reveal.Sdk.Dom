@@ -5,28 +5,24 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class GaugeVisualizationExtensions
     {
-        public static BulletGraphVisualization ConfigureSettings(this BulletGraphVisualization visualization, Action<BulletGraphVisualizationSettings> setting)
+        public static BulletGraphVisualization ConfigureSettings(this BulletGraphVisualization visualization, Action<BulletGraphVisualizationSettings> settings)
         {
-            setting.Invoke(visualization.Settings);
-            return visualization;
+            return visualization.ConfigureSettings<BulletGraphVisualization, BulletGraphVisualizationSettings>(settings);
         }
 
-        public static CircularGaugeVisualization ConfigureSettings(this CircularGaugeVisualization visualization, Action<CircularGaugeVisualizationSettings> setting)
+        public static CircularGaugeVisualization ConfigureSettings(this CircularGaugeVisualization visualization, Action<CircularGaugeVisualizationSettings> settings)
         {
-            setting.Invoke(visualization.Settings);
-            return visualization;
+            return visualization.ConfigureSettings<CircularGaugeVisualization, CircularGaugeVisualizationSettings>(settings);
         }
 
-        public static LinearGaugeVisualization ConfigureSettings(this LinearGaugeVisualization visualization, Action<LinearGaugeVisualizationSettings> setting)
+        public static LinearGaugeVisualization ConfigureSettings(this LinearGaugeVisualization visualization, Action<LinearGaugeVisualizationSettings> settings)
         {
-            setting.Invoke(visualization.Settings);
-            return visualization;
+            return visualization.ConfigureSettings<LinearGaugeVisualization, LinearGaugeVisualizationSettings>(settings);
         }
 
-        public static TextVisualization ConfigureSettings(this TextVisualization visualization, Action<TextVisualizationSettings> setting)
+        public static TextVisualization ConfigureSettings(this TextVisualization visualization, Action<TextVisualizationSettings> settings)
         {
-            setting.Invoke(visualization.Settings);
-            return visualization;
+            return visualization.ConfigureSettings<TextVisualization, TextVisualizationSettings>(settings);
         }
     }
 }

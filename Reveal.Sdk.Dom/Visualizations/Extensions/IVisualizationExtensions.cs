@@ -29,6 +29,14 @@ namespace Reveal.Sdk.Dom.Visualizations
             return visualization;
         }
 
+        internal static T ConfigureSettings<T, TSettings>(this T visualization, Action<TSettings> setting)
+            where T : IVisualization<TSettings, TabularDataSpec>
+            where TSettings : VisualizationSettings
+        {
+            setting.Invoke(visualization.Settings);
+            return visualization;
+        }
+
         public static T SetPosition<T>(this T visualization, int rowSpan, int columnSpan)
             where T : IVisualization
         {
