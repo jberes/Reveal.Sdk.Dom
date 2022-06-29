@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public enum FontSizeType
+    public enum FontSize
     {
         Small,
         Medium,

@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         public bool HideGrandTotals { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public FontSizeType FontSize { get; set; } = FontSizeType.Small;
+        public FontSize FontSize { get; set; } = FontSize.Small;
 
         [JsonProperty]
         public GridVisualizationStyle Style { get; private set; } = new GridVisualizationStyle();

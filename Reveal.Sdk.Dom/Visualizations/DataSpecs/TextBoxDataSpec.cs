@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
 {
@@ -8,19 +9,14 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
         public string Text { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public DashboardFontSizeType FontSize { get; set; } = DashboardFontSizeType.Medium;
+        public FontSize FontSize { get; set; } = FontSize.Medium;
 
         [JsonConverter(typeof(StringEnumConverter))]
         public TextAlignment Alignment { get; set; } = TextAlignment.Left;
 
-        //what is this used for in the model?
-        //public JsonObjectWrapper/Dictionary<string, object> RichTextFormatting { get; set; }
-    }
-
-    public enum DashboardFontSizeType
-    {
-        Small,
-        Medium,
-        Large
+        public TextBoxDataSpec()
+        {
+            SchemaTypeName = SchemaTypeNames.TextBoxDataSpecType;
+        }
     }
 }
