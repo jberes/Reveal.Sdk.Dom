@@ -100,6 +100,8 @@ namespace Sandbox.Factories
             document.Visualizations.Add(new BulletGraphVisualization("KPI vs Target", excelDataSourceItem).AddLabel("CampaignID").AddValue("Spend").AddTarget("Budget"));
 
             //maps
+            document.Visualizations.Add(new TreeMapVisualization("Tree Map", excelDataSourceItem)
+                .AddLabel("Territory").AddValue("Traffic"));
 
             //scatter
             document.Visualizations.Add(new BubbleVisualization("Bubble", excelDataSourceItem)

@@ -18,15 +18,16 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 
                 SchemaTypeNames.AssetVisualizationSettingsType => typeof(ImageVisualization),
                 SchemaTypeNames.ChartVisualizationSettingsType => GetChartVsualizationType(visualizationSettings),
+                SchemaTypeNames.DiyVisualizationSettingsType => typeof(DiyVisualization),
+                SchemaTypeNames.GaugeVisualizationSettingsType => GetGaugeVisualizationType(jObject),
                 SchemaTypeNames.GridVisualizationSettingsType => typeof(GridVisualization),
                 SchemaTypeNames.IndicatorVisualizationSettingsType => typeof(KpiTimeVisualization),
                 SchemaTypeNames.IndicatorTargetVisualizationSettingsType => typeof(KpiTargetVisualization),
                 SchemaTypeNames.PivotVisualizationSettingsType => typeof(PivotVisualization),
-                SchemaTypeNames.SparklineVisualizationSettingsType => typeof(SparklineVisualization),
-                SchemaTypeNames.GaugeVisualizationSettingsType => GetGaugeVisualizationType(jObject),
-                SchemaTypeNames.TextBoxVisualizationSettingsType => typeof(TextBoxVisualization),
                 SchemaTypeNames.SingleRowVisualizationSettingsType => typeof(TextViewVisualization),
-                SchemaTypeNames.DiyVisualizationSettingsType => typeof(DiyVisualization),                
+                SchemaTypeNames.SparklineVisualizationSettingsType => typeof(SparklineVisualization),
+                SchemaTypeNames.TextBoxVisualizationSettingsType => typeof(TextBoxVisualization),
+                SchemaTypeNames.TreeMapVisualizationSettingsType => typeof(TreeMapVisualization),                
                 _ => throw new JsonException($"Visualization not supported: {visualizationType}")
             };
 

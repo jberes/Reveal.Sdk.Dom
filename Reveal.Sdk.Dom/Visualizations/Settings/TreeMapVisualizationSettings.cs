@@ -28,6 +28,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         public TreeMapVisualizationSettings()
         {
 			SchemaTypeName = SchemaTypeNames.TreeMapVisualizationSettingsType;
+			VisualizationType = VisualizationTypes.TREE_MAP;
 		}
 	}
 
