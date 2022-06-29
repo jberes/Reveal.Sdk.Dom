@@ -36,6 +36,9 @@ namespace Sandbox.Factories
                 .AddLabel("Territory")
                 .AddValue("Conversions"));
 
+            document.Visualizations.Add(new TextBoxVisualization("TextBox")
+                .SetText("This is some text").SetFontSize(FontSize.Large));
+
             document.Visualizations.Add(new TextViewVisualization("TextView", excelDataSourceItem)
                 .AddColumn("Territory").AddColumn("Conversions").AddColumn("Spend"));
 
