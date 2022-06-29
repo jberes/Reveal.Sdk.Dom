@@ -59,6 +59,7 @@ namespace Reveal.Sdk.Dom.Core.Constants
         internal const string IndicatorVisualizationDataSpecType = "IndicatorVisualizationDataSpecType";
         internal const string IndicatorTargetVisualizationDataSpecType = "IndicatorTargetVisualizationDataSpecType";
         internal const string PivotVisualizationDataSpecType = "PivotVisualizationDataSpecType";
+        internal const string SingleRowVisualizationSettingsType = "SingleRowVisualizationSettingsType";
         internal const string SingleValueLabelsVisualizationDataSpecType = "SingleValueLabelsVisualizationDataSpecType";
         internal const string SparklineVisualizationDataSpecType = "SparklineVisualizationDataSpecType";
         internal const string TimeSeriesVisualizationDataSpecType = "TimeSeriesVisualizationDataSpecType";
