@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Reveal.Sdk.Dom.Core.Utilities;
-using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using Reveal.Sdk.Dom.Visualizations.Settings;
@@ -9,28 +7,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    //todo: maybe should rename to TabularVisualization
-    public abstract class Visualization<T> : Visualization<T, TabularDataSpec>, IFilter
-        where T : VisualizationSettings, new()
-    {
-        protected Visualization(DataSourceItem dataSourceItem) : this(string.Empty, dataSourceItem) { }
-        protected Visualization(string title, DataSourceItem dataSourceItem) : base(title)
-        {
-            DataSpec = new TabularDataSpec
-            {
-                DataSourceItem = dataSourceItem,
-                Fields = dataSourceItem?.Fields.Clone()
-            };
-        }
-
-        [JsonIgnore]
-        public List<VisualizationFilter> Filters
-        {
-            get { return DataSpec.QuickFilters; }
-        }
-    }
-
-    public abstract class Visualization<TSettings, TDataSpec> : Visualization, IDataSpec<TDataSpec>, IBindDashboardFilters
+    public abstract class Visualization<TSettings, TDataSpec> : Visualization, IVisualization<TSettings, TDataSpec>
         where TSettings : VisualizationSettings, new()
         where TDataSpec : DataSpec
     {
@@ -39,9 +16,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         ////todo: implement
         //[JsonProperty(Order = 10)]
         //internal ActionsModel ActionsModel { get; set; }
-
-        [JsonProperty("VisualizationSettings", Order = 5)]
-        public TSettings Settings { get; internal set; } = new TSettings();
 
         //todo: think of a better name - maybe DataSchema since it represents the schema or structure of the data, or DataDefinition
         //does this even need to be expose? Can the properties be wrapped?
@@ -53,6 +27,9 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             get { return DataSpec.Bindings.Bindings; }
         }
+
+        [JsonProperty("VisualizationSettings", Order = 5)]
+        public TSettings Settings { get; internal set; } = new TSettings();
     }
 
     public abstract class Visualization : IVisualization

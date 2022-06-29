@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ScatterVisualization : Visualization<ScatterVisualizationSettings>, ILabels, IAxis
+    public class ScatterVisualization : TabularVisualizationBase<ScatterVisualizationSettings>, ILabels, IAxis
     {
         internal ScatterVisualization() : this(null) { }
-        public ScatterVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public ScatterVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public ScatterVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonProperty(Order = 7)]

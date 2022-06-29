@@ -5,10 +5,10 @@ using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ComboChartVisualization : Visualization<ComboChartVisualizationSettings>
+    public class ComboChartVisualization : TabularVisualizationBase<ComboChartVisualizationSettings>
     {
         internal ComboChartVisualization() : this(null) { }
-        public ComboChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public ComboChartVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public ComboChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
 

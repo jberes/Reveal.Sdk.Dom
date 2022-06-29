@@ -6,11 +6,9 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class SparklineVisualizationBase<TSettings> : Visualization<TSettings>, IDate, IValues, ICategories
+    public abstract class SparklineVisualizationBase<TSettings> : TabularVisualizationBase<TSettings>, IDate, IValues, ICategories
     where TSettings : VisualizationSettings, new()
     {
-        protected SparklineVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
-
         protected SparklineVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]

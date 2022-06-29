@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class SingleGaugeVisualizationBase<TSettings> : Visualization<TSettings>, ILabel, IValues, IBands
+    public abstract class SingleGaugeVisualizationBase<TSettings> : TabularVisualizationBase<TSettings>, ILabel, IValues, IBands
         where TSettings : GaugeVisualizationSettings, new()
     {
         protected SingleGaugeVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }

@@ -6,9 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     public class KpiTimeVisualization : IndicatorVisualizationBase<IndicatorVisualizationSettings>
     {
         internal KpiTimeVisualization() : this(null) { }
-
-        public KpiTimeVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
-
+        public KpiTimeVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public KpiTimeVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

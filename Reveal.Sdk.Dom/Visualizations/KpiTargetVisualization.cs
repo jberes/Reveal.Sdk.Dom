@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class KpiTargetVisualization : Visualization<KpiTargetVisualizationSettings>, ITargets, IDate, IValues, ICategories
+    public class KpiTargetVisualization : TabularVisualizationBase<KpiTargetVisualizationSettings>, ITargets, IDate, IValues, ICategories
     {
         internal KpiTargetVisualization() : this(null) { }
+        public KpiTargetVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public KpiTargetVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
-        public KpiTargetVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
 
         [JsonIgnore]
         public DimensionColumnSpec Date

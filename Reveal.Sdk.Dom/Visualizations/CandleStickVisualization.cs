@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     public class CandleStickVisualization : FinancialVisualizationBase<CandleStickVisualizationSettings>
     {
         internal CandleStickVisualization() : this(null) { }
-        public CandleStickVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public CandleStickVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public CandleStickVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

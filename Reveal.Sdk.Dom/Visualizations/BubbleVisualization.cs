@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class BubbleVisualization : Visualization<BubbleVisualizationSettings>, ILabels, IAxis
+    public class BubbleVisualization : TabularVisualizationBase<BubbleVisualizationSettings>, ILabels, IAxis
     {
         internal BubbleVisualization() : this(null) { }
-        public BubbleVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public BubbleVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public BubbleVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonProperty(Order = 7)]

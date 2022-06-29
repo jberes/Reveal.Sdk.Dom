@@ -3,15 +3,10 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class LinearGaugeVisualization : LinearGaugeVisualizationBase<GaugeVisualizationSettings>
+    public class LinearGaugeVisualization : LinearGaugeVisualizationBase<LinearGaugeVisualizationSettings>
     {
         internal LinearGaugeVisualization() : this(null) { }
-
-        public LinearGaugeVisualization(DataSourceItem dataSourceItem) : this(string.Empty, dataSourceItem) { }
-
-        public LinearGaugeVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) 
-        {
-            Settings.ViewType = GaugeViewType.Linear;
-        }
+        public LinearGaugeVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
+        public LinearGaugeVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

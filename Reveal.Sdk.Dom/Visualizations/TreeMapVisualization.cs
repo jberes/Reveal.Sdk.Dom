@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TreeMapVisualization : Visualization<TreeMapVisualizationSettings>, ILabels, IValues
+    public class TreeMapVisualization : TabularVisualizationBase<TreeMapVisualizationSettings>, ILabels, IValues
     {
         internal TreeMapVisualization() : this(null) { }
-        public TreeMapVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public TreeMapVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public TreeMapVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonProperty(Order = 7)]

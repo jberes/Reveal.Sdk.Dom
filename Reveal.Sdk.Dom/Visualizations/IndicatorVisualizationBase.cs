@@ -6,11 +6,9 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class IndicatorVisualizationBase<TSettings> : Visualization<TSettings>, IDate, IValues, ICategories
+    public abstract class IndicatorVisualizationBase<TSettings> : TabularVisualizationBase<TSettings>, IDate, IValues, ICategories
         where TSettings : VisualizationSettings, new()
     {
-        protected IndicatorVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
-
         protected IndicatorVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]

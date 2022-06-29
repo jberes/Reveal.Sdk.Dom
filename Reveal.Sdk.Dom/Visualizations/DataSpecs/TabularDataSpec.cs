@@ -22,7 +22,7 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
         /// This is exposed via the Visualization.Filters property
         /// </summary>
         [JsonProperty]
-        internal List<VisualizationFilter> QuickFilters { get; set; } = new List<VisualizationFilter>(); //todo: can this be a list of strings?
+        internal List<VisualizationFilter> QuickFilters { get; set; } = new List<VisualizationFilter>();
 
         //not sure what this is for yet
         [JsonProperty]

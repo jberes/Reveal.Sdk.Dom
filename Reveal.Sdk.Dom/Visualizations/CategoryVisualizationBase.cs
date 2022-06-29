@@ -6,11 +6,10 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class CategoryVisualizationBase<TSettings> : Visualization<TSettings>, ILabels, IValues, ICategory
+    public abstract class CategoryVisualizationBase<TSettings> : TabularVisualizationBase<TSettings>, ILabels, IValues, ICategory
         where TSettings : ChartVisualizationSettings, new()
     {
-        protected CategoryVisualizationBase(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
-
+        protected CategoryVisualizationBase(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         protected CategoryVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]

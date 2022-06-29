@@ -5,10 +5,10 @@ using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ScatterMapVisualization : Visualization<ScatterMapVisualizationSettings>
+    public class ScatterMapVisualization : TabularVisualizationBase<ScatterMapVisualizationSettings>
     {
         internal ScatterMapVisualization() : this(null) { }
-        public ScatterMapVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public ScatterMapVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public ScatterMapVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         //todo: implement

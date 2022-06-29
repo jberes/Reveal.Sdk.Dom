@@ -6,9 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     public class DoughnutChartVisualization : SingleValueLabelsVisualizationBase<DoughnutChartVisualizationSettings>
     {
         internal DoughnutChartVisualization() : this(null) { }
-
-        public DoughnutChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
-
+        public DoughnutChartVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public DoughnutChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

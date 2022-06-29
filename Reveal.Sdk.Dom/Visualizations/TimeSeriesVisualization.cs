@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TimeSeriesVisualization : Visualization<ChartVisualizationSettings>, IValues, ICategory
+    public class TimeSeriesVisualization : TabularVisualizationBase<ChartVisualizationSettings>, IValues, ICategory
     {
         internal TimeSeriesVisualization() : this(null) { }
-        public TimeSeriesVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public TimeSeriesVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public TimeSeriesVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonProperty(Order = 7)]

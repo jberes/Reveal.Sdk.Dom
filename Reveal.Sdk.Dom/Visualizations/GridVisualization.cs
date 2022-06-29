@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class GridVisualization : Visualization<GridVisualizationSettings>, ITabularColumns
+    public class GridVisualization : TabularVisualizationBase<GridVisualizationSettings>, ITabularColumns
     {
         internal GridVisualization() : this(null) { }
-        public GridVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public GridVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public GridVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]

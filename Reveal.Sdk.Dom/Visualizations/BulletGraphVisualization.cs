@@ -6,9 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     public class BulletGraphVisualization : LinearGaugeVisualizationBase<BulletGraphVisualizationSettings>
     {
         internal BulletGraphVisualization() : this(null) { }
-
-        public BulletGraphVisualization(DataSourceItem dataSourceItem) : this(string.Empty, dataSourceItem) { }
-
+        public BulletGraphVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public BulletGraphVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 }

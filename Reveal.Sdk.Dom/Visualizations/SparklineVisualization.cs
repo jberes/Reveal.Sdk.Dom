@@ -6,9 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     public class SparklineVisualization : SparklineVisualizationBase<SparklineVisualizationSettings>
     {
         internal SparklineVisualization() : this(null) { }
-
-        public SparklineVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
-
+        public SparklineVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public SparklineVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
     }
 

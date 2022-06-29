@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class PivotVisualization : Visualization<PivotVisualizationSettings>, IValues, IRows, IColumns
+    public class PivotVisualization : TabularVisualizationBase<PivotVisualizationSettings>, IValues, IRows, IColumns
     {
         internal PivotVisualization() : this(null) { }
         public PivotVisualization(DataSourceItem dataSourceItem) : base(string.Empty, dataSourceItem) { }
