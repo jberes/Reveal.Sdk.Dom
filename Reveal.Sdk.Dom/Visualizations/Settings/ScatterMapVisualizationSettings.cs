@@ -1,15 +1,27 @@
-﻿using Reveal.Sdk.Dom.Core.Constants;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public class ScatterMapVisualizationSettings : GeoMapBaseVisualizationSettings
     {
-        public bool UseDifferentMarkers { get; set; }
-        public DashboardScatterMapColorizationModeType ColorizationMode { get; set; }
-        public ConditionalFormattingSpec ConditionalFormatting { get; set; }
-        public bool ShowTileSource { get; set; } = true;
-        public int ZoomThreshold { get; set; } = 3;
-        public DashboardRectangle ZoomRectangle { get; set; }
+        [JsonProperty]
+        internal bool UseDifferentMarkers { get; set; }
+
+        [JsonProperty]
+        internal DashboardScatterMapColorizationModeType ColorizationMode { get; set; } = DashboardScatterMapColorizationModeType.Range;
+
+        [JsonProperty]
+        internal ConditionalFormattingSpec ConditionalFormatting { get; set; }
+
+        [JsonProperty]
+        internal bool ShowTileSource { get; set; } = true;
+
+        [JsonProperty]
+        internal int ZoomThreshold { get; set; } = 3;
+
+        [JsonProperty]
+        internal DashboardRectangle ZoomRectangle { get; set; }
 
         public ScatterMapVisualizationSettings()
         {

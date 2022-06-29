@@ -5,6 +5,8 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class ComboChartVisualizationExtensions
     {
+        //todo: chart1 and chart2 probably hae more properties that can be set
+        //what's the best way to configure each chart? Maybe a single ConfigureChart1 and ConfigureChart2 methods?
         public static ComboChartVisualization AddChart1Value(this ComboChartVisualization visualization, string field)
         {
             visualization.AddChart1Value(new SummarizationValueField(field));

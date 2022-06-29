@@ -120,6 +120,12 @@ namespace Sandbox.Factories
             //bullet graph
             document.Visualizations.Add(new BulletGraphVisualization("Bullet Graph", excelDataSourceItem).AddLabel("CampaignID").AddValue("Spend").AddTarget("Budget"));
 
+            //choropleth map
+            //TBD
+
+            //scatter map
+            //TBD
+
             //tree map
             document.Visualizations.Add(new TreeMapVisualization("Tree Map", excelDataSourceItem)
                 .AddLabel("Territory").AddValue("Traffic"));
@@ -153,6 +159,12 @@ namespace Sandbox.Factories
                 .SetUrl("https://dl.infragistics.com/reportplus/diy/HelloWorld-Desktop-EN.html")
                 .AddRows("Territory", "CampaignID")
                 .AddValues("Spend", "Budget"));
+
+            //OHLC
+            //TBD
+
+            //Candle stick
+            //TBD
 
             return document;
         }

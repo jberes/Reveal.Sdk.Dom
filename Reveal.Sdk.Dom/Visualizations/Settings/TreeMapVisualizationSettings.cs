@@ -9,7 +9,10 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
     {
 		[JsonConverter(typeof(StringEnumConverter))]
 		public DashboardTreeMapLayoutEnumType Layout { get; set; } = DashboardTreeMapLayoutEnumType.Squarified;
-		public int? BrushOffsetIndex { get; set; } = -1;
+		
+		[JsonProperty]
+		internal int? BrushOffsetIndex { get; set; } = -1;
+
 		public bool ShowValues { get; set; } = true;
 		public bool ShowLegend { get; set; } = true;
 
@@ -22,8 +25,11 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 		[JsonProperty(ObjectCreationHandling = ObjectCreationHandling.Replace)]
 		public TreeMapBound MaxBound { get; set; } = new TreeMapBound() { Color = DashboardTreeMapBoundColorType.Green };
 
-		public string LabelColumnName { get; set; }
-		public string ValueColumnName { get; set; }
+        [JsonProperty]
+		internal string LabelColumnName { get; set; }
+
+		[JsonProperty]
+		internal string ValueColumnName { get; set; }
 
         public TreeMapVisualizationSettings()
         {
