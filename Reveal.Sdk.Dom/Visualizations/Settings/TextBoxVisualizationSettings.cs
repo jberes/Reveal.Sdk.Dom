@@ -7,6 +7,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         public TextBoxVisualizationSettings()
         {
             SchemaTypeName = SchemaTypeNames.TreeMapVisualizationSettingsType;
+            VisualizationType = VisualizationTypes.TEXT_BOX;
         }
     }
 }

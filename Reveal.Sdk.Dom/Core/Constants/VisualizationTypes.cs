@@ -8,5 +8,6 @@
         internal const string PIVOT = "PIVOT";
         internal const string SPARKLINE = "SPARKLINE";
         internal const string GAUGE = "GAUGE";
+        internal const string TEXT_BOX = "TEXT_BOX";
     }
 }
