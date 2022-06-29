@@ -13,5 +13,6 @@
         internal const string SINGLE_ROW = "SINGLE_ROW";
         internal const string GRID = "GRID";
         internal const string IMAGE = "IMAGE";
+        internal const string JS_EXTENSION = "JS_EXTENSION";
     }
 }

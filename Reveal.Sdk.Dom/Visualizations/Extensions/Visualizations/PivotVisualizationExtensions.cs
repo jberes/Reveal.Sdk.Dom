@@ -24,20 +24,5 @@ namespace Reveal.Sdk.Dom.Visualizations
             });
             return visualization;
         }
-
-        public static PivotVisualization AddRow(this PivotVisualization visualization, string field)
-        {
-            visualization.AddRow(new SummarizationRegularField(field));
-            return visualization;
-        }
-
-        public static PivotVisualization AddRow(this PivotVisualization visualization, SummarizationDimensionField field)
-        {
-            visualization.Rows.Add(new DimensionColumnSpec()
-            {
-                SummarizationField = field,
-            });
-            return visualization;
-        }
     }
 }

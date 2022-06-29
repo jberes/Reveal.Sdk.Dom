@@ -27,6 +27,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         public List<GaugeBand> Bands { get { return Settings.GaugeBands; } }
 
         [JsonProperty(Order = 7)]
-        LinearGaugeVisualizationDataSpec VisualizationDataSpec { get; set; } = new LinearGaugeVisualizationDataSpec();
+        internal LinearGaugeVisualizationDataSpec VisualizationDataSpec { get; set; } = new LinearGaugeVisualizationDataSpec();
     }
 }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TimeSeriesVisualization : TabularVisualizationBase<ChartVisualizationSettings>, IValues, ICategory
+    public class TimeSeriesVisualization : TabularVisualizationBase<TimeSeriesVisualizationSettings>, IDate, IValues, ICategory
     {
         internal TimeSeriesVisualization() : this(null) { }
         public TimeSeriesVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
@@ -15,22 +15,31 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonProperty(Order = 7)]
         TimeSeriesVisualizationDataSpec VisualizationDataSpec { get; set; } = new TimeSeriesVisualizationDataSpec();
 
-        //todo: this is supposed to have a date, but there is no date property on the viz data spec, is this using the rows collection?
-        //can there only be one?
-        //[JsonIgnore]
-        //public DimensionColumnSpec Date 
-        //{ 
-        //    get { return VisualizationDataSpec.Date; }  
-        //}
-
         [JsonIgnore]
         public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Values; } }
 
-        [JsonIgnore] 
-        public DimensionColumnSpec Category 
-        { 
+        [JsonIgnore]
+        public DimensionColumnSpec Category
+        {
             get { return VisualizationDataSpec.Category; }
             set { VisualizationDataSpec.Category = value; }
+        }
+
+        [JsonIgnore]
+        public DimensionColumnSpec Date
+        {
+            get
+            {
+                if (VisualizationDataSpec.Rows.Count > 0)
+                    return VisualizationDataSpec.Rows[0];
+                else 
+                    return null;
+            }
+            set
+            {
+                VisualizationDataSpec.Rows.Clear();
+                VisualizationDataSpec.Rows.Add(value);
+            }
         }
     }
 }

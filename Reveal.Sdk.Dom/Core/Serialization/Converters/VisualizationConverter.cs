@@ -25,7 +25,8 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 SchemaTypeNames.SparklineVisualizationSettingsType => typeof(SparklineVisualization),
                 SchemaTypeNames.GaugeVisualizationSettingsType => GetGaugeVisualizationType(jObject),
                 SchemaTypeNames.TextBoxVisualizationSettingsType => typeof(TextBoxVisualization),
-                SchemaTypeNames.SingleRowVisualizationSettingsType => typeof(TextViewVisualization),                
+                SchemaTypeNames.SingleRowVisualizationSettingsType => typeof(TextViewVisualization),
+                SchemaTypeNames.DiyVisualizationSettingsType => typeof(DiyVisualization),                
                 _ => throw new JsonException($"Visualization not supported: {visualizationType}")
             };
 
@@ -39,8 +40,8 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
             var vds = jToken.SelectToken("VisualizationDataSpec._type").Value<string>();
             Type type = vds switch
             {
-                "SingleGaugeVisualizationDataSpecType" => typeof(CircularGaugeVisualization),
-                "LinearGaugeVisualizationDataSpecType" => typeof(LinearGaugeVisualization),
+                SchemaTypeNames.SingleGaugeVisualizationDataSpecType => typeof(CircularGaugeVisualization),
+                SchemaTypeNames.LinearGaugeVisualizationDataSpecType => typeof(LinearGaugeVisualization),
                 _ => throw new JsonException($"Chart type not supported: {vds}")
             };
 
@@ -49,11 +50,13 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 
         Type GetChartVsualizationType(JToken jToken)
         {
+            //todo: create constants for chart names
             var chartType = jToken["ChartType"].Value<string>();
             Type type = chartType switch
             {
                 "Area" => typeof(AreaChartVisualization),
                 "Bar" => typeof(BarChartVisualization),
+                "Bubble" => typeof(BubbleVisualization),
                 "Column" => typeof(ColumnChartVisualization),
                 "Composite" => typeof(ComboChartVisualization),
                 "Doughnut" => typeof(DoughnutChartVisualization),
@@ -61,6 +64,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 "Line" => typeof(LineChartVisualization),
                 "Pie" => typeof(PieChartVisualization),
                 "RadialLines" => typeof(RadialVisualization),
+                "Scatter" => typeof(ScatterVisualization),
                 "Spline" => typeof(SplineChartVisualization),
                 "SplineArea" => typeof(SplineAreaChartVisualization),
                 "StackedArea" => typeof(StackedAreaChartVisualization),
@@ -68,6 +72,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 "StackedColumn" => typeof(StackedColumnChartVisualization),
                 "StepArea" => typeof(StepAreaChartVisualization),
                 "StepLine" => typeof(StepLineChartVisualization),
+                "TimeSeries" => typeof(TimeSeriesVisualization),                
                 _ => throw new JsonException($"Chart type not supported: {chartType}")
             };
 

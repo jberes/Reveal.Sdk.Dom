@@ -86,16 +86,34 @@ namespace Sandbox.Factories
                 .AddValues("Spend", "Budget"));
 
             //gauges
+            document.Visualizations.Add(new LinearGaugeVisualization("Linear", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month }).AddValue("Spend"));
+
+            document.Visualizations.Add(new CircularGaugeVisualization("Circular", excelDataSourceItem).AddLabel("Budget").AddValue("Spend"));
+
+            document.Visualizations.Add(new TextVisualization("Text", excelDataSourceItem).AddLabel("Budget").AddValue("Spend"));
+
             document.Visualizations.Add(new KpiTargetVisualization("KPI vs Target", excelDataSourceItem).AddDate("Date").AddValue("Spend").AddTarget("Budget"));
+
             document.Visualizations.Add(new KpiTimeVisualization("KPI vs Time", excelDataSourceItem).AddDate("Date").AddValue("Traffic"));
+
+            document.Visualizations.Add(new BulletGraphVisualization("KPI vs Target", excelDataSourceItem).AddLabel("CampaignID").AddValue("Spend").AddTarget("Budget"));
 
             //maps
 
             //scatter
+            document.Visualizations.Add(new BubbleVisualization("Bubble", excelDataSourceItem)
+                .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend").AddRadius("Traffic"));
+
+            document.Visualizations.Add(new ScatterVisualization("Scatter", excelDataSourceItem)
+                .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend"));
 
             //financial
 
             //time
+            document.Visualizations.Add(new TimeSeriesVisualization("Time Series", excelDataSourceItem)
+                .AddDate(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .AddValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
 
             //other
             document.Visualizations.Add(new RadialVisualization("Radial", excelDataSourceItem)
@@ -105,6 +123,12 @@ namespace Sandbox.Factories
             document.Visualizations.Add(new ImageVisualization("Image", excelDataSourceItem).SetUrlColumn("Territory"));
 
             document.Visualizations.Add(new TextBoxVisualization("TextBox").SetText("This is some text").SetFontSize(FontSize.Large));
+
+            document.Visualizations.Add(new DiyVisualization("DIY", excelDataSourceItem)
+                .SetUrl("https://dl.infragistics.com/reportplus/diy/HelloWorld-Desktop-EN.html")
+                .AddRows("Territory", "CampaignID")
+                .AddValues("Spend", "Budget"));
+
             return document;
         }
     }
