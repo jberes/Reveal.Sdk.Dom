@@ -1,4 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Filters;
+using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using System;
 using System.Collections.Generic;
 
@@ -7,14 +8,14 @@ namespace Reveal.Sdk.Dom.Visualizations
     public static class IVisualizationExtensions
     {
         public static T AddFilter<T>(this T visualization, string filter)
-            where T : IVisualization
+            where T : IFilter
         {
             visualization.Filters.Add(new VisualizationFilter(filter));
             return visualization;
         }
 
         public static T AddFilters<T>(this T visualization, params string[] filters)
-            where T : IVisualization
+            where T : IFilter
         {
             foreach (var filter in filters)
             {
@@ -24,21 +25,21 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         public static T AddFilterBinding<T>(this T visualization, Binding filterBinding)
-            where T : IVisualization
+            where T : IBindDashboardFilters
         {
             visualization.FilterBindings.Add(filterBinding);
             return visualization;
         }
 
         public static T AddFilterBindings<T>(this T visualization, params Binding[] filterBindings)
-            where T : IVisualization
+            where T : IBindDashboardFilters
         {
             visualization.FilterBindings.AddRange(filterBindings);
             return visualization;
         }
 
         public static T ConfigureFields<T>(this T visualization, Action<IEnumerable<Field>> fields)
-            where T : IVisualization
+            where T : IDataSpec<TabularDataSpec>
         {
             fields.Invoke(visualization.DataSpec.Fields);
             return visualization;

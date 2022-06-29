@@ -21,6 +21,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 SchemaTypeNames.PivotVisualizationSettingsType => typeof(PivotVisualization),
                 SchemaTypeNames.SparklineVisualizationSettingsType => typeof(SparklineVisualization),
                 SchemaTypeNames.GaugeVisualizationSettingsType => GetGaugeVisualizationType(jObject),
+                SchemaTypeNames.TextBoxVisualizationSettingsType => typeof(TextBoxVisualization),
                 _ => throw new JsonException($"Visualization not supported: {visualizationType}")
             };
 

@@ -9,32 +9,57 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class Visualization<T> : Visualization
+    //todo: maybe should rename to TabularVisualization
+    public abstract class Visualization<T> : Visualization<T, TabularDataSpec>, IFilter
         where T : VisualizationSettings, new()
     {
-        protected Visualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
-
-        protected Visualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
-
-        [JsonProperty("VisualizationSettings", Order = 5)]
-        public T Settings { get; internal set; } = new T();
-    }
-
-    public abstract class Visualization : IVisualization
-    {
-        protected Visualization(string title, DataSourceItem dataSourceItem) 
-            : this (dataSourceItem)
-        {
-            Title = title;
-        }
-
-        protected Visualization(DataSourceItem dataSourceItem)
+        protected Visualization(DataSourceItem dataSourceItem) : this(string.Empty, dataSourceItem) { }
+        protected Visualization(string title, DataSourceItem dataSourceItem) : base(title)
         {
             DataSpec = new TabularDataSpec
             {
                 DataSourceItem = dataSourceItem,
                 Fields = dataSourceItem?.Fields.Clone()
             };
+        }
+
+        [JsonIgnore]
+        public List<VisualizationFilter> Filters
+        {
+            get { return DataSpec.QuickFilters; }
+        }
+    }
+
+    public abstract class Visualization<TSettings, TDataSpec> : Visualization, IDataSpec<TDataSpec>, IBindDashboardFilters
+        where TSettings : VisualizationSettings, new()
+        where TDataSpec : DataSpec
+    {
+        protected Visualization(string title) : base(title) { }
+
+        ////todo: implement
+        //[JsonProperty(Order = 10)]
+        //internal ActionsModel ActionsModel { get; set; }
+
+        [JsonProperty("VisualizationSettings", Order = 5)]
+        public TSettings Settings { get; internal set; } = new TSettings();
+
+        //todo: think of a better name - maybe DataSchema since it represents the schema or structure of the data, or DataDefinition
+        //does this even need to be expose? Can the properties be wrapped?
+        [JsonProperty(Order = 6)]
+        public TDataSpec DataSpec { get; internal set; }
+
+        [JsonIgnore]
+        public List<Binding> FilterBindings
+        {
+            get { return DataSpec.Bindings.Bindings; }
+        }
+    }
+
+    public abstract class Visualization : IVisualization
+    {
+        protected Visualization(string title)
+        {
+            Title = title;
         }
 
         [JsonProperty(Order = 0)]
@@ -47,26 +72,5 @@ namespace Reveal.Sdk.Dom.Visualizations
         public int ColumnSpan { get; set; }
         [JsonProperty(Order = 4)]
         public int RowSpan { get; set; }
-
-        //todo: think of a better name - maybe DataSchema since it represents the schema or structure of the data, or DataDefinition
-        //does this even need to be expose? Can the properties be wrapped?
-        [JsonProperty(Order = 6)]
-        public TabularDataSpec DataSpec { get; internal set; }
-
-        //todo: implement
-        [JsonProperty(Order = 10)]
-        internal ActionsModel ActionsModel { get; set; }
-
-        [JsonIgnore]
-        public List<Binding> FilterBindings
-        {
-            get { return DataSpec.Bindings.Bindings; }
-        }
-
-        [JsonIgnore]
-        public List<VisualizationFilter> Filters
-        {
-            get { return DataSpec.QuickFilters; }
-        }
     }
 }
