@@ -38,6 +38,12 @@ namespace Sandbox.Factories
                 .AddLabel("Territory")
                 .AddValue("Conversions"));
 
+            document.Visualizations.Add(new TextViewVisualization("TextView", excelDataSourceItem)
+                .AddColumn("Territory").AddColumn("Conversions").AddColumn("Spend"));
+
+            document.Visualizations.Add(new GridVisualization("Grid", excelDataSourceItem)
+                .AddColumn("Territory").AddColumn("Conversions").AddColumn("Spend"));
+
             return document;
         }
     }

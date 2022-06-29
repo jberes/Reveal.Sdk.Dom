@@ -16,13 +16,14 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
             Type vizType = visualizationType switch
             {
                 SchemaTypeNames.ChartVisualizationSettingsType => GetChartVsualizationType(visualizationSettings),
+                SchemaTypeNames.GridVisualizationSettingsType => typeof(GridVisualization),
                 SchemaTypeNames.IndicatorVisualizationSettingsType => typeof(KpiTimeVisualization),
                 SchemaTypeNames.IndicatorTargetVisualizationSettingsType => typeof(KpiTargetVisualization),
                 SchemaTypeNames.PivotVisualizationSettingsType => typeof(PivotVisualization),
                 SchemaTypeNames.SparklineVisualizationSettingsType => typeof(SparklineVisualization),
                 SchemaTypeNames.GaugeVisualizationSettingsType => GetGaugeVisualizationType(jObject),
                 SchemaTypeNames.TextBoxVisualizationSettingsType => typeof(TextBoxVisualization),
-                SchemaTypeNames.SingleRowVisualizationSettingsType => typeof(TextViewVisualization),
+                SchemaTypeNames.SingleRowVisualizationSettingsType => typeof(TextViewVisualization),                
                 _ => throw new JsonException($"Visualization not supported: {visualizationType}")
             };
 
