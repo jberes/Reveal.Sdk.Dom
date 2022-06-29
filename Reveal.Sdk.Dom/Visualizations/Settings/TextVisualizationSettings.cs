@@ -8,20 +8,4 @@
             ConditionalFormattingEnabled = false;
         }
     }
-
-    public class LinearGaugeVisualizationSettings : GaugeVisualizationSettings
-    {
-        public LinearGaugeVisualizationSettings()
-        {
-            ViewType = GaugeViewType.Linear;
-        }
-    }
-
-    public class CircularGaugeVisualizationSettings : GaugeVisualizationSettings
-    {
-        public CircularGaugeVisualizationSettings()
-        {
-            ViewType = GaugeViewType.Circular;
-        }
-    }
 }

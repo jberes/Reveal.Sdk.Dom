@@ -15,6 +15,8 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
             var visualizationType = visualizationSettings["_type"].Value<string>();
             Type vizType = visualizationType switch
             {
+                
+                SchemaTypeNames.AssetVisualizationSettingsType => typeof(ImageVisualization),
                 SchemaTypeNames.ChartVisualizationSettingsType => GetChartVsualizationType(visualizationSettings),
                 SchemaTypeNames.GridVisualizationSettingsType => typeof(GridVisualization),
                 SchemaTypeNames.IndicatorVisualizationSettingsType => typeof(KpiTimeVisualization),

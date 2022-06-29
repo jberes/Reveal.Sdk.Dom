@@ -12,5 +12,6 @@
         internal const string TEXT_BOX = "TEXT_BOX";
         internal const string SINGLE_ROW = "SINGLE_ROW";
         internal const string GRID = "GRID";
+        internal const string IMAGE = "IMAGE";
     }
 }

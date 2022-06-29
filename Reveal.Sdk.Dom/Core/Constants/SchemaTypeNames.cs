@@ -86,5 +86,6 @@ namespace Reveal.Sdk.Dom.Core.Constants
         internal const string GlobalVariableBindingTargetType = "GlobalVariableBindingTargetType";
         internal const string GaugeBandType = "GaugeBandType";
         internal const string ConditionalFormattingBandType = "ConditionalFormattingBandType";
+        internal const string TabularColumnSpecType = "TabularColumnSpecType";
     }
 }
