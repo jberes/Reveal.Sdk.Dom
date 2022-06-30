@@ -53,8 +53,16 @@ namespace Sandbox.Factories
             //combo
             document.Visualizations.Add(new ComboChartVisualization("Combo", excelDataSourceItem)
                 .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
-                .AddChart1Value("Spend")
-                .AddChart2Value("Budget"));
+                .ConfigureChart1(config =>
+                {
+                    config.Values.Add("Spend");
+                    config.ChartType = ChartType.Bar;
+                })
+                .ConfigureChart2(config =>
+                {
+                    config.Values.Add("Budget");
+                    config.ChartType = ChartType.Line;
+                }));
 
             //stacked column
             document.Visualizations.Add(new StackedColumnChartVisualization("Stacked Column", excelDataSourceItem)
