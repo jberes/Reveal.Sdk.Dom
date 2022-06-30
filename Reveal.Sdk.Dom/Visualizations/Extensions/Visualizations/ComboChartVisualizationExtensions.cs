@@ -32,9 +32,9 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
     }
 
-    public static class ListExtensions
+    public static class IListExtensions
     {
-        public static List<MeasureColumnSpec> Add(this List<MeasureColumnSpec> list, string field)
+        public static IList<MeasureColumnSpec> Add(this IList<MeasureColumnSpec> list, string field)
         {
             list.Add(new MeasureColumnSpec() { SummarizationField = new SummarizationValueField(field) });
             return list;

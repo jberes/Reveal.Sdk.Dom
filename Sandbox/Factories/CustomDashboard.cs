@@ -1,4 +1,5 @@
 ﻿using Reveal.Sdk.Dom;
+using Reveal.Sdk.Dom.Data.Builders;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
 
@@ -8,12 +9,17 @@ namespace Sandbox.Factories
     {
         internal static DashboardDocument CreateDashboard()
         {
-            var excelDataSourceItem = DataSourceFactory.GetMarketingDataSourceItem();
+            var excelDataSourceItem = new DSIBuilder().UseExcel("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .SetTitle("Excel Data Source", "Marketing Sheet")
+                .UseSheet("Marketing")
+                .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
+                .IsAnonymous(true)
+                .Build();
 
             var document = new DashboardDocument()
             {
                 Title = "Custom Dashboard",
-                Description = "Playing with the VisualizationFactory",
+                Description = "Playing with the Fluent API",
                 Theme = ThemeNames.TropicalIsland
             };
 
