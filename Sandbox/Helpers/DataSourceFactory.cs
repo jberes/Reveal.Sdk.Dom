@@ -1,4 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Data.Builders;
 using Reveal.Sdk.Dom.Visualizations;
 using System.Collections.Generic;
 
@@ -9,45 +10,57 @@ namespace Sandbox.Helpers
         static readonly ExcelDataSource _excelDataSource = new ExcelDataSource("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
         {
             Title = "Excel Data Source",
-            Subtitle = "This is a subtitle",
         };
 
-        internal static ExcelDataSourceItem GetMarketingDataSourceItem()
+        internal static DataSourceItem GetMarketingDataSourceItem()
         {
-            var excelDataSourceItem = new ExcelDataSourceItem(_excelDataSource, "Marketing", GetMarketingDataSourceFields())
-            {
-                Subtitle = "Marketing Sheet",
-            };
+            var excelDataSourceItem = new DSIBuilder().UseExcel(_excelDataSource)
+                .SetSubtitle("Marketing Sheet")
+                .UseSheet("Marketing")
+                .SetFields(GetMarketingDataSourceFields())
+                .IsAnonymous(true)
+                .Build();
 
             return excelDataSourceItem;
         }
 
-        internal static ExcelDataSourceItem GetHealthcareDataSourceItem()
+        internal static DataSourceItem GetHealthcareDataSourceItem()
         {
-            var excelDataSourceItem = new ExcelDataSourceItem(_excelDataSource, "Healthcare", GetHealthcareDataSourceFields())
-            {
-                Subtitle = "Healthcare Sheet",
-            };
+            var excelDataSourceItem = new DSIBuilder().UseExcel(_excelDataSource)
+                .SetSubtitle("Healthcare Sheet")
+                .UseSheet("Healthcare")
+                .SetFields(GetHealthcareDataSourceFields())
+                .IsAnonymous(true)
+                .Build();
 
             return excelDataSourceItem;
         }
 
-        internal static ExcelDataSourceItem GetManufacturingDataSourceItem()
+        internal static DataSourceItem GetManufacturingDataSourceItem()
         {
-            var excelDataSourceItem = new ExcelDataSourceItem(_excelDataSource, "Manufacturing", GetManufacturingDataSourceFields())
-            {
-                Subtitle = "Manufacturing Sheet",
-            };
+            var excelDataSourceItem = new DSIBuilder().UseExcel(_excelDataSource)
+                .SetSubtitle("Manufacturing Sheet")
+                .UseSheet("Manufacturing")
+                .SetFields(GetManufacturingDataSourceFields())
+                .IsAnonymous(true)
+                .Build();
 
             return excelDataSourceItem;
         }
 
-        internal static ExcelDataSourceItem GetSalesDataSourceItem()
+        internal static DataSourceItem GetSalesDataSourceItem()
         {
-            var excelDataSourceItem = new ExcelDataSourceItem(_excelDataSource, "Sales", GetSalesDataSourceFields())
-            {
-                Subtitle = "Sales Sheet",
-            };
+            //var excelDataSourceItem = new ExcelDataSourceItem(_excelDataSource, "Sales", GetSalesDataSourceFields())
+            //{
+            //    Subtitle = "Sales Sheet",
+            //};
+
+            var excelDataSourceItem = new DSIBuilder().UseExcel(_excelDataSource)
+                .SetSubtitle("Sales Sheet")
+                .UseSheet("Sales")
+                .SetFields(GetSalesDataSourceFields())
+                .IsAnonymous(true)
+                .Build();
 
             return excelDataSourceItem;
         }
@@ -102,7 +115,7 @@ namespace Sandbox.Helpers
                 new NumberField("CTR"),
                 new NumberField("Avg. CPC"),
                 new NumberField("Traffic"),
-                new NumberField("Paid Traffic"),                
+                new NumberField("Paid Traffic"),
                 new NumberField("Other Traffic"),
                 new NumberField("Conversions"),
                 new TextField("Territory"),

@@ -49,7 +49,7 @@ namespace Sandbox.Factories
             return document;
         }
 
-        private static Visualization CreateKpiTargetVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateKpiTargetVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new KpiTargetVisualization("Sales", excelDataSourceItem)
                 .AddDate("Date")
@@ -72,7 +72,7 @@ namespace Sandbox.Factories
                 .SetPosition(20, 11);
         }
 
-        private static Visualization CreateSplineAreaChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateSplineAreaChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new SplineAreaChartVisualization("New vs Renewal Sales", excelDataSourceItem)
                 .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
@@ -81,7 +81,7 @@ namespace Sandbox.Factories
                 .SetPosition(39, 31);
         }
 
-        private static Visualization CreateStackedColumnChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateStackedColumnChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new StackedColumnChartVisualization("Sales by Product", excelDataSourceItem)
                 .AddLabel("Product")
@@ -90,7 +90,7 @@ namespace Sandbox.Factories
                 .SetPosition(39, 18);
         }
 
-        private static Visualization CreateIndicatorVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateIndicatorVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new KpiTimeVisualization("Total Opportunities", excelDataSourceItem)
                 .AddDate(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Year })
@@ -99,7 +99,7 @@ namespace Sandbox.Factories
                 .SetPosition(19, 11);
         }
 
-        private static Visualization CreateSparklineVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateSparklineVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new SparklineVisualization("New Seats by Product", excelDataSourceItem)
                 .AddDate(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
@@ -127,7 +127,7 @@ namespace Sandbox.Factories
                 .SetPosition(30, 31);
         }
 
-        private static Visualization CreateBarChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateBarChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new BarChartVisualization("Sales", excelDataSourceItem)
                 .AddLabel("Employee")
@@ -146,7 +146,7 @@ namespace Sandbox.Factories
                 .SetPosition(43, 29);
         }
 
-        private static Visualization CreateColumnChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateColumnChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new ColumnChartVisualization("", excelDataSourceItem)
                 .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
@@ -155,7 +155,7 @@ namespace Sandbox.Factories
                 .SetPosition(46, 31);
         }
 
-        private static Visualization CreateGaugeVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateGaugeVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             var visualization = new BulletGraphVisualization("Quotas by Sales Rep", excelDataSourceItem)
                 .AddLabel("Employee")

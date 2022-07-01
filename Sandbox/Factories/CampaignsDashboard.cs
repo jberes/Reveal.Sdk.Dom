@@ -50,7 +50,7 @@ namespace Sandbox.Factories
             return document;
         }
 
-        private static Visualization CreateKpiTargetVisualization(ExcelDataSourceItem excelDataSourceItem, Binding territoryFilterBinding)
+        private static Visualization CreateKpiTargetVisualization(DataSourceItem excelDataSourceItem, Binding territoryFilterBinding)
         {
             var visualization = new KpiTargetVisualization(excelDataSourceItem)
             {
@@ -82,7 +82,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateIndicatorVisualization(string title, string field, ExcelDataSourceItem excelDataSourceItem, Binding territoryFilterBinding)
+        private static Visualization CreateIndicatorVisualization(string title, string field, DataSourceItem excelDataSourceItem, Binding territoryFilterBinding)
         {
             var visualization = new KpiTimeVisualization(excelDataSourceItem)
             {
@@ -109,7 +109,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateSplineAreaChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateSplineAreaChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             var visualization = new SplineAreaChartVisualization(excelDataSourceItem)
             {
@@ -140,7 +140,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateStackedColumnChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateStackedColumnChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             var visualization = new StackedColumnChartVisualization(excelDataSourceItem)
             {
@@ -175,7 +175,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateLineChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateLineChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             var visualization = new LineChartVisualization(excelDataSourceItem)
             {
@@ -202,7 +202,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateDoughnutChartVisualization(ExcelDataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateDoughnutChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             var visualization = new DoughnutChartVisualization(excelDataSourceItem)
             {

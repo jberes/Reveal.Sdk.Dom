@@ -33,7 +33,7 @@ namespace Sandbox.Factories
             return document;
         }
 
-        private static Visualization CreateIndicatorVisualization(string title, string field, ExcelDataSourceItem excelDataSourceItem, bool avg = false)
+        private static Visualization CreateIndicatorVisualization(string title, string field, DataSourceItem excelDataSourceItem, bool avg = false)
         {
             var visualization = new KpiTimeVisualization(excelDataSourceItem)
             {
@@ -68,7 +68,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateLineChartVisualization(ExcelDataSourceItem excelDataSourceItem)
+        private static Visualization CreateLineChartVisualization(DataSourceItem excelDataSourceItem)
         {
             var visualization = new LineChartVisualization(excelDataSourceItem)
             {
@@ -132,7 +132,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateColumnChartVisualization(ExcelDataSourceItem excelDataSourceItem)
+        private static Visualization CreateColumnChartVisualization(DataSourceItem excelDataSourceItem)
         {
             var visualization = new ColumnChartVisualization(excelDataSourceItem)
             {
@@ -176,7 +176,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateDoughnutChartVisualization(ExcelDataSourceItem excelDataSourceItem)
+        private static Visualization CreateDoughnutChartVisualization(DataSourceItem excelDataSourceItem)
         {
             var visualization = new DoughnutChartVisualization(excelDataSourceItem)
             {
@@ -220,7 +220,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateCircularGaugeVisualization(ExcelDataSourceItem excelDataSourceItem)
+        private static Visualization CreateCircularGaugeVisualization(DataSourceItem excelDataSourceItem)
         {
             var visualization = new CircularGaugeVisualization(excelDataSourceItem)
             {
@@ -289,7 +289,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateCircularGaugeVisualization2(ExcelDataSourceItem excelDataSourceItem)
+        private static Visualization CreateCircularGaugeVisualization2(DataSourceItem excelDataSourceItem)
         {
             var visualization = new CircularGaugeVisualization(excelDataSourceItem)
             {
@@ -352,7 +352,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateColumnChartVisualization2(ExcelDataSourceItem excelDataSourceItem)
+        private static Visualization CreateColumnChartVisualization2(DataSourceItem excelDataSourceItem)
         {
             var visualization = new ColumnChartVisualization(excelDataSourceItem)
             {

@@ -11,14 +11,31 @@ namespace Reveal.Sdk.Dom.Data.Builders
         WebResourceDataSource _resourceItemDataSource = new WebResourceDataSource();
         DataSourceItem _resourceItem = new DataSourceItem();
 
+        public ExcelBuilder(ExcelDataSource excelDataSource)
+        {
+            CreateBuilder(excelDataSource, excelDataSource.Url);
+        }
+
         public ExcelBuilder(string uri)
         {
+            CreateBuilder(null, uri);
+        }
+
+        void CreateBuilder(ExcelDataSource excelDataSource, string uri)
+        {
+            if (excelDataSource != null)
+            {
+                _dataSource = excelDataSource;
+                _resourceItemDataSource.UseAnonymousAuthentication = excelDataSource.UseAnonymousAuthentication;
+                SetTitle(_dataSource.Title);
+            }
+
             _dataSourceItem.DataSource = _dataSource;
             _dataSourceItem.DataSourceId = _dataSource.Id;
 
             _resourceItemDataSource.Url = uri;
             _dataSourceItem.ResourceItemDataSource = _resourceItemDataSource;
-           
+
             _resourceItem.DataSourceId = _resourceItemDataSource.Id;
             _resourceItem.Properties.Add("Url", uri);
             _dataSourceItem.ResourceItem = _resourceItem;
@@ -32,24 +49,22 @@ namespace Reveal.Sdk.Dom.Data.Builders
 
         public ExcelBuilder SetFields(IEnumerable<Field> fields)
         {
-           _dataSourceItem.Fields.Clear();
-           _dataSourceItem.Fields.AddRange(fields);
+            _dataSourceItem.Fields.Clear();
+            _dataSourceItem.Fields.AddRange(fields);
             return this;
         }
 
         public ExcelBuilder SetTitle(string title)
         {
-            return SetTitle(title, null);
-        }
-
-        public ExcelBuilder SetTitle(string title, string subtitle)
-        {
             _dataSourceItem.Title = title;
-            _dataSourceItem.Subtitle = subtitle;
-
             _resourceItem.Title = title;
             _resourceItemDataSource.Title = title;
+            return this;
+        }
 
+        public ExcelBuilder SetSubtitle(string subtitle)
+        {
+            _dataSourceItem.Subtitle = subtitle;
             return this;
         }
 
@@ -61,7 +76,7 @@ namespace Reveal.Sdk.Dom.Data.Builders
                 _dataSourceItem.Properties["Sheet"] = sheet;
             else
                 _dataSourceItem.Properties.Add("Sheet", sheet);
-            
+
             return this;
         }
 
