@@ -1,5 +1,5 @@
 ﻿using Reveal.Sdk.Dom;
-using Reveal.Sdk.Dom.Data.Builders;
+using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
 
@@ -62,7 +62,7 @@ namespace Sandbox.Factories
                 .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
                 .ConfigureChart1(config =>
                 {
-                    config.Values.Add("Spend");
+                    config.Values.Add("Spend"); //todo: maybe the extension should be AddValue and AddValues
                     config.ChartType = ChartType.Bar;
                 })
                 .ConfigureChart2(config =>

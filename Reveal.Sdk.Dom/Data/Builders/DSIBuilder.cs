@@ -1,5 +1,6 @@
-﻿namespace Reveal.Sdk.Dom.Data.Builders
+﻿namespace Reveal.Sdk.Dom.Data
 {
+    //todo: think of better name
     public class DSIBuilder
     {
         public ExcelBuilder UseExcel(ExcelDataSource excelDataSource)

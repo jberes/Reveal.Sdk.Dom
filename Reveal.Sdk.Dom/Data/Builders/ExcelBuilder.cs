@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Reveal.Sdk.Dom.Data.Builders
+namespace Reveal.Sdk.Dom.Data
 {
     public class ExcelBuilder
     {

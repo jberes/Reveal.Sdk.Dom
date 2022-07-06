@@ -23,9 +23,6 @@ namespace Sandbox
         public MainWindow()
         {
             InitializeComponent();
-
-            RevealSdkSettings.DataSourceProvider = new RevealBI.DataSourceProvider();
-            RevealSdkSettings.LocalDataFilesRootFolder = Path.Combine(Environment.CurrentDirectory, "Reveal");
         }
 
         private async void RevealView_SaveDashboard(object sender, DashboardSaveEventArgs e)

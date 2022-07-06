@@ -32,6 +32,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
     }
 
+    //todo: move class to file
     public static class IListExtensions
     {
         public static IList<MeasureColumnSpec> Add(this IList<MeasureColumnSpec> list, string field)
@@ -41,6 +42,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
     }
 
+    //todo: move class to file
     public class ChartConfiguration
     {
         public List<MeasureColumnSpec> Values { get; set; } = new List<MeasureColumnSpec>();
