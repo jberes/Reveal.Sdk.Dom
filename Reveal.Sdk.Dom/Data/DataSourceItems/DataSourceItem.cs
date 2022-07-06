@@ -13,8 +13,6 @@ namespace Reveal.Sdk.Dom.Data
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Title { get; set; }
-
-        [JsonProperty("Description")]
         public string Subtitle { get; set; }
         public string DataSourceId { get; set; }
         public bool HasTabularData { get; set; }

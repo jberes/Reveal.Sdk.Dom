@@ -2,6 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
+    //todo: implement, rename classes, and move classes to files
     public class ActionsModel
     {
         public DashboardActionTriggerType Trigger { get; set; } = DashboardActionTriggerType.SelectRow;

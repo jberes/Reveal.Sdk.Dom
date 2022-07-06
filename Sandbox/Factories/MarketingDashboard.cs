@@ -35,7 +35,7 @@ namespace Sandbox.Factories
             return document;
         }
 
-        internal static Visualization CreateKpiTargetVisualization(ExcelDataSourceItem excelDataSourceItem)
+        internal static Visualization CreateKpiTargetVisualization(DataSourceItem excelDataSourceItem)
         {
             var visualization = new KpiTargetVisualization(excelDataSourceItem)
             {
@@ -89,7 +89,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        internal static Visualization CreateLineChartVisualization(ExcelDataSourceItem excelDataSourceItem)
+        internal static Visualization CreateLineChartVisualization(DataSourceItem excelDataSourceItem)
         {
             var visualization = new LineChartVisualization(excelDataSourceItem)
             {
@@ -120,7 +120,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        internal static Visualization CreatePieChartVisualization(ExcelDataSourceItem excelDataSourceItem)
+        internal static Visualization CreatePieChartVisualization(DataSourceItem excelDataSourceItem)
         {
             var visualization = new PieChartVisualization(excelDataSourceItem)
             {
@@ -142,7 +142,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        internal static Visualization CreateColumnChartVisualization(ExcelDataSourceItem excelDataSourceItem)
+        internal static Visualization CreateColumnChartVisualization(DataSourceItem excelDataSourceItem)
         {
             var visualization = new ColumnChartVisualization(excelDataSourceItem)
             {
@@ -177,7 +177,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        internal static Visualization CreateFunnelChartVisualization(ExcelDataSourceItem excelDataSourceItem)
+        internal static Visualization CreateFunnelChartVisualization(DataSourceItem excelDataSourceItem)
         {
             var visualization = new FunnelChartVisualization(excelDataSourceItem)
             {
@@ -201,7 +201,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        internal static Visualization CreatePivotVisualization(ExcelDataSourceItem excelDataSourceItem)
+        internal static Visualization CreatePivotVisualization(DataSourceItem excelDataSourceItem)
         {
             var visualization = new PivotVisualization(excelDataSourceItem)
             {

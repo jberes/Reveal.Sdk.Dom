@@ -1,63 +1,51 @@
 ﻿using Reveal.Sdk.Dom.Visualizations.Settings;
 using System;
+using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class ComboChartVisualizationExtensions
     {
-        //todo: chart1 and chart2 probably hae more properties that can be set
-        //what's the best way to configure each chart? Maybe a single ConfigureChart1 and ConfigureChart2 methods?
-        public static ComboChartVisualization AddChart1Value(this ComboChartVisualization visualization, string field)
-        {
-            visualization.AddChart1Value(new SummarizationValueField(field));
-            return visualization;
-        }
-
-        public static ComboChartVisualization AddChart1Value(this ComboChartVisualization visualization, SummarizationValueField field)
-        {
-            visualization.Chart1.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = field
-            });
-            return visualization;
-        }
-
-        public static ComboChartVisualization AddChart1Values(this ComboChartVisualization visualization, params string[] fields)
-        {
-            foreach (var field in fields)
-            {
-                visualization.AddChart1Value(new SummarizationValueField(field));
-            }
-            return visualization;
-        }
-
-        public static ComboChartVisualization AddChart2Value(this ComboChartVisualization visualization, string field)
-        {
-            visualization.AddChart2Value(new SummarizationValueField(field));
-            return visualization;
-        }
-
-        public static ComboChartVisualization AddChart2Value(this ComboChartVisualization visualization, SummarizationValueField field)
-        {
-            visualization.Chart2.Add(new MeasureColumnSpec()
-            {
-                SummarizationField = field
-            });
-            return visualization;
-        }
-
-        public static ComboChartVisualization AddChart2Values(this ComboChartVisualization visualization, params string[] fields)
-        {
-            foreach (var field in fields)
-            {
-                visualization.AddChart2Value(new SummarizationValueField(field));
-            }
-            return visualization;
-        }
-
         public static ComboChartVisualization ConfigureSettings(this ComboChartVisualization visualization, Action<ComboChartVisualizationSettings> settings)
         {
             return visualization.ConfigureSettings<ComboChartVisualization, ComboChartVisualizationSettings>(settings);
         }
+
+        public static ComboChartVisualization ConfigureChart1(this ComboChartVisualization visualization, Action<ChartConfiguration> config)
+        {
+            ChartConfiguration chartConfig = new ChartConfiguration();
+            config.Invoke(chartConfig);
+
+            visualization.Chart1.AddRange(chartConfig.Values);
+            visualization.Settings.CompositeChartType1 = chartConfig.ChartType;
+            return visualization;
+        }
+
+        public static ComboChartVisualization ConfigureChart2(this ComboChartVisualization visualization, Action<ChartConfiguration> config)
+        {
+            ChartConfiguration chartConfig = new ChartConfiguration();
+            config.Invoke(chartConfig);
+
+            visualization.Chart2.AddRange(chartConfig.Values);
+            visualization.Settings.CompositeChartType2 = chartConfig.ChartType;
+            return visualization;
+        }
+    }
+
+    //todo: move class to file
+    public static class IListExtensions
+    {
+        public static IList<MeasureColumnSpec> Add(this IList<MeasureColumnSpec> list, string field)
+        {
+            list.Add(new MeasureColumnSpec() { SummarizationField = new SummarizationValueField(field) });
+            return list;
+        }
+    }
+
+    //todo: move class to file
+    public class ChartConfiguration
+    {
+        public List<MeasureColumnSpec> Values { get; set; } = new List<MeasureColumnSpec>();
+        public ChartType ChartType { get; set; }
     }
 }

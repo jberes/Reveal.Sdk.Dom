@@ -1,4 +1,5 @@
 ﻿using Reveal.Sdk.Dom;
+using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
 
@@ -8,12 +9,18 @@ namespace Sandbox.Factories
     {
         internal static DashboardDocument CreateDashboard()
         {
-            var excelDataSourceItem = DataSourceFactory.GetMarketingDataSourceItem();
+            var excelDataSourceItem = new DSIBuilder().UseExcel("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .SetTitle("Excel Data Source")
+                .SetSubtitle("Marketing Sheet")
+                .UseSheet("Marketing")
+                .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
+                .IsAnonymous(true)
+                .Build();
 
             var document = new DashboardDocument()
             {
                 Title = "Custom Dashboard",
-                Description = "Playing with the VisualizationFactory",
+                Description = "Playing with the Fluent API",
                 Theme = ThemeNames.TropicalIsland
             };
 
@@ -53,8 +60,16 @@ namespace Sandbox.Factories
             //combo
             document.Visualizations.Add(new ComboChartVisualization("Combo", excelDataSourceItem)
                 .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
-                .AddChart1Value("Spend")
-                .AddChart2Value("Budget"));
+                .ConfigureChart1(config =>
+                {
+                    config.Values.Add("Spend"); //todo: maybe the extension should be AddValue and AddValues
+                    config.ChartType = ChartType.Bar;
+                })
+                .ConfigureChart2(config =>
+                {
+                    config.Values.Add("Budget");
+                    config.ChartType = ChartType.Line;
+                }));
 
             //stacked column
             document.Visualizations.Add(new StackedColumnChartVisualization("Stacked Column", excelDataSourceItem)
