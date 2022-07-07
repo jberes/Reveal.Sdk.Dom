@@ -1,14 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Core.Constants;
-using Reveal.Sdk.Dom.Core.Serialization.Converters;
 using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    [JsonConverter(typeof(DataSourceItemConverter))]
     public class DataSourceItem : SchemaType
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
@@ -24,15 +22,17 @@ namespace Reveal.Sdk.Dom.Data
         [JsonIgnore]
         public List<Field> Fields { get; internal set; } = new List<Field>();
 
+        [JsonIgnore]
         /// <summary>
         /// The data source for the current DataSourceItem
         /// </summary>
-        internal DataSource DataSource { get; set; }
+        public DataSource DataSource { get; internal set; }
 
+        [JsonIgnore]
         /// <summary>
         /// The data source for the ResourceItem
         /// </summary>
-        internal DataSource ResourceItemDataSource { get; set; }
+        public DataSource ResourceItemDataSource { get; internal set; }
 
         public DataSourceItem()
         {

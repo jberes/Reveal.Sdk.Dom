@@ -13,11 +13,10 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         [Fact]
         public void DataSources_AddedToDashboardDocument()
         {
-            var excelDataSource = new ExcelDataSource();
-            var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Field>());
+            var dataSourceItem = new RestBuilder("").SetFields(new List<Field>() { null }).Build();
 
             var document = new DashboardDocument();
-            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
 
             Assert.Empty(document.DataSources);
 
@@ -29,45 +28,44 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         [Fact]
         public void DataSources_FromVisualizationsAreNotDuplicated()
         {
-            var excelDataSource = new ExcelDataSource();
-            var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Field>());
+            var dataSourceItem = new RestBuilder("").SetFields(new List<Field>() { null }).Build();
 
             var document = new DashboardDocument();
-            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
 
             Assert.Empty(document.DataSources);
 
             DashboardDocumentValidator.FixDashboardDocument(document);
 
-            var excelDataSources = document.DataSources.Where(x => x.Provider == DataSourceProviders.ExcelProvider);
+            var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProviders.JSON);
 
-            Assert.Single(excelDataSources);
+            Assert.Single(jsonDataSources);
         }
 
         [Fact]
         public void DataSources_FromVisualizations_AndDataSources_AreNotDuplicated()
         {
-            var excelDataSource = new ExcelDataSource();
-            var excelDataSourceItem = new ExcelDataSourceItem(excelDataSource, new List<Field>());
+            var dataSourceItem = new RestBuilder("").SetFields(new List<Field>() { null }).Build();
+            var dataSource = dataSourceItem.DataSource;
 
             var document = new DashboardDocument();
-            document.DataSources.Add(excelDataSource);
+            document.DataSources.Add(dataSource);
 
-            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
-            document.Visualizations.Add(new KpiTimeVisualization(excelDataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
 
             Assert.Single(document.DataSources);
 
             DashboardDocumentValidator.FixDashboardDocument(document);
 
-            var excelDataSources = document.DataSources.Where(x => x.Provider == DataSourceProviders.ExcelProvider);
+            var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProviders.JSON);
 
-            Assert.Single(excelDataSources);
+            Assert.Single(jsonDataSources);
         }
     }
 }
