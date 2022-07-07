@@ -8,19 +8,19 @@ using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 {
-    public class DashboardDocumentValidatorFixture
+    public class RdashDocumentValidatorFixture
     {
         [Fact]
-        public void DataSources_AddedToDashboardDocument()
+        public void DataSources_AddedToRdashDocument()
         {
             var dataSourceItem = new RestBuilder("").SetFields(new List<Field>() { null }).Build();
 
-            var document = new DashboardDocument();
+            var document = new RdashDocument();
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
 
             Assert.Empty(document.DataSources);
 
-            DashboardDocumentValidator.FixDashboardDocument(document);
+            RdashDocumentValidator.FixDocument(document);
 
             Assert.True(document.DataSources.Skip(1).Any());
         }
@@ -30,7 +30,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         {
             var dataSourceItem = new RestBuilder("").SetFields(new List<Field>() { null }).Build();
 
-            var document = new DashboardDocument();
+            var document = new RdashDocument();
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
@@ -38,7 +38,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 
             Assert.Empty(document.DataSources);
 
-            DashboardDocumentValidator.FixDashboardDocument(document);
+            RdashDocumentValidator.FixDocument(document);
 
             var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProviders.JSON);
 
@@ -51,7 +51,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
             var dataSourceItem = new RestBuilder("").SetFields(new List<Field>() { null }).Build();
             var dataSource = dataSourceItem.DataSource;
 
-            var document = new DashboardDocument();
+            var document = new RdashDocument();
             document.DataSources.Add(dataSource);
 
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
@@ -61,7 +61,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 
             Assert.Single(document.DataSources);
 
-            DashboardDocumentValidator.FixDashboardDocument(document);
+            RdashDocumentValidator.FixDocument(document);
 
             var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProviders.JSON);
 

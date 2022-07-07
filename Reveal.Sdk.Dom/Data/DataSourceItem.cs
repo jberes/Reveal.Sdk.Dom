@@ -22,16 +22,16 @@ namespace Reveal.Sdk.Dom.Data
         [JsonIgnore]
         public List<Field> Fields { get; internal set; } = new List<Field>();
 
-        [JsonIgnore]
         /// <summary>
-        /// The data source for the current DataSourceItem
+        /// The data source for the current DataSourceItem.
         /// </summary>
+        [JsonIgnore]
         public DataSource DataSource { get; internal set; }
 
-        [JsonIgnore]
         /// <summary>
-        /// The data source for the ResourceItem
+        /// The data source for the ResourceItem.
         /// </summary>
+        [JsonIgnore]
         public DataSource ResourceItemDataSource { get; internal set; }
 
         public DataSourceItem()

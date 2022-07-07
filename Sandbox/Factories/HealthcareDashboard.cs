@@ -8,11 +8,11 @@ namespace Sandbox.Factories
 {
     internal class HealthcareDashboard
     {
-        internal static DashboardDocument CreateDashboard()
+        internal static RdashDocument CreateDashboard()
         {
             var excelDataSourceItem = DataSourceFactory.GetHealthcareDataSourceItem();
 
-            var document = new DashboardDocument()
+            var document = new RdashDocument()
             {
                 Title = "Healthcare",
                 Theme = ThemeNames.Circus,

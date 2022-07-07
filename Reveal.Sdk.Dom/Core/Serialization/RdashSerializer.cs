@@ -11,9 +11,9 @@ namespace Reveal.Sdk.Dom.Core.Serialization
     {
         const string _rdashJsonFileName = "Dashboard.json";
 
-        internal static DashboardDocument Load(string filePath)
+        internal static RdashDocument Load(string filePath)
         {
-            DashboardDocument document = null;
+            RdashDocument document = null;
             using (var stream = File.OpenRead(filePath))
             {
                 document = Deserialize(stream);
@@ -21,10 +21,10 @@ namespace Reveal.Sdk.Dom.Core.Serialization
             return document;
         }
 
-        static DashboardDocument Deserialize(Stream stream)
+        static RdashDocument Deserialize(Stream stream)
         {
             string json = DeserializeToJson(stream);
-            return JsonConvert.DeserializeObject<DashboardDocument>(json);
+            return JsonConvert.DeserializeObject<RdashDocument>(json);
         }
 
         static string DeserializeToJson(Stream stream)
@@ -49,18 +49,18 @@ namespace Reveal.Sdk.Dom.Core.Serialization
             return json;
         }
 
-        internal static string Serialize(DashboardDocument document)
+        internal static string Serialize(RdashDocument document)
         {
-            DashboardDocumentValidator.FixDashboardDocument(document);
+            RdashDocumentValidator.FixDocument(document);
             return JsonConvert.SerializeObject(document, Formatting.Indented, new JsonSerializerSettings()
             {
                 NullValueHandling = NullValueHandling.Ignore,
             });
         }
 
-        internal static void Save(DashboardDocument dashboard, string filePath)
+        internal static void Save(RdashDocument dashboard, string filePath)
         {
-            dashboard.SavedWith = GlobalConstants.DashboardDocument.SavedWith;
+            dashboard.SavedWith = GlobalConstants.RdashDocument.SavedWith;
 
             using (var fileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write))
             {

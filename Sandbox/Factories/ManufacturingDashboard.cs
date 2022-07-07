@@ -9,11 +9,11 @@ namespace Sandbox.Factories
 {
     internal class ManufacturingDashboard
     {
-        internal static DashboardDocument CreateDashboard()
+        internal static RdashDocument CreateDashboard()
         {
             var excelDataSourceItem = DataSourceFactory.GetManufacturingDataSourceItem();
 
-            var document = new DashboardDocument("Manufacturing")
+            var document = new RdashDocument("Manufacturing")
             {
                 Title = "Manufacturing",
                 Theme = ThemeNames.RockyMountain,

@@ -8,11 +8,11 @@ namespace Sandbox.Factories
 {
     internal class CampaignsDashboard
     {
-        internal static DashboardDocument CreateDashboard()
+        internal static RdashDocument CreateDashboard()
         {
             var excelDataSourceItem = DataSourceFactory.GetMarketingDataSourceItem();
 
-            var document = new DashboardDocument()
+            var document = new RdashDocument()
             {
                 Title = "Campaigns",
                 Description = "I created this in code",

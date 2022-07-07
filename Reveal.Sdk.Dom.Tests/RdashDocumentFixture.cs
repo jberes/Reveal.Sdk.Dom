@@ -7,12 +7,12 @@ using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests
 {
-    public class DashboardDocumentFixture
+    public class RdashDocumentFixture
     {
         [Fact]
         public void NewDashboard_SetsTitle()
         {
-            var dashboard = new DashboardDocument("Custom Dashboard");
+            var dashboard = new RdashDocument("Custom Dashboard");
 
             Assert.Equal("Custom Dashboard", dashboard.Title);
         }
@@ -20,10 +20,10 @@ namespace Reveal.Sdk.Dom.Tests
         [Fact]
         public void NewDashboard_SetsDefaultValues()
         {
-            var dashboard = new DashboardDocument();
+            var dashboard = new RdashDocument();
 
             Assert.Equal("New Dashboard", dashboard.Title);
-            Assert.Equal(GlobalConstants.DashboardDocument.CreatedWith, dashboard.CreatedWith);
+            Assert.Equal(GlobalConstants.RdashDocument.CreatedWith, dashboard.CreatedWith);
             Assert.Equal(string.Empty, dashboard.SavedWith);
             Assert.Null(dashboard.Theme);
             Assert.Null(dashboard.Tags);
@@ -44,12 +44,12 @@ namespace Reveal.Sdk.Dom.Tests
         public void Load_SetsProperties()
         {
             var filePath = Path.Combine(Environment.CurrentDirectory, "Dashboards", "Sales.rdash");
-            var document = DashboardDocument.Load(filePath);
+            var document = RdashDocument.Load(filePath);
 
             Assert.NotNull(document);
 
             Assert.NotNull(document.Title);
-            Assert.NotEqual(GlobalConstants.DashboardDocument.CreatedWith, document.CreatedWith);
+            Assert.NotEqual(GlobalConstants.RdashDocument.CreatedWith, document.CreatedWith);
             Assert.NotEqual(string.Empty, document.SavedWith);
             Assert.NotNull(document.Theme);
             Assert.NotNull(document.Tags);
@@ -63,10 +63,10 @@ namespace Reveal.Sdk.Dom.Tests
         [Fact]
         public void ToJsonString_IsValidSchema()
         {
-            var schemaJson = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "Schemas", "DashboardDocument.json"));
+            var schemaJson = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "Schemas", "RdashDocument.json"));
             var schema = JSchema.Parse(schemaJson);
 
-            var dashboard = new DashboardDocument()
+            var dashboard = new RdashDocument()
             {
                 Title = "New Dashboard",
                 Description = "This is a test dashboard",
@@ -91,7 +91,7 @@ namespace Reveal.Sdk.Dom.Tests
 
             try
             {
-                var dashboard = new DashboardDocument();
+                var dashboard = new RdashDocument();
 
                 if (File.Exists(filePath))
                     File.Delete(filePath);

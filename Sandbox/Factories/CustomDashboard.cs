@@ -7,7 +7,7 @@ namespace Sandbox.Factories
 {
     internal class CustomDashboard
     {
-        internal static DashboardDocument CreateDashboard()
+        internal static RdashDocument CreateDashboard()
         {
             var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .SetTitle("Excel Data Source")
@@ -16,7 +16,7 @@ namespace Sandbox.Factories
                 .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
                 .Build();
 
-            var document = new DashboardDocument()
+            var document = new RdashDocument()
             {
                 Title = "Custom Dashboard",
                 Description = "Playing with the Fluent API",

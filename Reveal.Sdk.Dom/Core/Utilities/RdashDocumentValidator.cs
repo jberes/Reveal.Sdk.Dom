@@ -7,14 +7,14 @@ using System.Linq;
 
 namespace Reveal.Sdk.Dom.Core.Utilities
 {
-    internal static class DashboardDocumentValidator
+    internal static class RdashDocumentValidator
     {
-        internal static void FixDashboardDocument(DashboardDocument document)
+        internal static void FixDocument(RdashDocument document)
         {
             FixDataSources(document);
         }
 
-        static void FixDataSources(DashboardDocument document)
+        static void FixDataSources(RdashDocument document)
         {
             Dictionary<string, DataSource> dataSources = new Dictionary<string, DataSource>();
             foreach (var visualization in document.Visualizations)

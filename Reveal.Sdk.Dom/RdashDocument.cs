@@ -10,11 +10,18 @@ using Reveal.Sdk.Dom.Variables;
 
 namespace Reveal.Sdk.Dom
 {
-    public class DashboardDocument
+    public class RdashDocument
     {
-        public DashboardDocument() : this("New Dashboard") { }
+        /// <summary>
+        /// Creates a new instance of an <see cref="RdashDocument"/>.
+        /// </summary>
+        public RdashDocument() : this("New Dashboard") { }
 
-        public DashboardDocument(string title)
+        /// <summary>
+        /// Creates a new instance of an <see cref="RdashDocument"/>.
+        /// </summary>
+        /// <param name="title">The title of the dashboard.</param>
+        public RdashDocument(string title)
         {
             Title = title;
         }
@@ -25,7 +32,7 @@ namespace Reveal.Sdk.Dom
         public string Title { get; set; }
 
         /// <summary>
-        /// Gets or sets the desctiption of the dashboard
+        /// Gets or sets the description of the dashboard.
         /// </summary>
         public string Description { get; set; }
 
@@ -36,13 +43,13 @@ namespace Reveal.Sdk.Dom
         public string Theme { get; set; }
 
         /// <summary>
-        /// Gets the name of the API that created the dashboard.
+        /// Gets the name of the API that created the .rdash file.
         /// </summary>
         [JsonProperty]
-        public string CreatedWith { get; private set; } = GlobalConstants.DashboardDocument.CreatedWith;
+        public string CreatedWith { get; private set; } = GlobalConstants.RdashDocument.CreatedWith;
 
         /// <summary>
-        /// Gets the name of the API that last saved the dashboard.
+        /// Gets the name of the API that last saved the .rdash file.
         /// </summary>
         [JsonProperty]
         public string SavedWith { get; internal set; } = string.Empty;
@@ -98,28 +105,28 @@ namespace Reveal.Sdk.Dom
         public List<IVisualization> Visualizations { get; internal set; } = new List<IVisualization>();
 
         /// <summary>
-        /// Creates a DashboardDocument from a dashboard file (.rdash).
+        /// Creates an <see cref="RdashDocument"/> from a .rdash file.
         /// </summary>
         /// <param name="filePath">The file path to the dashboard file (.rdash).</param>
-        /// <returns>The DashbardDocument representing the contents of the loaded .rdash file</returns>
-        public static DashboardDocument Load(string filePath)
+        /// <returns>The <see cref="RdashDocument"/> representing the contents of the loaded .rdash file.</returns>
+        public static RdashDocument Load(string filePath)
         {
             return RdashSerializer.Load(filePath);
         }
 
         /// <summary>
-        /// Saves the DashboardDocument as an RDASH file.
+        /// Saves the <see cref="RdashDocument"/> as a .rdash file.
         /// </summary>
-        /// <param name="filePath">The file path to save the Dashboard (must include the .rdash extensions)</param>
+        /// <param name="filePath">The file path to save the <see cref="RdashDocument"/> (must include the .rdash extensions).</param>
         public void Save(string filePath)
         {
             RdashSerializer.Save(this, filePath);            
         }
 
         /// <summary>
-        /// Converts the DashboardDocument to a JSON string.
+        /// Converts the <see cref="RdashDocument"/> to a JSON string.
         /// </summary>
-        /// <returns>A JSON string representing the DashboardDocument</returns>
+        /// <returns>A JSON string representing the <see cref="RdashDocument"/></returns>
         public string ToJsonString()
         {
             return RdashSerializer.Serialize(this);

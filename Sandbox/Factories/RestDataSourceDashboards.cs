@@ -7,9 +7,9 @@ namespace Sandbox.Factories
 {
     internal class RestDataSourceDashboards
     {
-        internal static DashboardDocument CreateDashboard()
+        internal static RdashDocument CreateDashboard()
         {
-            var document = new DashboardDocument("My Dashboard");
+            var document = new RdashDocument("My Dashboard");
 
             //json - default
             var jsonDataSourceItem = new RestBuilder("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")

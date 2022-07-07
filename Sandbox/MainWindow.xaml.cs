@@ -15,7 +15,7 @@ namespace Sandbox
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
+        static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
         readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Manufacturing);
 
@@ -51,7 +51,7 @@ namespace Sandbox
 
         private async void Read_Dashboard(object sender, RoutedEventArgs e)
         {
-            var document = DashboardDocument.Load(_readFilePath);
+            var document = RdashDocument.Load(_readFilePath);
             var json = document.ToJsonString();
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
         }

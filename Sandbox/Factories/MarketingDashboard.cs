@@ -11,9 +11,9 @@ namespace Sandbox.Factories
     {
         static Binding _globalDateFilterBinding = new DashboardDateFilterBinding("Date");
 
-        internal static DashboardDocument CreateDashboard()
+        internal static RdashDocument CreateDashboard()
         {
-            var document = new DashboardDocument()
+            var document = new RdashDocument()
             {
                 Title = "Marketing",
                 Description = "I created this in code",

@@ -10,10 +10,10 @@ namespace Reveal.Sdk.Dom.Data
     //todo: can we find a better name for this?
     public class RestBuilder
     {
-        DataSource _dataSource = new DataSource() { Id = DataSourceIds.JSON, Provider = DataSourceProviders.JSON }; //data source
-        DataSourceItem _dataSourceItem = new DataSourceItem(); //data source item that points to the data source
-        DataSource _resourceItemDataSource = new DataSource() { Provider = DataSourceProviders.REST }; //rest data source
-        DataSourceItem _resourceItem = new DataSourceItem(); //resource item that points to the rest data source
+        readonly DataSource _dataSource = new DataSource() { Id = DataSourceIds.JSON, Provider = DataSourceProviders.JSON }; //data source
+        readonly DataSourceItem _dataSourceItem = new DataSourceItem(); //data source item that points to the data source
+        readonly DataSource _resourceItemDataSource = new DataSource() { Provider = DataSourceProviders.REST }; //rest data source
+        readonly DataSourceItem _resourceItem = new DataSourceItem(); //resource item that points to the rest data source
 
         public RestBuilder(string uri)
         {
@@ -139,9 +139,11 @@ namespace Reveal.Sdk.Dom.Data
             {
                 if (field == null)
                     continue;
-                
-                var columnConfig = new ColumnConfig();
-                columnConfig.Key = field.FieldName;
+
+                var columnConfig = new ColumnConfig
+                {
+                    Key = field.FieldName
+                };
 
                 int type = field.DataType switch
                 {
