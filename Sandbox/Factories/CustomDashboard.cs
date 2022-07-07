@@ -9,7 +9,7 @@ namespace Sandbox.Factories
     {
         internal static DashboardDocument CreateDashboard()
         {
-            var excelDataSourceItem = new DSIBuilder().UseExcel("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            var excelDataSourceItem = new ExcelBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .SetTitle("Excel Data Source")
                 .SetSubtitle("Marketing Sheet")
                 .UseSheet("Marketing")

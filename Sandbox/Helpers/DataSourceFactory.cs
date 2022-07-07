@@ -13,7 +13,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetMarketingDataSourceItem()
         {
-            var excelDataSourceItem = new DSIBuilder().UseExcel(_excelDataSource)
+            var excelDataSourceItem = new ExcelBuilder(_excelDataSource)
                 .SetSubtitle("Marketing Sheet")
                 .UseSheet("Marketing")
                 .SetFields(GetMarketingDataSourceFields())
@@ -25,7 +25,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetHealthcareDataSourceItem()
         {
-            var excelDataSourceItem = new DSIBuilder().UseExcel(_excelDataSource)
+            var excelDataSourceItem = new ExcelBuilder(_excelDataSource)
                 .SetSubtitle("Healthcare Sheet")
                 .UseSheet("Healthcare")
                 .SetFields(GetHealthcareDataSourceFields())
@@ -37,7 +37,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetManufacturingDataSourceItem()
         {
-            var excelDataSourceItem = new DSIBuilder().UseExcel(_excelDataSource)
+            var excelDataSourceItem = new ExcelBuilder(_excelDataSource)
                 .SetSubtitle("Manufacturing Sheet")
                 .UseSheet("Manufacturing")
                 .SetFields(GetManufacturingDataSourceFields())
@@ -54,7 +54,7 @@ namespace Sandbox.Helpers
             //    Subtitle = "Sales Sheet",
             //};
 
-            var excelDataSourceItem = new DSIBuilder().UseExcel(_excelDataSource)
+            var excelDataSourceItem = new ExcelBuilder(_excelDataSource)
                 .SetSubtitle("Sales Sheet")
                 .UseSheet("Sales")
                 .SetFields(GetSalesDataSourceFields())
@@ -62,6 +62,23 @@ namespace Sandbox.Helpers
                 .Build();
 
             return excelDataSourceItem;
+        }
+
+        internal static List<Field> GetCsvDataSourceFields()
+        {
+            List<Field> fields = new List<Field>
+            {
+                new TextField("the_geom"),
+                new NumberField("School_ID"),
+                new TextField("School_Nm"),
+                new TextField("Sch_Addr"),
+                new TextField("Grade_Cat"),
+                new TextField("Grades"),
+                new TextField("Sch_Type"),
+                new NumberField("X"),
+                new NumberField("Y"),
+            };
+            return fields;
         }
 
         internal static List<Field> GetHealthcareDataSourceFields()
@@ -145,6 +162,19 @@ namespace Sandbox.Helpers
                 new NumberField("Revenue"),
                 new NumberField("Total Opportunites"),
                 new TextField("Product")
+            };
+            return fields;
+        }
+
+        internal static List<Field> GetSalesByCategoryFields()
+        {
+            List<Field> fields = new List<Field>
+            {
+                new NumberField("CategoryID"),
+                new TextField("CategoryName"),
+                new TextField("ProductName"),
+                new NumberField("ProductSales"),
+                //new NumberField("~") { FieldLabel = "Level 1" },
             };
             return fields;
         }

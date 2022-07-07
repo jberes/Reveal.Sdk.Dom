@@ -1,5 +1,7 @@
 ﻿using Reveal.Sdk;
 using Reveal.Sdk.Dom;
+using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Factories;
 using Sandbox.Helpers;
 using System;
@@ -61,7 +63,9 @@ namespace Sandbox
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            var document = CustomDashboard.CreateDashboard();
+            //var document = CustomDashboard.CreateDashboard();
+            var document = RestDataSourceDashboards.CreateDashboard();
+            
             //document.Save(_saveRdashToPath);
 
             var json = document.ToJsonString();
