@@ -21,11 +21,12 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         internal int ZoomThreshold { get; set; } = 3;
 
         [JsonProperty]
-        internal DashboardRectangle ZoomRectangle { get; set; }
+        public DashboardRectangle ZoomRectangle { get; internal set; } = new DashboardRectangle();
 
         public ScatterMapVisualizationSettings()
         {
             SchemaTypeName = SchemaTypeNames.ScatterMapVisualizationSettingsType;
+            VisualizationType = VisualizationTypes.SCATTER_MAP;
         }
     }
 

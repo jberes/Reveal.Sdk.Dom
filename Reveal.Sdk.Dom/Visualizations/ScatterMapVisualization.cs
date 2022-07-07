@@ -2,6 +2,7 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
+using System;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -21,6 +22,26 @@ namespace Reveal.Sdk.Dom.Visualizations
             set { VisualizationDataSpec.Label = value; }
         }
 
-        //todo: implement XAxis, YAis, Color
+        //todo: how can we make it easy to populate this?
+        [JsonIgnore]
+        public string Map
+        {
+            get { return Settings.Region; }
+            set { Settings.Region = value; }
+        }
+
+        [JsonIgnore]
+        public DimensionColumnSpec Latitude
+        {
+            get { return VisualizationDataSpec.Location; }
+            set { VisualizationDataSpec.Location = value; }
+        }
+
+        [JsonIgnore]
+        public DimensionColumnSpec Longitude
+        {
+            get { return VisualizationDataSpec.Longitude; }
+            set { VisualizationDataSpec.Longitude = value; }
+        }
     }
 }

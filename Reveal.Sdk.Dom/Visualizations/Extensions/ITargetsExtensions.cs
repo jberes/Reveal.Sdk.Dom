@@ -3,34 +3,33 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class ITargetsExtensions
     {
-        public static T AddTarget<T>(this T visualization, string targeField)
+        public static T AddTarget<T>(this T visualization, string field)
             where T : ITargets
         {
-            visualization.Targets.Add(new MeasureColumnSpec() { SummarizationField = new SummarizationValueField(targeField) });
+            return visualization.AddTarget(new SummarizationValueField(field));
+        }
+
+        public static T AddTarget<T>(this T visualization, SummarizationValueField field)
+            where T : ITargets
+        {
+            visualization.Targets.Add(new MeasureColumnSpec() { SummarizationField = field });
             return visualization;
         }
 
-        public static T AddTarget<T>(this T visualization, SummarizationValueField targetField)
+        public static T AddTargets<T>(this T visualization, params string[] fields)
             where T : ITargets
         {
-            visualization.Targets.Add(new MeasureColumnSpec() { SummarizationField = targetField });
-            return visualization;
-        }
-
-        public static T AddTargets<T>(this T visualization, params string[] targets)
-            where T : ITargets
-        {
-            foreach (var value in targets)
+            foreach (var value in fields)
             {
                 visualization.AddTarget(value);
             }
             return visualization;
         }
 
-        public static T AddTargets<T>(this T visualization, params SummarizationValueField[] targets)
+        public static T AddTargets<T>(this T visualization, params SummarizationValueField[] fields)
             where T : ITargets
         {
-            foreach (var value in targets)
+            foreach (var value in fields)
             {
                 visualization.AddTarget(value);
             }

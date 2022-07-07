@@ -2,36 +2,34 @@
 {
     public static class IAxisExtensions
     {
-        public static T AddXAxis<T>(this T visualization, string xAxisField)
+        public static T AddXAxis<T>(this T visualization, string field)
             where T : IAxis
         {
-            visualization.AddXAxis(new SummarizationValueField(xAxisField));
-            return visualization;
+            return visualization.AddXAxis(new SummarizationValueField(field));
         }
 
-        public static T AddXAxis<T>(this T visualization, SummarizationValueField xAxisField)
+        public static T AddXAxis<T>(this T visualization, SummarizationValueField field)
             where T : IAxis
         {
             visualization.XAxis.Add(new MeasureColumnSpec()
             {
-                SummarizationField = xAxisField
+                SummarizationField = field
             });
             return visualization;
         }
 
-        public static T AddYAxis<T>(this T visualization, string yAxisField)
+        public static T AddYAxis<T>(this T visualization, string field)
             where T : IAxis
         {
-            visualization.AddYAxis(new SummarizationValueField(yAxisField));
-            return visualization;
+            return visualization.AddYAxis(new SummarizationValueField(field));
         }
 
-        public static T AddYAxis<T>(this T visualization, SummarizationValueField yAxisField)
+        public static T AddYAxis<T>(this T visualization, SummarizationValueField field)
             where T : IAxis
         {
             visualization.YAxis.Add(new MeasureColumnSpec()
             {
-                SummarizationField = yAxisField
+                SummarizationField = field
             });
             return visualization;
         }

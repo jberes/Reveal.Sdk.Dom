@@ -40,8 +40,18 @@ namespace Sandbox.Factories
                 .SetFields(DataSourceFactory.GetCsvDataSourceFields())
                 .Build();
 
-            document.Visualizations.Add(new GridVisualization("CSV", csvDataSourceItem)
-                .AddColumn("School_Nm").AddColumn("Sch_Addr").AddColumn("Sch_Type"));
+            document.Visualizations.Add(new ScatterMapVisualization("Scatter", csvDataSourceItem)
+                .SetMap("Illinois")
+                .SetLongitude("X")
+                .SetLatitude("Y")
+                .AddLabel("School_Nm")
+                .ConfigureSettings(settings =>
+                {
+                    settings.ZoomRectangle.X = 1.38;
+                    settings.ZoomRectangle.Y = 41.65;
+                    settings.ZoomRectangle.Width = 1.04;
+                    settings.ZoomRectangle.Height = 0.39;
+                }));
 
             return document;
         }

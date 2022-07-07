@@ -3,17 +3,16 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class ICategoriesExtensions
     {
-        public static T AddCategory<T>(this T visualization, string category)
+        public static T AddCategory<T>(this T visualization, string field)
             where T : ICategories
         {
-            visualization.AddCategory(new SummarizationRegularField(category));
-            return visualization;
+            return visualization.AddCategory(new SummarizationRegularField(field));
         }
 
-        public static T AddCategory<T>(this T visualization, SummarizationDimensionField category)
+        public static T AddCategory<T>(this T visualization, SummarizationDimensionField field)
             where T : ICategories
         {
-            visualization.Categories.Add(new DimensionColumnSpec() { SummarizationField = category });
+            visualization.Categories.Add(new DimensionColumnSpec() { SummarizationField = field });
             return visualization;
         }
     }

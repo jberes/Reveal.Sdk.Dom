@@ -15,6 +15,13 @@ namespace Sandbox.Factories
                 .UseExcel("Marketing")
                 .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
                 .Build();
+            
+            var csvDataSourceItem = new RestBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+                .UseCsv()
+                .SetTitle("CSV Data Source")
+                .SetSubtitle("Illinois School Info")
+                .SetFields(DataSourceFactory.GetCsvDataSourceFields())
+                .Build();
 
             var document = new RdashDocument()
             {
@@ -138,7 +145,18 @@ namespace Sandbox.Factories
             //TBD
 
             //scatter map
-            //TBD
+            document.Visualizations.Add(new ScatterMapVisualization("Scatter", csvDataSourceItem)
+                .SetMap("Illinois Above")
+                .SetLongitude("X")
+                .SetLatitude("Y")
+                .AddLabel("School_Nm")
+                .ConfigureSettings(settings =>
+                {
+                    settings.ZoomRectangle.X = 1.38;
+                    settings.ZoomRectangle.Y = 41.65;
+                    settings.ZoomRectangle.Width = 1.04;
+                    settings.ZoomRectangle.Height = 0.39;
+                }));
 
             //tree map
             document.Visualizations.Add(new TreeMapVisualization("Tree Map", excelDataSourceItem)

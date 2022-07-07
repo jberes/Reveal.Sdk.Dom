@@ -3,20 +3,18 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class ILabelExtensions
     {
-        public static T AddLabel<T>(this T visualization, string labelField)
+        public static T AddLabel<T>(this T visualization, string field)
             where T : ILabel
         {
-            var field = new SummarizationRegularField(labelField);
-            visualization.AddLabel(field);
-            return visualization;
+            return visualization.AddLabel(new SummarizationRegularField(field));
         }
 
-        public static T AddLabel<T>(this T visualization, SummarizationDimensionField labelField)
+        public static T AddLabel<T>(this T visualization, SummarizationDimensionField field)
             where T : ILabel
         {
             visualization.Label = new DimensionColumnSpec()
             {
-                SummarizationField = labelField
+                SummarizationField = field
             };
             return visualization;
         }

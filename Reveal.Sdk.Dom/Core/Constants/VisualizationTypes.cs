@@ -15,5 +15,6 @@
         internal const string IMAGE = "IMAGE";
         internal const string JS_EXTENSION = "JS_EXTENSION";
         internal const string TREE_MAP = "TREE_MAP";
+        internal const string SCATTER_MAP = "SCATTER_MAP";
     }
 }

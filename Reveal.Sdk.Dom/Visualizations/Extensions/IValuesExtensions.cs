@@ -3,28 +3,26 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class IValuesExtensions
     {
-        public static T AddValue<T>(this T visualization, string valueFied)
+        public static T AddValue<T>(this T visualization, string field)
             where T : IValues
         {
-            var value = new SummarizationValueField(valueFied);
-            visualization.AddValue(value);
-            return visualization;
+            return visualization.AddValue(new SummarizationValueField(field));
         }
 
-        public static T AddValue<T>(this T visualization, SummarizationValueField valueFied)
+        public static T AddValue<T>(this T visualization, SummarizationValueField field)
             where T : IValues
         {
             visualization.Values.Add(new MeasureColumnSpec()
             {
-                SummarizationField = valueFied
+                SummarizationField = field
             });
             return visualization;
         }
 
-        public static T AddValues<T>(this T visualization, params string[] valueFieds)
+        public static T AddValues<T>(this T visualization, params string[] fields)
             where T : IValues
         {
-            foreach (var valueFied in valueFieds)
+            foreach (var valueFied in fields)
             {
                 var value = new SummarizationValueField(valueFied);
                 visualization.AddValue(value);

@@ -5,8 +5,7 @@
         public static T AddRow<T>(this T visualization, string field)
             where T : IRows
         {
-            visualization.AddRow(new SummarizationRegularField(field));
-            return visualization;
+            return visualization.AddRow(new SummarizationRegularField(field));
         }
 
         public static T AddRow<T>(this T visualization, SummarizationDimensionField field)

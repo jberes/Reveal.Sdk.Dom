@@ -24,10 +24,11 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 SchemaTypeNames.IndicatorVisualizationSettingsType => typeof(KpiTimeVisualization),
                 SchemaTypeNames.IndicatorTargetVisualizationSettingsType => typeof(KpiTargetVisualization),
                 SchemaTypeNames.PivotVisualizationSettingsType => typeof(PivotVisualization),
+                SchemaTypeNames.ScatterMapVisualizationSettingsType => typeof(ScatterMapVisualization),
                 SchemaTypeNames.SingleRowVisualizationSettingsType => typeof(TextViewVisualization),
                 SchemaTypeNames.SparklineVisualizationSettingsType => typeof(SparklineVisualization),
                 SchemaTypeNames.TextBoxVisualizationSettingsType => typeof(TextBoxVisualization),
-                SchemaTypeNames.TreeMapVisualizationSettingsType => typeof(TreeMapVisualization),                
+                SchemaTypeNames.TreeMapVisualizationSettingsType => typeof(TreeMapVisualization),
                 _ => throw new JsonException($"Visualization not supported: {visualizationType}")
             };
 
