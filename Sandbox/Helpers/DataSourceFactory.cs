@@ -6,18 +6,13 @@ namespace Sandbox.Helpers
 {
     internal class DataSourceFactory
     {
-        static readonly ExcelDataSource _excelDataSource = new ExcelDataSource("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-        {
-            Title = "Excel Data Source",
-        };
-
         internal static DataSourceItem GetMarketingDataSourceItem()
         {
-            var excelDataSourceItem = new ExcelBuilder(_excelDataSource)
+            var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .SetTitle("Excel Data Source")
                 .SetSubtitle("Marketing Sheet")
-                .UseSheet("Marketing")
+                .UseExcel("Marketing")
                 .SetFields(GetMarketingDataSourceFields())
-                .IsAnonymous(true)
                 .Build();
 
             return excelDataSourceItem;
@@ -25,11 +20,11 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetHealthcareDataSourceItem()
         {
-            var excelDataSourceItem = new ExcelBuilder(_excelDataSource)
+            var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .SetTitle("Excel Data Source")
                 .SetSubtitle("Healthcare Sheet")
-                .UseSheet("Healthcare")
+                .UseExcel("Healthcare")
                 .SetFields(GetHealthcareDataSourceFields())
-                .IsAnonymous(true)
                 .Build();
 
             return excelDataSourceItem;
@@ -37,11 +32,11 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetManufacturingDataSourceItem()
         {
-            var excelDataSourceItem = new ExcelBuilder(_excelDataSource)
+            var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .SetTitle("Excel Data Source")
                 .SetSubtitle("Manufacturing Sheet")
-                .UseSheet("Manufacturing")
+                .UseExcel("Manufacturing")
                 .SetFields(GetManufacturingDataSourceFields())
-                .IsAnonymous(true)
                 .Build();
 
             return excelDataSourceItem;
@@ -49,36 +44,14 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetSalesDataSourceItem()
         {
-            //var excelDataSourceItem = new ExcelDataSourceItem(_excelDataSource, "Sales", GetSalesDataSourceFields())
-            //{
-            //    Subtitle = "Sales Sheet",
-            //};
-
-            var excelDataSourceItem = new ExcelBuilder(_excelDataSource)
+            var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .SetTitle("Excel Data Source")
                 .SetSubtitle("Sales Sheet")
-                .UseSheet("Sales")
+                .UseExcel("Sales")
                 .SetFields(GetSalesDataSourceFields())
-                .IsAnonymous(true)
                 .Build();
 
             return excelDataSourceItem;
-        }
-
-        internal static List<Field> GetCsvDataSourceFields()
-        {
-            List<Field> fields = new List<Field>
-            {
-                new TextField("the_geom"),
-                new NumberField("School_ID"),
-                new TextField("School_Nm"),
-                new TextField("Sch_Addr"),
-                new TextField("Grade_Cat"),
-                new TextField("Grades"),
-                new TextField("Sch_Type"),
-                new NumberField("X"),
-                new NumberField("Y"),
-            };
-            return fields;
         }
 
         internal static List<Field> GetHealthcareDataSourceFields()
@@ -174,7 +147,23 @@ namespace Sandbox.Helpers
                 new TextField("CategoryName"),
                 new TextField("ProductName"),
                 new NumberField("ProductSales"),
-                //new NumberField("~") { FieldLabel = "Level 1" },
+            };
+            return fields;
+        }
+
+        internal static List<Field> GetCsvDataSourceFields()
+        {
+            List<Field> fields = new List<Field>
+            {
+                new TextField("the_geom"),
+                new NumberField("School_ID"),
+                new TextField("School_Nm"),
+                new TextField("Sch_Addr"),
+                new TextField("Grade_Cat"),
+                new TextField("Grades"),
+                new TextField("Sch_Type"),
+                new NumberField("X"),
+                new NumberField("Y"),
             };
             return fields;
         }

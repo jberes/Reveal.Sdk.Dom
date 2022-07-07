@@ -67,8 +67,8 @@ namespace Reveal.Sdk.Dom.Data
 
         public DataSourceItem Build()
         {
-            if (_dataSourceItem.Fields == null || _dataSourceItem.Fields.Count == 0)
-                throw new ArgumentException("You must provide the field definitions for the data source item.");
+            if (_dataSourceItem.Fields.Count == 0)
+                throw new ArgumentException("You must provide the field definitions for the data source item. Call the SetFields method and provide the fields.");
 
             return _dataSourceItem;
         }
@@ -130,13 +130,16 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        //todo: why is this required for json data? We already have the fields? Is this used for CSV too?
+        //todo: why is this required for json data? We already have the fields?
         Dictionary<string, object> BuildConfig(IEnumerable<Field> fields)
         {
             Dictionary<string, object> config = new Dictionary<string, object>();
             List<ColumnConfig> columnConfigs = new List<ColumnConfig>();
             foreach (var field in fields)
             {
+                if (field == null)
+                    continue;
+                
                 var columnConfig = new ColumnConfig();
                 columnConfig.Key = field.FieldName;
 
@@ -153,7 +156,7 @@ namespace Reveal.Sdk.Dom.Data
                 columnConfigs.Add(columnConfig);
             }
 
-            config.Add("iterationDepth", 0); //todo: what is this all about?
+            config.Add("iterationDepth", 0);
             config.Add("columnsConfig", columnConfigs);
             return config;
         }
