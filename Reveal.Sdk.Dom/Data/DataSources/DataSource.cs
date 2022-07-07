@@ -7,11 +7,12 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    [JsonConverter(typeof(DataSourceConverter))]
+    //[JsonConverter(typeof(DataSourceConverter))]
     public class DataSource : SchemaType, IEquatable<DataSource>
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
+        [JsonProperty]
         public string Provider { get; internal set; }
 
         [JsonProperty("Description")]
