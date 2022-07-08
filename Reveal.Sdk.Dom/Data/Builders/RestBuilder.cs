@@ -109,7 +109,7 @@ namespace Reveal.Sdk.Dom.Data
         {
             ClearJsonConfig();
 
-            _dataSource.Id = DataSourceIds.ExcelId;
+            _dataSource.Id = DataSourceIds.Excel;
             _dataSource.Provider = DataSourceProviders.ExcelProvider;
 
             var fileExt = fileType == ExcelFileType.Xlsx ? ".xlsx" : ".xls";
