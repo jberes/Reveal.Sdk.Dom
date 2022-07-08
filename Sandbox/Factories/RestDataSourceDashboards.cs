@@ -1,4 +1,5 @@
 ﻿using Reveal.Sdk.Dom;
+using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
@@ -41,7 +42,7 @@ namespace Sandbox.Factories
                 .Build();
 
             document.Visualizations.Add(new ScatterMapVisualization("Scatter", csvDataSourceItem)
-                .SetMap("Illinois")
+                .SetMap(AvailableMaps.NorthAmerica.UnitedStates.States.Illinois)
                 .SetLongitude("X")
                 .SetLatitude("Y")
                 .AddLabel("School_Nm")

@@ -145,7 +145,7 @@ namespace Sandbox.Factories
             //TBD
 
             //scatter map
-            document.Visualizations.Add(new ScatterMapVisualization("Scatter", csvDataSourceItem)
+            document.Visualizations.Add(new ScatterMapVisualization("Scatter Map", csvDataSourceItem)
                 .SetMap("Illinois Above")
                 .SetLongitude("X")
                 .SetLatitude("Y")
