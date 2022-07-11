@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public static class AvailableMaps
+    public static class Maps
     {
         public const string Continents = "Continents";
         public const string WorldCountries = "WorldCountries";

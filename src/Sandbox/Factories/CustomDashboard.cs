@@ -146,7 +146,7 @@ namespace Sandbox.Factories
 
             //scatter map
             document.Visualizations.Add(new ScatterMapVisualization("Scatter Map", csvDataSourceItem)
-                .SetMap(AvailableMaps.NorthAmerica.UnitedStates.States.Illinois)
+                .SetMap(Maps.NorthAmerica.UnitedStates.States.Illinois)
                 .SetLongitude("X")
                 .SetLatitude("Y")
                 .AddLabel("School_Nm")
