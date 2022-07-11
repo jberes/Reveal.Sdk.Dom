@@ -14,7 +14,7 @@ namespace Sandbox.Helpers
             IRVDataSourceCredential userCredential = null;
             if (dataSource is RVSqlServerDataSource)
             {
-                userCredential = new RVUsernamePasswordDataSourceCredential("dev", "***REMOVED***");
+                userCredential = new RVUsernamePasswordDataSourceCredential("username", "password");
             }
             return Task.FromResult<IRVDataSourceCredential>(userCredential);
         }

@@ -11,7 +11,7 @@ namespace Sandbox.Factories
         {
             var document = new RdashDocument("My Dashboard");
 
-            var sqlServerDataSourceItem = new SqlServerBuilder("***REMOVED***", "devtest", "Orders Qry")
+            var sqlServerDataSourceItem = new SqlServerBuilder("host", "database", "table")
                 .SetTitle("SQL Server")
                 .SetSubtitle("Orders")
                 .SetFields(new List<Field>()
