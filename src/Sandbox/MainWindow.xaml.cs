@@ -25,6 +25,9 @@ namespace Sandbox
         public MainWindow()
         {
             InitializeComponent();
+
+            RevealSdkSettings.EnableNewCharts = true;
+            RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
         }
 
         private async void RevealView_SaveDashboard(object sender, DashboardSaveEventArgs e)
@@ -64,8 +67,9 @@ namespace Sandbox
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
             //var document = CustomDashboard.CreateDashboard();
-            var document = RestDataSourceDashboards.CreateDashboard();
-            
+            //var document = RestDataSourceDashboards.CreateDashboard();
+            var document = SqlServerDataSourceDashboards.CreateDashboard();
+
             //document.Save(_saveRdashToPath);
 
             var json = document.ToJsonString();
