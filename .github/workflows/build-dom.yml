@@ -1,4 +1,4 @@
-name: Reveal.Sdk.Dom Build
+name: Build
 
 on:
   push:
