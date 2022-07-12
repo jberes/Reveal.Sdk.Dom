@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Reveal.Sdk.Dom\Reveal.Sdk.Dom.csproj" />
+    <ProjectReference Include="..\..\src\Reveal.Sdk.Dom\Reveal.Sdk.Dom.csproj" />
   </ItemGroup>
 
   <ItemGroup>
