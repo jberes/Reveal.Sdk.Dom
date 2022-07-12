@@ -2,6 +2,11 @@ name: Build - Reveal.Sdk.Dom
 
 on:
   push:
+    branches: [ "main" ]
+    paths: 
+    - 'src/Reveal.Sdk.Dom.sln'
+    - 'src/Reveal.Sdk.Dom/**'
+    - 'src/Reveal.Sdk.Dom.Tests/**'
   pull_request:
     branches: [ "main" ]
     paths: 
