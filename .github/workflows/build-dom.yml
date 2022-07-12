@@ -10,5 +10,5 @@ on:
     - 'src/Reveal.Sdk.Dom.Tests/**'
 
 jobs:
-  build-dom:
+  build:
     uses: ./.github/workflows/build.yml
