@@ -1,8 +1,7 @@
-name: Build Reveal.Sdk.Dom
+name: Reveal.Sdk.Dom Build
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
     paths: 
@@ -14,6 +13,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
 
     steps:
     - uses: actions/checkout@v3
