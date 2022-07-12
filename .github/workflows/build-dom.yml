@@ -10,7 +10,8 @@ on:
     - 'src/Reveal.Sdk.Dom.Tests/**'
 
 jobs:
-  build:
+  build-dom:
+    name: Build Reveal.Sdk.Dom
 
     runs-on: ubuntu-latest
     defaults:
@@ -28,4 +29,4 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-restore --verbosity minimal
