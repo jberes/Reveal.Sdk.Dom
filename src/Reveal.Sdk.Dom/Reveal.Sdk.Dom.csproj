@@ -3,7 +3,23 @@
   <PropertyGroup>
     <TargetFrameworks>net462;net6.0</TargetFrameworks>
     <LangVersion>8.0</LangVersion>
+    <Authors>Brian Lagunas</Authors>
+    <Copyright>Copyright ©2022 Infragistics Inc.</Copyright>
+    <PackageProjectUrl>https://www.revealbi.io/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RevealBi/Reveal.Sdk.Dom</RepositoryUrl>
+    <PackageIcon>reveal-logo-128x128.png</PackageIcon>
+    <PackageReleaseNotes>https://github.com/RevealBi/Reveal.Sdk.Dom/releases/tag/v$(Version)</PackageReleaseNotes>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsPackable Condition=" '$(Configuration)' == 'Release' ">true</IsPackable>
+    <GeneratePackageOnBuild>$(IsPackable)</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" $(IsPackable) ">
+    <None Include="../../images/reveal-logo-128x128.png" Visible="False" Pack="True" PackagePath="" />
+  </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework) == 'net462' ">
     <PackageReference Include="System.IO.Compression" Version="4.3.0" />
@@ -14,6 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.108">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
