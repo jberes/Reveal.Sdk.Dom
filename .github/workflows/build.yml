@@ -25,3 +25,8 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Run Tests
       run: dotnet test --no-restore --verbosity minimal
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: NuGet
+        path: ./artifacts/
