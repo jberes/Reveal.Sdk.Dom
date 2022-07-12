@@ -14,3 +14,4 @@ jobs:
       contents: write
     with:
       package-name: Reveal.Sdk.Dom
+      artifacts: Artifacts/*.nupkg
