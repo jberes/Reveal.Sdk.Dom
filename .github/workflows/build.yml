@@ -2,7 +2,7 @@ on:
   workflow_call:
 
 jobs:
-  build-dom:
+  build:
     name: Build Reveal.Sdk.Dom
 
     runs-on: ubuntu-latest
