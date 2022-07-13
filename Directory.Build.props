@@ -6,8 +6,11 @@
 
   <PropertyGroup>
     <Authors>Brian Lagunas</Authors>
+    <Description>The Reveal.Sdk.Dom is a Document Object Model (DOM) for the Reveal .rdash file format. It allows developers using the Reveal SDK to load, edit, and create dashboards using .NET.</Description>
     <Copyright>Copyright ©2022 Infragistics Inc.</Copyright>
     <PackageProjectUrl>https://www.revealbi.io/</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/RevealBi/Reveal.Sdk.Dom</RepositoryUrl>
     <PackageIcon>reveal-logo-128x128.png</PackageIcon>
     <PackageOutputPath>$(MSBuildThisFileDirectory)artifacts</PackageOutputPath>
