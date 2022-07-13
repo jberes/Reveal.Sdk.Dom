@@ -9,7 +9,9 @@ Check out the [Samples](https://github.com/RevealBi/Reveal.Sdk.Dom/tree/main/e2e
 
 ## Quick Start Guide
 
-Install the Reveal.Sdk.Dom NuGet package.
+Install the Reveal.Sdk.Dom NuGet package:
+
+[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Reveal.Sdk.Dom)](https://www.nuget.org/packages/Reveal.Sdk.Dom/)
 
 ### Load Dashboard
 
