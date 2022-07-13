@@ -23,7 +23,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 		internal bool SingleAxisMode { get; set; }
 
 		[JsonProperty]
-		internal FinancialSettings Financial { get; set; }
+		internal FinancialSettings Financial { get; set; } = new FinancialSettings();
 
 		[JsonProperty]
 		internal string LabelField { get; set; }

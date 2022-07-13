@@ -5,9 +5,9 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class OHCLVisualizationExtensions
     {
-        public static OHCLVisualization ConfigureSettings(this OHCLVisualization visualization, Action<OHCLVisualizationSettings> settings)
+        public static OHLCVisualization ConfigureSettings(this OHLCVisualization visualization, Action<OHCLVisualizationSettings> settings)
         {
-            return visualization.ConfigureSettings<OHCLVisualization, OHCLVisualizationSettings>(settings);
+            return visualization.ConfigureSettings<OHLCVisualization, OHCLVisualizationSettings>(settings);
         }
     }
 }

@@ -74,7 +74,8 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 "StackedColumn" => typeof(StackedColumnChartVisualization),
                 "StepArea" => typeof(StepAreaChartVisualization),
                 "StepLine" => typeof(StepLineChartVisualization),
-                "TimeSeries" => typeof(TimeSeriesVisualization),                
+                "TimeSeries" => typeof(TimeSeriesVisualization),
+                "OHLC" => typeof(OHLCVisualization),
                 _ => throw new JsonException($"Chart type not supported: {chartType}")
             };
 

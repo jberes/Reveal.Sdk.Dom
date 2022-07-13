@@ -155,8 +155,16 @@ namespace Reveal.Sdk.Dom.Data
                 };
 
                 columnConfig.Type = type;
+
+                if (field.DataType == DataType.Date)
+                {
+                    columnConfig.DateFormat = "ISO8601_DATE";
+                }
+                
                 columnConfigs.Add(columnConfig);
             }
+
+            columnConfigs.Add(new ColumnConfig() { Key = "~", UniqueName = "Level 1", Type = 1 });
 
             config.Add("iterationDepth", 0);
             config.Add("columnsConfig", columnConfigs);
@@ -176,13 +184,19 @@ namespace Reveal.Sdk.Dom.Data
     }
 
     //todo: move to another file
-    public struct ColumnConfig
+    internal struct ColumnConfig
     {
         [JsonProperty("key")]
         public string Key { get; set; }
 
         [JsonProperty("type")]
         public int Type { get; set; }
+
+        [JsonProperty("dateFormat")]
+        public string DateFormat { get; set; }
+
+        [JsonProperty("uniqueName")]
+        public string UniqueName { get; set; }
     }
 
     //todo: move to another file

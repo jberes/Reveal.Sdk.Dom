@@ -1,5 +1,6 @@
 ﻿using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
+using System;
 using System.Collections.Generic;
 
 namespace Sandbox.Helpers
@@ -164,6 +165,20 @@ namespace Sandbox.Helpers
                 new TextField("Sch_Type"),
                 new NumberField("X"),
                 new NumberField("Y"),
+            };
+            return fields;
+        }
+
+        internal static IEnumerable<Field> GetOHLCDataSourceFields()
+        {
+            List<Field> fields = new List<Field>
+            {
+                new DateField("Date"),
+                new NumberField("Open"),
+                new NumberField("High"),
+                new NumberField("Low"),
+                new NumberField("Close"),
+                new NumberField("Volume"),
             };
             return fields;
         }

@@ -46,6 +46,9 @@ namespace Reveal.Sdk.Dom.Visualizations
     public class ChartConfiguration
     {
         public List<MeasureColumnSpec> Values { get; set; } = new List<MeasureColumnSpec>();
+        
+        //todo: Combo Charts only support specifi chart types
+        //need ot create a different enum for combo chart types
         public ChartType ChartType { get; set; }
     }
 }
