@@ -69,12 +69,12 @@ namespace Sandbox.Factories
                 .ConfigureChart1(config =>
                 {
                     config.Values.Add("Spend"); //todo: maybe the extension should be AddValue and AddValues
-                    config.ChartType = ChartType.Bar;
+                    config.ChartType = ComboChartType.Column;
                 })
                 .ConfigureChart2(config =>
                 {
                     config.Values.Add("Budget");
-                    config.ChartType = ChartType.Line;
+                    config.ChartType = ComboChartType.Line;
                 }));
 
             //stacked column
@@ -166,9 +166,10 @@ namespace Sandbox.Factories
             document.Visualizations.Add(new BubbleVisualization("Bubble", excelDataSourceItem)
                 .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend").AddRadius("Traffic"));
 
+            //todo: this seems broken for some reason
             //scatter
-            document.Visualizations.Add(new ScatterVisualization("Scatter", excelDataSourceItem)
-                .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend"));
+            //document.Visualizations.Add(new ScatterVisualization("Scatter", excelDataSourceItem)
+            //    .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend"));
 
             //time series
             document.Visualizations.Add(new TimeSeriesVisualization("Time Series", excelDataSourceItem)
