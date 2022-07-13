@@ -3,9 +3,9 @@
 # Reveal.Sdk.Dom
 The Reveal.Sdk.Dom is a Document Object Model (DOM) for the [Reveal](https://www.revealbi.io/) **.rdash** file format. It allows developer using the [Reveal SDK](https://www.revealbi.io/) to load, edit, and create dashboards using .NET.
 
-The Reveal.Sdk.Dom is currently **BETA** so expect things to not work or to break in a future release.
+The Reveal.Sdk.Dom is currently **BETA** so expect things to not work, or to possibly break in a future release.
 
-Check out the [Samples](https://github.com/RevealBi/Reveal.Sdk.Dom/tree/main/e2e) in the Sandbox application I am using to develop and test the API.
+Check out the [Samples](https://github.com/RevealBi/Reveal.Sdk.Dom/tree/main/e2e/Sandbox/Factories) in the Sandbox application I am using to develop and test the API.
 
 ## Quick Start Guide
 
