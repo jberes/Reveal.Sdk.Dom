@@ -1,8 +1,8 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class OHCLVisualizationSettings : ChartVisualizationSettings
+    public class OHLCVisualizationSettings : ChartVisualizationSettings
     {
-        public OHCLVisualizationSettings()
+        public OHLCVisualizationSettings()
         {
             ChartType = ChartType.OHLC;
         }

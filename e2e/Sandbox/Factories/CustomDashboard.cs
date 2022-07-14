@@ -23,6 +23,12 @@ namespace Sandbox.Factories
                 .SetFields(DataSourceFactory.GetCsvDataSourceFields())
                 .Build();
 
+            var financialDataSourceItem = new RestBuilder("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
+                .SetTitle("Finance Data Source")
+                .SetSubtitle("OHLC")
+                .SetFields(DataSourceFactory.GetOHLCDataSourceFields())
+                .Build();
+
             var document = new RdashDocument()
             {
                 Title = "Custom Dashboard",
@@ -162,14 +168,13 @@ namespace Sandbox.Factories
             document.Visualizations.Add(new TreeMapVisualization("Tree Map", excelDataSourceItem)
                 .AddLabel("Territory").AddValue("Traffic"));
 
-            //bubble
+            ////bubble
             document.Visualizations.Add(new BubbleVisualization("Bubble", excelDataSourceItem)
                 .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend").AddRadius("Traffic"));
 
-            //todo: this seems broken for some reason
             //scatter
-            //document.Visualizations.Add(new ScatterVisualization("Scatter", excelDataSourceItem)
-            //    .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend"));
+            document.Visualizations.Add(new ScatterVisualization("Scatter", excelDataSourceItem)
+                .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend"));
 
             //time series
             document.Visualizations.Add(new TimeSeriesVisualization("Time Series", excelDataSourceItem)
@@ -194,7 +199,12 @@ namespace Sandbox.Factories
                 .AddValues("Spend", "Budget"));
 
             //OHLC
-            //TBD
+            document.Visualizations.Add(new OHLCVisualization("OHLC", financialDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Day })
+                .AddOpen("Open")
+                .AddHigh("High")
+                .AddLow("Low")
+                .AddClose("Close"));
 
             //Candle stick
             //TBD

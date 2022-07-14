@@ -23,7 +23,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 		internal bool SingleAxisMode { get; set; }
 
 		[JsonProperty]
-		internal FinancialSettings Financial { get; set; }
+		internal FinancialSettings Financial { get; set; } = new FinancialSettings();
 
 		[JsonProperty]
 		internal string LabelField { get; set; }
@@ -85,11 +85,11 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 
 		[JsonProperty]
 		[JsonConverter(typeof(StringEnumConverter))]
-		internal ChartType CompositeChartType1 { get; set; }
+        internal ChartType CompositeChartType1 { get; set; } = ChartType.Column;
 
 		[JsonProperty]
 		[JsonConverter(typeof(StringEnumConverter))]
-		internal ChartType CompositeChartType2 { get; set; }
+		internal ChartType CompositeChartType2 { get; set; } = ChartType.Line;
 
 		[JsonProperty]
 		internal bool CompositeChartTypesSwapped { get; set; }

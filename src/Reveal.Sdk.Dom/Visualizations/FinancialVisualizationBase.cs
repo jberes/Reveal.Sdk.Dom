@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class FinancialVisualizationBase<TSettings> : TabularVisualizationBase<TSettings>, ILabels
+    public abstract class FinancialVisualizationBase<TSettings> : TabularVisualizationBase<TSettings>, ILabels, IFinance
         where TSettings : ChartVisualizationSettings, new()
     {
         protected FinancialVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
