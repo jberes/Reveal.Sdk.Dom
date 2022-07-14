@@ -207,7 +207,12 @@ namespace Sandbox.Factories
                 .AddClose("Close"));
 
             //Candle stick
-            //TBD
+            document.Visualizations.Add(new CandleStickVisualization("Candlestick", financialDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Day })
+                .AddOpen("Open")
+                .AddHigh("High")
+                .AddLow("Low")
+                .AddClose("Close"));
 
             return document;
         }
