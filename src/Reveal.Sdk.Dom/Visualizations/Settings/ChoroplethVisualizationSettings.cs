@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class ChoroplethMapVisualizationSettings : GeoMapBaseVisualizationSettings
+    public class ChoroplethVisualizationSettings : GeoMapBaseVisualizationSettings
     {
         [JsonProperty]
         internal string ColorizationStyle { get; set; }
@@ -27,9 +27,10 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         [JsonProperty]
         internal List<string> Regions { get; set; } = new List<string>();
 
-        public ChoroplethMapVisualizationSettings()
+        public ChoroplethVisualizationSettings()
         {
             SchemaTypeName = SchemaTypeNames.ChoroplethMapVisualizationSettingsType;
+            VisualizationType = VisualizationTypes.CHOROPLETH_MAP;
         }
     }
 }

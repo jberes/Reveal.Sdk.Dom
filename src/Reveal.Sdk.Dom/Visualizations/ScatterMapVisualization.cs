@@ -2,11 +2,10 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
-using System;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ScatterMapVisualization : TabularVisualizationBase<ScatterMapVisualizationSettings>, ILabel
+    public class ScatterMapVisualization : TabularVisualizationBase<ScatterMapVisualizationSettings>, ILabel, IMap
     {
         internal ScatterMapVisualization() : this(null) { }
         public ScatterMapVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
@@ -22,7 +21,6 @@ namespace Reveal.Sdk.Dom.Visualizations
             set { VisualizationDataSpec.Label = value; }
         }
 
-        //todo: how can we make it easy to populate this?
         [JsonIgnore]
         public string Map
         {

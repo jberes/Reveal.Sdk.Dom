@@ -6,14 +6,14 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ChoroplethMapVisualization : TabularVisualizationBase<ChoroplethMapVisualizationSettings>, IValues
+    public class ChoroplethVisualization : TabularVisualizationBase<ChoroplethVisualizationSettings>, IValues, IMap
     {
-        internal ChoroplethMapVisualization() : this(null) { }
-        public ChoroplethMapVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
-        public ChoroplethMapVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        internal ChoroplethVisualization() : this(null) { }
+        public ChoroplethVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
+        public ChoroplethVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonProperty(Order = 7)]
-        ChoroplethMapVisualizationDataSpec VisualizationDataSpec { get; set; } = new ChoroplethMapVisualizationDataSpec();
+        ChoroplethVisualizationDataSpec VisualizationDataSpec { get; set; } = new ChoroplethVisualizationDataSpec();
 
         [JsonIgnore]
         public string Map

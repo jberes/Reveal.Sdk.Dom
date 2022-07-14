@@ -11,7 +11,6 @@ namespace Reveal.Sdk.Dom.Visualizations
     public abstract class TabularVisualizationBase<TSettings> : Visualization<TSettings, TabularDataSpec>, ITabularVisualization<TSettings>
         where TSettings : VisualizationSettings, new()
     {
-        //protected TabularVisualizationBase(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         protected TabularVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title)
         {
             DataSpec = new TabularDataSpec

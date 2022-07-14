@@ -55,6 +55,25 @@ namespace Sandbox.Helpers
             return excelDataSourceItem;
         }
 
+        internal static IEnumerable<Field> GetRevenueDataSourceFields()
+        {
+            return new List<Field>()
+            {
+                new DateField("Date"),
+                new TextField("State"),
+                new NumberField("Revenue"),
+                new NumberField("RevenueBudget"),
+                new NumberField("RevenueBudgetLY"),
+                new NumberField("GM"),
+                new NumberField("GrossMarginLY"),
+                new NumberField("GM%"),
+                new NumberField("GrossMargin%LY"),
+                new NumberField("RevenueperCompany"),
+                new TextField("Company"),
+                new TextField("Division")
+            };
+        }
+
         internal static List<Field> GetHealthcareDataSourceFields()
         {
             List<Field> fields = new List<Field>
