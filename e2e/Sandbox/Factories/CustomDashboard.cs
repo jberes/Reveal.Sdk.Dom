@@ -29,6 +29,12 @@ namespace Sandbox.Factories
                 .SetFields(DataSourceFactory.GetOHLCDataSourceFields())
                 .Build();
 
+            var revenueDataSourceItem = new RestBuilder("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
+                .SetTitle("Choropleth Data Source")
+                .SetSubtitle("Revenue")
+                .SetFields(DataSourceFactory.GetRevenueDataSourceFields())
+                .Build();
+
             var document = new RdashDocument()
             {
                 Title = "Custom Dashboard",
@@ -148,7 +154,10 @@ namespace Sandbox.Factories
             document.Visualizations.Add(new BulletGraphVisualization("Bullet Graph", excelDataSourceItem).AddLabel("CampaignID").AddValue("Spend").AddTarget("Budget"));
 
             //choropleth map
-            //TBD
+            document.Visualizations.Add(new ChoroplethVisualization("Choropleth", revenueDataSourceItem)
+                .SetMap(Maps.NorthAmerica.UnitedStates.States.AllStates)
+                .AddLocation("State")
+                .AddValue("Revenue"));
 
             //scatter map
             document.Visualizations.Add(new ScatterMapVisualization("Scatter Map", csvDataSourceItem)

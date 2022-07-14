@@ -13,7 +13,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 { SchemaTypeNames.AssetVisualizationDataSpecType, typeof(AssetVisualizationDataSpec) },
                 { SchemaTypeNames.BubbleVisualizationDataSpecType, typeof(BubbleVisualizationDataSpec) },
                 { SchemaTypeNames.CategoryVisualizationDataSpecType, typeof(CategoryVisualizationDataSpec) },
-                { SchemaTypeNames.ChoroplethMapVisualizationDataSpecType, typeof(ChoroplethMapVisualizationDataSpec) },
+                { SchemaTypeNames.ChoroplethMapVisualizationDataSpecType, typeof(ChoroplethVisualizationDataSpec) },
                 { SchemaTypeNames.CompositeChartVisualizationDataSpecType, typeof(CompositeChartVisualizationDataSpec) },
                 { SchemaTypeNames.FinancialVisualizationDataSpecType, typeof(FinancialVisualizationDataSpec)},
                 { SchemaTypeNames.GridVisualizationDataSpecType, typeof(GridVisualizationDataSpec) },

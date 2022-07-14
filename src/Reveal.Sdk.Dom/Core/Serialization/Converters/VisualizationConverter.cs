@@ -29,6 +29,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 SchemaTypeNames.SparklineVisualizationSettingsType => typeof(SparklineVisualization),
                 SchemaTypeNames.TextBoxVisualizationSettingsType => typeof(TextBoxVisualization),
                 SchemaTypeNames.TreeMapVisualizationSettingsType => typeof(TreeMapVisualization),
+                SchemaTypeNames.ChoroplethMapVisualizationSettingsType => typeof(ChoroplethVisualization),
                 _ => throw new JsonException($"Visualization not supported: {visualizationType}")
             };
 

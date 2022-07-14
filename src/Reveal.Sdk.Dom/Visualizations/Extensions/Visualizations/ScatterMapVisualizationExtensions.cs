@@ -37,11 +37,5 @@ namespace Reveal.Sdk.Dom.Visualizations
             };
             return visualization;
         }
-
-        public static ScatterMapVisualization SetMap(this ScatterMapVisualization visualization, string map)
-        {
-            visualization.Map = map;
-            return visualization;
-        }
     }
 }
