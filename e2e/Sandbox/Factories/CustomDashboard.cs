@@ -69,19 +69,19 @@ namespace Sandbox.Factories
             //    .AddLabel("Territory")
             //    .AddValue("Conversions"));
 
-            ////combo
-            //document.Visualizations.Add(new ComboChartVisualization("Combo", excelDataSourceItem)
-            //    .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
-            //    .ConfigureChart1(config =>
-            //    {
-            //        config.Values.Add("Spend"); //todo: maybe the extension should be AddValue and AddValues
-            //        config.ChartType = ChartType.Column;
-            //    })
-            //    .ConfigureChart2(config =>
-            //    {
-            //        config.Values.Add("Budget");
-            //        config.ChartType = ChartType.Line;
-            //    }));
+            //combo
+            document.Visualizations.Add(new ComboChartVisualization("Combo", excelDataSourceItem)
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .ConfigureChart1(config =>
+                {
+                    config.Values.Add("Spend"); //todo: maybe the extension should be AddValue and AddValues
+                    config.ChartType = ComboChartType.Column;
+                })
+                .ConfigureChart2(config =>
+                {
+                    config.Values.Add("Budget");
+                    config.ChartType = ComboChartType.Line;
+                }));
 
             ////stacked column
             //document.Visualizations.Add(new StackedColumnChartVisualization("Stacked Column", excelDataSourceItem)
@@ -172,7 +172,8 @@ namespace Sandbox.Factories
             //document.Visualizations.Add(new BubbleVisualization("Bubble", excelDataSourceItem)
             //    .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend").AddRadius("Traffic"));
 
-            ////scatter
+            //todo: this seems broken for some reason
+            //scatter
             //document.Visualizations.Add(new ScatterVisualization("Scatter", excelDataSourceItem)
             //    .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend"));
 
