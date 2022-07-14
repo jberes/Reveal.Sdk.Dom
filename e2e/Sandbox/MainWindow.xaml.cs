@@ -17,7 +17,7 @@ namespace Sandbox
     {
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing); //"MyFinancialChart.rdash"
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -26,7 +26,7 @@ namespace Sandbox
         {
             InitializeComponent();
 
-            RevealSdkSettings.EnableNewCharts = true;
+            //RevealSdkSettings.EnableNewCharts = true;
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
         }
 

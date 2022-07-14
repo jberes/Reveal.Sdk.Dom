@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class OHLCVisualization : FinancialVisualizationBase<OHCLVisualizationSettings>
+    public class OHLCVisualization : FinancialVisualizationBase<OHLCVisualizationSettings>
     {
         internal OHLCVisualization() : this(null) { }
         public OHLCVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

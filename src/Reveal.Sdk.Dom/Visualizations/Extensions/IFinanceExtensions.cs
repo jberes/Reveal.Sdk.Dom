@@ -11,6 +11,9 @@
         public static T AddOpen<T>(this T visualization, SummarizationValueField field)
             where T : IFinance
         {
+            if (field.Formatting is null)
+                field.Formatting = GetFinancialNumberFormatting();
+
             visualization.Open.Add(new MeasureColumnSpec()
             {
                 SummarizationField = field
@@ -23,10 +26,13 @@
         {
             return visualization.AddHigh(new SummarizationValueField(field));
         }
-        
+
         public static T AddHigh<T>(this T visualization, SummarizationValueField field)
             where T : IFinance
         {
+            if (field.Formatting is null)
+                field.Formatting = GetFinancialNumberFormatting();
+
             visualization.High.Add(new MeasureColumnSpec()
             {
                 SummarizationField = field
@@ -43,6 +49,9 @@
         public static T AddLow<T>(this T visualization, SummarizationValueField field)
             where T : IFinance
         {
+            if (field.Formatting is null)
+                field.Formatting = GetFinancialNumberFormatting();
+
             visualization.Low.Add(new MeasureColumnSpec()
             {
                 SummarizationField = field
@@ -59,11 +68,23 @@
         public static T AddClose<T>(this T visualization, SummarizationValueField field)
             where T : IFinance
         {
+            if (field.Formatting is null)
+                field.Formatting = GetFinancialNumberFormatting();
+
             visualization.Close.Add(new MeasureColumnSpec()
             {
                 SummarizationField = field
             });
             return visualization;
+        }
+
+        static NumberFormattingSpec GetFinancialNumberFormatting()
+        {
+            return new NumberFormattingSpec()
+            {
+                DecimalDigits = 0,
+                ShowGroupingSeparator = true
+            };
         }
     }
 }

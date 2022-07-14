@@ -154,17 +154,9 @@ namespace Reveal.Sdk.Dom.Data
                     _ => 0
                 };
 
-                columnConfig.Type = type;
-
-                if (field.DataType == DataType.Date)
-                {
-                    columnConfig.DateFormat = "ISO8601_DATE";
-                }
-                
+                columnConfig.Type = type;                
                 columnConfigs.Add(columnConfig);
             }
-
-            columnConfigs.Add(new ColumnConfig() { Key = "~", UniqueName = "Level 1", Type = 1 });
 
             config.Add("iterationDepth", 0);
             config.Add("columnsConfig", columnConfigs);
