@@ -1,45 +1,22 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class ChartVisualizationSettings : ChartVisualizationSettingsBase
+    public abstract class ChartVisualizationSettings : ChartVisualizationSettingsBase
     {
-        public ChartVisualizationSettings() : base() { }
+        protected ChartVisualizationSettings() : base() { }
 
         /// <summary>
-        /// Gets or sets if the left axis will use the Logarithmic scale. Linear is used by default.
+        /// Gets or sets if the chart legend is displayed in the RevealView
         /// </summary>
-        [JsonProperty("LeftAxisLogarithmic")]
-        public bool LeftAxisIsLogarithmic { get; set; }
+        [JsonProperty("ShowLegends")]
+        public bool ShowLegend { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets the minimum value for the left axis. Default value is null, which also equates to zero.
+        /// Gets or sets the color index for the visualization's starting color. A zero-based index is used to set colors instead of a color name.
+        /// For example, an index of 5 would be the 6th color in the color scheme regardless of the theme colors being used.
         /// </summary>
-        [JsonProperty]
-        public double? LeftAxisMinValue { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum value for the left axis. Default value is calculated automatically depending on the values.
-        /// </summary>
-        [JsonProperty]
-        public double? LeftAxisMaxValue { get; set; }
-
-        //todo: does not apply to pie, doughnut, funnel, combo,
-        /// <summary>
-		/// Gets or sets a trendline to apply to the visualization
-		/// </summary>
-		[JsonProperty("TrendlineType")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public TrendlineType Trendline { get; set; }
-
-
-        //todo: does not apply to pie, doughnut, funnel, combo,
-        [JsonProperty]
-        internal bool ShowTotalsInTooltip { get; set; }
-
-        //todo: looks like stack series charts only
-        [JsonProperty]
-        internal bool? IsPercentageDistributed { get; set; }
+        [JsonProperty("BrushOffsetIndex")]
+        public int? StartColorIndex { get; set; }
     }
 }

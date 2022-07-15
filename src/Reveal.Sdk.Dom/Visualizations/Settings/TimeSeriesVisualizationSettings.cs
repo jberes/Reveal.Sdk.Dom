@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class TimeSeriesVisualizationSettings : ChartVisualizationSettings
+    public class TimeSeriesVisualizationSettings : CategoryChartVisualizationSettings
     {
         public TimeSeriesVisualizationSettings()
         {

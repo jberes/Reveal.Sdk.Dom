@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class LineChartVisualizationSettings : ChartVisualizationSettings
+    public class LineChartVisualizationSettings : CategoryChartVisualizationSettings
     {
         public LineChartVisualizationSettings()
         {

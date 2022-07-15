@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class SplineAreaChartVisualizationSettings : ChartVisualizationSettings
+    public class SplineAreaChartVisualizationSettings : CategoryChartVisualizationSettings
     {
         public SplineAreaChartVisualizationSettings()
         {
