@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class StackedColumnChartVisualizationSettings : ChartVisualizationSettings
+    public class StackedColumnChartVisualizationSettings : StackedVisualizationSettingsBase
     {
         public StackedColumnChartVisualizationSettings()
         {

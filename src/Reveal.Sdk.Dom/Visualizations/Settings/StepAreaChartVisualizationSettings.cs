@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class StepAreaChartVisualizationSettings : ChartVisualizationSettings
+    public class StepAreaChartVisualizationSettings : TrendlineVisualizationSettings
     {
         public StepAreaChartVisualizationSettings()
         {
