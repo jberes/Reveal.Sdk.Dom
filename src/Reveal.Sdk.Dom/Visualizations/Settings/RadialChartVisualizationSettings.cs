@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class RadialChartVisualizationSettings : ChartVisualizationSettingsBase
+    public class RadialChartVisualizationSettings : ChartVisualizationSettings
     {
         public RadialChartVisualizationSettings()
         {
@@ -16,5 +16,10 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         [JsonProperty("TrendlineType")]
         [JsonConverter(typeof(StringEnumConverter))]
         public TrendlineType Trendline { get; set; }
+
+        //todo: implement properties
+        //ZoomLevel
+        //AutomaticLabelRotation
+        //SyncAxis
     }
 }

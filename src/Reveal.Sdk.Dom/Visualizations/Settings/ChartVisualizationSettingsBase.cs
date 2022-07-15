@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public abstract class ChartVisualizationSettingsBase : VisualizationSettings
     {
-        public ChartVisualizationSettingsBase()
+        protected ChartVisualizationSettingsBase()
         {
             SchemaTypeName = SchemaTypeNames.ChartVisualizationSettingsType;
             VisualizationType = VisualizationTypes.CHART;

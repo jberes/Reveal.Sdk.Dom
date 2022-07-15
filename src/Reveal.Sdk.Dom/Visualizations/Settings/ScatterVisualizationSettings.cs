@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class ScatterVisualizationSettings : ChartVisualizationSettings
+    public class ScatterVisualizationSettings : LeftAxisVisualizationSettings
     {
         public ScatterVisualizationSettings()
         {

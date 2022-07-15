@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class AreaChartVisualizationSettings : TrendlineVisualizationSettings
+    public class AreaChartVisualizationSettings : CategoryChartVisualizationSettings
     {
         public AreaChartVisualizationSettings()
         {

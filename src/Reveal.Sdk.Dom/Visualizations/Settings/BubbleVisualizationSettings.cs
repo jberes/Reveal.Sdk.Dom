@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class BubbleVisualizationSettings : ChartVisualizationSettings
+    public class BubbleVisualizationSettings : LeftAxisVisualizationSettings
     {
         public BubbleVisualizationSettings()
         {
