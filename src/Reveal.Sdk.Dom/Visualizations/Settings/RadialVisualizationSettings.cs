@@ -3,9 +3,9 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class RadialChartVisualizationSettings : ChartVisualizationSettings
+    public class RadialVisualizationSettings : ChartVisualizationSettings
     {
-        public RadialChartVisualizationSettings()
+        public RadialVisualizationSettings()
         {
             ChartType = ChartType.RadialLines;
         }

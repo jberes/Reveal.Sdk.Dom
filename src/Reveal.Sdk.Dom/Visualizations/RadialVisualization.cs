@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class RadialVisualization : CategoryVisualizationBase<RadialChartVisualizationSettings>
+    public class RadialVisualization : CategoryVisualizationBase<RadialVisualizationSettings>
     {
         internal RadialVisualization() : this(null) { }
         public RadialVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
