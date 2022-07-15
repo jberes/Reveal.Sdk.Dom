@@ -14,7 +14,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         public bool LeftAxisIsLogarithmic { get; set; }
 
         /// <summary>
-        /// Gets or sets the minimum value for the left axis. Default value is 0.
+        /// Gets or sets the minimum value for the left axis. Default value is null, which also equates to zero.
         /// </summary>
         [JsonProperty]
         public double? LeftAxisMinValue { get; set; }
@@ -25,6 +25,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         [JsonProperty]
         public double? LeftAxisMaxValue { get; set; }
 
+        //todo: does not apply to pie, doughnut, funnel, combo,
         /// <summary>
 		/// Gets or sets a trendline to apply to the visualization
 		/// </summary>
