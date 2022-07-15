@@ -1,4 +1,7 @@
-﻿namespace Reveal.Sdk.Dom.Visualizations
+﻿using Reveal.Sdk.Dom.Visualizations.Settings;
+using System;
+
+namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class BubbleVisualizationExtensions
     {
@@ -15,6 +18,11 @@
                 SummarizationField = radiusField
             });
             return visualization;
+        }
+
+        public static BubbleVisualization ConfigureSettings(this BubbleVisualization visualization, Action<BubbleVisualizationSettings> settings)
+        {
+            return visualization.ConfigureSettings<BubbleVisualization, BubbleVisualizationSettings>(settings);
         }
     }
 }

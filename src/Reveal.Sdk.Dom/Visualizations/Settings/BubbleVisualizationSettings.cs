@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class BubbleVisualizationSettings : LeftAxisVisualizationSettings
+    public class BubbleVisualizationSettings : ScatterVisualizationSettings
     {
         public BubbleVisualizationSettings()
         {

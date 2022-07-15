@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class ComboChartVisualizationSettings : LeftAxisVisualizationSettings
+    public class ComboChartVisualizationSettings : YAxisVisualizationSettings
     {
         public ComboChartVisualizationSettings()
         {
