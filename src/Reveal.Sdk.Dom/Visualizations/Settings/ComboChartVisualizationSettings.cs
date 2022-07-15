@@ -30,10 +30,6 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         [JsonConverter(typeof(StringEnumConverter))]
         public ComboChartType Chart2Type { get; set; } = ComboChartType.Line;
 
-        //todo: what is this for?
-        //[JsonProperty]
-        //internal List<string> RightAxisFields { get; set; } = new List<string>();
-
         /// <summary>
         /// Gets or sets if the right axis will use the Logarithmic scale. Linear is used by default.
         /// </summary>
