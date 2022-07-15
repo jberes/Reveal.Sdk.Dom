@@ -7,7 +7,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
     public class SparklineVisualizationSettings : GridVisualizationSettings
     {
         [JsonConverter(typeof(StringEnumConverter))]
-        public ChartType ChartType { get; set; } = ChartType.Line;
+        public SparklineChartType ChartType { get; set; } = SparklineChartType.Line;
         public bool ShowLastTwoValues { get; set; } = true;
         public bool ShowDifference { get; set; } = true;
         public bool PositiveIsRed { get; set; }

@@ -78,15 +78,14 @@ namespace Sandbox.Factories
             //combo
             document.Visualizations.Add(new ComboChartVisualization("Combo", excelDataSourceItem)
                 .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
-                .ConfigureChart1(config =>
+                .AddValueToChart1("Spend")
+                .AddValueToChart2("Budget")
+                .ConfigureSettings(settings =>
                 {
-                    config.Values.Add("Spend"); //todo: maybe the extension should be AddValue and AddValues
-                    config.ChartType = ComboChartType.Column;
-                })
-                .ConfigureChart2(config =>
-                {
-                    config.Values.Add("Budget");
-                    config.ChartType = ComboChartType.Line;
+                    settings.Chart1ChartType = ComboChartType.Column;
+                    settings.Chart2ChartType = ComboChartType.Line;
+                    settings.ShowRightAxis = false;
+                    settings.StartColorIndex = 5;
                 }));
 
             //stacked column

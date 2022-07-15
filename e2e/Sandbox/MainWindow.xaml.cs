@@ -17,7 +17,7 @@ namespace Sandbox
     {
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Manufacturing);
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "ComboChart.rdash");
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -32,9 +32,10 @@ namespace Sandbox
 
         private async void RevealView_SaveDashboard(object sender, DashboardSaveEventArgs e)
         {
-            var json = _revealView.Dashboard.ExportToJson();
+            //var json = _revealView.Dashboard.ExportToJson();
             var path = Path.Combine(Environment.CurrentDirectory, $"Dashboards/{e.Name}.rdash");
             var data = await e.Serialize();
+            var json = _revealView.Dashboard.ExportToJson();
             using (var output = File.Open(path, FileMode.Open))
             {
                 output.Write(data, 0, data.Length);

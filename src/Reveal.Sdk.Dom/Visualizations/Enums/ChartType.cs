@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public enum ChartType
+    internal enum ChartType
     {
         Column,
         Line,
