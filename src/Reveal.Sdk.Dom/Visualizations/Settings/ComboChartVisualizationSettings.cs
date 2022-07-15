@@ -21,14 +21,14 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         /// </summary>
         [JsonProperty("CompositeChartType1")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public ComboChartType Chart1ChartType { get; set; } = ComboChartType.Column;
+        public ComboChartType Chart1Type { get; set; } = ComboChartType.Column;
 
         /// <summary>
         /// Gets or sets the chart type for Chart2
         /// </summary>
         [JsonProperty("CompositeChartType2")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public ComboChartType Chart2ChartType { get; set; } = ComboChartType.Line;
+        public ComboChartType Chart2Type { get; set; } = ComboChartType.Line;
 
         //todo: what is this for?
         //[JsonProperty]

@@ -82,8 +82,8 @@ namespace Sandbox.Factories
                 .AddValueToChart2("Budget")
                 .ConfigureSettings(settings =>
                 {
-                    settings.Chart1ChartType = ComboChartType.Column;
-                    settings.Chart2ChartType = ComboChartType.Line;
+                    settings.Chart1Type = ComboChartType.Column;
+                    settings.Chart2Type = ComboChartType.Line;
                     settings.ShowRightAxis = false;
                     settings.StartColorIndex = 5;
                 }));
