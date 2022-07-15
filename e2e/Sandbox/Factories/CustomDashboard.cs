@@ -64,16 +64,29 @@ namespace Sandbox.Factories
 
             //pie
             document.Visualizations.Add(new PieChartVisualization("Pie", excelDataSourceItem)
-                .AddLabel("Territory").AddValue("Conversions"));
+                .AddLabel("Territory").AddValue("Conversions")
+                .ConfigureSettings(settings =>
+                {
+                    settings.SliceLabelDisplay = LabelDisplayMode.Value;
+                }));
 
             //doughnut
             document.Visualizations.Add(new DoughnutChartVisualization("Doughnut", excelDataSourceItem)
-                .AddLabel("Territory").AddValue("Conversions"));
+                .AddLabel("Territory").AddValue("Conversions")
+                .ConfigureSettings(settings =>
+                {
+                    settings.SliceLabelDisplay = LabelDisplayMode.ValueAndPercentage;
+                    settings.StartPosition = 90;
+                }));    
 
             //funnel
             document.Visualizations.Add(new FunnelChartVisualization("Funnel", excelDataSourceItem)
                 .AddLabel("Territory")
-                .AddValue("Conversions"));
+                .AddValue("Conversions")
+                .ConfigureSettings(settings =>
+                {
+                    settings.SliceLabelDisplay = LabelDisplayMode.Percentage;
+                }));
 
             //combo
             document.Visualizations.Add(new ComboChartVisualization("Combo", excelDataSourceItem)
