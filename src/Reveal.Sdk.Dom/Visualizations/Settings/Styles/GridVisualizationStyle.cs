@@ -8,12 +8,12 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         public bool FixedLeftColumns { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public TextAlignment TextAlignment { get; set; } = TextAlignment.Inherit;
+        public Alignment TextAlignment { get; set; } = Alignment.Inherit;
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public TextAlignment NumericAlignment { get; set; } = TextAlignment.Inherit;
+        public Alignment NumericAlignment { get; set; } = Alignment.Inherit;
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public TextAlignment DateAlignment { get; set; } = TextAlignment.Inherit;
+        public Alignment DateAlignment { get; set; } = Alignment.Inherit;
     }
 }

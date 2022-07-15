@@ -4,18 +4,21 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class SparklineVisualizationSettings : GridVisualizationSettings
+    public class SparklineVisualizationSettings : GridVisualizationSettingsBase
     {
-        [JsonConverter(typeof(StringEnumConverter))]
-        public SparklineChartType ChartType { get; set; } = SparklineChartType.Line;
-        public bool ShowLastTwoValues { get; set; } = true;
-        public bool ShowDifference { get; set; } = true;
-        public bool PositiveIsRed { get; set; }
-
         public SparklineVisualizationSettings()
         {
             SchemaTypeName = SchemaTypeNames.SparklineVisualizationSettingsType;
             VisualizationType = VisualizationTypes.SPARKLINE;
         }
+        
+        [JsonConverter(typeof(StringEnumConverter))]
+        public SparklineChartType ChartType { get; set; } = SparklineChartType.Line;
+        
+        public bool ShowLastTwoValues { get; set; } = true;
+        
+        public bool ShowDifference { get; set; } = true;
+        
+        public bool PositiveIsRed { get; set; }
     }
 }

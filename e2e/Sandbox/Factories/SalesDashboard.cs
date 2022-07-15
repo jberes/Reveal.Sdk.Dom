@@ -118,9 +118,9 @@ namespace Sandbox.Factories
                 .AddCategory("Product")
                 .ConfigureSettings(settings =>
                 {
-                    settings.Style.TextAlignment = TextAlignment.Left;
-                    settings.Style.NumericAlignment = TextAlignment.Left;
-                    settings.Style.DateAlignment = TextAlignment.Left;
+                    settings.TextFieldAlignment = Alignment.Left;
+                    settings.NumericFieldAlignment = Alignment.Left;
+                    settings.DateFieldAlignment = Alignment.Left;
                 })
                 .AddFilterBindings(filterBindings)
                 .SetIndicatorType(IndicatorVisualizationType.LastMonths)

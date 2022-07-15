@@ -2,7 +2,7 @@
 {
     public static class TextBoxVisualizationExtensions
     {
-        public static TextBoxVisualization SetAlignment(this TextBoxVisualization visualization, TextAlignment alignment)
+        public static TextBoxVisualization SetAlignment(this TextBoxVisualization visualization, Alignment alignment)
         {
             visualization.Alignment = alignment;
             return visualization;

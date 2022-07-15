@@ -12,7 +12,7 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
         public FontSize FontSize { get; set; } = FontSize.Medium;
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public TextAlignment Alignment { get; set; } = TextAlignment.Left;
+        public Alignment Alignment { get; set; } = Alignment.Left;
 
         public TextBoxDataSpec()
         {

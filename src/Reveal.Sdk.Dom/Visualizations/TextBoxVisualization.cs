@@ -14,7 +14,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonIgnore]
-        public TextAlignment Alignment 
+        public Alignment Alignment 
         {
             get { return DataSpec.Alignment; }
             set { DataSpec.Alignment = value; }

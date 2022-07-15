@@ -1,7 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    //todo: rename to ust alignment
-    public enum TextAlignment
+    public enum Alignment
     {
         Inherit,
         Left,
