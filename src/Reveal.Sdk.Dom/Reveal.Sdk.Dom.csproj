@@ -4,6 +4,7 @@
     <TargetFrameworks>net462;net6.0</TargetFrameworks>
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup Condition=" $(TargetFramework) == 'net462' ">
