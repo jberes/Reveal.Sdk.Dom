@@ -10,7 +10,11 @@ namespace Reveal.Sdk.Dom.Visualizations
     {
         internal PivotVisualization() : this(null) { }
         public PivotVisualization(DataSourceItem dataSourceItem) : base(string.Empty, dataSourceItem) { }
-        public PivotVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        public PivotVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) 
+        {
+            //this is a workaround because the json schemea has this property on the VisualizationDataSpec and not on the VisualizationSettings where it belongs
+            Settings._visualizationDataSpec = VisualizationDataSpec;
+        }
 
         [JsonIgnore]
         public List<DimensionColumnSpec> Columns { get { return VisualizationDataSpec.Columns; } }
@@ -20,13 +24,6 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         [JsonIgnore]
         public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Values; } }
-
-        [JsonIgnore]
-        public bool ShowGrandTotals
-        {
-            get { return VisualizationDataSpec.ShowGrandTotals; }
-            set { VisualizationDataSpec.ShowGrandTotals = value; }
-        }
 
         [JsonProperty(Order = 7)]
         PivotVisualizationDataSpec VisualizationDataSpec { get; set; } = new PivotVisualizationDataSpec();

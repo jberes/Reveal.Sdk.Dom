@@ -52,7 +52,11 @@ namespace Sandbox.Factories
 
             //pivot
             document.Visualizations.Add(new PivotVisualization("Pivot", excelDataSourceItem)
-                .AddRow("Territory").AddValue("New Seats").AddColumn("CampaignID"));
+                .AddRow("Territory").AddValue("New Seats").AddColumn("CampaignID")
+                .ConfigureSettings(settings =>
+                {
+                    settings.ShowGrandTotals = true;
+                }));
 
             //column
             document.Visualizations.Add(new ColumnChartVisualization("Column", excelDataSourceItem)
@@ -189,7 +193,7 @@ namespace Sandbox.Factories
             document.Visualizations.Add(new TreeMapVisualization("Tree Map", excelDataSourceItem)
                 .AddLabel("Territory").AddValue("Traffic"));
 
-            ////bubble
+            //bubble
             document.Visualizations.Add(new BubbleVisualization("Bubble", excelDataSourceItem)
                 .AddLabel("CampaignID").AddXAxis("Budget").AddYAxis("Spend").AddRadius("Traffic"));
 
@@ -209,6 +213,18 @@ namespace Sandbox.Factories
 
             //image
             document.Visualizations.Add(new ImageVisualization("Image", excelDataSourceItem).SetUrlColumn("Territory"));
+
+            //sparkline
+            document.Visualizations.Add(new SparklineVisualization("Sparkline", excelDataSourceItem)
+                .AddDate("Date")
+                .AddValue("Spend")
+                .AddCategory("Territory")
+                .ConfigureSettings(settings =>
+                {
+                    settings.ShowLastTwoValues = false;
+                    settings.NumberOfPeriods = 10;
+                    settings.AggregationType = SparklineAggregationType.Months;
+                }));
 
             //textbox
             document.Visualizations.Add(new TextBoxVisualization("TextBox").SetText("This is some text").SetFontSize(FontSize.Large));

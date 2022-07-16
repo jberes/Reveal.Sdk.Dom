@@ -121,9 +121,9 @@ namespace Sandbox.Factories
                     settings.TextFieldAlignment = Alignment.Left;
                     settings.NumericFieldAlignment = Alignment.Left;
                     settings.DateFieldAlignment = Alignment.Left;
+                    settings.AggregationType = SparklineAggregationType.Months;
                 })
                 .AddFilterBindings(filterBindings)
-                .SetIndicatorType(IndicatorVisualizationType.LastMonths)
                 .SetPosition(30, 31);
         }
 

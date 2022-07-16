@@ -214,13 +214,6 @@ namespace Sandbox.Factories
             visualization.Settings.NumericFieldAlignment = Alignment.Right;
             visualization.Settings.DateFieldAlignment = Alignment.Left;
 
-            visualization.Settings.VisualizationColumns.Add(new VisualizationColumnStyle()
-            {
-                ColumnName = "CampaignID",
-                Width = 144,
-                TextAlignment = Alignment.Inherit
-            });
-
             visualization.Rows.Add(new DimensionColumnSpec()
             {
                 SummarizationField = new SummarizationRegularField("CampaignID")
