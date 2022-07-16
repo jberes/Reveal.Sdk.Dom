@@ -118,12 +118,12 @@ namespace Sandbox.Factories
                 .AddCategory("Product")
                 .ConfigureSettings(settings =>
                 {
-                    settings.Style.TextAlignment = TextAlignment.Left;
-                    settings.Style.NumericAlignment = TextAlignment.Left;
-                    settings.Style.DateAlignment = TextAlignment.Left;
+                    settings.TextFieldAlignment = Alignment.Left;
+                    settings.NumericFieldAlignment = Alignment.Left;
+                    settings.DateFieldAlignment = Alignment.Left;
+                    settings.AggregationType = SparklineAggregationType.Months;
                 })
                 .AddFilterBindings(filterBindings)
-                .SetIndicatorType(IndicatorVisualizationType.LastMonths)
                 .SetPosition(30, 31);
         }
 

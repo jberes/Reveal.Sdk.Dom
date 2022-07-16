@@ -9,6 +9,6 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 		public double? Width { get; set; }
 
 		[JsonConverter(typeof(StringEnumConverter))]
-		public TextAlignment TextAlignment { get; set; } = TextAlignment.Inherit;
+		public Alignment TextAlignment { get; set; } = Alignment.Inherit;
 	}
 }

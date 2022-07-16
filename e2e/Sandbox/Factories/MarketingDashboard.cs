@@ -210,16 +210,9 @@ namespace Sandbox.Factories
                 RowSpan = 36,
             };
 
-            visualization.Settings.Style.TextAlignment = TextAlignment.Left;
-            visualization.Settings.Style.NumericAlignment = TextAlignment.Right;
-            visualization.Settings.Style.DateAlignment = TextAlignment.Left;
-
-            visualization.Settings.VisualizationColumns.Add(new VisualizationColumnStyle()
-            {
-                ColumnName = "CampaignID",
-                Width = 144,
-                TextAlignment = TextAlignment.Inherit
-            });
+            visualization.Settings.TextFieldAlignment = Alignment.Left;
+            visualization.Settings.NumericFieldAlignment = Alignment.Right;
+            visualization.Settings.DateFieldAlignment = Alignment.Left;
 
             visualization.Rows.Add(new DimensionColumnSpec()
             {

@@ -25,6 +25,6 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         /// Gets or sets the maximum value for the X axis. Default value is calculated automatically depending on the values.
         /// </summary>
         [JsonProperty("RightAxisMaxValue")]
-        internal double? XAxisMaxValue { get; set; }
+        public double? XAxisMaxValue { get; set; }
     }
 }

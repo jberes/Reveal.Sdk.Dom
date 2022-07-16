@@ -46,7 +46,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         /// Gets or sets the maximum value for the right axis. Default value is calculated automatically depending on the values.
         /// </summary>
         [JsonProperty]
-        internal double? RightAxisMaxValue { get; set; }
+        public double? RightAxisMaxValue { get; set; }
 
         //todo: revisit this approach and see if we can do somethig better. Possibly just a better name like ShowLeftAxisOnly or something
         //ideally we don't have to do this wrapping - need more feedback here
