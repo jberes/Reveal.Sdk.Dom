@@ -178,10 +178,20 @@ namespace Sandbox.Factories
                 }));
 
             //kpi target
-            document.Visualizations.Add(new KpiTargetVisualization("KPI vs Target", excelDataSourceItem).AddDate("Date").AddValue("Spend").AddTarget("Budget"));
+            document.Visualizations.Add(new KpiTargetVisualization("KPI vs Target", excelDataSourceItem).AddDate("Date").AddValue("Spend").AddTarget("Budget")
+                .ConfigureSettings(settings =>
+                {
+                    settings.DifferenceMode = IndicatorDifferenceMode.ValueAndPercentage;
+                    settings.GoalPeriod = KpiGoalPeriod.ThisYear;
+                }));
 
             //kpi time
-            document.Visualizations.Add(new KpiTimeVisualization("KPI vs Time", excelDataSourceItem).AddDate("Date").AddValue("Traffic"));
+            document.Visualizations.Add(new KpiTimeVisualization("KPI vs Time", excelDataSourceItem).AddDate("Date").AddValue("Traffic")
+                .ConfigureSettings(settings =>
+                {
+                    settings.DifferenceMode = IndicatorDifferenceMode.ValueAndPercentage;
+                    settings.TimePeriod = KpiTimePeriod.MonthToDatePreviousMonth;
+                }));
 
             //bullet graph
             document.Visualizations.Add(new BulletGraphVisualization("Bullet Graph", excelDataSourceItem).AddLabel("CampaignID").AddValue("Spend").AddTarget("Budget")
