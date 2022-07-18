@@ -263,7 +263,7 @@ namespace Sandbox.Factories
             document.Visualizations.Add(new TextBoxVisualization("TextBox").SetText("This is some text").SetFontSize(FontSize.Large));
 
             //DIY
-            document.Visualizations.Add(new DiyVisualization("DIY", excelDataSourceItem)
+            document.Visualizations.Add(new CustomVisualization("DIY", excelDataSourceItem)
                 .SetUrl("https://dl.infragistics.com/reportplus/diy/HelloWorld-Desktop-EN.html")
                 .AddRows("Territory", "CampaignID")
                 .AddValues("Spend", "Budget"));

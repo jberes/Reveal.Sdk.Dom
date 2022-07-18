@@ -6,12 +6,11 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    //todo: should this be named DYI or Dyi? - update setting class acccordingly
-    public class DiyVisualization : TabularVisualizationBase<DIYVisualizationSettings>, IRows, IValues, IColumns
+    public class CustomVisualization : TabularVisualizationBase<CustomVisualizationSettings>, IRows, IValues, IColumns
     {
-        internal DiyVisualization() : this(null) { }
-        public DiyVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
-        public DiyVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        internal CustomVisualization() : this(null) { }
+        public CustomVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
+        public CustomVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonProperty(Order = 7)]
         PivotVisualizationDataSpec VisualizationDataSpec { get; set; } = new PivotVisualizationDataSpec();

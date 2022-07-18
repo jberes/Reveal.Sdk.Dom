@@ -18,7 +18,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 
                 SchemaTypeNames.AssetVisualizationSettingsType => typeof(ImageVisualization),
                 SchemaTypeNames.ChartVisualizationSettingsType => GetChartVsualizationType(visualizationSettings),
-                SchemaTypeNames.DiyVisualizationSettingsType => typeof(DiyVisualization),
+                SchemaTypeNames.DiyVisualizationSettingsType => typeof(CustomVisualization),
                 SchemaTypeNames.GaugeVisualizationSettingsType => GetGaugeVisualizationType(jObject),
                 SchemaTypeNames.GridVisualizationSettingsType => typeof(GridVisualization),
                 SchemaTypeNames.IndicatorVisualizationSettingsType => typeof(KpiTimeVisualization),
