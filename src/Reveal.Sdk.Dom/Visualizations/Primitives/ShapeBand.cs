@@ -3,10 +3,9 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class Bound
+    public abstract class ShapeBand : Band
     {
         [JsonConverter(typeof(StringEnumConverter))]
-        public BoundValueType ValueType { get; set; } = BoundValueType.NumberValue;
-        public double? Value { get; set; }
+        public ShapeType Shape { get; set; } = ShapeType.Circle;
     }
 }

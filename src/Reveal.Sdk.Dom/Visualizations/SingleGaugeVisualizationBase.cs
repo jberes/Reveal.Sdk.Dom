@@ -6,8 +6,8 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class SingleGaugeVisualizationBase<TSettings> : TabularVisualizationBase<TSettings>, ILabel, IValues, IBands
-        where TSettings : GaugeVisualizationSettings, new()
+    public abstract class SingleGaugeVisualizationBase<TSettings> : TabularVisualizationBase<TSettings>, ILabel, IValues
+        where TSettings : VisualizationSettings, new()
     {
         protected SingleGaugeVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
@@ -20,9 +20,6 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         [JsonIgnore]
         public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Value; } }
-
-        [JsonIgnore]
-        public List<GaugeBand> Bands { get { return Settings.GaugeBands; } }
 
         [JsonProperty(Order = 7)]
         SingleGaugeVisualizationDataSpec VisualizationDataSpec { get; set; } = new SingleGaugeVisualizationDataSpec();

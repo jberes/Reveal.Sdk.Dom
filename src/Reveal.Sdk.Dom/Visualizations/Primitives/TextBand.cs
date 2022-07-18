@@ -2,9 +2,9 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class GaugeBand : Band
+    public class TextBand : ShapeBand
     {
-        public GaugeBand()
+        public TextBand()
         {
             SchemaTypeName = SchemaTypeNames.GaugeBandType;
         }

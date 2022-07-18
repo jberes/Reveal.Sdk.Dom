@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public enum GaugeViewType
+    internal enum GaugeViewType
     {
         Circular,
         Linear,

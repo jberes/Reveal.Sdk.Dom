@@ -1,13 +1,9 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public enum BandColorType
+    public enum BandColor
 	{
-		Blue,
 		Green,
 		Red,
 		Yellow,
-		Gray,
-		White,
-		None
 	}
 }

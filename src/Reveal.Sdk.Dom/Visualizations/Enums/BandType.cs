@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public enum BandType
+    public enum ValueComparisonType
 	{
 		Percentage,
 		NumberValue

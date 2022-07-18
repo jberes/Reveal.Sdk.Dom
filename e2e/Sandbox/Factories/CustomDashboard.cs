@@ -15,7 +15,7 @@ namespace Sandbox.Factories
                 .UseExcel("Marketing")
                 .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
                 .Build();
-            
+
             var csvDataSourceItem = new RestBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
                 .UseCsv()
                 .SetTitle("CSV Data Source")
@@ -81,7 +81,7 @@ namespace Sandbox.Factories
                 {
                     settings.SliceLabelDisplay = LabelDisplayMode.ValueAndPercentage;
                     settings.StartPosition = 90;
-                }));    
+                }));
 
             //funnel
             document.Visualizations.Add(new FunnelChartVisualization("Funnel", excelDataSourceItem)
@@ -152,13 +152,30 @@ namespace Sandbox.Factories
 
             //linear gauge
             document.Visualizations.Add(new LinearGaugeVisualization("Linear", excelDataSourceItem)
-                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month }).AddValue("Spend"));
+                .AddLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month }).AddValue("Spend")
+                .ConfigureSettings(settings =>
+                {
+                    settings.ValueComparisonType = ValueComparisonType.NumberValue;
+                    settings.UpperBand.Value = 10000;
+                    settings.MiddleBand.Value = 5000;
+                }));
 
             //circular gauge
-            document.Visualizations.Add(new CircularGaugeVisualization("Circular", excelDataSourceItem).AddLabel("Budget").AddValue("Spend"));
+            document.Visualizations.Add(new CircularGaugeVisualization("Circular", excelDataSourceItem).AddLabel("Budget").AddValue("Spend")
+                .ConfigureSettings(settings =>
+                {
+                    settings.MiddleBand.Value = 30;
+                }));
 
             //text
-            document.Visualizations.Add(new TextVisualization("Text", excelDataSourceItem).AddLabel("Budget").AddValue("Spend"));
+            document.Visualizations.Add(new TextVisualization("Text", excelDataSourceItem).AddLabel("Budget").AddValue("Spend")
+                .ConfigureSettings(settings =>
+                {
+                    settings.ConditionalFormattingEnabled = true;
+                    settings.UpperBand.Shape = ShapeType.ArrowUp;
+                    settings.MiddleBand.Shape = ShapeType.Dash;
+                    settings.LowerBand.Shape = ShapeType.ArrowDown;
+                }));
 
             //kpi target
             document.Visualizations.Add(new KpiTargetVisualization("KPI vs Target", excelDataSourceItem).AddDate("Date").AddValue("Spend").AddTarget("Budget"));
@@ -167,7 +184,13 @@ namespace Sandbox.Factories
             document.Visualizations.Add(new KpiTimeVisualization("KPI vs Time", excelDataSourceItem).AddDate("Date").AddValue("Traffic"));
 
             //bullet graph
-            document.Visualizations.Add(new BulletGraphVisualization("Bullet Graph", excelDataSourceItem).AddLabel("CampaignID").AddValue("Spend").AddTarget("Budget"));
+            document.Visualizations.Add(new BulletGraphVisualization("Bullet Graph", excelDataSourceItem).AddLabel("CampaignID").AddValue("Spend").AddTarget("Budget")
+                .ConfigureSettings(setting =>
+                {
+                    setting.ValueComparisonType = ValueComparisonType.NumberValue;
+                    setting.UpperBand.Value = 72000;
+                    setting.MiddleBand.Value = 65000;
+                }));
 
             //choropleth map
             document.Visualizations.Add(new ChoroplethVisualization("Choropleth", revenueDataSourceItem)

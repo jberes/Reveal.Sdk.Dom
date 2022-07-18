@@ -4,17 +4,15 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class Band : SchemaType
+    public abstract class Band : SchemaType
     {
+        [JsonProperty("Type")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public BandType Type { get; set; } = BandType.Percentage;
+        internal ValueComparisonType ValueComparisonType { get; set; } = ValueComparisonType.Percentage;
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public BandColorType Color { get; set; } = BandColorType.Blue;
-
+        public BandColor Color { get; set; } = BandColor.Green;
+        
         public double? Value { get; set; }
-
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ShapeType Shape { get; set; } = ShapeType.None;
     }
 }

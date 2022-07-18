@@ -169,18 +169,14 @@ namespace Sandbox.Factories
                         ApplyMkFormat = true,
                     }
                 })
-                .ConfigureBands((greenBand, yellowBand, redBand) =>
-                {
-                    greenBand.Type = BandType.NumberValue;
-                    greenBand.Value = 1.0;
-
-                    yellowBand.Type = BandType.NumberValue;
-                    yellowBand.Value = 0.8;
-                })
                 .ConfigureSettings(settings => 
                 {
-                    settings.Minimum = new Bound() { Value = 0.8, ValueType = BoundValueType.NumberValue };
-                    settings.Maximum = new Bound() { Value = 2.0, ValueType = BoundValueType.NumberValue };
+                    settings.Minimum = new Bound() { Value = 0.8 };
+                    settings.Maximum = new Bound() { Value = 2.0 };
+
+                    settings.ValueComparisonType = ValueComparisonType.NumberValue;
+                    settings.UpperBand.Value = 100.0;
+                    settings.MiddleBand.Value = 80.0;
                 })
                 .ConfigureFields(fields =>
                 {

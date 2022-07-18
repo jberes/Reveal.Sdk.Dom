@@ -12,7 +12,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         public SparklineVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public SparklineVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem)
         {
-            //this is a workaround because the json schemea has properties on the VisualizationDataSpec and not on the VisualizationSettings where they belong
             Settings._visualizationDataSpec = VisualizationDataSpec;
         }
 
