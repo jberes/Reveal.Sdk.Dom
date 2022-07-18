@@ -247,24 +247,8 @@ namespace Sandbox.Factories
 
             visualization.Settings.Minimum = new Bound() { Value = 0.0, ValueType = BoundValueType.NumberValue };
             visualization.Settings.Maximum = new Bound() { Value = 1.0, ValueType = BoundValueType.NumberValue };
-            visualization.Bands.Add(new GaugeBand()
-            {
-                Type = BandType.Percentage,
-                Color = BandColorType.Green,
-                Value = 100.0,
-            });
-            visualization.Bands.Add(new GaugeBand()
-            {
-                Type = BandType.Percentage,
-                Color = BandColorType.Yellow,
-                Value = 0.0
-            });
-            visualization.Bands.Add(new GaugeBand()
-            {
-                Type = BandType.Percentage,
-                Color = BandColorType.Red,
-                Shape = ShapeType.None
-            });
+            visualization.Settings.UpperBand.Value = 100.0;
+            visualization.Settings.MiddleBand.Value = 0.0;
 
             visualization.Values.Add(new MeasureColumnSpec()
             {
@@ -310,24 +294,8 @@ namespace Sandbox.Factories
 
             visualization.Settings.Minimum = new Bound() { Value = 0.0, ValueType = BoundValueType.NumberValue };
             visualization.Settings.Maximum = new Bound() { Value = 1.0, ValueType = BoundValueType.NumberValue };
-            visualization.Bands.Add(new GaugeBand()
-            {
-                Type = BandType.Percentage,
-                Color = BandColorType.Green,
-                Value = 1.0,
-            });
-            visualization.Bands.Add(new GaugeBand()
-            {
-                Type = BandType.Percentage,
-                Color = BandColorType.Yellow,
-                Value = 0.0
-            });
-            visualization.Bands.Add(new GaugeBand()
-            {
-                Type = BandType.Percentage,
-                Color = BandColorType.Red,
-                Shape = ShapeType.None
-            });
+            visualization.Settings.UpperBand.Value = 100.0;
+            visualization.Settings.MiddleBand.Value = 0.0;
 
             visualization.Values.Add(new MeasureColumnSpec()
             {
