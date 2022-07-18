@@ -1,14 +1,15 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public enum IndicatorTargetDateFilterType
+    public enum KpiGoalPeriod
     {
-        AllTime,
-        CustomRange,
         YearToDate,
         QuarterToDate,
         MonthToDate,
         PreviousYear,
         PreviousQuarter,
-        PreviousMonth
+        PreviousMonth,
+        ThisYear,
+        ThisQuarter,
+        ThisMonth
     }
 }

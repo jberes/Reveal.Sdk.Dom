@@ -10,7 +10,10 @@ namespace Reveal.Sdk.Dom.Visualizations
     {
         internal KpiTargetVisualization() : this(null) { }
         public KpiTargetVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
-        public KpiTargetVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        public KpiTargetVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) 
+        {
+            Settings.VisualizationDataSpec = VisualizationDataSpec;
+        }
 
         [JsonIgnore]
         public DimensionColumnSpec Date
@@ -25,7 +28,6 @@ namespace Reveal.Sdk.Dom.Visualizations
             get { return VisualizationDataSpec.Value; }
         }
 
-        //todo: confirm that the category is stored as rows
         [JsonIgnore]
         public List<DimensionColumnSpec> Categories
         {

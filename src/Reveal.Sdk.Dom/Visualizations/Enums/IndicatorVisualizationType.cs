@@ -1,17 +1,18 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public enum IndicatorVisualizationType
+    //todo: we may be able to remove this and replace it with specific enums
+    internal enum IndicatorVisualizationType
     {
-        YearToDatePreviousYear,
-        QuarterToDatePreviousQuarter,
-        QuarterToDatePreviousYear,
-        MonthToDatePreviousMonth,
-        MonthToDatePreviousYear,
-        LastYears,
-        LastQuarters,
-        LastMonths,
-        LastDays,
-        LastHours,
-        LastMinutes
+        YearToDatePreviousYear, //KpiTimePeriod
+        QuarterToDatePreviousQuarter, //KpiTimePeriod
+        QuarterToDatePreviousYear, //KpiTimePeriod
+        MonthToDatePreviousMonth, //KpiTimePeriod
+        MonthToDatePreviousYear, //KpiTimePeriod
+        LastYears, //todo: what uses this?
+        LastQuarters, //todo: what uses this?
+        LastMonths, //SparklineAggregationType
+        LastDays, //SparklineAggregationType
+        LastHours, //todo: what uses this?
+        LastMinutes //todo: what uses this?
     }
 }
