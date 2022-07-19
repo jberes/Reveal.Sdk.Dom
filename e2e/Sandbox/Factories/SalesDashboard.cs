@@ -174,7 +174,7 @@ namespace Sandbox.Factories
                     settings.Minimum = new Bound() { Value = 0.8 };
                     settings.Maximum = new Bound() { Value = 2.0 };
 
-                    settings.ValueComparisonType = ValueComparisonType.NumberValue;
+                    settings.ValueComparisonType = ValueComparisonType.Number;
                     settings.UpperBand.Value = 100.0;
                     settings.MiddleBand.Value = 80.0;
                 })

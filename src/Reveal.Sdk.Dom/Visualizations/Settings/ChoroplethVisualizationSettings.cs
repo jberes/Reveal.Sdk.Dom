@@ -34,7 +34,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         public MapLabelStyle LabelStyle { get; set; } = MapLabelStyle.LocationAbbreviation;
         
         /// <summary>
-        /// Gets or sets the locale to use for map.
+        /// Gets or sets the language locale to use for the map.
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]

@@ -7,9 +7,9 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         public TextVisualizationSettings()
         {
             ViewType = GaugeViewType.SingleValue;
-            UpperBand.ValueComparisonType = ValueComparisonType.NumberValue;
-            MiddleBand.ValueComparisonType = ValueComparisonType.NumberValue;
-            LowerBand.ValueComparisonType = ValueComparisonType.NumberValue;
+            UpperBand.ValueComparisonType = ValueComparisonType.Number;
+            MiddleBand.ValueComparisonType = ValueComparisonType.Number;
+            LowerBand.ValueComparisonType = ValueComparisonType.Number;
         }
 
         /// <summary>
