@@ -38,6 +38,9 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonIgnore]
         public TBand LowerBand { get; } = new TBand() { Color = BandColor.Red };
 
+        /// <summary>
+        /// Gets or sets the type of value comparison to apply to the <see cref="ConditionalFormattingBase{TBand}.UpperBand"/>, <see cref="ConditionalFormattingBase{TBand}.MiddleBand"/>, and <see cref="ConditionalFormattingBase{TBand}.LowerBand"/>.
+        /// </summary>
         [JsonIgnore]
         public ValueComparisonType ValueComparisonType
         {
