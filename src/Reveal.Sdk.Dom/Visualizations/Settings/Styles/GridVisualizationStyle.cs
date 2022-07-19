@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class GridVisualizationStyle
+    internal class GridVisualizationStyle
     {
         public bool FixedLeftColumns { get; set; }
 

@@ -44,6 +44,6 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         }
 
         [JsonProperty]
-        protected GridVisualizationStyle Style { get; set; } = new GridVisualizationStyle();
+        internal GridVisualizationStyle Style { get; set; } = new GridVisualizationStyle();
     }
 }

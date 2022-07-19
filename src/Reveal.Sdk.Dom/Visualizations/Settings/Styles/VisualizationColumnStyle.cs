@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class VisualizationColumnStyle
+    internal class VisualizationColumnStyle
     {
 		public string ColumnName { get; set; }
 		public double? Width { get; set; }

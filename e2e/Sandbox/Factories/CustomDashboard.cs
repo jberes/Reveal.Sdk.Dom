@@ -206,7 +206,13 @@ namespace Sandbox.Factories
             document.Visualizations.Add(new ChoroplethVisualization("Choropleth", revenueDataSourceItem)
                 .SetMap(Maps.NorthAmerica.UnitedStates.States.AllStates)
                 .AddLocation("State")
-                .AddValue("Revenue"));
+                .AddValue("Revenue")
+                .ConfigureSettings(settings =>
+                {
+                    settings.ColorIndex = 5;
+                    settings.ColorStyle = MapColorStyle.SingleColor;
+                    settings.LabelStyle = MapLabelStyle.Values;
+                }));
 
             //scatter map
             document.Visualizations.Add(new ScatterMapVisualization("Scatter Map", csvDataSourceItem)
