@@ -1,8 +1,11 @@
-﻿namespace Reveal.Sdk.Dom.Visualizations
+﻿using System.Runtime.Serialization;
+
+namespace Reveal.Sdk.Dom.Visualizations
 {
     public enum ValueComparisonType
 	{
 		Percentage,
-		NumberValue
+        [EnumMember(Value = "NumberValue")]
+        Number
 	}
 }

@@ -2,6 +2,7 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
+using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -12,11 +13,11 @@ namespace Reveal.Sdk.Dom.Visualizations
         public ScatterMapVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonProperty(Order = 7)]
-        ScatterMapVisualizationDataSpec VisualizationDataSpec { get; set; } = new ScatterMapVisualizationDataSpec();
+        internal ScatterMapVisualizationDataSpec VisualizationDataSpec { get; set; } = new ScatterMapVisualizationDataSpec();
 
         [JsonIgnore]
-        public DimensionColumnSpec Label 
-        { 
+        public DimensionColumnSpec Label
+        {
             get { return VisualizationDataSpec.Label; }
             set { VisualizationDataSpec.Label = value; }
         }
@@ -40,6 +41,31 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             get { return VisualizationDataSpec.Longitude; }
             set { VisualizationDataSpec.Longitude = value; }
+        }
+
+        [JsonIgnore]
+        public List<MeasureColumnSpec> MapColor
+        {
+            get { return VisualizationDataSpec.MapColor; }
+            set { VisualizationDataSpec.MapColor = value; }
+        }
+
+        [JsonIgnore]
+        public DimensionColumnSpec MapColorCategory
+        {
+            get { return VisualizationDataSpec.MapColorCategory; }
+            set
+            {
+                VisualizationDataSpec.IsColorByValue = false;
+                VisualizationDataSpec.MapColorCategory = value;
+            }
+        }
+
+        [JsonIgnore]
+        public List<MeasureColumnSpec> BubbleRadius
+        {
+            get { return VisualizationDataSpec.Radius; }
+            set { VisualizationDataSpec.Radius = value; }
         }
     }
 }
