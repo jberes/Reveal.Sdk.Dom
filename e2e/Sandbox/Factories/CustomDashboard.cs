@@ -197,7 +197,7 @@ namespace Sandbox.Factories
             document.Visualizations.Add(new BulletGraphVisualization("Bullet Graph", excelDataSourceItem).AddLabel("CampaignID").AddValue("Spend").AddTarget("Budget")
                 .ConfigureSettings(setting =>
                 {
-                    setting.ValueComparisonType = ValueComparisonType.NumberValue;
+                    setting.ValueComparisonType = ValueComparisonType.Number;
                     setting.UpperBand.Value = 72000;
                     setting.MiddleBand.Value = 65000;
                 }));
