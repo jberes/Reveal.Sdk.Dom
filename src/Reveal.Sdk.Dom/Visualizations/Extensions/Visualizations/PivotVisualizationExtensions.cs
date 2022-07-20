@@ -10,18 +10,45 @@ namespace Reveal.Sdk.Dom.Visualizations
             return visualization.ConfigureSettings<PivotVisualization, PivotVisualizationSettings>(settings);
         }
 
-        public static PivotVisualization AddColumn(this PivotVisualization visualization, string field)
+        public static PivotVisualization SetColumn(this PivotVisualization visualization, string field)
         {
-            visualization.AddColumn(new SummarizationRegularField(field));
+            visualization.SetColumn(new SummarizationRegularField(field));
             return visualization;
         }
 
-        public static PivotVisualization AddColumn(this PivotVisualization visualization, SummarizationDimensionField field)
+        public static PivotVisualization SetColumn(this PivotVisualization visualization, SummarizationDimensionField field)
         {
+            visualization.Columns.Clear();
             visualization.Columns.Add(new DimensionColumnSpec()
             {
                 SummarizationField = field,
             });
+            return visualization;
+        }
+
+        public static PivotVisualization SetColumns(this PivotVisualization visualization, params string[] fields)
+        {
+            visualization.Columns.Clear();
+            foreach (var field in fields)
+            {
+                visualization.Columns.Add(new DimensionColumnSpec()
+                {
+                    SummarizationField = new SummarizationRegularField(field),
+                });
+            }
+            return visualization;
+        }
+
+        public static PivotVisualization SetColumns(this PivotVisualization visualization, params SummarizationDimensionField[] fields)
+        {
+            visualization.Columns.Clear();
+            foreach (var field in fields)
+            {
+                visualization.Columns.Add(new DimensionColumnSpec()
+                {
+                    SummarizationField = field,
+                });
+            }
             return visualization;
         }
     }

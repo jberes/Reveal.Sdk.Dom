@@ -18,15 +18,15 @@ namespace Reveal.Sdk.Dom.Visualizations
         public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Open { get { return VisualizationDataSpec.Open; } }
+        public List<MeasureColumnSpec> Opens { get { return VisualizationDataSpec.Open; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> High { get { return VisualizationDataSpec.High; } }
+        public List<MeasureColumnSpec> Highs { get { return VisualizationDataSpec.High; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Low { get { return VisualizationDataSpec.Low; } }
+        public List<MeasureColumnSpec> Lows { get { return VisualizationDataSpec.Low; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Close { get { return VisualizationDataSpec.Close; } }
+        public List<MeasureColumnSpec> Closes { get { return VisualizationDataSpec.Close; } }
     }
 }

@@ -4,9 +4,9 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public interface IFinance
     {
-        public List<MeasureColumnSpec> Open { get; }
-        public List<MeasureColumnSpec> High { get; }
-        public List<MeasureColumnSpec> Low { get; }
-        public List<MeasureColumnSpec> Close { get; }
+        public List<MeasureColumnSpec> Opens { get; }
+        public List<MeasureColumnSpec> Highs { get; }
+        public List<MeasureColumnSpec> Lows { get; }
+        public List<MeasureColumnSpec> Closes { get; }
     }
 }

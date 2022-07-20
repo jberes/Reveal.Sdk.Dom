@@ -2,76 +2,84 @@
 {
     public static class IFinanceExtensions
     {
-        public static T AddOpen<T>(this T visualization, string field)
+        public static T SetOpen<T>(this T visualization, string field)
             where T : IFinance
         {
-            return visualization.AddOpen(new SummarizationValueField(field));
+            return visualization.SetOpen(new SummarizationValueField(field));
         }
 
-        public static T AddOpen<T>(this T visualization, SummarizationValueField field)
+        public static T SetOpen<T>(this T visualization, SummarizationValueField field)
             where T : IFinance
         {
+            visualization.Opens.Clear();
+            
             if (field.Formatting is null)
                 field.Formatting = GetFinancialNumberFormatting();
 
-            visualization.Open.Add(new MeasureColumnSpec()
+            visualization.Opens.Add(new MeasureColumnSpec()
             {
                 SummarizationField = field
             });
             return visualization;
         }
 
-        public static T AddHigh<T>(this T visualization, string field)
+        public static T SetHigh<T>(this T visualization, string field)
             where T : IFinance
         {
-            return visualization.AddHigh(new SummarizationValueField(field));
+            return visualization.SetHigh(new SummarizationValueField(field));
         }
 
-        public static T AddHigh<T>(this T visualization, SummarizationValueField field)
+        public static T SetHigh<T>(this T visualization, SummarizationValueField field)
             where T : IFinance
         {
+            visualization.Highs.Clear();
+            
             if (field.Formatting is null)
                 field.Formatting = GetFinancialNumberFormatting();
 
-            visualization.High.Add(new MeasureColumnSpec()
+            visualization.Highs.Add(new MeasureColumnSpec()
             {
                 SummarizationField = field
             });
             return visualization;
         }
 
-        public static T AddLow<T>(this T visualization, string field)
+        public static T SetLow<T>(this T visualization, string field)
             where T : IFinance
         {
-            return visualization.AddLow(new SummarizationValueField(field));
+            return visualization.SetLow(new SummarizationValueField(field));
         }
 
-        public static T AddLow<T>(this T visualization, SummarizationValueField field)
+        public static T SetLow<T>(this T visualization, SummarizationValueField field)
             where T : IFinance
         {
+            visualization.Lows.Clear();
+            
             if (field.Formatting is null)
                 field.Formatting = GetFinancialNumberFormatting();
 
-            visualization.Low.Add(new MeasureColumnSpec()
+            visualization.Lows.Add(new MeasureColumnSpec()
             {
                 SummarizationField = field
             });
             return visualization;
         }
 
-        public static T AddClose<T>(this T visualization, string field)
+        public static T SetClose<T>(this T visualization, string field)
             where T : IFinance
         {
-            return visualization.AddClose(new SummarizationValueField(field));
+            return visualization.SetClose(new SummarizationValueField(field));
         }
 
-        public static T AddClose<T>(this T visualization, SummarizationValueField field)
+        public static T SetClose<T>(this T visualization, SummarizationValueField field)
             where T : IFinance
         {
+            visualization.Closes.Clear();
+            
             if (field.Formatting is null)
                 field.Formatting = GetFinancialNumberFormatting();
 
-            visualization.Close.Add(new MeasureColumnSpec()
+            visualization.Closes.Add(new MeasureColumnSpec()
             {
                 SummarizationField = field
             });

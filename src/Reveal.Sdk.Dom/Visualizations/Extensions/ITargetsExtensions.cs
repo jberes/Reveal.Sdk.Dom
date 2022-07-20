@@ -3,35 +3,44 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class ITargetsExtensions
     {
-        public static T AddTarget<T>(this T visualization, string field)
+        public static T SetTarget<T>(this T visualization, string field)
             where T : ITargets
         {
-            return visualization.AddTarget(new SummarizationValueField(field));
+            return visualization.SetTarget(new SummarizationValueField(field));
         }
 
-        public static T AddTarget<T>(this T visualization, SummarizationValueField field)
+        public static T SetTarget<T>(this T visualization, SummarizationValueField field)
             where T : ITargets
         {
+            visualization.Targets.Clear();
             visualization.Targets.Add(new MeasureColumnSpec() { SummarizationField = field });
             return visualization;
         }
 
-        public static T AddTargets<T>(this T visualization, params string[] fields)
+        public static T SetTargets<T>(this T visualization, params string[] fields)
             where T : ITargets
         {
-            foreach (var value in fields)
+            visualization.Targets.Clear();
+            foreach (var field in fields)
             {
-                visualization.AddTarget(value);
+                visualization.Targets.Add(new MeasureColumnSpec() 
+                { 
+                    SummarizationField = new SummarizationValueField(field) 
+                });
             }
             return visualization;
         }
 
-        public static T AddTargets<T>(this T visualization, params SummarizationValueField[] fields)
+        public static T SetTargets<T>(this T visualization, params SummarizationValueField[] fields)
             where T : ITargets
         {
-            foreach (var value in fields)
+            visualization.Targets.Clear();
+            foreach (var field in fields)
             {
-                visualization.AddTarget(value);
+                visualization.Targets.Add(new MeasureColumnSpec()
+                {
+                    SummarizationField = field
+                }); 
             }
             return visualization;
         }

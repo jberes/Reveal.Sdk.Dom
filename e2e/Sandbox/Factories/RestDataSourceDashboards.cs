@@ -19,7 +19,7 @@ namespace Sandbox.Factories
                 .Build();
 
             document.Visualizations.Add(new PieChartVisualization("JSON", jsonDataSourceItem)
-                .AddLabel("CategoryName").AddValue("ProductSales"));
+                .SetLabel("CategoryName").SetValue("ProductSales"));
 
             //excel
             var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
@@ -30,7 +30,7 @@ namespace Sandbox.Factories
                 .Build();
 
             document.Visualizations.Add(new PieChartVisualization("Excel", excelDataSourceItem)
-                .AddLabel("Territory").AddValue("Conversions"));
+                .SetLabel("Territory").SetValue("Conversions"));
 
             //csv
             var csvDataSourceItem = new RestBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
@@ -44,7 +44,7 @@ namespace Sandbox.Factories
                 .SetMap(Maps.NorthAmerica.UnitedStates.States.Illinois)
                 .SetLongitude("X")
                 .SetLatitude("Y")
-                .AddLabel("School_Nm")
+                .SetLabel("School_Nm")
                 .ConfigureSettings(settings =>
                 {
                     settings.ZoomRectangle.X = 1.38;
