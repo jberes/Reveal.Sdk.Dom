@@ -3,6 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -19,6 +20,22 @@ namespace Reveal.Sdk.Dom.Visualizations
             where T : IVisualization<VisualizationSettings, TabularDataSpec>
         {
             visualization.FilterBindings.AddRange(filterBindings);
+            return visualization;
+        }
+
+        public static T ConfigureField<T>(this T visualization, string fieldName, Action<Field> field)
+            where T : IVisualization<VisualizationSettings, TabularDataSpec>
+        {
+            try
+            {
+                var f = visualization.DataSpec.Fields.Where(x => x.FieldName == fieldName).First();
+                field.Invoke(f);
+            }
+            catch
+            {
+                throw new Exception($"ConfigureField: Field {fieldName} not found.");
+            }
+            
             return visualization;
         }
 
