@@ -2,22 +2,16 @@
 {
     public static class ITabularColumnsExtensions
     {
-        public static T AddColumn<T>(this T visualization, string field)
+        public static T SetColumns<T>(this T visualization, params string[] fields)
             where T : ITabularColumns
         {
-            visualization.Columns.Add(new TabularColumnSpec()
-            {
-                FieldName = field
-            });
-            return visualization;
-        }
-
-        public static T AddColumn<T>(this T visualization, params string[] fields)
-            where T : ITabularColumns
-        {
+            visualization.Columns.Clear();
             foreach (var field in fields)
             {
-                visualization.AddColumn(field);
+                visualization.Columns.Add(new TabularColumnSpec()
+                {
+                    FieldName = field
+                });
             }
             return visualization;
         }

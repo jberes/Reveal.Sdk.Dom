@@ -22,7 +22,7 @@ namespace Sandbox.Factories
                 .Build();
 
             document.Visualizations.Add(new BarChartVisualization("SQL Server Bar Chart", sqlServerDataSourceItem)
-                .AddLabel("CustomerID").AddValue(new SummarizationValueField("OrderID") { AggregationType = AggregationType.CountRows }));
+                .SetLabel("CustomerID").SetValue(new SummarizationValueField("OrderID") { AggregationType = AggregationType.CountRows }));
 
             return document;
         }

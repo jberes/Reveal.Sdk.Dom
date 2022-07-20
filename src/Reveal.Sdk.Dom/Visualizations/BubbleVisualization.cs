@@ -19,10 +19,10 @@ namespace Reveal.Sdk.Dom.Visualizations
         public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> XAxis { get { return VisualizationDataSpec.XAxis; } }
+        public List<MeasureColumnSpec> XAxes { get { return VisualizationDataSpec.XAxis; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> YAxis { get { return VisualizationDataSpec.YAxis; } }
+        public List<MeasureColumnSpec> YAxes { get { return VisualizationDataSpec.YAxis; } }
 
         [JsonIgnore]
         public List<MeasureColumnSpec> Radius { get { return VisualizationDataSpec.Radius; }}

@@ -5,13 +5,14 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class ChoroplethVisualizationExtensions
     {
-        public static ChoroplethVisualization AddLocation(this ChoroplethVisualization visualization, string field)
+        public static ChoroplethVisualization SetLocation(this ChoroplethVisualization visualization, string field)
         {
-            return visualization.AddLocation(new SummarizationRegularField(field));
+            return visualization.SetLocation(new SummarizationRegularField(field));
         }
         
-        public static ChoroplethVisualization AddLocation(this ChoroplethVisualization visualization, SummarizationDimensionField field)
+        public static ChoroplethVisualization SetLocation(this ChoroplethVisualization visualization, SummarizationDimensionField field)
         {
+            visualization.Locations.Clear();
             visualization.Locations.Add(new DimensionColumnSpec()
             {
                 SummarizationField = field
