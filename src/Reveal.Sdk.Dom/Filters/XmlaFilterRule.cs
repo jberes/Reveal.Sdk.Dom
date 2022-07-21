@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public abstract class XmlaFilterRule : SchemaType
+    internal abstract class XmlaFilterRule : SchemaType
     {
 
     }

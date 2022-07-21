@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class XmlaNumberFilterRule : XmlaFilterRule
+    internal class XmlaNumberFilterRule : XmlaFilterRule
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public NumberRuleType RuleType { get; set; } = NumberRuleType.None;
