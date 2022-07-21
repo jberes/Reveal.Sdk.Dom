@@ -2,13 +2,34 @@
 using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class IVisualizationExtensions
     {
+        public static T AddDataFilter<T, TFilter>(this T visualization, string fieldName, TFilter filter)
+            where T : IVisualization<VisualizationSettings, TabularDataSpec>
+            where TFilter : IFilter
+        {
+            try
+            {
+                var field = visualization.DataSpec.Fields.Where(x => x.FieldName == fieldName).First();
+                var filterField = (FieldBase<TFilter>)field;
+                filterField.DataFilter = filter;
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new Exception($"AddDataFilter: Field {fieldName} cannot be found.");
+            }
+            catch
+            {
+                throw new Exception($"AddDataFilter: Field {fieldName} is not compatible with {filter.GetType()}.");
+            }
+
+            return visualization;
+        }
+
         public static T AddFilterBinding<T>(this T visualization, Binding filterBinding)
             where T : IVisualization<VisualizationSettings, TabularDataSpec>
         {
@@ -20,22 +41,6 @@ namespace Reveal.Sdk.Dom.Visualizations
             where T : IVisualization<VisualizationSettings, TabularDataSpec>
         {
             visualization.FilterBindings.AddRange(filterBindings);
-            return visualization;
-        }
-
-        public static T AddDataFilter<T>(this T visualization, string fieldName, Action<IField> field)
-            where T : IVisualization<VisualizationSettings, TabularDataSpec>
-        {
-            try
-            {
-                var f = visualization.DataSpec.Fields.Where(x => x.FieldName == fieldName).First();
-                field.Invoke(f);
-            }
-            catch
-            {
-                throw new Exception($"ConfigureField: Field {fieldName} not found.");
-            }
-            
             return visualization;
         }
 

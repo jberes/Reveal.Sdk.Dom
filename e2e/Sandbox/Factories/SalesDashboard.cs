@@ -178,14 +178,11 @@ namespace Sandbox.Factories
                     settings.UpperBand.Value = 100.0;
                     settings.MiddleBand.Value = 80.0;
                 })
-                .AddDataFilter("Quota", field =>
+                .AddDataFilter("Quota", new NumberFilter()
                 {
-                    ((NumberField)field).Filter = new NumberFilter()
-                    {
-                        FilterType = FilterType.FilterByRule,
-                        RuleType = NumberRuleType.TopItems,
-                        Value = 10.0
-                    };
+                    FilterType = FilterType.FilterByRule,
+                    RuleType = NumberRuleType.TopItems,
+                    Value = 10.0
                 })
                 .AddFilterBindings(filterBindings)
                 .SetPosition(33, 29);

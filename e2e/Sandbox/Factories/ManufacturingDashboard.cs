@@ -78,7 +78,7 @@ namespace Sandbox.Factories
             };
 
             var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
-            field.Filter = new DateTimeFilter() //in the UI these are referred to as a Data Fiter
+            field.DataFilter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,
                 DateFiscalYearStartMonth = 0,
@@ -132,7 +132,7 @@ namespace Sandbox.Factories
             };
 
             var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
-            field.Filter = new DateTimeFilter()
+            field.DataFilter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,
                 DateFiscalYearStartMonth = 0,
@@ -171,7 +171,7 @@ namespace Sandbox.Factories
             };
 
             var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
-            field.Filter = new DateTimeFilter()
+            field.DataFilter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,
                 DateFiscalYearStartMonth = 0,
@@ -210,7 +210,7 @@ namespace Sandbox.Factories
             };
 
             var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Line").First() as TextField;
-            field.Filter = new StringFilter()
+            field.DataFilter = new TextFilter()
             {
                 FilterType = FilterType.SelectedValues,
                 SelectedValues = new System.Collections.Generic.List<FilterValue>()
@@ -258,7 +258,7 @@ namespace Sandbox.Factories
             };
 
             var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Line").First() as TextField;
-            field.Filter = new StringFilter()
+            field.DataFilter = new TextFilter()
             {
                 FilterType = FilterType.SelectedValues,
                 SelectedValues = new System.Collections.Generic.List<FilterValue>()
@@ -305,7 +305,7 @@ namespace Sandbox.Factories
             };
 
             var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
-            field.Filter = new DateTimeFilter()
+            field.DataFilter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,
                 DateFiscalYearStartMonth = 0,

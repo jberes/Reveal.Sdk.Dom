@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Reveal.Sdk.Dom.Core.Serialization.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    [JsonConverter(typeof(FilterConverter))]
-    public class Filter : SchemaType
+    public abstract class FilterBase : SchemaType, IFilter
     {
         [JsonConverter(typeof(StringEnumConverter))]
 		public FilterType FilterType { get; set; } = FilterType.AllValues;

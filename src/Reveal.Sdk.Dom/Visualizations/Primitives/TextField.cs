@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TextField : FieldBase<StringFilter>
+    public class TextField : FieldBase<TextFilter>
     {
         internal TextField() : this(string.Empty) { }
         public TextField(string fieldName) : base(fieldName)
