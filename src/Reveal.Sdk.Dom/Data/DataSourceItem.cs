@@ -20,7 +20,7 @@ namespace Reveal.Sdk.Dom.Data
         public DataSourceItem ResourceItem { get; set; }
 
         [JsonIgnore]
-        public List<Field> Fields { get; internal set; } = new List<Field>();
+        public List<IField> Fields { get; internal set; } = new List<IField>();
 
         /// <summary>
         /// The data source for the current DataSourceItem.

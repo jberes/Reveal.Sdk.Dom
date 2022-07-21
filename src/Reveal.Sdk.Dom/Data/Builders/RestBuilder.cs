@@ -41,7 +41,7 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public RestBuilder SetFields(IEnumerable<Field> fields)
+        public RestBuilder SetFields(IEnumerable<IField> fields)
         {
             _dataSourceItem.Fields.Clear();
             _dataSourceItem.Fields.AddRange(fields);
@@ -131,7 +131,7 @@ namespace Reveal.Sdk.Dom.Data
         }
 
         //todo: why is this required for json data? We already have the fields?
-        Dictionary<string, object> BuildConfig(IEnumerable<Field> fields)
+        Dictionary<string, object> BuildConfig(IEnumerable<IField> fields)
         {
             Dictionary<string, object> config = new Dictionary<string, object>();
             List<ColumnConfig> columnConfigs = new List<ColumnConfig>();
@@ -145,7 +145,8 @@ namespace Reveal.Sdk.Dom.Data
                     Key = field.FieldName
                 };
 
-                int type = field.DataType switch
+
+                int type = ((IFieldDataType)field).DataType switch
                 {
                     DataType.Number => 1,
                     DataType.Date => 2,

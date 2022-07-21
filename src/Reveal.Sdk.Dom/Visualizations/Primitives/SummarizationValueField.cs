@@ -22,7 +22,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonConverter(typeof(FormattingSpecConverter))]
         public FormattingSpec Formatting { get; set; }
         public ConditionalFormattingSpec ConditionalFormatting { get; set; }
-        public Filter Filter { get; set; }
+        public IFilter Filter { get; set; }
 
         internal SummarizationValueField() : this(string.Empty) { }
 

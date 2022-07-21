@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Filters
 {
     public class XmlaFilter
     {
-        public Filter Filter { get; set; }
+        public IFilter Filter { get; set; }
         public string UniqueName { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public DataType DataType { get; set; }

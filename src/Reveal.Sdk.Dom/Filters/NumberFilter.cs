@@ -4,15 +4,16 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class NumberFilter : Filter
+    public class NumberFilter : FilterBase
     {
-        [JsonConverter(typeof(StringEnumConverter))]
-        public NumberRuleType RuleType { get; set; } = NumberRuleType.None;
-		public double? Value { get; set; }
-
         public NumberFilter()
         {
-			SchemaTypeName = SchemaTypeNames.NumberFilterType;
-		}
+            SchemaTypeName = SchemaTypeNames.NumberFilterType;
+        }
+        
+        [JsonConverter(typeof(StringEnumConverter))]
+        public NumberRuleType RuleType { get; set; } = NumberRuleType.None;
+        
+		public double? Value { get; set; }
     }
 }

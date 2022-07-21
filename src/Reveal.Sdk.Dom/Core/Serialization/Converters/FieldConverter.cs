@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
-    internal class FieldConverter : TypeMapConverter<Field>
+    internal class FieldConverter : TypeMapConverter<IField>
     {
         public FieldConverter() : base("FieldType")
         {
