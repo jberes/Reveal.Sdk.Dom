@@ -5,10 +5,10 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
 	internal class FinancialVisualizationDataSpec : LabelsVisualizationDataSpec
     {
-		public List<MeasureColumnSpec> Open { get; set; } = new List<MeasureColumnSpec>();
-		public List<MeasureColumnSpec> High { get; set; } = new List<MeasureColumnSpec>();
-		public List<MeasureColumnSpec> Low { get; set; } = new List<MeasureColumnSpec>();
-		public List<MeasureColumnSpec> Close { get; set; } = new List<MeasureColumnSpec>();
+		public List<MeasureColumn> Open { get; set; } = new List<MeasureColumn>();
+		public List<MeasureColumn> High { get; set; } = new List<MeasureColumn>();
+		public List<MeasureColumn> Low { get; set; } = new List<MeasureColumn>();
+		public List<MeasureColumn> Close { get; set; } = new List<MeasureColumn>();
 
 		public FinancialVisualizationDataSpec()
 		{

@@ -6,15 +6,15 @@ namespace Reveal.Sdk.Dom.Visualizations
         public static T SetLabel<T>(this T visualization, string field)
             where T : ILabel
         {
-            return visualization.SetLabel(new SummarizationRegularField(field));
+            return visualization.SetLabel(new TextDataField(field));
         }
 
-        public static T SetLabel<T>(this T visualization, SummarizationDimensionField field)
+        public static T SetLabel<T>(this T visualization, DimensionDataField field)
             where T : ILabel
         {
-            visualization.Label = new DimensionColumnSpec()
+            visualization.Label = new DimensionColumn()
             {
-                SummarizationField = field
+                DataField = field
             };
             return visualization;
         }

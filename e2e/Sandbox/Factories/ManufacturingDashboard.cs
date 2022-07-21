@@ -42,12 +42,12 @@ namespace Sandbox.Factories
                 RowSpan = 22,
             };
 
-            visualization.Date = new DimensionColumnSpec()
+            visualization.Date = new DimensionColumn()
             {
-                SummarizationField = new SummarizationDateField("Date")
+                DataField = new DateDataField("Date")
             };
 
-            SummarizationValueField summarizationtionField = new SummarizationValueField(field);
+            NumberDataField summarizationtionField = new NumberDataField(field);
             if (avg)
             {
                 summarizationtionField.AggregationType = AggregationType.Avg;
@@ -60,9 +60,9 @@ namespace Sandbox.Factories
                 };
             }
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = summarizationtionField
+                DataField = summarizationtionField
             });
 
             return visualization;
@@ -86,17 +86,17 @@ namespace Sandbox.Factories
                 RuleType = DateRuleType.LastYear
             };
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationDateField("Date")
+                DataField = new DateDataField("Date")
                 {
                     DateAggregationType = DateAggregationType.Month
                 }
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Cost of Labor ")
+                DataField = new NumberDataField("Cost of Labor ")
                 {
                     Formatting = new NumberFormattingSpec()
                     {
@@ -106,9 +106,9 @@ namespace Sandbox.Factories
                     }
                 }
             });
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Revenue")
+                DataField = new NumberDataField("Revenue")
                 {
                     Formatting = new NumberFormattingSpec()
                     {
@@ -140,14 +140,14 @@ namespace Sandbox.Factories
                 RuleType = DateRuleType.LastMonth
             };         
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("Line")
+                DataField = new TextDataField("Line")
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Units Produced")
+                DataField = new NumberDataField("Units Produced")
                 {
                     Sorting = SortingType.Desc,
                     Formatting = new NumberFormattingSpec()
@@ -179,14 +179,14 @@ namespace Sandbox.Factories
                 RuleType = DateRuleType.LastMonth
             };
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("Operators by Function")
+                DataField = new TextDataField("Operators by Function")
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Operators Available ")
+                DataField = new NumberDataField("Operators Available ")
                 {
                     Sorting = SortingType.Asc,
                     Formatting = new NumberFormattingSpec()
@@ -225,9 +225,9 @@ namespace Sandbox.Factories
             visualization.Settings.UpperBand.Value = 100.0;
             visualization.Settings.MiddleBand.Value = 0.0;
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Efficiency")
+                DataField = new NumberDataField("Efficiency")
                 {
                     AggregationType = AggregationType.Avg,
                     Formatting = new NumberFormattingSpec()
@@ -240,9 +240,9 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.Label = new DimensionColumnSpec()
+            visualization.Label = new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("Line")
+                DataField = new TextDataField("Line")
             };
 
             return visualization;
@@ -272,9 +272,9 @@ namespace Sandbox.Factories
             visualization.Settings.UpperBand.Value = 100.0;
             visualization.Settings.MiddleBand.Value = 0.0;
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Efficiency")
+                DataField = new NumberDataField("Efficiency")
                 {
                     AggregationType = AggregationType.Max,
                     Formatting = new NumberFormattingSpec()
@@ -287,9 +287,9 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.Label = new DimensionColumnSpec()
+            visualization.Label = new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("Line")
+                DataField = new TextDataField("Line")
             };
 
             return visualization;
@@ -313,21 +313,21 @@ namespace Sandbox.Factories
                 RuleType = DateRuleType.LastYear
             };
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationDateField("Date")
+                DataField = new DateDataField("Date")
                 {
                     DateAggregationType = DateAggregationType.Month
                 }
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Orders In")
+                DataField = new NumberDataField("Orders In")
             });
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Orders Shipped ")
+                DataField = new NumberDataField("Orders Shipped ")
             });
 
             return visualization;

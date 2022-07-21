@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ColumnSpec : SchemaType
+    public abstract class Column : SchemaType
     {
     }
 }

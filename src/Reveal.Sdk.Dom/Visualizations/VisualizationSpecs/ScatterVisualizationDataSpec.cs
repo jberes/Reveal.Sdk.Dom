@@ -5,9 +5,9 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
 	internal class ScatterVisualizationDataSpec : LabelsVisualizationDataSpec
     {
-		public DimensionColumnSpec Category { get; set; }
-		public List<MeasureColumnSpec> XAxis { get; set; } = new List<MeasureColumnSpec>();
-		public List<MeasureColumnSpec> YAxis { get; set; } = new List<MeasureColumnSpec>();
+		public DimensionColumn Category { get; set; }
+		public List<MeasureColumn> XAxis { get; set; } = new List<MeasureColumn>();
+		public List<MeasureColumn> YAxis { get; set; } = new List<MeasureColumn>();
 		public ScatterVisualizationDataSpec()
 		{
 			SchemaTypeName = SchemaTypeNames.ScatterVisualizationDataSpecType;

@@ -4,6 +4,6 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public interface ILabels
     {
-        List<DimensionColumnSpec> Labels { get; }
+        List<DimensionColumn> Labels { get; }
     }
 }

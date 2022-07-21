@@ -6,16 +6,16 @@ namespace Reveal.Sdk.Dom.Visualizations
         public static T SetLabel<T>(this T visualization, string field)
             where T : ILabels
         {
-            return visualization.SetLabel(new SummarizationRegularField(field));
+            return visualization.SetLabel(new TextDataField(field));
         }
 
-        public static T SetLabel<T>(this T visualization, SummarizationDimensionField field)
+        public static T SetLabel<T>(this T visualization, DimensionDataField field)
             where T : ILabels
         {
             visualization.Labels.Clear();
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = field
+                DataField = field
             });
             return visualization;
         }
@@ -26,23 +26,23 @@ namespace Reveal.Sdk.Dom.Visualizations
             visualization.Labels.Clear();
             foreach (var field in fields)
             {
-                visualization.Labels.Add(new DimensionColumnSpec()
+                visualization.Labels.Add(new DimensionColumn()
                 {
-                    SummarizationField = new SummarizationRegularField(field)
+                    DataField = new TextDataField(field)
                 });
             }
             return visualization;
         }
 
-        public static T SetLabels<T>(this T visualization, params SummarizationDimensionField[] fields)
+        public static T SetLabels<T>(this T visualization, params DimensionDataField[] fields)
             where T : ILabels
         {
             visualization.Labels.Clear();
             foreach (var field in fields)
             {
-                visualization.Labels.Add(new DimensionColumnSpec()
+                visualization.Labels.Add(new DimensionColumn()
                 {
-                    SummarizationField = field
+                    DataField = field
                 });
             }
             return visualization;

@@ -5,8 +5,8 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
 	internal class IndicatorBaseVisualizationDataSpec : LabelsVisualizationDataSpec
     {
-		public DimensionColumnSpec Date { get; set; }
-		public List<MeasureColumnSpec> Value { get; set; } = new List<MeasureColumnSpec>();
+		public DimensionColumn Date { get; set; }
+		public List<MeasureColumn> Value { get; set; } = new List<MeasureColumn>();
 
         public IndicatorBaseVisualizationDataSpec()
         {

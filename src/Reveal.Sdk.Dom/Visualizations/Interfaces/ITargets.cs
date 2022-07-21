@@ -4,6 +4,6 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public interface ITargets
     {
-        List<MeasureColumnSpec> Targets { get; }
+        List<MeasureColumn> Targets { get; }
     }
 }

@@ -4,7 +4,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
     internal class AssetVisualizationDataSpec : VisualizationDataSpec
     {
-        public TabularColumnSpec UrlColumn { get; set; }
+        public TabularColumn UrlColumn { get; set; }
 
         public AssetVisualizationDataSpec()
         {

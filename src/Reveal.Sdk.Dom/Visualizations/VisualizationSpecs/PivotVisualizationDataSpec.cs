@@ -5,8 +5,8 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
 	internal class PivotVisualizationDataSpec : HierarchyVisualizationDataSpec
     {        
-		public List<DimensionColumnSpec> Columns { get; set; } = new List<DimensionColumnSpec>();
-		public List<MeasureColumnSpec> Values { get; set; } = new List<MeasureColumnSpec>();
+		public List<DimensionColumn> Columns { get; set; } = new List<DimensionColumn>();
+		public List<MeasureColumn> Values { get; set; } = new List<MeasureColumn>();
 		public bool ShowGrandTotals { get; set; }
 
 		public PivotVisualizationDataSpec()

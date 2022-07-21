@@ -7,7 +7,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
     internal class IndicatorTargetVisualizationDataSpec : IndicatorBaseVisualizationDataSpec
     {
-		public List<MeasureColumnSpec> Target { get; set; } = new List<MeasureColumnSpec>();
+		public List<MeasureColumn> Target { get; set; } = new List<MeasureColumn>();
 
 		[JsonConverter(typeof(StringEnumConverter))]
 		public KpiGoalPeriod DateFilterType { get; set; } = KpiGoalPeriod.YearToDate;

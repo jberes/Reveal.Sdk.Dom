@@ -15,18 +15,18 @@ namespace Reveal.Sdk.Dom.Visualizations
         FinancialVisualizationDataSpec VisualizationDataSpec { get; set; } = new FinancialVisualizationDataSpec();
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }
+        public List<DimensionColumn> Labels { get { return VisualizationDataSpec.Rows; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Opens { get { return VisualizationDataSpec.Open; } }
+        public List<MeasureColumn> Opens { get { return VisualizationDataSpec.Open; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Highs { get { return VisualizationDataSpec.High; } }
+        public List<MeasureColumn> Highs { get { return VisualizationDataSpec.High; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Lows { get { return VisualizationDataSpec.Low; } }
+        public List<MeasureColumn> Lows { get { return VisualizationDataSpec.Low; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Closes { get { return VisualizationDataSpec.Close; } }
+        public List<MeasureColumn> Closes { get { return VisualizationDataSpec.Close; } }
     }
 }

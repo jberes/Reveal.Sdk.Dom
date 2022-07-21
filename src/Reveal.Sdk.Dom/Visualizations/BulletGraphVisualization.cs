@@ -12,6 +12,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         public BulletGraphVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Targets { get { return VisualizationDataSpec.Target; } }
+        public List<MeasureColumn> Targets { get { return VisualizationDataSpec.Target; } }
     }
 }

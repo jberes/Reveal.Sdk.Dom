@@ -7,16 +7,16 @@ namespace Reveal.Sdk.Dom.Visualizations
     {
         public static BubbleVisualization SetRadius(this BubbleVisualization visualization, string radiusField)
         {
-            visualization.SetRadius(new SummarizationValueField(radiusField));
+            visualization.SetRadius(new NumberDataField(radiusField));
             return visualization;
         }
 
-        public static BubbleVisualization SetRadius(this BubbleVisualization visualization, SummarizationValueField radiusField)
+        public static BubbleVisualization SetRadius(this BubbleVisualization visualization, NumberDataField radiusField)
         {
             visualization.Radius.Clear();
-            visualization.Radius.Add(new MeasureColumnSpec()
+            visualization.Radius.Add(new MeasureColumn()
             {
-                SummarizationField = radiusField
+                DataField = radiusField
             });
             return visualization;
         }

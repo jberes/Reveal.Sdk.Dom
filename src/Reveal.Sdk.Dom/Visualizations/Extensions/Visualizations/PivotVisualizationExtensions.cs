@@ -12,16 +12,16 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         public static PivotVisualization SetColumn(this PivotVisualization visualization, string field)
         {
-            visualization.SetColumn(new SummarizationRegularField(field));
+            visualization.SetColumn(new TextDataField(field));
             return visualization;
         }
 
-        public static PivotVisualization SetColumn(this PivotVisualization visualization, SummarizationDimensionField field)
+        public static PivotVisualization SetColumn(this PivotVisualization visualization, DimensionDataField field)
         {
             visualization.Columns.Clear();
-            visualization.Columns.Add(new DimensionColumnSpec()
+            visualization.Columns.Add(new DimensionColumn()
             {
-                SummarizationField = field,
+                DataField = field,
             });
             return visualization;
         }
@@ -31,22 +31,22 @@ namespace Reveal.Sdk.Dom.Visualizations
             visualization.Columns.Clear();
             foreach (var field in fields)
             {
-                visualization.Columns.Add(new DimensionColumnSpec()
+                visualization.Columns.Add(new DimensionColumn()
                 {
-                    SummarizationField = new SummarizationRegularField(field),
+                    DataField = new TextDataField(field),
                 });
             }
             return visualization;
         }
 
-        public static PivotVisualization SetColumns(this PivotVisualization visualization, params SummarizationDimensionField[] fields)
+        public static PivotVisualization SetColumns(this PivotVisualization visualization, params DimensionDataField[] fields)
         {
             visualization.Columns.Clear();
             foreach (var field in fields)
             {
-                visualization.Columns.Add(new DimensionColumnSpec()
+                visualization.Columns.Add(new DimensionColumn()
                 {
-                    SummarizationField = field,
+                    DataField = field,
                 });
             }
             return visualization;

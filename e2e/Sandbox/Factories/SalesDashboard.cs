@@ -53,7 +53,7 @@ namespace Sandbox.Factories
         {
             return new KpiTargetVisualization("Sales", excelDataSourceItem)
                 .SetDate("Date")
-                .SetValue(new SummarizationValueField("Pipepline")
+                .SetValue(new NumberDataField("Pipepline")
                 {
                     FieldLabel = "Actual Sales",
                     AggregationType = AggregationType.Sum,
@@ -75,7 +75,7 @@ namespace Sandbox.Factories
         private static Visualization CreateSplineAreaChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new SplineAreaChartVisualization("New vs Renewal Sales", excelDataSourceItem)
-                .SetLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
                 .SetValues("New Sales", "Renewal Sales ")
                 .AddFilterBindings(filterBindings)
                 .SetPosition(39, 31);
@@ -93,7 +93,7 @@ namespace Sandbox.Factories
         private static Visualization CreateIndicatorVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new KpiTimeVisualization("Total Opportunities", excelDataSourceItem)
-                .SetDate(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Year })
+                .SetDate(new DateDataField("Date") { DateAggregationType = DateAggregationType.Year })
                 .SetValue("Total Opportunites")
                 .AddFilterBindings(filterBindings)
                 .SetPosition(19, 11);
@@ -102,8 +102,8 @@ namespace Sandbox.Factories
         private static Visualization CreateSparklineVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new SparklineVisualization("New Seats by Product", excelDataSourceItem)
-                .SetDate(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
-                .SetValue(new SummarizationValueField("New Seats")
+                .SetDate(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetValue(new NumberDataField("New Seats")
                 {
                     Formatting = new NumberFormattingSpec()
                     {
@@ -131,7 +131,7 @@ namespace Sandbox.Factories
         {
             return new BarChartVisualization("Sales", excelDataSourceItem)
                 .SetLabel("Employee")
-                .SetValue(new SummarizationValueField("Pipepline")
+                .SetValue(new NumberDataField("Pipepline")
                 {
                     Sorting = SortingType.Asc,
                     Formatting = new NumberFormattingSpec()
@@ -149,7 +149,7 @@ namespace Sandbox.Factories
         private static Visualization CreateColumnChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new ColumnChartVisualization("", excelDataSourceItem)
-                .SetLabel(new SummarizationDateField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
                 .SetValues("Leads", "Hot Leads")
                 .AddFilterBindings(filterBindings)
                 .SetPosition(46, 31);
@@ -159,7 +159,7 @@ namespace Sandbox.Factories
         {
             var visualization = new BulletGraphVisualization("Quotas by Sales Rep", excelDataSourceItem)
                 .SetLabel("Employee")
-                .SetValue(new SummarizationValueField("Quota")
+                .SetValue(new NumberDataField("Quota")
                 {
                     Formatting = new NumberFormattingSpec()
                     {

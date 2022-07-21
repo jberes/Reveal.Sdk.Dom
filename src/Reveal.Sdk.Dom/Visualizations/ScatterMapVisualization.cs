@@ -16,7 +16,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         internal ScatterMapVisualizationDataSpec VisualizationDataSpec { get; set; } = new ScatterMapVisualizationDataSpec();
 
         [JsonIgnore]
-        public DimensionColumnSpec Label
+        public DimensionColumn Label
         {
             get { return VisualizationDataSpec.Label; }
             set { VisualizationDataSpec.Label = value; }
@@ -30,28 +30,28 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonIgnore]
-        public DimensionColumnSpec Latitude
+        public DimensionColumn Latitude
         {
             get { return VisualizationDataSpec.Location; }
             set { VisualizationDataSpec.Location = value; }
         }
 
         [JsonIgnore]
-        public DimensionColumnSpec Longitude
+        public DimensionColumn Longitude
         {
             get { return VisualizationDataSpec.Longitude; }
             set { VisualizationDataSpec.Longitude = value; }
         }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> MapColor
+        public List<MeasureColumn> MapColor
         {
             get { return VisualizationDataSpec.MapColor; }
             set { VisualizationDataSpec.MapColor = value; }
         }
 
         [JsonIgnore]
-        public DimensionColumnSpec MapColorCategory
+        public DimensionColumn MapColorCategory
         {
             get { return VisualizationDataSpec.MapColorCategory; }
             set
@@ -62,7 +62,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> BubbleRadius
+        public List<MeasureColumn> BubbleRadius
         {
             get { return VisualizationDataSpec.Radius; }
             set { VisualizationDataSpec.Radius = value; }

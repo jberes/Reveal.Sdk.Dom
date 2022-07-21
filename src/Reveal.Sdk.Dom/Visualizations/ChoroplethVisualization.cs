@@ -23,20 +23,20 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Locations
+        public List<DimensionColumn> Locations
         {
             get { return VisualizationDataSpec.Rows; }
         }
 
         [JsonIgnore]
-        public DimensionColumnSpec MapColor
+        public DimensionColumn MapColor
         {
             get { return VisualizationDataSpec.MapColor; }
             set { VisualizationDataSpec.MapColor = value; }
         }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Values
+        public List<MeasureColumn> Values
         {
             get { return VisualizationDataSpec.Value; }
         }

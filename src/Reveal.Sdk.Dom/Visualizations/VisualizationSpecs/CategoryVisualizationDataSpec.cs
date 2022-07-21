@@ -5,9 +5,9 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
     internal class CategoryVisualizationDataSpec : LabelsVisualizationDataSpec
     {
-		public DimensionColumnSpec Category { get; set; }
+		public DimensionColumn Category { get; set; }
 
-		public List<MeasureColumnSpec> Values { get; set; } = new List<MeasureColumnSpec>();
+		public List<MeasureColumn> Values { get; set; } = new List<MeasureColumn>();
 
 		public CategoryVisualizationDataSpec()
 		{

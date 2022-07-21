@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
     internal class SingleValueLabelsVisualizationDataSpec : LabelsVisualizationDataSpec
     {
-        public List<MeasureColumnSpec> Value { get; set; } = new List<MeasureColumnSpec>();
+        public List<MeasureColumn> Value { get; set; } = new List<MeasureColumn>();
 
         public SingleValueLabelsVisualizationDataSpec()
         {

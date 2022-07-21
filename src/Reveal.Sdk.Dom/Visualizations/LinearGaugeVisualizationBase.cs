@@ -12,13 +12,13 @@ namespace Reveal.Sdk.Dom.Visualizations
         protected LinearGaugeVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Labels 
+        public List<DimensionColumn> Labels 
         { 
             get { return VisualizationDataSpec.Rows; } 
         }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Values
+        public List<MeasureColumn> Values
         {
             get { return VisualizationDataSpec.Value; }
         }

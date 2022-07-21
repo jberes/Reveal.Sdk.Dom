@@ -12,54 +12,54 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         public static ScatterMapVisualization SetColorByCategory(this ScatterMapVisualization visualization, string field)
         {
-            return visualization.SetColorByCategory(new SummarizationRegularField(field));
+            return visualization.SetColorByCategory(new TextDataField(field));
         }
 
-        public static ScatterMapVisualization SetColorByCategory(this ScatterMapVisualization visualization, SummarizationRegularField field)
+        public static ScatterMapVisualization SetColorByCategory(this ScatterMapVisualization visualization, TextDataField field)
         {
             visualization.VisualizationDataSpec.IsColorByValue = false;
-            visualization.VisualizationDataSpec.MapColorCategory = new DimensionColumnSpec() { SummarizationField = field };
+            visualization.VisualizationDataSpec.MapColorCategory = new DimensionColumn() { DataField = field };
             return visualization;
         }
 
         public static ScatterMapVisualization SetColorByValue(this ScatterMapVisualization visualization, string field)
         {
-            return visualization.SetColorByValue(new SummarizationValueField(field));
+            return visualization.SetColorByValue(new NumberDataField(field));
         }
         
-        public static ScatterMapVisualization SetColorByValue(this ScatterMapVisualization visualization, SummarizationValueField field)
+        public static ScatterMapVisualization SetColorByValue(this ScatterMapVisualization visualization, NumberDataField field)
         {
             visualization.VisualizationDataSpec.IsColorByValue = true;
             visualization.VisualizationDataSpec.MapColorCategory = null;
             visualization.VisualizationDataSpec.MapColor.Clear();
-            visualization.VisualizationDataSpec.MapColor.Add(new MeasureColumnSpec { SummarizationField = field });
+            visualization.VisualizationDataSpec.MapColor.Add(new MeasureColumn { DataField = field });
             return visualization;
         }
 
         public static ScatterMapVisualization SetLongitude(this ScatterMapVisualization visualization, string field)
         {
-            return visualization.SetLongitude(new SummarizationRegularField(field));
+            return visualization.SetLongitude(new TextDataField(field));
         }
 
-        public static ScatterMapVisualization SetLongitude(this ScatterMapVisualization visualization, SummarizationDimensionField field)
+        public static ScatterMapVisualization SetLongitude(this ScatterMapVisualization visualization, DimensionDataField field)
         {
-            visualization.Longitude = new DimensionColumnSpec()
+            visualization.Longitude = new DimensionColumn()
             {
-                SummarizationField = field
+                DataField = field
             };
             return visualization;
         }
 
         public static ScatterMapVisualization SetLatitude(this ScatterMapVisualization visualization, string field)
         {
-            return visualization.SetLatitude(new SummarizationRegularField(field));
+            return visualization.SetLatitude(new TextDataField(field));
         }
 
-        public static ScatterMapVisualization SetLatitude(this ScatterMapVisualization visualization, SummarizationDimensionField field)
+        public static ScatterMapVisualization SetLatitude(this ScatterMapVisualization visualization, DimensionDataField field)
         {
-            visualization.Latitude = new DimensionColumnSpec()
+            visualization.Latitude = new DimensionColumn()
             {
-                SummarizationField = field
+                DataField = field
             };
             return visualization;
         }

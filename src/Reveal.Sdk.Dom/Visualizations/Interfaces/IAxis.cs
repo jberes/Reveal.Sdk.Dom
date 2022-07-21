@@ -4,7 +4,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public interface IAxis
     {
-        List<MeasureColumnSpec> XAxes { get; }
-        List<MeasureColumnSpec> YAxes { get; }
+        List<MeasureColumn> XAxes { get; }
+        List<MeasureColumn> YAxes { get; }
     }
 }

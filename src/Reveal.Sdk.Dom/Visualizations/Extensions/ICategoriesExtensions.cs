@@ -6,14 +6,14 @@ namespace Reveal.Sdk.Dom.Visualizations
         public static T SetCategory<T>(this T visualization, string field)
             where T : ICategories
         {
-            return visualization.SetCategory(new SummarizationRegularField(field));
+            return visualization.SetCategory(new TextDataField(field));
         }
 
-        public static T SetCategory<T>(this T visualization, SummarizationDimensionField field)
+        public static T SetCategory<T>(this T visualization, DimensionDataField field)
             where T : ICategories
         {
             visualization.Categories.Clear();
-            visualization.Categories.Add(new DimensionColumnSpec() { SummarizationField = field });
+            visualization.Categories.Add(new DimensionColumn() { DataField = field });
             return visualization;
         }
 
@@ -23,23 +23,23 @@ namespace Reveal.Sdk.Dom.Visualizations
             visualization.Categories.Clear();
             foreach (var field in fields)
             {
-                visualization.Categories.Add(new DimensionColumnSpec()
+                visualization.Categories.Add(new DimensionColumn()
                 {
-                    SummarizationField = new SummarizationRegularField(field)
+                    DataField = new TextDataField(field)
                 });
             }
             return visualization;
         }
         
-        public static T SetCategories<T>(this T visualization, params SummarizationDimensionField[] fields)
+        public static T SetCategories<T>(this T visualization, params DimensionDataField[] fields)
             where T : ICategories
         {
             visualization.Categories.Clear();
             foreach (var field in fields)
             {
-                visualization.Categories.Add(new DimensionColumnSpec()
+                visualization.Categories.Add(new DimensionColumn()
                 {
-                    SummarizationField = field
+                    DataField = field
                 });
             }
             return visualization;

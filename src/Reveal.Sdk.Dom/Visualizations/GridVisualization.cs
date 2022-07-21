@@ -13,7 +13,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public GridVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
-        public List<TabularColumnSpec> Columns { get { return VisualizationDataSpec.Columns; } }
+        public List<TabularColumn> Columns { get { return VisualizationDataSpec.Columns; } }
 
         [JsonProperty(Order = 7)]
         GridVisualizationDataSpec VisualizationDataSpec { get; set; } = new GridVisualizationDataSpec();

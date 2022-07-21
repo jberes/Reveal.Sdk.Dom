@@ -8,10 +8,7 @@
             visualization.Columns.Clear();
             foreach (var field in fields)
             {
-                visualization.Columns.Add(new TabularColumnSpec()
-                {
-                    FieldName = field
-                });
+                visualization.Columns.Add(new TabularColumn(field));
             }
             return visualization;
         }
