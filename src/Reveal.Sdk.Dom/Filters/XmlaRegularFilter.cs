@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class XmlaRegularFilter : FilterBase
+    internal class XmlaRegularFilter : FilterBase
     {
         public XmlaFilterRule FilterRule { get; set; }
 

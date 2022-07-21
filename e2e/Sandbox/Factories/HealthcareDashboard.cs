@@ -49,25 +49,25 @@ namespace Sandbox.Factories
                 RowSpan = 13,
             };
 
-            visualization.Date = new DimensionColumnSpec()
+            visualization.Date = new DimensionColumn()
             {
-                SummarizationField = new SummarizationDateField("Date")
+                DataField = new DateDataField("Date")
             };
 
-            SummarizationValueField summarizationtionField = new SummarizationValueField(field);
+            NumberDataField summarizationtionField = new NumberDataField(field);
             if (avg)
             {
                 summarizationtionField.AggregationType = AggregationType.Avg;
-                summarizationtionField.Formatting = new NumberFormattingSpec()
+                summarizationtionField.Formatting = new NumberFormatting()
                 {
                     DecimalDigits = 0,
                     ShowGroupingSeparator = true,
                 };
             }
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = summarizationtionField
+                DataField = summarizationtionField
             });
 
             return visualization;
@@ -82,14 +82,14 @@ namespace Sandbox.Factories
                 RowSpan = 23,
             };
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("Divison")
+                DataField = new TextDataField("Divison")
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Current Paitents")
+                DataField = new NumberDataField("Current Paitents")
             });
 
             return visualization;
@@ -106,21 +106,21 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.AddRange(filterBindings);
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationDateField("Date")
+                DataField = new DateDataField("Date")
                 {
                     DateAggregationType = DateAggregationType.Month
                 }
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Charges per MD")
+                DataField = new NumberDataField("Charges per MD")
             });
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Treatment Costs ")
+                DataField = new NumberDataField("Treatment Costs ")
             });
 
             return visualization;
@@ -137,14 +137,14 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.AddRange(filterBindings);
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("Divison")
+                DataField = new TextDataField("Divison")
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("ER Wait Time")
+                DataField = new NumberDataField("ER Wait Time")
             });
 
             return visualization;
@@ -159,22 +159,22 @@ namespace Sandbox.Factories
                 RowSpan = 23,
             };
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("Divison")
+                DataField = new TextDataField("Divison")
             });
 
-            visualization.Category = new DimensionColumnSpec()
+            visualization.Category = new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("Satisfaction ")
+                DataField = new TextDataField("Satisfaction ")
             };
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Satisfaction ")
+                DataField = new NumberDataField("Satisfaction ")
                 {
                     AggregationType = AggregationType.CountRows,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         DecimalDigits = 0,
                         ShowGroupingSeparator = true,
@@ -196,21 +196,21 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.AddRange(filterBindings);
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationDateField("Date")
+                DataField = new DateDataField("Date")
                 {
                     DateAggregationType = DateAggregationType.Month
                 }
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Number of Inpatients")
+                DataField = new NumberDataField("Number of Inpatients")
             });
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Number of Outpatients")
+                DataField = new NumberDataField("Number of Outpatients")
             });
 
             return visualization;

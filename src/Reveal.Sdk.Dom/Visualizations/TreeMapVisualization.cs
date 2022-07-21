@@ -16,9 +16,9 @@ namespace Reveal.Sdk.Dom.Visualizations
         TreeMapVisualizationDataSpec VisualizationDataSpec { get; set; } = new TreeMapVisualizationDataSpec();
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }
+        public List<DimensionColumn> Labels { get { return VisualizationDataSpec.Rows; } }
         
         [JsonIgnore]
-        public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Value; } }
+        public List<MeasureColumn> Values { get { return VisualizationDataSpec.Value; } }
     }
 }

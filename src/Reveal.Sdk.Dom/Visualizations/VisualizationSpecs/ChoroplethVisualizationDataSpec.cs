@@ -4,7 +4,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
     internal class ChoroplethVisualizationDataSpec : SingleValueLabelsVisualizationDataSpec
     {
-        public DimensionColumnSpec MapColor { get; set; }
+        public DimensionColumn MapColor { get; set; }
 
         public ChoroplethVisualizationDataSpec()
         {

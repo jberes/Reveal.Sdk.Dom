@@ -13,13 +13,13 @@ namespace Reveal.Sdk.Dom.Visualizations
         protected CategoryVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }
+        public List<DimensionColumn> Labels { get { return VisualizationDataSpec.Rows; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Values; } }
+        public List<MeasureColumn> Values { get { return VisualizationDataSpec.Values; } }
 
         [JsonIgnore]
-        public DimensionColumnSpec Category
+        public DimensionColumn Category
         {
             get { return VisualizationDataSpec.Category; }
             set { VisualizationDataSpec.Category = value; }

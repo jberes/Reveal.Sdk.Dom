@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
     internal class GridVisualizationDataSpec : VisualizationDataSpec
     {
-        public List<TabularColumnSpec> Columns { get; set; } = new List<TabularColumnSpec>();
+        public List<TabularColumn> Columns { get; set; } = new List<TabularColumn>();
 
         public GridVisualizationDataSpec()
         {

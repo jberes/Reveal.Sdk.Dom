@@ -6,13 +6,13 @@ namespace Reveal.Sdk.Dom.Visualizations
         public static T SetCategory<T>(this T visualization, string field)
             where T : ICategory
         {
-            return visualization.SetCategory(new SummarizationRegularField(field));
+            return visualization.SetCategory(new TextDataField(field));
         }
 
-        public static T SetCategory<T>(this T visualization, SummarizationDimensionField field)
+        public static T SetCategory<T>(this T visualization, DimensionDataField field)
             where T : ICategory
         {
-            visualization.Category = new DimensionColumnSpec() { SummarizationField = field };
+            visualization.Category = new DimensionColumn() { DataField = field };
             return visualization;
         }
     }

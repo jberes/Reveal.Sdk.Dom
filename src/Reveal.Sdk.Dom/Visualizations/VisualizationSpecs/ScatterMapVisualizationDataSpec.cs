@@ -7,12 +7,12 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
     {
 		public bool IsSingleLocationField { get; set; }
 		public bool IsColorByValue { get; set; } = true;
-		public DimensionColumnSpec Location { get; set; }
-		public DimensionColumnSpec Longitude { get; set; }
-		public DimensionColumnSpec Label { get; set; }
-		public DimensionColumnSpec MapColorCategory { get; set; }
-		public List<MeasureColumnSpec> MapColor { get; set; } = new List<MeasureColumnSpec>();
-		public List<MeasureColumnSpec> Radius { get; set; } = new List<MeasureColumnSpec>();
+		public DimensionColumn Location { get; set; }
+		public DimensionColumn Longitude { get; set; }
+		public DimensionColumn Label { get; set; }
+		public DimensionColumn MapColorCategory { get; set; }
+		public List<MeasureColumn> MapColor { get; set; } = new List<MeasureColumn>();
+		public List<MeasureColumn> Radius { get; set; } = new List<MeasureColumn>();
 
 		public ScatterMapVisualizationDataSpec()
 		{

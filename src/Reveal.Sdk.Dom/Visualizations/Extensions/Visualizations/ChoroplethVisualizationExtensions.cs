@@ -7,15 +7,15 @@ namespace Reveal.Sdk.Dom.Visualizations
     {
         public static ChoroplethVisualization SetLocation(this ChoroplethVisualization visualization, string field)
         {
-            return visualization.SetLocation(new SummarizationRegularField(field));
+            return visualization.SetLocation(new TextDataField(field));
         }
         
-        public static ChoroplethVisualization SetLocation(this ChoroplethVisualization visualization, SummarizationDimensionField field)
+        public static ChoroplethVisualization SetLocation(this ChoroplethVisualization visualization, DimensionDataField field)
         {
             visualization.Locations.Clear();
-            visualization.Locations.Add(new DimensionColumnSpec()
+            visualization.Locations.Add(new DimensionColumn()
             {
-                SummarizationField = field
+                DataField = field
             });
             return visualization;
         }

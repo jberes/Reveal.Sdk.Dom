@@ -17,6 +17,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         GridVisualizationDataSpec VisualizationDataSpec { get; set; } = new GridVisualizationDataSpec();
 
         [JsonIgnore]
-        public List<TabularColumnSpec> Columns { get { return VisualizationDataSpec.Columns; } }
+        public List<TabularColumn> Columns { get { return VisualizationDataSpec.Columns; } }
     }
 }

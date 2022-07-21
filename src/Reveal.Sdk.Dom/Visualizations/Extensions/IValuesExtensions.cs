@@ -6,16 +6,16 @@ namespace Reveal.Sdk.Dom.Visualizations
         public static T SetValue<T>(this T visualization, string field)
             where T : IValues
         {
-            return visualization.SetValue(new SummarizationValueField(field));
+            return visualization.SetValue(new NumberDataField(field));
         }
 
-        public static T SetValue<T>(this T visualization, SummarizationValueField field)
+        public static T SetValue<T>(this T visualization, NumberDataField field)
             where T : IValues
         {
             visualization.Values.Clear();
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = field
+                DataField = field
             });
             return visualization;
         }
@@ -26,23 +26,23 @@ namespace Reveal.Sdk.Dom.Visualizations
             visualization.Values.Clear();
             foreach (var field in fields)
             {
-                visualization.Values.Add(new MeasureColumnSpec()
+                visualization.Values.Add(new MeasureColumn()
                 {
-                    SummarizationField = new SummarizationValueField(field)
+                    DataField = new NumberDataField(field)
                 });
             }
             return visualization;
         }
 
-        public static T SetValues<T>(this T visualization, params SummarizationValueField[] fields)
+        public static T SetValues<T>(this T visualization, params NumberDataField[] fields)
             where T : IValues
         {
             visualization.Values.Clear();
             foreach (var field in fields)
             {
-                visualization.Values.Add(new MeasureColumnSpec()
+                visualization.Values.Add(new MeasureColumn()
                 {
-                    SummarizationField = field
+                    DataField = field
                 });
             }
             return visualization;

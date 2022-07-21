@@ -5,8 +5,8 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
 	internal class CompositeChartVisualizationDataSpec : LabelsVisualizationDataSpec
     {
-		public List<MeasureColumnSpec> Chart1 { get; set; } = new List<MeasureColumnSpec>();
-		public List<MeasureColumnSpec> Chart2 { get; set; } = new List<MeasureColumnSpec>();
+		public List<MeasureColumn> Chart1 { get; set; } = new List<MeasureColumn>();
+		public List<MeasureColumn> Chart2 { get; set; } = new List<MeasureColumn>();
 		public CompositeChartVisualizationDataSpec()
 		{
 			SchemaTypeName = SchemaTypeNames.CompositeChartVisualizationDataSpecType;

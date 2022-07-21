@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Filters
 {
-    public enum XmlaElementType
+    internal enum XmlaElementType
     {
         Dimension,
         Level,

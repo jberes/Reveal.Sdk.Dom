@@ -5,12 +5,12 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
     internal class SingleValueVisualizationDataSpec : VisualizationDataSpec
     {
-        public List<MeasureColumnSpec> Value { get; set; }
+        public List<MeasureColumn> Value { get; set; }
 
         public SingleValueVisualizationDataSpec()
         {
             SchemaTypeName = SchemaTypeNames.SingleValueVisualizationDataSpecType;
-            Value = new List<MeasureColumnSpec>();
+            Value = new List<MeasureColumn>();
         }
     }
 }

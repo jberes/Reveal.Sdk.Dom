@@ -4,6 +4,6 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public interface ITabularColumns
     {
-        List<TabularColumnSpec> Columns { get; }
+        List<TabularColumn> Columns { get; }
     }
 }

@@ -16,12 +16,12 @@ namespace Reveal.Sdk.Dom.Visualizations
         ScatterVisualizationDataSpec VisualizationDataSpec { get; set; } = new ScatterVisualizationDataSpec();
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }
+        public List<DimensionColumn> Labels { get { return VisualizationDataSpec.Rows; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> XAxes { get { return VisualizationDataSpec.XAxis; } }
+        public List<MeasureColumn> XAxes { get { return VisualizationDataSpec.XAxis; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> YAxes { get { return VisualizationDataSpec.YAxis; } }
+        public List<MeasureColumn> YAxes { get { return VisualizationDataSpec.YAxis; } }
     }
 }

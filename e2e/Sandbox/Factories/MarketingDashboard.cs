@@ -44,23 +44,20 @@ namespace Sandbox.Factories
                 RowSpan = 24,
             };
 
-            visualization.Date = new DimensionColumnSpec()
+            visualization.Date = new DimensionColumn()
             {
-                SummarizationField = new SummarizationDateField("Date")
+                DataField = new DateDataField("Date")
                 {
                     DateAggregationType = DateAggregationType.Year,
-                    DateFormatting = new DateFormattingSpec()
-                    {
-                        DateFormat = "dd-MMM-yyyy"
-                    }
+                    DateFormatting = new DateFormatting("dd-MMM-yyyy")
                 }
             };
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Spend")
+                DataField = new NumberDataField("Spend")
                 {
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Number,
                         DecimalDigits = 0,
@@ -72,11 +69,11 @@ namespace Sandbox.Factories
                 }
             });
 
-            visualization.Targets.Add(new MeasureColumnSpec()
+            visualization.Targets.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Budget")
+                DataField = new NumberDataField("Budget")
                 {
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Number,
                         ShowGroupingSeparator = true,
@@ -100,21 +97,21 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.Add(_globalDateFilterBinding);
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationDateField("Date")
+                DataField = new DateDataField("Date")
                 {
                     DateAggregationType = DateAggregationType.Month
                 }
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Spend")
+                DataField = new NumberDataField("Spend")
             });
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Budget")
+                DataField = new NumberDataField("Budget")
             });
 
             return visualization;
@@ -129,14 +126,14 @@ namespace Sandbox.Factories
                 RowSpan = 24,
             };
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("Territory")
+                DataField = new TextDataField("Territory")
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Spend")
+                DataField = new NumberDataField("Spend")
             });
 
             return visualization;
@@ -153,25 +150,25 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.Add(_globalDateFilterBinding);
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationDateField("Date")
+                DataField = new DateDataField("Date")
                 {
                     DateAggregationType = DateAggregationType.Month
                 }
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Paid Traffic")
+                DataField = new NumberDataField("Paid Traffic")
             });
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Organic Traffic")
+                DataField = new NumberDataField("Organic Traffic")
             });
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Other Traffic")
+                DataField = new NumberDataField("Other Traffic")
             });
 
             return visualization;
@@ -188,14 +185,14 @@ namespace Sandbox.Factories
 
             visualization.FilterBindings.Add(_globalDateFilterBinding);
 
-            visualization.Labels.Add(new DimensionColumnSpec()
+            visualization.Labels.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("CampaignID")
+                DataField = new TextDataField("CampaignID")
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Conversions")
+                DataField = new NumberDataField("Conversions")
             });
 
             return visualization;
@@ -214,17 +211,17 @@ namespace Sandbox.Factories
             visualization.Settings.NumericFieldAlignment = Alignment.Right;
             visualization.Settings.DateFieldAlignment = Alignment.Left;
 
-            visualization.Rows.Add(new DimensionColumnSpec()
+            visualization.Rows.Add(new DimensionColumn()
             {
-                SummarizationField = new SummarizationRegularField("CampaignID")
+                DataField = new TextDataField("CampaignID")
             });
 
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("CTR")
+                DataField = new NumberDataField("CTR")
                 {
                     AggregationType = AggregationType.Avg,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Percent,
                         DecimalDigits = 2,
@@ -234,12 +231,12 @@ namespace Sandbox.Factories
                     }
                 }
             });
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("Avg. CPC")
+                DataField = new NumberDataField("Avg. CPC")
                 {
                     AggregationType = AggregationType.Avg,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Currency,
                         DecimalDigits = 0,
@@ -249,11 +246,11 @@ namespace Sandbox.Factories
                     }
                 }
             });
-            visualization.Values.Add(new MeasureColumnSpec()
+            visualization.Values.Add(new MeasureColumn()
             {
-                SummarizationField = new SummarizationValueField("New Seats")
+                DataField = new NumberDataField("New Seats")
                 {
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Currency,
                         DecimalDigits = 0,

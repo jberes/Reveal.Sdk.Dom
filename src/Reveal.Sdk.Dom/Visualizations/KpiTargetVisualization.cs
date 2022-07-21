@@ -16,26 +16,26 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonIgnore]
-        public DimensionColumnSpec Date
+        public DimensionColumn Date
         {
             get { return VisualizationDataSpec.Date; }
             set { VisualizationDataSpec.Date = value; }
         }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Values
+        public List<MeasureColumn> Values
         {
             get { return VisualizationDataSpec.Value; }
         }
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Categories
+        public List<DimensionColumn> Categories
         {
             get { return VisualizationDataSpec.Rows; }
         }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Targets
+        public List<MeasureColumn> Targets
         {
             get { return VisualizationDataSpec.Target; }
         }

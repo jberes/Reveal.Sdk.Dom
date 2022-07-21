@@ -12,7 +12,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         public static ImageVisualization SetUrlColumn(this ImageVisualization visualization, string field)
         {
-            visualization.UrlColumn = new TabularColumnSpec() { FieldName = field };
+            visualization.UrlColumn = new TabularColumn(field);
             return visualization;
         }
     }

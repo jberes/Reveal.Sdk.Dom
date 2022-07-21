@@ -15,7 +15,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         AssetVisualizationDataSpec VisualizationDataSpec { get; set; } = new AssetVisualizationDataSpec();
 
         [JsonIgnore]
-        public TabularColumnSpec UrlColumn 
+        public TabularColumn UrlColumn 
         { 
             get { return VisualizationDataSpec.UrlColumn; } 
             set { VisualizationDataSpec.UrlColumn = value; }

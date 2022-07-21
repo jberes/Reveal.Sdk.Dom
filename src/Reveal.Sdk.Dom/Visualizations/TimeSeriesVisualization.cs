@@ -16,17 +16,17 @@ namespace Reveal.Sdk.Dom.Visualizations
         TimeSeriesVisualizationDataSpec VisualizationDataSpec { get; set; } = new TimeSeriesVisualizationDataSpec();
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Values; } }
+        public List<MeasureColumn> Values { get { return VisualizationDataSpec.Values; } }
 
         [JsonIgnore]
-        public DimensionColumnSpec Category
+        public DimensionColumn Category
         {
             get { return VisualizationDataSpec.Category; }
             set { VisualizationDataSpec.Category = value; }
         }
 
         [JsonIgnore]
-        public DimensionColumnSpec Date
+        public DimensionColumn Date
         {
             get
             {

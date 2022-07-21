@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class XmlaMeasure
+    internal class XmlaMeasure
     {
         public bool IsHidden { get; set; }
         public string UniqueName { get; set; }
@@ -13,8 +13,8 @@ namespace Reveal.Sdk.Dom.Visualizations
         public string UserCaption { get; set; }
         public bool IsCalculated { get; set; }
         public string Expression { get; set; }
-        public FormattingSpec Formatting { get; set; }
-        public ConditionalFormattingSpec ConditionalFormatting { get; set; }
+        public FormattingBase Formatting { get; set; }
+        public ConditionalFormatting ConditionalFormatting { get; set; }
         public string Description { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public SortingType Sorting { get; set; }

@@ -17,13 +17,13 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Columns { get { return VisualizationDataSpec.Columns; } }
+        public List<DimensionColumn> Columns { get { return VisualizationDataSpec.Columns; } }
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Rows { get { return VisualizationDataSpec.Rows; } }
+        public List<DimensionColumn> Rows { get { return VisualizationDataSpec.Rows; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Values; } }
+        public List<MeasureColumn> Values { get { return VisualizationDataSpec.Values; } }
 
         [JsonProperty(Order = 7)]
         PivotVisualizationDataSpec VisualizationDataSpec { get; set; } = new PivotVisualizationDataSpec();

@@ -4,6 +4,6 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public interface ICategories
     {
-        List<DimensionColumnSpec> Categories { get; }
+        List<DimensionColumn> Categories { get; }
     }
 }

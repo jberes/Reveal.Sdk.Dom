@@ -16,12 +16,12 @@ namespace Reveal.Sdk.Dom.Visualizations
         CompositeChartVisualizationDataSpec VisualizationDataSpec { get; set; } = new CompositeChartVisualizationDataSpec();
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Chart1 { get { return VisualizationDataSpec.Chart1; } }
+        public List<MeasureColumn> Chart1 { get { return VisualizationDataSpec.Chart1; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Chart2 { get { return VisualizationDataSpec.Chart2; } }
+        public List<MeasureColumn> Chart2 { get { return VisualizationDataSpec.Chart2; } }
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }
+        public List<DimensionColumn> Labels { get { return VisualizationDataSpec.Rows; } }
     }
 }

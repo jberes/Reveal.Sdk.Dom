@@ -7,6 +7,6 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 		public int? AdHocFields { get; set; }
 		public int FormatVersion { get; set; }
 		public List<AdHocExpandedElement> AdHocExpandedElements { get; set; } = new List<AdHocExpandedElement>();
-		public List<DimensionColumnSpec> Rows { get; set; } = new List<DimensionColumnSpec>();
+		public List<DimensionColumn> Rows { get; set; } = new List<DimensionColumn>();
 	}
 }

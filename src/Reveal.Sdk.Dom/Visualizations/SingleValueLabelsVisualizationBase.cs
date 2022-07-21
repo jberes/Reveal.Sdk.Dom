@@ -12,10 +12,10 @@ namespace Reveal.Sdk.Dom.Visualizations
         protected SingleValueLabelsVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
-        public List<DimensionColumnSpec> Labels { get { return VisualizationDataSpec.Rows; } }
+        public List<DimensionColumn> Labels { get { return VisualizationDataSpec.Rows; } }
 
         [JsonIgnore]
-        public List<MeasureColumnSpec> Values { get { return VisualizationDataSpec.Value; } }
+        public List<MeasureColumn> Values { get { return VisualizationDataSpec.Value; } }
 
         [JsonProperty(Order = 7)]
         SingleValueLabelsVisualizationDataSpec VisualizationDataSpec { get; set; } = new SingleValueLabelsVisualizationDataSpec();

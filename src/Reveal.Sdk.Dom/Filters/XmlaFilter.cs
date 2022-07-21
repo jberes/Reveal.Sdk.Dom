@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class XmlaFilter
+    internal class XmlaFilter
     {
         public IFilter Filter { get; set; }
         public string UniqueName { get; set; }

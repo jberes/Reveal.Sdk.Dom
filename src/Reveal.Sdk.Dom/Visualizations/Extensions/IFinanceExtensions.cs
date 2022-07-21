@@ -5,10 +5,10 @@
         public static T SetOpen<T>(this T visualization, string field)
             where T : IFinance
         {
-            return visualization.SetOpen(new SummarizationValueField(field));
+            return visualization.SetOpen(new NumberDataField(field));
         }
 
-        public static T SetOpen<T>(this T visualization, SummarizationValueField field)
+        public static T SetOpen<T>(this T visualization, NumberDataField field)
             where T : IFinance
         {
             visualization.Opens.Clear();
@@ -16,9 +16,9 @@
             if (field.Formatting is null)
                 field.Formatting = GetFinancialNumberFormatting();
 
-            visualization.Opens.Add(new MeasureColumnSpec()
+            visualization.Opens.Add(new MeasureColumn()
             {
-                SummarizationField = field
+                DataField = field
             });
             return visualization;
         }
@@ -26,10 +26,10 @@
         public static T SetHigh<T>(this T visualization, string field)
             where T : IFinance
         {
-            return visualization.SetHigh(new SummarizationValueField(field));
+            return visualization.SetHigh(new NumberDataField(field));
         }
 
-        public static T SetHigh<T>(this T visualization, SummarizationValueField field)
+        public static T SetHigh<T>(this T visualization, NumberDataField field)
             where T : IFinance
         {
             visualization.Highs.Clear();
@@ -37,9 +37,9 @@
             if (field.Formatting is null)
                 field.Formatting = GetFinancialNumberFormatting();
 
-            visualization.Highs.Add(new MeasureColumnSpec()
+            visualization.Highs.Add(new MeasureColumn()
             {
-                SummarizationField = field
+                DataField = field
             });
             return visualization;
         }
@@ -47,10 +47,10 @@
         public static T SetLow<T>(this T visualization, string field)
             where T : IFinance
         {
-            return visualization.SetLow(new SummarizationValueField(field));
+            return visualization.SetLow(new NumberDataField(field));
         }
 
-        public static T SetLow<T>(this T visualization, SummarizationValueField field)
+        public static T SetLow<T>(this T visualization, NumberDataField field)
             where T : IFinance
         {
             visualization.Lows.Clear();
@@ -58,9 +58,9 @@
             if (field.Formatting is null)
                 field.Formatting = GetFinancialNumberFormatting();
 
-            visualization.Lows.Add(new MeasureColumnSpec()
+            visualization.Lows.Add(new MeasureColumn()
             {
-                SummarizationField = field
+                DataField = field
             });
             return visualization;
         }
@@ -68,10 +68,10 @@
         public static T SetClose<T>(this T visualization, string field)
             where T : IFinance
         {
-            return visualization.SetClose(new SummarizationValueField(field));
+            return visualization.SetClose(new NumberDataField(field));
         }
 
-        public static T SetClose<T>(this T visualization, SummarizationValueField field)
+        public static T SetClose<T>(this T visualization, NumberDataField field)
             where T : IFinance
         {
             visualization.Closes.Clear();
@@ -79,16 +79,16 @@
             if (field.Formatting is null)
                 field.Formatting = GetFinancialNumberFormatting();
 
-            visualization.Closes.Add(new MeasureColumnSpec()
+            visualization.Closes.Add(new MeasureColumn()
             {
-                SummarizationField = field
+                DataField = field
             });
             return visualization;
         }
 
-        static NumberFormattingSpec GetFinancialNumberFormatting()
+        static NumberFormatting GetFinancialNumberFormatting()
         {
-            return new NumberFormattingSpec()
+            return new NumberFormatting()
             {
                 DecimalDigits = 0,
                 ShowGroupingSeparator = true

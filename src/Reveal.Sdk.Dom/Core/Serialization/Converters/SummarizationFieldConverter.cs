@@ -4,15 +4,15 @@ using System;
 
 namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
-    internal class SummarizationFieldConverter : TypeMapConverter<SummarizationField>
+    internal class DataFieldConverter : TypeMapConverter<IDataField>
     {
-        public SummarizationFieldConverter()
+        public DataFieldConverter()
         {
             TypeMap = new System.Collections.Generic.Dictionary<string, Type>()
             {
-                { SchemaTypeNames.SummarizationDateFieldType, typeof(SummarizationDateField) },
-                { SchemaTypeNames.SummarizationRegularFieldType, typeof(SummarizationRegularField) },
-                { SchemaTypeNames.SummarizationValueFieldType, typeof(SummarizationValueField) }
+                { SchemaTypeNames.SummarizationDateFieldType, typeof(DateDataField) },
+                { SchemaTypeNames.SummarizationRegularFieldType, typeof(TextDataField) },
+                { SchemaTypeNames.SummarizationValueFieldType, typeof(NumberDataField) }
             };
         }
     }

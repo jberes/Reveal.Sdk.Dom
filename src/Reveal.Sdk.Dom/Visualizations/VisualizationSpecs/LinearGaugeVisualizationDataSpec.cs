@@ -5,10 +5,10 @@ namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
 	internal class LinearGaugeVisualizationDataSpec : LabelsVisualizationDataSpec
     {
-		public List<MeasureColumnSpec> Value { get; set; } = new List<MeasureColumnSpec>();
+		public List<MeasureColumn> Value { get; set; } = new List<MeasureColumn>();
 
 		//todo: what uses this?
-		public List<MeasureColumnSpec> Target { get; set; } = new List<MeasureColumnSpec>();
+		public List<MeasureColumn> Target { get; set; } = new List<MeasureColumn>();
 
 		public LinearGaugeVisualizationDataSpec()
 		{
