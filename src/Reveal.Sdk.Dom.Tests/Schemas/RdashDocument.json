@@ -3,6 +3,7 @@
   "$id": "rdash-document.schema.json",
   "title": "Dashboard",
   "type": "object",
+  "additionalProperties" : false,
   "properties": {
     "Title": {
       "required": true,
@@ -52,6 +53,13 @@
       }
     },
     "GlobalFilters": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "any"
+      }
+    },
+    "GlobalVariables": {
       "required": true,
       "type": "array",
       "items": {
