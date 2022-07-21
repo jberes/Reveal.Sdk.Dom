@@ -55,9 +55,9 @@ namespace Sandbox.Helpers
             return excelDataSourceItem;
         }
 
-        internal static IEnumerable<Field> GetRevenueDataSourceFields()
+        internal static IEnumerable<IField> GetRevenueDataSourceFields()
         {
-            return new List<Field>()
+            return new List<IField>()
             {
                 new DateField("Date"),
                 new TextField("State"),
@@ -74,9 +74,9 @@ namespace Sandbox.Helpers
             };
         }
 
-        internal static List<Field> GetHealthcareDataSourceFields()
+        internal static List<IField> GetHealthcareDataSourceFields()
         {
-            List<Field> fields = new List<Field>
+            return new List<IField>
             {
                 new DateField("Date"),
                 new NumberField("Number of Inpatients"),
@@ -89,12 +89,11 @@ namespace Sandbox.Helpers
                 new NumberField("Charges per MD"),
                 new NumberField("Current Paitents")
             };
-            return fields;
         }
 
-        internal static List<Field> GetManufacturingDataSourceFields()
+        internal static List<IField> GetManufacturingDataSourceFields()
         {
-            List<Field> fields = new List<Field>
+            return new List<IField>
             {
                 new DateField("Date"),
                 new NumberField("Units Lost"),
@@ -110,13 +109,11 @@ namespace Sandbox.Helpers
                 new NumberField("Cost of Labor "),
                 new NumberField("Revenue")
             };
-
-            return fields;
         }
 
-        internal static List<Field> GetMarketingDataSourceFields()
+        internal static List<IField> GetMarketingDataSourceFields()
         {
-            List<Field> fields = new List<Field>
+            return new List<IField>
             {
                 new DateField("Date"),
                 new NumberField("Spend"),
@@ -133,12 +130,11 @@ namespace Sandbox.Helpers
                 new NumberField("Paid %"),
                 new NumberField("Organic %")
             };
-            return fields;
         }
 
-        internal static List<Field> GetSalesDataSourceFields()
+        internal static List<IField> GetSalesDataSourceFields()
         {
-            List<Field> fields = new List<Field>
+            return new List<IField>
             {
                 new TextField("Territory"),
                 new DateField("Date"),
@@ -156,24 +152,22 @@ namespace Sandbox.Helpers
                 new NumberField("Total Opportunites"),
                 new TextField("Product")
             };
-            return fields;
         }
 
-        internal static List<Field> GetSalesByCategoryFields()
+        internal static List<IField> GetSalesByCategoryFields()
         {
-            List<Field> fields = new List<Field>
+            return new List<IField>
             {
                 new NumberField("CategoryID"),
                 new TextField("CategoryName"),
                 new TextField("ProductName"),
                 new NumberField("ProductSales"),
             };
-            return fields;
         }
 
-        internal static List<Field> GetCsvDataSourceFields()
+        internal static List<IField> GetCsvDataSourceFields()
         {
-            List<Field> fields = new List<Field>
+            return new List<IField>
             {
                 new TextField("the_geom"),
                 new NumberField("School_ID"),
@@ -185,12 +179,11 @@ namespace Sandbox.Helpers
                 new NumberField("X"),
                 new NumberField("Y"),
             };
-            return fields;
         }
 
-        internal static IEnumerable<Field> GetOHLCDataSourceFields()
+        internal static IEnumerable<IField> GetOHLCDataSourceFields()
         {
-            List<Field> fields = new List<Field>
+            return new List<IField>
             {
                 new DateField("Date"),
                 new NumberField("Open"),
@@ -199,7 +192,6 @@ namespace Sandbox.Helpers
                 new NumberField("Close"),
                 new NumberField("Volume"),
             };
-            return fields;
         }
     }
 }

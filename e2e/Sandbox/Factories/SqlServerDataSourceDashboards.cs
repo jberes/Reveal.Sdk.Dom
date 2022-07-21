@@ -14,7 +14,7 @@ namespace Sandbox.Factories
             var sqlServerDataSourceItem = new SqlServerBuilder("host", "database", "table")
                 .SetTitle("SQL Server")
                 .SetSubtitle("Orders")
-                .SetFields(new List<Field>()
+                .SetFields(new List<IField>()
                 {
                     new TextField("CustomerID"),
                     new NumberField("OrderID"),

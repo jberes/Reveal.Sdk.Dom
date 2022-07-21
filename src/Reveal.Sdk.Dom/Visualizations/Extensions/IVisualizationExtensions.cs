@@ -23,7 +23,7 @@ namespace Reveal.Sdk.Dom.Visualizations
             return visualization;
         }
 
-        public static T ConfigureField<T>(this T visualization, string fieldName, Action<Field> field)
+        public static T AddDataFilter<T>(this T visualization, string fieldName, Action<IField> field)
             where T : IVisualization<VisualizationSettings, TabularDataSpec>
         {
             try
@@ -36,13 +36,6 @@ namespace Reveal.Sdk.Dom.Visualizations
                 throw new Exception($"ConfigureField: Field {fieldName} not found.");
             }
             
-            return visualization;
-        }
-
-        public static T ConfigureFields<T>(this T visualization, Action<IEnumerable<Field>> fields)
-            where T : IVisualization<VisualizationSettings, TabularDataSpec>
-        {
-            fields.Invoke(visualization.DataSpec.Fields);
             return visualization;
         }
 

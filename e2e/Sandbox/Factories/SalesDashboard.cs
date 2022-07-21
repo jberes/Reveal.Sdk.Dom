@@ -178,9 +178,9 @@ namespace Sandbox.Factories
                     settings.UpperBand.Value = 100.0;
                     settings.MiddleBand.Value = 80.0;
                 })
-                .ConfigureField("Quota", field =>
+                .AddDataFilter("Quota", field =>
                 {
-                    field.Filter = new NumberFilter()
+                    ((NumberField)field).Filter = new NumberFilter()
                     {
                         FilterType = FilterType.FilterByRule,
                         RuleType = NumberRuleType.TopItems,

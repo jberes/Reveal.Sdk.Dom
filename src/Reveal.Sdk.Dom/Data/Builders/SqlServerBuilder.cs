@@ -29,7 +29,7 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public SqlServerBuilder SetFields(IEnumerable<Field> fields)
+        public SqlServerBuilder SetFields(IEnumerable<IField> fields)
         {
             _dataSourceItem.Fields.Clear();
             _dataSourceItem.Fields.AddRange(fields);

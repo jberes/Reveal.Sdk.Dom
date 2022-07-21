@@ -12,11 +12,11 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
         internal bool IsTransposed { get; set; }
 
         [JsonProperty]
-        public List<Field> Fields { get; internal set; } = new List<Field>();
+        public List<IField> Fields { get; internal set; } = new List<IField>();
 
         //not sure what this is for yet
         [JsonProperty]
-        internal List<Field> TransposedFields { get; set; } = new List<Field>();
+        internal List<IField> TransposedFields { get; set; } = new List<IField>();
 
         /// <summary>
         /// This is exposed via the Visualization.Filters property
@@ -28,7 +28,7 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
         [JsonProperty]
         internal SummarizationSpec SummarizationSpec { get; set; }
 
-        //not sure what this is for yet
+        //used when joining tables from multiple data sources
         [JsonProperty]
         internal List<AdditionalTable> AdditionalTables { get; set; } = new List<AdditionalTable>();
 

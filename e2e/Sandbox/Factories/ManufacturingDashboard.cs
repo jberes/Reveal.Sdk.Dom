@@ -77,7 +77,7 @@ namespace Sandbox.Factories
                 RowSpan = 22,
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First();
+            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
             field.Filter = new DateTimeFilter() //in the UI these are referred to as a Data Fiter
             {
                 FilterType = FilterType.FilterByRule,
@@ -85,16 +85,6 @@ namespace Sandbox.Factories
                 DisplayInLocalTimeZone = false,
                 RuleType = DateRuleType.LastYear
             };
-            field.Formatting = new DateFormattingSpec()
-            {
-                DateFormat = "dd-MMM-yyyy"
-            };
-            field.Settings = new DateTimeFieldSettings()
-            {
-                DateFiscalYearStartMonth = 0,
-                DisplayInLocalTimeZone = false
-            };
-
 
             visualization.Labels.Add(new DimensionColumnSpec()
             {
@@ -141,19 +131,14 @@ namespace Sandbox.Factories
                 RowSpan = 38
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").FirstOrDefault();
+            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
             field.Filter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,
                 DateFiscalYearStartMonth = 0,
                 DisplayInLocalTimeZone = false,
                 RuleType = DateRuleType.LastMonth
-            };
-            field.Settings = new DateTimeFieldSettings()
-            {
-                DateFiscalYearStartMonth = 0,
-                DisplayInLocalTimeZone = false
-            };            
+            };         
 
             visualization.Labels.Add(new DimensionColumnSpec()
             {
@@ -185,18 +170,13 @@ namespace Sandbox.Factories
                 RowSpan = 38,
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").FirstOrDefault();
+            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
             field.Filter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,
                 DateFiscalYearStartMonth = 0,
                 DisplayInLocalTimeZone = false,
                 RuleType = DateRuleType.LastMonth
-            };
-            field.Settings = new DateTimeFieldSettings()
-            {
-                DateFiscalYearStartMonth = 0,
-                DisplayInLocalTimeZone = false
             };
 
             visualization.Labels.Add(new DimensionColumnSpec()
@@ -229,7 +209,7 @@ namespace Sandbox.Factories
                 RowSpan = 19
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Line").FirstOrDefault();
+            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Line").First() as TextField;
             field.Filter = new StringFilter()
             {
                 FilterType = FilterType.SelectedValues,
@@ -238,11 +218,6 @@ namespace Sandbox.Factories
                     new FilterValue() { Name = "Line 5", Value = "Line 5"},
                     new FilterValue() { Name = "Line 2", Value = "Line 2"}
                 }
-            };
-            field.Settings = new DateTimeFieldSettings()
-            {
-                DateFiscalYearStartMonth = 0,
-                DisplayInLocalTimeZone = false
             };
 
             visualization.Settings.Minimum = new Bound() { Value = 0.0, ValueType = BoundValueType.NumberValue };
@@ -282,7 +257,7 @@ namespace Sandbox.Factories
                 RowSpan = 19
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Line").FirstOrDefault();
+            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Line").First() as TextField;
             field.Filter = new StringFilter()
             {
                 FilterType = FilterType.SelectedValues,
@@ -329,22 +304,13 @@ namespace Sandbox.Factories
                 RowSpan = 32
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First();
+            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
             field.Filter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,
                 DateFiscalYearStartMonth = 0,
                 DisplayInLocalTimeZone = false,
                 RuleType = DateRuleType.LastYear
-            };
-            field.Formatting = new DateFormattingSpec()
-            {
-                DateFormat = "dd-MMM-yyyy"
-            };
-            field.Settings = new DateTimeFieldSettings()
-            {
-                DateFiscalYearStartMonth = 0,
-                DisplayInLocalTimeZone = false
             };
 
             visualization.Labels.Add(new DimensionColumnSpec()

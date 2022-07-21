@@ -4,6 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
+    //todo: rename to TextFilter
     public class StringFilter : Filter
     {
         [JsonConverter(typeof(StringEnumConverter))]
