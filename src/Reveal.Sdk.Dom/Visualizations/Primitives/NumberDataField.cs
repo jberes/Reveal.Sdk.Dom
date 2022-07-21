@@ -32,7 +32,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         public NumberFormatting Formatting { get; set; }
         
-        public ConditionalFormattingSpec ConditionalFormatting { get; set; }
+        public ConditionalFormatting ConditionalFormatting { get; set; }
 
         //todo: is this used? Is this the same as the Filter property on a Field? Are both used or only the Field property?
         [JsonProperty]

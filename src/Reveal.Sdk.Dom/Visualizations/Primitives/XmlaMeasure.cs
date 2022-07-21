@@ -14,7 +14,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public bool IsCalculated { get; set; }
         public string Expression { get; set; }
         public FormattingBase Formatting { get; set; }
-        public ConditionalFormattingSpec ConditionalFormatting { get; set; }
+        public ConditionalFormatting ConditionalFormatting { get; set; }
         public string Description { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public SortingType Sorting { get; set; }
