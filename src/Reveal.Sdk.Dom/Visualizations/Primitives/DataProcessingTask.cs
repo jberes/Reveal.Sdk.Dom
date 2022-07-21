@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class DataProcessingTask
+    internal class DataProcessingTask
     {
         public List<DataProcessingInputField> InputFields { get; set; }
         public List<DataProcessingOutputField> OutputFields { get; set; }

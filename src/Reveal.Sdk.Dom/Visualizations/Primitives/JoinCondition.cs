@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class JoinCondition
+    internal class JoinCondition
     {
         public string LeftFieldName { get; set; }
         public string RightFieldName { get; set; }

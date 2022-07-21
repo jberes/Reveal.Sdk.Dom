@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ServiceAdditionalTable
+    internal class ServiceAdditionalTable
     {
         public string Alias { get; set; }
         //TODO: customer converter
