@@ -49,10 +49,7 @@ namespace Sandbox.Factories
                 DataField = new DateDataField("Date")
                 {
                     DateAggregationType = DateAggregationType.Year,
-                    DateFormatting = new DateFormattingSpec()
-                    {
-                        DateFormat = "dd-MMM-yyyy"
-                    }
+                    DateFormatting = new DateFormatting("dd-MMM-yyyy")
                 }
             };
 
@@ -60,7 +57,7 @@ namespace Sandbox.Factories
             {
                 DataField = new NumberDataField("Spend")
                 {
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Number,
                         DecimalDigits = 0,
@@ -76,7 +73,7 @@ namespace Sandbox.Factories
             {
                 DataField = new NumberDataField("Budget")
                 {
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Number,
                         ShowGroupingSeparator = true,
@@ -224,7 +221,7 @@ namespace Sandbox.Factories
                 DataField = new NumberDataField("CTR")
                 {
                     AggregationType = AggregationType.Avg,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Percent,
                         DecimalDigits = 2,
@@ -239,7 +236,7 @@ namespace Sandbox.Factories
                 DataField = new NumberDataField("Avg. CPC")
                 {
                     AggregationType = AggregationType.Avg,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Currency,
                         DecimalDigits = 0,
@@ -253,7 +250,7 @@ namespace Sandbox.Factories
             {
                 DataField = new NumberDataField("New Seats")
                 {
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Currency,
                         DecimalDigits = 0,

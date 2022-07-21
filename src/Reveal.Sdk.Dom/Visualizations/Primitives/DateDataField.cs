@@ -15,6 +15,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonConverter(typeof(StringEnumConverter))]
         public DateAggregationType DateAggregationType { get; set; } = DateAggregationType.Year;
         
-        public DateFormattingSpec DateFormatting { get; set; }
+        public DateFormatting DateFormatting { get; set; }
     }
 }

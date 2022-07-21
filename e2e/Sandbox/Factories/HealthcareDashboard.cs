@@ -58,7 +58,7 @@ namespace Sandbox.Factories
             if (avg)
             {
                 summarizationtionField.AggregationType = AggregationType.Avg;
-                summarizationtionField.Formatting = new NumberFormattingSpec()
+                summarizationtionField.Formatting = new NumberFormatting()
                 {
                     DecimalDigits = 0,
                     ShowGroupingSeparator = true,
@@ -174,7 +174,7 @@ namespace Sandbox.Factories
                 DataField = new NumberDataField("Satisfaction ")
                 {
                     AggregationType = AggregationType.CountRows,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         DecimalDigits = 0,
                         ShowGroupingSeparator = true,

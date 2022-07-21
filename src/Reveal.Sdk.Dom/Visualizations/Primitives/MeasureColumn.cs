@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class MeasureColumn : Column
+    public class MeasureColumn : ColumnBase
     {
         public MeasureColumn()
         {

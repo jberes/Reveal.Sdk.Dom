@@ -51,7 +51,7 @@ namespace Sandbox.Factories
             if (avg)
             {
                 summarizationtionField.AggregationType = AggregationType.Avg;
-                summarizationtionField.Formatting = new NumberFormattingSpec()
+                summarizationtionField.Formatting = new NumberFormatting()
                 {
                     FormatType = NumberFormattingType.Percent,
                     DecimalDigits = 0,
@@ -98,7 +98,7 @@ namespace Sandbox.Factories
             {
                 DataField = new NumberDataField("Cost of Labor ")
                 {
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Currency,
                         DecimalDigits = 0,
@@ -110,7 +110,7 @@ namespace Sandbox.Factories
             {
                 DataField = new NumberDataField("Revenue")
                 {
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Currency,
                         DecimalDigits = 0,
@@ -150,7 +150,7 @@ namespace Sandbox.Factories
                 DataField = new NumberDataField("Units Produced")
                 {
                     Sorting = SortingType.Desc,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         DecimalDigits = 0,
                         ShowGroupingSeparator = true,
@@ -189,7 +189,7 @@ namespace Sandbox.Factories
                 DataField = new NumberDataField("Operators Available ")
                 {
                     Sorting = SortingType.Asc,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         DecimalDigits = 0,
                         ShowGroupingSeparator = true
@@ -230,7 +230,7 @@ namespace Sandbox.Factories
                 DataField = new NumberDataField("Efficiency")
                 {
                     AggregationType = AggregationType.Avg,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Percent,
                         DecimalDigits = 2,
@@ -277,7 +277,7 @@ namespace Sandbox.Factories
                 DataField = new NumberDataField("Efficiency")
                 {
                     AggregationType = AggregationType.Max,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Percent,
                         DecimalDigits = 2,

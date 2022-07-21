@@ -13,7 +13,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public string UserCaption { get; set; }
         public bool IsCalculated { get; set; }
         public string Expression { get; set; }
-        public FormattingSpec Formatting { get; set; }
+        public FormattingBase Formatting { get; set; }
         public ConditionalFormattingSpec ConditionalFormatting { get; set; }
         public string Description { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]

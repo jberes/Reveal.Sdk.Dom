@@ -1,16 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Reveal.Sdk.Dom.Visualizations
+﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ConditionalFormattingSpec
+    public class ConditionalFormattingSpec : ConditionalFormattingBase<ConditionalFormattingBand>
     {
         public Bound Minimum { get; set; }
         public Bound Maximum { get; set; }
-        public List<ConditionalFormattingBand> Bands { get; set; }
-
-        public ConditionalFormattingSpec()
-        {
-            Bands = new List<ConditionalFormattingBand>();
-        }
     }
 }

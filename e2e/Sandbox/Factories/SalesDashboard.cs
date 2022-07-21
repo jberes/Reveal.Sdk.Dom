@@ -57,7 +57,7 @@ namespace Sandbox.Factories
                 {
                     FieldLabel = "Actual Sales",
                     AggregationType = AggregationType.Sum,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Currency,
                         DecimalDigits = 0,
@@ -105,7 +105,7 @@ namespace Sandbox.Factories
                 .SetDate(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
                 .SetValue(new NumberDataField("New Seats")
                 {
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Number,
                         DecimalDigits = 0,
@@ -134,7 +134,7 @@ namespace Sandbox.Factories
                 .SetValue(new NumberDataField("Pipepline")
                 {
                     Sorting = SortingType.Asc,
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Currency,
                         DecimalDigits = 0,
@@ -161,7 +161,7 @@ namespace Sandbox.Factories
                 .SetLabel("Employee")
                 .SetValue(new NumberDataField("Quota")
                 {
-                    Formatting = new NumberFormattingSpec()
+                    Formatting = new NumberFormatting()
                     {
                         FormatType = NumberFormattingType.Percent,
                         DecimalDigits = 2,

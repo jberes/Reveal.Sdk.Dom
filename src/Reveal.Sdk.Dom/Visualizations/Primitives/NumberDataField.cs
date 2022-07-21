@@ -15,9 +15,10 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
         
         public string FieldLabel { get; set; }
-        
-        //todo: is this used?
-        //public bool IsHidden { get; set; }
+
+        //todo: is this used? can we remove it?
+        [JsonProperty]
+        internal bool IsHidden { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public AggregationType AggregationType { get; set; } = AggregationType.Sum;
@@ -29,10 +30,12 @@ namespace Reveal.Sdk.Dom.Visualizations
         
         public string Expression { get; set; }
 
-        public NumberFormattingSpec Formatting { get; set; }
+        public NumberFormatting Formatting { get; set; }
         
         public ConditionalFormattingSpec ConditionalFormatting { get; set; }
-        
-        public NumberFilter Filter { get; set; }
+
+        //todo: is this used? Is this the same as the Filter property on a Field? Are both used or only the Field property?
+        [JsonProperty]
+        internal NumberFilter Filter { get; set; }
     }
 }

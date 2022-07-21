@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TabularColumn : Column
+    public class TabularColumn : ColumnBase
     {
         internal TabularColumn() : this(string.Empty) { }
         public TabularColumn(string fieldName)

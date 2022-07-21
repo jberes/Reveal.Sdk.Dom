@@ -86,9 +86,9 @@
             return visualization;
         }
 
-        static NumberFormattingSpec GetFinancialNumberFormatting()
+        static NumberFormatting GetFinancialNumberFormatting()
         {
-            return new NumberFormattingSpec()
+            return new NumberFormatting()
             {
                 DecimalDigits = 0,
                 ShowGroupingSeparator = true
