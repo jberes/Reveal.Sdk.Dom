@@ -3,19 +3,19 @@
 namespace Reveal.Sdk.Dom.Visualizations
 {
     //todo: implement, rename classes, and move classes to files
-    public class ActionsModel
+    internal class ActionsModel
     {
         public DashboardActionTriggerType Trigger { get; set; } = DashboardActionTriggerType.SelectRow;
         public List<Action> Actions { get; set; }
     }
 
-    public enum DashboardActionTriggerType
+    internal enum DashboardActionTriggerType
     {
         SelectRow,
         Maximize
     }
 
-    public partial class Action
+    internal partial class Action
     {
         public DashboardActionTargetType Type { get; set; } = DashboardActionTargetType.OpenDashboard;
         public string Title { get; set; }
@@ -23,13 +23,13 @@ namespace Reveal.Sdk.Dom.Visualizations
         public List<ActionParameter> Parameters { get; set; } = new List<ActionParameter>();     
     }
 
-    public enum DashboardActionTargetType
+    internal enum DashboardActionTargetType
     {
         OpenDashboard,
         OpenUrl
     }
 
-    public class ActionParameter
+    internal class ActionParameter
     {
         public string Namespace { get; set; }
         public string Name { get; set; }
@@ -37,7 +37,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public string Value { get; set; }
     }
 
-    public enum DashboardActionParameterSourceType
+    internal enum DashboardActionParameterSourceType
     {
         Column,
         Literal,
