@@ -1,7 +1,7 @@
 ﻿namespace Reveal.Sdk.Dom.Variables
 {
     //todo: will probably rename to dashboard variable
-    public class GlobalVariable
+    internal class GlobalVariable
     {
         public string Name { get; set; }
         public bool IsHidden { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Variables
 {
-    public enum GlobalVariableValueType
+    internal enum GlobalVariableValueType
     {
         String,
         Number,

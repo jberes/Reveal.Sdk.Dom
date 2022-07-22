@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Variables
 {
-    public class GlobalVariableBindingTarget : BindingTarget
+    internal class GlobalVariableBindingTarget : BindingTarget
     {
         public string GlobalVariableName { get; set; }
     }
