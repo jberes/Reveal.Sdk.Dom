@@ -11,14 +11,14 @@ namespace Reveal.Sdk.Dom.Visualizations
         public ImageVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
         public ImageVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
-        [JsonProperty(Order = 7)]
-        AssetVisualizationDataSpec VisualizationDataSpec { get; set; } = new AssetVisualizationDataSpec();
-
         [JsonIgnore]
-        public TabularColumn UrlColumn 
+        public TabularColumn Url 
         { 
             get { return VisualizationDataSpec.UrlColumn; } 
             set { VisualizationDataSpec.UrlColumn = value; }
         }
+
+        [JsonProperty(Order = 7)]
+        AssetVisualizationDataSpec VisualizationDataSpec { get; set; } = new AssetVisualizationDataSpec();
     }
 }
