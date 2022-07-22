@@ -259,7 +259,7 @@ namespace Sandbox.Factories
                 .SetValues("Spend", "Budget"));
 
             //image
-            document.Visualizations.Add(new ImageVisualization("Image", excelDataSourceItem).SetUrlColumn("Territory"));
+            document.Visualizations.Add(new ImageVisualization("Image", excelDataSourceItem).SetUrl("Territory"));
 
             //sparkline
             document.Visualizations.Add(new SparklineVisualization("Sparkline", excelDataSourceItem)
@@ -276,8 +276,8 @@ namespace Sandbox.Factories
             //textbox
             document.Visualizations.Add(new TextBoxVisualization("TextBox").SetText("This is some text").SetFontSize(FontSize.Large));
 
-            //DIY
-            document.Visualizations.Add(new CustomVisualization("DIY", excelDataSourceItem)
+            //custom
+            document.Visualizations.Add(new CustomVisualization("Custom", excelDataSourceItem)
                 .SetUrl("https://dl.infragistics.com/reportplus/diy/HelloWorld-Desktop-EN.html")
                 .SetRows("Territory", "CampaignID")
                 .SetValues("Spend", "Budget"));

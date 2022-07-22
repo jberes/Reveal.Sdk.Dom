@@ -1,18 +1,10 @@
-﻿using Reveal.Sdk.Dom.Visualizations.Settings;
-using System;
-
-namespace Reveal.Sdk.Dom.Visualizations
+﻿namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class ImageVisualizationExtensions
     {
-        public static ImageVisualization ConfigureSettings(this ImageVisualization visualization, Action<AssetVisualizationSettings> settings)
+        public static ImageVisualization SetUrl(this ImageVisualization visualization, string field)
         {
-            return visualization.ConfigureSettings<ImageVisualization, AssetVisualizationSettings>(settings);
-        }
-
-        public static ImageVisualization SetUrlColumn(this ImageVisualization visualization, string field)
-        {
-            visualization.UrlColumn = new TabularColumn(field);
+            visualization.Url = new TabularColumn(field);
             return visualization;
         }
     }
