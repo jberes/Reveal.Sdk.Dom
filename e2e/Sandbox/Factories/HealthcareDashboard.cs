@@ -54,11 +54,11 @@ namespace Sandbox.Factories
                 DataField = new DateDataField("Date")
             };
 
-            NumberDataField summarizationtionField = new NumberDataField(field);
+            NumberDataField dataField = new NumberDataField(field);
             if (avg)
             {
-                summarizationtionField.AggregationType = AggregationType.Avg;
-                summarizationtionField.Formatting = new NumberFormatting()
+                dataField.AggregationType = AggregationType.Avg;
+                dataField.Formatting = new NumberFormatting()
                 {
                     DecimalDigits = 0,
                     ShowGroupingSeparator = true,
@@ -67,7 +67,7 @@ namespace Sandbox.Factories
 
             visualization.Values.Add(new MeasureColumn()
             {
-                DataField = summarizationtionField
+                DataField = dataField
             });
 
             return visualization;
