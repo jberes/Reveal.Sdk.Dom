@@ -94,7 +94,7 @@ namespace Sandbox.Factories
 
             //combo
             document.Visualizations.Add(new ComboChartVisualization("Combo", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetChart1Value("Spend")
                 .SetChart2Value("Budget")
                 .ConfigureSettings(settings =>
@@ -107,52 +107,52 @@ namespace Sandbox.Factories
 
             //stacked column
             document.Visualizations.Add(new StackedColumnChartVisualization("Stacked Column", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
 
             //stacked bar
             document.Visualizations.Add(new StackedBarChartVisualization("Stacked Bar", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
 
             //stacked area
             document.Visualizations.Add(new StackedAreaChartVisualization("Stacked Area", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
 
             //area
             document.Visualizations.Add(new AreaChartVisualization("Area", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
 
             //line
             document.Visualizations.Add(new LineChartVisualization("Line", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValue("Conversions"));
 
             //step area
             document.Visualizations.Add(new StepAreaChartVisualization("Step Area", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Spend", "Budget"));
 
             //step line
             document.Visualizations.Add(new StepLineChartVisualization("Step Line", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Spend", "Budget"));
 
             //spline area
             document.Visualizations.Add(new SplineAreaChartVisualization("Spline Area", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Spend", "Budget"));
 
             //spline
             document.Visualizations.Add(new SplineChartVisualization("Spline", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Spend", "Budget"));
 
             //linear gauge
             document.Visualizations.Add(new LinearGaugeVisualization("Linear", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month }).SetValue("Spend")
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month }).SetValue("Spend")
                 .ConfigureSettings(settings =>
                 {
                     settings.ValueComparisonType = ValueComparisonType.Number;
@@ -250,12 +250,12 @@ namespace Sandbox.Factories
 
             //time series
             document.Visualizations.Add(new TimeSeriesVisualization("Time Series", excelDataSourceItem)
-                .SetDate(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetDate(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Paid Traffic", "Organic Traffic", "Other Traffic"));
 
             //radial
             document.Visualizations.Add(new RadialVisualization("Radial", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Spend", "Budget"));
 
             //image
@@ -284,7 +284,7 @@ namespace Sandbox.Factories
 
             //OHLC
             document.Visualizations.Add(new OHLCVisualization("OHLC", financialDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Day })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Day })
                 .SetOpen("Open")
                 .SetHigh("High")
                 .SetLow("Low")
@@ -292,7 +292,7 @@ namespace Sandbox.Factories
 
             //Candle stick
             document.Visualizations.Add(new CandleStickVisualization("Candlestick", financialDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Day })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Day })
                 .SetOpen("Open")
                 .SetHigh("High")
                 .SetLow("Low")

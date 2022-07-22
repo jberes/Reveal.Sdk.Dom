@@ -75,7 +75,7 @@ namespace Sandbox.Factories
         private static Visualization CreateSplineAreaChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new SplineAreaChartVisualization("New vs Renewal Sales", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("New Sales", "Renewal Sales ")
                 .AddFilterBindings(filterBindings)
                 .SetPosition(39, 31);
@@ -93,7 +93,7 @@ namespace Sandbox.Factories
         private static Visualization CreateIndicatorVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new KpiTimeVisualization("Total Opportunities", excelDataSourceItem)
-                .SetDate(new DateDataField("Date") { DateAggregationType = DateAggregationType.Year })
+                .SetDate(new DateDataField("Date") { AggregationType = DateAggregationType.Year })
                 .SetValue("Total Opportunites")
                 .AddFilterBindings(filterBindings)
                 .SetPosition(19, 11);
@@ -102,7 +102,7 @@ namespace Sandbox.Factories
         private static Visualization CreateSparklineVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new SparklineVisualization("New Seats by Product", excelDataSourceItem)
-                .SetDate(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetDate(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValue(new NumberDataField("New Seats")
                 {
                     Formatting = new NumberFormatting()
@@ -149,7 +149,7 @@ namespace Sandbox.Factories
         private static Visualization CreateColumnChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
         {
             return new ColumnChartVisualization("", excelDataSourceItem)
-                .SetLabel(new DateDataField("Date") { DateAggregationType = DateAggregationType.Month })
+                .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Leads", "Hot Leads")
                 .AddFilterBindings(filterBindings)
                 .SetPosition(46, 31);

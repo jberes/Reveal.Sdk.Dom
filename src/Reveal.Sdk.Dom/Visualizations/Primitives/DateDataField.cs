@@ -11,10 +11,12 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             SchemaTypeName = SchemaTypeNames.SummarizationDateFieldType;
         }
-        
+
+        [JsonProperty("DateAggregationType")]
         [JsonConverter(typeof(StringEnumConverter))]
-        public DateAggregationType DateAggregationType { get; set; } = DateAggregationType.Year;
-        
-        public DateFormatting DateFormatting { get; set; }
+        public DateAggregationType AggregationType { get; set; } = DateAggregationType.Year;
+
+        [JsonProperty("DateFormatting")]
+        public DateFormatting Formatting { get; set; }
     }
 }

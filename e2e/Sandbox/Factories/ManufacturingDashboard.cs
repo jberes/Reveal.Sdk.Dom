@@ -90,7 +90,7 @@ namespace Sandbox.Factories
             {
                 DataField = new DateDataField("Date")
                 {
-                    DateAggregationType = DateAggregationType.Month
+                    AggregationType = DateAggregationType.Month
                 }
             });
 
@@ -317,7 +317,7 @@ namespace Sandbox.Factories
             {
                 DataField = new DateDataField("Date")
                 {
-                    DateAggregationType = DateAggregationType.Month
+                    AggregationType = DateAggregationType.Month
                 }
             });
 

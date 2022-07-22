@@ -48,8 +48,8 @@ namespace Sandbox.Factories
             {
                 DataField = new DateDataField("Date")
                 {
-                    DateAggregationType = DateAggregationType.Year,
-                    DateFormatting = new DateFormatting("dd-MMM-yyyy")
+                    AggregationType = DateAggregationType.Year,
+                    Formatting = new DateFormatting("dd-MMM-yyyy")
                 }
             };
 
@@ -101,7 +101,7 @@ namespace Sandbox.Factories
             {
                 DataField = new DateDataField("Date")
                 {
-                    DateAggregationType = DateAggregationType.Month
+                    AggregationType = DateAggregationType.Month
                 }
             });
 
@@ -154,7 +154,7 @@ namespace Sandbox.Factories
             {
                 DataField = new DateDataField("Date")
                 {
-                    DateAggregationType = DateAggregationType.Month
+                    AggregationType = DateAggregationType.Month
                 }
             });
 
