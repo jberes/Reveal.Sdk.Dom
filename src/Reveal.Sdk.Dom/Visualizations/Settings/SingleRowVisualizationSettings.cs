@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class SingleRowVisualizationSettings : VisualizationSettings
+    public sealed class SingleRowVisualizationSettings : VisualizationSettings
     {
         public SingleRowVisualizationSettings()
         {

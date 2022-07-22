@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class GridVisualizationSettings : GridVisualizationSettingsBase
+    public sealed class GridVisualizationSettings : GridVisualizationSettingsBase
     {
         public GridVisualizationSettings()
         {

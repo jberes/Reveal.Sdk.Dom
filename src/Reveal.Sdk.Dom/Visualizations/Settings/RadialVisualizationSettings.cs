@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class RadialVisualizationSettings : ChartVisualizationSettings
+    public sealed class RadialVisualizationSettings : ChartVisualizationSettings
     {
         public RadialVisualizationSettings()
         {

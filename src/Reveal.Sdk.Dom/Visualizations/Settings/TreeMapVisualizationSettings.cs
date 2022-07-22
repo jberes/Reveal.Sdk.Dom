@@ -5,7 +5,7 @@ using Reveal.Sdk.Dom.Core.Constants;
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
 	//todo: clean up and move classes out
-    public class TreeMapVisualizationSettings : VisualizationSettings
+    public sealed class TreeMapVisualizationSettings : VisualizationSettings
     {
 		[JsonConverter(typeof(StringEnumConverter))]
 		public DashboardTreeMapLayoutEnumType Layout { get; set; } = DashboardTreeMapLayoutEnumType.Squarified;

@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class ChoroplethVisualizationSettings : MapVisualizationSettingsBase
+    public sealed class ChoroplethVisualizationSettings : MapVisualizationSettingsBase
     {
         public ChoroplethVisualizationSettings()
         {

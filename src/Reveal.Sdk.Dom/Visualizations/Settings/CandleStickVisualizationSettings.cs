@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class CandleStickVisualizationSettings : FinancialVisualizationSettingsBase
+    public sealed class CandleStickVisualizationSettings : FinancialVisualizationSettingsBase
     {
         public CandleStickVisualizationSettings()
         {

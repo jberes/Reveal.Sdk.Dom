@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class LinearGaugeVisualizationSettings : GaugeVisualizationSettings
+    public sealed class LinearGaugeVisualizationSettings : GaugeVisualizationSettings
     {
         public LinearGaugeVisualizationSettings()
         {

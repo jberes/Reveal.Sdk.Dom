@@ -5,7 +5,7 @@ using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class SparklineVisualizationSettings : GridVisualizationSettingsBase
+    public sealed class SparklineVisualizationSettings : GridVisualizationSettingsBase
     {
         internal SparklineVisualizationDataSpec _visualizationDataSpec;
 

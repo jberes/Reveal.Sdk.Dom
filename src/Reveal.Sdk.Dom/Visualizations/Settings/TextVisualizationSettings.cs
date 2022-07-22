@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class TextVisualizationSettings : GaugeVisualizationSettings<TextBand>
+    public sealed class TextVisualizationSettings : GaugeVisualizationSettings<TextBand>
     {
         public TextVisualizationSettings()
         {
