@@ -5,7 +5,7 @@ using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ImageVisualization : TabularVisualizationBase<AssetVisualizationSettings>
+    public sealed class ImageVisualization : TabularVisualizationBase<AssetVisualizationSettings>
     {
         internal ImageVisualization() : this(null) { }
         public ImageVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

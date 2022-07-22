@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class StackedBarChartVisualization : CategoryVisualizationBase<StackedBarChartVisualizationSettings>
+    public sealed class StackedBarChartVisualization : CategoryVisualizationBase<StackedBarChartVisualizationSettings>
     {
         internal StackedBarChartVisualization() : this(null) { }
 

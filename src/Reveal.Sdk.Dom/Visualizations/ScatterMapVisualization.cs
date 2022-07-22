@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ScatterMapVisualization : TabularVisualizationBase<ScatterMapVisualizationSettings>, ILabel, IMap
+    public sealed class ScatterMapVisualization : TabularVisualizationBase<ScatterMapVisualizationSettings>, ILabel, IMap
     {
         internal ScatterMapVisualization() : this(null) { }
         public ScatterMapVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

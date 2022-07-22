@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class FunnelChartVisualization : SingleValueLabelsVisualizationBase<FunnelChartVisualizationSettings>
+    public sealed class FunnelChartVisualization : SingleValueLabelsVisualizationBase<FunnelChartVisualizationSettings>
     {
         internal FunnelChartVisualization() : this(null) { }
         public FunnelChartVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

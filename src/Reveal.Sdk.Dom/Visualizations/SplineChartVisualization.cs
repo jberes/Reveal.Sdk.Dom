@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class SplineChartVisualization : CategoryVisualizationBase<SplineChartVisualizationSettings>
+    public sealed class SplineChartVisualization : CategoryVisualizationBase<SplineChartVisualizationSettings>
     {
         internal SplineChartVisualization() : this(null) { }
 

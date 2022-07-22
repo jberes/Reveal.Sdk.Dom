@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class SparklineVisualization : TabularVisualizationBase<SparklineVisualizationSettings>, IDate, IValues, ICategories
+    public sealed class SparklineVisualization : TabularVisualizationBase<SparklineVisualizationSettings>, IDate, IValues, ICategories
     {
         internal SparklineVisualization() : this(null) { }
         public SparklineVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

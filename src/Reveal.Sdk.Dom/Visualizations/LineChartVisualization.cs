@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class LineChartVisualization : CategoryVisualizationBase<LineChartVisualizationSettings>
+    public sealed class LineChartVisualization : CategoryVisualizationBase<LineChartVisualizationSettings>
     {
         internal LineChartVisualization() : this(null) { }
 

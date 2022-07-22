@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class GridVisualization : TabularVisualizationBase<GridVisualizationSettings>, ITabularColumns
+    public sealed class GridVisualization : TabularVisualizationBase<GridVisualizationSettings>, ITabularColumns
     {
         internal GridVisualization() : this(null) { }
         public GridVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

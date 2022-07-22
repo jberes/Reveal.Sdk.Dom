@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class BarChartVisualization : CategoryVisualizationBase<BarChartVisualizationSettings>
+    public sealed class BarChartVisualization : CategoryVisualizationBase<BarChartVisualizationSettings>
     {
         internal BarChartVisualization() : this(null) { }
 

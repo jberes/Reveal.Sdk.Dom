@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class CandleStickVisualization : FinancialVisualizationBase<CandleStickVisualizationSettings>
+    public sealed class CandleStickVisualization : FinancialVisualizationBase<CandleStickVisualizationSettings>
     {
         internal CandleStickVisualization() : this(null) { }
         public CandleStickVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
