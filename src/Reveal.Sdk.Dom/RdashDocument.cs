@@ -56,31 +56,16 @@ namespace Reveal.Sdk.Dom
         [JsonProperty]
         public string SavedWith { get; internal set; } = string.Empty;
 
-        /// <summary>
-        /// Gets a value which represents the format of the dashboard.
-        /// </summary>
         [JsonProperty]
-        public int FormatVersion { get; private set; }
+        internal int FormatVersion { get; set; } = 6;
 
         /// <summary>
-        /// Gets or sets whether the RevealView displaying the dashboard will automatically layout visualizations, or use an absolute layout controlled by each visualization's ColumnSpan and RowSpan properties. True by default.
+        /// Gets or sets whether the viewer displaying the dashboard will automatically layout visualizations, or use an absolute layout controlled by each visualization's ColumnSpan and RowSpan properties. True by default.
         /// </summary>
         public bool UseAutoLayout { get; set; } = true;
 
-        /// <summary>
-        /// TODO:
-        /// </summary>
-        public int? AutoRefreshInterval { get; set; }
-
-        /// <summary>
-        /// TODO:
-        /// </summary>
-        public string PasswordHash { get; set; }
-
-        /// <summary>
-        /// TODO:
-        /// </summary>
-        public string Tags { get; set; }
+        [JsonProperty]
+        internal string Tags { get; set; }
 
         /// <summary>
         /// Gets the collection of data sources available for creating visualizations.
