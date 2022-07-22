@@ -27,7 +27,7 @@ namespace Reveal.Sdk.Dom.Tests
             Assert.Equal(string.Empty, dashboard.SavedWith);
             Assert.Equal(Theme.Mountain, dashboard.Theme);
             Assert.Null(dashboard.Tags);
-            Assert.Equal(0, dashboard.FormatVersion);
+            Assert.Equal(6, dashboard.FormatVersion);
             Assert.True(dashboard.UseAutoLayout);
 
             Assert.NotNull(dashboard.DataSources);
@@ -53,7 +53,7 @@ namespace Reveal.Sdk.Dom.Tests
             Assert.NotEqual(string.Empty, document.SavedWith);
             Assert.Equal(Theme.Mountain, document.Theme);
             Assert.NotNull(document.Tags);
-            Assert.NotEqual(0, document.FormatVersion);
+            Assert.Equal(6, document.FormatVersion);
             Assert.False(document.UseAutoLayout);
             Assert.NotEmpty(document.DataSources);
             Assert.NotEmpty(document.Filters);
@@ -70,9 +70,7 @@ namespace Reveal.Sdk.Dom.Tests
             {
                 Title = "New Dashboard",
                 Description = "This is a test dashboard",
-                Theme = Theme.RockyMountain,
-                AutoRefreshInterval = 0,
-                PasswordHash = "SomeSecretValue",
+                Theme = Theme.Aurora,
                 Tags = "tag1,tag2,tag3"
             };
             var json = dashboard.ToJsonString();

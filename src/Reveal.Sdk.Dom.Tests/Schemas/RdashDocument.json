@@ -10,7 +10,6 @@
       "type": "string"
     },
     "Description": {
-      "required": true,
       "type": "string"
     },
     "ThemeName": {
@@ -33,16 +32,7 @@
       "required": true,
       "type": "boolean"
     },
-    "AutoRefreshInterval": {
-      "required": true,
-      "type": "integer"
-    },
-    "PasswordHash": {
-      "required": true,
-      "type": "string"
-    },
     "Tags": {
-      "required": true,
       "type": "string"
     },
     "DataSources": {
