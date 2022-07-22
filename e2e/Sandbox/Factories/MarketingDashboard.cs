@@ -17,7 +17,7 @@ namespace Sandbox.Factories
             {
                 Title = "Marketing",
                 Description = "I created this in code",
-                Theme = ThemeNames.TropicalIsland,
+                Theme = Theme.TropicalIsland,
                 UseAutoLayout = false,
             };
 

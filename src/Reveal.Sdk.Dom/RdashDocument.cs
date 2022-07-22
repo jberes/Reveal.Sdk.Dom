@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Variables;
+using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom
 {
@@ -40,7 +41,8 @@ namespace Reveal.Sdk.Dom
         /// Gets or sets the name of the theme the dashboard will apply to all visualizations.
         /// </summary>
         [JsonProperty("ThemeName")]
-        public string Theme { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Theme Theme { get; set; } = Theme.Mountain;
 
         /// <summary>
         /// Gets the name of the API that created the .rdash file.
