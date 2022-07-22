@@ -7,6 +7,11 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
 {
     public class TabularDataSpec : DataSpec
     {
+        public TabularDataSpec()
+        {
+            SchemaTypeName = SchemaTypeNames.TabularDataSpecType;
+        }
+        
         //not sure what this is for yet
         [JsonProperty]
         internal bool IsTransposed { get; set; }
@@ -35,10 +40,5 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
         //not sure what this is for yet
         [JsonProperty]
         internal List<ServiceAdditionalTable> ServiceAdditionalTables { get; set; } = new List<ServiceAdditionalTable>();
-
-        public TabularDataSpec()
-        {
-            SchemaTypeName = SchemaTypeNames.TabularDataSpecType;
-        }
     }
 }

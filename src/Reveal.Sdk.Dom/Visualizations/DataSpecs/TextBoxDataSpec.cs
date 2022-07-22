@@ -6,6 +6,11 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
 {
     public class TextBoxDataSpec : DataSpec
     {
+        public TextBoxDataSpec()
+        {
+            SchemaTypeName = SchemaTypeNames.TextBoxDataSpecType;
+        }
+        
         public string Text { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
@@ -13,10 +18,5 @@ namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
 
         [JsonConverter(typeof(StringEnumConverter))]
         public Alignment Alignment { get; set; } = Alignment.Left;
-
-        public TextBoxDataSpec()
-        {
-            SchemaTypeName = SchemaTypeNames.TextBoxDataSpecType;
-        }
     }
 }

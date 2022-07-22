@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Data;
 
 namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
 {
-    public class DataSpec : SchemaType
+    public abstract class DataSpec : SchemaType
     {
         [JsonProperty]
         public DataSourceItem DataSourceItem { get; internal set; }
