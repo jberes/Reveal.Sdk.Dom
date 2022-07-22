@@ -9,6 +9,11 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             SchemaTypeName = SchemaTypeNames.DimensionColumnSpecType;
         }
+        
+        public DimensionColumn(IDimensionDataField dataField) : this()
+        {            
+            DataField = dataField;
+        }
 
         /// <summary>
         /// Gets or sets the <see cref="DataField"/>. Choose from the <see cref="DateDataField"/> or the <see cref="TextDataField"/>.
@@ -16,6 +21,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonProperty("SummarizationField")]
         public IDimensionDataField DataField { get; set; }
 
+        //todo: implement
         [JsonProperty]
         internal XmlaDimensionElement XmlaElement { get; set; }
     }

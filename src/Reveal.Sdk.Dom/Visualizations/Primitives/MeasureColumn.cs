@@ -9,6 +9,11 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             SchemaTypeName = SchemaTypeNames.MeasureColumnSpecType;
         }
+        
+        public MeasureColumn(NumberDataField dataField) : this()
+        {            
+            DataField = dataField;
+        }
 
         /// <summary>
         /// Gets or sets the <see cref="DataField"/>.
@@ -16,6 +21,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonProperty("SummarizationField")]
         public NumberDataField DataField { get; set; }
 
+        //todo: implement
         [JsonProperty]
         internal XmlaMeasure XmlaMeasure { get; set; }
     }
