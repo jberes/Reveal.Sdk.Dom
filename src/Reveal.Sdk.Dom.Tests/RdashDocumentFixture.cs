@@ -25,7 +25,7 @@ namespace Reveal.Sdk.Dom.Tests
             Assert.Equal("New Dashboard", dashboard.Title);
             Assert.Equal(GlobalConstants.RdashDocument.CreatedWith, dashboard.CreatedWith);
             Assert.Equal(string.Empty, dashboard.SavedWith);
-            Assert.Null(dashboard.Theme);
+            Assert.Equal(Theme.Mountain, dashboard.Theme);
             Assert.Null(dashboard.Tags);
             Assert.Equal(0, dashboard.FormatVersion);
             Assert.True(dashboard.UseAutoLayout);
@@ -51,7 +51,7 @@ namespace Reveal.Sdk.Dom.Tests
             Assert.NotNull(document.Title);
             Assert.NotEqual(GlobalConstants.RdashDocument.CreatedWith, document.CreatedWith);
             Assert.NotEqual(string.Empty, document.SavedWith);
-            Assert.NotNull(document.Theme);
+            Assert.Equal(Theme.Mountain, document.Theme);
             Assert.NotNull(document.Tags);
             Assert.NotEqual(0, document.FormatVersion);
             Assert.False(document.UseAutoLayout);
@@ -70,7 +70,7 @@ namespace Reveal.Sdk.Dom.Tests
             {
                 Title = "New Dashboard",
                 Description = "This is a test dashboard",
-                Theme = ThemeNames.RockyMountain,
+                Theme = Theme.RockyMountain,
                 AutoRefreshInterval = 0,
                 PasswordHash = "SomeSecretValue",
                 Tags = "tag1,tag2,tag3"

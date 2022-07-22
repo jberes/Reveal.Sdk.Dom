@@ -15,7 +15,7 @@ namespace Sandbox.Factories
             var document = new RdashDocument()
             {
                 Title = "Healthcare",
-                Theme = ThemeNames.Circus,
+                Theme = Theme.Circus,
                 Description = "I created this in code",
                 UseAutoLayout = false,
             };

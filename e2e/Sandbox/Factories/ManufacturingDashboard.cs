@@ -16,7 +16,7 @@ namespace Sandbox.Factories
             var document = new RdashDocument("Manufacturing")
             {
                 Title = "Manufacturing",
-                Theme = ThemeNames.RockyMountain,
+                Theme = Theme.RockyMountain,
                 Description = "I created this in code",
                 UseAutoLayout = false,
             };

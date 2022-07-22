@@ -39,7 +39,7 @@ namespace Sandbox.Factories
             {
                 Title = "Custom Dashboard",
                 Description = "Playing with the Fluent API",
-                Theme = ThemeNames.TropicalIsland
+                Theme = Theme.TropicalIsland
             };
 
             //grid
