@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class DataSourceItem : SchemaType
+    public sealed class DataSourceItem : SchemaType
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Title { get; set; }

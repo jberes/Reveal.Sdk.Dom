@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Filters
 {
-    public class DashboardDataFilterBinding : Binding<FieldBindingSource, DashboardDataFilterBindingTarget>
+    public sealed class DashboardDataFilterBinding : Binding<FieldBindingSource, DashboardDataFilterBindingTarget>
     {
         internal DashboardDataFilterBinding() : this(null) { }
 

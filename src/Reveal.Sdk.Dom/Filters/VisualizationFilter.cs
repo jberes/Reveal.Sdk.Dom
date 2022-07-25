@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Filters
 {
-    public class VisualizationFilter
+    public sealed class VisualizationFilter
     {
         public string FieldName { get; set; }
 

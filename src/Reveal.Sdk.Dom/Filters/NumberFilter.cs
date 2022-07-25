@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class NumberFilter : FilterBase
+    public sealed class NumberFilter : FilterBase
     {
         public NumberFilter()
         {

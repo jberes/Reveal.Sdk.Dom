@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class DataSource : SchemaType, IEquatable<DataSource>
+    public sealed class DataSource : SchemaType, IEquatable<DataSource>
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
 

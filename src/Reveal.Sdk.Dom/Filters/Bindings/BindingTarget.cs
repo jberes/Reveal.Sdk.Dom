@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class BindingTarget : SchemaType
+    public abstract class BindingTarget : SchemaType
     {
 
     }

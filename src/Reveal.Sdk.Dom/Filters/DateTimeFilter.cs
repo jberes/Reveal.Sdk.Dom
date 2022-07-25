@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class DateTimeFilter : FilterBase
+    public sealed class DateTimeFilter : FilterBase
     {
         public DateTimeFilter()
         {

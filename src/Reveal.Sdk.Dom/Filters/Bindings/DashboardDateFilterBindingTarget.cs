@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class DashboardDateFilterBindingTarget : BindingTarget
+    public sealed class DashboardDateFilterBindingTarget : BindingTarget
     {
         public string GlobalFilterFieldName { get; set; }
 

@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class FieldBindingSource : BindingSource
+    public sealed class FieldBindingSource : BindingSource
     {
         public string FieldName { get; set; }
 
