@@ -8,7 +8,7 @@
         QuarterToDatePreviousYear, //KpiTimePeriod
         MonthToDatePreviousMonth, //KpiTimePeriod
         MonthToDatePreviousYear, //KpiTimePeriod
-        LastYears, //todo: what uses this?
+        LastYears, //SparklineAggregationType
         LastQuarters, //todo: what uses this?
         LastMonths, //SparklineAggregationType
         LastDays, //SparklineAggregationType

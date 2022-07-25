@@ -53,7 +53,6 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 
         Type GetChartVsualizationType(JToken jToken)
         {
-            //todo: create constants for chart names
             var chartType = jToken["ChartType"].Value<string>();
             Type type = chartType switch
             {

@@ -48,10 +48,8 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         [JsonProperty]
         public double? RightAxisMaxValue { get; set; }
 
-        //todo: revisit this approach and see if we can do somethig better. Possibly just a better name like ShowLeftAxisOnly or something
-        //ideally we don't have to do this wrapping - need more feedback here
         /// <summary>
-        /// This property is being wrapped by the <see cref="ShowRightAxis"/> in order to match the RevealView UI experience. This property is needed for the reveal JSON schema.
+        /// This property is being wrapped by the <see cref="ShowRightAxis"/> in order to match the UI experience. This property is needed for the reveal JSON schema.
         /// </summary>
         [JsonProperty]
         internal bool SingleAxisMode { get; set; }

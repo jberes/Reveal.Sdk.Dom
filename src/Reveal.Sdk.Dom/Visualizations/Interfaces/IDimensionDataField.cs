@@ -2,6 +2,6 @@
 {
     public interface IDimensionDataField : IDataField
     {
-        //todo: add public properties
+        
     }
 }
