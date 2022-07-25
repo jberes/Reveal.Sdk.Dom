@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class MapVisualizationSettings : MapBaseVisualizationSettings
+    public sealed class MapVisualizationSettings : MapBaseVisualizationSettings
     {
         public DashboardMapLocationType LocationType { get; set; } = DashboardMapLocationType.Geocoding;
 

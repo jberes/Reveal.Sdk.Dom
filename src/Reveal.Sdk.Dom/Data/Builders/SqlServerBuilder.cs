@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class SqlServerBuilder
+    public sealed class SqlServerBuilder
     {
         readonly DataSource _dataSource = new DataSource() { Provider = DataSourceProviders.SqlServer }; //data source
         readonly DataSourceItem _dataSourceItem = new DataSourceItem(); //data source item that points to the data source

@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TextDataField : DimensionDataField
+    public sealed class TextDataField : DimensionDataField
     {
         internal TextDataField() : this(string.Empty) { }
 

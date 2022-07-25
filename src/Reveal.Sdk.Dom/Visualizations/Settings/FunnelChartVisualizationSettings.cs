@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class FunnelChartVisualizationSettings : PieChartVisualizationSettingsBase
+    public sealed class FunnelChartVisualizationSettings : PieChartVisualizationSettingsBase
     {
         public FunnelChartVisualizationSettings()
         {

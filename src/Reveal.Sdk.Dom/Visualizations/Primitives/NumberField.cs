@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class NumberField : FieldBase<NumberFilter>
+    public sealed class NumberField : FieldBase<NumberFilter>
     {
         internal NumberField() : this(string.Empty) { }
         public NumberField(string fieldName) : base(fieldName)

@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TextVisualization : SingleGaugeVisualizationBase<TextVisualizationSettings>
+    public sealed class TextVisualization : SingleGaugeVisualizationBase<TextVisualizationSettings>
     {
         internal TextVisualization() : this(null) { }
         public TextVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

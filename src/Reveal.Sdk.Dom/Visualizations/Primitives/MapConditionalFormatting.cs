@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class MapConditionalFormatting : ConditionalFormattingBase<MapConditionalFormattingBand>
+    public sealed class MapConditionalFormatting : ConditionalFormattingBase<MapConditionalFormattingBand>
     {
         
     }

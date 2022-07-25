@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
 {
-    public class TabularDataSpec : DataSpec
+    public sealed class TabularDataSpec : DataSpec
     {
         public TabularDataSpec()
         {

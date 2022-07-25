@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class AssetVisualizationSettings : VisualizationSettings
+    public sealed class AssetVisualizationSettings : VisualizationSettings
     {
         public AssetVisualizationSettings()
         {

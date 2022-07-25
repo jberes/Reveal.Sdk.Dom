@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class DashboardDataFilterBase : DashboardFilter
+    public abstract class DashboardDataFilterBase : DashboardFilter
     {
         public bool IsDynamic { get; set; } = true;
         public bool AllowMultipleSelection { get; set; }

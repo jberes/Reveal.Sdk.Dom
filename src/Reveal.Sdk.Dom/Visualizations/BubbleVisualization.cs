@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class BubbleVisualization : TabularVisualizationBase<BubbleVisualizationSettings>, ILabels, IAxis
+    public sealed class BubbleVisualization : TabularVisualizationBase<BubbleVisualizationSettings>, ILabels, IAxis
     {
         internal BubbleVisualization() : this(null) { }
         public BubbleVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class AreaChartVisualization : CategoryVisualizationBase<AreaChartVisualizationSettings>
+    public sealed class AreaChartVisualization : CategoryVisualizationBase<AreaChartVisualizationSettings>
     {
         internal AreaChartVisualization() : this(null) { }
 

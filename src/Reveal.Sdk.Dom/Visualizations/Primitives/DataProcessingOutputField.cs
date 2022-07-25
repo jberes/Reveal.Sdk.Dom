@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    internal class DataProcessingOutputField
+    internal sealed class DataProcessingOutputField
     {
         public string OutputColumnName { get; set; }
         public string ResultColumnName { get; set; }

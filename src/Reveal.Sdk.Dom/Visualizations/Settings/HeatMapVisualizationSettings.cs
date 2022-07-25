@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class HeatMapVisualizationSettings : MapBaseVisualizationSettings
+    public sealed class HeatMapVisualizationSettings : MapBaseVisualizationSettings
     {
         public DashboardHeatMapLocationType LocationType { get; set; } = DashboardHeatMapLocationType.LatitudeLongitudeSingleField;
         public HeatMapLayersSettings Layers { get; set; } = new HeatMapLayersSettings();

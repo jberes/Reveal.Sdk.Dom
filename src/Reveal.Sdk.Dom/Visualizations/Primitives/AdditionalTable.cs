@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    internal class AdditionalTable
+    internal sealed class AdditionalTable
     {
         public string Alias { get; set; }
         public DataSpec DataSpec { get; set; }

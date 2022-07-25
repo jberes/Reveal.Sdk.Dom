@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TimeSeriesVisualization : TabularVisualizationBase<TimeSeriesVisualizationSettings>, IDate, IValues, ICategory
+    public sealed class TimeSeriesVisualization : TabularVisualizationBase<TimeSeriesVisualizationSettings>, IDate, IValues, ICategory
     {
         internal TimeSeriesVisualization() : this(null) { }
         public TimeSeriesVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

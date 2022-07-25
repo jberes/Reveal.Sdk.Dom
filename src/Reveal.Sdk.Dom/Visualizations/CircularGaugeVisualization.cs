@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class CircularGaugeVisualization : SingleGaugeVisualizationBase<CircularGaugeVisualizationSettings>
+    public sealed class CircularGaugeVisualization : SingleGaugeVisualizationBase<CircularGaugeVisualizationSettings>
     {
         internal CircularGaugeVisualization() : this(null) { }
 

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TreeMapVisualization : TabularVisualizationBase<TreeMapVisualizationSettings>, ILabels, IValues
+    public sealed class TreeMapVisualization : TabularVisualizationBase<TreeMapVisualizationSettings>, ILabels, IValues
     {
         internal TreeMapVisualization() : this(null) { }
         public TreeMapVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

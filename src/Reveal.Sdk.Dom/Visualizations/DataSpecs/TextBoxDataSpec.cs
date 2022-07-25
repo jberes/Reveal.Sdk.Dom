@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
 {
-    public class TextBoxDataSpec : DataSpec
+    public sealed class TextBoxDataSpec : DataSpec
     {
         public TextBoxDataSpec()
         {

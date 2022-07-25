@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class PivotVisualizationSettings : GridVisualizationSettingsBase
+    public sealed class PivotVisualizationSettings : GridVisualizationSettingsBase
     {
         internal PivotVisualizationDataSpec _visualizationDataSpec;
         

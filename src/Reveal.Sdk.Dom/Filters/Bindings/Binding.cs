@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Core.Serialization.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class Binding<TSource, TTarget> : Binding
+    public abstract class Binding<TSource, TTarget> : Binding
         where TSource : BindingSource, new()
         where TTarget : BindingTarget, new()
     {
@@ -16,7 +16,7 @@ namespace Reveal.Sdk.Dom.Filters
     }
 
     [JsonConverter(typeof(BindingConverter))]
-    public class Binding
+    public abstract class Binding
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public BindingOperatorType Operator { get; set; } = BindingOperatorType.Equals;

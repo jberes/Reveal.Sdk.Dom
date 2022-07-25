@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class BindingSource : SchemaType
+    public abstract class BindingSource : SchemaType
     {
     }
 }

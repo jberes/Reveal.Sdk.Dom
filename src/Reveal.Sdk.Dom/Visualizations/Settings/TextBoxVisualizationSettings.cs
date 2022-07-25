@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class TextBoxVisualizationSettings : VisualizationSettings
+    public sealed class TextBoxVisualizationSettings : VisualizationSettings
     {
         public TextBoxVisualizationSettings()
         {

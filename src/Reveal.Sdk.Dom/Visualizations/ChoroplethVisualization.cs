@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ChoroplethVisualization : TabularVisualizationBase<ChoroplethVisualizationSettings>, IValues, IMap
+    public sealed class ChoroplethVisualization : TabularVisualizationBase<ChoroplethVisualizationSettings>, IValues, IMap
     {
         internal ChoroplethVisualization() : this(null) { }
         public ChoroplethVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

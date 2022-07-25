@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class CircularGaugeVisualizationSettings : GaugeVisualizationSettings
+    public sealed class CircularGaugeVisualizationSettings : GaugeVisualizationSettings
     {
         public CircularGaugeVisualizationSettings()
         {

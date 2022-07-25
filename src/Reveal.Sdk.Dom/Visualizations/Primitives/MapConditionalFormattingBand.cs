@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class MapConditionalFormattingBand : Band
+    public sealed class MapConditionalFormattingBand : Band
     {
         public MapConditionalFormattingBand()
         {

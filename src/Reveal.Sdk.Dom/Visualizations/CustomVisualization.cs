@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class CustomVisualization : TabularVisualizationBase<CustomVisualizationSettings>, IRows, IValues, IColumns
+    public sealed class CustomVisualization : TabularVisualizationBase<CustomVisualizationSettings>, IRows, IValues, IColumns
     {
         internal CustomVisualization() : this(null) { }
         public CustomVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

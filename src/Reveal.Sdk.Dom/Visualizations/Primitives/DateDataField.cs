@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class DateDataField : DimensionDataField
+    public sealed class DateDataField : DimensionDataField
     {
         internal DateDataField() : this(string.Empty) { }
         public DateDataField(string fieldName) : base(fieldName)

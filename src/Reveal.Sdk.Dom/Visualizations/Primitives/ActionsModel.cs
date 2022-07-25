@@ -3,7 +3,7 @@
 namespace Reveal.Sdk.Dom.Visualizations
 {
     //todo: implement, rename classes, and move classes to files
-    internal class ActionsModel
+    internal sealed class ActionsModel
     {
         public DashboardActionTriggerType Trigger { get; set; } = DashboardActionTriggerType.SelectRow;
         public List<Action> Actions { get; set; }
@@ -15,7 +15,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         Maximize
     }
 
-    internal partial class Action
+    internal sealed class Action
     {
         public DashboardActionTargetType Type { get; set; } = DashboardActionTargetType.OpenDashboard;
         public string Title { get; set; }
@@ -29,7 +29,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         OpenUrl
     }
 
-    internal class ActionParameter
+    internal sealed class ActionParameter
     {
         public string Namespace { get; set; }
         public string Name { get; set; }

@@ -11,7 +11,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom
 {
-    public class RdashDocument
+    public sealed class RdashDocument
     {
         /// <summary>
         /// Creates a new instance of an <see cref="RdashDocument"/>.

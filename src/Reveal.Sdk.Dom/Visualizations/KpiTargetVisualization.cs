@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class KpiTargetVisualization : TabularVisualizationBase<KpiTargetVisualizationSettings>, ITargets, IDate, IValues, ICategories
+    public sealed class KpiTargetVisualization : TabularVisualizationBase<KpiTargetVisualizationSettings>, ITargets, IDate, IValues, ICategories
     {
         internal KpiTargetVisualization() : this(null) { }
         public KpiTargetVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

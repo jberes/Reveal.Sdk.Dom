@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class KpiTargetVisualizationSettings : KpiVisualizationSettingsBase
+    public sealed class KpiTargetVisualizationSettings : KpiVisualizationSettingsBase
     {
         public KpiTargetVisualizationSettings()
         {

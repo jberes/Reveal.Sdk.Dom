@@ -5,7 +5,7 @@ using Reveal.Sdk.Dom.Filters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class NumberDataField : DataField
+    public sealed class NumberDataField : DataField
     {
         internal NumberDataField() : this(string.Empty) { }
         public NumberDataField(string fieldName) : base(fieldName)

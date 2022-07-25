@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class BulletGraphVisualizationSettings : GaugeVisualizationSettings
+    public sealed class BulletGraphVisualizationSettings : GaugeVisualizationSettings
     {
         public BulletGraphVisualizationSettings()
         {

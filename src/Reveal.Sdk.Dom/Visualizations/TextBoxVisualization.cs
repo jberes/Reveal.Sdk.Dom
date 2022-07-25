@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TextBoxVisualization : Visualization<TextBoxVisualizationSettings, TextBoxDataSpec>
+    public sealed class TextBoxVisualization : Visualization<TextBoxVisualizationSettings, TextBoxDataSpec>
     {
         public TextBoxVisualization() : this(null) { }
         public TextBoxVisualization(string title) : base(title)

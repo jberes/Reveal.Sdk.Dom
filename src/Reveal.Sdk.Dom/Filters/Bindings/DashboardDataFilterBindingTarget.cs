@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    public class DashboardDataFilterBindingTarget : BindingTarget
+    public sealed class DashboardDataFilterBindingTarget : BindingTarget
     {
         [JsonProperty("GlobalFilterId")]
         public string DashboardFilterId { get; set; }

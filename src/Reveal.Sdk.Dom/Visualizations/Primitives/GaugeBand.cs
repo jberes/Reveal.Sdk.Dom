@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class GaugeBand : Band
+    public sealed class GaugeBand : Band
     {
         public GaugeBand()
         {

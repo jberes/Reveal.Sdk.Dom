@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class StepLineChartVisualization : CategoryVisualizationBase<StepLineChartVisualizationSettings>
+    public sealed class StepLineChartVisualization : CategoryVisualizationBase<StepLineChartVisualizationSettings>
     {
         internal StepLineChartVisualization() : this(null) { }
 

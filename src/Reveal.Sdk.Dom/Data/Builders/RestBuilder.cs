@@ -8,7 +8,7 @@ using System.Linq;
 namespace Reveal.Sdk.Dom.Data
 {
     //todo: can we find a better name for this?
-    public class RestBuilder
+    public sealed class RestBuilder
     {
         readonly DataSource _dataSource = new DataSource() { Id = DataSourceIds.JSON, Provider = DataSourceProviders.JSON }; //data source
         readonly DataSourceItem _dataSourceItem = new DataSourceItem(); //data source item that points to the data source

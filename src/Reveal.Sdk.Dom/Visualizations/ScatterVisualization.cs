@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ScatterVisualization : TabularVisualizationBase<ScatterVisualizationSettings>, ILabels, IAxis
+    public sealed class ScatterVisualization : TabularVisualizationBase<ScatterVisualizationSettings>, ILabels, IAxis
     {
         internal ScatterVisualization() : this(null) { }
         public ScatterVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

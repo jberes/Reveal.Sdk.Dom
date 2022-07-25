@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ConditionalFormatting : ConditionalFormattingBase<ConditionalFormattingBand>
+    public sealed class ConditionalFormatting : ConditionalFormattingBase<ConditionalFormattingBand>
     {
         [JsonProperty]
         public Bound Minimum { get; internal set; } = new Bound() { ValueType = BoundValueType.LowestValue };

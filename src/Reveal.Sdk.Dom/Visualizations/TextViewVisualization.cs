@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     //todo: maybe create a base class to share between the Grid and TextView
-    public class TextViewVisualization : TabularVisualizationBase<SingleRowVisualizationSettings>, ITabularColumns
+    public sealed class TextViewVisualization : TabularVisualizationBase<SingleRowVisualizationSettings>, ITabularColumns
     {
         internal TextViewVisualization() : this(null) { }
         public TextViewVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

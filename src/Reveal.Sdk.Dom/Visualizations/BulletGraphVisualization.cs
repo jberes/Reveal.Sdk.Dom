@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class BulletGraphVisualization : LinearGaugeVisualizationBase<BulletGraphVisualizationSettings>, ITargets
+    public sealed class BulletGraphVisualization : LinearGaugeVisualizationBase<BulletGraphVisualizationSettings>, ITargets
     {
         internal BulletGraphVisualization() : this(null) { }
         public BulletGraphVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

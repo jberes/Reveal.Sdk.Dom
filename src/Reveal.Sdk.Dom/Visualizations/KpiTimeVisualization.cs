@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class KpiTimeVisualization : TabularVisualizationBase<KpiTimeVisualizationSettings>, IDate, IValues, ICategories
+    public sealed class KpiTimeVisualization : TabularVisualizationBase<KpiTimeVisualizationSettings>, IDate, IValues, ICategories
     {
         internal KpiTimeVisualization() : this(null) { }
         public KpiTimeVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }

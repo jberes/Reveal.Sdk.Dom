@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class ComboChartVisualization : TabularVisualizationBase<ComboChartVisualizationSettings>, ILabels
+    public sealed class ComboChartVisualization : TabularVisualizationBase<ComboChartVisualizationSettings>, ILabels
     {
         internal ComboChartVisualization() : this(null) { }
         public ComboChartVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
