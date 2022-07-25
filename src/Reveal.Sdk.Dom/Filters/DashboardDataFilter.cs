@@ -1,14 +1,14 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Data;
-using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using Reveal.Sdk.Dom.Core.Utilities;
+using Reveal.Sdk.Dom.Visualizations;
 
 namespace Reveal.Sdk.Dom.Filters
 {
     public sealed class DashboardDataFilter : DashboardDataFilterBase
     {
         
-        public TabularDataSpec DataSpec { get; internal set; } = new TabularDataSpec();
+        public TabularDataDefinition DataSpec { get; internal set; } = new TabularDataDefinition();
         public string SelectedFieldName { get; set; }
 
         internal DashboardDataFilter() : this(null) { }

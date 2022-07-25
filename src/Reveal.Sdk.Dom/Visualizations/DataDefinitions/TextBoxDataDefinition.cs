@@ -2,15 +2,15 @@
 using Newtonsoft.Json.Converters;
 using Reveal.Sdk.Dom.Core.Constants;
 
-namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
+namespace Reveal.Sdk.Dom.Visualizations
 {
-    public sealed class TextBoxDataSpec : DataSpec
+    public sealed class TextBoxDataDefinition : DataDefinitionBase
     {
-        public TextBoxDataSpec()
+        public TextBoxDataDefinition()
         {
             SchemaTypeName = SchemaTypeNames.TextBoxDataSpecType;
         }
-        
+
         public string Text { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]

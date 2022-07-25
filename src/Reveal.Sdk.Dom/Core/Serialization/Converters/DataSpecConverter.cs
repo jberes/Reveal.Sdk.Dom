@@ -1,16 +1,16 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
-using Reveal.Sdk.Dom.Visualizations.DataSpecs;
+using Reveal.Sdk.Dom.Visualizations;
 using System;
 
 namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
-    internal class DataSpecConverter : TypeMapConverter<DataSpec>
+    internal class DataSpecConverter : TypeMapConverter<DataDefinitionBase>
     {
         public DataSpecConverter()
         {
             TypeMap = new System.Collections.Generic.Dictionary<string, Type>()
             {
-                { SchemaTypeNames.TabularDataSpecType, typeof(TabularDataSpec)},
+                { SchemaTypeNames.TabularDataSpecType, typeof(TabularDataDefinition)},
                 //{ SchemaTypeNames.ResourceDataSpecType, typeof()},
                 //{ SchemaTypeNames.ResourceDataSpecType, typeof()},
                 //{ SchemaTypeNames.ResourceDataSpecType, typeof()},

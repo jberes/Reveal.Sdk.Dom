@@ -1,12 +1,11 @@
-﻿using Reveal.Sdk.Dom.Visualizations.DataSpecs;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
     internal sealed class AdditionalTable
     {
         public string Alias { get; set; }
-        public DataSpec DataSpec { get; set; }
+        public DataDefinitionBase DataSpec { get; set; }
         public List<JoinCondition> JoinConditions { get; set; }
         public AdditionalTable()
         {

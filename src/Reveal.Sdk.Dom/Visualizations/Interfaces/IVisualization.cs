@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Core.Serialization.Converters;
 using Reveal.Sdk.Dom.Filters;
-using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using System.Collections.Generic;
 
@@ -9,9 +8,9 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public interface IVisualization<out TSettings, out TDataSpec> : IVisualization
         where TSettings : VisualizationSettings
-        where TDataSpec : DataSpec
+        where TDataSpec : DataDefinitionBase
     {
-        TDataSpec DataSpec { get; }
+        TDataSpec DataDefinition { get; }
         List<Binding> FilterBindings { get; }
         TSettings Settings { get; }
     }

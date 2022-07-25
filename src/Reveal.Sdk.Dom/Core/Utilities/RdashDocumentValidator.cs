@@ -1,6 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
-using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +18,9 @@ namespace Reveal.Sdk.Dom.Core.Utilities
             Dictionary<string, DataSource> dataSources = new Dictionary<string, DataSource>();
             foreach (var visualization in document.Visualizations)
             {
-                if (visualization is IVisualization<VisualizationSettings, DataSpec> iVisualization)
+                if (visualization is IVisualization<VisualizationSettings, DataDefinitionBase> iVisualization)
                 {
-                    var dsi = iVisualization.DataSpec?.DataSourceItem;
+                    var dsi = iVisualization.DataDefinition?.DataSourceItem;
                     if (dsi != null)
                     {
                         if (dsi.DataSource != null && !dataSources.ContainsKey(dsi.DataSource.Id))
