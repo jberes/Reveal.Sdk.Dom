@@ -1,5 +1,4 @@
 ﻿using Reveal.Sdk.Dom.Filters;
-using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using System;
 using System.Linq;
@@ -9,12 +8,12 @@ namespace Reveal.Sdk.Dom.Visualizations
     public static class IVisualizationExtensions
     {
         public static T AddDataFilter<T, TFilter>(this T visualization, string fieldName, TFilter filter)
-            where T : IVisualization<VisualizationSettings, TabularDataSpec>
+            where T : IVisualization<VisualizationSettings, TabularDataDefinition>
             where TFilter : IFilter
         {
             try
             {
-                var field = visualization.DataSpec.Fields.Where(x => x.FieldName == fieldName).First();
+                var field = visualization.DataDefinition.Fields.Where(x => x.FieldName == fieldName).First();
                 var filterField = (FieldBase<TFilter>)field;
                 filterField.DataFilter = filter;
             }
@@ -31,21 +30,21 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         public static T AddFilterBinding<T>(this T visualization, Binding filterBinding)
-            where T : IVisualization<VisualizationSettings, TabularDataSpec>
+            where T : IVisualization<VisualizationSettings, TabularDataDefinition>
         {
             visualization.FilterBindings.Add(filterBinding);
             return visualization;
         }
 
         public static T AddFilterBindings<T>(this T visualization, params Binding[] filterBindings)
-            where T : IVisualization<VisualizationSettings, TabularDataSpec>
+            where T : IVisualization<VisualizationSettings, TabularDataDefinition>
         {
             visualization.FilterBindings.AddRange(filterBindings);
             return visualization;
         }
 
         internal static T ConfigureSettings<T, TSettings>(this T visualization, Action<TSettings> setting)
-            where T : IVisualization<TSettings, TabularDataSpec>
+            where T : IVisualization<TSettings, TabularDataDefinition>
             where TSettings : VisualizationSettings
         {
             setting.Invoke(visualization.Settings);

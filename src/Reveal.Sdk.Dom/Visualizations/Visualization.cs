@@ -1,15 +1,14 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Filters;
-using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using System;
 using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class Visualization<TSettings, TDataSpec> : Visualization, IVisualization<TSettings, TDataSpec>
+    public abstract class Visualization<TSettings, TDataDefinition> : Visualization, IVisualization<TSettings, TDataDefinition>
         where TSettings : VisualizationSettings, new()
-        where TDataSpec : DataSpec
+        where TDataDefinition : DataDefinitionBase
     {
         protected Visualization(string title) : base(title) { }
 
@@ -17,15 +16,13 @@ namespace Reveal.Sdk.Dom.Visualizations
         //[JsonProperty(Order = 10)]
         //internal ActionsModel ActionsModel { get; set; }
 
-        //todo: think of a better name - maybe DataSchema since it represents the schema or structure of the data, or DataDefinition
-        //does this even need to be expose? Can the properties be wrapped?
-        [JsonProperty(Order = 6)]
-        public TDataSpec DataSpec { get; internal set; }
+        [JsonProperty("DataSpec", Order = 6)]
+        public TDataDefinition DataDefinition { get; internal set; }
 
         [JsonIgnore]
         public List<Binding> FilterBindings
         {
-            get { return DataSpec.Bindings.Bindings; }
+            get { return DataDefinition.Bindings.Bindings; }
         }
 
         [JsonProperty("VisualizationSettings", Order = 5)]

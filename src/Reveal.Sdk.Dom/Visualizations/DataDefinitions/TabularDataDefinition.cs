@@ -3,15 +3,15 @@ using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Filters;
 using System.Collections.Generic;
 
-namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
+namespace Reveal.Sdk.Dom.Visualizations
 {
-    public sealed class TabularDataSpec : DataSpec
+    public sealed class TabularDataDefinition : DataDefinitionBase
     {
-        public TabularDataSpec()
+        public TabularDataDefinition()
         {
             SchemaTypeName = SchemaTypeNames.TabularDataSpecType;
         }
-        
+
         //not sure what this is for yet
         [JsonProperty]
         internal bool IsTransposed { get; set; }

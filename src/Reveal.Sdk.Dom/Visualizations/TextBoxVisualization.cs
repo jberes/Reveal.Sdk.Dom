@@ -1,37 +1,36 @@
 ﻿using Newtonsoft.Json;
-using Reveal.Sdk.Dom.Visualizations.DataSpecs;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public sealed class TextBoxVisualization : Visualization<TextBoxVisualizationSettings, TextBoxDataSpec>
+    public sealed class TextBoxVisualization : Visualization<TextBoxVisualizationSettings, TextBoxDataDefinition>
     {
         public TextBoxVisualization() : this(null) { }
         public TextBoxVisualization(string title) : base(title)
         {
-            DataSpec = new TextBoxDataSpec();
-            DataSpec.Bindings = null;
+            DataDefinition = new TextBoxDataDefinition();
+            DataDefinition.Bindings = null;
         }
 
         [JsonIgnore]
         public Alignment Alignment 
         {
-            get { return DataSpec.Alignment; }
-            set { DataSpec.Alignment = value; }
+            get { return DataDefinition.Alignment; }
+            set { DataDefinition.Alignment = value; }
         }
 
         [JsonIgnore]
         public FontSize FontSize 
         { 
-            get { return DataSpec.FontSize; }
-            set { DataSpec.FontSize = value; }
+            get { return DataDefinition.FontSize; }
+            set { DataDefinition.FontSize = value; }
         }
 
         [JsonIgnore]
         public string Text
         {
-            get { return DataSpec.Text; }
-            set { DataSpec.Text = value; }
+            get { return DataDefinition.Text; }
+            set { DataDefinition.Text = value; }
         }
     }
 }

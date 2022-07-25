@@ -77,7 +77,7 @@ namespace Sandbox.Factories
                 RowSpan = 22,
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
+            var field = visualization.DataDefinition.Fields.Where(x => x.FieldName == "Date").First() as DateField;
             field.DataFilter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,
@@ -131,7 +131,7 @@ namespace Sandbox.Factories
                 RowSpan = 38
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
+            var field = visualization.DataDefinition.Fields.Where(x => x.FieldName == "Date").First() as DateField;
             field.DataFilter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,
@@ -170,7 +170,7 @@ namespace Sandbox.Factories
                 RowSpan = 38,
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
+            var field = visualization.DataDefinition.Fields.Where(x => x.FieldName == "Date").First() as DateField;
             field.DataFilter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,
@@ -209,7 +209,7 @@ namespace Sandbox.Factories
                 RowSpan = 19
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Line").First() as TextField;
+            var field = visualization.DataDefinition.Fields.Where(x => x.FieldName == "Line").First() as TextField;
             field.DataFilter = new TextFilter()
             {
                 FilterType = FilterType.SelectedValues,
@@ -257,7 +257,7 @@ namespace Sandbox.Factories
                 RowSpan = 19
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Line").First() as TextField;
+            var field = visualization.DataDefinition.Fields.Where(x => x.FieldName == "Line").First() as TextField;
             field.DataFilter = new TextFilter()
             {
                 FilterType = FilterType.SelectedValues,
@@ -304,7 +304,7 @@ namespace Sandbox.Factories
                 RowSpan = 32
             };
 
-            var field = visualization.DataSpec.Fields.Where(x => x.FieldName == "Date").First() as DateField;
+            var field = visualization.DataDefinition.Fields.Where(x => x.FieldName == "Date").First() as DateField;
             field.DataFilter = new DateTimeFilter()
             {
                 FilterType = FilterType.FilterByRule,

@@ -2,9 +2,9 @@
 using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Data;
 
-namespace Reveal.Sdk.Dom.Visualizations.DataSpecs
+namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class DataSpec : SchemaType
+    public abstract class DataDefinitionBase : SchemaType
     {
         [JsonProperty]
         public DataSourceItem DataSourceItem { get; internal set; }
