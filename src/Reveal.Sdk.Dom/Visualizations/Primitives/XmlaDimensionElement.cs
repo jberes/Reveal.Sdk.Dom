@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    internal class XmlaDimensionElement
+    internal sealed class XmlaDimensionElement
     {
         public string UniqueName { get; set; }
         public string Caption { get; set; }

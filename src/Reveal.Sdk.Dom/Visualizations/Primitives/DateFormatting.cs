@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class DateFormatting : FormattingBase
+    public sealed class DateFormatting : FormattingBase
     {
         internal DateFormatting() : this(null) { }
         public DateFormatting(string dateFormat)

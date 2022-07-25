@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class DataSpecBindings
+    public sealed class DataSpecBindings
     {
         public UrlBinding UrlBinding { get; set; }
         public List<Binding> Bindings { get; set; } = new List<Binding>();

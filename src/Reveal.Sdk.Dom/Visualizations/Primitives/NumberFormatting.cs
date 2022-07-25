@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class NumberFormatting : FormattingBase
+    public sealed class NumberFormatting : FormattingBase
     {
         public NumberFormatting()
         {

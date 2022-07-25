@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class TextBand : ShapeBand
+    public sealed class TextBand : ShapeBand
     {
         public TextBand()
         {

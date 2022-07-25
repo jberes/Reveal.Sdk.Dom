@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class Bound
+    public sealed class Bound
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public BoundValueType ValueType { get; set; } = BoundValueType.NumberValue;

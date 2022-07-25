@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    internal class XmlaMeasure
+    internal sealed class XmlaMeasure
     {
         public bool IsHidden { get; set; }
         public string UniqueName { get; set; }

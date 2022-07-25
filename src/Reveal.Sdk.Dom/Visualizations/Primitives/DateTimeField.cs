@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class DateTimeField : FieldBase<DateTimeFilter>
+    public sealed class DateTimeField : FieldBase<DateTimeFilter>
     {
         internal DateTimeField() : this(string.Empty) { }
         public DateTimeField(string fieldName) : base(fieldName)

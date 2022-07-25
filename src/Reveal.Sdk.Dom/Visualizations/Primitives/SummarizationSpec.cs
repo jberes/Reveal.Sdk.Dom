@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    internal class SummarizationSpec
+    internal sealed class SummarizationSpec
     {
         public bool HideGrandTotalRow { get; set; }
         public bool HideGrandTotalCol { get; set; }
