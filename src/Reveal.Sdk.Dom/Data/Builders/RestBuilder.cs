@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Reveal.Sdk.Dom.Core.Constants;
+﻿using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,6 @@ using System.Linq;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    //todo: can we find a better name for this?
     public sealed class RestServiceBuilder
     {
         readonly DataSource _dataSource = new DataSource() { Id = DataSourceIds.JSON, Provider = DataSourceProviders.JSON }; //data source
@@ -25,7 +23,6 @@ namespace Reveal.Sdk.Dom.Data
             _resourceItemDataSource.Properties.Add("Url", uri);
             _resourceItemDataSource.Properties.Add("Method", "GET");
             _resourceItemDataSource.Properties.Add("Result-Type", ".json");
-            //todo: do we need to handle Body and Content-Type too?
 
             _dataSourceItem.ResourceItemDataSource = _resourceItemDataSource;
             _resourceItem.DataSourceId = _resourceItemDataSource.Id;

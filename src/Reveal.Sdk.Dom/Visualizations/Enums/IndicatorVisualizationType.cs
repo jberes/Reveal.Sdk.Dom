@@ -1,6 +1,5 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    //todo: we may be able to remove this and replace it with specific enums
     internal enum IndicatorVisualizationType
     {
         YearToDatePreviousYear, //KpiTimePeriod

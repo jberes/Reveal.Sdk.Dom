@@ -2,7 +2,6 @@
 
 namespace Reveal.Sdk.Dom.Data
 {
-    //todo: move to another file
     internal struct ColumnConfig
     {
         [JsonProperty("key")]
