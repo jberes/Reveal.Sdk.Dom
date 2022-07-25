@@ -3,9 +3,9 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public class PieChartVisualizationSettingsBase : ChartVisualizationSettingsBase
+    public abstract class PieChartVisualizationSettingsBase : ChartVisualizationSettingsBase
     {
-        public PieChartVisualizationSettingsBase() { }
+        protected PieChartVisualizationSettingsBase() : base() { }
 
         /// <summary>
         /// Gets or sets if the chart legend is displayed in the RevealView
