@@ -13,7 +13,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         [Fact]
         public void DataSources_AddedToRdashDocument()
         {
-            var dataSourceItem = new RestBuilder("").SetFields(new List<IField>() { null }).Build();
+            var dataSourceItem = new RestServiceBuilder("").SetFields(new List<IField>() { null }).Build();
 
             var document = new RdashDocument();
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
@@ -28,7 +28,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         [Fact]
         public void DataSources_FromVisualizationsAreNotDuplicated()
         {
-            var dataSourceItem = new RestBuilder("").SetFields(new List<IField>() { null }).Build();
+            var dataSourceItem = new RestServiceBuilder("").SetFields(new List<IField>() { null }).Build();
 
             var document = new RdashDocument();
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
@@ -48,7 +48,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         [Fact]
         public void DataSources_FromVisualizations_AndDataSources_AreNotDuplicated()
         {
-            var dataSourceItem = new RestBuilder("").SetFields(new List<IField>() { null }).Build();
+            var dataSourceItem = new RestServiceBuilder("").SetFields(new List<IField>() { null }).Build();
             var dataSource = dataSourceItem.DataSource;
 
             var document = new RdashDocument();

@@ -12,7 +12,7 @@ namespace Sandbox.Factories
             var document = new RdashDocument("My Dashboard");
 
             //json - default
-            var jsonDataSourceItem = new RestBuilder("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
+            var jsonDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
                 .SetTitle("JSON Data Source")
                 .SetSubtitle("Sales by Category")
                 .SetFields(DataSourceFactory.GetSalesByCategoryFields())
@@ -22,7 +22,7 @@ namespace Sandbox.Factories
                 .SetLabel("CategoryName").SetValue("ProductSales"));
 
             //excel
-            var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .UseExcel()
                 .SetTitle("Excel Data Source")
                 .SetSubtitle("Marketing")
@@ -33,7 +33,7 @@ namespace Sandbox.Factories
                 .SetLabel("Territory").SetValue("Conversions"));
 
             //csv
-            var csvDataSourceItem = new RestBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+            var csvDataSourceItem = new RestServiceBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
                 .UseCsv()
                 .SetTitle("CSV Data Source")
                 .SetSubtitle("Illinois School Info")

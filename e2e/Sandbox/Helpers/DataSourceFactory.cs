@@ -9,7 +9,7 @@ namespace Sandbox.Helpers
     {
         internal static DataSourceItem GetMarketingDataSourceItem()
         {
-            var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .SetTitle("Excel Data Source")
                 .SetSubtitle("Marketing Sheet")
                 .UseExcel("Marketing")
@@ -21,7 +21,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetHealthcareDataSourceItem()
         {
-            var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .SetTitle("Excel Data Source")
                 .SetSubtitle("Healthcare Sheet")
                 .UseExcel("Healthcare")
@@ -33,7 +33,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetManufacturingDataSourceItem()
         {
-            var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .SetTitle("Excel Data Source")
                 .SetSubtitle("Manufacturing Sheet")
                 .UseExcel("Manufacturing")
@@ -45,7 +45,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetSalesDataSourceItem()
         {
-            var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .SetTitle("Excel Data Source")
                 .SetSubtitle("Sales Sheet")
                 .UseExcel("Sales")

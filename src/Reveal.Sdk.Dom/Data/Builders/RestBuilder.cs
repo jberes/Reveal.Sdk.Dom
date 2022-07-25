@@ -8,14 +8,14 @@ using System.Linq;
 namespace Reveal.Sdk.Dom.Data
 {
     //todo: can we find a better name for this?
-    public sealed class RestBuilder
+    public sealed class RestServiceBuilder
     {
         readonly DataSource _dataSource = new DataSource() { Id = DataSourceIds.JSON, Provider = DataSourceProviders.JSON }; //data source
         readonly DataSourceItem _dataSourceItem = new DataSourceItem(); //data source item that points to the data source
         readonly DataSource _resourceItemDataSource = new DataSource() { Provider = DataSourceProviders.REST }; //rest data source
         readonly DataSourceItem _resourceItem = new DataSourceItem(); //resource item that points to the rest data source
 
-        public RestBuilder(string uri)
+        public RestServiceBuilder(string uri)
         {
             _dataSourceItem.DataSource = _dataSource;
             _dataSourceItem.DataSourceId = _dataSource.Id;
@@ -35,13 +35,13 @@ namespace Reveal.Sdk.Dom.Data
         }
 
 
-        public RestBuilder IsAnonymous(bool isAnonymous)
+        public RestServiceBuilder IsAnonymous(bool isAnonymous)
         {
             _resourceItemDataSource.Properties["_rpUseAnonymousAuthentication"] = isAnonymous;
             return this;
         }
 
-        public RestBuilder SetFields(IEnumerable<IField> fields)
+        public RestServiceBuilder SetFields(IEnumerable<IField> fields)
         {
             _dataSourceItem.Fields.Clear();
             _dataSourceItem.Fields.AddRange(fields);
@@ -51,7 +51,7 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public RestBuilder SetTitle(string title)
+        public RestServiceBuilder SetTitle(string title)
         {
             _dataSourceItem.Title = title;
             _resourceItem.Title = title;
@@ -59,7 +59,7 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public RestBuilder SetSubtitle(string subtitle)
+        public RestServiceBuilder SetSubtitle(string subtitle)
         {
             _dataSourceItem.Subtitle = subtitle;
             return this;
@@ -73,7 +73,7 @@ namespace Reveal.Sdk.Dom.Data
             return _dataSourceItem;
         }
 
-        public RestBuilder AddHeader(HeaderType headerType, string value)
+        public RestServiceBuilder AddHeader(HeaderType headerType, string value)
         {
             var propertyKey = "Headers";
 
@@ -92,7 +92,7 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public RestBuilder UseCsv()
+        public RestServiceBuilder UseCsv()
         {
             ClearJsonConfig();
 
@@ -105,7 +105,7 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public RestBuilder UseExcel(string sheet = null, ExcelFileType fileType = ExcelFileType.Xlsx)
+        public RestServiceBuilder UseExcel(string sheet = null, ExcelFileType fileType = ExcelFileType.Xlsx)
         {
             ClearJsonConfig();
 
@@ -130,7 +130,6 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        //todo: why is this required for json data? We already have the fields?
         Dictionary<string, object> BuildConfig(IEnumerable<IField> fields)
         {
             Dictionary<string, object> config = new Dictionary<string, object>();
@@ -175,37 +174,4 @@ namespace Reveal.Sdk.Dom.Data
             return string.Concat(name.Select(x => char.IsUpper(x) ? "-" + x : x.ToString())).TrimStart('-');
         }
     }
-
-    //todo: move to another file
-    internal struct ColumnConfig
-    {
-        [JsonProperty("key")]
-        public string Key { get; set; }
-
-        [JsonProperty("type")]
-        public int Type { get; set; }
-
-        [JsonProperty("dateFormat")]
-        public string DateFormat { get; set; }
-
-        [JsonProperty("uniqueName")]
-        public string UniqueName { get; set; }
-    }
-
-    //todo: move to another file
-    public enum ExcelFileType
-    {
-        Xls,
-        Xlsx
-    }
-
-    public enum HeaderType
-    {
-        Accept,
-        Authorization,
-        CacheControl, //need to add - between words
-        Cookie,
-        UserAgent //need to add - between words
-    }
-
 }

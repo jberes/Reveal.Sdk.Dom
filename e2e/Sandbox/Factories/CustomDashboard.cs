@@ -9,27 +9,27 @@ namespace Sandbox.Factories
     {
         internal static RdashDocument CreateDashboard()
         {
-            var excelDataSourceItem = new RestBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .SetTitle("Excel Data Source")
                 .SetSubtitle("Marketing Sheet")
                 .UseExcel("Marketing")
                 .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
                 .Build();
 
-            var csvDataSourceItem = new RestBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+            var csvDataSourceItem = new RestServiceBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
                 .UseCsv()
                 .SetTitle("CSV Data Source")
                 .SetSubtitle("Illinois School Info")
                 .SetFields(DataSourceFactory.GetCsvDataSourceFields())
                 .Build();
 
-            var financialDataSourceItem = new RestBuilder("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
+            var financialDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
                 .SetTitle("Finance Data Source")
                 .SetSubtitle("OHLC")
                 .SetFields(DataSourceFactory.GetOHLCDataSourceFields())
                 .Build();
 
-            var revenueDataSourceItem = new RestBuilder("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
+            var revenueDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
                 .SetTitle("Choropleth Data Source")
                 .SetSubtitle("Revenue")
                 .SetFields(DataSourceFactory.GetRevenueDataSourceFields())
