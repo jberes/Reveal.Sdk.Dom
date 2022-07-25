@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
-    public sealed class DoughnutChartVisualizationSettings : PieChartVisualizationSettings
+    public sealed class DoughnutChartVisualizationSettings : RoundChartVisualizationSettingsBase
     {
         public DoughnutChartVisualizationSettings()
         {
