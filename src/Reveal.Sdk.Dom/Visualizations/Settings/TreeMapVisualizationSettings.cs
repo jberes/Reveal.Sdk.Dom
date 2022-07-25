@@ -51,7 +51,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 		Gradient
 	}
 
-	public class TreeMapBound
+	public sealed class TreeMapBound
     {
 		public DashboardTreeMapBoundColorType Color { get; set; } = DashboardTreeMapBoundColorType.Green;
 		public double? Value { get; set; }
