@@ -1,10 +1,13 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     public abstract class PieChartVisualizationSettingsBase : ChartVisualizationSettingsBase
     {
+        private double _othersSliceThreshold = 3.0;
+
         protected PieChartVisualizationSettingsBase() : base() { }
 
         /// <summary>
@@ -27,9 +30,27 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         [JsonProperty("BrushOffsetIndex")]
         public int? StartColorIndex { get; set; }
 
-        //todo: this property controls the "Others" slice. It only support 0.0 (0%) - show all slices, 1.0 (1%), 2.0 (2%), 3.0 (3%), 4.0 (4%)
-        //what can we do here to make this API nicer and enforce the allowed values?
+        /// <summary>
+        /// Gets or sets the percentage threshold in which values are combined into the "Others" category. 
+        /// Supported values include: 0.0 (0%) - show all slices, 1.0 (1%), 2.0 (2%), 3.0 (3%), 4.0 (4%)
+        /// </summary>
         [JsonProperty]
-        internal double OthersSliceThreshold { get; set; } = 3.0;
+        public double OthersSliceThreshold
+        {
+            get { return _othersSliceThreshold; }
+            set { _othersSliceThreshold = CoerceValue(value); }
+        }
+
+        double CoerceValue(double value)
+        {
+            var round = Math.Round(value, 0, MidpointRounding.AwayFromZero);
+            if (round <= 0.0)
+                return 0.0;
+
+            if (round <= 4.0)
+                return round;
+
+            return 4.0;
+        }
     }
 }
