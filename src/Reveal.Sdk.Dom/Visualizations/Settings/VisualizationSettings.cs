@@ -6,6 +6,6 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
     public abstract class VisualizationSettings : SchemaType
     {
         [JsonProperty]
-        internal string VisualizationType { get; set; } //todo: enum or constants?
+        internal string VisualizationType { get; set; }
     }
 }
