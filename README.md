@@ -27,7 +27,7 @@ var document = RdashDocument.Load(filePath);
 var document = new RdashDocument("My Dashboard");
 
 //create a data source item using a REST service
-var jsonDataSourceItem = new RestBuilder("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
+var jsonDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
     .SetTitle("JSON Data Source")
     .SetSubtitle("Sales by Category")
     .SetFields(new List<Field>() //must define the fields returned from the data set
@@ -41,8 +41,8 @@ var jsonDataSourceItem = new RestBuilder("https://excel2json.io/api/share/6e0f06
 
 //add a Pie Chart to the dashboard using the REST service as the data source
 document.Visualizations.Add(new PieChartVisualization("My Pie Chart", jsonDataSourceItem)
-    .AddLabel("CategoryName")
-    .AddValue("ProductSales"));
+    .SetLabel("CategoryName")
+    .SetValue("ProductSales"));
 
 //save the document as an .rdash file
 document.Save(filePath);
