@@ -230,10 +230,10 @@ namespace Sandbox.Factories
                     settings.ConditionalFormatting.UpperBand.Value = 90;
                     settings.ConditionalFormatting.MiddleBand.Value = 60;
 
-                    settings.ZoomRectangle.X = 1.38;
-                    settings.ZoomRectangle.Y = 41.65;
-                    settings.ZoomRectangle.Width = 1.04;
-                    settings.ZoomRectangle.Height = 0.39;
+                    settings.Zoom.Longitude = 1.38;
+                    settings.Zoom.Latitude = 41.65;
+                    settings.Zoom.DegreesLongitude = 1.04;
+                    settings.Zoom.DegreesLatitude = 0.39;
                 }));
 
             //tree map
