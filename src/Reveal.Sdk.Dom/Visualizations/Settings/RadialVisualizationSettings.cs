@@ -16,10 +16,5 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         [JsonProperty("TrendlineType")]
         [JsonConverter(typeof(StringEnumConverter))]
         public TrendlineType Trendline { get; set; }
-
-        //todo: implement properties
-        //ZoomLevel
-        //AutomaticLabelRotation
-        //SyncAxis
     }
 }
