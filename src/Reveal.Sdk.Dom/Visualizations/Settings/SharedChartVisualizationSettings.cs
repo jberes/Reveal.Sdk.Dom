@@ -1,4 +1,6 @@
-﻿namespace Reveal.Sdk.Dom.Visualizations.Settings
+﻿using Newtonsoft.Json;
+
+namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
     /// <summary>
     /// This class provides properties that are used by the Column, Bar, Stack Column, Stacked Bar, Stacked Area, Area, Line, Step Area, Step Line, Spline Area, Spline, and Time Series charts.
@@ -7,9 +9,54 @@
     {
         protected SharedChartVisualizationSettings() : base() { }
 
-        //todo: implement properties
-        //ZoomLevel
-        //AutomaticLabelRotation
-        //SyncAxis
+        /// <summary>
+        /// Gets or sets a value that determines if the chart will automatcially rotate labels
+        /// </summary>
+        public bool AutomaticLabelRotation { get; set; }
+
+        /// <summary>
+        /// Gets or sets a values that will sync the axis to the visible range.
+        /// </summary>
+        [JsonProperty("SyncAxisVisibleRange")]
+        public bool SyncAxis { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value that represents the zoom level of the chart. Zoom level ranges from 0.0 (100% zoom) to 1.0 (0% zoom).
+        /// The lower the value, the more zoom IN that is applied. The higher the number, the more zoom OUT is applied.
+        /// </summary>
+        [JsonIgnore]
+        public double ZoomLevel 
+        { 
+            get
+            {
+                if (ChartType == ChartType.Bar || ChartType == ChartType.StackedBar)
+                    return ZoomScaleVertical;
+
+                return ZoomScaleHorizontal;
+            }
+            set
+            {
+                if (ChartType == ChartType.Bar || ChartType == ChartType.StackedBar)
+                    ZoomScaleVertical = CoerceValue(value);
+                else
+                    ZoomScaleHorizontal = CoerceValue(value);
+            }
+        }
+
+        [JsonProperty]
+        internal double ZoomScaleHorizontal { get; set; } = 1;
+
+        [JsonProperty]
+        internal double ZoomScaleVertical { get; set; } = 1;
+
+        double CoerceValue(double value)
+        {
+            if (value > 1)
+                return 1;
+            else if (value < 0)
+                return 0;
+            else
+                return value;
+        }
     }
 }
