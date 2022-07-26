@@ -1,6 +1,5 @@
 ﻿namespace Reveal.Sdk.Dom.Core.Constants
 {
-    //todo: this could be an enum
     internal class VisualizationTypes
     {
         internal const string CHART = "CHART";
