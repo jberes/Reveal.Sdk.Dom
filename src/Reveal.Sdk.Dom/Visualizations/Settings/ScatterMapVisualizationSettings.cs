@@ -47,10 +47,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         /// <summary>
         /// Gets the zoom and position of the map.
         /// </summary>
-        /// <remarks>Currently, this cannot be set reliably. This is calculated within the RevealView during runtime
-        /// and was not designed to be set externally and therefore there is no clear guidance we can provide on its use.
-        /// </remarks>
-        [JsonProperty]
-        public ZoomRectangle ZoomRectangle { get; internal set; } = new ZoomRectangle();
+        [JsonProperty("ZoomRectangle")]
+        public MapZoomRectangle Zoom { get; internal set; } = new MapZoomRectangle();
     }
 }
