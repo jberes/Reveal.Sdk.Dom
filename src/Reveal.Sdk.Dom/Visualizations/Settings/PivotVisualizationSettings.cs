@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
+using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
@@ -23,9 +24,5 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
             get { return _visualizationDataSpec.ShowGrandTotals; }
             set { _visualizationDataSpec.ShowGrandTotals = value; }
         }
-
-        //todo: what is this used for?
-        //[JsonProperty]
-        //public List<VisualizationColumnStyle> VisualizationColumns { get; private set; } = new List<VisualizationColumnStyle>();
     }
 }
