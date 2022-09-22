@@ -6,10 +6,24 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
+    /// <summary>
+    /// The KPI (key performance indicator) vs target visualization is used for measuring performance against a target through a prior time period.
+    /// </summary>
     public sealed class KpiTargetVisualization : TabularVisualizationBase<KpiTargetVisualizationSettings>, ITargets, IDate, IValues, ICategories
     {
         internal KpiTargetVisualization() : this(null) { }
+
+        /// <summary>
+        /// Creates a KPI vs target visualization from the supplied <see cref="DataSourceItem"/>.
+        /// </summary>
+        /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
         public KpiTargetVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
+
+        /// <summary>
+        /// Creates a KPI vs target visualization from the supplied <see cref="DataSourceItem"/> and sets the title to the provided string.
+        /// </summary>
+        /// <param name="title">The string to use as the visualization's title.</param>
+        /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
         public KpiTargetVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) 
         {
             Settings.VisualizationDataSpec = VisualizationDataSpec;
