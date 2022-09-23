@@ -21,8 +21,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         public bool SyncAxis { get; set; }
 
         /// <summary>
-        /// Gets or sets a value that represents the zoom level of the chart. Zoom level ranges from 0.0 (100% zoom) to 1.0 (0% zoom).
-        /// The lower the value, the more zoom IN that is applied. The higher the number, the more zoom OUT is applied.
+        /// Gets or sets a value that represents the zoom level of the chart. Zoom level ranges from 0.0 (0% zoom) to 1.0 (100% zoom).
         /// </summary>
         [JsonIgnore]
         public double ZoomLevel 
