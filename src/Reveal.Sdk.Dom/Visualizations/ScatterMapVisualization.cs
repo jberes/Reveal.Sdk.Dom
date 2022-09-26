@@ -6,10 +6,24 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
+    /// <summary>
+    /// The scatter map visualization is used to display geo-spatial data using points or markers in a geographic context. This type of visualization is often used to render a collection of geographic locations such as cities, airports, earthquakes, or points of interests.
+    /// </summary>
     public sealed class ScatterMapVisualization : TabularVisualizationBase<ScatterMapVisualizationSettings>, ILabel, IMap
     {
         internal ScatterMapVisualization() : this(null) { }
+
+        /// <summary>
+        /// Creates a scatter map visualization from the supplied <see cref="DataSourceItem"/>.
+        /// </summary>
+        /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
         public ScatterMapVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
+
+        /// <summary>
+        /// Creates a scatter map visualization from the supplied <see cref="DataSourceItem"/>.
+        /// </summary>
+        /// <param name="title">The string to use as the visualization's title.</param>
+        /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
         public ScatterMapVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonProperty(Order = 7)]

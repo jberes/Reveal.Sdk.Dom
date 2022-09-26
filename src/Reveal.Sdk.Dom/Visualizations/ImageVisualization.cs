@@ -5,10 +5,24 @@ using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
+    /// <summary>
+    /// The image visualization is used for displaying images, PDFs, or web content.
+    /// </summary>
     public sealed class ImageVisualization : TabularVisualizationBase<AssetVisualizationSettings>
     {
         internal ImageVisualization() : this(null) { }
+
+        /// <summary>
+        /// Creates a image visualization from the supplied <see cref="DataSourceItem"/>.
+        /// </summary>
+        /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
         public ImageVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
+
+        /// <summary>
+        /// Creates a image visualization from the supplied <see cref="DataSourceItem"/> and sets the title to the provided string.
+        /// </summary>
+        /// <param name="title">The string to use as the visualization's title.</param>
+        /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
         public ImageVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
