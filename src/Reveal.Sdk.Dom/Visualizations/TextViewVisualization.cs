@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
-    /// The text view visualization is used to display information that follows a key-value pattern. It does so by displaying only the first row of data paired with the column's label.
+    /// The text view visualization is used to display information that follows a key-value pattern. It only displays the first row of data paired with the column's label.
     /// </summary>
     public sealed class TextViewVisualization : TabularVisualizationBase<SingleRowVisualizationSettings>, ITabularColumns
     {

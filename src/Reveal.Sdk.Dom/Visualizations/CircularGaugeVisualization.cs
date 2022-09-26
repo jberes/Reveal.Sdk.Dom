@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
-    /// The circular gauge visualization displays a semi circle that contains minimum & maximum thresholds along with the current value. The circular gauge paints the scale background with the color of the current range.
+    /// The circular gauge visualization displays a semi circle that contains minimum and maximum thresholds along with the current value. The circular gauge paints the scale background with the color of the current range.
     /// </summary>
     public sealed class CircularGaugeVisualization : SingleGaugeVisualizationBase<CircularGaugeVisualizationSettings>
     {

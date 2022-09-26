@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
-    /// The radial visualization is used for taking data and rendering it as collection of data points wrapped around a circle (rather than stretching along a horizontal line).
+    /// The radial visualization is used for taking data and rendering it as a collection of data points wrapped around a circle.
     /// </summary>
     public sealed class RadialVisualization : CategoryVisualizationBase<RadialVisualizationSettings>
     {

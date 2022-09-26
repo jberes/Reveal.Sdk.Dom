@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
-    /// The text box visualizations is used to display a text body and an optional title. They are not connected to a data source.
+    /// The text box visualizations is used to display a text body and an optional title. It is not connected to a data source.
     /// </summary>
     public sealed class TextBoxVisualization : Visualization<TextBoxVisualizationSettings, TextBoxDataDefinition>
     {

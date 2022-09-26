@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
-    /// The custom visualizion is used to support visualizations not supported out of the box. This type of visualization uses a web view to pass data to the visualization for display.
+    /// The custom visualizion is used to support visualizations not supported out of the box.
     /// </summary>
     public sealed class CustomVisualization : TabularVisualizationBase<CustomVisualizationSettings>, IRows, IValues, IColumns
     {

@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
-    /// The OHLC visualization is used for the technical analysis of the price ranges. Like <see cref="CandleStickVisualization"/>, OHLC charts are meant to show the opening, high, low and closing prices for any financial data.
+    /// The OHLC visualization is used for the technical analysis of the price ranges. The visualization is meant to show the opening, high, low and closing prices for any financial data.
     /// </summary>
     public sealed class OHLCVisualization : FinancialVisualizationBase<OHLCVisualizationSettings>
     {

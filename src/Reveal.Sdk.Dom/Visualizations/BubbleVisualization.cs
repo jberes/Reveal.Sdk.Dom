@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
-    /// The bubble chart visualization is a type of scatter chart that show markers with variable scaling to represent the relationship among items in several distinct series of data or to plot data items using x and y coordinates. These coordinates of the data point are determined by two numeric data columns. The bubble chart draws attention to uneven intervals or clusters of data. This chart is often used to plot scientific data, and can highlight the deviation of collected data from predicted results. The bubble chart has many of the characteristics of the scatter chart but with the option to have various radius scale sizes.
+    /// The bubble chart visualization is a type of scatter chart that show markers with variable scaling to represent the relationship among items in several distinct series of data or to plot data items using x and y coordinates. These coordinates of the data point are determined by two numeric data columns. The bubble chart draws attention to uneven intervals or clusters of data. This chart is often used to plot scientific data, and can highlight the deviation of collected data from predicted results.
     /// </summary>
     public sealed class BubbleVisualization : TabularVisualizationBase<BubbleVisualizationSettings>, ILabels, IAxis
     {

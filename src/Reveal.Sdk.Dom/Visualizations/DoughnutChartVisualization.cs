@@ -4,7 +4,7 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
-    /// The doughnut visualization is similar to a pie chart, proportionally illustrating the occurrences of a variable.
+    /// The doughnut visualization is used to proportionally illustrate the occurrences of a variable by drawing arc segments around a center point that is empty, like a doughnut.
     /// </summary>
     public sealed class DoughnutChartVisualization : SingleValueLabelsVisualizationBase<DoughnutChartVisualizationSettings>
     {

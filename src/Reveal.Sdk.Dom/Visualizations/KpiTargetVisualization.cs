@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
-    /// The KPI (key performance indicator) vs target visualization is used for measuring performance against a target through a prior time period.
+    /// The KPI vs target visualization is used for measuring performance against a target through a prior time period.
     /// </summary>
     public sealed class KpiTargetVisualization : TabularVisualizationBase<KpiTargetVisualizationSettings>, ITargets, IDate, IValues, ICategories
     {

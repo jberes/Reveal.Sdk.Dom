@@ -3,11 +3,11 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
+    /// <summary>
+    /// The step line visualization is used for rendering a collection of points connected by continuous vertical and horizontal lines.
+    /// </summary>
     public sealed class StepLineChartVisualization : CategoryVisualizationBase<StepLineChartVisualizationSettings>
     {
-        /// <summary>
-        /// The step line visualization is used for rendering a collection of points connected by continuous vertical and horizontal lines.
-        /// </summary>
         internal StepLineChartVisualization() : this(null) { }
 
         /// <summary>

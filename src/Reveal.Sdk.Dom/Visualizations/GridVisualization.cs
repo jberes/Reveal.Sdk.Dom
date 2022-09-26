@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
-    /// The grid view visualization is used for displaying data which presents the information in a matrix.
+    /// The grid view visualization is used for displaying data which presents the information in a table.
     /// </summary>
     public sealed class GridVisualization : TabularVisualizationBase<GridVisualizationSettings>, ITabularColumns
     {
