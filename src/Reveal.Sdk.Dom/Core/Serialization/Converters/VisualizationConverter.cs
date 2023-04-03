@@ -14,8 +14,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
             var visualizationSettings = jObject["VisualizationSettings"];
             var visualizationType = visualizationSettings["_type"].Value<string>();
             Type vizType = visualizationType switch
-            {
-                
+            {   //todo: handle TextVisualization             
                 SchemaTypeNames.AssetVisualizationSettingsType => typeof(ImageVisualization),
                 SchemaTypeNames.ChartVisualizationSettingsType => GetChartVsualizationType(visualizationSettings),
                 SchemaTypeNames.DiyVisualizationSettingsType => typeof(CustomVisualization),
@@ -40,6 +39,8 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 
         private static Type GetGaugeVisualizationType(JToken jToken)
         {
+            //todo: need to figure out how to handle the BulletGraph since it uses SingleGaugeVisualizationDataSpecType
+            //probably can just change this to check the viewType only
             var vds = jToken.SelectToken("VisualizationDataSpec._type").Value<string>();
             Type type = vds switch
             {
@@ -59,6 +60,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 "Area" => typeof(AreaChartVisualization),
                 "Bar" => typeof(BarChartVisualization),
                 "Bubble" => typeof(BubbleVisualization),
+                "Candlestick" => typeof(CandleStickVisualization),
                 "Column" => typeof(ColumnChartVisualization),
                 "Composite" => typeof(ComboChartVisualization),
                 "Doughnut" => typeof(DoughnutChartVisualization),
