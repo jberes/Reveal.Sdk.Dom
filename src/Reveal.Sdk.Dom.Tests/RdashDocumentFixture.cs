@@ -12,9 +12,14 @@ namespace Reveal.Sdk.Dom.Tests
         [Fact]
         public void NewDashboard_SetsTitle()
         {
-            var dashboard = new RdashDocument("Custom Dashboard");
+            // Arrange
+            string title = "TestTitle";
 
-            Assert.Equal("Custom Dashboard", dashboard.Title);
+            // Act
+            RdashDocument document = new RdashDocument(title);
+
+            //Assert
+            Assert.Equal(title, document.Title);
         }
 
         [Fact]
@@ -108,6 +113,90 @@ namespace Reveal.Sdk.Dom.Tests
                 if (File.Exists(filePath))
                     File.Delete(filePath);
             }
+        }
+
+        [Fact]
+        public void SettingDescription_SetsDescriptionValue()
+        {
+            // Arrange
+            var dashboard = new RdashDocument();
+            var description = "This is a test description";
+
+            // Act
+            dashboard.Description = description;
+
+            // Assert
+            Assert.Equal(description, dashboard.Description);
+        }
+
+        [Fact]
+        public void SettingSavedWith_SetsSavedWithValue()
+        {
+            // Arrange
+            var dashboard = new RdashDocument();
+            var savedWith = "Custom Test Version 1.0";
+
+            // Act
+            dashboard.SavedWith = savedWith;
+
+            // Assert
+            Assert.Equal(savedWith, dashboard.SavedWith);
+        }
+
+        [Fact]
+        public void SettingTheme_SetsThemeValue()
+        {
+            // Arrange
+            var dashboard = new RdashDocument();
+            var theme = Theme.Ocean;
+
+            // Act
+            dashboard.Theme = theme;
+
+            // Assert
+            Assert.Equal(theme, dashboard.Theme);
+        }
+
+        [Fact]
+        public void SettingTags_SetsTagsValue()
+        {
+            // Arrange
+            var dashboard = new RdashDocument();
+            var tags = "tag1,tag2,tag3,tag4";
+
+            // Act
+            dashboard.Tags = tags;
+
+            // Assert
+            Assert.Equal(tags, dashboard.Tags);
+        }
+
+        [Fact]
+        public void SettingFormatVersion_SetsFormatVersionValue()
+        {
+            // Arrange
+            var dashboard = new RdashDocument();
+            var formatVersion = 7;
+
+            // Act
+            dashboard.FormatVersion = formatVersion;
+
+            // Assert
+            Assert.Equal(formatVersion, dashboard.FormatVersion);
+        }
+
+        [Fact]
+        public void SettingUseAutoLayout_SetsUseAutoLayoutValue()
+        {
+            // Arrange
+            var dashboard = new RdashDocument();
+            var useAutoLayout = false;
+
+            // Act
+            dashboard.UseAutoLayout = useAutoLayout;
+
+            // Assert
+            Assert.Equal(useAutoLayout, dashboard.UseAutoLayout);
         }
     }
 }

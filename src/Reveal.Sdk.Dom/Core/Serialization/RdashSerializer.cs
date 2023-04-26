@@ -4,6 +4,7 @@ using Reveal.Sdk.Dom.Core.Utilities;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Text;
 
 namespace Reveal.Sdk.Dom.Core.Serialization
 {
@@ -40,7 +41,9 @@ namespace Reveal.Sdk.Dom.Core.Serialization
                     {
                         using (var reader = new StreamReader(jsonStream))
                         {
-                            json = reader.ReadToEnd();
+                            var memoryStream = new MemoryStream();
+                            jsonStream.CopyTo(memoryStream);
+                            json = Encoding.UTF8.GetString(memoryStream.ToArray());
                         }
                     }
                 }
