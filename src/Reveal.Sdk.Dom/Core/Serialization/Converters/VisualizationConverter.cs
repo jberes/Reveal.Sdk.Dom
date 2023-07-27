@@ -14,11 +14,11 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
             var visualizationSettings = jObject["VisualizationSettings"];
             var visualizationType = visualizationSettings["_type"].Value<string>();
             Type vizType = visualizationType switch
-            {   //todo: handle TextVisualization             
+            {          
                 SchemaTypeNames.AssetVisualizationSettingsType => typeof(ImageVisualization),
-                SchemaTypeNames.ChartVisualizationSettingsType => GetChartVsualizationType(visualizationSettings),
+                SchemaTypeNames.ChartVisualizationSettingsType => GetChartVisualizationType(visualizationSettings),
                 SchemaTypeNames.DiyVisualizationSettingsType => typeof(CustomVisualization),
-                SchemaTypeNames.GaugeVisualizationSettingsType => GetGaugeVisualizationType(jObject),
+                SchemaTypeNames.GaugeVisualizationSettingsType => GetGaugeVisualizationType(visualizationSettings),
                 SchemaTypeNames.GridVisualizationSettingsType => typeof(GridVisualization),
                 SchemaTypeNames.IndicatorVisualizationSettingsType => typeof(KpiTimeVisualization),
                 SchemaTypeNames.IndicatorTargetVisualizationSettingsType => typeof(KpiTargetVisualization),
@@ -39,20 +39,19 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 
         private static Type GetGaugeVisualizationType(JToken jToken)
         {
-            //todo: need to figure out how to handle the BulletGraph since it uses SingleGaugeVisualizationDataSpecType
-            //probably can just change this to check the viewType only
-            var vds = jToken.SelectToken("VisualizationDataSpec._type").Value<string>();
-            Type type = vds switch
+            var vs = jToken["ViewType"].Value<string>();
+            Type type = vs switch
             {
-                SchemaTypeNames.SingleGaugeVisualizationDataSpecType => typeof(CircularGaugeVisualization),
-                SchemaTypeNames.LinearGaugeVisualizationDataSpecType => typeof(LinearGaugeVisualization),
-                _ => throw new JsonException($"Chart type not supported: {vds}")
+                "BulletGraph" => typeof(BulletGraphVisualization),
+                "Circular" => typeof(CircularGaugeVisualization),
+                "Linear" => typeof(LinearGaugeVisualization),
+                "SingleValue" => typeof(TextVisualization),
+                _ => throw new JsonException($"Chart type not supported: {vs}")
             };
-
             return type;
         }
 
-        Type GetChartVsualizationType(JToken jToken)
+        Type GetChartVisualizationType(JToken jToken)
         {
             var chartType = jToken["ChartType"].Value<string>();
             Type type = chartType switch
