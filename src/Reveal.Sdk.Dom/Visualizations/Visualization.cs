@@ -12,10 +12,6 @@ namespace Reveal.Sdk.Dom.Visualizations
     {
         protected Visualization(string title) : base(title) { }
 
-        ////todo: implement
-        //[JsonProperty(Order = 10)]
-        //internal ActionsModel ActionsModel { get; set; }
-
         [JsonProperty("DataSpec", Order = 6)]
         public TDataDefinition DataDefinition { get; internal set; }
 
@@ -24,6 +20,9 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             get { return DataDefinition.Bindings.Bindings; }
         }
+
+        [JsonProperty("ActionsModel", Order = 10)]
+        public VisualizationLinker Linker { get; set; }
 
         [JsonProperty("VisualizationSettings", Order = 5)]
         public TSettings Settings { get; internal set; } = new TSettings();

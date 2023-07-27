@@ -1,7 +1,5 @@
 ﻿using Reveal.Sdk;
 using Reveal.Sdk.Dom;
-using Reveal.Sdk.Dom.Data;
-using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Factories;
 using Sandbox.Helpers;
 using System;
@@ -17,7 +15,7 @@ namespace Sandbox
     {
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Manufacturing);
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -28,6 +26,22 @@ namespace Sandbox
 
             //RevealSdkSettings.EnableNewCharts = true;
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
+
+            _revealView.LinkedDashboardProvider = (string dashboardId, string linkTitle) =>
+            {
+                var path = Path.Combine(_dashboardFilePath, $"{dashboardId}.rdash");
+                if (File.Exists(path))
+                    return new RVDashboard(path);
+
+                return null;
+            };
+
+            _revealView.DashboardSelectorRequested += RevealView_DashboardSelectorRequested;
+        }
+
+        private void RevealView_DashboardSelectorRequested(object sender, DashboardSelectorRequestedEventArgs e)
+        {
+            e.Callback("Campaigns");
         }
 
         private async void RevealView_SaveDashboard(object sender, DashboardSaveEventArgs e)
@@ -68,9 +82,11 @@ namespace Sandbox
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            var document = CustomDashboard.CreateDashboard();
+            //var document = CustomDashboard.CreateDashboard();
             //var document = RestDataSourceDashboards.CreateDashboard();
             //var document = SqlServerDataSourceDashboards.CreateDashboard();
+            var document = DashboardLinkingDashboard.CreateDashboard();
+
 
             //document.Save(_saveRdashToPath);
 
