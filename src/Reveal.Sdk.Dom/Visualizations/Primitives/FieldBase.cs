@@ -8,17 +8,32 @@ namespace Reveal.Sdk.Dom.Visualizations
     public abstract class FieldBase<TFilter> : IField, IFieldDataType
         where TFilter : IFilter
     {
+        private string _fieldLabel;
+
         protected FieldBase(string fieldName)
         {
             FieldName = fieldName;
             FieldLabel = fieldName;
         }
 
+        
+
         /// <inheritdoc />
         public string FieldName { get; set; }
 
         /// <inheritdoc />
-        public string FieldLabel { get; set; }
+        public string FieldLabel 
+        { 
+            get => _fieldLabel;
+            set
+            {
+                _fieldLabel = value;
+                UserCaption = value;
+            }
+        }
+
+        [JsonProperty]
+        internal string UserCaption { get; set; }
 
         [JsonProperty("FieldType")]
         [JsonConverter(typeof(StringEnumConverter))]
