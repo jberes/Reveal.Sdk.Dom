@@ -92,7 +92,22 @@ namespace Sandbox
 
             var sourceDocument = RdashDocument.Load(_readFilePath);
             var document = new RdashDocument("Testing");
+
             document.Import(sourceDocument, sourceDocument.Visualizations[0]);
+
+            foreach (var viz in document.Visualizations)
+            {
+                if (viz is ITabularVisualization tabularViz)
+                {
+                    tabularViz.UpdateDataSourceItem(newDataSourceItemCreatedFromBuilder);
+
+                    foreach (var field in tabularViz.DataDefinition.Fields)
+                    {
+                        field.FieldLabel = "My New Field Name";
+                    }
+                }
+            }
+                
 
 
             var json = document.ToJsonString();

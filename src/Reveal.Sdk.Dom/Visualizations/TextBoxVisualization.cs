@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The text box visualizations is used to display a text body and an optional title. It is not connected to a data source.
     /// </summary>
-    public sealed class TextBoxVisualization : Visualization<TextBoxVisualizationSettings, TextBoxDataDefinition>, ITextBoxDataDefinitionProvider
+    public sealed class TextBoxVisualization : Visualization<TextBoxVisualizationSettings, TextBoxDataDefinition>
     {
         /// <summary>
         /// Creates a text box visualization.
