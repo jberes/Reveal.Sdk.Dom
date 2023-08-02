@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class Visualization<TSettings, TDataDefinition> : Visualization, IVisualization<TSettings, TDataDefinition>
+    public abstract class Visualization<TSettings, TDataDefinition> : Visualization, ISettingsProvider<TSettings>, IDataDefinitionProvider<TDataDefinition>, IFilterBindings
         where TSettings : VisualizationSettings, new()
         where TDataDefinition : DataDefinitionBase
     {

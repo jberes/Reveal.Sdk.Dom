@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public interface ITabularVisualization
+    public interface IFilterBindings
     {
-        List<VisualizationFilter> Filters { get; }
+        List<Binding> FilterBindings { get; }
     }
 }

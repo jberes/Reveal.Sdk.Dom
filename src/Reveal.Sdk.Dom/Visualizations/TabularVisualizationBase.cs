@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class TabularVisualizationBase<TSettings> : Visualization<TSettings, TabularDataDefinition>, ITabularVisualization<TSettings>
+    public abstract class TabularVisualizationBase<TSettings> : Visualization<TSettings, TabularDataDefinition>, ITabularVisualization, ITabularDataDefinitionProvider
         where TSettings : VisualizationSettings, new()
     {
         protected TabularVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title)
