@@ -83,30 +83,30 @@ namespace Sandbox
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            //var document = CustomDashboard.CreateDashboard();
+            var document = CustomDashboard.CreateDashboard();
             //var document = RestDataSourceDashboards.CreateDashboard();
             //var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();
 
             //document.Save(_saveRdashToPath);
 
-            var sourceDocument = RdashDocument.Load(_readFilePath);
-            var document = new RdashDocument("Testing");
+            //var sourceDocument = RdashDocument.Load(_readFilePath);
+            //var document = new RdashDocument("Testing");
 
-            document.Import(sourceDocument, sourceDocument.Visualizations[0]);
+            //document.Import(sourceDocument, sourceDocument.Visualizations[0]);
 
-            foreach (var viz in document.Visualizations)
-            {
-                if (viz is ITabularVisualization tabularViz)
-                {
-                    tabularViz.UpdateDataSourceItem(newDataSourceItemCreatedFromBuilder);
+            //foreach (var viz in document.Visualizations)
+            //{
+            //    if (viz is ITabularVisualization tabularViz)
+            //    {
+            //        tabularViz.UpdateDataSourceItem(newDataSourceItemCreatedFromBuilder);
 
-                    foreach (var field in tabularViz.DataDefinition.Fields)
-                    {
-                        field.FieldLabel = "My New Field Name";
-                    }
-                }
-            }
+            //        foreach (var field in tabularViz.DataDefinition.Fields)
+            //        {
+            //            field.FieldLabel = "My New Field Name";
+            //        }
+            //    }
+            //}
                 
 
 
