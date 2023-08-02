@@ -8,6 +8,7 @@ using Newtonsoft.Json.Serialization;
 using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Variables;
 using Newtonsoft.Json.Converters;
+using System;
 
 namespace Reveal.Sdk.Dom
 {
@@ -90,6 +91,74 @@ namespace Reveal.Sdk.Dom
         /// </summary>
         [JsonProperty("Widgets")]
         public List<IVisualization> Visualizations { get; internal set; } = new List<IVisualization>();
+
+        /// <summary>
+        /// Import all visualizations from another document.
+        /// </summary>
+        /// <param name="document">The <see cref="RdashDocument"/> containing the visualizations to import.</param>
+        /// <exception cref="ArgumentNullException">Thrown if the document is null</exception>
+        public void Import(RdashDocument document)
+        {
+            if (document == null)
+                throw new ArgumentNullException();
+
+            //todo: think about dashboard filters. should we bring them over? maybe some import options to control it?
+            //let's wait for feedback from customers
+            //for now let's just clear any visualization filters that may be binding to a dashboard filter
+            foreach (var viz in document.Visualizations)
+            {               
+                if (viz is IFilterBindings bindings)
+                    bindings.FilterBindings.Clear();
+            }
+
+            DataSources.AddRange(document.DataSources); //add all data sources, unused data sources will be removed later during serialization
+
+            Visualizations.AddRange(document.Visualizations);
+        }
+
+        /// <summary>
+        /// Import a visualization from another document.
+        /// </summary>
+        /// <param name="document">The <see cref="RdashDocument"/> containing the visualization to import.</param>
+        /// <param name="visualizationId">The ID of the visualization to import.</param>
+        /// <exception cref="ArgumentNullException">Thrown if the document is null</exception>
+        /// <exception cref="ArgumentException">Thrown if the visualizationId is null or empty.</exception>
+        public void Import(RdashDocument document, string visualizationId)
+        {
+            if (document == null)
+                throw new ArgumentNullException();
+
+            if (string.IsNullOrEmpty(visualizationId))
+                throw new ArgumentException("Value cannot be null or empty.", nameof(visualizationId));
+
+            var visualization = document.Visualizations.Find(v => v.Id == visualizationId);
+            Import(document, visualization);
+        }
+
+        /// <summary>
+        /// Import a visualization from another document.
+        /// </summary>
+        /// <param name="document">The <see cref="RdashDocument"/> containing the visualization to import.</param>
+        /// <param name="visualization">The visualization.</param>
+        /// <exception cref="ArgumentNullException">Thrown if the document or visualization is null.</exception>
+        public void Import(RdashDocument document, IVisualization visualization)
+        {
+            if (document == null)
+                throw new ArgumentNullException(nameof(document));
+
+            if (visualization == null)
+                throw new ArgumentNullException(nameof(visualization));
+
+            //todo: think about dashboard filters. should we bring them over? maybe some import options to control it?
+            //let's wait for feedback from customers
+            //for now let's just clear any visualization filters that may be binding to a dashboard filter
+            if (visualization is IFilterBindings bindings)
+                bindings.FilterBindings.Clear();
+
+            DataSources.AddRange(document.DataSources); //add all data sources, unused data sources will be removed later during serialization
+
+            Visualizations.Add(visualization);
+        }
 
         /// <summary>
         /// Creates an <see cref="RdashDocument"/> from a .rdash file.

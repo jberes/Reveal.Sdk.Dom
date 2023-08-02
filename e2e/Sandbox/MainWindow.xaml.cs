@@ -83,12 +83,17 @@ namespace Sandbox
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            var document = CustomDashboard.CreateDashboard();
+            //var document = CustomDashboard.CreateDashboard();
             //var document = RestDataSourceDashboards.CreateDashboard();
             //var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();
 
             //document.Save(_saveRdashToPath);
+
+            var sourceDocument = RdashDocument.Load(_readFilePath);
+            var document = new RdashDocument("Testing");
+            document.Import(sourceDocument, sourceDocument.Visualizations[0]);
+
 
             var json = document.ToJsonString();
             //json.Save(_saveJsonToPath);

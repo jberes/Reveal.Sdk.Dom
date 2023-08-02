@@ -45,7 +45,6 @@ namespace Reveal.Sdk.Dom.Data
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Provider);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Title);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Subtitle);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Dictionary<string, object>>.Default.GetHashCode(Properties);
             return hashCode;
         }
     }
