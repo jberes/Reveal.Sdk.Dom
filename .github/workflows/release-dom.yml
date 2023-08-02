@@ -1,4 +1,4 @@
-name: Release - Reveal.Sdk.Dom
+name: Create Release - Reveal.Sdk.Dom
 
 on:
   workflow_dispatch
