@@ -52,10 +52,15 @@ namespace Reveal.Sdk.Dom.Core.Serialization
             return json;
         }
 
-        internal static string Serialize(RdashDocument document)
+        internal static string SerializeDocument(RdashDocument document)
         {
             RdashDocumentValidator.FixDocument(document);
-            return JsonConvert.SerializeObject(document, Formatting.Indented, new JsonSerializerSettings()
+            return SerializeObject(document);
+        }
+
+        internal static string SerializeObject(object @object)
+        {
+            return JsonConvert.SerializeObject(@object, Formatting.Indented, new JsonSerializerSettings()
             {
                 NullValueHandling = NullValueHandling.Ignore,
             });

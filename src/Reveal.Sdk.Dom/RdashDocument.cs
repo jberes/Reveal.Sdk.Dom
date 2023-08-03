@@ -185,7 +185,7 @@ namespace Reveal.Sdk.Dom
         /// <returns>A JSON string representing the <see cref="RdashDocument"/></returns>
         public string ToJsonString()
         {
-            return RdashSerializer.Serialize(this);
+            return RdashSerializer.SerializeDocument(this);
         }
     }
 }
