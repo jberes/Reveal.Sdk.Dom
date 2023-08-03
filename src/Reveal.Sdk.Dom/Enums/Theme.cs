@@ -19,6 +19,10 @@ namespace Reveal.Sdk.Dom
         Circus,
 
         [Obsolete("This theme is no longer used. Please use Aurora, Mountain, or Ocean.")]
+        [EnumMember(Value = "Indigo")]
+        Indigo,
+
+        [Obsolete("This theme is no longer used. Please use Aurora, Mountain, or Ocean.")]
         [EnumMember(Value = "Rocky Mountain")]
         RockyMountain,
 

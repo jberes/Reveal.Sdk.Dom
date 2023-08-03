@@ -16,5 +16,10 @@ namespace Reveal.Sdk.Dom
             list.RemoveAll(v => v.Title.Trim().ToLower() == title.Trim().ToLower());
             return list;
         }
+
+        public static IVisualization FindById(this List<IVisualization> list, string id)
+        {
+            return list.Find(v => v.Id == id);
+        }
     }
 }

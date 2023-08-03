@@ -107,8 +107,6 @@ namespace Sandbox
             //        }
             //    }
             //}
-                
-
 
             var json = document.ToJsonString();
             //json.Save(_saveJsonToPath);
