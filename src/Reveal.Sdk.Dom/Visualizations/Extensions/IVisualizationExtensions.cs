@@ -9,5 +9,10 @@
             visualization.ColumnSpan = columnSpan;
             return visualization;
         }
+
+        public static ITabularVisualization AsTabularVisualization(this IVisualization visualization)
+        {
+            return visualization as ITabularVisualization;
+        }
     }
 }
