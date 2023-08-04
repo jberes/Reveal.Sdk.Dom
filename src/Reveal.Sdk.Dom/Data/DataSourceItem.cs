@@ -23,16 +23,16 @@ namespace Reveal.Sdk.Dom.Data
         public List<IField> Fields { get; internal set; } = new List<IField>();
 
         /// <summary>
-        /// The data source for the current DataSourceItem.
+        /// The data source for the current DataSourceItem. This is only used during the RdashDocumentValidator process.
         /// </summary>
         [JsonIgnore]
-        public DataSource DataSource { get; internal set; }
+        internal DataSource DataSource { get; set; }
 
         /// <summary>
-        /// The data source for the ResourceItem.
+        /// The data source for the ResourceItem. This is only used during the RdashDocumentValidator process.
         /// </summary>
         [JsonIgnore]
-        public DataSource ResourceItemDataSource { get; internal set; }
+        internal DataSource ResourceItemDataSource { get; set; }
 
         public DataSourceItem()
         {
