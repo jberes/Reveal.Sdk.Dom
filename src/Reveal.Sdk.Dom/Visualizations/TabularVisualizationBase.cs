@@ -12,11 +12,8 @@ namespace Reveal.Sdk.Dom.Visualizations
     {
         protected TabularVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title)
         {
-            DataDefinition = new TabularDataDefinition
-            {
-                DataSourceItem = dataSourceItem,
-                Fields = dataSourceItem?.Fields.Clone()
-            };
+            DataDefinition = new TabularDataDefinition();
+            UpdateDataSourceItem(dataSourceItem);
         }
 
         [JsonIgnore]
