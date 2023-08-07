@@ -2,13 +2,15 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Visualizations;
+using Newtonsoft.Json;
 
 namespace Reveal.Sdk.Dom.Filters
 {
     public sealed class DashboardDataFilter : DashboardDataFilterBase
     {
-        //todo: rename to DataDefinition
-        public TabularDataDefinition DataSpec { get; internal set; } = new TabularDataDefinition();
+        [JsonProperty("DataSpec")]
+        public TabularDataDefinition DataDefinition { get; internal set; } = new TabularDataDefinition();
+
         public string SelectedFieldName { get; set; }
 
         internal DashboardDataFilter() : this(null) { }
@@ -16,8 +18,8 @@ namespace Reveal.Sdk.Dom.Filters
         public DashboardDataFilter(DataSourceItem dataSourceItem)
         {
             SchemaTypeName = SchemaTypeNames.TabularGlobalFilterType;
-            DataSpec.DataSourceItem = dataSourceItem;
-            DataSpec.Fields = dataSourceItem?.Fields.Clone();
+            DataDefinition.DataSourceItem = dataSourceItem;
+            DataDefinition.Fields = dataSourceItem?.Fields.Clone();
         }
     }
 }
