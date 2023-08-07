@@ -49,6 +49,9 @@ namespace Reveal.Sdk.Dom.Data
         [EnumMember(Value = "JSON")]
         JSON,
 
+        [EnumMember(Value = "LOCALFILE")]
+        LocalFile,
+
         [EnumMember(Value = "REST")]
         REST,
 
