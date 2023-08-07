@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -18,6 +19,12 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Do not display labels.
         /// </summary>
         [EnumMember(Value = "NONE")]
-        None
+        None,
+        /// <summary>
+        /// Display labels only on regions that have values.
+        /// </summary>
+        [Obsolete("Use HasValues instead.")]
+        [EnumMember(Value = "VALUES ONLY")]
+        ValuesOnly
     }
 }
