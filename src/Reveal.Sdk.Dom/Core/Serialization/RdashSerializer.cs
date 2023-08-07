@@ -13,13 +13,16 @@ namespace Reveal.Sdk.Dom.Core.Serialization
         const string _rdashJsonFileName = "Dashboard.json";
 
         internal static RdashDocument Load(string filePath)
-        {
-            RdashDocument document = null;
+        {            
             using (var stream = File.OpenRead(filePath))
             {
-                document = Deserialize(stream);
+                return Load(stream);
             }
-            return document;
+        }
+
+        internal static RdashDocument Load(Stream stream)
+        {
+            return Deserialize(stream);
         }
 
         static RdashDocument Deserialize(Stream stream)

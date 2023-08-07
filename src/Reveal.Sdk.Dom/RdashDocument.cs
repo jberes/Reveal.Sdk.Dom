@@ -10,6 +10,7 @@ using Reveal.Sdk.Dom.Variables;
 using Newtonsoft.Json.Converters;
 using System;
 using Reveal.Sdk.Dom.Core;
+using System.IO;
 
 namespace Reveal.Sdk.Dom
 {
@@ -182,7 +183,15 @@ namespace Reveal.Sdk.Dom
             return RdashSerializer.Load(filePath);
         }
 
-        //todo: Load(Stream stream)
+        /// <summary>
+        /// Creates an <see cref="RdashDocument"/> from a .rdash file stream.
+        /// </summary>
+        /// <param name="stream">The dashboard file stream</param>
+        /// <returns></returns>
+        public static RdashDocument Load(Stream stream)
+        {
+            return RdashSerializer.Load(stream);
+        }
 
         /// <summary>
         /// Saves the <see cref="RdashDocument"/> as a .rdash file.
