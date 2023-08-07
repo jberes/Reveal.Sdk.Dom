@@ -1,11 +1,9 @@
 ﻿using Reveal.Sdk;
 using Reveal.Sdk.Dom;
-using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Factories;
 using Sandbox.Helpers;
 using System;
 using System.IO;
-using System.Linq;
 using System.Windows;
 
 namespace Sandbox
@@ -84,24 +82,12 @@ namespace Sandbox
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            //var document = CustomDashboard.CreateDashboard();
+            var document = CustomDashboard.CreateDashboard();
             //var document = RestDataSourceDashboards.CreateDashboard();
             //var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();
 
             //document.Save(_saveRdashToPath);
-
-            //var sourceDocument = RdashDocument.Load(_readFilePath);
-            //var document = new RdashDocument("Testing");
-
-            //document.Import(sourceDocument, sourceDocument.Visualizations[0]);
-
-            var sourceDocument = RdashDocument.Load(_readFilePath);
-            var dsi = sourceDocument.Visualizations[0].AsTabularVisualization().GetDataSourceItem();
-            var document = new RdashDocument("Testing");
-            var gridViz = new GridVisualization("My Grid", dsi)
-                .SetColumns("Territory");
-            document.Visualizations.Add(gridViz);
 
             var json = document.ToJsonString();
             //json.Save(_saveJsonToPath);

@@ -8,9 +8,9 @@ namespace Reveal.Sdk.Dom.Data
 {
     public sealed class RestServiceBuilder
     {
-        readonly DataSource _dataSource = new DataSource() { Id = DataSourceIds.JSON, Provider = DataSourceProviders.JSON }; //data source
+        readonly DataSource _dataSource = new DataSource() { Id = DataSourceIds.JSON, Provider = DataSourceProvider.JSON }; //data source
         readonly DataSourceItem _dataSourceItem = new DataSourceItem(); //data source item that points to the data source
-        readonly DataSource _resourceItemDataSource = new DataSource() { Provider = DataSourceProviders.REST }; //rest data source
+        readonly DataSource _resourceItemDataSource = new DataSource() { Provider = DataSourceProvider.REST }; //rest data source
         readonly DataSourceItem _resourceItem = new DataSourceItem(); //resource item that points to the rest data source
 
         public RestServiceBuilder(string uri)
@@ -94,7 +94,7 @@ namespace Reveal.Sdk.Dom.Data
             ClearJsonConfig();
 
             _dataSource.Id = DataSourceIds.CSV;
-            _dataSource.Provider = DataSourceProviders.CsvProvider;
+            _dataSource.Provider = DataSourceProvider.CSV;
             _resourceItemDataSource.Properties["Result-Type"] = ".csv";
 
             _dataSourceItem.DataSourceId = _dataSource.Id;
@@ -107,7 +107,7 @@ namespace Reveal.Sdk.Dom.Data
             ClearJsonConfig();
 
             _dataSource.Id = DataSourceIds.Excel;
-            _dataSource.Provider = DataSourceProviders.ExcelProvider;
+            _dataSource.Provider = DataSourceProvider.MicrosoftExcel;
 
             var fileExt = fileType == ExcelFileType.Xlsx ? ".xlsx" : ".xls";
             _resourceItemDataSource.Properties["Result-Type"] = fileExt;

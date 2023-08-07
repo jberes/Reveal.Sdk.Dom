@@ -8,7 +8,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     public sealed class SqlServerBuilder
     {
-        readonly DataSource _dataSource = new DataSource() { Provider = DataSourceProviders.SqlServer }; //data source
+        readonly DataSource _dataSource = new DataSource() { Provider = DataSourceProvider.MicrosoftSqlServer }; //data source
         readonly DataSourceItem _dataSourceItem = new DataSourceItem(); //data source item that points to the data source
 
         public SqlServerBuilder(string host, string database, string table)

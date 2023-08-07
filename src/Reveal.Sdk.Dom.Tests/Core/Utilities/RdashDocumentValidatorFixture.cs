@@ -1,5 +1,4 @@
-﻿using Reveal.Sdk.Dom.Core.Constants;
-using Reveal.Sdk.Dom.Core.Utilities;
+﻿using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using System.Collections.Generic;
@@ -40,7 +39,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 
             RdashDocumentValidator.FixDocument(document);
 
-            var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProviders.JSON);
+            var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProvider.JSON);
 
             Assert.Single(jsonDataSources);
         }
@@ -63,7 +62,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 
             RdashDocumentValidator.FixDocument(document);
 
-            var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProviders.JSON);
+            var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProvider.JSON);
 
             Assert.Single(jsonDataSources);
         }

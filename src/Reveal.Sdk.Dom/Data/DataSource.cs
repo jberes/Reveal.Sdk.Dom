@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Core.Constants;
 using System;
@@ -11,7 +12,8 @@ namespace Reveal.Sdk.Dom.Data
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         [JsonProperty]
-        public string Provider { get; internal set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public DataSourceProvider Provider { get; internal set; }
 
         [JsonProperty("Description")]
         public string Title { get; set; }
@@ -42,7 +44,7 @@ namespace Reveal.Sdk.Dom.Data
             int hashCode = -258580624;
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(SchemaTypeName);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Id);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Provider);
+            hashCode = hashCode * -1521134295 + EqualityComparer<DataSourceProvider>.Default.GetHashCode(Provider);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Title);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Subtitle);
             return hashCode;
