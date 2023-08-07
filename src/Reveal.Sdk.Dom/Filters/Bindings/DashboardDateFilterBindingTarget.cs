@@ -1,10 +1,15 @@
-﻿using Reveal.Sdk.Dom.Core.Constants;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom.Filters
 {
     public sealed class DashboardDateFilterBindingTarget : BindingTarget
     {
-        public string GlobalFilterFieldName { get; set; }
+        [JsonProperty("GlobalFilterId")]
+        public string DashboardFilterId { get; set; }
+
+        [JsonProperty("GlobalFilterFieldName")]
+        public string DashboardFilterFieldName { get; set; }
 
         public DashboardDateFilterBindingTarget()
         {

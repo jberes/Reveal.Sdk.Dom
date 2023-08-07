@@ -10,5 +10,9 @@ namespace Reveal.Sdk.Dom.Filters
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Title { get; set; }
+
+        //todo: figure this out
+        [JsonProperty]
+        internal string CrossFilteringSourceWidgetId { get; set; }
     }
 }
