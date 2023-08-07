@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using System;
@@ -28,7 +29,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public TSettings Settings { get; internal set; } = new TSettings();
     }
 
-    public abstract class Visualization : IVisualization
+    public abstract class Visualization : IVisualization, IParentDocument
     {
         protected Visualization(string title)
         {
@@ -37,13 +38,20 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         [JsonProperty(Order = 0)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
+
         [JsonProperty(Order = 1)]
         public string Title { get; set; }
+
         [JsonProperty(Order = 2)]
         public bool IsTitleVisible { get; set; } = true;
+
         [JsonProperty(Order = 3)]
         public int ColumnSpan { get; set; }
+
         [JsonProperty(Order = 4)]
         public int RowSpan { get; set; }
+
+        [JsonIgnore]
+        RdashDocument IParentDocument.Document { get; set; }
     }
 }

@@ -9,11 +9,14 @@ using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Variables;
 using Newtonsoft.Json.Converters;
 using System;
+using Reveal.Sdk.Dom.Core;
 
 namespace Reveal.Sdk.Dom
 {
     public sealed class RdashDocument
     {
+        private VisualizationCollection _visualizations;
+
         /// <summary>
         /// Creates a new instance of an <see cref="RdashDocument"/>.
         /// </summary>
@@ -26,6 +29,7 @@ namespace Reveal.Sdk.Dom
         public RdashDocument(string title)
         {
             Title = title;
+            _visualizations = new VisualizationCollection(this);
         }
 
         /// <summary>
@@ -90,7 +94,15 @@ namespace Reveal.Sdk.Dom
         /// Gets the collection of visualizations that are displayed in the dashboard.
         /// </summary>
         [JsonProperty("Widgets")]
-        public List<IVisualization> Visualizations { get; internal set; } = new List<IVisualization>();
+        public VisualizationCollection Visualizations 
+        { 
+            get => _visualizations; 
+            internal set
+            {
+                _visualizations = value;
+                _visualizations.Parent = this;
+            }
+        }
 
         /// <summary>
         /// Import all visualizations from another document.
@@ -169,6 +181,8 @@ namespace Reveal.Sdk.Dom
         {
             return RdashSerializer.Load(filePath);
         }
+
+        //todo: Load(Stream stream)
 
         /// <summary>
         /// Saves the <see cref="RdashDocument"/> as a .rdash file.

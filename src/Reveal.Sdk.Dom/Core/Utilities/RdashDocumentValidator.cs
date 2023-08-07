@@ -18,14 +18,15 @@ namespace Reveal.Sdk.Dom.Core.Utilities
             Dictionary<string, DataSource> dataSources = new Dictionary<string, DataSource>();
             foreach (var visualization in document.Visualizations)
             {
-                if (visualization is TextBoxVisualization) //TextBoxVisualization does not require a data source so there is no need to fix it
-                    continue;
-
-                if (visualization is IDataDefinitionProvider<DataDefinitionBase> iddp)
+                if (visualization is ITabularVisualization tv)
                 {
-                    var dsi = iddp.DataDefinition?.DataSourceItem;
+                    var fields = tv.DataDefinition?.Fields;
+                    if (fields == null)
+                        throw new Exception($"DataDefinition.Fields for visualization {visualization.Title} is null.");
+
+                    var dsi = tv.DataDefinition?.DataSourceItem;
                     if (dsi == null) 
-                        throw new Exception($"Data source item for visualization {visualization.Title} is null.");
+                        throw new Exception($"DataDefinition.DataSourceItem for visualization {visualization.Title} is null.");
 
                     if (dsi.DataSource != null)
                     {

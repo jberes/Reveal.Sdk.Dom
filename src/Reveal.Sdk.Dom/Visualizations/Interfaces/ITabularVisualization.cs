@@ -9,5 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         List<VisualizationFilter> Filters { get; }
 
         void UpdateDataSourceItem(DataSourceItem dataSourceItem);
+
+        DataSourceItem GetDataSourceItem();
     }
 }

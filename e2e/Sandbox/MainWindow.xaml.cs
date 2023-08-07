@@ -5,6 +5,7 @@ using Sandbox.Factories;
 using Sandbox.Helpers;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 
 namespace Sandbox
@@ -83,7 +84,7 @@ namespace Sandbox
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            var document = CustomDashboard.CreateDashboard();
+            //var document = CustomDashboard.CreateDashboard();
             //var document = RestDataSourceDashboards.CreateDashboard();
             //var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();
@@ -95,18 +96,12 @@ namespace Sandbox
 
             //document.Import(sourceDocument, sourceDocument.Visualizations[0]);
 
-            //foreach (var viz in document.Visualizations)
-            //{
-            //    if (viz is ITabularVisualization tabularViz)
-            //    {
-            //        tabularViz.UpdateDataSourceItem(newDataSourceItemCreatedFromBuilder);
-
-            //        foreach (var field in tabularViz.DataDefinition.Fields)
-            //        {
-            //            field.FieldLabel = "My New Field Name";
-            //        }
-            //    }
-            //}
+            var sourceDocument = RdashDocument.Load(_readFilePath);
+            var dsi = sourceDocument.Visualizations[0].AsTabularVisualization().GetDataSourceItem();
+            var document = new RdashDocument("Testing");
+            var gridViz = new GridVisualization("My Grid", dsi)
+                .SetColumns("Territory");
+            document.Visualizations.Add(gridViz);
 
             var json = document.ToJsonString();
             //json.Save(_saveJsonToPath);

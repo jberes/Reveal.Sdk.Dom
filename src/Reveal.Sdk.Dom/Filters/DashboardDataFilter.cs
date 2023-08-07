@@ -7,7 +7,7 @@ namespace Reveal.Sdk.Dom.Filters
 {
     public sealed class DashboardDataFilter : DashboardDataFilterBase
     {
-        
+        //todo: rename to DataDefinition
         public TabularDataDefinition DataSpec { get; internal set; } = new TabularDataDefinition();
         public string SelectedFieldName { get; set; }
 
