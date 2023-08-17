@@ -12,8 +12,8 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// <summary>
         /// Gets or sets the expiration time in minutes for the data cache.
         /// </summary>
-        [JsonProperty]
-        public int Expiration { get; set; } = 1440;
+        [JsonProperty("Expiration")]
+        public int CacheExpiration { get; set; } = 1440;
 
         /// <summary>
         /// This is exposed via the Visualization.FilterBindings property
