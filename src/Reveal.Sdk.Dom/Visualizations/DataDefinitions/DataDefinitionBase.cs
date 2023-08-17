@@ -9,9 +9,11 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonProperty]
         public DataSourceItem DataSourceItem { get; internal set; }
 
-        //not sure what this is for yet
+        /// <summary>
+        /// Gets or sets the expiration time in minutes for the data cache.
+        /// </summary>
         [JsonProperty]
-        internal int Expiration { get; set; } = 1440;
+        public int Expiration { get; set; } = 1440;
 
         /// <summary>
         /// This is exposed via the Visualization.FilterBindings property
