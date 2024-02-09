@@ -11,9 +11,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
             TypeMap = new System.Collections.Generic.Dictionary<string, Type>()
             {
                 { SchemaTypeNames.TabularDataSpecType, typeof(TabularDataDefinition)},
-                //{ SchemaTypeNames.ResourceDataSpecType, typeof()},
-                //{ SchemaTypeNames.ResourceDataSpecType, typeof()},
-                //{ SchemaTypeNames.ResourceDataSpecType, typeof()},
+                { SchemaTypeNames.TextBoxDataSpecType, typeof(TextBoxDataDefinition)},
             };
         }
     }
