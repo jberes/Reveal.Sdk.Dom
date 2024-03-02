@@ -194,6 +194,16 @@ namespace Reveal.Sdk.Dom
         }
 
         /// <summary>
+        /// Creates an <see cref="RdashDocument"/> from a JSON string.
+        /// </summary>
+        /// <param name="json">A JSON string representing the .rdash file.</param>
+        /// <returns></returns>
+        public static RdashDocument LoadFromJson(string json)
+        {
+            return RdashSerializer.Deserialize(json);
+        }
+
+        /// <summary>
         /// Saves the <see cref="RdashDocument"/> as a .rdash file.
         /// </summary>
         /// <param name="filePath">The file path to save the <see cref="RdashDocument"/> (must include the .rdash extensions).</param>

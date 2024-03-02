@@ -28,7 +28,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization
         static RdashDocument Deserialize(Stream stream)
         {
             string json = DeserializeToJson(stream);
-            return JsonConvert.DeserializeObject<RdashDocument>(json);
+            return Deserialize(json);
         }
 
         static string DeserializeToJson(Stream stream)
@@ -42,7 +42,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization
                 {
                     using (var jsonStream = jsonEntry.Open())
                     {
-                        using (var reader = new StreamReader(jsonStream))
+                        using (var reader = new StreamReader(jsonStream)) //todo: revist this and simplify
                         {
                             var memoryStream = new MemoryStream();
                             jsonStream.CopyTo(memoryStream);
@@ -53,6 +53,11 @@ namespace Reveal.Sdk.Dom.Core.Serialization
             }
 
             return json;
+        }
+
+        internal static RdashDocument Deserialize(string json)
+        {
+            return JsonConvert.DeserializeObject<RdashDocument>(json);
         }
 
         internal static string SerializeDocument(RdashDocument document)
