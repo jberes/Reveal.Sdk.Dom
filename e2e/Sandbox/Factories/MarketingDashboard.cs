@@ -4,6 +4,7 @@ using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Sandbox.Helpers;
+using DataSourceFactory = Sandbox.Helpers.DataSourceFactory;
 
 namespace Sandbox.Factories
 {

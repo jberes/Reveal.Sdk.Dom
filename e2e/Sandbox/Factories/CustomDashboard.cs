@@ -2,6 +2,7 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
+using DataSourceFactory = Sandbox.Helpers.DataSourceFactory;
 
 namespace Sandbox.Factories
 {
