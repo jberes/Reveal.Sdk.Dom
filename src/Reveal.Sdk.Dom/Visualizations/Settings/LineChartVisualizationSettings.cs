@@ -4,7 +4,7 @@
     {
         public LineChartVisualizationSettings()
         {
-            ChartType = ChartType.Line;
+            ChartType = RdashChartType.Line;
         }
     }
 }

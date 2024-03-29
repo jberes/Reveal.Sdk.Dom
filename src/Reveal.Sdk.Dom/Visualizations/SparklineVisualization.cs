@@ -27,6 +27,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public SparklineVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem)
         {
             Settings._visualizationDataSpec = VisualizationDataSpec;
+            ChartType = ChartType.Sparkline;
         }
 
         [JsonIgnore]

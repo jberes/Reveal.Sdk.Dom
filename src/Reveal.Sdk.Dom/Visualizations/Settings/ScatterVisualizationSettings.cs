@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
     {
         public ScatterVisualizationSettings()
         {
-            ChartType = ChartType.Scatter;
+            ChartType = RdashChartType.Scatter;
         }
 
         /// <summary>

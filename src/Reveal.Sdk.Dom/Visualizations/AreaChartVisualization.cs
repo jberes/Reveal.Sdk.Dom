@@ -14,13 +14,13 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Creates an area chart visualization from the supplied <see cref="DataSourceItem"/>.
         /// </summary>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public AreaChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public AreaChartVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
 
         /// <summary>
         /// Creates an area chart visualization from the supplied <see cref="DataSourceItem"/> and sets the title to the provided string.
         /// </summary>
         /// <param name="title">The string to use as the visualization's title.</param>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public AreaChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        public AreaChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.Area; }
     }
 }

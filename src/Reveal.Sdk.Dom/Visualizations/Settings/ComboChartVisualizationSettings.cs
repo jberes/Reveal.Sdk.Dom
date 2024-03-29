@@ -7,7 +7,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
     {
         public ComboChartVisualizationSettings()
         {
-            ChartType = ChartType.Composite;
+            ChartType = RdashChartType.Composite;
         }
 
         /// <summary>

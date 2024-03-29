@@ -24,7 +24,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// </summary>
         /// <param name="title">The string to use as the visualization's title.</param>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public CustomVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        public CustomVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.Custom; }
 
         [JsonProperty(Order = 7)]
         PivotVisualizationDataSpec VisualizationDataSpec { get; set; } = new PivotVisualizationDataSpec();

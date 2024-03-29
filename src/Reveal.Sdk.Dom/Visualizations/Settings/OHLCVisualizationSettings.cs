@@ -4,7 +4,7 @@
     {
         public OHLCVisualizationSettings()
         {
-            ChartType = ChartType.OHLC;
+            ChartType = RdashChartType.OHLC;
         }
     }
 }

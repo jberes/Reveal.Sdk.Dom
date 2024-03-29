@@ -27,6 +27,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public KpiTimeVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem)
         {
             Settings.VisualizationDataSpec = VisualizationDataSpec;
+            ChartType = ChartType.KpiTime;
         }
 
         [JsonIgnore]

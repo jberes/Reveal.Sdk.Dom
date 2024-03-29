@@ -4,7 +4,7 @@
     {
         public TimeSeriesVisualizationSettings()
         {
-            ChartType = ChartType.TimeSeries;
+            ChartType = RdashChartType.TimeSeries;
         }
     }
 }

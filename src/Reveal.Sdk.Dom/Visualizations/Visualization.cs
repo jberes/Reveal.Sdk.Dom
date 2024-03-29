@@ -39,6 +39,9 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonProperty(Order = 0)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
+        [JsonIgnore]
+        public ChartType ChartType { get; protected set; } = ChartType.Unknown;
+
         [JsonProperty(Order = 1)]
         public string Title { get; set; }
 

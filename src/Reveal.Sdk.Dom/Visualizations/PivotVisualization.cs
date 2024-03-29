@@ -17,7 +17,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Creates a pivot table visualization from the supplied <see cref="DataSourceItem"/>.
         /// </summary>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public PivotVisualization(DataSourceItem dataSourceItem) : base(string.Empty, dataSourceItem) { }
+        public PivotVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
 
         /// <summary>
         /// Creates a pivot table visualization from the supplied <see cref="DataSourceItem"/> and sets the title to the provided string.
@@ -28,6 +28,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             //this is a workaround because the json schemea has this property on the VisualizationDataSpec and not on the VisualizationSettings where it belongs
             Settings._visualizationDataSpec = VisualizationDataSpec;
+            ChartType = ChartType.Pivot;
         }
 
         [JsonIgnore]

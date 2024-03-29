@@ -14,13 +14,13 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Creates a step line visualization from the supplied <see cref="DataSourceItem"/>.
         /// </summary>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public StepLineChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public StepLineChartVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
 
         /// <summary>
         /// Creates a step line visualization from the supplied <see cref="DataSourceItem"/> and sets the title to the provided string.
         /// </summary>
         /// <param name="title">The data soure item used to represent a dataset.</param>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public StepLineChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        public StepLineChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.StepLine; }
     }
 }

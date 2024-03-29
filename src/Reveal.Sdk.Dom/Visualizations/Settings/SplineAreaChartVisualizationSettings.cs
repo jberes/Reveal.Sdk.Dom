@@ -4,7 +4,7 @@
     {
         public SplineAreaChartVisualizationSettings()
         {
-            ChartType = ChartType.SplineArea;
+            ChartType = RdashChartType.SplineArea;
         }
     }
 }

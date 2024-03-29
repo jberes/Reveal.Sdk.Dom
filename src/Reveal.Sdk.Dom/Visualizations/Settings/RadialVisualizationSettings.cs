@@ -7,7 +7,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
     {
         public RadialVisualizationSettings()
         {
-            ChartType = ChartType.RadialLines;
+            ChartType = RdashChartType.RadialLines;
         }
 
         /// <summary>

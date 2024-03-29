@@ -4,7 +4,7 @@
     {
         public ColumnChartVisualizationSettings()
         {
-            ChartType = ChartType.Column;
+            ChartType = RdashChartType.Column;
         }
     }
 }

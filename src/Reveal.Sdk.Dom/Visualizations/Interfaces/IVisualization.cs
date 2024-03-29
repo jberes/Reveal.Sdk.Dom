@@ -7,6 +7,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     public interface IVisualization
     {
         string Id { get; set; }
+        ChartType ChartType { get; }
         string Title { get; set; }
         bool IsTitleVisible { get; set; }
         int ColumnSpan { get; set; }

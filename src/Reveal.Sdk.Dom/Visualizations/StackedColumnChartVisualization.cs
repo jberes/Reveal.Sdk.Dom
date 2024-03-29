@@ -14,13 +14,13 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Creates a stacked column visualization from the supplied <see cref="DataSourceItem"/>.
         /// </summary>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public StackedColumnChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public StackedColumnChartVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
 
         /// <summary>
         /// Creates a stacked column visualization from the supplied <see cref="DataSourceItem"/> and sets the title to the provided string.
         /// </summary>
         /// <param name="title">The data soure item used to represent a dataset.</param>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public StackedColumnChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        public StackedColumnChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.StackedColumn; }
     }
 }

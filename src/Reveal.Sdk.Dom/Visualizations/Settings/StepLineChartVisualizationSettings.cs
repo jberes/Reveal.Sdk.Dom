@@ -4,7 +4,7 @@
     {
         public StepLineChartVisualizationSettings()
         {
-            ChartType = ChartType.StepLine;
+            ChartType = RdashChartType.StepLine;
         }
     }
 }

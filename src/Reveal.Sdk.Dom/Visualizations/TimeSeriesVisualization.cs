@@ -24,7 +24,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// </summary>
         /// <param name="title">The string to use as the visualization's title.</param>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public TimeSeriesVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        public TimeSeriesVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.TimeSeries; }
 
         [JsonProperty(Order = 7)]
         TimeSeriesVisualizationDataSpec VisualizationDataSpec { get; set; } = new TimeSeriesVisualizationDataSpec();

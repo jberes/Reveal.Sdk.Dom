@@ -4,7 +4,7 @@
     {
         public FunnelChartVisualizationSettings()
         {
-            ChartType = ChartType.Funnel;
+            ChartType = RdashChartType.Funnel;
         }
     }
 }

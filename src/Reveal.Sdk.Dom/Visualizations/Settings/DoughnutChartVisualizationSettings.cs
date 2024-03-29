@@ -4,7 +4,7 @@
     {
         public DoughnutChartVisualizationSettings()
         {
-            ChartType = ChartType.Doughnut;
+            ChartType = RdashChartType.Doughnut;
         }
     }    
 }

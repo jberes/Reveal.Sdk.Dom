@@ -4,7 +4,7 @@
     {
         public CandleStickVisualizationSettings()
         {
-            ChartType = ChartType.Candlestick;
+            ChartType = RdashChartType.Candlestick;
         }
     }
 }

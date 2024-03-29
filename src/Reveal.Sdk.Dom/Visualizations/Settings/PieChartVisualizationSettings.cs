@@ -4,7 +4,7 @@
     {
         public PieChartVisualizationSettings()
         {
-            ChartType = ChartType.Pie;
+            ChartType = RdashChartType.Pie;
         }       
     }
 }

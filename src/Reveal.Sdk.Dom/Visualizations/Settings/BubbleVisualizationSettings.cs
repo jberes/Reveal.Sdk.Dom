@@ -4,7 +4,7 @@
     {
         public BubbleVisualizationSettings()
         {
-            ChartType = ChartType.Bubble;
+            ChartType = RdashChartType.Bubble;
         }
     }
 }

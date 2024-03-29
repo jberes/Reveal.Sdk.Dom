@@ -4,7 +4,7 @@
     {
         public AreaChartVisualizationSettings()
         {
-            ChartType = ChartType.Area;
+            ChartType = RdashChartType.Area;
         }
     }
 }

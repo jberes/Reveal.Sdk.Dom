@@ -28,14 +28,14 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         { 
             get
             {
-                if (ChartType == ChartType.Bar || ChartType == ChartType.StackedBar)
+                if (ChartType == RdashChartType.Bar || ChartType == RdashChartType.StackedBar)
                     return ZoomScaleVertical;
 
                 return ZoomScaleHorizontal;
             }
             set
             {
-                if (ChartType == ChartType.Bar || ChartType == ChartType.StackedBar)
+                if (ChartType == RdashChartType.Bar || ChartType == RdashChartType.StackedBar)
                     ZoomScaleVertical = CoerceValue(value);
                 else
                     ZoomScaleHorizontal = CoerceValue(value);

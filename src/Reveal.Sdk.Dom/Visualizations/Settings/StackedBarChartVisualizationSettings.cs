@@ -4,7 +4,7 @@
     {
         public StackedBarChartVisualizationSettings()
         {
-            ChartType = ChartType.StackedBar;
+            ChartType = RdashChartType.StackedBar;
         }
     }
 }

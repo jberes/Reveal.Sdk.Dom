@@ -14,13 +14,13 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Creates a bar chart visualization from the supplied <see cref="DataSourceItem"/>.
         /// </summary>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public BarChartVisualization(DataSourceItem dataSourceItem) : base(dataSourceItem) { }
+        public BarChartVisualization(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
 
         /// <summary>
         /// Creates a bar chart visualization from the supplied <see cref="DataSourceItem"/> and sets the title to the provided string.
         /// </summary>
         /// <param name="title">The string to use as the visualization's title.</param>
         /// <param name="dataSourceItem">The data soure item used to represent a dataset.</param>
-        public BarChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
+        public BarChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.Bar; }
     }
 }

@@ -21,6 +21,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             DataDefinition = new TextBoxDataDefinition();
             DataDefinition.Bindings = null;
+            ChartType = ChartType.TextBox;
         }
 
         [JsonIgnore]

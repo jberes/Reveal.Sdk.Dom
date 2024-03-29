@@ -4,7 +4,7 @@
     {
         public StepAreaChartVisualizationSettings()
         {
-            ChartType = ChartType.StepArea;
+            ChartType = RdashChartType.StepArea;
         }
     }
 }

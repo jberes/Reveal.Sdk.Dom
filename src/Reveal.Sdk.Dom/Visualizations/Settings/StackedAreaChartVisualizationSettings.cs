@@ -4,7 +4,7 @@
     {
         public StackedAreaChartVisualizationSettings()
         {
-            ChartType = ChartType.StackedArea;
+            ChartType = RdashChartType.StackedArea;
         }
     }
 }

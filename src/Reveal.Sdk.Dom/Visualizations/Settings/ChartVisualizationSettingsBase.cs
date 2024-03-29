@@ -17,6 +17,6 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         /// </summary>
         [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]
-        internal ChartType ChartType { get; set; }
+        internal RdashChartType ChartType { get; set; }
     }
 }

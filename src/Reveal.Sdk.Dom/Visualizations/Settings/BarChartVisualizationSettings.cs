@@ -4,7 +4,7 @@
     {
         public BarChartVisualizationSettings()
         {
-            ChartType = ChartType.Bar;
+            ChartType = RdashChartType.Bar;
         }
     }
 }

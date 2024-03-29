@@ -4,7 +4,7 @@
     {
         public StackedColumnChartVisualizationSettings()
         {
-            ChartType = ChartType.StackedColumn;
+            ChartType = RdashChartType.StackedColumn;
         }
     }    
 }
