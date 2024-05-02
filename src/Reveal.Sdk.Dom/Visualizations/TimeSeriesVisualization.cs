@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// A time series visualization is used to display data points indexed in time order. It is commonly used to detect trends at a glance, allowing an easy observation of development over time.
     /// </summary>
-    public sealed class TimeSeriesVisualization : TabularVisualizationBase<TimeSeriesVisualizationSettings>, IDate, IValues, ICategory
+    public sealed class TimeSeriesVisualization : Visualization<TimeSeriesVisualizationSettings>, IDate, IValues, ICategory
     {
         internal TimeSeriesVisualization() : this(null) { }
 

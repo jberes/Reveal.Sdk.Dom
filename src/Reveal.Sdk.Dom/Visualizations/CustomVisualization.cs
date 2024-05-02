@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The custom visualizion is used to support visualizations not supported out of the box.
     /// </summary>
-    public sealed class CustomVisualization : TabularVisualizationBase<CustomVisualizationSettings>, IRows, IValues, IColumns
+    public sealed class CustomVisualization : Visualization<CustomVisualizationSettings>, IRows, IValues, IColumns
     {
         internal CustomVisualization() : this(null) { }
 

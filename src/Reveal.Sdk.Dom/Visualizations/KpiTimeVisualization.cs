@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The KPI vs time visualization is used for measuring performance of a value field compared against a prior time period.
     /// </summary>
-    public sealed class KpiTimeVisualization : TabularVisualizationBase<KpiTimeVisualizationSettings>, IDate, IValues, ICategories
+    public sealed class KpiTimeVisualization : Visualization<KpiTimeVisualizationSettings>, IDate, IValues, ICategories
     {
         internal KpiTimeVisualization() : this(null) { }
 

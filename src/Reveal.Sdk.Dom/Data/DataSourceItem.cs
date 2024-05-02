@@ -13,7 +13,7 @@ namespace Reveal.Sdk.Dom.Data
         public string Title { get; set; }
         public string Subtitle { get; set; }
         public string DataSourceId { get; set; }
-        public bool HasTabularData { get; set; }
+        public bool HasTabularData { get; set; } = true;
         public bool HasAsset { get; set; }
         public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>();
         public Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>();

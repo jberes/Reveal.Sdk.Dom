@@ -33,7 +33,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 return item;
             }
 
-            throw new JsonException($"Type not supported {key}");
+            throw new JsonException($"{GetType().Name}: Type not supported {key}");
         }
     }
 }

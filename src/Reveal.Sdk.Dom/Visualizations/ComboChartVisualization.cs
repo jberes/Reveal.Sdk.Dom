@@ -9,7 +9,8 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The combo chart visualization is used to combine two different category charts into one visualization. This visualization type only supports adding these chart types; column, stacked column, area, line, step area, step line, and spline area.
     /// </summary>
-    public sealed class ComboChartVisualization : TabularVisualizationBase<ComboChartVisualizationSettings>, ILabels
+    //public sealed class ComboChartVisualization : TabularVisualizationBase<ComboChartVisualizationSettings>, ILabels
+    public sealed class ComboChartVisualization : Visualization<ComboChartVisualizationSettings>, ILabels
     {
         internal ComboChartVisualization() : this(null) { }
 

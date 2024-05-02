@@ -18,14 +18,14 @@ namespace Reveal.Sdk.Dom.Core.Utilities
             Dictionary<string, DataSource> dataSources = new Dictionary<string, DataSource>();
             foreach (var visualization in document.Visualizations)
             {
-                if (visualization is ITabularVisualization tv)
+                if (visualization.DataDefinition is TabularDataDefinition tdd)
                 {
-                    var fields = tv.DataDefinition?.Fields;
+                    var fields = tdd.Fields;
                     if (fields == null)
                         throw new Exception($"DataDefinition.Fields for visualization {visualization.Title} is null.");
 
-                    var dsi = tv.DataDefinition?.DataSourceItem;
-                    if (dsi == null) 
+                    var dsi = tdd.DataSourceItem;
+                    if (dsi == null)
                         throw new Exception($"DataDefinition.DataSourceItem for visualization {visualization.Title} is null.");
 
                     if (dsi.DataSource != null)
@@ -41,6 +41,7 @@ namespace Reveal.Sdk.Dom.Core.Utilities
                         ValidateManuallyAddedDataSourceItem(document, dsi);
                     }
                 }
+                //todo: handle XmlaDataDefinition
             }
 
             var allDataSources = document.DataSources?.Union(dataSources.Values.ToArray());

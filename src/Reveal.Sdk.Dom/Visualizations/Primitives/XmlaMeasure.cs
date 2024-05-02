@@ -3,8 +3,13 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    internal sealed class XmlaMeasure
+    public sealed class XmlaMeasure
     {
+        public XmlaMeasure()
+        {
+            Sorting = SortingType.None;
+        }
+
         public bool IsHidden { get; set; }
         public string UniqueName { get; set; }
         public string Caption { get; set; }
@@ -13,15 +18,11 @@ namespace Reveal.Sdk.Dom.Visualizations
         public string UserCaption { get; set; }
         public bool IsCalculated { get; set; }
         public string Expression { get; set; }
-        public FormattingBase Formatting { get; set; }
+        public NumberFormatting Formatting { get; set; }
         public ConditionalFormatting ConditionalFormatting { get; set; }
         public string Description { get; set; }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public SortingType Sorting { get; set; }
-
-        public XmlaMeasure()
-        {
-            Sorting = SortingType.None;
-        }
     }
 }

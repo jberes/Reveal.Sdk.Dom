@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The scatter visualization is used to show the relationship among items in distinct series of data or to plot data items using numeric x and y coordinates. These charts draw attention to uneven intervals or clusters of data. 
     /// </summary>
-    public sealed class ScatterVisualization : TabularVisualizationBase<ScatterVisualizationSettings>, ILabels, IAxis
+    public sealed class ScatterVisualization : Visualization<ScatterVisualizationSettings>, ILabels, IAxis
     {
         internal ScatterVisualization() : this(null) { }
 

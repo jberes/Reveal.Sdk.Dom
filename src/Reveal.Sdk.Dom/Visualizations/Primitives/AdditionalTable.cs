@@ -9,8 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public string Alias { get; set; }
 
         [JsonProperty("DataSpec")]
-        [JsonConverter(typeof(DataSpecConverter))]
-        public DataDefinitionBase DataDefinition { get; set; }
+        public DataDefinitionBase DataDefinition { get; set; } //todo: convert to interface
 
         public List<JoinCondition> JoinConditions { get; set; }
         public AdditionalTable()

@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The text view visualization is used to display information that follows a key-value pattern. It only displays the first row of data paired with the column's label.
     /// </summary>
-    public sealed class TextViewVisualization : TabularVisualizationBase<SingleRowVisualizationSettings>, ITabularColumns
+    public sealed class TextViewVisualization : Visualization<SingleRowVisualizationSettings>, ITabularColumns
     {
         internal TextViewVisualization() : this(null) { }
 

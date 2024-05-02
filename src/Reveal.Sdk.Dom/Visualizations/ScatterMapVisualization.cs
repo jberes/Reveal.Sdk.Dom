@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The scatter map visualization is used to display geo-spatial data using points or markers in a geographic context. This type of visualization is often used to render a collection of geographic locations such as cities, airports, earthquakes, or points of interests.
     /// </summary>
-    public sealed class ScatterMapVisualization : TabularVisualizationBase<ScatterMapVisualizationSettings>, ILabel, IMap
+    public sealed class ScatterMapVisualization : Visualization<ScatterMapVisualizationSettings>, ILabel, IMap
     {
         internal ScatterMapVisualization() : this(null) { }
 
