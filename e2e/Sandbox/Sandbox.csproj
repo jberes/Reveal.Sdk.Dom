@@ -24,6 +24,9 @@
     <None Update="Dashboards\Healthcare.rdash">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Dashboards\Jason - AB Sales.rdash">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Dashboards\Manufacturing.rdash">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
