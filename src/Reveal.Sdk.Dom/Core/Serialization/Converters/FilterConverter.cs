@@ -14,6 +14,8 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 { SchemaTypeNames.StringFilterType, typeof(TextFilter) },
                 { SchemaTypeNames.DateTimeFilterType, typeof(DateTimeFilter) },
                 { SchemaTypeNames.TimeFilterType, typeof(TimeFilter) },
+                { SchemaTypeNames.XmlaDateFilterType, typeof(XmlaDateFilter) },
+                { SchemaTypeNames.XmlaRegularFilterType, typeof(XmlaRegularFilter) },
             };
         }
     }

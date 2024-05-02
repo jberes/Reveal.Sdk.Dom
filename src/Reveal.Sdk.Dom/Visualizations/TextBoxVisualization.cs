@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 
 namespace Reveal.Sdk.Dom.Visualizations
@@ -6,7 +7,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The text box visualizations is used to display a text body and an optional title. It is not connected to a data source.
     /// </summary>
-    public sealed class TextBoxVisualization : Visualization<TextBoxVisualizationSettings, TextBoxDataDefinition>
+    public sealed class TextBoxVisualization : Visualization<TextBoxVisualizationSettings>
     {
         /// <summary>
         /// Creates a text box visualization.
@@ -17,32 +18,44 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Creates a text box visualization and sets the title to the provided string.
         /// </summary>
         /// <param name="title">The string to use as the visualization's title.</param>
-        public TextBoxVisualization(string title) : base(title)
+        public TextBoxVisualization(string title) : base(title, null)
         {
-            DataDefinition = new TextBoxDataDefinition();
-            DataDefinition.Bindings = null;
             ChartType = ChartType.TextBox;
+            InitializeDataDefinition(null);
         }
 
         [JsonIgnore]
         public Alignment Alignment 
         {
-            get { return DataDefinition.Alignment; }
-            set { DataDefinition.Alignment = value; }
+            get { return TextBoxDataDefinition.Alignment; }
+            set { TextBoxDataDefinition.Alignment = value; }
         }
 
         [JsonIgnore]
         public FontSize FontSize 
         { 
-            get { return DataDefinition.FontSize; }
-            set { DataDefinition.FontSize = value; }
+            get { return TextBoxDataDefinition.FontSize; }
+            set { TextBoxDataDefinition.FontSize = value; }
         }
 
         [JsonIgnore]
         public string Text
         {
-            get { return DataDefinition.Text; }
-            set { DataDefinition.Text = value; }
+            get { return TextBoxDataDefinition.Text; }
+            set { TextBoxDataDefinition.Text = value; }
+        }
+
+        private TextBoxDataDefinition TextBoxDataDefinition
+        {
+            get => (TextBoxDataDefinition)DataDefinition;
+        }
+
+        override protected void InitializeDataDefinition(DataSourceItem dataSourceItem)
+        {
+            DataDefinition = new TextBoxDataDefinition()
+            {
+                Bindings = null
+            };
         }
     }
 }

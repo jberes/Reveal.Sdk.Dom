@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The treemap visualization is used to display hierarchical data as a set of nested rectangles. Rectangles of each level are of different sizes and colors.
     /// </summary>
-    public sealed class TreeMapVisualization : TabularVisualizationBase<TreeMapVisualizationSettings>, ILabels, IValues
+    public sealed class TreeMapVisualization : Visualization<TreeMapVisualizationSettings>, ILabels, IValues
     {
         internal TreeMapVisualization() : this(null) { }
 

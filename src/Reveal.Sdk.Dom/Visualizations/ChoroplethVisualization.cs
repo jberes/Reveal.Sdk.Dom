@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The choropleth visualization is used to display geo-spatial data using shape polygons in a geographic context. This type of visualization is often used to render shapes of countries or regions defined by geographic locations.
     /// </summary>
-    public sealed class ChoroplethVisualization : TabularVisualizationBase<ChoroplethVisualizationSettings>, IValues, IMap
+    public sealed class ChoroplethVisualization : Visualization<ChoroplethVisualizationSettings>, IValues, IMap
     {
         internal ChoroplethVisualization() : this(null) { }
 

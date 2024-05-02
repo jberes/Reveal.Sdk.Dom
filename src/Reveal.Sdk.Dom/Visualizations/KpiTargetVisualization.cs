@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The KPI vs target visualization is used for measuring performance against a target through a prior time period.
     /// </summary>
-    public sealed class KpiTargetVisualization : TabularVisualizationBase<KpiTargetVisualizationSettings>, ITargets, IDate, IValues, ICategories
+    public sealed class KpiTargetVisualization : Visualization<KpiTargetVisualizationSettings>, ITargets, IDate, IValues, ICategories
     {
         internal KpiTargetVisualization() : this(null) { }
 

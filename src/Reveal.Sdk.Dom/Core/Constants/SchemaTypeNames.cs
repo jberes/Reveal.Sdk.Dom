@@ -5,11 +5,11 @@ namespace Reveal.Sdk.Dom.Core.Constants
     //these constants are needed in order to map existing json Schema names to new API names, otherwise we could just generate them in code
     internal class SchemaTypeNames
     {
-        //***************** DataSourcs *******************
+        //******************* DataSourcs *******************
         internal const string DataSourceType = "DataSourceType";
         internal const string DataSourceItemType = "DataSourceItemType";
 
-        //***************** FILTERS *******************
+        //******************* FILTERS *******************
         internal const string DateGlobalFilterType = "DateGlobalFilterType";
         internal const string TabularGlobalFilterType = "TabularGlobalFilterType";
         internal const string NumberFilterType = "NumberFilterType";
@@ -21,7 +21,7 @@ namespace Reveal.Sdk.Dom.Core.Constants
         internal const string XmlaStringFilterRuleType = "XmlaStringFilterRuleType";
         internal const string XmlaNumberFilterRuleType = "XmlaNumberFilterRuleType";
 
-        //***************** Visualizations - Settings *******************
+        //******************* Visualizations - Settings *******************
         internal const string AssetVisualizationSettingsType = "AssetVisualizationSettingsType";
         internal const string ChartVisualizationSettingsType = "ChartVisualizationSettingsType";
         internal const string ChoroplethMapVisualizationSettingsType = "ChoroplethMapVisualizationSettingsType";
@@ -40,7 +40,7 @@ namespace Reveal.Sdk.Dom.Core.Constants
         internal const string TextBoxVisualizationSettingsType = "TextBoxVisualizationSettingsType";
         internal const string TreeMapVisualizationSettingsType = "TreeMapVisualizationSettingsType";
 
-        //***************** Visualizations - Specs *******************
+        //******************* Visualizations - Specs *******************
         internal const string AssetVisualizationDataSpecType = "AssetVisualizationDataSpecType";
         internal const string BubbleVisualizationDataSpecType = "BubbleVisualizationDataSpecType";
         internal const string ChoroplethMapVisualizationDataSpecType = "ChoroplethMapVisualizationDataSpecType";
@@ -73,7 +73,13 @@ namespace Reveal.Sdk.Dom.Core.Constants
         internal const string TextBoxDataSpecType = "TextBoxDataSpecType";
         internal const string XmlaDataSpecType = "XmlaDataSpecType";
 
-        //******* not sure how these should be classified yet *****************
+        //******************* XMLA *****************
+        internal const string XmlaDimensionType = "XmlaDimensionType";
+        internal const string XmlaHierarchyLevelType = "XmlaHierarchyLevelType";
+        internal const string XmlaHierarchyType = "XmlaHierarchyType";
+        internal const string XmlaSetType = "XmlaSetType";
+
+        //******************* not sure how these should be classified yet *****************
         internal const string FieldBindingSourceType = "FieldBindingSourceType";
         internal const string ParameterBindingSourceType = "ParameterBindingSourceType";
         internal const string DateGlobalFilterBindingTargetType = "DateGlobalFilterBindingTargetType";

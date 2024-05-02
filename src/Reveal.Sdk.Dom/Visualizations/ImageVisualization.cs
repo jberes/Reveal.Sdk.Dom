@@ -8,7 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The image visualization is used for displaying images, PDFs, or web content.
     /// </summary>
-    public sealed class ImageVisualization : TabularVisualizationBase<AssetVisualizationSettings>
+    public sealed class ImageVisualization : Visualization<AssetVisualizationSettings>
     {
         internal ImageVisualization() : this(null) { }
 

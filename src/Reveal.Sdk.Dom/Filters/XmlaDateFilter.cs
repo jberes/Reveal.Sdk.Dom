@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    internal sealed class XmlaDateFilter : FilterBase
+    public sealed class XmlaDateFilter : FilterBase
     {
         [JsonConverter(typeof(StringEnumConverter))]
         public DateRuleType RuleType { get; set; } = DateRuleType.AllTime;

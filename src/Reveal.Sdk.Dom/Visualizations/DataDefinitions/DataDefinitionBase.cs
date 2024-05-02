@@ -4,14 +4,12 @@ using Reveal.Sdk.Dom.Data;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class DataDefinitionBase : SchemaType
+    public abstract class DataDefinitionBase : SchemaType, IDataDefinition
     {
         [JsonProperty]
         public DataSourceItem DataSourceItem { get; internal set; }
 
-        /// <summary>
-        /// Gets or sets the expiration time in minutes for the data cache.
-        /// </summary>
+        /// <inheritdoc/>
         [JsonProperty("Expiration")]
         public int CacheExpiration { get; set; } = 1440;
 

@@ -4,7 +4,7 @@ using System;
 
 namespace Reveal.Sdk.Dom.Core.Serialization.Converters
 {
-    internal class DataSpecConverter : TypeMapConverter<DataDefinitionBase>
+    internal class DataSpecConverter : TypeMapConverter<IDataDefinition>
     {
         public DataSpecConverter()
         {
@@ -12,6 +12,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
             {
                 { SchemaTypeNames.TabularDataSpecType, typeof(TabularDataDefinition)},
                 { SchemaTypeNames.TextBoxDataSpecType, typeof(TextBoxDataDefinition)},
+                { SchemaTypeNames.XmlaDataSpecType, typeof(XmlaDataDefinition)},
             };
         }
     }

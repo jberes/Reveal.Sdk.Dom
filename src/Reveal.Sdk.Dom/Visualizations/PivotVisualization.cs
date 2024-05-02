@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The pivot table visualization is used as a data summarization tool, which among other functions allows you to automatically count, average and total the data stored in a table like format, typically grouped by values.
     /// </summary>
-    public sealed class PivotVisualization : TabularVisualizationBase<PivotVisualizationSettings>, IValues, IRows, IColumns
+    public sealed class PivotVisualization : Visualization<PivotVisualizationSettings>, IValues, IRows, IColumns
     {
         internal PivotVisualization() : this(null) { }
 

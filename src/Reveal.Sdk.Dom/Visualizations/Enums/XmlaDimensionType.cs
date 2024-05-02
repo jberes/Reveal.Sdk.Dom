@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    internal enum XmlaDimensionType
+    public enum XmlaDimensionType
     {
         Regular,
         Date

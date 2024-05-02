@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The sparkline visualization is used to show data in table form along with a small-scale chart that uses a line or area series to show trends in a collection of values.
     /// </summary>
-    public sealed class SparklineVisualization : TabularVisualizationBase<SparklineVisualizationSettings>, IDate, IValues, ICategories
+    public sealed class SparklineVisualization : Visualization<SparklineVisualizationSettings>, IDate, IValues, ICategories
     {
         internal SparklineVisualization() : this(null) { }
 

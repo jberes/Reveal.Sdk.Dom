@@ -12,5 +12,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         bool IsTitleVisible { get; set; }
         int ColumnSpan { get; set; }
         int RowSpan { get; set; }
+        IDataDefinition DataDefinition { get; }
     }
 }

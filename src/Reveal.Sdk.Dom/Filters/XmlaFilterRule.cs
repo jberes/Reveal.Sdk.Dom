@@ -2,7 +2,8 @@
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    internal abstract class XmlaFilterRule : SchemaType
+    //todo: need converter XmlaNumberFilterRuleType XmlaStringFilterRuleType
+    public abstract class XmlaFilterRule : SchemaType
     {
 
     }
