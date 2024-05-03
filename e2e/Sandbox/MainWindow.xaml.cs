@@ -1,16 +1,17 @@
 using Reveal.Sdk;
 using Reveal.Sdk.Data;
+using Reveal.Sdk.Data.Json;
+using Reveal.Sdk.Data.Microsoft.SqlServer;
+using Reveal.Sdk.Data.Rest;
 using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
-using Sandbox.Factories;
 using Sandbox.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Documents;
 
 namespace Sandbox
 {
@@ -125,53 +126,11 @@ namespace Sandbox
 
             //document.Save(_saveRdashToPath);
 
-            //var dsi = new RestBuilder("Excel Data Source", "Marketing Sheet")
-            //    .SetUrl("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
-            //    .SetFields(
-            //        new TextField("CategoryName"),
-            //        new TextField("ProductName"),
-            //        new NumberField("ProductSales")
-            //    ).Build();
-
-            //var dsi = Reveal.Sdk.Dom.Data.DataSourceFactory.Create(DataSourceType.REST, "Excel Data Source", "Marketing Sheet")
-            //    .SetFields(new List<IField>
-            //    {
-            //        new TextField("CategoryName"),
-            //        new TextField("ProductName"),
-            //        new NumberField("ProductSales")
-            //    }).Build();
-
-            var dsi = new RemoteFileBuilder("Excel Data Source", "Marketing Sheet")
-                .SetUrl("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-                .UseExcel("Marketing")
-                .SetFields(new List<IField>
-                {
-                    new DateField("Date"),
-                    new NumberField("Spend"),
-                    new NumberField("Budget"),
-                    new NumberField("CTR"),
-                    new NumberField("Avg. CPC"),
-                    new NumberField("Traffic"),
-                    new NumberField("Paid Traffic"),
-                    new NumberField("Other Traffic"),
-                    new NumberField("Conversions"),
-                    new TextField("Territory"),
-                    new TextField("CampaignID"),
-                    new NumberField("New Seats"),
-                    new NumberField("Paid %"),
-                    new NumberField("Organic %")
-                }).Build();
-
-
             var document = new RdashDocument()
             {
                 Title = "My Dashboard",
                 Description = "I created"
             };
-
-            //var gridViz = new GridVisualization(dsi).SetColumns("CategoryName", "ProductName", "ProductSales");
-            var gridViz = new GridVisualization(dsi).SetColumns("Spend", "Budget", "CTR");
-            document.Visualizations.Add(gridViz);
 
             var json = document.ToJsonString();
             //json.Save(_saveJsonToPath);
