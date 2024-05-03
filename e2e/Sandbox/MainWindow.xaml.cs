@@ -1,4 +1,5 @@
 ﻿using Reveal.Sdk;
+using Reveal.Sdk.Data;
 using Reveal.Sdk.Dom;
 using Sandbox.Factories;
 using Sandbox.Helpers;
@@ -16,7 +17,6 @@ namespace Sandbox
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
         //readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
-        //readonly string _readFilePath = Path.Combine(_dashboardFilePath, "Jason - AB Sales.rdash");
         readonly string _readFilePath = Path.Combine(_dashboardFilePath, "JB - New Infragistics Scorecard Test.rdash");
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
@@ -28,6 +28,7 @@ namespace Sandbox
 
             //RevealSdkSettings.EnableNewCharts = true;
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
+            RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices();
 
             _revealView.LinkedDashboardProvider = (string dashboardId, string linkTitle) =>
             {

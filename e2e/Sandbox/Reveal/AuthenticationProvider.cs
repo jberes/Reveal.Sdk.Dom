@@ -1,8 +1,6 @@
-﻿using Reveal.Sdk;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Reveal.Sdk.Data;
+using Reveal.Sdk.Data.Microsoft.AnalysisServices;
+using Reveal.Sdk.Data.Microsoft.SqlServer;
 using System.Threading.Tasks;
 
 namespace Sandbox.Helpers
@@ -16,7 +14,11 @@ namespace Sandbox.Helpers
             {
                 userCredential = new RVUsernamePasswordDataSourceCredential("username", "password");
             }
-            return Task.FromResult<IRVDataSourceCredential>(userCredential);
+            else if (dataSource is RVNativeAnalysisServicesDataSource)
+            {
+                userCredential = new RVUsernamePasswordDataSourceCredential("username", "password", "domain");
+            }
+            return Task.FromResult(userCredential);
         }
     }
 }
