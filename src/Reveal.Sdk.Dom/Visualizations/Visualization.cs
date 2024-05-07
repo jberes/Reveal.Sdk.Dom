@@ -69,6 +69,11 @@ namespace Reveal.Sdk.Dom.Visualizations
         public IDataDefinition DataDefinition { get; internal set; }
 
         /// <summary>
+        /// Gets or sets the description of the visualization.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
         /// Gets the data source item for the visualization.
         /// </summary>
         /// <returns>The <see cref="DataSourceItem"/></returns>
