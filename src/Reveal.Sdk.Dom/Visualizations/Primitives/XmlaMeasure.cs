@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public sealed class XmlaMeasure
+    public sealed class XmlaMeasure : IMetadata
     {
         public XmlaMeasure()
         {
@@ -24,5 +25,6 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         [JsonConverter(typeof(StringEnumConverter))]
         public SortingType Sorting { get; set; }
+        Dictionary<string, object> IMetadata.Metadata { get; set; }
     }
 }
