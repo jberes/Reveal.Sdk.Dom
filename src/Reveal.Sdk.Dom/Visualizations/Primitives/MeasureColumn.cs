@@ -21,8 +21,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonProperty("SummarizationField")]
         public NumberDataField DataField { get; set; }
 
-        //todo: implement
-        [JsonProperty]
-        internal XmlaMeasure XmlaMeasure { get; set; }
+        [JsonProperty("XmlaMeasure")]
+        public XmlaMeasure XmlaMeasure { get; set; }
     }
 }
