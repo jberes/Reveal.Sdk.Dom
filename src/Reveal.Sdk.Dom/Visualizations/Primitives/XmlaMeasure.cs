@@ -21,7 +21,9 @@ namespace Reveal.Sdk.Dom.Visualizations
         public string Expression { get; set; }
         public NumberFormatting Formatting { get; set; }
         public ConditionalFormatting ConditionalFormatting { get; set; }
-        public string Description { get; set; }
+        [JsonIgnore]
+        public string Description { get {return (string)(((IMetadata)this).Metadata.ContainsKey("Description") ? ((IMetadata)this).Metadata["Description"] : null);} 
+                                    set {((IMetadata)this).Metadata["Description"] = value;} }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public SortingType Sorting { get; set; }

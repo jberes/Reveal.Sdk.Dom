@@ -4,6 +4,6 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public interface IMetadata
     {
-        Dictionary<string, object> Metadata { get; set;}
+        Dictionary<string, object> Metadata { get; internal set;}
     }
 }
