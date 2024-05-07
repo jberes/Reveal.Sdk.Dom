@@ -30,7 +30,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
         [JsonConverter(typeof(StringEnumConverter))]
         public SortingType Sorting { get; set; }
-        [JsonProperty]
+        [JsonProperty("Metadata")]
         Dictionary<string, object> IMetadata.Metadata  { get; set; } = new Dictionary<string,object>();
     }
 }
