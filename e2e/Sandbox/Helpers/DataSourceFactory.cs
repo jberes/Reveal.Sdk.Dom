@@ -7,11 +7,35 @@ namespace Sandbox.Helpers
 {
     internal class DataSourceFactory
     {
+        static IDataSourceItemFactory _factory = new DataSourceItemFactory();
+        static DataSource _excelDataSource = new DataSource()
+        {
+            Id = "RestExcel",
+            Title = "Excel Data Source",
+            Subtitle = "The Data Source for Excel via REST",
+        };
+        static string _restExcelUri = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";    
+
         internal static DataSourceItem GetMarketingDataSourceItem()
         {
-            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-                .SetTitle("Excel Data Source")
-                .SetSubtitle("Marketing Sheet")
+            //var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            //    .SetTitle("Excel Data Source")
+            //    .SetSubtitle("Marketing Sheet")
+            //    .UseExcel("Marketing")
+            //    .SetFields(GetMarketingDataSourceFields())
+            //    .Build();
+
+            //var excelDataSourceItem = _factory.Create(DataSourceType.REST, "Excel Data Source Item", "Marketing Sheet", _excelDataSource)
+            //    .SetFields(GetMarketingDataSourceFields())
+            //    .As<IRestBuilder>()
+            //    .SetUri(_restExcelUri)
+            //    .IsAnonymous(true)
+            //    .UseExcel("Marketing")
+            //    .Build();
+
+            var excelDataSourceItem =new RestBuilder("Marketing Sheet", "Excel Data Source Item", _excelDataSource)
+                .SetUri(_restExcelUri)
+                .IsAnonymous(true)
                 .UseExcel("Marketing")
                 .SetFields(GetMarketingDataSourceFields())
                 .Build();
@@ -21,11 +45,18 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetHealthcareDataSourceItem()
         {
-            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-                .SetTitle("Excel Data Source")
-                .SetSubtitle("Healthcare Sheet")
+            //var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            //    .SetTitle("Excel Data Source")
+            //    .SetSubtitle("Healthcare Sheet")
+            //    .UseExcel("Healthcare")
+            //    .SetFields(GetHealthcareDataSourceFields())
+            //    .Build();
+
+            var excelDataSourceItem = new RestBuilder("Healthcare Sheet", "Excel Data Source Item", _excelDataSource)
+                .SetUri(_restExcelUri)
+                .IsAnonymous(true)
                 .UseExcel("Healthcare")
-                .SetFields(GetHealthcareDataSourceFields())
+                .SetFields(GetMarketingDataSourceFields())
                 .Build();
 
             return excelDataSourceItem;
@@ -33,11 +64,18 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetManufacturingDataSourceItem()
         {
-            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-                .SetTitle("Excel Data Source")
-                .SetSubtitle("Manufacturing Sheet")
+            //var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            //    .SetTitle("Excel Data Source")
+            //    .SetSubtitle("Manufacturing Sheet")
+            //    .UseExcel("Manufacturing")
+            //    .SetFields(GetManufacturingDataSourceFields())
+            //    .Build();
+
+            var excelDataSourceItem = new RestBuilder("Manufacturing Sheet", "Excel Data Source Item", _excelDataSource)
+                .SetUri(_restExcelUri)
+                .IsAnonymous(true)
                 .UseExcel("Manufacturing")
-                .SetFields(GetManufacturingDataSourceFields())
+                .SetFields(GetMarketingDataSourceFields())
                 .Build();
 
             return excelDataSourceItem;
@@ -45,11 +83,18 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetSalesDataSourceItem()
         {
-            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-                .SetTitle("Excel Data Source")
-                .SetSubtitle("Sales Sheet")
+            //var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            //    .SetTitle("Excel Data Source")
+            //    .SetSubtitle("Sales Sheet")
+            //    .UseExcel("Sales")
+            //    .SetFields(GetSalesDataSourceFields())
+            //    .Build();
+
+            var excelDataSourceItem = new RestBuilder("Sales Sheet", "Excel Data Source Item", _excelDataSource)
+                .SetUri(_restExcelUri)
+                .IsAnonymous(true)
                 .UseExcel("Sales")
-                .SetFields(GetSalesDataSourceFields())
+                .SetFields(GetMarketingDataSourceFields())
                 .Build();
 
             return excelDataSourceItem;

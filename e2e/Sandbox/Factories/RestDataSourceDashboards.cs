@@ -13,9 +13,15 @@ namespace Sandbox.Factories
             var document = new RdashDocument("My Dashboard");
 
             //json - default
-            var jsonDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
-                .SetTitle("JSON Data Source")
-                .SetSubtitle("Sales by Category")
+            //var jsonDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
+            //    .SetTitle("JSON Data Source")
+            //    .SetSubtitle("Sales by Category")
+            //    .SetFields(DataSourceFactory.GetSalesByCategoryFields())
+            //    .Build();
+
+            var jsonDataSourceItem = new RestBuilder("Sales by Category", "JSON Data Source Item")
+                .SetUri("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
+                .IsAnonymous(true)
                 .SetFields(DataSourceFactory.GetSalesByCategoryFields())
                 .Build();
 
@@ -23,10 +29,17 @@ namespace Sandbox.Factories
                 .SetLabel("CategoryName").SetValue("ProductSales"));
 
             //excel
-            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-                .UseExcel()
-                .SetTitle("Excel Data Source")
-                .SetSubtitle("Marketing")
+            //var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            //    .UseExcel()
+            //    .SetTitle("Excel Data Source")
+            //    .SetSubtitle("Marketing")
+            //    .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
+            //    .Build();
+
+            var excelDataSourceItem = new RestBuilder("Marketing", "Excel Data Source Item")
+                .SetUri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .UseExcel("Marketing")
+                .IsAnonymous(true)
                 .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
                 .Build();
 
@@ -34,10 +47,17 @@ namespace Sandbox.Factories
                 .SetLabel("Territory").SetValue("Conversions"));
 
             //csv
-            var csvDataSourceItem = new RestServiceBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+            //var csvDataSourceItem = new RestServiceBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+            //    .UseCsv()
+            //    .SetTitle("CSV Data Source")
+            //    .SetSubtitle("Illinois School Info")
+            //    .SetFields(DataSourceFactory.GetCsvDataSourceFields())
+            //    .Build();
+
+            var csvDataSourceItem = new RestBuilder("Illinois School Info", "CSV Data Source Item")
+                .SetUri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
                 .UseCsv()
-                .SetTitle("CSV Data Source")
-                .SetSubtitle("Illinois School Info")
+                .IsAnonymous(true)
                 .SetFields(DataSourceFactory.GetCsvDataSourceFields())
                 .Build();
 

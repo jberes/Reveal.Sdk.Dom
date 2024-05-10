@@ -12,12 +12,12 @@ namespace Reveal.Sdk.Dom.Data
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Title { get; set; }
         public string Subtitle { get; set; }
-        public string DataSourceId { get; set; }
-        public bool HasTabularData { get; set; } = true;
-        public bool HasAsset { get; set; }
-        public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>();
-        public Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>();
-        public DataSourceItem ResourceItem { get; set; }
+        public string DataSourceId { get; set; } //todo: can this be internal?
+        public bool HasTabularData { get; set; } = true; //todo: can this be internal?
+        public bool HasAsset { get; set; } //todo: can this be internal?
+        public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>(); //todo: can this be internal?
+        public Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>(); //todo: can this be internal?
+        public DataSourceItem ResourceItem { get; set; } //todo: can this be internal?
 
         [JsonIgnore]
         internal List<IField> Fields { get; set; } = new List<IField>();

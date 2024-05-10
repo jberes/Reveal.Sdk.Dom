@@ -2,7 +2,6 @@
 {
     public enum DataSourceType
     {
-        RemoteFile,
         REST,
         MicrosoftSqlServer
     }

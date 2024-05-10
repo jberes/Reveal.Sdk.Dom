@@ -13,7 +13,7 @@ namespace Reveal.Sdk.Dom.Data
 
         [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]
-        public DataSourceProvider Provider { get; internal set; }
+        public DataSourceProvider Provider { get; internal set; } //todo: can this be internal?
 
         [JsonProperty("Description")]
         public string Title { get; set; }
@@ -21,7 +21,7 @@ namespace Reveal.Sdk.Dom.Data
         public string Subtitle { get; set; }
 
         
-        public Dictionary<string, object> Properties { get; internal set; }
+        public Dictionary<string, object> Properties { get; internal set; } //todo: can this be internal?
 
         public DataSource()
         {

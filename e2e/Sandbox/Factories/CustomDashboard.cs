@@ -1,4 +1,5 @@
-﻿using Reveal.Sdk.Dom;
+﻿using Reveal.Sdk.Data.Excel;
+using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
@@ -10,29 +11,55 @@ namespace Sandbox.Factories
     {
         internal static RdashDocument CreateDashboard()
         {
-            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-                .SetTitle("Excel Data Source")
-                .SetSubtitle("Marketing Sheet")
+            //var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            //    .SetTitle("Excel Data Source")
+            //    .SetSubtitle("Marketing Sheet")
+            //    .UseExcel("Marketing")
+            //    .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
+            //.Build();
+
+            var excelDataSourceItem = new RestBuilder("Marketing Sheet", "Excel Data Source Item")
+                .SetUri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .IsAnonymous(true)
                 .UseExcel("Marketing")
                 .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
                 .Build();
 
-            var csvDataSourceItem = new RestServiceBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+            //var csvDataSourceItem = new RestServiceBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+            //    .UseCsv()
+            //    .SetTitle("CSV Data Source")
+            //    .SetSubtitle("Illinois School Info")
+            //    .SetFields(DataSourceFactory.GetCsvDataSourceFields())
+            //    .Build();
+
+            var csvDataSourceItem = new RestBuilder("Illinois School Info", "CSV Data Source Item")
+                .SetUri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+                .IsAnonymous(true)
                 .UseCsv()
-                .SetTitle("CSV Data Source")
-                .SetSubtitle("Illinois School Info")
                 .SetFields(DataSourceFactory.GetCsvDataSourceFields())
                 .Build();
 
-            var financialDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
-                .SetTitle("Finance Data Source")
-                .SetSubtitle("OHLC")
+            //var financialDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
+            //    .SetTitle("Finance Data Source")
+            //    .SetSubtitle("OHLC")
+            //    .SetFields(DataSourceFactory.GetOHLCDataSourceFields())
+            //    .Build();
+
+            var financialDataSourceItem = new RestBuilder("OHLC", "Finance Data Source Item")
+                .SetUri("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
+                .IsAnonymous(true)
                 .SetFields(DataSourceFactory.GetOHLCDataSourceFields())
                 .Build();
 
-            var revenueDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
-                .SetTitle("Choropleth Data Source")
-                .SetSubtitle("Revenue")
+            //var revenueDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
+            //    .SetTitle("Choropleth Data Source")
+            //    .SetSubtitle("Revenue")
+            //    .SetFields(DataSourceFactory.GetRevenueDataSourceFields())
+            //    .Build();
+
+            var revenueDataSourceItem = new RestBuilder("Revenue", "Choropleth Data Source Item")
+                .SetUri("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
+                .IsAnonymous(true)
                 .SetFields(DataSourceFactory.GetRevenueDataSourceFields())
                 .Build();
 

@@ -3,7 +3,7 @@ using Reveal.Sdk.Data.Microsoft.AnalysisServices;
 using Reveal.Sdk.Data.Microsoft.SqlServer;
 using System.Threading.Tasks;
 
-namespace Sandbox.Helpers
+namespace Sandbox.RevealSDK
 {
     internal class AuthenticationProvider : IRVAuthenticationProvider
     {
@@ -12,7 +12,7 @@ namespace Sandbox.Helpers
             IRVDataSourceCredential userCredential = null;
             if (dataSource is RVSqlServerDataSource)
             {
-                userCredential = new RVUsernamePasswordDataSourceCredential("username", "password");
+                userCredential = new RVUsernamePasswordDataSourceCredential();
             }
             else if (dataSource is RVNativeAnalysisServicesDataSource)
             {
