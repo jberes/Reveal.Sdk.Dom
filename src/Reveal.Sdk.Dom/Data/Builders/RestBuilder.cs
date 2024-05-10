@@ -13,12 +13,20 @@ namespace Reveal.Sdk.Dom.Data
 
         DataSource _dataSource;
 
-        public RestBuilder(string title, string subtitle) :
-            this(title, subtitle, new DataSource())
+        public RestBuilder(string title) :
+            this(new DataSource(), title, null)
         { }
 
-        public RestBuilder(string title, string subtitle, DataSource dataSource) :
-            base(null, DataSourceProvider.JSON, DataSourceProvider.REST, title, subtitle)
+        public RestBuilder(string title, string id) :
+            this(new DataSource(), title, id)
+        { }
+
+        public RestBuilder(DataSource dataSource, string title) :
+            this(dataSource, title, null)
+        { }
+
+        public RestBuilder(DataSource dataSource, string title, string id) :
+            base(null, DataSourceProvider.JSON, DataSourceProvider.REST, title, id)
         {
             _dataSource = dataSource ?? new DataSource();
             DataSource.Id = DataSourceIds.JSON;
@@ -26,10 +34,10 @@ namespace Reveal.Sdk.Dom.Data
             UpdateResourceItemDataSource(_dataSource);
         }
 
-        public override IDataSourceBuilder SetFields(IEnumerable<IField> fields)
+        public override IDataSourceBuilder Fields(IEnumerable<IField> fields)
         {
             DataSourceItem.Parameters.Add("config", BuildConfig(fields));
-            return base.SetFields(fields);
+            return base.Fields(fields);
         }
 
         public IRestBuilder AddHeader(HeaderType headerType, string value)
@@ -81,27 +89,23 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public IRestBuilder SetUri(string uri)
+        public IRestBuilder Uri(string uri)
         {
             ResourceItem.Properties.SetItem("Url", uri);
             ResourceItemDataSource.Properties.SetItem("Url", uri);
             return this;
         }
 
-        public override IDataSourceBuilder SetId(string id)
+        public override IDataSourceBuilder Id(string id)
         {
             ResourceItem.Id = id;
             return this;
         }
 
-        public override void SetTitle(string title)
-        {
-            ResourceItem.Title = title;
-        }
-
-        public override void SetSubtitle(string subtitle)
+        public override IDataSourceBuilder Subtitle(string subtitle)
         {
             ResourceItem.Subtitle = subtitle;
+            return this;
         }
 
         public override IDataSourceBuilder ConfigureDataSource(Action<DataSource> configureDataSource)
@@ -109,6 +113,11 @@ namespace Reveal.Sdk.Dom.Data
             configureDataSource.Invoke(_dataSource);
             UpdateResourceItemDataSource(_dataSource);
             return this;
+        }
+
+        protected override void SetTitle(string title)
+        {
+            ResourceItem.Title = title;
         }
 
         //todo: this may need to go on the base class. wait until more builders are created

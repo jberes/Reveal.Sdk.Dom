@@ -1,6 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
-using System;
 using System.Collections.Generic;
 
 namespace Sandbox.Helpers
@@ -14,6 +13,7 @@ namespace Sandbox.Helpers
             Title = "Excel Data Source",
             Subtitle = "The Data Source for Excel via REST",
         };
+
         static string _restExcelUri = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";    
 
         internal static DataSourceItem GetMarketingDataSourceItem()
@@ -25,20 +25,22 @@ namespace Sandbox.Helpers
             //    .SetFields(GetMarketingDataSourceFields())
             //    .Build();
 
-            //var excelDataSourceItem = _factory.Create(DataSourceType.REST, "Excel Data Source Item", "Marketing Sheet", _excelDataSource)
-            //    .SetFields(GetMarketingDataSourceFields())
-            //    .As<IRestBuilder>()
+            var excelDataSourceItem = _factory.Create(DataSourceType.REST, _excelDataSource, "Excel Data Source Item")
+                .Subtitle("Excel Data Source Item")
+                .Fields(GetMarketingDataSourceFields())
+                .As<IRestBuilder>()
+                .Uri(_restExcelUri)
+                .IsAnonymous(true)
+                .UseExcel("Marketing")
+                .Build();
+
+            //var excelDataSourceItem = new RestBuilder(_excelDataSource, "Marketing Sheet")
             //    .SetUri(_restExcelUri)
             //    .IsAnonymous(true)
             //    .UseExcel("Marketing")
+            //    .SetSubtitle("Excel Data Source Item")
+            //    .SetFields(GetMarketingDataSourceFields())
             //    .Build();
-
-            var excelDataSourceItem =new RestBuilder("Marketing Sheet", "Excel Data Source Item", _excelDataSource)
-                .SetUri(_restExcelUri)
-                .IsAnonymous(true)
-                .UseExcel("Marketing")
-                .SetFields(GetMarketingDataSourceFields())
-                .Build();
 
             return excelDataSourceItem;
         }
@@ -52,11 +54,11 @@ namespace Sandbox.Helpers
             //    .SetFields(GetHealthcareDataSourceFields())
             //    .Build();
 
-            var excelDataSourceItem = new RestBuilder("Healthcare Sheet", "Excel Data Source Item", _excelDataSource)
-                .SetUri(_restExcelUri)
+            var excelDataSourceItem = new RestBuilder(_excelDataSource, "Healthcare Sheet")
+                .Uri(_restExcelUri)
                 .IsAnonymous(true)
                 .UseExcel("Healthcare")
-                .SetFields(GetMarketingDataSourceFields())
+                .Fields(GetHealthcareDataSourceFields())
                 .Build();
 
             return excelDataSourceItem;
@@ -71,11 +73,11 @@ namespace Sandbox.Helpers
             //    .SetFields(GetManufacturingDataSourceFields())
             //    .Build();
 
-            var excelDataSourceItem = new RestBuilder("Manufacturing Sheet", "Excel Data Source Item", _excelDataSource)
-                .SetUri(_restExcelUri)
+            var excelDataSourceItem = new RestBuilder(_excelDataSource, "Manufacturing Sheet")
+                .Uri(_restExcelUri)
                 .IsAnonymous(true)
                 .UseExcel("Manufacturing")
-                .SetFields(GetMarketingDataSourceFields())
+                .Fields(GetManufacturingDataSourceFields())
                 .Build();
 
             return excelDataSourceItem;
@@ -90,11 +92,11 @@ namespace Sandbox.Helpers
             //    .SetFields(GetSalesDataSourceFields())
             //    .Build();
 
-            var excelDataSourceItem = new RestBuilder("Sales Sheet", "Excel Data Source Item", _excelDataSource)
-                .SetUri(_restExcelUri)
+            var excelDataSourceItem = new RestBuilder(_excelDataSource, "Sales Sheet")
+                .Uri(_restExcelUri)
                 .IsAnonymous(true)
                 .UseExcel("Sales")
-                .SetFields(GetMarketingDataSourceFields())
+                .Fields(GetSalesDataSourceFields())
                 .Build();
 
             return excelDataSourceItem;

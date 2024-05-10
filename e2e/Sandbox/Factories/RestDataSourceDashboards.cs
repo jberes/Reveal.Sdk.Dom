@@ -19,10 +19,11 @@ namespace Sandbox.Factories
             //    .SetFields(DataSourceFactory.GetSalesByCategoryFields())
             //    .Build();
 
-            var jsonDataSourceItem = new RestBuilder("Sales by Category", "JSON Data Source Item")
-                .SetUri("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
+            var jsonDataSourceItem = new RestBuilder("Sales by Category")
+                .Uri("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
                 .IsAnonymous(true)
-                .SetFields(DataSourceFactory.GetSalesByCategoryFields())
+                .Subtitle("JSON Data Source Item")
+                .Fields(DataSourceFactory.GetSalesByCategoryFields())
                 .Build();
 
             document.Visualizations.Add(new PieChartVisualization("JSON", jsonDataSourceItem)
@@ -36,11 +37,12 @@ namespace Sandbox.Factories
             //    .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
             //    .Build();
 
-            var excelDataSourceItem = new RestBuilder("Marketing", "Excel Data Source Item")
-                .SetUri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            var excelDataSourceItem = new RestBuilder("Marketing")
+                .Uri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .UseExcel("Marketing")
                 .IsAnonymous(true)
-                .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
+                .Subtitle("Excel Data Source Item")
+                .Fields(DataSourceFactory.GetMarketingDataSourceFields())
                 .Build();
 
             document.Visualizations.Add(new PieChartVisualization("Excel", excelDataSourceItem)
@@ -54,11 +56,12 @@ namespace Sandbox.Factories
             //    .SetFields(DataSourceFactory.GetCsvDataSourceFields())
             //    .Build();
 
-            var csvDataSourceItem = new RestBuilder("Illinois School Info", "CSV Data Source Item")
-                .SetUri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+            var csvDataSourceItem = new RestBuilder("Illinois School Info")
+                .Uri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
                 .UseCsv()
                 .IsAnonymous(true)
-                .SetFields(DataSourceFactory.GetCsvDataSourceFields())
+                .Subtitle("CSV Data Source Item")
+                .Fields(DataSourceFactory.GetCsvDataSourceFields())
                 .Build();
 
             document.Visualizations.Add(new ScatterMapVisualization("Scatter", csvDataSourceItem)

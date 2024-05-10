@@ -19,10 +19,10 @@ namespace Sandbox.Factories
             //.Build();
 
             var excelDataSourceItem = new RestBuilder("Marketing Sheet", "Excel Data Source Item")
-                .SetUri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .Uri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .IsAnonymous(true)
                 .UseExcel("Marketing")
-                .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
+                .Fields(DataSourceFactory.GetMarketingDataSourceFields())
                 .Build();
 
             //var csvDataSourceItem = new RestServiceBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
@@ -33,10 +33,10 @@ namespace Sandbox.Factories
             //    .Build();
 
             var csvDataSourceItem = new RestBuilder("Illinois School Info", "CSV Data Source Item")
-                .SetUri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+                .Uri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
                 .IsAnonymous(true)
                 .UseCsv()
-                .SetFields(DataSourceFactory.GetCsvDataSourceFields())
+                .Fields(DataSourceFactory.GetCsvDataSourceFields())
                 .Build();
 
             //var financialDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
@@ -46,9 +46,9 @@ namespace Sandbox.Factories
             //    .Build();
 
             var financialDataSourceItem = new RestBuilder("OHLC", "Finance Data Source Item")
-                .SetUri("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
+                .Uri("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
                 .IsAnonymous(true)
-                .SetFields(DataSourceFactory.GetOHLCDataSourceFields())
+                .Fields(DataSourceFactory.GetOHLCDataSourceFields())
                 .Build();
 
             //var revenueDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
@@ -58,9 +58,9 @@ namespace Sandbox.Factories
             //    .Build();
 
             var revenueDataSourceItem = new RestBuilder("Revenue", "Choropleth Data Source Item")
-                .SetUri("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
+                .Uri("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
                 .IsAnonymous(true)
-                .SetFields(DataSourceFactory.GetRevenueDataSourceFields())
+                .Fields(DataSourceFactory.GetRevenueDataSourceFields())
                 .Build();
 
             var document = new RdashDocument()

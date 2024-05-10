@@ -6,9 +6,10 @@ namespace Reveal.Sdk.Dom.Data
 {
     public interface IDataSourceBuilder
     {
-        IDataSourceBuilder SetId(string id);
-        IDataSourceBuilder SetFields(IEnumerable<IField> fields);
-        IDataSourceBuilder SetFields(params IField[] fields);
+        IDataSourceBuilder Id(string id);
+        IDataSourceBuilder Fields(IEnumerable<IField> fields);
+        IDataSourceBuilder Fields(params IField[] fields);
+        IDataSourceBuilder Subtitle(string subtitle);
         IDataSourceBuilder ConfigureDataSource(Action<DataSource> configureDataSource);
         DataSourceItem Build();
     }

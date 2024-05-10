@@ -75,15 +75,15 @@ namespace Sandbox
             restExcelDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
             ds.Add(restExcelDS);
 
-            //var restDSI = new RVRESTDataSourceItem(restExcelDS);
-            //restDSI.Title = "REST Data Source Item";
-            //restDSI.Subtitle = "REST DSI Subtitle";
+            var restDSI = new RVRESTDataSourceItem(restExcelDS);
+            restDSI.Title = "REST Data Source Item";
+            restDSI.Subtitle = "REST DSI Subtitle";
 
-            //var excelDSI = new RVExcelDataSourceItem(restDSI);
-            //excelDSI.Title = "Excel Data Source Item";
-            //excelDSI.Subtitle = "Marketing Sheet";
-            //excelDSI.Sheet = "Marketing";
-            //dsi.Add(excelDSI);
+            var excelDSI = new RVExcelDataSourceItem(restDSI);
+            excelDSI.Title = "Excel Data Source Item";
+            excelDSI.Subtitle = "Marketing Sheet";
+            excelDSI.Sheet = "Marketing";
+            dsi.Add(excelDSI);
 
             var sqlDS = new RVSqlServerDataSource();
             sqlDS.Title = "SQL Server Data Source";
@@ -146,7 +146,7 @@ namespace Sandbox
         private async void Create_Dashboard(object sender, RoutedEventArgs e)
         {
             //var document = MarketingDashboard.CreateDashboard();
-            //var document = SalesDashboard.CreateDashboard();
+            var document = SalesDashboard.CreateDashboard();
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
@@ -157,30 +157,32 @@ namespace Sandbox
 
             //document.Save(_saveRdashToPath);
 
-            var document = new RdashDocument()
-            {
-                Title = "My Dashboard",
-                Description = "I created"
-            };
+            //var document = new RdashDocument()
+            //{
+            //    Title = "My Dashboard",
+            //    Description = "I created"
+            //};
 
-            //var dsi = new TabularDataFactory().Create(DataSourceType.REST, "Excel to JSON", "Sales")
-            //    .SetId("TEST-ID")
-            //    .SetFields(new List<IField>
+            //var dsi = new DataSourceItemFactory().Create(DataSourceType.REST, "Excel to JSON")
+            //    .Id("TEST-ID")
+            //    .Subtitle("Sales")
+            //    .Fields(new List<IField>
             //    {
             //       new TextField("CategoryName"),
             //       new TextField("ProductName"),
             //       new NumberField("ProductSales")
             //    })
             //    .As<IRestBuilder>()
-            //    .SetUri("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
+            //    .Uri("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
+            //    .IsAnonymous(true)
             //    .Build();
 
             //var gridViz = new GridVisualization("REST", dsi).SetColumns("CategoryName", "ProductName", "ProductSales");
             //document.Visualizations.Add(gridViz);
 
-            //var restExcel = new DataSourceItemFactory().Create(DataSourceType.REST, "REST Excel", "Marketing")
-            //    .SetId("TEST-ID")
-            //    .SetFields(new List<IField>
+            //var restExcel = new DataSourceItemFactory().Create(DataSourceType.REST, "REST Excel")
+            //    .Id("RestExcel")
+            //    .Fields(new List<IField>
             //    {
             //        new TextField("CampaignID"),
             //        new TextField("Budget"),
@@ -191,31 +193,29 @@ namespace Sandbox
             //        ds.Subtitle = "Data Source";
             //    })
             //    .As<IRestBuilder>()
-            //    .SetUri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-            //    .As<IRestBuilder>().UseExcel("Marketing")
+            //    .Uri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+            //    .IsAnonymous(true)
+            //    .UseExcel("Marketing")
             //    .Build();
 
             //var gridViz = new GridVisualization("REST", restExcel).SetColumns("CampaignID", "Budget");
             //document.Visualizations.Add(gridViz);
 
-            var sqlServer = new DataSourceItemFactory().Create(DataSourceType.MicrosoftSqlServer, "SQL Server Data Source Item", "SQL Server DSI Subtitle", new DataSource()
-            {
-                Title = "SQL Server Data Source",
-            })
-                .SetFields(new List<IField>
-                {
-                   new TextField("ContactName"),
-                   new TextField("ContactTitle"),
-                   new TextField("City")
-                })
-                .As<ISqlBuilder>()
-                .SetHost(@"Brian-Desktop\SQLEXPRESS")
-                .SetDatabase("Northwind")
-                .SetTable("Customers")
-                .Build();
+            //var sqlServer = new DataSourceItemFactory().Create(DataSourceType.MicrosoftSqlServer, new DataSource() { Title = "SQL Server Data Source" }, "SQL Server Data Source Item")
+            //    .Fields(new List<IField>
+            //    {
+            //       new TextField("ContactName"),
+            //       new TextField("ContactTitle"),
+            //       new TextField("City")
+            //    })
+            //    .As<ISqlBuilder>()
+            //    .Host(@"Brian-Desktop\SQLEXPRESS")
+            //    .Database("Northwind")
+            //    .Table("Customers")
+            //    .Build();
 
-            var gridViz2 = new GridVisualization("Sql Server", sqlServer).SetColumns("ContactName", "ContactTitle", "City");
-            document.Visualizations.Add(gridViz2);
+            //var gridViz2 = new GridVisualization("Sql Server", sqlServer).SetColumns("ContactName", "ContactTitle", "City");
+            //document.Visualizations.Add(gridViz2);
 
             var json = document.ToJsonString();
             //json.Save(_saveJsonToPath);

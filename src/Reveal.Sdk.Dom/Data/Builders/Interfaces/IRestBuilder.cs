@@ -6,6 +6,6 @@
         IRestBuilder IsAnonymous(bool isAnonymous);
         IRestBuilder UseCsv();
         IRestBuilder UseExcel(string sheet = null, ExcelFileType fileType = ExcelFileType.Xlsx);
-        IRestBuilder SetUri(string uri);
+        IRestBuilder Uri(string uri);
     }
 }
