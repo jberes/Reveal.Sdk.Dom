@@ -26,6 +26,9 @@ namespace Reveal.Sdk.Dom.Core.Utilities
 
         internal static List<T> Clone<T>(this List<T> list)
         {
+            if (list is null)
+                return new List<T>();
+
             return list.Select(item => Clone(item)).ToList();
         }
     }
