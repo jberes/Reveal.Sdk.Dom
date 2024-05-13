@@ -9,7 +9,19 @@ namespace Reveal.Sdk.Dom.Data
 {
     public sealed class DataSourceItem : SchemaType
     {
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        private string _id = Guid.NewGuid().ToString();
+
+        public DataSourceItem()
+        {
+            SchemaTypeName = SchemaTypeNames.DataSourceItemType;
+        }
+
+        public string Id
+        {
+            get => _id;
+            set => _id = string.IsNullOrEmpty(value) ? Guid.NewGuid().ToString() : value; //do not allow a null Id
+        }
+
         public string Title { get; set; }
         public string Subtitle { get; set; }
         public string DataSourceId { get; set; } //todo: can this be internal?
@@ -35,10 +47,5 @@ namespace Reveal.Sdk.Dom.Data
         /// </summary>
         [JsonIgnore]
         internal DataSource ResourceItemDataSource { get; set; }
-
-        public DataSourceItem()
-        {
-            SchemaTypeName = SchemaTypeNames.DataSourceItemType;
-        }
     }
 }

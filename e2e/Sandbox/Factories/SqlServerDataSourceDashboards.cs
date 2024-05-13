@@ -11,18 +11,31 @@ namespace Sandbox.Factories
         {
             var document = new RdashDocument("My Dashboard");
 
-            var sqlServerDataSourceItem = new SqlServerBuilder("host", "database", "table")
-                .SetTitle("SQL Server")
-                .SetSubtitle("Orders")
-                .SetFields(new List<IField>()
+            //var sqlServerDataSourceItem = new SqlServerBuilder("host", "database", "table")
+            //    .SetTitle("SQL Server")
+            //    .SetSubtitle("Orders")
+            //    .SetFields(new List<IField>()
+            //    {
+            //        new TextField("CustomerID"),
+            //        new NumberField("OrderID"),
+            //    })
+            //    .Build();
+
+            var sqlServerDataSourceItem = new DataSourceItemFactory().Create(DataSourceType.MicrosoftSqlServer, "Customers")
+                .Subtitle("SQL Server Data Source Item")
+                .Fields(new List<IField>
                 {
-                    new TextField("CustomerID"),
-                    new NumberField("OrderID"),
+                    new TextField("ContactName"),
+                    new TextField("ContactTitle"),
+                    new TextField("City")
                 })
+                .As<ISqlBuilder>()
+                .Host(@"Brian-Desktop\SQLEXPRESS")
+                .Database("Northwind")
+                .Table("Customers")
                 .Build();
 
-            document.Visualizations.Add(new BarChartVisualization("SQL Server Bar Chart", sqlServerDataSourceItem)
-                .SetLabel("CustomerID").SetValue(new NumberDataField("OrderID") { AggregationType = AggregationType.CountRows }));
+            document.Visualizations.Add(new GridVisualization("Customer List", sqlServerDataSourceItem).SetColumns("ContactName", "ContactTitle", "City"));
 
             return document;
         }

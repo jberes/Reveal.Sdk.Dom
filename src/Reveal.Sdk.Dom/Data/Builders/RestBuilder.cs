@@ -104,6 +104,7 @@ namespace Reveal.Sdk.Dom.Data
 
         public override IDataSourceBuilder Subtitle(string subtitle)
         {
+            base.Subtitle(subtitle);
             ResourceItem.Subtitle = subtitle;
             return this;
         }
@@ -113,11 +114,6 @@ namespace Reveal.Sdk.Dom.Data
             configureDataSource.Invoke(_dataSource);
             UpdateResourceItemDataSource(_dataSource);
             return this;
-        }
-
-        protected override void SetTitle(string title)
-        {
-            ResourceItem.Title = title;
         }
 
         //todo: this may need to go on the base class. wait until more builders are created

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class DataSourceBuilder : IDataSourceBuilder
+    public abstract class DataSourceBuilder : IDataSourceBuilder
     {
-        protected DataSource DataSource { get; } = new DataSource();
-        protected DataSourceItem DataSourceItem { get; } = new DataSourceItem();
+        protected DataSource DataSource { get; set; }
+        protected DataSourceItem DataSourceItem { get; set; }
 
         public DataSourceBuilder(DataSourceProvider provider, string title, string id) :
             this(new DataSource(), provider, title, id)
@@ -15,18 +15,14 @@ namespace Reveal.Sdk.Dom.Data
 
         public DataSourceBuilder(DataSource dataSource, DataSourceProvider provider, string title, string id)
         {
-            DataSource = dataSource ?? new DataSource();
-            DataSource.Provider = provider;
-            DataSourceItem.DataSource = DataSource;
-            DataSourceItem.DataSourceId = DataSource.Id;
-            SetTitle(title);
-            Id(id);
+            InitializeDataSource(dataSource, provider, title);
+            InitializeDataSourceItem(title, id);
         }
 
         public virtual DataSourceItem Build()
         {
             //todo: need to revist to support xmla data sources
-            //fields is onlty used for tabular data sources
+            //fields is only used for tabular data sources
             if (DataSourceItem.Fields.Count == 0)
                 throw new ArgumentException("You must provide the field definitions for the data source item. Call the SetFields method and provide the fields.");
 
@@ -67,17 +63,29 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        protected virtual void SetTitle(string title)
-        {
-            DataSourceItem.Title = title;
-            if (string.IsNullOrEmpty(DataSource.Title))
-                DataSource.Title = title;
-        }
-
         protected void UpdateDataSourceId(string id)
         {
             DataSource.Id = id;
             DataSourceItem.DataSourceId = id;
+        }
+
+        private void InitializeDataSource(DataSource dataSource, DataSourceProvider provider, string title)
+        {
+            DataSource = dataSource ?? new DataSource();
+            DataSource.Provider = provider; // //todo: maybe this shouldn't go here. Each specific builder should be responsible for setting the provider
+            if (string.IsNullOrEmpty(DataSource.Title))
+                DataSource.Title = title;
+        }
+
+        private void InitializeDataSourceItem(string title, string id)
+        {
+            DataSourceItem = new DataSourceItem
+            {
+                DataSource = DataSource,
+                DataSourceId = DataSource.Id,
+                Title = title,
+                Id = id
+            };
         }
     }
 }

@@ -2,66 +2,65 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
-using DataSourceFactory = Sandbox.Helpers.DataSourceFactory;
 
 namespace Sandbox.Factories
 {
     internal class RestDataSourceDashboards
     {
+        static IDataSourceItemFactory _factory = new DataSourceItemFactory();
+
         internal static RdashDocument CreateDashboard()
         {
             var document = new RdashDocument("My Dashboard");
 
             //json - default
-            //var jsonDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
-            //    .SetTitle("JSON Data Source")
-            //    .SetSubtitle("Sales by Category")
-            //    .SetFields(DataSourceFactory.GetSalesByCategoryFields())
-            //    .Build();
-
-            var jsonDataSourceItem = new RestBuilder("Sales by Category")
-                .Uri("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
-                .IsAnonymous(true)
+            var jsonDataSourceItem = _factory.Create(DataSourceType.REST, "Sales by Category")
                 .Subtitle("JSON Data Source Item")
                 .Fields(DataSourceFactory.GetSalesByCategoryFields())
+                .As<IRestBuilder>()
+                .Uri("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
+                .IsAnonymous(true)
+                .ConfigureDataSource(d =>
+                {
+                    d.Title = "JSON DS";
+                    d.Subtitle = "JSON DS Subtitle";
+                })
                 .Build();
 
             document.Visualizations.Add(new PieChartVisualization("JSON", jsonDataSourceItem)
                 .SetLabel("CategoryName").SetValue("ProductSales"));
 
             //excel
-            //var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-            //    .UseExcel()
-            //    .SetTitle("Excel Data Source")
-            //    .SetSubtitle("Marketing")
-            //    .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
-            //    .Build();
-
-            var excelDataSourceItem = new RestBuilder("Marketing")
-                .Uri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-                .UseExcel("Marketing")
-                .IsAnonymous(true)
+            var excelDataSourceItem = _factory.Create(DataSourceType.REST, "Marketing")
                 .Subtitle("Excel Data Source Item")
                 .Fields(DataSourceFactory.GetMarketingDataSourceFields())
+                .As<IRestBuilder>()
+                .Uri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .IsAnonymous(true)
+                .UseExcel("Marketing")
+                .ConfigureDataSource(d =>
+                {
+                    d.Title = "Excel DS";
+                    d.Subtitle = "Excel DS Subtitle";
+                })
                 .Build();
 
             document.Visualizations.Add(new PieChartVisualization("Excel", excelDataSourceItem)
                 .SetLabel("Territory").SetValue("Conversions"));
 
             //csv
-            //var csvDataSourceItem = new RestServiceBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
-            //    .UseCsv()
-            //    .SetTitle("CSV Data Source")
-            //    .SetSubtitle("Illinois School Info")
-            //    .SetFields(DataSourceFactory.GetCsvDataSourceFields())
-            //    .Build();
-
-            var csvDataSourceItem = new RestBuilder("Illinois School Info")
-                .Uri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
-                .UseCsv()
-                .IsAnonymous(true)
+            var csvDataSourceItem = _factory.Create(DataSourceType.REST, "Illinois School Info")
                 .Subtitle("CSV Data Source Item")
                 .Fields(DataSourceFactory.GetCsvDataSourceFields())
+                .As<IRestBuilder>()
+                .Uri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+                .IsAnonymous(true)
+                .UseCsv()
+                .ConfigureDataSource(d =>
+                {
+                    d.Title = "CSV DS";
+                    d.Subtitle = "CSV DS Subtitle";
+                })
                 .Build();
 
             document.Visualizations.Add(new ScatterMapVisualization("Scatter", csvDataSourceItem)

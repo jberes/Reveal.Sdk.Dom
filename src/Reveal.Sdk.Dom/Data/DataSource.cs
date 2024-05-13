@@ -9,7 +9,19 @@ namespace Reveal.Sdk.Dom.Data
 {
     public sealed class DataSource : SchemaType, IEquatable<DataSource>
     {
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        private string _id = Guid.NewGuid().ToString();
+
+        public DataSource()
+        {
+            SchemaTypeName = SchemaTypeNames.DataSourceType;
+            Properties = new Dictionary<string, object>();
+        }
+
+        public string Id
+        {
+            get => _id;
+            set => _id = string.IsNullOrEmpty(value) ? Guid.NewGuid().ToString() : value; //do not allow a null Id
+        }
 
         [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]
@@ -19,15 +31,8 @@ namespace Reveal.Sdk.Dom.Data
         public string Title { get; set; }
 
         public string Subtitle { get; set; }
-
         
         public Dictionary<string, object> Properties { get; internal set; } //todo: can this be internal?
-
-        public DataSource()
-        {
-            SchemaTypeName = SchemaTypeNames.DataSourceType;
-            Properties = new Dictionary<string, object>();
-        }
 
         public override bool Equals(object obj)
         {

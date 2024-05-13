@@ -28,7 +28,7 @@ namespace Sandbox
 
         //readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
         //readonly string _readFilePath = Path.Combine(_dashboardFilePath, "JB - New Infragistics Scorecard Test.rdash");
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "SqlServer-Dashboard.rdash");
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "REST-JSON-EXCEL-BROKEN.rdash");
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -61,13 +61,54 @@ namespace Sandbox
             var ds = new List<RVDashboardDataSource>();
             var dsi = new List<RVDataSourceItem>();
 
-            var restDS = new RVRESTDataSource();
-            restDS.Title = "Excel to JSON";
-            restDS.Subtitle = "Data Source";
-            restDS.UseAnonymousAuthentication = true;
-            restDS.Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9";
-            ds.Add(restDS);
+            //REST
+            //var jsonRestDS = new RVRESTDataSource();
+            //jsonRestDS.Title = "REST DS JSON";
+            //jsonRestDS.Subtitle = "REST DS JSON Subtitle";
+            //jsonRestDS.UseAnonymousAuthentication = true;
+            //jsonRestDS.Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9";
+            //ds.Add(jsonRestDS);
 
+            //REST well defined
+            var jsonRestDS = new RVRESTDataSource();
+            jsonRestDS.Title = "REST DS JSON";
+            jsonRestDS.Subtitle = "REST DS JSON Subtitle";
+            jsonRestDS.UseAnonymousAuthentication = true;
+            jsonRestDS.Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9";
+            ds.Add(jsonRestDS);
+
+            var jsonRestDSI = new RVRESTDataSourceItem(jsonRestDS);
+            jsonRestDSI.Title = "REST DSI JSON";
+            jsonRestDSI.Subtitle = "REST JSON DSI Subtitle";
+
+            var jsonDSI = new RVJsonDataSourceItem(jsonRestDSI);
+            jsonDSI.Title = "JSON DSI";
+            jsonDSI.Subtitle = "JSON DSI Subtitle";
+            jsonDSI.Config = @"
+            {
+                ""iterationDepth"": 0,
+                ""columnsConfig"": [
+                    {
+                        ""key"": ""CategoryID"",
+                        ""type"": 1
+                    },
+                    {
+                        ""key"": ""CategoryName"",
+                        ""type"": 0
+                    },
+                    {
+                        ""key"": ""ProductName"",
+                        ""type"": 0
+                    },
+                    {
+                        ""key"": ""ProductSales"",
+                        ""type"": 1
+                    }
+                ]
+            }";
+            dsi.Add(jsonDSI);
+
+            //REST Excel well defined
             var restExcelDS = new RVRESTDataSource();
             restExcelDS.Title = "REST Excel";
             restExcelDS.Subtitle = "Samples.xlsz";
@@ -85,24 +126,24 @@ namespace Sandbox
             excelDSI.Sheet = "Marketing";
             dsi.Add(excelDSI);
 
-            var sqlDS = new RVSqlServerDataSource();
-            sqlDS.Title = "SQL Server Data Source";
-            sqlDS.Subtitle = "SQL Server DS Subtitle";
-            sqlDS.Host = "Brian-Desktop\\SQLEXPRESS";
-            sqlDS.Database = "Northwind"; //this is required
-            ds.Add(sqlDS);
+            //var sqlDS = new RVSqlServerDataSource();
+            //sqlDS.Title = "SQL Server Data Source";
+            //sqlDS.Subtitle = "SQL Server DS Subtitle";
+            //sqlDS.Host = "Brian-Desktop\\SQLEXPRESS";
+            //sqlDS.Database = "Northwind"; //this is required
+            //ds.Add(sqlDS);
 
-            var sqlDSI = new RVSqlServerDataSourceItem(sqlDS);
-            sqlDSI.Title = "SQL Server Data Source Item";
-            sqlDSI.Subtitle = "SQL Server DSI Subtitle";
-            sqlDSI.Table = "Customers";
-            dsi.Add(sqlDSI);
+            //var sqlDSI = new RVSqlServerDataSourceItem(sqlDS);
+            //sqlDSI.Title = "SQL Server Data Source Item";
+            //sqlDSI.Subtitle = "SQL Server DSI Subtitle";
+            //sqlDSI.Table = "Customers";
+            //dsi.Add(sqlDSI);
 
-            var webDS = new RVWebResourceDataSource();
-            webDS.UseAnonymousAuthentication = true;
-            webDS.Title = "Web Resource";
-            webDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
-            ds.Add(webDS);
+            //var webDS = new RVWebResourceDataSource();
+            //webDS.UseAnonymousAuthentication = true;
+            //webDS.Title = "Web Resource";
+            //webDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
+            //ds.Add(webDS);
 
             e.Callback(new RevealDataSources(ds, dsi, true));
         }
@@ -146,13 +187,13 @@ namespace Sandbox
         private async void Create_Dashboard(object sender, RoutedEventArgs e)
         {
             //var document = MarketingDashboard.CreateDashboard();
-            var document = SalesDashboard.CreateDashboard();
+            //var document = SalesDashboard.CreateDashboard();
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
             //var document = CustomDashboard.CreateDashboard();
             //var document = RestDataSourceDashboards.CreateDashboard();
-            //var document = SqlServerDataSourceDashboards.CreateDashboard();
+            var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();
 
             //document.Save(_saveRdashToPath);
@@ -201,7 +242,7 @@ namespace Sandbox
             //var gridViz = new GridVisualization("REST", restExcel).SetColumns("CampaignID", "Budget");
             //document.Visualizations.Add(gridViz);
 
-            //var sqlServer = new DataSourceItemFactory().Create(DataSourceType.MicrosoftSqlServer, new DataSource() { Title = "SQL Server Data Source" }, "SQL Server Data Source Item")
+            //var sqlServer = new DataSourceItemFactory().Create(DataSourceType.MicrosoftSqlServer, "SQL Server Data Source Item")
             //    .Fields(new List<IField>
             //    {
             //       new TextField("ContactName"),
