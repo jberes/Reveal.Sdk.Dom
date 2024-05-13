@@ -4,19 +4,19 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public abstract class DataSourceBuilder : IDataSourceBuilder
+    public abstract class DataSourceItemBuilder : IDataSourceItemBuilder
     {
         protected DataSource DataSource { get; set; }
         protected DataSourceItem DataSourceItem { get; set; }
 
-        public DataSourceBuilder(DataSourceProvider provider, string title, string id) :
-            this(new DataSource(), provider, title, id)
+        public DataSourceItemBuilder(DataSourceProvider provider, string title) :
+            this(new DataSource(), provider, title)
         { }
 
-        public DataSourceBuilder(DataSource dataSource, DataSourceProvider provider, string title, string id)
+        public DataSourceItemBuilder(DataSource dataSource, DataSourceProvider provider, string title)
         {
             InitializeDataSource(dataSource, provider, title);
-            InitializeDataSourceItem(title, id);
+            InitializeDataSourceItem(title);
         }
 
         public virtual DataSourceItem Build()
@@ -29,25 +29,25 @@ namespace Reveal.Sdk.Dom.Data
             return DataSourceItem;
         }
 
-        public virtual IDataSourceBuilder Id(string id)
+        public virtual IDataSourceItemBuilder Id(string id)
         {
             DataSourceItem.Id = id;
             return this;
         }
 
-        public virtual IDataSourceBuilder Fields(IEnumerable<IField> fields)
+        public virtual IDataSourceItemBuilder Fields(IEnumerable<IField> fields)
         {
             DataSourceItem.Fields.Clear();
             DataSourceItem.Fields.AddRange(fields);
             return this;
         }
 
-        public virtual IDataSourceBuilder Fields(params IField[] fields)
+        public virtual IDataSourceItemBuilder Fields(params IField[] fields)
         {
             return Fields((IEnumerable<IField>)fields);
         }
 
-        public virtual IDataSourceBuilder Subtitle(string subtitle)
+        public virtual IDataSourceItemBuilder Subtitle(string subtitle)
         {
             DataSourceItem.Subtitle = subtitle;
             if (string.IsNullOrEmpty(DataSource.Subtitle))
@@ -56,7 +56,7 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public virtual IDataSourceBuilder ConfigureDataSource(Action<DataSource> configureDataSource)
+        public virtual IDataSourceItemBuilder ConfigureDataSource(Action<DataSource> configureDataSource)
         {
             configureDataSource.Invoke(DataSource);
             UpdateDataSourceId(DataSource.Id);
@@ -77,14 +77,13 @@ namespace Reveal.Sdk.Dom.Data
                 DataSource.Title = title;
         }
 
-        private void InitializeDataSourceItem(string title, string id)
+        private void InitializeDataSourceItem(string title)
         {
             DataSourceItem = new DataSourceItem
             {
                 DataSource = DataSource,
                 DataSourceId = DataSource.Id,
                 Title = title,
-                Id = id
             };
         }
     }

@@ -26,8 +26,7 @@ namespace Sandbox
     {
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
-        //readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "REST_JSON.rdash");
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -36,7 +35,6 @@ namespace Sandbox
         {
             InitializeComponent();
 
-            //RevealSdkSettings.EnableNewCharts = true;
             RevealSdkSettings.DataSourceProvider = new Sandbox.RevealSDK.DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
             RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices();
@@ -190,33 +188,10 @@ namespace Sandbox
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            //var document = CustomDashboard.CreateDashboard();
+            var document = CustomDashboard.CreateDashboard();
             //var document = RestDataSourceDashboards.CreateDashboard();
             //var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();
-
-            var document = new RdashDocument()
-            {
-                Title = "My Dashboard",
-                Description = "I created"
-            };
-
-            //var dsi = new DataSourceItemFactory().Create(DataSourceType.REST, "Excel to JSON")
-            //    .Id("TEST-ID")
-            //    .Subtitle("Sales")
-            //    .Fields(new List<IField>
-            //    {
-            //       new TextField("CategoryName"),
-            //       new TextField("ProductName"),
-            //       new NumberField("ProductSales")
-            //    })
-            //    .As<IRestBuilder>()
-            //    .Uri("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
-            //    .IsAnonymous(true)
-            //    .Build();
-
-            //var gridViz = new GridVisualization("REST", dsi).SetColumns("CategoryName", "ProductName", "ProductSales");
-            //document.Visualizations.Add(gridViz);
 
             var json = document.ToJsonString();
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);

@@ -7,26 +7,18 @@ using System.Linq;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class RestBuilder : DataSourceResourceItemBuilder, IRestBuilder
+    public class RestDataSourceItemBuilder : DataSourceResourceItemBuilder, IRestDataSourceItemBuilder
     {
         //bug: the url is required on the client or it won't work
 
         DataSource _dataSource;
 
-        public RestBuilder(string title) :
-            this(new DataSource(), title, null)
+        public RestDataSourceItemBuilder(string title) :
+            this(new DataSource(), title)
         { }
 
-        public RestBuilder(string title, string id) :
-            this(new DataSource(), title, id)
-        { }
-
-        public RestBuilder(DataSource dataSource, string title) :
-            this(dataSource, title, null)
-        { }
-
-        public RestBuilder(DataSource dataSource, string title, string id) :
-            base(null, DataSourceProvider.JSON, DataSourceProvider.REST, title, id)
+        public RestDataSourceItemBuilder(DataSource dataSource, string title) :
+            base(null, DataSourceProvider.JSON, DataSourceProvider.REST, title)
         {
             _dataSource = dataSource ?? new DataSource();
             DataSource.Id = DataSourceIds.JSON;
@@ -34,13 +26,13 @@ namespace Reveal.Sdk.Dom.Data
             UpdateResourceItemDataSource(_dataSource);
         }
 
-        public override IDataSourceBuilder Fields(IEnumerable<IField> fields)
+        public override IDataSourceItemBuilder Fields(IEnumerable<IField> fields)
         {
             DataSourceItem.Parameters.Add("config", BuildConfig(fields));
             return base.Fields(fields);
         }
 
-        public IRestBuilder AddHeader(HeaderType headerType, string value)
+        public IRestDataSourceItemBuilder AddHeader(HeaderType headerType, string value)
         {
             var propertyKey = "Headers";
 
@@ -59,13 +51,13 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public IRestBuilder IsAnonymous(bool isAnonymous)
+        public IRestDataSourceItemBuilder IsAnonymous(bool isAnonymous)
         {
             ResourceItemDataSource.Properties.SetItem("_rpUseAnonymousAuthentication", isAnonymous);
             return this;
         }
 
-        public IRestBuilder UseCsv()
+        public IRestDataSourceItemBuilder UseCsv()
         {
             ClearJsonConfig();
             UpdateDataSourceId(DataSourceIds.CSV);
@@ -74,7 +66,7 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public IRestBuilder UseExcel(string sheet = null, ExcelFileType fileType = ExcelFileType.Xlsx)
+        public IRestDataSourceItemBuilder UseExcel(string sheet = null, ExcelFileType fileType = ExcelFileType.Xlsx)
         {
             ClearJsonConfig();
             UpdateDataSourceId(DataSourceIds.Excel);
@@ -89,27 +81,27 @@ namespace Reveal.Sdk.Dom.Data
             return this;
         }
 
-        public IRestBuilder Uri(string uri)
+        public IRestDataSourceItemBuilder Uri(string uri)
         {
             ResourceItem.Properties.SetItem("Url", uri);
             ResourceItemDataSource.Properties.SetItem("Url", uri);
             return this;
         }
 
-        public override IDataSourceBuilder Id(string id)
+        public override IDataSourceItemBuilder Id(string id)
         {
             ResourceItem.Id = id;
             return this;
         }
 
-        public override IDataSourceBuilder Subtitle(string subtitle)
+        public override IDataSourceItemBuilder Subtitle(string subtitle)
         {
             base.Subtitle(subtitle);
             ResourceItem.Subtitle = subtitle;
             return this;
         }
 
-        public override IDataSourceBuilder ConfigureDataSource(Action<DataSource> configureDataSource)
+        public override IDataSourceItemBuilder ConfigureDataSource(Action<DataSource> configureDataSource)
         {
             configureDataSource.Invoke(_dataSource);
             UpdateResourceItemDataSource(_dataSource);

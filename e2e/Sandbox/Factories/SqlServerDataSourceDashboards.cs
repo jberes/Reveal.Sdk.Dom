@@ -11,16 +11,6 @@ namespace Sandbox.Factories
         {
             var document = new RdashDocument("My Dashboard");
 
-            //var sqlServerDataSourceItem = new SqlServerBuilder("host", "database", "table")
-            //    .SetTitle("SQL Server")
-            //    .SetSubtitle("Orders")
-            //    .SetFields(new List<IField>()
-            //    {
-            //        new TextField("CustomerID"),
-            //        new NumberField("OrderID"),
-            //    })
-            //    .Build();
-
             var sqlServerDataSourceItem = new DataSourceItemFactory().Create(DataSourceType.MicrosoftSqlServer, "Customers")
                 .Subtitle("SQL Server Data Source Item")
                 .Fields(new List<IField>
@@ -29,7 +19,7 @@ namespace Sandbox.Factories
                     new TextField("ContactTitle"),
                     new TextField("City")
                 })
-                .As<ISqlBuilder>()
+                .As<ISqlDataSourceItemBuilder>()
                 .Host(@"Brian-Desktop\SQLEXPRESS")
                 .Database("Northwind")
                 .Table("Customers")
