@@ -1,5 +1,4 @@
-﻿using Reveal.Sdk.Data.Excel;
-using Reveal.Sdk.Dom;
+﻿using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
@@ -11,56 +10,40 @@ namespace Sandbox.Factories
     {
         internal static RdashDocument CreateDashboard()
         {
-            //var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-            //    .SetTitle("Excel Data Source")
-            //    .SetSubtitle("Marketing Sheet")
-            //    .UseExcel("Marketing")
-            //    .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
-            //.Build();
+            var factory = new DataSourceItemFactory();
 
-            var excelDataSourceItem = new RestBuilder("Marketing Sheet", "Excel Data Source Item")
+            var excelDataSourceItem = factory.Create(DataSourceType.REST, "Marketing Sheet")
+                .Subtitle("Excel Data Source Item")
+                .Fields(DataSourceFactory.GetMarketingDataSourceFields())
+                .As<IRestBuilder>()
                 .Uri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
                 .IsAnonymous(true)
                 .UseExcel("Marketing")
-                .Fields(DataSourceFactory.GetMarketingDataSourceFields())
                 .Build();
 
-            //var csvDataSourceItem = new RestServiceBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
-            //    .UseCsv()
-            //    .SetTitle("CSV Data Source")
-            //    .SetSubtitle("Illinois School Info")
-            //    .SetFields(DataSourceFactory.GetCsvDataSourceFields())
-            //    .Build();
-
-            var csvDataSourceItem = new RestBuilder("Illinois School Info", "CSV Data Source Item")
+            var csvDataSourceItem = factory.Create(DataSourceType.REST, "Illinois School Info")
+                .Subtitle("CSV Data Source Item")
+                .Fields(DataSourceFactory.GetCsvDataSourceFields())
+                .As<IRestBuilder>()
                 .Uri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
                 .IsAnonymous(true)
                 .UseCsv()
-                .Fields(DataSourceFactory.GetCsvDataSourceFields())
                 .Build();
 
-            //var financialDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
-            //    .SetTitle("Finance Data Source")
-            //    .SetSubtitle("OHLC")
-            //    .SetFields(DataSourceFactory.GetOHLCDataSourceFields())
-            //    .Build();
-
-            var financialDataSourceItem = new RestBuilder("OHLC", "Finance Data Source Item")
+            var financialDataSourceItem = factory.Create(DataSourceType.REST, "OHLC")
+                .Subtitle("Financial Data Source Item")
+                .Fields(DataSourceFactory.GetOHLCDataSourceFields())
+                .As<IRestBuilder>()
                 .Uri("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
                 .IsAnonymous(true)
-                .Fields(DataSourceFactory.GetOHLCDataSourceFields())
                 .Build();
 
-            //var revenueDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
-            //    .SetTitle("Choropleth Data Source")
-            //    .SetSubtitle("Revenue")
-            //    .SetFields(DataSourceFactory.GetRevenueDataSourceFields())
-            //    .Build();
-
-            var revenueDataSourceItem = new RestBuilder("Revenue", "Choropleth Data Source Item")
+            var revenueDataSourceItem = factory.Create(DataSourceType.REST, "Revenue")
+                .Subtitle("Choropleth Data Source Item")
+                .Fields(DataSourceFactory.GetRevenueDataSourceFields())
+                .As<IRestBuilder>()
                 .Uri("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
                 .IsAnonymous(true)
-                .Fields(DataSourceFactory.GetRevenueDataSourceFields())
                 .Build();
 
             var document = new RdashDocument()

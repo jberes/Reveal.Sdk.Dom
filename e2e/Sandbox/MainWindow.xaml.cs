@@ -27,8 +27,7 @@ namespace Sandbox
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
         //readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
-        //readonly string _readFilePath = Path.Combine(_dashboardFilePath, "JB - New Infragistics Scorecard Test.rdash");
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "REST-JSON-EXCEL-BROKEN.rdash");
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "REST_JSON.rdash");
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -70,61 +69,61 @@ namespace Sandbox
             //ds.Add(jsonRestDS);
 
             //REST well defined
-            var jsonRestDS = new RVRESTDataSource();
-            jsonRestDS.Title = "REST DS JSON";
-            jsonRestDS.Subtitle = "REST DS JSON Subtitle";
-            jsonRestDS.UseAnonymousAuthentication = true;
-            jsonRestDS.Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9";
-            ds.Add(jsonRestDS);
+            //var jsonRestDS = new RVRESTDataSource();
+            //jsonRestDS.Title = "REST DS JSON";
+            //jsonRestDS.Subtitle = "REST DS JSON Subtitle";
+            //jsonRestDS.UseAnonymousAuthentication = true;
+            //jsonRestDS.Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9";
+            //ds.Add(jsonRestDS);
 
-            var jsonRestDSI = new RVRESTDataSourceItem(jsonRestDS);
-            jsonRestDSI.Title = "REST DSI JSON";
-            jsonRestDSI.Subtitle = "REST JSON DSI Subtitle";
+            //var jsonRestDSI = new RVRESTDataSourceItem(jsonRestDS);
+            //jsonRestDSI.Title = "REST DSI JSON";
+            //jsonRestDSI.Subtitle = "REST JSON DSI Subtitle";
 
-            var jsonDSI = new RVJsonDataSourceItem(jsonRestDSI);
-            jsonDSI.Title = "JSON DSI";
-            jsonDSI.Subtitle = "JSON DSI Subtitle";
-            jsonDSI.Config = @"
-            {
-                ""iterationDepth"": 0,
-                ""columnsConfig"": [
-                    {
-                        ""key"": ""CategoryID"",
-                        ""type"": 1
-                    },
-                    {
-                        ""key"": ""CategoryName"",
-                        ""type"": 0
-                    },
-                    {
-                        ""key"": ""ProductName"",
-                        ""type"": 0
-                    },
-                    {
-                        ""key"": ""ProductSales"",
-                        ""type"": 1
-                    }
-                ]
-            }";
-            dsi.Add(jsonDSI);
+            //var jsonDSI = new RVJsonDataSourceItem(jsonRestDSI);
+            //jsonDSI.Title = "JSON DSI";
+            //jsonDSI.Subtitle = "JSON DSI Subtitle";
+            //jsonDSI.Config = @"
+            //{
+            //    ""iterationDepth"": 0,
+            //    ""columnsConfig"": [
+            //        {
+            //            ""key"": ""CategoryID"",
+            //            ""type"": 1
+            //        },
+            //        {
+            //            ""key"": ""CategoryName"",
+            //            ""type"": 0
+            //        },
+            //        {
+            //            ""key"": ""ProductName"",
+            //            ""type"": 0
+            //        },
+            //        {
+            //            ""key"": ""ProductSales"",
+            //            ""type"": 1
+            //        }
+            //    ]
+            //}";
+            //dsi.Add(jsonDSI);
 
             //REST Excel well defined
-            var restExcelDS = new RVRESTDataSource();
-            restExcelDS.Title = "REST Excel";
-            restExcelDS.Subtitle = "Samples.xlsz";
-            restExcelDS.UseAnonymousAuthentication = true;
-            restExcelDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
-            ds.Add(restExcelDS);
+            //var restExcelDS = new RVRESTDataSource();
+            //restExcelDS.Title = "REST Excel";
+            //restExcelDS.Subtitle = "Samples.xlsz";
+            //restExcelDS.UseAnonymousAuthentication = true;
+            //restExcelDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
+            //ds.Add(restExcelDS);
 
-            var restDSI = new RVRESTDataSourceItem(restExcelDS);
-            restDSI.Title = "REST Data Source Item";
-            restDSI.Subtitle = "REST DSI Subtitle";
+            //var restDSI = new RVRESTDataSourceItem(restExcelDS);
+            //restDSI.Title = "REST Data Source Item";
+            //restDSI.Subtitle = "REST DSI Subtitle";
 
-            var excelDSI = new RVExcelDataSourceItem(restDSI);
-            excelDSI.Title = "Excel Data Source Item";
-            excelDSI.Subtitle = "Marketing Sheet";
-            excelDSI.Sheet = "Marketing";
-            dsi.Add(excelDSI);
+            //var excelDSI = new RVExcelDataSourceItem(restDSI);
+            //excelDSI.Title = "Excel Data Source Item";
+            //excelDSI.Subtitle = "Marketing Sheet";
+            //excelDSI.Sheet = "Marketing";
+            //dsi.Add(excelDSI);
 
             //var sqlDS = new RVSqlServerDataSource();
             //sqlDS.Title = "SQL Server Data Source";
@@ -193,16 +192,14 @@ namespace Sandbox
             //var document = ManufacturingDashboard.CreateDashboard();
             //var document = CustomDashboard.CreateDashboard();
             //var document = RestDataSourceDashboards.CreateDashboard();
-            var document = SqlServerDataSourceDashboards.CreateDashboard();
+            //var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();
 
-            //document.Save(_saveRdashToPath);
-
-            //var document = new RdashDocument()
-            //{
-            //    Title = "My Dashboard",
-            //    Description = "I created"
-            //};
+            var document = new RdashDocument()
+            {
+                Title = "My Dashboard",
+                Description = "I created"
+            };
 
             //var dsi = new DataSourceItemFactory().Create(DataSourceType.REST, "Excel to JSON")
             //    .Id("TEST-ID")
@@ -221,45 +218,7 @@ namespace Sandbox
             //var gridViz = new GridVisualization("REST", dsi).SetColumns("CategoryName", "ProductName", "ProductSales");
             //document.Visualizations.Add(gridViz);
 
-            //var restExcel = new DataSourceItemFactory().Create(DataSourceType.REST, "REST Excel")
-            //    .Id("RestExcel")
-            //    .Fields(new List<IField>
-            //    {
-            //        new TextField("CampaignID"),
-            //        new TextField("Budget"),
-            //    })
-            //    .ConfigureDataSource(ds =>
-            //    {
-            //        ds.Title = "Excel";
-            //        ds.Subtitle = "Data Source";
-            //    })
-            //    .As<IRestBuilder>()
-            //    .Uri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-            //    .IsAnonymous(true)
-            //    .UseExcel("Marketing")
-            //    .Build();
-
-            //var gridViz = new GridVisualization("REST", restExcel).SetColumns("CampaignID", "Budget");
-            //document.Visualizations.Add(gridViz);
-
-            //var sqlServer = new DataSourceItemFactory().Create(DataSourceType.MicrosoftSqlServer, "SQL Server Data Source Item")
-            //    .Fields(new List<IField>
-            //    {
-            //       new TextField("ContactName"),
-            //       new TextField("ContactTitle"),
-            //       new TextField("City")
-            //    })
-            //    .As<ISqlBuilder>()
-            //    .Host(@"Brian-Desktop\SQLEXPRESS")
-            //    .Database("Northwind")
-            //    .Table("Customers")
-            //    .Build();
-
-            //var gridViz2 = new GridVisualization("Sql Server", sqlServer).SetColumns("ContactName", "ContactTitle", "City");
-            //document.Visualizations.Add(gridViz2);
-
             var json = document.ToJsonString();
-            //json.Save(_saveJsonToPath);
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
         }
     }

@@ -18,14 +18,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetMarketingDataSourceItem()
         {
-            //var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-            //    .SetTitle("Excel Data Source")
-            //    .SetSubtitle("Marketing Sheet")
-            //    .UseExcel("Marketing")
-            //    .SetFields(GetMarketingDataSourceFields())
-            //    .Build();
-
-            var excelDataSourceItem = _factory.Create(DataSourceType.REST, _excelDataSource, "Excel Data Source Item")
+            var excelDataSourceItem = _factory.Create(DataSourceType.REST, _excelDataSource, "Marketing")
                 .Subtitle("Excel Data Source Item")
                 .Fields(GetMarketingDataSourceFields())
                 .As<IRestBuilder>()
@@ -33,14 +26,6 @@ namespace Sandbox.Helpers
                 .IsAnonymous(true)
                 .UseExcel("Marketing")
                 .Build();
-
-            //var excelDataSourceItem = new RestBuilder(_excelDataSource, "Marketing Sheet")
-            //    .SetUri(_restExcelUri)
-            //    .IsAnonymous(true)
-            //    .UseExcel("Marketing")
-            //    .SetSubtitle("Excel Data Source Item")
-            //    .SetFields(GetMarketingDataSourceFields())
-            //    .Build();
 
             return excelDataSourceItem;
         }
@@ -54,11 +39,20 @@ namespace Sandbox.Helpers
             //    .SetFields(GetHealthcareDataSourceFields())
             //    .Build();
 
-            var excelDataSourceItem = new RestBuilder(_excelDataSource, "Healthcare Sheet")
+            //var excelDataSourceItem = new RestBuilder(_excelDataSource, "Healthcare Sheet")
+            //    .Uri(_restExcelUri)
+            //    .IsAnonymous(true)
+            //    .UseExcel("Healthcare")
+            //    .Fields(GetHealthcareDataSourceFields())
+            //    .Build();
+
+            var excelDataSourceItem = _factory.Create(DataSourceType.REST, _excelDataSource, "Healthcare")
+                .Subtitle("Excel Data Source Item")
+                .Fields(GetHealthcareDataSourceFields())
+                .As<IRestBuilder>()
                 .Uri(_restExcelUri)
                 .IsAnonymous(true)
                 .UseExcel("Healthcare")
-                .Fields(GetHealthcareDataSourceFields())
                 .Build();
 
             return excelDataSourceItem;
@@ -73,11 +67,20 @@ namespace Sandbox.Helpers
             //    .SetFields(GetManufacturingDataSourceFields())
             //    .Build();
 
-            var excelDataSourceItem = new RestBuilder(_excelDataSource, "Manufacturing Sheet")
+            //var excelDataSourceItem = new RestBuilder(_excelDataSource, "Manufacturing Sheet")
+            //    .Uri(_restExcelUri)
+            //    .IsAnonymous(true)
+            //    .UseExcel("Manufacturing")
+            //    .Fields(GetManufacturingDataSourceFields())
+            //    .Build();
+
+            var excelDataSourceItem = _factory.Create(DataSourceType.REST, _excelDataSource, "Manufacturing")
+                .Subtitle("Excel Data Source Item")
+                .Fields(GetManufacturingDataSourceFields())
+                .As<IRestBuilder>()
                 .Uri(_restExcelUri)
                 .IsAnonymous(true)
                 .UseExcel("Manufacturing")
-                .Fields(GetManufacturingDataSourceFields())
                 .Build();
 
             return excelDataSourceItem;
@@ -92,11 +95,20 @@ namespace Sandbox.Helpers
             //    .SetFields(GetSalesDataSourceFields())
             //    .Build();
 
-            var excelDataSourceItem = new RestBuilder(_excelDataSource, "Sales Sheet")
+            //var excelDataSourceItem = new RestBuilder(_excelDataSource, "Sales Sheet")
+            //    .Uri(_restExcelUri)
+            //    .IsAnonymous(true)
+            //    .UseExcel("Sales")
+            //    .Fields(GetSalesDataSourceFields())
+            //    .Build();
+
+            var excelDataSourceItem = _factory.Create(DataSourceType.REST, _excelDataSource, "Sales")
+                .Subtitle("Excel Data Source Item")
+                .Fields(GetSalesDataSourceFields())
+                .As<IRestBuilder>()
                 .Uri(_restExcelUri)
                 .IsAnonymous(true)
                 .UseExcel("Sales")
-                .Fields(GetSalesDataSourceFields())
                 .Build();
 
             return excelDataSourceItem;
