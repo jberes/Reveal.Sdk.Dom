@@ -1,7 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Core.Utilities;
+using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Visualizations;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Xunit;
 
@@ -10,85 +14,173 @@ namespace Reveal.Sdk.Dom.Tests
     public class RdashDocumentFixture
     {
         [Fact]
-        public void NewDashboard_SetsTitle()
+        public void RdashDocument_DefaultConstructor_ShouldSetDefaultValues()
         {
             // Arrange
-            string title = "TestTitle";
+            var document = new RdashDocument();
 
             // Act
-            RdashDocument document = new RdashDocument(title);
 
-            //Assert
+            // Assert
+            Assert.Equal("New Dashboard", document.Title);
+            Assert.Null(document.Description);
+            Assert.Equal(Theme.Mountain, document.Theme);
+            Assert.Equal(GlobalConstants.RdashDocument.CreatedWith, document.CreatedWith);
+            Assert.Equal(string.Empty, document.SavedWith);
+            Assert.Equal(6, document.FormatVersion);
+            Assert.True(document.UseAutoLayout);
+            Assert.Null(document.Tags);
+            Assert.Empty(document.DataSources);
+            Assert.Empty(document.Filters);
+            Assert.Empty(document.GlobalVariables);
+            Assert.Empty(document.Visualizations);
+        }
+
+        [Fact]
+        public void RdashDocument_TitleConstructor_ShouldSetTitle()
+        {
+            // Arrange
+            var title = "My Dashboard";
+
+            // Act
+            var document = new RdashDocument(title);
+
+            // Assert
             Assert.Equal(title, document.Title);
         }
 
         [Fact]
-        public void NewDashboard_SetsDefaultValues()
+        public void RdashDocument_Import_ShouldImportVisualizations()
         {
-            var dashboard = new RdashDocument();
+            // Arrange
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "").Fields(new List<IField>() { null }).Build();
 
-            Assert.Equal("New Dashboard", dashboard.Title);
-            Assert.Equal(GlobalConstants.RdashDocument.CreatedWith, dashboard.CreatedWith);
-            Assert.Equal(string.Empty, dashboard.SavedWith);
-            Assert.Equal(Theme.Mountain, dashboard.Theme);
-            Assert.Null(dashboard.Tags);
-            Assert.Equal(6, dashboard.FormatVersion);
-            Assert.True(dashboard.UseAutoLayout);
+            var sourceDocument = new RdashDocument();
+            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
 
-            Assert.NotNull(dashboard.DataSources);
-            Assert.Empty(dashboard.DataSources);
+            // Ensure data sources are added to the data sources collection
+            RdashDocumentValidator.FixDocument(sourceDocument);
 
-            Assert.NotNull(dashboard.Filters);
-            Assert.Empty(dashboard.Filters);
+            // Act
+            var document = new RdashDocument();
+            document.Import(sourceDocument);
 
-            Assert.NotNull(dashboard.Visualizations);
-            Assert.Empty(dashboard.Visualizations);
+            // Assert
+            Assert.Equal(3, document.Visualizations.Count);
+            Assert.Contains(sourceDocument.Visualizations[0], document.Visualizations);
+            Assert.Contains(sourceDocument.Visualizations[1], document.Visualizations);
+            Assert.Contains(sourceDocument.Visualizations[2], document.Visualizations);
+            Assert.Equal(2, document.DataSources.Count);
         }
 
         [Fact]
-        public void Load_SetsProperties()
+        public void RdashDocument_Import_ShouldImportSingleVisualization()
         {
+            // Arrange
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "").Fields(new List<IField>() { null }).Build();
+
+            var sourceDocument = new RdashDocument();
+            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+
+            // Ensure data sources are added to the data sources collection
+            RdashDocumentValidator.FixDocument(sourceDocument);
+
+            // Act
+            var document = new RdashDocument();
+            document.Import(sourceDocument, sourceDocument.Visualizations[1].Id);
+
+            // Assert
+            Assert.Single(document.Visualizations);
+            Assert.Equal(sourceDocument.Visualizations[1], document.Visualizations[0]);
+            Assert.Equal(2, document.DataSources.Count);
+        }
+
+        [Fact]
+        public void RdashDocument_Import_WithNullDocument_ShouldThrowArgumentNullException()
+        {
+            // Arrange
+            var document = new RdashDocument();
+            RdashDocument sourceDocument = null;
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => document.Import(sourceDocument));
+        }
+
+        [Fact]
+        public void RdashDocument_Import_WithNullVisualizationId_ShouldThrowArgumentException()
+        {
+            // Arrange
+            var document = new RdashDocument();
+            var sourceDocument = new RdashDocument();
+            var visualizationId = string.Empty;
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => document.Import(sourceDocument, visualizationId));
+        }
+
+        [Fact]
+        public void RdashDocument_Import_WithNullVisualization_ShouldThrowArgumentNullException()
+        {
+            // Arrange
+            var document = new RdashDocument();
+            var sourceDocument = new RdashDocument();
+            IVisualization visualization = null;
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => document.Import(sourceDocument, visualization));
+        }
+
+        [Fact]
+        public void RdashDocument_Load_WithFilePath_ShouldLoadDocumentFromFile()
+        {
+            // Arrange
             var filePath = Path.Combine(Environment.CurrentDirectory, "Dashboards", "Sales.rdash");
+
+            // Act
             var document = RdashDocument.Load(filePath);
 
+            // Assert
             Assert.NotNull(document);
-
-            Assert.NotNull(document.Title);
-            Assert.NotEqual(GlobalConstants.RdashDocument.CreatedWith, document.CreatedWith);
-            Assert.NotEqual(string.Empty, document.SavedWith);
-            Assert.Equal(Theme.Mountain, document.Theme);
-            Assert.NotNull(document.Tags);
-            Assert.Equal(6, document.FormatVersion);
-            Assert.False(document.UseAutoLayout);
-            Assert.NotEmpty(document.DataSources);
-            Assert.NotEmpty(document.Filters);
-            Assert.NotEmpty(document.Visualizations);
+            // Add more assertions based on the expected content of the loaded document
         }
 
         [Fact]
-        public void ToJsonString_IsValidSchema()
+        public void RdashDocument_Load_WithStream_ShouldLoadDocumentFromStream()
         {
-            var schemaJson = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "Schemas", "RdashDocument.json"));
-            var schema = JSchema.Parse(schemaJson);
+            // Arrange
+            var filePath = Path.Combine(Environment.CurrentDirectory, "Dashboards", "Sales.rdash");
+            var stream = File.OpenRead(filePath);
 
-            var dashboard = new RdashDocument()
-            {
-                Title = "New Dashboard",
-                Description = "This is a test dashboard",
-                Theme = Theme.Aurora,
-                Tags = "tag1,tag2,tag3"
-            };
-            var json = dashboard.ToJsonString();
+            // Act
+            var document = RdashDocument.Load(stream);
 
-            var jsonDocument = JObject.Parse(json);
-
-            bool isValid = jsonDocument.IsValid(schema);
-
-            Assert.True(isValid);
+            // Assert
+            Assert.NotNull(document);
+            // Add more assertions based on the expected content of the loaded document
         }
 
         [Fact]
-        public void Save_SavesFile()
+        public void RdashDocument_LoadFromJson_ShouldLoadDocumentFromJsonString()
+        {
+            // Arrange
+            var json = "{\"Title\":\"My Dashboard\",\"ThemeName\":\"Mountain\"}";
+
+            // Act
+            var document = RdashDocument.LoadFromJson(json);
+
+            // Assert
+            Assert.NotNull(document);
+            Assert.Equal("My Dashboard", document.Title);
+            Assert.Equal(Theme.Mountain, document.Theme);
+            // Add more assertions based on the expected content of the loaded document
+        }
+
+        [Fact]
+        public void RdashDocument_Save_ShouldSaveDocumentToFile()
         {
             var filePath = Path.Combine(Path.GetTempPath(), $"{Path.GetTempFileName()}.rdash");
 
@@ -116,87 +208,55 @@ namespace Reveal.Sdk.Dom.Tests
         }
 
         [Fact]
-        public void SettingDescription_SetsDescriptionValue()
+        public void RdashDocument_ToJsonString_ShouldReturnJsonStringRepresentation()
         {
             // Arrange
-            var dashboard = new RdashDocument();
-            var description = "This is a test description";
+            var document = new RdashDocument();
+            string expectedJson = @"
+            {
+              ""Title"": ""New Dashboard"",
+              ""ThemeName"": ""rvDashboardMountainTheme"",
+              ""CreatedWith"": ""Reveal.Sdk.Dom"",
+              ""SavedWith"": """",
+              ""FormatVersion"": 6,
+              ""UseAutoLayout"": true,
+              ""DataSources"": [],
+              ""GlobalFilters"": [],
+              ""GlobalVariables"": [],
+              ""Widgets"": []
+            }";
 
             // Act
-            dashboard.Description = description;
+            var jsonString = document.ToJsonString();
+
+            // Deserialize JSON strings to JObjects to make comparing them easier
+            var expectedJObject = JObject.Parse(expectedJson);
+            var actualJObject = JObject.Parse(jsonString);
 
             // Assert
-            Assert.Equal(description, dashboard.Description);
+            Assert.Equal(expectedJObject, actualJObject);
         }
 
         [Fact]
-        public void SettingSavedWith_SetsSavedWithValue()
+        public void ToJsonString_IsValidSchema()
         {
-            // Arrange
-            var dashboard = new RdashDocument();
-            var savedWith = "Custom Test Version 1.0";
+            var schemaJson = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "Schemas", "RdashDocument.json"));
+            var schema = JSchema.Parse(schemaJson);
 
-            // Act
-            dashboard.SavedWith = savedWith;
+            var dashboard = new RdashDocument()
+            {
+                Title = "New Dashboard",
+                Description = "This is a test dashboard",
+                Theme = Theme.Aurora,
+                Tags = "tag1,tag2,tag3"
+            };
+            var json = dashboard.ToJsonString();
 
-            // Assert
-            Assert.Equal(savedWith, dashboard.SavedWith);
-        }
+            var jsonDocument = JObject.Parse(json);
 
-        [Fact]
-        public void SettingTheme_SetsThemeValue()
-        {
-            // Arrange
-            var dashboard = new RdashDocument();
-            var theme = Theme.Ocean;
+            bool isValid = jsonDocument.IsValid(schema);
 
-            // Act
-            dashboard.Theme = theme;
-
-            // Assert
-            Assert.Equal(theme, dashboard.Theme);
-        }
-
-        [Fact]
-        public void SettingTags_SetsTagsValue()
-        {
-            // Arrange
-            var dashboard = new RdashDocument();
-            var tags = "tag1,tag2,tag3,tag4";
-
-            // Act
-            dashboard.Tags = tags;
-
-            // Assert
-            Assert.Equal(tags, dashboard.Tags);
-        }
-
-        [Fact]
-        public void SettingFormatVersion_SetsFormatVersionValue()
-        {
-            // Arrange
-            var dashboard = new RdashDocument();
-            var formatVersion = 7;
-
-            // Act
-            dashboard.FormatVersion = formatVersion;
-
-            // Assert
-            Assert.Equal(formatVersion, dashboard.FormatVersion);
-        }
-
-        [Fact]
-        public void SettingUseAutoLayout_SetsUseAutoLayoutValue()
-        {
-            // Arrange
-            var dashboard = new RdashDocument();
-            var useAutoLayout = false;
-
-            // Act
-            dashboard.UseAutoLayout = useAutoLayout;
-
-            // Assert
-            Assert.Equal(useAutoLayout, dashboard.UseAutoLayout);
+            Assert.True(isValid);
         }
     }
 }

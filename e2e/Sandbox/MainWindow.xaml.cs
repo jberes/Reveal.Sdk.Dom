@@ -1,15 +1,19 @@
 using Reveal.Sdk;
 using Reveal.Sdk.Data;
+using Reveal.Sdk.Data.Excel;
 using Reveal.Sdk.Data.Json;
 using Reveal.Sdk.Data.Microsoft.SqlServer;
 using Reveal.Sdk.Data.Rest;
 using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
+using Sandbox.Factories;
 using Sandbox.Helpers;
+using Sandbox.RevealSDK;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -22,8 +26,7 @@ namespace Sandbox
     {
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
-        //readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "JB - New Infragistics Scorecard Test.rdash");
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -32,10 +35,9 @@ namespace Sandbox
         {
             InitializeComponent();
 
-            //RevealSdkSettings.EnableNewCharts = true;
+            RevealSdkSettings.DataSourceProvider = new Sandbox.RevealSDK.DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
             RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices();
-            RevealSdkSettings.DataSourceProvider = new DataSourceProvider();
 
             _revealView.LinkedDashboardProvider = (string dashboardId, string linkTitle) =>
             {
@@ -46,7 +48,7 @@ namespace Sandbox
                 return null;
             };
 
-            _revealView.DataSourcesRequested += RevealView_DataSourcesRequested;
+            //_revealView.DataSourcesRequested += RevealView_DataSourcesRequested;
 
             _revealView.DashboardSelectorRequested += RevealView_DashboardSelectorRequested;
         }
@@ -56,24 +58,91 @@ namespace Sandbox
             var ds = new List<RVDashboardDataSource>();
             var dsi = new List<RVDataSourceItem>();
 
-            var restDS = new RVRESTDataSource();
-            restDS.Title = "Excel to JSON";
-            restDS.UseAnonymousAuthentication = true;
-            restDS.Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9";
-            ds.Add(restDS);
+            //REST
+            //var jsonRestDS = new RVRESTDataSource();
+            //jsonRestDS.Title = "REST DS JSON";
+            //jsonRestDS.Subtitle = "REST DS JSON Subtitle";
+            //jsonRestDS.UseAnonymousAuthentication = true;
+            //jsonRestDS.Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9";
+            //ds.Add(jsonRestDS);
 
-            var sqlDS = new RVSqlServerDataSource();
-            sqlDS.Title = "SQL Server";
-            sqlDS.Host = "Brian-Desktop\\SQLEXPRESS";
-            ds.Add(sqlDS);
+            //REST well defined
+            //var jsonRestDS = new RVRESTDataSource();
+            //jsonRestDS.Title = "REST DS JSON";
+            //jsonRestDS.Subtitle = "REST DS JSON Subtitle";
+            //jsonRestDS.UseAnonymousAuthentication = true;
+            //jsonRestDS.Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9";
+            //ds.Add(jsonRestDS);
 
-            var webDS = new RVWebResourceDataSource();
-            webDS.UseAnonymousAuthentication = true;
-            webDS.Title = "Web Resource";
-            webDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
-            ds.Add(webDS);
+            //var jsonRestDSI = new RVRESTDataSourceItem(jsonRestDS);
+            //jsonRestDSI.Title = "REST DSI JSON";
+            //jsonRestDSI.Subtitle = "REST JSON DSI Subtitle";
 
-            e.Callback(new RevealDataSources(ds, dsi, false));
+            //var jsonDSI = new RVJsonDataSourceItem(jsonRestDSI);
+            //jsonDSI.Title = "JSON DSI";
+            //jsonDSI.Subtitle = "JSON DSI Subtitle";
+            //jsonDSI.Config = @"
+            //{
+            //    ""iterationDepth"": 0,
+            //    ""columnsConfig"": [
+            //        {
+            //            ""key"": ""CategoryID"",
+            //            ""type"": 1
+            //        },
+            //        {
+            //            ""key"": ""CategoryName"",
+            //            ""type"": 0
+            //        },
+            //        {
+            //            ""key"": ""ProductName"",
+            //            ""type"": 0
+            //        },
+            //        {
+            //            ""key"": ""ProductSales"",
+            //            ""type"": 1
+            //        }
+            //    ]
+            //}";
+            //dsi.Add(jsonDSI);
+
+            //REST Excel well defined
+            //var restExcelDS = new RVRESTDataSource();
+            //restExcelDS.Title = "REST Excel";
+            //restExcelDS.Subtitle = "Samples.xlsz";
+            //restExcelDS.UseAnonymousAuthentication = true;
+            //restExcelDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
+            //ds.Add(restExcelDS);
+
+            //var restDSI = new RVRESTDataSourceItem(restExcelDS);
+            //restDSI.Title = "REST Data Source Item";
+            //restDSI.Subtitle = "REST DSI Subtitle";
+
+            //var excelDSI = new RVExcelDataSourceItem(restDSI);
+            //excelDSI.Title = "Excel Data Source Item";
+            //excelDSI.Subtitle = "Marketing Sheet";
+            //excelDSI.Sheet = "Marketing";
+            //dsi.Add(excelDSI);
+
+            //var sqlDS = new RVSqlServerDataSource();
+            //sqlDS.Title = "SQL Server Data Source";
+            //sqlDS.Subtitle = "SQL Server DS Subtitle";
+            //sqlDS.Host = "Brian-Desktop\\SQLEXPRESS";
+            //sqlDS.Database = "Northwind"; //this is required
+            //ds.Add(sqlDS);
+
+            //var sqlDSI = new RVSqlServerDataSourceItem(sqlDS);
+            //sqlDSI.Title = "SQL Server Data Source Item";
+            //sqlDSI.Subtitle = "SQL Server DSI Subtitle";
+            //sqlDSI.Table = "Customers";
+            //dsi.Add(sqlDSI);
+
+            //var webDS = new RVWebResourceDataSource();
+            //webDS.UseAnonymousAuthentication = true;
+            //webDS.Title = "Web Resource";
+            //webDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
+            //ds.Add(webDS);
+
+            e.Callback(new RevealDataSources(ds, dsi, true));
         }
 
         private void RevealView_DashboardSelectorRequested(object sender, DashboardSelectorRequestedEventArgs e)
@@ -119,37 +188,13 @@ namespace Sandbox
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            //var document = CustomDashboard.CreateDashboard();
+            var document = CustomDashboard.CreateDashboard();
             //var document = RestDataSourceDashboards.CreateDashboard();
             //var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();
 
-            //document.Save(_saveRdashToPath);
-
-            var document = new RdashDocument()
-            {
-                Title = "My Dashboard",
-                Description = "I created"
-            };
-
             var json = document.ToJsonString();
-            //json.Save(_saveJsonToPath);
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
         }
-    }
-
-    public class DataSourceProvider : IRVDataSourceProvider
-    {
-        public Task<RVDataSourceItem> ChangeDataSourceItemAsync(RVDataSourceItem dataSourceItem)
-        {
-            if (dataSourceItem is RVJsonDataSourceItem jsonDataSourceItem)
-            {
-                var restDataSourceItem = jsonDataSourceItem.ResourceItem as RVRESTDataSourceItem;
-                restDataSourceItem.Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9";
-            }
-            return Task.FromResult(dataSourceItem);
-        }
-
-
     }
 }

@@ -2,43 +2,65 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
-using DataSourceFactory = Sandbox.Helpers.DataSourceFactory;
 
 namespace Sandbox.Factories
 {
     internal class RestDataSourceDashboards
     {
+        static IDataSourceItemFactory _factory = new DataSourceItemFactory();
+
         internal static RdashDocument CreateDashboard()
         {
             var document = new RdashDocument("My Dashboard");
 
             //json - default
-            var jsonDataSourceItem = new RestServiceBuilder("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
-                .SetTitle("JSON Data Source")
-                .SetSubtitle("Sales by Category")
-                .SetFields(DataSourceFactory.GetSalesByCategoryFields())
+            var jsonDataSourceItem = _factory.Create(DataSourceType.REST, "Sales by Category")
+                .Subtitle("JSON Data Source Item")
+                .Fields(DataSourceFactory.GetSalesByCategoryFields())
+                .As<IRestDataSourceItemBuilder>()
+                .Uri("https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9")
+                .IsAnonymous(true)
+                .ConfigureDataSource(d =>
+                {
+                    d.Title = "JSON DS";
+                    d.Subtitle = "JSON DS Subtitle";
+                })
                 .Build();
 
             document.Visualizations.Add(new PieChartVisualization("JSON", jsonDataSourceItem)
                 .SetLabel("CategoryName").SetValue("ProductSales"));
 
             //excel
-            var excelDataSourceItem = new RestServiceBuilder("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-                .UseExcel()
-                .SetTitle("Excel Data Source")
-                .SetSubtitle("Marketing")
-                .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
+            var excelDataSourceItem = _factory.Create(DataSourceType.REST, "Marketing")
+                .Subtitle("Excel Data Source Item")
+                .Fields(DataSourceFactory.GetMarketingDataSourceFields())
+                .As<IRestDataSourceItemBuilder>()
+                .Uri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
+                .IsAnonymous(true)
+                .UseExcel("Marketing")
+                .ConfigureDataSource(d =>
+                {
+                    d.Title = "Excel DS";
+                    d.Subtitle = "Excel DS Subtitle";
+                })
                 .Build();
 
             document.Visualizations.Add(new PieChartVisualization("Excel", excelDataSourceItem)
                 .SetLabel("Territory").SetValue("Conversions"));
 
             //csv
-            var csvDataSourceItem = new RestServiceBuilder("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+            var csvDataSourceItem = _factory.Create(DataSourceType.REST, "Illinois School Info")
+                .Subtitle("CSV Data Source Item")
+                .Fields(DataSourceFactory.GetCsvDataSourceFields())
+                .As<IRestDataSourceItemBuilder>()
+                .Uri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+                .IsAnonymous(true)
                 .UseCsv()
-                .SetTitle("CSV Data Source")
-                .SetSubtitle("Illinois School Info")
-                .SetFields(DataSourceFactory.GetCsvDataSourceFields())
+                .ConfigureDataSource(d =>
+                {
+                    d.Title = "CSV DS";
+                    d.Subtitle = "CSV DS Subtitle";
+                })
                 .Build();
 
             document.Visualizations.Add(new ScatterMapVisualization("Scatter", csvDataSourceItem)
