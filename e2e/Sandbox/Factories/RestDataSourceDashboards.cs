@@ -14,6 +14,7 @@ namespace Sandbox.Factories
             //json - default
             var jsonDataSourceItem = new RestDataSourceItem(new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" },"Sales by Category")
             {
+                Id = "TESTING",
                 Subtitle = "JSON Data Source Item",
                 Uri = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 IsAnonymous = true,

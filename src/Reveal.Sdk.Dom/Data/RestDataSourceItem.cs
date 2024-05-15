@@ -39,6 +39,23 @@ namespace Reveal.Sdk.Dom.Data
             } 
         }
 
+        public void AddHeader(HeaderType headerType, string value)
+        {
+            var propertyKey = "Headers";
+
+            var headerValue = $"{AddDashesToEnumName(headerType.ToString())}={value}";
+
+            if (!ResourceItemDataSource.Properties.ContainsKey(propertyKey))
+            {
+                ResourceItemDataSource.Properties.Add(propertyKey, new List<string> { headerValue });
+            }
+            else
+            {
+                var headers = (List<string>)ResourceItemDataSource.Properties[propertyKey];
+                headers.Add(headerValue);
+            }
+        }
+
         public void UseCsv()
         {
             ClearJsonConfig();

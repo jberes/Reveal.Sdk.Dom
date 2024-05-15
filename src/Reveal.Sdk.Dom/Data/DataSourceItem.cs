@@ -9,10 +9,6 @@ namespace Reveal.Sdk.Dom.Data
 {
     public class DataSourceItem : SchemaType
     {
-        private string _id = Guid.NewGuid().ToString();
-        private List<IField> _fields = new List<IField>();
-        private string _subtitle;
-
         public DataSourceItem(DataSource dataSource, string title) : this()
         {
             InitializeDataSource(dataSource, title);
@@ -24,25 +20,21 @@ namespace Reveal.Sdk.Dom.Data
             SchemaTypeName = SchemaTypeNames.DataSourceItemType;
         }
 
+        private string _id = Guid.NewGuid().ToString();
         public string Id
         {
-            get => ResourceItem != null ? ResourceItem.Id : _id;
+            get => _id;
             set
             {
-                if (ResourceItem != null) //if we are dealing with a resource item, set the id on the resource item
-                {
-                    _id = Guid.NewGuid().ToString(); // Generate a new GUID for this item
-                    ResourceItem.Id = value; // Set the provided value to ResourceItem.Id
-                }
-                else
-                {
-                    _id = string.IsNullOrEmpty(value) ? Guid.NewGuid().ToString() : value; // Set the value directly
-                }
+                _id = string.IsNullOrEmpty(value) ? Guid.NewGuid().ToString() : value;
+                if (ResourceItem != null) //if we are dealing with a resource item, set the id on the resource item to be the same
+                    ResourceItem.Id = _id;
             }
         }
 
         public string Title { get; set; }
 
+        private string _subtitle;
         public string Subtitle
         {
             get => _subtitle;
@@ -54,13 +46,25 @@ namespace Reveal.Sdk.Dom.Data
             }
         }
 
-        public string DataSourceId { get; set; } //todo: can this be internal?
-        public bool HasTabularData { get; set; } = true; //todo: can this be internal?
-        public bool HasAsset { get; set; } //todo: can this be internal?
-        public Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>(); //todo: can this be internal?
-        public Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>(); //todo: can this be internal?
-        public DataSourceItem ResourceItem { get; set; } //todo: can this be internal?
+        [JsonProperty]
+        internal string DataSourceId { get; set; }
 
+        [JsonProperty]
+        internal bool HasTabularData { get; set; } = true;
+
+        [JsonProperty]
+        internal bool HasAsset { get; set; }
+
+        [JsonProperty]
+        internal Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>();
+
+        [JsonProperty]
+        internal Dictionary<string, object> Parameters { get; set; } = new Dictionary<string, object>();
+
+        [JsonProperty]
+        internal DataSourceItem ResourceItem { get; set; }
+
+        private List<IField> _fields = new List<IField>();
         [JsonIgnore]
         public List<IField> Fields 
         { 
