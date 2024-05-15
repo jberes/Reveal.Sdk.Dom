@@ -25,14 +25,15 @@ namespace Reveal.Sdk.Dom.Data
 
         [JsonProperty]
         [JsonConverter(typeof(StringEnumConverter))]
-        public DataSourceProvider Provider { get; internal set; } //todo: can this be internal?
+        internal DataSourceProvider Provider { get; set; }
 
         [JsonProperty("Description")]
         public string Title { get; set; }
 
         public string Subtitle { get; set; }
-        
-        public Dictionary<string, object> Properties { get; internal set; } //todo: can this be internal?
+
+        [JsonProperty]
+        internal Dictionary<string, object> Properties { get; set; }
 
         public override bool Equals(object obj)
         {
