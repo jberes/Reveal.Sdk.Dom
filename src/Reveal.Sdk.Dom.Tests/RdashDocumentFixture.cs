@@ -53,7 +53,7 @@ namespace Reveal.Sdk.Dom.Tests
         public void RdashDocument_Import_ShouldImportVisualizations()
         {
             // Arrange
-            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "").Fields(new List<IField>() { null }).Build();
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "").SetFields(new List<IField>() { null });
 
             var sourceDocument = new RdashDocument();
             sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
@@ -79,7 +79,7 @@ namespace Reveal.Sdk.Dom.Tests
         public void RdashDocument_Import_ShouldImportSingleVisualization()
         {
             // Arrange
-            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "").Fields(new List<IField>() { null }).Build();
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "").SetFields(new List<IField>() { null });
 
             var sourceDocument = new RdashDocument();
             sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));

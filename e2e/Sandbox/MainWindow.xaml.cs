@@ -188,8 +188,8 @@ namespace Sandbox
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
-            var document = CustomDashboard.CreateDashboard();
-            //var document = RestDataSourceDashboards.CreateDashboard();
+            //var document = CustomDashboard.CreateDashboard();
+            var document = RestDataSourceDashboards.CreateDashboard();
             //var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();
 
