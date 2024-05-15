@@ -99,13 +99,16 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// <param name="dataSourceItem">The <see cref="DataSourceItem"/> created with a data source builder.</param>
         public void UpdateDataSourceItem(DataSourceItem dataSourceItem)
         {
-            if (DataDefinition == null)
+            if (DataDefinition == null || dataSourceItem == null)
                 return;
 
             ((DataDefinitionBase)DataDefinition).DataSourceItem = dataSourceItem;
             if (DataDefinition is TabularDataDefinition tdd)
             {
-                tdd.Fields = dataSourceItem?.Fields.Clone();
+                if (dataSourceItem.Fields == null || dataSourceItem.Fields.Count == 0)
+                    throw new ArgumentException("Field definitions for the data source item are required. Set the DataSourceitem.Fields property.");
+
+                tdd.Fields = dataSourceItem.Fields.Clone();
             }
         }
 

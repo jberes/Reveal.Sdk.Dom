@@ -18,61 +18,60 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetMarketingDataSourceItem()
         {
-            var excelDataSourceItem = _factory.Create(DataSourceType.REST, _excelDataSource, "Marketing")
-                .Subtitle("Excel Data Source Item")
-                .Fields(GetMarketingDataSourceFields())
-                .As<IRestDataSourceItemBuilder>()
-                .Uri(_restExcelUri)
-                .IsAnonymous(true)
-                .UseExcel("Marketing")
-                .Build();
+            var excelDataSourceItem = new RestDataSourceItem(_excelDataSource, "Marketing")
+            {
+                Subtitle = "Excel Data Source Item",
+                Uri = _restExcelUri,
+                IsAnonymous = true,
+                Fields = GetMarketingDataSourceFields(),
+            };
+            excelDataSourceItem.UseExcel("Marketing");
 
             return excelDataSourceItem;
         }
 
         internal static DataSourceItem GetHealthcareDataSourceItem()
         {
-            var excelDataSourceItem = _factory.Create(DataSourceType.REST, _excelDataSource, "Healthcare")
-                .Subtitle("Excel Data Source Item")
-                .Fields(GetHealthcareDataSourceFields())
-                .As<IRestDataSourceItemBuilder>()
-                .Uri(_restExcelUri)
-                .IsAnonymous(true)
-                .UseExcel("Healthcare")
-                .Build();
+            var excelDataSourceItem = new RestDataSourceItem(_excelDataSource, "Healthcare")
+            {
+                Subtitle = "Excel Data Source Item",
+                Uri = _restExcelUri,
+                IsAnonymous = true,
+                Fields = GetHealthcareDataSourceFields(),
+            };
+            excelDataSourceItem.UseExcel("Healthcare");
 
             return excelDataSourceItem;
         }
 
         internal static DataSourceItem GetManufacturingDataSourceItem()
         {
-            var excelDataSourceItem = _factory.Create(DataSourceType.REST, _excelDataSource, "Manufacturing")
-                .Subtitle("Excel Data Source Item")
-                .Fields(GetManufacturingDataSourceFields())
-                .As<IRestDataSourceItemBuilder>()
-                .Uri(_restExcelUri)
-                .IsAnonymous(true)
-                .UseExcel("Manufacturing")
-                .Build();
+            var excelDataSourceItem = new RestDataSourceItem(_excelDataSource, "Manufacturing")
+            {
+                Subtitle = "Excel Data Source Item",
+                Uri = _restExcelUri,
+                IsAnonymous = true,
+                Fields = GetManufacturingDataSourceFields(),
+            };
+            excelDataSourceItem.UseExcel("Manufacturing");
 
             return excelDataSourceItem;
         }
 
         internal static DataSourceItem GetSalesDataSourceItem()
         {
-            var excelDataSourceItem = _factory.Create(DataSourceType.REST, _excelDataSource, "Sales")
-                .Subtitle("Excel Data Source Item")
-                .Fields(GetSalesDataSourceFields())
-                .As<IRestDataSourceItemBuilder>()
-                .Uri(_restExcelUri)
-                .IsAnonymous(true)
-                .UseExcel("Sales")
-                .Build();
+            var excelDataSourceItem = new RestDataSourceItem(_excelDataSource, "Sales")
+            {
+                Subtitle = "Excel Data Source Item",
+                Uri = _restExcelUri,
+                IsAnonymous = true,
+                Fields = GetSalesDataSourceFields(),
+            };
 
             return excelDataSourceItem;
         }
 
-        internal static IEnumerable<IField> GetRevenueDataSourceFields()
+        internal static List<IField> GetRevenueDataSourceFields()
         {
             return new List<IField>()
             {
@@ -198,7 +197,7 @@ namespace Sandbox.Helpers
             };
         }
 
-        internal static IEnumerable<IField> GetOHLCDataSourceFields()
+        internal static List<IField> GetOHLCDataSourceFields()
         {
             return new List<IField>
             {
