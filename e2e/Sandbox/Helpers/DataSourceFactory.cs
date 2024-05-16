@@ -18,7 +18,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetMarketingDataSourceItem()
         {
-            var excelDataSourceItem = new RestDataSourceItem(_excelDataSource, "Marketing")
+            var excelDataSourceItem = new RestDataSourceItem("Marketing", _excelDataSource)
             {
                 Subtitle = "Excel Data Source Item",
                 Uri = _restExcelUri,
@@ -32,7 +32,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetHealthcareDataSourceItem()
         {
-            var excelDataSourceItem = new RestDataSourceItem(_excelDataSource, "Healthcare")
+            var excelDataSourceItem = new RestDataSourceItem("Healthcare", _excelDataSource)
             {
                 Subtitle = "Excel Data Source Item",
                 Uri = _restExcelUri,
@@ -46,7 +46,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetManufacturingDataSourceItem()
         {
-            var excelDataSourceItem = new RestDataSourceItem(_excelDataSource, "Manufacturing")
+            var excelDataSourceItem = new RestDataSourceItem("Manufacturing", _excelDataSource)
             {
                 Subtitle = "Excel Data Source Item",
                 Uri = _restExcelUri,
@@ -60,7 +60,7 @@ namespace Sandbox.Helpers
 
         internal static DataSourceItem GetSalesDataSourceItem()
         {
-            var excelDataSourceItem = new RestDataSourceItem(_excelDataSource, "Sales")
+            var excelDataSourceItem = new RestDataSourceItem("Sales", _excelDataSource)
             {
                 Subtitle = "Excel Data Source Item",
                 Uri = _restExcelUri,

@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     public class DataSourceItem : SchemaType
     {
-        public DataSourceItem(DataSource dataSource, string title) : this()
+        public DataSourceItem(string title, DataSource dataSource) : this()
         {
             InitializeDataSource(dataSource, title);
             InitializeDataSourceItem(title);
