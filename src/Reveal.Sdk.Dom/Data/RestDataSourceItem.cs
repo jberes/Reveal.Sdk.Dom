@@ -10,10 +10,12 @@ namespace Reveal.Sdk.Dom.Data
     {
         DataSource _dataSource;
 
-        public RestDataSourceItem(string title) : this(new DataSource(), title)
+        public RestDataSourceItem(string title) : 
+            this(title, new DataSource())
         { }
 
-        public RestDataSourceItem(DataSource dataSource, string title) : base(null, title)
+        public RestDataSourceItem(string title, DataSource dataSource) : 
+            base(title, null)
         {
             _dataSource = dataSource ?? new DataSource();
             InitializeResourceItem(DataSourceProvider.REST, title);

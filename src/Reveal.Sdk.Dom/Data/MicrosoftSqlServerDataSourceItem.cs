@@ -5,11 +5,11 @@ namespace Reveal.Sdk.Dom.Data
     public class MicrosoftSqlServerDataSourceItem : DataSourceItem
     {
         public MicrosoftSqlServerDataSourceItem(string title) :
-            this(new DataSource(), title)
+            base(title, new DataSource())
         { }
 
-        public MicrosoftSqlServerDataSourceItem(DataSource dataSource, string title) :
-            base(dataSource, title)
+        public MicrosoftSqlServerDataSourceItem(string title, DataSource dataSource) :
+            base(title, dataSource)
         { }
 
         public string Database

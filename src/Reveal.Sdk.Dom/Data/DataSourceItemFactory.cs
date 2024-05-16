@@ -2,28 +2,35 @@
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public interface IDataSourceItemFactory
-    {
-        DataSourceItem Create(DataSourceType type, string title);
-
-        DataSourceItem Create(DataSourceType type, DataSource dataSource, string title);
-    }
-
     public class DataSourceItemFactory : IDataSourceItemFactory
     {
-        public DataSourceItem Create(DataSourceType type, string title)
+        public DataSourceItem Create(DataSourceType type, string id, string title)
         {
-            return Create(type, new DataSource(), title);
+            return Create(type, id, title, new DataSource());
         }
 
-        public DataSourceItem Create(DataSourceType type, DataSource dataSource, string title)
+        public DataSourceItem Create(DataSourceType type, string id, string title, DataSource dataSource)
         {
-            return type switch
+            return Create(type, id, title, null, dataSource);
+        }
+
+        public DataSourceItem Create(DataSourceType type, string id, string title, string subtitle)
+        {
+            return Create(type, id, title, subtitle, new DataSource());
+        }
+
+        public DataSourceItem Create(DataSourceType type, string id, string title, string subtitle, DataSource dataSource)
+        {
+            DataSourceItem item = type switch
             {
-                DataSourceType.MicrosoftSqlServer => new MicrosoftSqlServerDataSourceItem(dataSource, title),
-                DataSourceType.REST => new RestDataSourceItem(dataSource, title),
+                DataSourceType.MicrosoftSqlServer => new MicrosoftSqlServerDataSourceItem(title, dataSource),
+                DataSourceType.REST => new RestDataSourceItem(title, dataSource),
                 _ => throw new NotImplementedException($"No builder implemented for provider: {type}")
             };
+
+            item.Id = id;
+            item.Subtitle = subtitle;
+            return item;
         }
     }
 }

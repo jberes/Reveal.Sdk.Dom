@@ -12,7 +12,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         [Fact]
         public void DataSources_AddedToRdashDocument()
         {
-            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "").SetFields(new List<IField>() { null });
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { null });
 
             var document = new RdashDocument();
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
@@ -27,7 +27,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         [Fact]
         public void DataSources_FromVisualizationsAreNotDuplicated()
         {
-            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "").SetFields(new List<IField>() { null });
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { null });
 
             var document = new RdashDocument();
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
@@ -47,7 +47,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         [Fact]
         public void DataSources_FromVisualizations_AndDataSources_AreNotDuplicated()
         {
-            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "").SetFields(new List<IField>() { null });
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { null });
             var dataSource = dataSourceItem.DataSource;
 
             var document = new RdashDocument();

@@ -12,7 +12,7 @@ namespace Sandbox.Factories
             var document = new RdashDocument("My Dashboard");
 
             //json - default
-            var jsonDataSourceItem = new RestDataSourceItem(new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" },"Sales by Category")
+            var jsonDataSourceItem = new RestDataSourceItem("Sales by Category", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
                 Id = "TESTING",
                 Subtitle = "JSON Data Source Item",
@@ -25,7 +25,7 @@ namespace Sandbox.Factories
                 .SetLabel("CategoryName").SetValue("ProductSales"));
 
             //excel
-            var excelDataSourceItem = new RestDataSourceItem(new DataSource { Title = "Excel DS", Subtitle = "Excel DS Subtitle" }, "Marketing")
+            RestDataSourceItem excelDataSourceItem = new RestDataSourceItem("Marketing", new DataSource { Title = "Excel DS", Subtitle = "Excel DS Subtitle" })
             {
                 Subtitle = "Excel Data Source Item",
                 Uri = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
@@ -38,7 +38,7 @@ namespace Sandbox.Factories
                 .SetLabel("Territory").SetValue("Conversions"));
 
             //csv
-            var csvDataSourceItem = new RestDataSourceItem(new DataSource { Title = "CSV DS", Subtitle = "CSV DS Subtitle" }, "Illinois School Info")
+            var csvDataSourceItem = new RestDataSourceItem("Illinois School Info", new DataSource { Title = "CSV DS", Subtitle = "CSV DS Subtitle" })
             {
                 Subtitle = "CSV Data Source Item",
                 Uri = "https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto",

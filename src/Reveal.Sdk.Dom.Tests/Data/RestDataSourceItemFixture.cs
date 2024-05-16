@@ -289,7 +289,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             // Arrange
             var dataSource = new DataSource() { Id = "DS-ID", Title = "DS-TITLE", Subtitle = "DS-SUBTITLE" };
-            var dataSourceItem = new RestDataSourceItem(dataSource, "Test");
+            var dataSourceItem = new RestDataSourceItem("Test", dataSource);
 
             // Assert
             Assert.Equal(dataSource.Id, dataSourceItem.ResourceItemDataSource.Id);
@@ -305,7 +305,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             // Arrange
             var dataSource = new DataSource();
-            var dataSourceItem = new RestDataSourceItem(dataSource, "Test");
+            var dataSourceItem = new RestDataSourceItem("Test", dataSource);
 
             // Assert
             Assert.Equal(dataSourceItem.ResourceItemDataSource.Title, dataSourceItem.ResourceItem.Title);

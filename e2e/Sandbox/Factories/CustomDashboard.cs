@@ -2,7 +2,6 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
-using DataSourceFactory = Sandbox.Helpers.DataSourceFactory;
 
 namespace Sandbox.Factories
 {
@@ -11,15 +10,6 @@ namespace Sandbox.Factories
         internal static RdashDocument CreateDashboard()
         {
             var factory = new DataSourceItemFactory();
-
-            //var excelDataSourceItem = factory.Create(DataSourceType.REST, "Marketing Sheet")
-            //    .SetSubtitle("Excel Data Source Item")
-            //    .SetFields(DataSourceFactory.GetMarketingDataSourceFields())
-            //    .As<RestDataSourceItem>()
-            //    .Uri("http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx")
-            //    .IsAnonymous(true)
-            //    .UseExcel("Marketing")
-            //    .Build();
 
             var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
             {
@@ -30,15 +20,6 @@ namespace Sandbox.Factories
             };
             excelDataSourceItem.UseExcel("Marketing");
 
-            //var csvDataSourceItem = factory.Create(DataSourceType.REST, "Illinois School Info")
-            //    .SetSubtitle("CSV Data Source Item")
-            //    .SetFields(DataSourceFactory.GetCsvDataSourceFields())
-            //    .As<RestDataSourceItem>()
-            //    .Uri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
-            //    .IsAnonymous(true)
-            //    .UseCsv()
-            //    .Build();
-
             var csvDataSourceItem = new RestDataSourceItem("Illinois School Info")
             {
                 Subtitle = "CSV Data Source Item",
@@ -48,14 +29,6 @@ namespace Sandbox.Factories
             };
             csvDataSourceItem.UseCsv();
 
-            //var financialDataSourceItem = factory.Create(DataSourceType.REST, "OHLC")
-            //    .SetSubtitle("Financial Data Source Item")
-            //    .SetFields(DataSourceFactory.GetOHLCDataSourceFields())
-            //    .As<RestDataSourceItem>()
-            //    .Uri("https://excel2json.io/api/share/8bb2cd78-1b87-4142-00a2-08da188ec9ab")
-            //    .IsAnonymous(true)
-            //    .Build();
-
             var financialDataSourceItem = new RestDataSourceItem("OHLC")
             {
                 Subtitle = "Financial Data Source Item",
@@ -63,14 +36,6 @@ namespace Sandbox.Factories
                 IsAnonymous = true,
                 Fields = DataSourceFactory.GetOHLCDataSourceFields(),
             };
-
-            //var revenueDataSourceItem = factory.Create(DataSourceType.REST, "Revenue")
-            //    .SetSubtitle("Choropleth Data Source Item")
-            //    .SetFields(DataSourceFactory.GetRevenueDataSourceFields())
-            //    .As<RestDataSourceItem>()
-            //    .Uri("https://excel2json.io/api/share/818e7b9a-f463-4565-435d-08da496bf5f2")
-            //    .IsAnonymous(true)
-            //    .Build();
 
             var revenueDataSourceItem = new RestDataSourceItem("Revenue")
             {
