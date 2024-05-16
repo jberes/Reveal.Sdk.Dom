@@ -1,39 +1,25 @@
-﻿using Reveal.Sdk.Dom.Core.Extensions;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
     public class MicrosoftSqlServerDataSourceItem : DataSourceItem
     {
-        public MicrosoftSqlServerDataSourceItem(string title) :
-            base(title, new DataSource())
-        { }
-
-        public MicrosoftSqlServerDataSourceItem(string title, DataSource dataSource) :
+        public MicrosoftSqlServerDataSourceItem(string title, MicrosoftSqlServerDataSource dataSource) :
             base(title, dataSource)
         { }
 
-        public string Database
-        {
-            get => Properties.GetValue<string>("Database");
-            set
-            {
-                Properties.SetItem("Database", value);
-                DataSource.Properties.SetItem("Database", value);
-            }
+        public MicrosoftSqlServerDataSourceItem(string title, string table, MicrosoftSqlServerDataSource dataSource) :
+            base(title, dataSource)
+        { 
+            Table = table;
         }
 
-        public string Host
-        {
-            get => DataSource.Properties.GetValue<string>("Host");
-            set => DataSource.Properties.SetItem("Host", value);
-        }
+        internal MicrosoftSqlServerDataSourceItem(string title, DataSource dataSource) :
+            base(title, dataSource)
+        { }
 
-        public string Schema
-        {
-            get => Properties.GetValue<string>("Schema");
-            set => Properties.SetItem("Schema", value);
-        }
-
+        [JsonIgnore]
         public string Table
         {
             get => Properties.GetValue<string>("Table");
@@ -42,16 +28,18 @@ namespace Reveal.Sdk.Dom.Data
 
         protected override void InitializeDataSource(DataSource dataSource, string title)
         {
+            if (!(dataSource is MicrosoftSqlServerDataSource))
+            {
+                var ds = MicrosoftSqlServerDataSource.Create(dataSource);
+                dataSource = ds;
+            }
+
             base.InitializeDataSource(dataSource, title);
-            DataSource.Provider = DataSourceProvider.MicrosoftSqlServer;
-            DataSource.Properties.SetItem("ServerAggregationDefault", true);
-            DataSource.Properties.SetItem("ServerAggregationReadOnly", false);
         }
 
         override protected void InitializeDataSourceItem(string title)
         {
             base.InitializeDataSourceItem(title);
-            Schema = "dbo";
             Properties.SetItem("ServerAggregation", true);
         }
     }

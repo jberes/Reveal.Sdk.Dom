@@ -14,7 +14,6 @@ namespace Sandbox.Factories
             //json - default
             var jsonDataSourceItem = new RestDataSourceItem("Sales by Category", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
-                Id = "TESTING",
                 Subtitle = "JSON Data Source Item",
                 Uri = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 IsAnonymous = true,
@@ -25,10 +24,10 @@ namespace Sandbox.Factories
                 .SetLabel("CategoryName").SetValue("ProductSales"));
 
             //excel
-            RestDataSourceItem excelDataSourceItem = new RestDataSourceItem("Marketing", new DataSource { Title = "Excel DS", Subtitle = "Excel DS Subtitle" })
+            RestDataSourceItem excelDataSourceItem = new RestDataSourceItem("Marketing", "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+                new DataSource { Title = "Excel DS", Subtitle = "Excel DS Subtitle" })
             {
                 Subtitle = "Excel Data Source Item",
-                Uri = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
                 IsAnonymous = true,
                 Fields = DataSourceFactory.GetMarketingDataSourceFields(),
             };
@@ -38,14 +37,12 @@ namespace Sandbox.Factories
                 .SetLabel("Territory").SetValue("Conversions"));
 
             //csv
-            var csvDataSourceItem = new RestDataSourceItem("Illinois School Info", new DataSource { Title = "CSV DS", Subtitle = "CSV DS Subtitle" })
-            {
-                Subtitle = "CSV Data Source Item",
-                Uri = "https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto",
-                IsAnonymous = true,
-                Fields = DataSourceFactory.GetCsvDataSourceFields(),
-            };
-            csvDataSourceItem.UseCsv();
+            var csvDataSourceItem = new RestDataSourceItem("Illinois School Info", new DataSource() { Title = "CSV DS", Subtitle = "CSV DS Subtitle" })
+                .SetSubtitle("CSV Data Source Item")
+                .SetUri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+                .SetIsAnonymous(true)
+                .SetFields(DataSourceFactory.GetCsvDataSourceFields())
+                .WithCsv();
 
             document.Visualizations.Add(new ScatterMapVisualization("Scatter", csvDataSourceItem)
                 .SetMap(Maps.NorthAmerica.UnitedStates.States.Illinois)

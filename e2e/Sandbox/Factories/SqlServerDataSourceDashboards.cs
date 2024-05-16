@@ -9,14 +9,19 @@ namespace Sandbox.Factories
     {
         internal static RdashDocument CreateDashboard()
         {
-            var document = new RdashDocument("My Dashboard");
-
-            var sqlServerDataSourceItem = new MicrosoftSqlServerDataSourceItem("Customers")
+            var sqlServerDS = new MicrosoftSqlServerDataSource()
             {
-                Subtitle = "SQL Server Data Source Item",
+                Title = "Northwind",
+                Subtitle = "Northwind Subtitle",
                 Host = @"Brian-Desktop\SQLEXPRESS",
                 Database = "Northwind",
-                Table = "Customers",
+            };
+
+            var document = new RdashDocument("My Dashboard");
+
+            var customersDsi = new MicrosoftSqlServerDataSourceItem("Customers Table", "Customers", sqlServerDS)
+            {
+                Subtitle = "SQL Server Data Source Item",
                 Fields = new List<IField>
                 {
                     new TextField("ContactName"),
@@ -24,8 +29,19 @@ namespace Sandbox.Factories
                     new TextField("City")
                 }
             };
+            document.Visualizations.Add(new GridVisualization("Customer List", customersDsi).SetColumns("ContactName", "ContactTitle", "City"));
 
-            document.Visualizations.Add(new GridVisualization("Customer List", sqlServerDataSourceItem).SetColumns("ContactName", "ContactTitle", "City"));
+            var employeesDsi = new MicrosoftSqlServerDataSourceItem("Employees Table", sqlServerDS)
+            {
+                Subtitle = "SQL Server Data Source Item",
+                Table = "Employees",
+                Fields = new List<IField>
+                {
+                    new TextField("FirstName"),
+                    new TextField("LastName"),
+                }
+            };
+            document.Visualizations.Add(new GridVisualization("Employee List", employeesDsi).SetColumns("FirstName", "LastName"));
 
             return document;
         }
