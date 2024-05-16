@@ -37,14 +37,12 @@ namespace Sandbox.Factories
                 .SetLabel("Territory").SetValue("Conversions"));
 
             //csv
-            var csvDataSourceItem = new RestDataSourceItem("Illinois School Info", new DataSource { Title = "CSV DS", Subtitle = "CSV DS Subtitle" })
-            {
-                Subtitle = "CSV Data Source Item",
-                Uri = "https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto",
-                IsAnonymous = true,
-                Fields = DataSourceFactory.GetCsvDataSourceFields(),
-            };
-            csvDataSourceItem.UseCsv();
+            var csvDataSourceItem = new RestDataSourceItem("Illinois School Info", new DataSource() { Title = "CSV DS", Subtitle = "CSV DS Subtitle" })
+                .SetSubtitle("CSV Data Source Item")
+                .SetUri("https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto")
+                .SetIsAnonymous(true)
+                .SetFields(DataSourceFactory.GetCsvDataSourceFields())
+                .WithCsv();
 
             document.Visualizations.Add(new ScatterMapVisualization("Scatter", csvDataSourceItem)
                 .SetMap(Maps.NorthAmerica.UnitedStates.States.Illinois)
