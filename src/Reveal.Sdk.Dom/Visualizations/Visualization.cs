@@ -106,7 +106,7 @@ namespace Reveal.Sdk.Dom.Visualizations
             if (DataDefinition is TabularDataDefinition tdd)
             {
                 if (dataSourceItem.Fields == null || dataSourceItem.Fields.Count == 0)
-                    throw new ArgumentException("Field definitions for the data source item are required. Set the DataSourceitem.Fields property.");
+                    throw new ArgumentException($"Field definitions for the data source item '{dataSourceItem.Title}' are required. Set the DataSourceitem.Fields property.");
 
                 tdd.Fields = dataSourceItem.Fields.Clone();
             }

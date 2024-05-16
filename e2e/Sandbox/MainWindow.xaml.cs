@@ -123,12 +123,12 @@ namespace Sandbox
             //excelDSI.Sheet = "Marketing";
             //dsi.Add(excelDSI);
 
-            //var sqlDS = new RVSqlServerDataSource();
-            //sqlDS.Title = "SQL Server Data Source";
-            //sqlDS.Subtitle = "SQL Server DS Subtitle";
-            //sqlDS.Host = "Brian-Desktop\\SQLEXPRESS";
-            //sqlDS.Database = "Northwind"; //this is required
-            //ds.Add(sqlDS);
+            var sqlDS = new RVSqlServerDataSource();
+            sqlDS.Title = "SQL Server Data Source";
+            sqlDS.Subtitle = "SQL Server DS Subtitle";
+            sqlDS.Host = "Brian-Desktop\\SQLEXPRESS";
+            sqlDS.Database = "Northwind"; //this is required
+            ds.Add(sqlDS);
 
             //var sqlDSI = new RVSqlServerDataSourceItem(sqlDS);
             //sqlDSI.Title = "SQL Server Data Source Item";

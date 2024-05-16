@@ -14,6 +14,16 @@ namespace Reveal.Sdk.Dom.Data
             this(title, new DataSource())
         { }
 
+        public RestDataSourceItem(string title, string uri) :
+            this(title, uri, new DataSource())
+        { }
+
+        public RestDataSourceItem(string title, string uri, DataSource dataSource) :
+            this(title, dataSource)
+        {
+            Uri = uri;
+        }
+
         public RestDataSourceItem(string title, DataSource dataSource) : 
             base(title, null)
         {
@@ -25,10 +35,7 @@ namespace Reveal.Sdk.Dom.Data
         public bool IsAnonymous
         {
             get { return ResourceItemDataSource.Properties.GetValue<bool>("_rpUseAnonymousAuthentication"); }
-            set
-            {
-                ResourceItemDataSource.Properties.SetItem("_rpUseAnonymousAuthentication", value);
-            }
+            set { ResourceItemDataSource.Properties.SetItem("_rpUseAnonymousAuthentication", value); }
         }
 
         public string Uri 

@@ -7,109 +7,101 @@ namespace Reveal.Sdk.Dom.Tests.Data
     public class MicrosoftSqlServerDataSourceItemFixture
     {
         [Fact]
-        public void Database_GetSet_ShouldSetDatabaseProperty()
+        public void HasTabularData_Should_Be_True()
         {
             // Arrange
-            var dataSourceItem = new MicrosoftSqlServerDataSourceItem("Test");
+            var item = new MicrosoftSqlServerDataSourceItem("Test Item", new MicrosoftSqlServerDataSource());
+
+            // Assert
+            Assert.True(item.HasTabularData);
+        }
+
+        [Fact]
+        public void HasAsset_Should_Be_False()
+        {
+            // Arrange
+            var item = new MicrosoftSqlServerDataSourceItem("Test Item", new MicrosoftSqlServerDataSource());
+
+            // Assert
+            Assert.False(item.HasAsset);
+        }
+
+        [Fact]
+        public void Table_GetAndSetProperties_ReturnsCorrectValue()
+        {
+            // Arrange
+            string table = "Test Table";
+            var item = new MicrosoftSqlServerDataSourceItem("Test Item", new MicrosoftSqlServerDataSource());
 
             // Act
-            dataSourceItem.Database = "MyDatabase";
+            item.Table = table;
 
             // Assert
-            Assert.Equal("MyDatabase", dataSourceItem.Database);
-            Assert.Equal("MyDatabase", dataSourceItem.DataSource.Properties["Database"]);
+            Assert.Equal(table, item.Table);
         }
 
         [Fact]
-        public void Host_GetSet_ShouldSetHostProperty()
+        public void Constructor_WithDataSource_SetsTitleAndDataSource()
         {
             // Arrange
-            var dataSourceItem = new MicrosoftSqlServerDataSourceItem("Test");
+            string title = "Test Item";
+            var dataSource = new MicrosoftSqlServerDataSource();
 
             // Act
-            dataSourceItem.Host = "localhost";
+            var item = new MicrosoftSqlServerDataSourceItem(title, dataSource);
 
             // Assert
-            Assert.Equal("localhost", dataSourceItem.Host);
+            Assert.Equal(title, item.Title);
+            Assert.Equal(dataSource, item.DataSource);
         }
 
         [Fact]
-        public void Schema_GetSet_ShouldSetSchemaProperty()
+        public void Constructor_WithTable_SetsTitleTableAndDataSource()
         {
             // Arrange
-            var dataSourceItem = new MicrosoftSqlServerDataSourceItem("Test");
+            string title = "Test Item";
+            string table = "Test Table";
+            var dataSource = new MicrosoftSqlServerDataSource();
 
             // Act
-            dataSourceItem.Schema = "master";
+            var item = new MicrosoftSqlServerDataSourceItem(title, table, dataSource);
 
             // Assert
-            Assert.Equal("master", dataSourceItem.Schema);
+            Assert.Equal(title, item.Title);
+            Assert.Equal(table, item.Table);
+            Assert.Equal(dataSource, item.DataSource);
         }
 
         [Fact]
-        public void Schema_Is_Dbo_By_Default()
+        public void Constructor_WithNonSqlServerDataSource_CreatesSqlServerDataSource()
         {
             // Arrange
-            var dataSourceItem = new MicrosoftSqlServerDataSourceItem("Test");
+            var dataSource = new DataSource();
+            var item = new MicrosoftSqlServerDataSourceItem("Test Item", dataSource);
 
             // Assert
-            Assert.Equal("dbo", dataSourceItem.Schema);
+            Assert.IsType<MicrosoftSqlServerDataSource>(item.DataSource);
         }
 
         [Fact]
-        public void Table_GetSet_ShouldSetTableProperty()
+        public void Constructor_WithSqlServerDataSource_DoesNotCreateNewDataSource()
         {
             // Arrange
-            var dataSourceItem = new MicrosoftSqlServerDataSourceItem("Test");
-
-            // Act
-            dataSourceItem.Table = "MyTable";
+            var dataSource = new MicrosoftSqlServerDataSource();
+            var item = new MicrosoftSqlServerDataSourceItem("Test Item", dataSource);
 
             // Assert
-            Assert.Equal("MyTable", dataSourceItem.Table);
+            Assert.Equal(dataSource, item.DataSource);
         }
 
         [Fact]
-        public void InitializeDataSource_Should_Set_Provider_Property()
+        public void InitializeDataSourceItem_SetsServerAggregationProperty()
         {
             // Arrange
-            var restDataSourceItem = new MicrosoftSqlServerDataSourceItem("Test");
+            var item = new MicrosoftSqlServerDataSourceItem("Test Item", new MicrosoftSqlServerDataSource());
 
             // Assert
-            Assert.Equal(DataSourceProvider.MicrosoftSqlServer, restDataSourceItem.DataSource.Provider);
-        }
-
-        [Fact]
-        public void InitializeDataSource_Should_Set_ServerAggregationDefault_Property()
-        {
-            // Arrange
-            var restDataSourceItem = new MicrosoftSqlServerDataSourceItem("Test");
-
-            // Assert
-            Assert.True(restDataSourceItem.DataSource.Properties.ContainsKey("ServerAggregationDefault"));
-            Assert.True(restDataSourceItem.DataSource.Properties.GetValue<bool>("ServerAggregationDefault"));
-        }
-
-        [Fact]
-        public void InitializeDataSource_Should_Set_ServerAggregationReadOnly_Property()
-        {
-            // Arrange
-            var restDataSourceItem = new MicrosoftSqlServerDataSourceItem("Test");
-
-            // Assert
-            Assert.True(restDataSourceItem.DataSource.Properties.ContainsKey("ServerAggregationReadOnly"));
-            Assert.False(restDataSourceItem.DataSource.Properties.GetValue<bool>("ServerAggregationReadOnly"));
-        }
-
-        [Fact]
-        public void InitializeDataSourceItem_Should_Set_ServerAggregation_Property()
-        {
-            // Arrange
-            var restDataSourceItem = new MicrosoftSqlServerDataSourceItem("Test");
-
-            // Assert
-            Assert.True(restDataSourceItem.Properties.ContainsKey("ServerAggregation"));
-            Assert.True(restDataSourceItem.Properties.GetValue<bool>("ServerAggregation"));
+            Assert.True(item.Properties.GetValue<bool>("ServerAggregation"));
         }
     }
 }

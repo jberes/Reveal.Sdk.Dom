@@ -25,7 +25,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
             Assert.Equal(title, result.Title);
             Assert.Null(result.Subtitle);
             Assert.NotNull(result.DataSource);
-            Assert.IsType<DataSource>(result.DataSource);
+            Assert.IsType<MicrosoftSqlServerDataSource>(result.DataSource);
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
             Assert.Equal(title, result.Title);
             Assert.Equal(subtitle, result.Subtitle);
             Assert.NotNull(result.DataSource);
-            Assert.Same(dataSource, result.DataSource);
+            Assert.NotSame(dataSource, result.DataSource);
         }
 
         [Fact]

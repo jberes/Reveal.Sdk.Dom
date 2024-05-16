@@ -14,7 +14,6 @@ namespace Sandbox.Factories
             //json - default
             var jsonDataSourceItem = new RestDataSourceItem("Sales by Category", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
-                Id = "TESTING",
                 Subtitle = "JSON Data Source Item",
                 Uri = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 IsAnonymous = true,
@@ -25,10 +24,10 @@ namespace Sandbox.Factories
                 .SetLabel("CategoryName").SetValue("ProductSales"));
 
             //excel
-            RestDataSourceItem excelDataSourceItem = new RestDataSourceItem("Marketing", new DataSource { Title = "Excel DS", Subtitle = "Excel DS Subtitle" })
+            RestDataSourceItem excelDataSourceItem = new RestDataSourceItem("Marketing", "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+                new DataSource { Title = "Excel DS", Subtitle = "Excel DS Subtitle" })
             {
                 Subtitle = "Excel Data Source Item",
-                Uri = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
                 IsAnonymous = true,
                 Fields = DataSourceFactory.GetMarketingDataSourceFields(),
             };
