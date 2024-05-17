@@ -1,4 +1,5 @@
-﻿using Reveal.Sdk.Dom.Core.Constants;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Core.Extensions;
 using Reveal.Sdk.Dom.Visualizations;
 using System.Collections.Generic;
@@ -32,12 +33,14 @@ namespace Reveal.Sdk.Dom.Data
             UpdateResourceItemDataSource(_dataSource);
         }
 
+        [JsonIgnore]
         public bool IsAnonymous
         {
             get { return ResourceItemDataSource.Properties.GetValue<bool>("_rpUseAnonymousAuthentication"); }
             set { ResourceItemDataSource.Properties.SetItem("_rpUseAnonymousAuthentication", value); }
         }
 
+        [JsonIgnore]
         public string Uri 
         { 
             get { return ResourceItem.Properties.GetValue<string>("Url"); }

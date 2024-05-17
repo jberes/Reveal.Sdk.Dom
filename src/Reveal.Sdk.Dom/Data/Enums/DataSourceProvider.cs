@@ -23,7 +23,7 @@ namespace Reveal.Sdk.Dom.Data
         CSV,
 
         [EnumMember(Value = "DROPBOXPROVIDER")]
-        DropBox,
+        Dropbox,
 
         [EnumMember(Value = "GOOGLE_ANALYTICS")]
         GoogleAnalytics,
@@ -52,6 +52,9 @@ namespace Reveal.Sdk.Dom.Data
         [EnumMember(Value = "LOCALFILE")]
         LocalFile,
 
+        [EnumMember(Value = "MONGODB")]
+        MongoDB,
+
         [EnumMember(Value = "REST")]
         REST,
 
@@ -79,6 +82,9 @@ namespace Reveal.Sdk.Dom.Data
         [EnumMember(Value = "ONEDRIVEPROVIDER")]
         MicrosoftOneDrive,
 
+        [EnumMember(Value = "SHAREPOINT")]
+        MicrosoftSharePoint,
+
         [EnumMember(Value = "SQLSERVER")]
         MicrosoftSqlServer,
 
@@ -86,7 +92,7 @@ namespace Reveal.Sdk.Dom.Data
         MicrosoftSqlServerReportingServices,
 
         [EnumMember(Value = "MYSQL")]
-        MySql,
+        MySQL,
 
         [EnumMember(Value = "ODATAPROVIDER")]
         OData,
@@ -95,7 +101,7 @@ namespace Reveal.Sdk.Dom.Data
         Oracle,
 
         [EnumMember(Value = "POSTGRES")]
-        PostgreSql,
+        PostgreSQL,
 
         [EnumMember(Value = "QUICK_BOOKS")]
         QuickBooks,
@@ -105,9 +111,6 @@ namespace Reveal.Sdk.Dom.Data
 
         [EnumMember(Value = "SALESFORCE")]
         Salesforce,
-
-        [EnumMember(Value = "SHAREPOINT")]
-        SharePoint,
 
         [EnumMember(Value = "SNOWFLAKE")]
         Snowflake,
