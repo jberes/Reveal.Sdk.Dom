@@ -28,6 +28,7 @@ namespace Reveal.Sdk.Dom.Data
 
         protected override void InitializeDataSource(DataSource dataSource, string title)
         {
+            //todo: make generic and place in base class
             if (!(dataSource is MicrosoftSqlServerDataSource))
             {
                 var ds = MicrosoftSqlServerDataSource.Create(dataSource);

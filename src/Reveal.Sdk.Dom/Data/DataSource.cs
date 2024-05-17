@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Converters;
 using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Core.Extensions;
 using System;
 using System.Collections.Generic;
 
@@ -31,6 +32,12 @@ namespace Reveal.Sdk.Dom.Data
         public string Title { get; set; }
 
         public string Subtitle { get; set; }
+
+        public string DefaultRefreshRate
+        {
+            get => Properties.GetValue<string>("DefaultRefreshRate");
+            set => Properties.SetItem("DefaultRefreshRate", value);
+        }
 
         [JsonProperty]
         internal Dictionary<string, object> Properties { get; set; }
