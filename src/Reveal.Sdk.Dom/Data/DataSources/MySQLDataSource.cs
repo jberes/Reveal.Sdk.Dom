@@ -1,6 +1,6 @@
 ﻿namespace Reveal.Sdk.Dom.Data
 {
-    internal class MySQLDataSource : ProcessDataDatabaseSource
+    internal class MySQLDataSource : ProcessDataSource
     {
         public MySQLDataSource()
         {

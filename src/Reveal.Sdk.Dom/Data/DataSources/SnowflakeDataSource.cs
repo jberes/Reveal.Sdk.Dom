@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Data
 {
-    internal class SnowflakeDataSource : ProcessDataDatabaseSource
+    internal class SnowflakeDataSource : ProcessDataSource
     {
         public SnowflakeDataSource()
         {

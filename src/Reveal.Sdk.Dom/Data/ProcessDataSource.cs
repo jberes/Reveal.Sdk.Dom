@@ -3,9 +3,9 @@ using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public abstract class ProcessDataDatabaseSource : HostDatabaseSource
+    public abstract class ProcessDataSource : HostDataSource
     {
-        protected ProcessDataDatabaseSource()
+        protected ProcessDataSource()
         {
             ProcessDataOnServerDefaultValue = true;
             ProcessDataOnServerReadOnly = false;

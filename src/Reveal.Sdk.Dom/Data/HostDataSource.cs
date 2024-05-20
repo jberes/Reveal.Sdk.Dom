@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class HostDatabaseSource : DatabaseSource
+    public class HostDataSource : DatabaseDataSource
     {
         [JsonIgnore]
         public string Host

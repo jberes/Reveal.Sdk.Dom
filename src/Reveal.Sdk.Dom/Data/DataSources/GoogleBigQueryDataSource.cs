@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Data
 {
-    internal class GoogleBigQueryDataSource : DatabaseSource
+    internal class GoogleBigQueryDataSource : DatabaseDataSource
     {
         public GoogleBigQueryDataSource()
         {
