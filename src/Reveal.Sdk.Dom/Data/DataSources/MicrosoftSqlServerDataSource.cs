@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class MicrosoftSqlServerDataSource : SchemaDatabaseSource
+    public class MicrosoftSqlServerDataSource : SchemaDataSource
     {
         public MicrosoftSqlServerDataSource()
         {

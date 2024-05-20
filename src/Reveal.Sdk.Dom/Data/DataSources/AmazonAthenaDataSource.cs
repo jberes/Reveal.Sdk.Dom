@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Data
 {
-    internal class AmazonAthenaDataSource : DatabaseSource
+    internal class AmazonAthenaDataSource : DatabaseDataSource
     {
         public AmazonAthenaDataSource()
         {

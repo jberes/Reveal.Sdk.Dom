@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class SchemaDatabaseSource : ProcessDataDatabaseSource
+    public class SchemaDataSource : ProcessDataSource
     {
         [JsonIgnore]
         public string Schema

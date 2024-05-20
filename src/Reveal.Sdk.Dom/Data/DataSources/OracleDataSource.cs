@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Data
 {
-    internal class OracleDataSource : HostDatabaseSource
+    internal class OracleDataSource : HostDataSource
     {
         public OracleDataSource()
         {
