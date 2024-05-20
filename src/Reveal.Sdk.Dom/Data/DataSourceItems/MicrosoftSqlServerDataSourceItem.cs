@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
-using Reveal.Sdk.Dom.Core.Extensions;
+﻿using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class MicrosoftSqlServerDataSourceItem : DataSourceItem
+    public class MicrosoftSqlServerDataSourceItem : ProcedureDataSourceItem
     {
         public MicrosoftSqlServerDataSourceItem(string title, MicrosoftSqlServerDataSource dataSource) :
             base(title, dataSource)
@@ -11,20 +10,13 @@ namespace Reveal.Sdk.Dom.Data
 
         public MicrosoftSqlServerDataSourceItem(string title, string table, MicrosoftSqlServerDataSource dataSource) :
             base(title, dataSource)
-        { 
+        {
             Table = table;
         }
 
         internal MicrosoftSqlServerDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
-
-        [JsonIgnore]
-        public string Table
-        {
-            get => Properties.GetValue<string>("Table");
-            set => Properties.SetItem("Table", value);
-        }
 
         protected override void InitializeDataSource(DataSource dataSource, string title)
         {

@@ -147,11 +147,11 @@ namespace Sandbox
             sqlDS.Database = "Northwind"; //this is required
             ds.Add(sqlDS);
 
-            //var sqlDSI = new RVSqlServerDataSourceItem(sqlDS);
-            //sqlDSI.Title = "SQL Server Data Source Item";
-            //sqlDSI.Subtitle = "SQL Server DSI Subtitle";
-            //sqlDSI.Table = "Customers";
-            //dsi.Add(sqlDSI);
+            var sqlDSI = new RVSqlServerDataSourceItem(sqlDS);
+            sqlDSI.Title = "SQL Server Data Source Item";
+            sqlDSI.Subtitle = "SQL Server DSI Subtitle";
+            sqlDSI.Table = "Customers";
+            dsi.Add(sqlDSI);
 
             //var webDS = new RVWebResourceDataSource();
             //webDS.UseAnonymousAuthentication = true;
