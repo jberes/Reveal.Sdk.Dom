@@ -25,5 +25,10 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Gets or sets whether this is a calucated field.
         /// </summary>
         bool IsCalculated { get; set; }
+
+        /// <summary>
+        /// Gets or sets the table alias for this field.
+        /// </summary>
+        string TableAlias { get; set; }
     }
 }

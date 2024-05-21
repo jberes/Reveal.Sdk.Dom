@@ -2,8 +2,12 @@
 
 namespace Reveal.Sdk.Dom.Data
 {
-    internal class MicrosoftAnalysisServicesDataSourceItem : DataSourceItem
+    public class MicrosoftAnalysisServicesDataSourceItem : DataSourceItem
     {
+        public  MicrosoftAnalysisServicesDataSourceItem(string title, MicrosoftAnalysisServicesDataSource dataSource) :
+            base(title, dataSource)
+        { }
+
         internal MicrosoftAnalysisServicesDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
@@ -13,5 +17,10 @@ namespace Reveal.Sdk.Dom.Data
 
         [JsonIgnore]
         public string Cube { get; set; }
+
+        protected override DataSource CreateDataSourceInstance(DataSource dataSource)
+        {
+            return Create<MicrosoftAnalysisServicesDataSource>(dataSource);
+        }
     }
 }

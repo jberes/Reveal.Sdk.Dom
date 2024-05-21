@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Data
 {
-    internal class MicrosoftAnalysisServicesDataSource : DataSource
+    public class MicrosoftAnalysisServicesDataSource : DataSource
     {
         public MicrosoftAnalysisServicesDataSource()
         {

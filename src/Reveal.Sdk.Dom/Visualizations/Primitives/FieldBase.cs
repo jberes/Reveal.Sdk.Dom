@@ -14,9 +14,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             FieldName = fieldName;
             FieldLabel = fieldName;
-        }
-
-        
+        }        
 
         /// <inheritdoc />
         public string FieldName { get; set; }
@@ -55,8 +53,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonProperty]
         internal Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>();
 
-        //used when joining data from multiple sources
-        [JsonProperty]
-        internal string TableAlias { get; set; }
+        /// <inheritdoc />
+        public string TableAlias { get; set; } //used when joining data from multiple sources
     }
 }
