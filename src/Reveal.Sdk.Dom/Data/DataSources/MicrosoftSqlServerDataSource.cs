@@ -16,15 +16,5 @@ namespace Reveal.Sdk.Dom.Data
             get => Properties.GetValue<bool>("Encrypt");
             set => Properties.SetItem("Encrypt", value);
         }
-
-        internal static MicrosoftSqlServerDataSource Create(DataSource dataSource)
-        {
-            return new MicrosoftSqlServerDataSource()
-            {
-                Id = dataSource.Id,
-                Title = dataSource.Title,
-                Subtitle = dataSource.Subtitle,
-            };
-        }
     }
 }

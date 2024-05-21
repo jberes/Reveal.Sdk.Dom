@@ -1,5 +1,4 @@
-﻿using Reveal.Sdk.Dom.Core.Extensions;
-using Reveal.Sdk.Dom.Data;
+﻿using Reveal.Sdk.Dom.Data;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Data
@@ -92,16 +91,6 @@ namespace Reveal.Sdk.Dom.Tests.Data
 
             // Assert
             Assert.Equal(dataSource, item.DataSource);
-        }
-
-        [Fact]
-        public void InitializeDataSourceItem_SetsServerAggregationProperty()
-        {
-            // Arrange
-            var item = new MicrosoftSqlServerDataSourceItem("Test Item", new MicrosoftSqlServerDataSource());
-
-            // Assert
-            Assert.True(item.Properties.GetValue<bool>("ServerAggregation"));
         }
     }
 }

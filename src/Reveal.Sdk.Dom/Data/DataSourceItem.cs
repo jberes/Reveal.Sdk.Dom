@@ -11,8 +11,7 @@ namespace Reveal.Sdk.Dom.Data
     {
         public DataSourceItem(string title, DataSource dataSource) : this()
         {
-            InitializeDataSource(dataSource, title);
-            InitializeDataSourceItem(title);
+            Initialize(dataSource, title);
         }
 
         public DataSourceItem()
@@ -90,13 +89,38 @@ namespace Reveal.Sdk.Dom.Data
         [JsonIgnore]
         internal DataSource ResourceItemDataSource { get; set; }
 
+        private void Initialize(DataSource dataSource, string title)
+        {
+            DataSource = CreateDataSourceInstance(dataSource ?? new DataSource());
+            InitializeDataSource(DataSource, title);
+            InitializeDataSourceItem(title);
+        }
+
         protected virtual void InitializeDataSource(DataSource dataSource, string title)
         {
-            DataSource = dataSource ?? new DataSource();
+            DataSource = dataSource;
+            DataSourceId = DataSource.Id;
+
             if (string.IsNullOrEmpty(DataSource.Title))
                 DataSource.Title = title;
+        }
 
-            DataSourceId = DataSource.Id;
+        protected virtual DataSource CreateDataSourceInstance(DataSource dataSource)
+        {
+            return dataSource;
+        }
+
+        protected T Create<T>(DataSource dataSource) where T : DataSource, new()
+        {
+            if (dataSource is T specificDataSource)
+                return specificDataSource;
+
+            return new T
+            {
+                Id = dataSource.Id,
+                Title = dataSource.Title,
+                Subtitle = dataSource.Subtitle
+            };
         }
 
         protected virtual void InitializeDataSourceItem(string title)

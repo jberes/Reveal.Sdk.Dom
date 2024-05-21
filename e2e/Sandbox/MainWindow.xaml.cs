@@ -65,7 +65,7 @@ namespace Sandbox
                 return null;
             };
 
-            //_revealView.DataSourcesRequested += RevealView_DataSourcesRequested;
+            _revealView.DataSourcesRequested += RevealView_DataSourcesRequested;
 
             _revealView.DashboardSelectorRequested += RevealView_DashboardSelectorRequested;
         }
@@ -206,8 +206,8 @@ namespace Sandbox
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
             //var document = CustomDashboard.CreateDashboard();
-            //var document = RestDataSourceDashboards.CreateDashboard();
-            var document = SqlServerDataSourceDashboards.CreateDashboard();
+            var document = RestDataSourceDashboards.CreateDashboard();
+            //var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();
 
             var json = document.ToJsonString();

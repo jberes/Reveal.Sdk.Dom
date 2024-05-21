@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
@@ -9,6 +10,10 @@ namespace Reveal.Sdk.Dom.Data
         { }
 
         [JsonIgnore]
-        public bool ProcessDataOnServer { get; set; }
+        public bool ProcessDataOnServer
+        {
+            get => Properties.GetValue<bool>("ServerAggregation");
+            set => Properties.SetItem("ServerAggregation", value);
+        }
     }
 }

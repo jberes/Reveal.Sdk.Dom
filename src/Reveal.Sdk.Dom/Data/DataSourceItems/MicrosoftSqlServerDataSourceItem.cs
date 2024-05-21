@@ -1,39 +1,34 @@
-﻿using Reveal.Sdk.Dom.Core.Extensions;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
     public class MicrosoftSqlServerDataSourceItem : ProcedureDataSourceItem
     {
-        public MicrosoftSqlServerDataSourceItem(string title, MicrosoftSqlServerDataSource dataSource) :
-            base(title, dataSource)
-        { }
-
         public MicrosoftSqlServerDataSourceItem(string title, string table, MicrosoftSqlServerDataSource dataSource) :
-            base(title, dataSource)
+            this(title, dataSource)
         {
             Table = table;
         }
+
+        public MicrosoftSqlServerDataSourceItem(string title, MicrosoftSqlServerDataSource dataSource) :
+            base(title, dataSource)
+        { }
 
         internal MicrosoftSqlServerDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 
-        protected override void InitializeDataSource(DataSource dataSource, string title)
+        [JsonIgnore]
+        public bool ProcessDataOnServer
         {
-            //todo: make generic and place in base class
-            if (!(dataSource is MicrosoftSqlServerDataSource))
-            {
-                var ds = MicrosoftSqlServerDataSource.Create(dataSource);
-                dataSource = ds;
-            }
-
-            base.InitializeDataSource(dataSource, title);
+            get => Properties.GetValue<bool>("ServerAggregation");
+            set => Properties.SetItem("ServerAggregation", value);
         }
 
-        override protected void InitializeDataSourceItem(string title)
+        protected override DataSource CreateDataSourceInstance(DataSource dataSource)
         {
-            base.InitializeDataSourceItem(title);
-            Properties.SetItem("ServerAggregation", true);
+            return Create<MicrosoftSqlServerDataSource>(dataSource);
         }
     }
 }

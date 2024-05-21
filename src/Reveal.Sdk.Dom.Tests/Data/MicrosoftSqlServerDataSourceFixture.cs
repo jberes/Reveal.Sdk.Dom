@@ -106,26 +106,6 @@ namespace Reveal.Sdk.Dom.Tests.Data
         }
 
         [Fact]
-        public void Create_Should_CreateNewMicrosoftSqlServerDataSourceWithMatchingProperties()
-        {
-            // Arrange
-            var dataSource = new DataSource()
-            {
-                Id = "1",
-                Title = "Test Title",
-                Subtitle = "Test Subtitle"
-            };
-
-            // Act
-            var result = MicrosoftSqlServerDataSource.Create(dataSource);
-
-            // Assert
-            Assert.Equal(dataSource.Id, result.Id);
-            Assert.Equal(dataSource.Title, result.Title);
-            Assert.Equal(dataSource.Subtitle, result.Subtitle);
-        }
-
-        [Fact]
         public void Constructor_Should_Set_ServerAggregationDefault_Property()
         {
             // Arrange
