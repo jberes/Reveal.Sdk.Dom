@@ -1,10 +1,12 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Core.Extensions;
+using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Data
@@ -310,6 +312,98 @@ namespace Reveal.Sdk.Dom.Tests.Data
             // Assert
             Assert.Equal(dataSourceItem.ResourceItemDataSource.Title, dataSourceItem.ResourceItem.Title);
             Assert.Equal(dataSourceItem.ResourceItemDataSource.Subtitle, dataSourceItem.ResourceItem.Subtitle);
+        }
+
+        [Fact]
+        public void Constructor_WithTitle_Should_Add_TwoDataSources()
+        {
+            // Arrange
+            var document = new RdashDocument("Test");
+            var dataSourceItem = new RestDataSourceItem("Test").SetFields(new List<IField>() { null });
+
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            // Ensure data sources are added to the data sources collection
+            RdashDocumentValidator.FixDocument(document);
+
+            // Assert
+            Assert.Equal(2, document.DataSources.Count);
+            Assert.Equal(DataSourceIds.JSON, document.DataSources[0].Id);
+            Assert.Equal(DataSourceProvider.JSON, document.DataSources[0].Provider);
+        }
+
+        [Fact]
+        public void Constructor_WithTitleAndUri_Should_Add_TwoDataSources()
+        {
+            // Arrange
+            var document = new RdashDocument("Test");
+            var dataSourceItem = new RestDataSourceItem("TITLE", "URI").SetFields(new List<IField>() { null });
+
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            // Ensure data sources are added to the data sources collection
+            RdashDocumentValidator.FixDocument(document);
+
+            // Assert
+            Assert.Equal(2, document.DataSources.Count);
+            Assert.Equal(DataSourceIds.JSON, document.DataSources[0].Id);
+            Assert.Equal(DataSourceProvider.JSON, document.DataSources[0].Provider);
+        }
+
+        [Fact]
+        public void Constructor_WithNullDataSource_Should_Add_TwoDataSourcese()
+        {
+            // Arrange
+            var document = new RdashDocument("Test");
+            var dataSourceItem = new RestDataSourceItem("Test", "URI", null).SetFields(new List<IField>() { null });
+
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            // Ensure data sources are added to the data sources collection
+            RdashDocumentValidator.FixDocument(document);
+
+            // Assert
+            Assert.Equal(2, document.DataSources.Count);
+            Assert.Equal(DataSourceIds.JSON, document.DataSources[0].Id);
+            Assert.Equal(DataSourceProvider.JSON, document.DataSources[0].Provider);
+        }
+
+        [Fact]
+        public void UseExcel_Should_Add_TwoDataSources()
+        {
+            // Arrange
+            var document = new RdashDocument("Test");
+            var dataSourceItem = new RestDataSourceItem("Test").SetFields(new List<IField>() { null });
+            dataSourceItem.UseExcel();
+
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            // Ensure data sources are added to the data sources collection
+            RdashDocumentValidator.FixDocument(document);
+
+            // Assert
+            Assert.Equal(2, document.DataSources.Count);
+            Assert.Equal(DataSourceIds.Excel, document.DataSources[0].Id);
+            Assert.Equal(DataSourceProvider.MicrosoftExcel, document.DataSources[0].Provider);
+        }
+
+        [Fact]
+        public void UseCsv_Should_Add_TwoDataSources()
+        {
+            //Arrange
+            var document = new RdashDocument("Test");
+            var dataSourceItem = new RestDataSourceItem("Test").SetFields(new List<IField>() { null });
+            dataSourceItem.UseCsv();
+
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            // Ensure data sources are added to the data sources collection
+            RdashDocumentValidator.FixDocument(document);
+
+            // Assert
+            Assert.Equal(2, document.DataSources.Count);
+            Assert.Equal(DataSourceIds.CSV, document.DataSources[0].Id);
+            Assert.Equal(DataSourceProvider.CSV, document.DataSources[0].Provider);
         }
     }
 }

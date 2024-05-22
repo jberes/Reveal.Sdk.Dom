@@ -64,15 +64,17 @@ namespace Reveal.Sdk.Dom.Data
         internal DataSourceItem ResourceItem { get; set; }
 
         private List<IField> _fields = new List<IField>();
+        private DataSource _dataSource;
+
         [JsonIgnore]
-        public List<IField> Fields 
-        { 
-            get => _fields; 
+        public List<IField> Fields
+        {
+            get => _fields;
             set
-            { 
+            {
                 _fields = value;
                 OnFieldsPropertyChanged(_fields);
-            } 
+            }
         }
 
         /// <summary>
@@ -80,7 +82,15 @@ namespace Reveal.Sdk.Dom.Data
         /// If this is null, then the DataSourceItem was manually added to the document and the DataSourceId property should be used to find the data source.
         /// </summary>
         [JsonIgnore]
-        internal DataSource DataSource { get; set; }
+        internal DataSource DataSource
+        {
+            get => _dataSource;
+            set
+            {
+                _dataSource = value;
+                DataSourceId = _dataSource?.Id;
+            }
+        }
 
         /// <summary>
         /// The data source for the ResourceItem. This is set internally by a data source builder and is only used during the RdashDocumentValidator process.
@@ -128,12 +138,6 @@ namespace Reveal.Sdk.Dom.Data
             Title = title;
         }
 
-        protected virtual void OnFieldsPropertyChanged(List<IField> fields) {  }
-
-        protected virtual void UpdateDataSourceId(string id)
-        {
-            DataSource.Id = id;
-            DataSourceId = id;
-        }
+        protected virtual void OnFieldsPropertyChanged(List<IField> fields) { }
     }
 }

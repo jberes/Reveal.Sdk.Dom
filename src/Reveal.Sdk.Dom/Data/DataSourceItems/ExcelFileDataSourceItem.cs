@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
@@ -9,7 +8,7 @@ namespace Reveal.Sdk.Dom.Data
     public class ExcelFileDataSourceItem : DataSourceItem
     {
         public ExcelFileDataSourceItem(string title) :
-            this(title, new DataSource())
+            this(title, new ExcelDataSource())
         { }
 
         public ExcelFileDataSourceItem(string title, string path) :
@@ -17,13 +16,13 @@ namespace Reveal.Sdk.Dom.Data
         { }
 
         public ExcelFileDataSourceItem(string title, string path, string sheet) :
-            this(title, new DataSource())
+            this(title, new ExcelDataSource())
         {
             Path = path;
             Sheet = sheet;
         }
 
-        public ExcelFileDataSourceItem(string title, DataSource dataSource) :
+        internal ExcelFileDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         {
             InitializeResourceItem(title);
@@ -43,16 +42,17 @@ namespace Reveal.Sdk.Dom.Data
             set { Properties.SetItem("Sheet", value); }
         }
 
-        protected override void InitializeDataSource(DataSource dataSource, string title)
+        protected override DataSource CreateDataSourceInstance(DataSource dataSource)
         {
-            base.InitializeDataSource(dataSource, title);
-            UpdateDataSourceId(DataSourceIds.Excel);
-            DataSource.Provider = DataSourceProvider.MicrosoftExcel;
+            if (dataSource is ExcelDataSource)
+                return dataSource;
+
+            return new ExcelDataSource();
         }
 
         private void InitializeResourceItem(string title)
         {
-            ResourceItemDataSource = new DataSource { Provider = DataSourceProvider.LocalFile, Id = DataSourceIds.LOCALFILE };
+            ResourceItemDataSource = new LocalFileDataSource();
             ResourceItem = new DataSourceItem
             {
                 DataSource = ResourceItemDataSource,
@@ -63,6 +63,5 @@ namespace Reveal.Sdk.Dom.Data
             ResourceItemDataSource = ResourceItemDataSource;
             ResourceItem = ResourceItem;
         }
-
     }
 }

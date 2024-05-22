@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Core.Extensions;
 using Reveal.Sdk.Dom.Visualizations;
 using System.Collections.Generic;
@@ -26,7 +25,7 @@ namespace Reveal.Sdk.Dom.Data
         }
 
         public RestDataSourceItem(string title, DataSource dataSource) : 
-            base(title, null)
+            base(title, new JsonDataSource())
         {
             _dataSource = dataSource ?? new DataSource();
             InitializeResourceItem(title);
@@ -71,29 +70,20 @@ namespace Reveal.Sdk.Dom.Data
         public void UseCsv()
         {
             ClearJsonConfig();
-            UpdateDataSourceId(DataSourceIds.CSV);
-            DataSource.Provider = DataSourceProvider.CSV;
+            DataSource = new CsvDataSource();
             ResourceItemDataSource.Properties.SetItem("Result-Type", ".csv");
         }
 
         public void UseExcel(string sheet = null, ExcelFileType fileType = ExcelFileType.Xlsx)
         {
             ClearJsonConfig();
-            UpdateDataSourceId(DataSourceIds.Excel);
-            DataSource.Provider = DataSourceProvider.MicrosoftExcel;
-
+            DataSource = new ExcelDataSource();
+            
             var fileExt = fileType == ExcelFileType.Xlsx ? ".xlsx" : ".xls";
             ResourceItemDataSource.Properties.SetItem("Result-Type", fileExt);
 
             if (sheet != null)
                 Properties.SetItem("Sheet", sheet);
-        }
-
-        protected override void InitializeDataSource(DataSource dataSource, string title)
-        {
-            base.InitializeDataSource(dataSource, title);
-            UpdateDataSourceId(DataSourceIds.JSON);
-            DataSource.Provider = DataSourceProvider.JSON;
         }
 
         protected void InitializeResourceItem(string title)
