@@ -47,11 +47,7 @@ namespace Reveal.Sdk.Dom.Data
             if (dataSource is ExcelDataSource)
                 return dataSource;
 
-            return new ExcelDataSource()
-            {
-                Title = dataSource.Title,
-                Subtitle = dataSource.Subtitle,
-            };
+            return new ExcelDataSource();
         }
 
         private void InitializeResourceItem(string title)
