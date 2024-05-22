@@ -1,5 +1,8 @@
 ﻿using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Visualizations;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Data
@@ -19,7 +22,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
             // Assert
             Assert.Equal(title, excelFile.Title);
             Assert.Equal(title, excelFile.ResourceItem.Title);
-            Assert.Equal(dataSource, excelFile.DataSource);
+            Assert.IsType<ExcelDataSource>(excelFile.DataSource);
             Assert.Equal(DataSourceIds.Excel, excelFile.DataSource.Id);
             Assert.Equal(DataSourceProvider.MicrosoftExcel, excelFile.DataSource.Provider);
             Assert.Equal(DataSourceProvider.LocalFile, excelFile.ResourceItemDataSource.Provider);
@@ -40,6 +43,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
             Assert.Equal(title, excelFile.Title);
             Assert.Equal(title, excelFile.ResourceItem.Title);
             Assert.NotNull(excelFile.DataSource);
+            Assert.IsType<ExcelDataSource>(excelFile.DataSource);
             Assert.Equal(DataSourceIds.Excel, excelFile.DataSource.Id);
             Assert.Equal(DataSourceProvider.MicrosoftExcel, excelFile.DataSource.Provider);
             Assert.Equal(DataSourceProvider.LocalFile, excelFile.ResourceItemDataSource.Provider);
@@ -61,6 +65,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
             Assert.Equal(title, excelFile.Title);
             Assert.Equal(title, excelFile.ResourceItem.Title);
             Assert.NotNull(excelFile.DataSource);
+            Assert.IsType<ExcelDataSource>(excelFile.DataSource);
             Assert.Equal(DataSourceIds.Excel, excelFile.DataSource.Id);
             Assert.Equal(DataSourceProvider.MicrosoftExcel, excelFile.DataSource.Provider);
             Assert.Equal($"local:{path}", excelFile.Path);
@@ -84,6 +89,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
             Assert.Equal(title, excelFile.Title);
             Assert.Equal(title, excelFile.ResourceItem.Title);
             Assert.NotNull(excelFile.DataSource);
+            Assert.IsType<ExcelDataSource>(excelFile.DataSource);
             Assert.Equal(DataSourceIds.Excel, excelFile.DataSource.Id);
             Assert.Equal(DataSourceProvider.MicrosoftExcel, excelFile.DataSource.Provider);
             Assert.Equal($"local:{path}", excelFile.Path);
@@ -119,6 +125,60 @@ namespace Reveal.Sdk.Dom.Tests.Data
 
             // Assert
             Assert.Equal(sheet, excelFile.Sheet);
+        }
+
+        [Fact]
+        public void Constructor_WithTitle_Should_Add_TwoDataSources()
+        {
+            // Arrange
+            var document = new RdashDocument("Test");
+            var dataSourceItem = new ExcelFileDataSourceItem("Test").SetFields(new List<IField>() { null });
+
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            // Ensure data sources are added to the data sources collection
+            RdashDocumentValidator.FixDocument(document);
+
+            // Assert
+            Assert.Equal(2, document.DataSources.Count);
+            Assert.Equal(DataSourceIds.Excel, document.DataSources[0].Id);
+            Assert.Equal(DataSourceProvider.MicrosoftExcel, document.DataSources[0].Provider);
+        }
+
+        [Fact]
+        public void Constructor_WithTitleAndPath_Should_Add_TwoDataSources()
+        {
+            // Arrange
+            var document = new RdashDocument("Test");
+            var dataSourceItem = new ExcelFileDataSourceItem("Test", "Path").SetFields(new List<IField>() { null });
+
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            // Ensure data sources are added to the data sources collection
+            RdashDocumentValidator.FixDocument(document);
+
+            // Assert
+            Assert.Equal(2, document.DataSources.Count);
+            Assert.Equal(DataSourceIds.Excel, document.DataSources[0].Id);
+            Assert.Equal(DataSourceProvider.MicrosoftExcel, document.DataSources[0].Provider);
+        }
+
+        [Fact]
+        public void Constructor_WithTitleAndPathAndSheet_Should_Add_TwoDataSources()
+        {
+            // Arrange
+            var document = new RdashDocument("Test");
+            var dataSourceItem = new ExcelFileDataSourceItem("Test", "Path", "Sheet").SetFields(new List<IField>() { null });
+
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            // Ensure data sources are added to the data sources collection
+            RdashDocumentValidator.FixDocument(document);
+
+            // Assert
+            Assert.Equal(2, document.DataSources.Count);
+            Assert.Equal(DataSourceIds.Excel, document.DataSources[0].Id);
+            Assert.Equal(DataSourceProvider.MicrosoftExcel, document.DataSources[0].Provider);
         }
     }
 }
