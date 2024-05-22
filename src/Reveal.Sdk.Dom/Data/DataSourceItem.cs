@@ -11,7 +11,7 @@ namespace Reveal.Sdk.Dom.Data
     {
         public DataSourceItem(string title, DataSource dataSource) : this()
         {
-            Initialize(dataSource, title);
+            Initialize(dataSource ?? new DataSource(), title);
         }
 
         public DataSourceItem()
@@ -91,7 +91,7 @@ namespace Reveal.Sdk.Dom.Data
 
         private void Initialize(DataSource dataSource, string title)
         {
-            DataSource = CreateDataSourceInstance(dataSource ?? new DataSource());
+            DataSource = CreateDataSourceInstance(dataSource);
             InitializeDataSource(DataSource, title);
             InitializeDataSourceItem(title);
         }
@@ -126,20 +126,6 @@ namespace Reveal.Sdk.Dom.Data
         protected virtual void InitializeDataSourceItem(string title)
         {
             Title = title;
-        }
-
-        protected virtual void InitializeResourceItem(DataSourceProvider resourceItemDataSourceProvider, string title)
-        {
-            ResourceItemDataSource = new DataSource { Provider = resourceItemDataSourceProvider };
-            ResourceItem = new DataSourceItem
-            {
-                DataSource = ResourceItemDataSource,
-                DataSourceId = ResourceItemDataSource.Id,
-                Title = title
-            };
-
-            ResourceItemDataSource = ResourceItemDataSource;
-            ResourceItem = ResourceItem;
         }
 
         protected virtual void OnFieldsPropertyChanged(List<IField> fields) {  }
