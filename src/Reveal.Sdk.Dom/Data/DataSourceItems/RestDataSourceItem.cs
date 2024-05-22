@@ -29,7 +29,7 @@ namespace Reveal.Sdk.Dom.Data
             base(title, null)
         {
             _dataSource = dataSource ?? new DataSource();
-            InitializeResourceItem(DataSourceProvider.REST, title);
+            InitializeResourceItem(title);
             UpdateResourceItemDataSource(_dataSource);
         }
 
@@ -94,6 +94,20 @@ namespace Reveal.Sdk.Dom.Data
             base.InitializeDataSource(dataSource, title);
             UpdateDataSourceId(DataSourceIds.JSON);
             DataSource.Provider = DataSourceProvider.JSON;
+        }
+
+        protected void InitializeResourceItem(string title)
+        {
+            ResourceItemDataSource = new DataSource { Provider = DataSourceProvider.REST };
+            ResourceItem = new DataSourceItem
+            {
+                DataSource = ResourceItemDataSource,
+                DataSourceId = ResourceItemDataSource.Id,
+                Title = title
+            };
+
+            ResourceItemDataSource = ResourceItemDataSource;
+            ResourceItem = ResourceItem;
         }
 
         protected override void OnFieldsPropertyChanged(List<IField> fields)
