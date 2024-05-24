@@ -1,4 +1,6 @@
-﻿using Reveal.Sdk.Dom.Core.Constants;
+﻿using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Constants;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -15,5 +17,11 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Gets or sets the field name.
         /// </summary>
         public string FieldName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sorting type.
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public SortingType Sorting { get; set; } = SortingType.None;
     }
 }
