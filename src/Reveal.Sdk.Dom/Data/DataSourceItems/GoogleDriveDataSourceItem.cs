@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     internal class GoogleDriveDataSourceItem : DataSourceItem
     {
-        internal GoogleDriveDataSourceItem(string title, DataSource dataSource) :
+        public GoogleDriveDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

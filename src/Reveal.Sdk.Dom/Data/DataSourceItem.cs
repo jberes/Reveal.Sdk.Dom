@@ -141,7 +141,8 @@ namespace Reveal.Sdk.Dom.Data
             {
                 Id = dataSource.Id,
                 Title = dataSource.Title,
-                Subtitle = dataSource.Subtitle
+                Subtitle = dataSource.Subtitle,
+                DefaultRefreshRate = dataSource.DefaultRefreshRate,
             };
         }
 
@@ -223,23 +224,31 @@ namespace Reveal.Sdk.Dom.Data
 
         private string ValidateRightFieldName(string fieldName, string alias)
         {
+            // Remove any outer brackets for simplicity
+            var trimmedFieldName = fieldName.Trim('[', ']');
+
+            // Split the field name by '.'
+            var parts = trimmedFieldName.Split('.');
+
             // Check if the field name is already in the format "Alias.[FieldName]"
             if (fieldName.StartsWith($"{alias}.[") && fieldName.EndsWith("]"))
             {
                 return fieldName;
             }
 
-            // Check if the field name matches the format "Alias.FieldName"
-            var parts = fieldName.Split('.');
-            if (parts.Length == 2 && parts[0] == alias)
+            // Handle cases where there are two parts
+            if (parts.Length == 2)
             {
-                return $"{alias}.[{parts[1]}]";
+                // If there are two parts and the first part matches the alias, format correctly
+                if (parts[0] == alias)
+                {
+                    return $"{alias}.[{parts[1]}]";
+                }
             }
-
-            // Check if the field name does not contain a dot
-            if (!fieldName.Contains("."))
+            // Handle cases where there is only one part (no alias)
+            else if (parts.Length == 1)
             {
-                return $"{alias}.[{fieldName}]";
+                return $"{alias}.[{parts[0]}]";
             }
 
             throw new ArgumentException($"Invalid right field name format: {fieldName}");

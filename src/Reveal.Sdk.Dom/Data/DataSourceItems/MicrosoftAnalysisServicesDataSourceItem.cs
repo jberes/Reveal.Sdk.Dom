@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Data
             base(title, dataSource)
         { }
 
-        internal MicrosoftAnalysisServicesDataSourceItem(string title, DataSource dataSource) :
+        public MicrosoftAnalysisServicesDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

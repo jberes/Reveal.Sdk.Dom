@@ -258,5 +258,34 @@ namespace Reveal.Sdk.Dom.Tests
 
             Assert.True(isValid);
         }
+
+        [Fact]
+        public void ImportThrows_WhenDocumentIsNull()
+        {
+            var document = new RdashDocument();
+            document.Visualizations.Add(new GridVisualization(new DataSourceItem()));
+
+            Assert.Throws<ArgumentNullException>(() => document.Import(null));
+            Assert.Throws<ArgumentNullException>(() => document.Import(null, document.Visualizations[0]));
+            Assert.Throws<ArgumentNullException>(() => document.Import(null, "TEST"));
+        }
+
+        [Fact]
+        public void ImportThrows_WhenVisualizationIdIsNull()
+        {
+            var document = new RdashDocument();
+            document.Visualizations.Add(new GridVisualization(new DataSourceItem()));
+
+            Assert.Throws<ArgumentException>(() => document.Import(new RdashDocument(), (string)null));
+        }
+
+        [Fact]
+        public void ImportThrows_WhenVisualizationIsNull()
+        {
+            var document = new RdashDocument();
+            document.Visualizations.Add(new GridVisualization(new DataSourceItem()));
+
+            Assert.Throws<ArgumentNullException>(() => document.Import(new RdashDocument(), (IVisualization)null));
+        }
     }
 }

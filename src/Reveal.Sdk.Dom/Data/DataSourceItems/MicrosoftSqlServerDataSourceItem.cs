@@ -16,7 +16,7 @@ namespace Reveal.Sdk.Dom.Data
             base(title, dataSource)
         { }
 
-        internal MicrosoftSqlServerDataSourceItem(string title, DataSource dataSource) :
+        public MicrosoftSqlServerDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

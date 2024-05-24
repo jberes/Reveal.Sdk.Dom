@@ -4,6 +4,7 @@ using Reveal.Sdk.Data.Rest;
 using Reveal.Sdk.Data;
 using System.Threading.Tasks;
 using Reveal.Sdk.Data.Excel;
+using Reveal.Sdk.Data.Microsoft.AnalysisServices;
 
 namespace Sandbox.RevealSDK
 {

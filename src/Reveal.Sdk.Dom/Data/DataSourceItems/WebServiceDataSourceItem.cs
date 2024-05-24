@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     internal class WebServiceDataSourceItem : DataSourceItem
     {
-        internal WebServiceDataSourceItem(string title, DataSource dataSource) :
+        public WebServiceDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

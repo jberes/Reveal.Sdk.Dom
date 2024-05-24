@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     internal class GoogleAnalytics4DataSourceItem : DataSourceItem
     {
-        internal GoogleAnalytics4DataSourceItem(string title, DataSource dataSource) :
+        public GoogleAnalytics4DataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

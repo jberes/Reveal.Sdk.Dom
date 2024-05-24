@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     internal class ODataDataSourceItem : DataSourceItem
     {
-        internal ODataDataSourceItem(string title, DataSource dataSource) :
+        public ODataDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

@@ -20,7 +20,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 
             Assert.Empty(document.DataSources);
 
-            document.Validate();
+            RdashDocumentValidator.Validate(document);
 
             Assert.True(document.DataSources.Skip(1).Any());
         }
@@ -38,7 +38,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 
             Assert.Empty(document.DataSources);
 
-            document.Validate();
+            RdashDocumentValidator.Validate(document);
 
             var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProvider.JSON);
 
@@ -61,11 +61,80 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 
             Assert.Single(document.DataSources);
 
-            document.Validate();
+            RdashDocumentValidator.Validate(document);
 
             var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProvider.JSON);
 
             Assert.Single(jsonDataSources);
+        }
+
+        [Fact]
+        public void Validate_Adds_Fields()
+        {
+            var dataSourceItem = new DataSourceItem("Test", new DataSource()).SetFields(new List<IField> { new TextField() });
+
+            var document = new RdashDocument();
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            Assert.Empty(document.Visualizations[0].DataDefinition.AsTabular().Fields);
+
+            RdashDocumentValidator.Validate(document);
+
+            Assert.Single(document.Visualizations[0].DataDefinition.AsTabular().Fields);
+        }
+
+        [Fact]
+        public void Validate_PreventsDuplicate_Fields()
+        {
+            var dataSourceItem = new DataSourceItem("Test", new DataSource()).SetFields(new List<IField>
+            {
+                new TextField("Test"),
+                new TextField("Test")
+            });
+
+            var document = new RdashDocument();
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            Assert.Empty(document.Visualizations[0].DataDefinition.AsTabular().Fields);
+
+            RdashDocumentValidator.Validate(document);
+
+            Assert.Single(document.Visualizations[0].DataDefinition.AsTabular().Fields);
+        }
+
+        [Fact]
+        public void Validate_Adds_JoinTables()
+        {
+            var dataSourceItem = new DataSourceItem("Test", new DataSource()).SetFields(new List<IField> { new TextField() });
+            var joinConditions = new List<JoinCondition> { new JoinCondition("left", "right") };
+            var dataSourceItemToJoin = new DataSourceItem().SetFields(new List<IField> { new TextField() });
+
+            dataSourceItem.Join("Alias", joinConditions, dataSourceItemToJoin);
+
+            var document = new RdashDocument();
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            Assert.Empty(document.Visualizations[0].DataDefinition.AsTabular().JoinTables);
+
+            RdashDocumentValidator.Validate(document);
+
+            Assert.Single(document.Visualizations[0].DataDefinition.AsTabular().JoinTables);
+        }
+
+        [Fact]
+        public void Validate_ThrowsException_WhenDataSourceItem_WithDataSourceId_CantFindDataSource()
+        {
+            // Arrange
+            var dataSourceItem = new DataSourceItem() { DataSourceId = "TEST", Fields = new List<IField>() { new TextField() } };
+            var viz = new GridVisualization("TEST", dataSourceItem)
+            {
+                Title = "Test Visualization",
+            };
+            var document = new RdashDocument("Test");
+            document.Visualizations.Add(viz);
+
+            // Act & Assert
+            Assert.Throws<Exception>(() => RdashDocumentValidator.Validate(document));
         }
 
         [Fact]
@@ -109,6 +178,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         [Fact]
         public void Validate_ThrowsException_WhenFieldsAreNullOrEmpty()
         {
+            // Arrange
             var dataSourceItem = new DataSourceItem()
             {
                 Fields = new List<IField> { null }

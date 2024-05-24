@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     internal class GoogleSheetsDataSourceItem : DataSourceItem
     {
-        internal GoogleSheetsDataSourceItem(string title, DataSource dataSource) :
+        public GoogleSheetsDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

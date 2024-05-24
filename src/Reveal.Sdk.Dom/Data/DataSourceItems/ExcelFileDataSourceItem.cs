@@ -22,7 +22,7 @@ namespace Reveal.Sdk.Dom.Data
             Sheet = sheet;
         }
 
-        internal ExcelFileDataSourceItem(string title, DataSource dataSource) :
+        public ExcelFileDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         {
             InitializeResourceItem(title);

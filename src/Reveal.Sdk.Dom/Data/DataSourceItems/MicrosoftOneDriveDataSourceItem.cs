@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     internal class MicrosoftOneDriveDataSourceItem : DataSourceItem
     {
-        internal MicrosoftOneDriveDataSourceItem(string title, DataSource dataSource) :
+        public MicrosoftOneDriveDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

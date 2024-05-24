@@ -2,8 +2,10 @@
 {
     internal class MicrosoftAzureAnalysisServicesDataSourceItem : DataSourceItem
     {
-        internal MicrosoftAzureAnalysisServicesDataSourceItem(string title, DataSource dataSource) :
+        public MicrosoftAzureAnalysisServicesDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
-        { }
+        {
+            HasTabularData = false;
+        }
     }
 }

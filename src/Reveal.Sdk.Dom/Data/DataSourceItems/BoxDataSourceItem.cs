@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     internal class BoxDataSourceItem : DataSourceItem
     {
-        internal BoxDataSourceItem(string title, DataSource dataSource) :
+        public BoxDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

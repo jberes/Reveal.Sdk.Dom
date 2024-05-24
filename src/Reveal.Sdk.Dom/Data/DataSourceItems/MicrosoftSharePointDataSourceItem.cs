@@ -2,7 +2,7 @@
 {
     internal class MicrosoftSharePointDataSourceItem : DataSourceItem
     {
-        internal MicrosoftSharePointDataSourceItem(string title, DataSource dataSource) :
+        public MicrosoftSharePointDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
     }

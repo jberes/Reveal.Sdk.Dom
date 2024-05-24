@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     internal class DropboxDataSourceItem : DataSourceItem
     {
-        internal DropboxDataSourceItem(string title, DataSource dataSource) :
+        public DropboxDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

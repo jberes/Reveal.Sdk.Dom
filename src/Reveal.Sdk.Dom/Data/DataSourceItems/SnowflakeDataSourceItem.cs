@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Data
             base(title, dataSource)
         { }
 
-        internal SnowflakeDataSourceItem(string title, DataSource dataSource) :
+        public SnowflakeDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 

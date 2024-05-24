@@ -5,7 +5,7 @@ namespace Reveal.Sdk.Dom.Data
 {
     internal class GoogleBigQueryDataSourceItem : TableDataSourceItem
     {
-        internal GoogleBigQueryDataSourceItem(string title, DataSource dataSource) :
+        public GoogleBigQueryDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)
         { }
 
