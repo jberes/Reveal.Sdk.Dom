@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Core;
 using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,12 @@ namespace Reveal.Sdk.Dom.Data
         [JsonProperty]
         internal bool HasAsset { get; set; }
 
+        /// <summary>
+        /// Gets a value indicating whether the data source item is an Xmla data source.
+        /// </summary>
+        [JsonIgnore]
+        public bool IsXmla => !HasTabularData && !HasAsset;
+
         [JsonProperty]
         internal Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>();
 
@@ -64,8 +71,6 @@ namespace Reveal.Sdk.Dom.Data
         internal DataSourceItem ResourceItem { get; set; }
 
         private List<IField> _fields = new List<IField>();
-        private DataSource _dataSource;
-
         [JsonIgnore]
         public List<IField> Fields
         {
@@ -77,6 +82,7 @@ namespace Reveal.Sdk.Dom.Data
             }
         }
 
+        private DataSource _dataSource;
         /// <summary>
         /// The data source for the current DataSourceItem. This is set internally by a data source builder and is only used during the RdashDocumentValidator process.
         /// If this is null, then the DataSourceItem was manually added to the document and the DataSourceId property should be used to find the data source.
@@ -98,6 +104,12 @@ namespace Reveal.Sdk.Dom.Data
         /// </summary>
         [JsonIgnore]
         internal DataSource ResourceItemDataSource { get; set; }
+
+        /// <summary>
+        /// This property is used to store the join tables for the current DataSourceItem. It is copied to the TabularDataDefinition during the RdashDocumentValidator process.
+        /// </summary>
+        [JsonIgnore]
+        internal List<JoinTable> JoinTables { get; set; } = new List<JoinTable>();
 
         private void Initialize(DataSource dataSource, string title)
         {
@@ -139,5 +151,98 @@ namespace Reveal.Sdk.Dom.Data
         }
 
         protected virtual void OnFieldsPropertyChanged(List<IField> fields) { }
+
+        public void Join(string alias, string leftJoinFieldName, string rightJoinFieldName, DataSourceItem dataSourceItem)
+        {
+            Join(alias, new List<JoinCondition>
+            {
+                new JoinCondition(leftJoinFieldName, rightJoinFieldName)
+            }, dataSourceItem);
+        }
+
+        public void Join(string alias, IEnumerable<JoinCondition> joins, DataSourceItem dataSourceItem)
+        {
+            if (this is IProcessDataOnServer current)
+                current.ProcessDataOnServer = false;
+
+            if (dataSourceItem is IProcessDataOnServer dsi)
+                dsi.ProcessDataOnServer = false;
+
+            var additionalTable = new JoinTable(alias, dataSourceItem);
+            foreach (var join in joins)
+            {
+                var formattedLeftFieldName = ValidateLeftJoinFieldName(join.LeftFieldName);
+                var formattedRightFieldName = ValidateRightFieldName(join.RightFieldName, alias);
+
+                var joinCondition = new JoinCondition()
+                {
+                    LeftFieldName = formattedLeftFieldName,
+                    RightFieldName = formattedRightFieldName,
+                };
+                additionalTable.JoinConditions.Add(joinCondition);
+            }
+
+            foreach (var field in dataSourceItem.Fields.Clone())
+            {
+                field.FieldName = $"{alias}.{field.FieldName}";
+                field.TableAlias = alias;
+                Fields.Add(field);
+            }
+
+            JoinTables.Add(additionalTable);
+        }
+
+        private string ValidateLeftJoinFieldName(string fieldName)
+        {
+            // Check if the field name is already enclosed in brackets
+            if (fieldName.StartsWith("[") && fieldName.EndsWith("]"))
+            {
+                return fieldName;
+            }
+
+            // Check if the field name matches the format "A.[FieldName]"
+            var parts = fieldName.Split('.');
+            if (parts.Length == 2 && parts[1].StartsWith("[") && parts[1].EndsWith("]"))
+            {
+                return fieldName;
+            }
+
+            // Check if the field name contains a dot
+            if (fieldName.Contains("."))
+            {
+                // Split the field name by dot
+                var formattedFieldName = $"{parts[0]}.[{parts[1]}]";
+                return formattedFieldName;
+            }
+            else
+            {
+                // Return the field name enclosed in brackets
+                return $"[{fieldName}]";
+            }
+        }
+
+        private string ValidateRightFieldName(string fieldName, string alias)
+        {
+            // Check if the field name is already in the format "Alias.[FieldName]"
+            if (fieldName.StartsWith($"{alias}.[") && fieldName.EndsWith("]"))
+            {
+                return fieldName;
+            }
+
+            // Check if the field name matches the format "Alias.FieldName"
+            var parts = fieldName.Split('.');
+            if (parts.Length == 2 && parts[0] == alias)
+            {
+                return $"{alias}.[{parts[1]}]";
+            }
+
+            // Check if the field name does not contain a dot
+            if (!fieldName.Contains("."))
+            {
+                return $"{alias}.[{fieldName}]";
+            }
+
+            throw new ArgumentException($"Invalid right field name format: {fieldName}");
+        }
     }
 }

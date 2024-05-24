@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace Reveal.Sdk.Dom.Tests.Data
+namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
 {
     public class DataSourceItemFactoryFixture
     {

@@ -8,44 +8,83 @@ namespace Reveal.Sdk.Dom.Core.Utilities
 {
     internal static class RdashDocumentValidator
     {
-        internal static void FixDocument(RdashDocument document)
+        internal static void Validate(RdashDocument document)
         {
-            FixDataSources(document);
+            FixVisualizations(document);
         }
 
-        static void FixDataSources(RdashDocument document)
+        static void FixVisualizations(RdashDocument document)
         {
             Dictionary<string, DataSource> dataSources = new Dictionary<string, DataSource>();
+
             foreach (var visualization in document.Visualizations)
             {
                 if (visualization.DataDefinition is TabularDataDefinition tdd)
                 {
-                    var fields = tdd.Fields;
-                    if (fields == null)
-                        throw new Exception($"DataDefinition.Fields for visualization {visualization.Title} is null.");
+                    if (tdd.DataSourceItem == null)
+                        throw new Exception($"DataSourceItem for visualization {visualization.Title} is null.");
 
-                    var dsi = tdd.DataSourceItem;
-                    if (dsi == null)
-                        throw new Exception($"DataDefinition.DataSourceItem for visualization {visualization.Title} is null.");
-
-                    if (dsi.DataSource != null)
-                    {
-                        if (!dataSources.ContainsKey(dsi.DataSource.Id))
-                            dataSources.Add(dsi.DataSource.Id, dsi.DataSource);
-
-                        if (dsi.ResourceItemDataSource != null && !dataSources.ContainsKey(dsi.ResourceItemDataSource.Id))
-                            dataSources.Add(dsi.ResourceItemDataSource.Id, dsi.ResourceItemDataSource);
-                    }
-                    else
-                    {
-                        ValidateManuallyAddedDataSourceItem(document, dsi);
-                    }
+                    FixFields(tdd);
+                    FixJoinedTables(tdd);
+                    dataSources = FixDataSources(document, tdd.DataSourceItem);
                 }
                 //todo: handle XmlaDataDefinition
             }
 
-            var allDataSources = document.DataSources?.Union(dataSources.Values.ToArray());
-            document.DataSources = allDataSources?.ToList();
+            UpdateDocumentDataSources(document, dataSources);
+        }
+
+        private static void FixFields(TabularDataDefinition tdd)
+        {
+            if (tdd.DataSourceItem.Fields?.Count != 0)
+            {
+                // Create a HashSet to track added field names
+                HashSet<string> fieldNames = new HashSet<string>(tdd.Fields.Select(f => f.FieldName));
+
+                foreach (var field in tdd.DataSourceItem.Fields.Clone())
+                {
+                    if (field == null)
+                        throw new Exception($"Field for DataSourceItem {tdd.DataSourceItem.Title} is null.");
+
+                    //prevent adding duplicate fields
+                    if (!fieldNames.Contains(field.FieldName))
+                    {
+                        tdd.Fields.Add(field);
+                        fieldNames.Add(field.FieldName);
+                    }
+                }
+            }
+
+            if (tdd.Fields?.Count == 0)
+                throw new Exception($"Fields for DataSourceItem {tdd.DataSourceItem.Title} is null.");
+        }
+
+        static void FixJoinedTables(TabularDataDefinition tdd)
+        {
+            if (tdd.DataSourceItem.JoinTables != null)
+            {
+                tdd.JoinTables.AddRange(tdd.DataSourceItem.JoinTables.Clone());
+            }
+        }
+
+        static Dictionary<string, DataSource> FixDataSources(RdashDocument document, DataSourceItem dataSourceItem)
+        {
+            Dictionary<string, DataSource> dataSources = new Dictionary<string, DataSource>();
+
+            if (dataSourceItem.DataSource != null)
+            {
+                if (!dataSources.ContainsKey(dataSourceItem.DataSource.Id))
+                    dataSources.Add(dataSourceItem.DataSource.Id, dataSourceItem.DataSource);
+
+                if (dataSourceItem.ResourceItemDataSource != null && !dataSources.ContainsKey(dataSourceItem.ResourceItemDataSource.Id))
+                    dataSources.Add(dataSourceItem.ResourceItemDataSource.Id, dataSourceItem.ResourceItemDataSource);
+            }
+            else
+            {
+                ValidateManuallyAddedDataSourceItem(document, dataSourceItem);
+            }
+
+            return dataSources;
         }
 
         static void ValidateManuallyAddedDataSourceItem(RdashDocument document, DataSourceItem dsi)
@@ -60,6 +99,12 @@ namespace Reveal.Sdk.Dom.Core.Utilities
                 if (rds == null)
                     throw new Exception($"ResourceItem with Data source id {dsi.ResourceItem.DataSourceId} not found in the RdashDocument.DataSources collection.");
             }
+        }
+
+        private static void UpdateDocumentDataSources(RdashDocument document, Dictionary<string, DataSource> dataSources)
+        {
+            var allDataSources = document.DataSources?.Union(dataSources.Values) ?? dataSources.Values;
+            document.DataSources = allDataSources.ToList();
         }
     }
 }

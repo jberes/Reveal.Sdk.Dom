@@ -53,7 +53,7 @@ namespace Reveal.Sdk.Dom.Tests
         public void RdashDocument_Import_ShouldImportVisualizations()
         {
             // Arrange
-            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { null });
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { new TextField("Test") });
 
             var sourceDocument = new RdashDocument();
             sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
@@ -61,7 +61,7 @@ namespace Reveal.Sdk.Dom.Tests
             sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
-            RdashDocumentValidator.FixDocument(sourceDocument);
+            RdashDocumentValidator.Validate(sourceDocument);
 
             // Act
             var document = new RdashDocument();
@@ -79,7 +79,7 @@ namespace Reveal.Sdk.Dom.Tests
         public void RdashDocument_Import_ShouldImportSingleVisualization()
         {
             // Arrange
-            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { null });
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { new TextField("Test") });
 
             var sourceDocument = new RdashDocument();
             sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
@@ -87,7 +87,7 @@ namespace Reveal.Sdk.Dom.Tests
             sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
-            RdashDocumentValidator.FixDocument(sourceDocument);
+            sourceDocument.Validate();
 
             // Act
             var document = new RdashDocument();

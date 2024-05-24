@@ -5,7 +5,7 @@ using Reveal.Sdk.Dom.Visualizations;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Reveal.Sdk.Dom.Tests.Data
+namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
 {
     public class ExcelFileDataSourceItemFixture
     {
@@ -132,12 +132,12 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             // Arrange
             var document = new RdashDocument("Test");
-            var dataSourceItem = new ExcelFileDataSourceItem("Test").SetFields(new List<IField>() { null });
+            var dataSourceItem = new ExcelFileDataSourceItem("Test").SetFields(new List<IField>() { new TextField("Test") });
 
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
-            RdashDocumentValidator.FixDocument(document);
+            document.Validate();
 
             // Assert
             Assert.Equal(2, document.DataSources.Count);
@@ -150,12 +150,12 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             // Arrange
             var document = new RdashDocument("Test");
-            var dataSourceItem = new ExcelFileDataSourceItem("Test", "Path").SetFields(new List<IField>() { null });
+            var dataSourceItem = new ExcelFileDataSourceItem("Test", "Path").SetFields(new List<IField>() { new TextField("Test") });
 
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
-            RdashDocumentValidator.FixDocument(document);
+            document.Validate();
 
             // Assert
             Assert.Equal(2, document.DataSources.Count);
@@ -168,12 +168,12 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             // Arrange
             var document = new RdashDocument("Test");
-            var dataSourceItem = new ExcelFileDataSourceItem("Test", "Path", "Sheet").SetFields(new List<IField>() { null });
+            var dataSourceItem = new ExcelFileDataSourceItem("Test", "Path", "Sheet").SetFields(new List<IField>() { new TextField("Test") });
 
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
-            RdashDocumentValidator.FixDocument(document);
+            document.Validate();
 
             // Assert
             Assert.Equal(2, document.DataSources.Count);
