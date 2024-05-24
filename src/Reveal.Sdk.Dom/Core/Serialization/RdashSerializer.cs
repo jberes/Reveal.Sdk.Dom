@@ -62,7 +62,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization
 
         internal static string SerializeDocument(RdashDocument document)
         {
-            RdashDocumentValidator.FixDocument(document);
+            RdashDocumentValidator.Validate(document);
             return SerializeObject(document);
         }
 

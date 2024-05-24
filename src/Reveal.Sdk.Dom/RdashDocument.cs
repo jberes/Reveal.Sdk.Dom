@@ -11,6 +11,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using Reveal.Sdk.Dom.Core;
 using System.IO;
+using Reveal.Sdk.Dom.Core.Utilities;
 
 namespace Reveal.Sdk.Dom
 {
@@ -219,6 +220,14 @@ namespace Reveal.Sdk.Dom
         public string ToJsonString()
         {
             return RdashSerializer.SerializeDocument(this);
+        }
+
+        /// <summary>
+        /// Validates the <see cref="RdashDocument"/> to ensure it's in a valid state for serialization.
+        /// </summary>
+        public void Validate()
+        {
+            RdashDocumentValidator.Validate(this);
         }
     }
 }

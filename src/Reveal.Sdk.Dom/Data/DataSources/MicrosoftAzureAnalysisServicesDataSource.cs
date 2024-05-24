@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
@@ -10,6 +11,10 @@ namespace Reveal.Sdk.Dom.Data
         }
 
         [JsonIgnore]
-        public string ServerUrl { get; set; }
+        public string ServerUrl
+        {
+            get => Properties.GetValue<string>("ServerUrl");
+            set => Properties.SetItem("ServerUrl", value);
+        }
     }
 }

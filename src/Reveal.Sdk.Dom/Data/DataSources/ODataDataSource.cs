@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
@@ -10,6 +11,10 @@ namespace Reveal.Sdk.Dom.Data
         }
 
         [JsonIgnore]
-        public bool UsePreemptiveAuthentication { get; set; }
+        public bool UsePreemptiveAuthentication
+        {
+            get => Properties.GetValue<bool>("UsePreemptiveAuthentication");
+            set => Properties.SetItem("UsePreemptiveAuthentication", value);
+        }
     }
 }

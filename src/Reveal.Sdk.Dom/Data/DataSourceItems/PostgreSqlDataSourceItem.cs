@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class PostgreSqlDataSourceItem : FunctionDataSourceItem
+    public class PostgreSqlDataSourceItem : FunctionDataSourceItem, IProcessDataOnServer
     {
         public PostgreSqlDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)

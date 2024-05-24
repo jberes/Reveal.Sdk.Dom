@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
@@ -9,9 +10,17 @@ namespace Reveal.Sdk.Dom.Data
         { }
 
         [JsonIgnore]
-        public string DataSetId { get; set; }
+        public string DataSetId
+        {
+            get => Properties.GetValue<string>("DataSetId");
+            set => Properties.SetItem("DataSetId", value);
+        }
 
         [JsonIgnore]
-        public string ProjectId { get; set; }
+        public string ProjectId
+        {
+            get => Properties.GetValue<string>("ProjectId");
+            set => Properties.SetItem("ProjectId", value);
+        }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Core.Extensions;
+using System;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class MicrosoftSqlServerDataSourceItem : ProcedureDataSourceItem
+    public class MicrosoftSqlServerDataSourceItem : ProcedureDataSourceItem, IProcessDataOnServer
     {
         public MicrosoftSqlServerDataSourceItem(string title, string table, MicrosoftSqlServerDataSource dataSource) :
             this(title, dataSource)

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
@@ -10,6 +11,10 @@ namespace Reveal.Sdk.Dom.Data
         }
 
         [JsonIgnore]
-        public bool TrustServerCertificate { get; set; } //todo: implement
+        public bool TrustServerCertificate
+        {
+            get => Properties.GetValue<bool>("TrustServerCertificate");
+            set => Properties.SetItem("TrustServerCertificate", value);
+        }
     }
 }

@@ -23,7 +23,8 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonProperty]
         internal List<IField> TransposedFields { get; set; } = new List<IField>();
 
-        //this is used as visualization filters. let's find a better way to expose this
+        //this is used as visualization filters. 
+        //todo: let's find a better way to expose this
         [JsonProperty]
         internal List<VisualizationFilter> QuickFilters { get; set; } = new List<VisualizationFilter>();
 
@@ -32,8 +33,8 @@ namespace Reveal.Sdk.Dom.Visualizations
         internal SummarizationSpec SummarizationSpec { get; set; }
 
         //used when joining tables from multiple data sources
-        [JsonProperty]
-        internal List<AdditionalTable> AdditionalTables { get; set; } = new List<AdditionalTable>();
+        [JsonProperty("AdditionalTables")]
+        internal List<JoinTable> JoinTables { get; set; } = new List<JoinTable>();
 
         //not sure what this is for yet
         [JsonProperty]

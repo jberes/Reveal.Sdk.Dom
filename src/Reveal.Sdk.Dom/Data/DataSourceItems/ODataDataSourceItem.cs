@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
@@ -9,12 +10,24 @@ namespace Reveal.Sdk.Dom.Data
         { }
 
         [JsonIgnore]
-        public string EntityType { get; set; }
+        public string EntityType
+        {
+            get => Properties.GetValue<string>("EntityType");
+            set => Properties.SetItem("EntityType", value);
+        }
 
         [JsonIgnore]
-        public string FunctionQName { get; set; }
+        public string FunctionQName
+        {
+            get => Properties.GetValue<string>("FunctionQName");
+            set => Properties.SetItem("FunctionQName", value);
+        }
 
         [JsonIgnore]
-        public string Url { get; set; }
+        public string Url
+        {
+            get => Properties.GetValue<string>("Url");
+            set => Properties.SetItem("Url", value);
+        }
     }
 }

@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    internal class MySqlDataSourceItem : ProcedureDataSourceItem
+    internal class MySqlDataSourceItem : ProcedureDataSourceItem, IProcessDataOnServer
     {
         public MySqlDataSourceItem(string title, DataSource dataSource) :
             base(title, dataSource)

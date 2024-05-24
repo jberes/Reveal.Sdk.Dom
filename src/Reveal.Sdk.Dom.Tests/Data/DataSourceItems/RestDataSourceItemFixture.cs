@@ -6,10 +6,9 @@ using Reveal.Sdk.Dom.Visualizations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
 using Xunit;
 
-namespace Reveal.Sdk.Dom.Tests.Data
+namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
 {
     public class RestDataSourceItemFixture
     {
@@ -319,12 +318,12 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             // Arrange
             var document = new RdashDocument("Test");
-            var dataSourceItem = new RestDataSourceItem("Test").SetFields(new List<IField>() { null });
+            var dataSourceItem = new RestDataSourceItem("Test").SetFields(new List<IField>() { new TextField("Test") });
 
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
-            RdashDocumentValidator.FixDocument(document);
+            document.Validate();
 
             // Assert
             Assert.Equal(2, document.DataSources.Count);
@@ -337,12 +336,12 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             // Arrange
             var document = new RdashDocument("Test");
-            var dataSourceItem = new RestDataSourceItem("TITLE", "URI").SetFields(new List<IField>() { null });
+            var dataSourceItem = new RestDataSourceItem("TITLE", "URI").SetFields(new List<IField>() { new TextField("Test") });
 
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
-            RdashDocumentValidator.FixDocument(document);
+            document.Validate();
 
             // Assert
             Assert.Equal(2, document.DataSources.Count);
@@ -355,12 +354,12 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             // Arrange
             var document = new RdashDocument("Test");
-            var dataSourceItem = new RestDataSourceItem("Test", "URI", null).SetFields(new List<IField>() { null });
+            var dataSourceItem = new RestDataSourceItem("Test", "URI", null).SetFields(new List<IField>() { new TextField("Test") });
 
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
-            RdashDocumentValidator.FixDocument(document);
+            document.Validate();
 
             // Assert
             Assert.Equal(2, document.DataSources.Count);
@@ -373,13 +372,13 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             // Arrange
             var document = new RdashDocument("Test");
-            var dataSourceItem = new RestDataSourceItem("Test").SetFields(new List<IField>() { null });
+            var dataSourceItem = new RestDataSourceItem("Test").SetFields(new List<IField>() { new TextField("Test") });
             dataSourceItem.UseExcel();
 
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
-            RdashDocumentValidator.FixDocument(document);
+            document.Validate();
 
             // Assert
             Assert.Equal(2, document.DataSources.Count);
@@ -392,13 +391,13 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             //Arrange
             var document = new RdashDocument("Test");
-            var dataSourceItem = new RestDataSourceItem("Test").SetFields(new List<IField>() { null });
+            var dataSourceItem = new RestDataSourceItem("Test").SetFields(new List<IField>() { new TextField("Test") });
             dataSourceItem.UseCsv();
 
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
-            RdashDocumentValidator.FixDocument(document);
+            document.Validate();
 
             // Assert
             Assert.Equal(2, document.DataSources.Count);

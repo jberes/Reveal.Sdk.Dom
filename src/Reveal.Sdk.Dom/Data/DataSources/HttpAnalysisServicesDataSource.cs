@@ -3,11 +3,12 @@ using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    internal class WebServiceDataSourceItem : DataSourceItem
+    public class HttpAnalysisServicesDataSource : MicrosoftAnalysisServicesDataSource
     {
-        internal WebServiceDataSourceItem(string title, DataSource dataSource) :
-            base(title, dataSource)
-        { }
+        public HttpAnalysisServicesDataSource()
+        {
+            Properties.SetItem("Mode", "HTTP");
+        }
 
         [JsonIgnore]
         public string Url

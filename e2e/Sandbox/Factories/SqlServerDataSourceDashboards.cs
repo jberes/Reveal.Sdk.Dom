@@ -17,31 +17,50 @@ namespace Sandbox.Factories
                 Database = "Northwind",
             };
 
-            var document = new RdashDocument("My Dashboard");
-
-            var customersDsi = new MicrosoftSqlServerDataSourceItem("Customers Table", "Customers", sqlServerDS)
+            var customers = new MicrosoftSqlServerDataSourceItem("Customers Table", "Customers", sqlServerDS)
             {
                 Subtitle = "SQL Server Data Source Item",
                 Fields = new List<IField>
                 {
-                    new TextField("ContactName"),
-                    new TextField("ContactTitle"),
-                    new TextField("City")
+                    new TextField("CustomerID"),
+                    new TextField("ContactName") { FieldLabel = "Customer Name" },
+                    new TextField("ContactTitle") { FieldLabel = "Customer Title" },
+                    new TextField("City") { FieldLabel = "Customer City" }
                 }
             };
-            document.Visualizations.Add(new GridVisualization("Customer List", customersDsi).SetColumns("ContactName", "ContactTitle", "City"));
 
-            var employeesDsi = new MicrosoftSqlServerDataSourceItem("Employees Table", sqlServerDS)
+            var employees = new MicrosoftSqlServerDataSourceItem("Employees Table", sqlServerDS)
             {
                 Subtitle = "SQL Server Data Source Item",
                 Table = "Employees",
                 Fields = new List<IField>
                 {
-                    new TextField("FirstName"),
-                    new TextField("LastName"),
+                    new NumberField("EmployeeID"),
+                    new TextField("FirstName") { FieldLabel = "Employee First Name" },
+                    new TextField("LastName") { FieldLabel = "Employee Last Name" },
                 }
             };
-            document.Visualizations.Add(new GridVisualization("Employee List", employeesDsi).SetColumns("FirstName", "LastName"));
+
+            var orders = new MicrosoftSqlServerDataSourceItem("Orders Table", "Orders", sqlServerDS)
+            {
+                Fields = new List<IField>
+                {
+                    new TextField("CustomerID"),
+                    new NumberField("EmployeeID") { FieldLabel = "Order Employee ID" },
+                    new DateField("OrderDate") { FieldLabel = "Oder Date" },
+                    new TextField("ShipName") { FieldLabel = "Order Ship Name" },
+                },
+            };
+
+            customers.Join("A", "CustomerID", "CustomerID", orders);
+            customers.Join("B", "A.EmployeeID", "EmployeeID", employees);
+
+            var document = new RdashDocument("My Dashboard");
+
+            document.Visualizations.Add(new GridVisualization("Customer List", customers).SetColumns("ContactName", "ContactTitle", "City"));
+            document.Visualizations.Add(new GridVisualization("Employee List", employees).SetColumns("FirstName", "LastName"));
+            document.Visualizations.Add(new GridVisualization("Joined Tables", customers).SetColumns("ContactName", "ContactTitle", "City",
+                "A.EmployeeID", "A.OrderDate", "A.ShipName", "B.FirstName", "B.LastName"));
 
             return document;
         }

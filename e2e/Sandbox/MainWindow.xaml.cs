@@ -33,6 +33,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Windows.Management.Deployment;
 
 namespace Sandbox
 {
@@ -43,7 +44,8 @@ namespace Sandbox
     {
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
+        //readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "My Dashboard.rdash");
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -159,6 +161,19 @@ namespace Sandbox
             //webDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
             //ds.Add(webDS);
 
+            //var http = new RVHttpAnalysisServicesDataSource();
+            //http.Title = "HTTP Analysis Services";
+            //http.Subtitle = "HTTP Analysis Services Subtitle";
+            //http.Url = "http://revealdb01.infragistics.local/OLAP/msmdpump.dll";
+            //http.Catalog = "Adventure Works DW 2008R2";
+            //ds.Add(http);
+
+            //var httpItem = new RVAnalysisServicesDataSourceItem(http);
+            //httpItem.Title = "HTTP Analysis Services Item";
+            //httpItem.Subtitle = "HTTP Analysis Services Item Subtitle";
+            //httpItem.Cube = "Adventure Works";
+            //dsi.Add(httpItem);
+
             e.Callback(new RevealDataSources(ds, dsi, true));
         }
 
@@ -206,11 +221,12 @@ namespace Sandbox
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
             //var document = CustomDashboard.CreateDashboard();
-            var document = RestDataSourceDashboards.CreateDashboard();
-            //var document = SqlServerDataSourceDashboards.CreateDashboard();
-            //var document = DashboardLinkingDashboard.CreateDashboard();
+            //var document = RestDataSourceDashboards.CreateDashboard();
+            var document = SqlServerDataSourceDashboards.CreateDashboard();
+            //var document = DashboardLinkingDashboard.CreateDashboard();            
 
             var json = document.ToJsonString();
+
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
         }
     }

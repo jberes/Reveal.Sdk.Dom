@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
@@ -10,9 +11,17 @@ namespace Reveal.Sdk.Dom.Data
         }
 
         [JsonIgnore]
-        public string URL { get; set; }
+        public string Url
+        {
+            get => Properties.GetValue<string>("URL");
+            set => Properties.SetItem("URL", value);
+        }
 
         [JsonIgnore]
-        public bool UseAnonymousAuthentication { get; set; }
+        public bool UseAnonymousAuthentication
+        {
+            get => Properties.GetValue<bool>("UseAnonymousAuthentication");
+            set => Properties.SetItem("UseAnonymousAuthentication", value);
+        }
     }
 }

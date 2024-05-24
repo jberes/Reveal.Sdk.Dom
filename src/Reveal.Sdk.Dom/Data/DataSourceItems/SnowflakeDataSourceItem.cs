@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class SnowflakeDataSourceItem : SchemaDataSourceItem
+    public class SnowflakeDataSourceItem : SchemaDataSourceItem, IProcessDataOnServer
     {
         public SnowflakeDataSourceItem(string title, SnowflakeDataSource dataSource) :
             base(title, dataSource)
