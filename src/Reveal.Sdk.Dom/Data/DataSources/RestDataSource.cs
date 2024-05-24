@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Data
@@ -14,15 +15,31 @@ namespace Reveal.Sdk.Dom.Data
         }
 
         [JsonIgnore]
-        public string Body { get; set; }
+        public string Body
+        {
+            get => Properties.GetValue<string>("Body");
+            set => Properties.SetItem("Body", value);
+        }
 
         [JsonIgnore]
-        public string ContentType { get; set; }
+        public string ContentType
+        {
+            get => Properties.GetValue<string>("ContentType");
+            set => Properties.SetItem("ContentType", value);
+        }
 
         [JsonIgnore]
-        public List<string> Headers { get; set; }
+        public List<string> Headers
+        {
+            get => Properties.GetValue<List<string>>("Headers");
+            set => Properties.SetItem("Headers", value);
+        }
 
         [JsonIgnore]
-        public string Method { get; set; }
+        public string Method
+        {
+            get => Properties.GetValue<string>("Method");
+            set => Properties.SetItem("Method", value);
+        }
     }
 }
