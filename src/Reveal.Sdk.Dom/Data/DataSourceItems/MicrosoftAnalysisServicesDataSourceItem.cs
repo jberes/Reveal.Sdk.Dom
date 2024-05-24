@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
@@ -13,14 +14,28 @@ namespace Reveal.Sdk.Dom.Data
         { }
 
         [JsonIgnore]
-        public string Catalog { get; set; }
+        public string Catalog
+        {
+            get => Properties.GetValue<string>("Catalog");
+            set => Properties.SetItem("Catalog", value);
+        }
 
         [JsonIgnore]
-        public string Cube { get; set; }
+        public string Cube
+        {
+            get => Properties.GetValue<string>("Cube");
+            set => Properties.SetItem("Cube", value);
+        }
 
         protected override DataSource CreateDataSourceInstance(DataSource dataSource)
         {
             return Create<MicrosoftAnalysisServicesDataSource>(dataSource);
+        }
+
+        protected override void InitializeDataSourceItem(string title)
+        {
+            base.InitializeDataSourceItem(title);
+            HasTabularData = false;
         }
     }
 }
