@@ -26,7 +26,7 @@ namespace Reveal.Sdk.Dom.Core.Utilities
 
                     FixFields(tdd);
                     FixJoinedTables(tdd);
-                    dataSources = FixDataSources(document, tdd.DataSourceItem);
+                    FixDataSources(document, tdd.DataSourceItem, dataSources);
                 }
                 //todo: handle XmlaDataDefinition
             }
@@ -67,10 +67,8 @@ namespace Reveal.Sdk.Dom.Core.Utilities
             }
         }
 
-        static Dictionary<string, DataSource> FixDataSources(RdashDocument document, DataSourceItem dataSourceItem)
+        static void FixDataSources(RdashDocument document, DataSourceItem dataSourceItem, Dictionary<string, DataSource> dataSources)
         {
-            Dictionary<string, DataSource> dataSources = new Dictionary<string, DataSource>();
-
             if (dataSourceItem.DataSource != null)
             {
                 if (!dataSources.ContainsKey(dataSourceItem.DataSource.Id))
@@ -83,8 +81,6 @@ namespace Reveal.Sdk.Dom.Core.Utilities
             {
                 ValidateManuallyAddedDataSourceItem(document, dataSourceItem);
             }
-
-            return dataSources;
         }
 
         static void ValidateManuallyAddedDataSourceItem(RdashDocument document, DataSourceItem dsi)

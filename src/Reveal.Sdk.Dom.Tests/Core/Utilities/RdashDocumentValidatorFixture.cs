@@ -53,19 +53,23 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 
             var document = new RdashDocument();
             document.DataSources.Add(dataSource);
+            document.DataSources.Add(dataSource);
+            document.DataSources.Add(dataSource);
+            document.DataSources.Add(dataSource);
 
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
             document.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
-
-            Assert.Single(document.DataSources);
 
             RdashDocumentValidator.Validate(document);
 
             var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProvider.JSON);
+            var restDataSources = document.DataSources.Where(x => x.Provider == DataSourceProvider.REST);
 
+            Assert.Equal(2, document.DataSources.Count);
             Assert.Single(jsonDataSources);
+            Assert.Single(restDataSources);
         }
 
         [Fact]
@@ -119,6 +123,35 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
             RdashDocumentValidator.Validate(document);
 
             Assert.Single(document.Visualizations[0].DataDefinition.AsTabular().JoinTables);
+        }
+
+        [Fact]
+        public void Validate_Fixes_REST_DataSources()
+        {
+            var jsonDataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "JSON", "JSON").SetFields(new List<IField>() { new TextField("Test") });
+            var csvDataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "CSV", "CSV").SetFields(new List<IField>() { new TextField("Test") }) as RestDataSourceItem;
+            csvDataSourceItem.UseCsv();
+            var excelDataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "Excel", "Excel").SetFields(new List<IField>() { new TextField("Test") }) as RestDataSourceItem;
+            excelDataSourceItem.UseExcel();
+
+            var document = new RdashDocument();
+
+            document.Visualizations.Add(new GridVisualization(jsonDataSourceItem));
+            document.Visualizations.Add(new GridVisualization(csvDataSourceItem));
+            document.Visualizations.Add(new GridVisualization(excelDataSourceItem));
+
+            RdashDocumentValidator.Validate(document);
+
+            var jsonDataSources = document.DataSources.Where(x => x.Provider == DataSourceProvider.JSON);
+            var csvDataSources = document.DataSources.Where(x => x.Provider == DataSourceProvider.CSV);
+            var excelDataSources = document.DataSources.Where(x => x.Provider == DataSourceProvider.MicrosoftExcel);
+            var restDataSources = document.DataSources.Where(x => x.Provider == DataSourceProvider.REST);
+
+            Assert.Equal(6, document.DataSources.Count);
+            Assert.Single(jsonDataSources);
+            Assert.Single(csvDataSources);
+            Assert.Single(excelDataSources);
+            Assert.Equal(3, restDataSources.Count());
         }
 
         [Fact]
