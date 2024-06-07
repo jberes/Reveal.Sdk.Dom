@@ -1,8 +1,10 @@
-﻿using Reveal.Sdk.Dom.Core;
+﻿using Newtonsoft.Json;
+using Reveal.Sdk.Dom.Core;
+using Reveal.Sdk.Dom.Core.Serialization.Converters;
 
 namespace Reveal.Sdk.Dom.Filters
 {
-    //todo: need converter XmlaNumberFilterRuleType XmlaStringFilterRuleType
+    [JsonConverter(typeof(XmlaFilterRuleConverter))]
     public abstract class XmlaFilterRule : SchemaType
     {
 

@@ -1,4 +1,5 @@
-﻿using Reveal.Sdk.Dom.Visualizations;
+﻿using Reveal.Sdk.Dom.Core.Constants;
+using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
 
@@ -10,10 +11,10 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
         {
             TypeMap = new Dictionary<string, Type>()
             {
-                { "XmlaDimensionType", typeof(XmlaDimension) },
-                { "XmlaHierarchyLevelType", typeof(XmlaHierarchyLevel) },
-                { "XmlaHierarchyType", typeof(XmlaHierarchy) },
-                { "XmlaSetType", typeof(XmlaSet) },
+                { SchemaTypeNames.XmlaDimensionType, typeof(XmlaDimension) },
+                { SchemaTypeNames.XmlaHierarchyLevelType, typeof(XmlaHierarchyLevel) },
+                { SchemaTypeNames.XmlaHierarchyType, typeof(XmlaHierarchy) },
+                { SchemaTypeNames.XmlaSetType, typeof(XmlaSet) },
             };
         }
     }
