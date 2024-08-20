@@ -162,7 +162,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
         [InlineData(typeof(GoogleSheetsDataSourceItem), false)]
         [InlineData(typeof(MicrosoftAnalysisServicesDataSourceItem), true)]
         [InlineData(typeof(MicrosoftAzureAnalysisServicesDataSourceItem), true)]
-        [InlineData(typeof(MicrosoftAzureSqlDatabaseDataSourceItem), false)]
+        [InlineData(typeof(MicrosoftAzureSqlServerDataSourceItem), false)]
         [InlineData(typeof(MicrosoftAzureSynapseAnalyticsDataSourceItem), false)]
         [InlineData(typeof(MicrosoftOneDriveDataSourceItem), false)]
         [InlineData(typeof(MicrosoftSharePointDataSourceItem), false)]
