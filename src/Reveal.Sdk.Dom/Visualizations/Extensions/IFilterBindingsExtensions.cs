@@ -4,17 +4,27 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public static class IFilterBindingsExtensions
     {
-        public static T AddFilterBinding<T>(this T visualization, Binding filterBinding)
+        public static T ConnectDashboardFilter<T>(this T visualization, DashboardFilter dashboardFilter)
             where T : IFilterBindings
         {
-            visualization.FilterBindings.Add(filterBinding);
+            if (dashboardFilter is DashboardDateFilter)
+            {
+                visualization.FilterBindings.Add(new DashboardDateFilterBinding("Date"));
+            }
+            else
+            {
+                visualization.FilterBindings.Add(new DashboardDataFilterBinding(dashboardFilter as DashboardDataFilter));
+            }
             return visualization;
         }
 
-        public static T AddFilterBindings<T>(this T visualization, params Binding[] filterBindings)
+        public static T ConnectDashboardFilters<T>(this T visualization, params DashboardFilter[] dashboardFilter)
             where T : IFilterBindings
         {
-            visualization.FilterBindings.AddRange(filterBindings);
+            foreach (var filter in dashboardFilter)
+            {
+                visualization.ConnectDashboardFilter(filter);
+            }
             return visualization;
         }
     }
