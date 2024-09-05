@@ -103,6 +103,10 @@ namespace Reveal.Sdk.Dom.Visualizations
                 return;
 
             ((DataDefinitionBase)DataDefinition).DataSourceItem = dataSourceItem;
+            if (DataDefinition is TabularDataDefinition tdd)
+            {
+                tdd.Fields = dataSourceItem.Fields.Clone();
+            }
         }
 
         protected virtual void InitializeDataDefinition(DataSourceItem dataSourceItem)

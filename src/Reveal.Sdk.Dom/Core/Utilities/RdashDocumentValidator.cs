@@ -36,27 +36,15 @@ namespace Reveal.Sdk.Dom.Core.Utilities
 
         private static void FixFields(TabularDataDefinition tdd)
         {
-            if (tdd.DataSourceItem.Fields?.Count != 0)
-            {
-                // Create a HashSet to track added field names
-                HashSet<string> fieldNames = new HashSet<string>(tdd.Fields.Select(f => f.FieldName));
-
-                foreach (var field in tdd.DataSourceItem.Fields.Clone())
-                {
-                    if (field == null)
-                        throw new Exception($"Field for DataSourceItem {tdd.DataSourceItem.Title} is null.");
-
-                    //prevent adding duplicate fields
-                    if (!fieldNames.Contains(field.FieldName))
-                    {
-                        tdd.Fields.Add(field);
-                        fieldNames.Add(field.FieldName);
-                    }
-                }
-            }
-
             if (tdd.Fields?.Count == 0)
-                throw new Exception($"Fields for DataSourceItem {tdd.DataSourceItem.Title} is null.");
+                throw new Exception($"Fields for DataSourceItem {tdd.DataSourceItem.Title} is null or empty.");
+
+            // Check if there are duplicates
+            var hasDuplicates = tdd.Fields.GroupBy(f => f.FieldName).Any(g => g.Count() > 1);
+            if (hasDuplicates)
+            {
+                tdd.Fields = tdd.Fields.GroupBy(f => f.FieldName).Select(g => g.First()).ToList();
+            }
         }
 
         static void FixJoinedTables(TabularDataDefinition tdd)

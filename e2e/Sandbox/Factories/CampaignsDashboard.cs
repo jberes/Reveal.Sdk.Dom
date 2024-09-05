@@ -1,4 +1,5 @@
-﻿using Reveal.Sdk.Dom;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
@@ -21,10 +22,11 @@ namespace Sandbox.Factories
                 UseAutoLayout = false,
             };
 
-            document.Filters.Add(new DashboardDateFilter()
+            var dateFilter = new DashboardDateFilter()
             {
                 RuleType = DateRuleType.TrailingTwelveMonths
-            });
+            };
+            document.Filters.Add(dateFilter);
 
             var campaignIdFilter = new DashboardDataFilter(excelDataSourceItem)
             {
@@ -35,23 +37,19 @@ namespace Sandbox.Factories
             };
             document.Filters.Add(campaignIdFilter);
 
-
-            var globalDateFilterBinding = new DashboardDateFilterBinding("Date");
-            var territoryFilterBinding = new DashboardDataFilterBinding(campaignIdFilter);
-
-            document.Visualizations.Add(CreateKpiTargetVisualization(excelDataSourceItem, territoryFilterBinding));
-            document.Visualizations.Add(CreateIndicatorVisualization("Website Traffic", "Traffic", excelDataSourceItem, territoryFilterBinding));
-            document.Visualizations.Add(CreateIndicatorVisualization("Conversions", "Conversions", excelDataSourceItem, territoryFilterBinding));
-            document.Visualizations.Add(CreateIndicatorVisualization("New Seats", "New Seats", excelDataSourceItem, territoryFilterBinding));
-            document.Visualizations.Add(CreateSplineAreaChartVisualization(excelDataSourceItem, globalDateFilterBinding, territoryFilterBinding));
-            document.Visualizations.Add(CreateStackedColumnChartVisualization(excelDataSourceItem, globalDateFilterBinding, territoryFilterBinding));
-            document.Visualizations.Add(CreateLineChartVisualization(excelDataSourceItem, globalDateFilterBinding, territoryFilterBinding));
-            document.Visualizations.Add(CreateDoughnutChartVisualization(excelDataSourceItem, globalDateFilterBinding, territoryFilterBinding));
+            document.Visualizations.Add(CreateKpiTargetVisualization(excelDataSourceItem, campaignIdFilter));
+            document.Visualizations.Add(CreateIndicatorVisualization("Website Traffic", "Traffic", excelDataSourceItem, campaignIdFilter));
+            document.Visualizations.Add(CreateIndicatorVisualization("Conversions", "Conversions", excelDataSourceItem, campaignIdFilter));
+            document.Visualizations.Add(CreateIndicatorVisualization("New Seats", "New Seats", excelDataSourceItem, campaignIdFilter));
+            document.Visualizations.Add(CreateSplineAreaChartVisualization(excelDataSourceItem, dateFilter, campaignIdFilter));
+            document.Visualizations.Add(CreateStackedColumnChartVisualization(excelDataSourceItem, dateFilter, campaignIdFilter));
+            document.Visualizations.Add(CreateLineChartVisualization(excelDataSourceItem, dateFilter, campaignIdFilter));
+            document.Visualizations.Add(CreateDoughnutChartVisualization(excelDataSourceItem, dateFilter, campaignIdFilter));
 
             return document;
         }
 
-        private static Visualization CreateKpiTargetVisualization(DataSourceItem excelDataSourceItem, Binding territoryFilterBinding)
+        private static Visualization CreateKpiTargetVisualization(DataSourceItem excelDataSourceItem, DashboardDataFilter filter)
         {
             var visualization = new KpiTargetVisualization(excelDataSourceItem)
             {
@@ -60,7 +58,7 @@ namespace Sandbox.Factories
                 RowSpan = 13,
             };
 
-            visualization.FilterBindings.Add(territoryFilterBinding);
+            visualization.ConnectDashboardFilter(filter);
 
             visualization.Date = new DimensionColumn()
             {
@@ -83,7 +81,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateIndicatorVisualization(string title, string field, DataSourceItem excelDataSourceItem, Binding territoryFilterBinding)
+        private static Visualization CreateIndicatorVisualization(string title, string field, DataSourceItem excelDataSourceItem, DashboardDataFilter filter)
         {
             var visualization = new KpiTimeVisualization(excelDataSourceItem)
             {
@@ -92,7 +90,7 @@ namespace Sandbox.Factories
                 RowSpan = 13,
             };
 
-            visualization.FilterBindings.Add(territoryFilterBinding);
+            visualization.ConnectDashboardFilter(filter);
 
             visualization.Date = new DimensionColumn()
             {
@@ -110,7 +108,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateSplineAreaChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateSplineAreaChartVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             var visualization = new SplineAreaChartVisualization(excelDataSourceItem)
             {
@@ -119,7 +117,7 @@ namespace Sandbox.Factories
                 RowSpan = 28,
             };
 
-            visualization.FilterBindings.AddRange(filterBindings);
+            visualization.ConnectDashboardFilters(filters);
 
             visualization.Labels.Add(new DimensionColumn()
             {
@@ -141,7 +139,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateStackedColumnChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateStackedColumnChartVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             var visualization = new StackedColumnChartVisualization(excelDataSourceItem)
             {
@@ -150,7 +148,7 @@ namespace Sandbox.Factories
                 RowSpan = 28,
             };
 
-            visualization.FilterBindings.AddRange(filterBindings);
+            visualization.ConnectDashboardFilters(filters);
 
             visualization.Labels.Add(new DimensionColumn()
             {
@@ -176,7 +174,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateLineChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateLineChartVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             var visualization = new LineChartVisualization(excelDataSourceItem)
             {
@@ -185,7 +183,7 @@ namespace Sandbox.Factories
                 RowSpan = 19,
             };
 
-            visualization.FilterBindings.AddRange(filterBindings);
+            visualization.ConnectDashboardFilters(filters);
 
             visualization.Labels.Add(new DimensionColumn()
             {
@@ -203,7 +201,7 @@ namespace Sandbox.Factories
             return visualization;
         }
 
-        private static Visualization CreateDoughnutChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateDoughnutChartVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             var visualization = new DoughnutChartVisualization(excelDataSourceItem)
             {
@@ -212,7 +210,7 @@ namespace Sandbox.Factories
                 RowSpan = 19,
             };
 
-            visualization.FilterBindings.AddRange(filterBindings);
+            visualization.ConnectDashboardFilters(filters);
 
             visualization.Labels.Add(new DimensionColumn()
             {

@@ -80,11 +80,36 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
             var document = new RdashDocument();
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
 
-            Assert.Empty(document.Visualizations[0].DataDefinition.AsTabular().Fields);
-
             RdashDocumentValidator.Validate(document);
 
             Assert.Single(document.Visualizations[0].DataDefinition.AsTabular().Fields);
+        }
+
+        [Fact]
+        public void Validate_ThrowsException_When_Fields_Are_Null()
+        {
+            var dataSourceItem = new DataSourceItem("Test", new DataSource());
+            dataSourceItem.Fields = null;
+
+            var document = new RdashDocument();
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            var exception = Assert.Throws<Exception>(() => RdashDocumentValidator.Validate(document));
+
+            Assert.Equal("Fields for DataSourceItem Test is null or empty.", exception.Message);
+        }
+
+        [Fact]
+        public void Validate_ThrowsException_When_Fields_Are_Empty()
+        {
+            var dataSourceItem = new DataSourceItem("Test", new DataSource()).SetFields(new List<IField>());
+
+            var document = new RdashDocument();
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            var exception = Assert.Throws<Exception>(() => RdashDocumentValidator.Validate(document));
+
+            Assert.Equal("Fields for DataSourceItem Test is null or empty.", exception.Message);
         }
 
         [Fact]
@@ -93,13 +118,12 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
             var dataSourceItem = new DataSourceItem("Test", new DataSource()).SetFields(new List<IField>
             {
                 new TextField("Test"),
+                new TextField("Test"),
                 new TextField("Test")
             });
 
             var document = new RdashDocument();
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
-
-            Assert.Empty(document.Visualizations[0].DataDefinition.AsTabular().Fields);
 
             RdashDocumentValidator.Validate(document);
 

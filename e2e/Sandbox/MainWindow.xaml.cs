@@ -23,6 +23,7 @@ using Reveal.Sdk.Data.Rest;
 using Reveal.Sdk.Data.Snowflake;
 using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Factories;
 using Sandbox.Helpers;
@@ -34,6 +35,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Windows.Management.Deployment;
+using Windows.Storage.Streams;
 
 namespace Sandbox
 {
@@ -44,8 +46,8 @@ namespace Sandbox
     {
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
-        //readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Marketing);
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "My Dashboard.rdash");
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Sales);
+        //readonly string _readFilePath = Path.Combine(_dashboardFilePath, "My Dashboard.rdash");
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -208,7 +210,8 @@ namespace Sandbox
 
         private async void Read_Dashboard(object sender, RoutedEventArgs e)
         {
-            var document = RdashDocument.Load(_readFilePath);
+            var document = RdashDocument.Load(_readFilePath);            
+
             var json = document.ToJsonString();
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
         }
@@ -216,13 +219,13 @@ namespace Sandbox
         private async void Create_Dashboard(object sender, RoutedEventArgs e)
         {
             //var document = MarketingDashboard.CreateDashboard();
-            //var document = SalesDashboard.CreateDashboard();
+            var document = SalesDashboard.CreateDashboard();
             //var document = CampaignsDashboard.CreateDashboard();
             //var document = HealthcareDashboard.CreateDashboard();
             //var document = ManufacturingDashboard.CreateDashboard();
             //var document = CustomDashboard.CreateDashboard();
             //var document = RestDataSourceDashboards.CreateDashboard();
-            var document = SqlServerDataSourceDashboards.CreateDashboard();
+            //var document = SqlServerDataSourceDashboards.CreateDashboard();
             //var document = DashboardLinkingDashboard.CreateDashboard();            
 
             var json = document.ToJsonString();

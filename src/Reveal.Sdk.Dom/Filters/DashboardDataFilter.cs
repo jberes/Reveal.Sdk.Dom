@@ -21,5 +21,14 @@ namespace Reveal.Sdk.Dom.Filters
             DataDefinition.DataSourceItem = dataSourceItem;
             DataDefinition.Fields = dataSourceItem?.Fields.Clone();
         }
+
+        public void SelectValues(params object[] values)
+        {
+            SelectedItems.Clear();
+            foreach (var value in values)
+            {
+                SelectedItems.Add(new FilterItem(SelectedFieldName, value));
+            }
+        }
     }
 }

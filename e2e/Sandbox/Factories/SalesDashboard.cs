@@ -21,10 +21,11 @@ namespace Sandbox.Factories
                 UseAutoLayout = false,
             };
 
-            document.Filters.Add(new DashboardDateFilter()
+            var dateFilter = new DashboardDateFilter()
             {
                 Title = "My Date Filter"
-            });
+            };
+            document.Filters.Add(dateFilter);
 
             var territoryFilter = new DashboardDataFilter(excelDataSourceItem)
             {
@@ -35,22 +36,19 @@ namespace Sandbox.Factories
             };
             document.Filters.Add(territoryFilter);
 
-            var globalDateFilterBinding = new DashboardDateFilterBinding("Date");
-            var territoryFilterBinding = new DashboardDataFilterBinding(territoryFilter);
-
-            document.Visualizations.Add(CreateKpiTargetVisualization(excelDataSourceItem, territoryFilterBinding));
-            document.Visualizations.Add(CreateSplineAreaChartVisualization(excelDataSourceItem, globalDateFilterBinding, territoryFilterBinding));
-            document.Visualizations.Add(CreateStackedColumnChartVisualization(excelDataSourceItem, globalDateFilterBinding, territoryFilterBinding));
-            document.Visualizations.Add(CreateIndicatorVisualization(excelDataSourceItem, territoryFilterBinding));
-            document.Visualizations.Add(CreateSparklineVisualization(excelDataSourceItem, globalDateFilterBinding, territoryFilterBinding));
-            document.Visualizations.Add(CreateBarChartVisualization(excelDataSourceItem, globalDateFilterBinding, territoryFilterBinding));
-            document.Visualizations.Add(CreateColumnChartVisualization(excelDataSourceItem, globalDateFilterBinding, territoryFilterBinding));
-            document.Visualizations.Add(CreateGaugeVisualization(excelDataSourceItem, globalDateFilterBinding, territoryFilterBinding));
+            document.Visualizations.Add(CreateKpiTargetVisualization(excelDataSourceItem, territoryFilter));
+            document.Visualizations.Add(CreateSplineAreaChartVisualization(excelDataSourceItem, dateFilter, territoryFilter));
+            document.Visualizations.Add(CreateStackedColumnChartVisualization(excelDataSourceItem, dateFilter, territoryFilter));
+            document.Visualizations.Add(CreateIndicatorVisualization(excelDataSourceItem, territoryFilter));
+            document.Visualizations.Add(CreateSparklineVisualization(excelDataSourceItem, dateFilter, territoryFilter));
+            document.Visualizations.Add(CreateBarChartVisualization(excelDataSourceItem, dateFilter, territoryFilter));
+            document.Visualizations.Add(CreateColumnChartVisualization(excelDataSourceItem, dateFilter, territoryFilter));
+            document.Visualizations.Add(CreateGaugeVisualization(excelDataSourceItem, dateFilter, territoryFilter));
 
             return document;
         }
 
-        private static Visualization CreateKpiTargetVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateKpiTargetVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             return new KpiTargetVisualization("Sales", excelDataSourceItem)
                 .SetDate("Date")
@@ -69,38 +67,38 @@ namespace Sandbox.Factories
                     }
                 })
                 .SetTarget("Forecasted")
-                .AddFilterBindings(filterBindings)
+                .ConnectDashboardFilters(filters)
                 .SetPosition(20, 11);
         }
 
-        private static Visualization CreateSplineAreaChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateSplineAreaChartVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             return new SplineAreaChartVisualization("New vs Renewal Sales", excelDataSourceItem)
                 .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("New Sales", "Renewal Sales ")
-                .AddFilterBindings(filterBindings)
+                .ConnectDashboardFilters(filters)
                 .SetPosition(39, 31);
         }
 
-        private static Visualization CreateStackedColumnChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateStackedColumnChartVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             return new StackedColumnChartVisualization("Sales by Product", excelDataSourceItem)
                 .SetLabel("Product")
                 .SetValues("New Sales", "Renewal Sales ")
-                .AddFilterBindings(filterBindings)
+                .ConnectDashboardFilters(filters)
                 .SetPosition(39, 18);
         }
 
-        private static Visualization CreateIndicatorVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateIndicatorVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             return new KpiTimeVisualization("Total Opportunities", excelDataSourceItem)
                 .SetDate(new DateDataField("Date") { AggregationType = DateAggregationType.Year })
                 .SetValue("Total Opportunites")
-                .AddFilterBindings(filterBindings)
+                .ConnectDashboardFilters(filters)
                 .SetPosition(19, 11);
         }
 
-        private static Visualization CreateSparklineVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateSparklineVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             return new SparklineVisualization("New Seats by Product", excelDataSourceItem)
                 .SetDate(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
@@ -124,11 +122,11 @@ namespace Sandbox.Factories
                     settings.DateFieldAlignment = Alignment.Left;
                     settings.AggregationType = SparklineAggregationType.Months;
                 })
-                .AddFilterBindings(filterBindings)
+                .ConnectDashboardFilters(filters)
                 .SetPosition(30, 31);
         }
 
-        private static Visualization CreateBarChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateBarChartVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             return new BarChartVisualization("Sales", excelDataSourceItem)
                 .SetLabel("Employee")
@@ -143,20 +141,20 @@ namespace Sandbox.Factories
                         ApplyMkFormat = true,
                     }
                 })
-                .AddFilterBindings(filterBindings)
+                .ConnectDashboardFilters(filters)
                 .SetPosition(43, 29);
         }
 
-        private static Visualization CreateColumnChartVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateColumnChartVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             return new ColumnChartVisualization("", excelDataSourceItem)
                 .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
                 .SetValues("Leads", "Hot Leads")
-                .AddFilterBindings(filterBindings)
+                .ConnectDashboardFilters(filters)
                 .SetPosition(46, 31);
         }
 
-        private static Visualization CreateGaugeVisualization(DataSourceItem excelDataSourceItem, params Binding[] filterBindings)
+        private static Visualization CreateGaugeVisualization(DataSourceItem excelDataSourceItem, params DashboardFilter[] filters)
         {
             var visualization = new BulletGraphVisualization("Quotas by Sales Rep", excelDataSourceItem)
                 .SetLabel("Employee")
@@ -185,7 +183,7 @@ namespace Sandbox.Factories
                     RuleType = NumberRuleType.TopItems,
                     Value = 10.0
                 })
-                .AddFilterBindings(filterBindings)
+                .ConnectDashboardFilters(filters)
                 .SetPosition(33, 29);
 
             return visualization;
