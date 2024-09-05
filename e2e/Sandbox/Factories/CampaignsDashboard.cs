@@ -31,7 +31,7 @@ namespace Sandbox.Factories
             var campaignIdFilter = new DashboardDataFilter(excelDataSourceItem)
             {
                 Title = "CampaignID",
-                SelectedFieldName = "CampaignID",
+                FieldName = "CampaignID",
                 AllowMultipleSelection = true,
                 AllowEmptySelection = true
             };

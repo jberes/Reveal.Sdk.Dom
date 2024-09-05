@@ -9,15 +9,24 @@ namespace Reveal.Sdk.Dom.Filters
     public sealed class DashboardDataFilter : DashboardDataFilterBase
     {
         [JsonProperty("DataSpec")]
-        public TabularDataDefinition DataDefinition { get; internal set; } = new TabularDataDefinition();
+        internal TabularDataDefinition DataDefinition { get; set; } = new TabularDataDefinition();
 
-        public string SelectedFieldName { get; set; }
+        [JsonProperty("SelectedFieldName")]
+        public string FieldName { get; set; }
 
         internal DashboardDataFilter() : this(null) { }
 
         public DashboardDataFilter(DataSourceItem dataSourceItem)
+            : this (null, dataSourceItem)        {        }
+
+        public DashboardDataFilter(string fieldName, DataSourceItem dataSourceItem)
+            : this (fieldName, null, dataSourceItem)        {        }
+
+        public DashboardDataFilter(string fieldName, string title, DataSourceItem dataSourceItem)
         {
             SchemaTypeName = SchemaTypeNames.TabularGlobalFilterType;
+            FieldName = fieldName;
+            Title = title;
             DataDefinition.DataSourceItem = dataSourceItem;
             DataDefinition.Fields = dataSourceItem?.Fields.Clone();
         }
@@ -27,7 +36,7 @@ namespace Reveal.Sdk.Dom.Filters
             SelectedItems.Clear();
             foreach (var value in values)
             {
-                SelectedItems.Add(new FilterItem(SelectedFieldName, value));
+                SelectedItems.Add(new FilterItem(FieldName, value));
             }
         }
     }

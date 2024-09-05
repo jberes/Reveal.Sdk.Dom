@@ -13,10 +13,12 @@ namespace Reveal.Sdk.Dom.Filters
         [JsonConverter(typeof(StringEnumConverter))]
         public DateRuleType RuleType { get; set; } = DateRuleType.LastYear;
 
-        public DashboardDateFilter()
+        public DashboardDateFilter() : this("Date Filter") { }
+
+        public DashboardDateFilter(string title)
         {
             SchemaTypeName = SchemaTypeNames.DateGlobalFilterType;
-            Title = "Date Filter";
+            Title = title;
         }
     }
 }

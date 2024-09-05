@@ -21,19 +21,10 @@ namespace Sandbox.Factories
                 UseAutoLayout = false,
             };
 
-            var dateFilter = new DashboardDateFilter()
-            {
-                Title = "My Date Filter"
-            };
+            var dateFilter = new DashboardDateFilter("My Date Filter");
             document.Filters.Add(dateFilter);
 
-            var territoryFilter = new DashboardDataFilter(excelDataSourceItem)
-            {
-                Title = "Territory",
-                SelectedFieldName = "Territory",
-                AllowMultipleSelection = true,
-                AllowEmptySelection = true
-            };
+            var territoryFilter = new DashboardDataFilter("Territory", excelDataSourceItem);
             document.Filters.Add(territoryFilter);
 
             document.Visualizations.Add(CreateKpiTargetVisualization(excelDataSourceItem, territoryFilter));

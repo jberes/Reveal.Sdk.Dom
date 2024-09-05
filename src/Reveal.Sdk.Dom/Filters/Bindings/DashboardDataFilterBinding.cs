@@ -6,12 +6,12 @@
 
         public DashboardDataFilterBinding(DashboardDataFilter dataFilter)
         {
-            Source = new FieldBindingSource() { FieldName = dataFilter?.SelectedFieldName };
+            Source = new FieldBindingSource() { FieldName = dataFilter?.FieldName };
             Operator = BindingOperatorType.Equals;
             Target = new DashboardDataFilterBindingTarget()
             {
                 DashboardFilterId = dataFilter?.Id,
-                DashboardFilterFieldName = dataFilter?.SelectedFieldName
+                DashboardFilterFieldName = dataFilter?.FieldName
             };
         }
     }
