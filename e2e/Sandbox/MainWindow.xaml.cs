@@ -210,10 +210,8 @@ namespace Sandbox
 
         private async void Read_Dashboard(object sender, RoutedEventArgs e)
         {
-            var document = RdashDocument.Load(_readFilePath);
-            var filter = document.Filters[1] as DashboardDataFilter;
-            filter.SelectedItems.Add(new FilterItem("CampaignID", "Ruby"));
-            
+            var document = RdashDocument.Load(_readFilePath);            
+
             var json = document.ToJsonString();
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
         }

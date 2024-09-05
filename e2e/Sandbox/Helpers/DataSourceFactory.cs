@@ -67,6 +67,7 @@ namespace Sandbox.Helpers
                 IsAnonymous = true,
                 Fields = GetSalesDataSourceFields(),
             };
+            excelDataSourceItem.UseExcel("Sales");
 
             return excelDataSourceItem;
         }

@@ -9,13 +9,7 @@ namespace Reveal.Sdk.Dom.Filters
         {
             FieldValues.Add(fieldName, value);
         }
-        public FilterItem(string fieldName, params object[] value)
-        {
-            foreach (var v in value)
-            {
-                FieldValues.Add(fieldName, v);
-            }
-        }
+
         public Dictionary<string, object> FieldValues { get; set; } = new Dictionary<string, object>();
         public List<string> ExpansionPath { get; set; } = new List<string>();
     }
