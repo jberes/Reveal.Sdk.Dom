@@ -7,13 +7,20 @@ namespace Reveal.Sdk.Dom.Visualizations
         public static T ConnectDashboardFilter<T>(this T visualization, DashboardFilter dashboardFilter)
             where T : IFilterBindings
         {
+            return visualization.ConnectDashboardFilter(dashboardFilter, null);
+        }
+
+        public static T ConnectDashboardFilter<T>(this T visualization, DashboardFilter dashboardFilter, string fieldName)
+            where T : IFilterBindings
+        {
             if (dashboardFilter is DashboardDateFilter)
             {
-                visualization.FilterBindings.Add(new DashboardDateFilterBinding("Date"));
+                visualization.FilterBindings.Add(new DashboardDateFilterBinding(fieldName ?? "Date"));
             }
-            else
+            else if (dashboardFilter is DashboardDataFilter dataFilter)
             {
-                visualization.FilterBindings.Add(new DashboardDataFilterBinding(dashboardFilter as DashboardDataFilter));
+                var binding = fieldName == null ? new DashboardDataFilterBinding(dataFilter) : new DashboardDataFilterBinding(dataFilter, fieldName);
+                visualization.FilterBindings.Add(binding);
             }
             return visualization;
         }

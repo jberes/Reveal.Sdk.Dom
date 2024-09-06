@@ -26,7 +26,7 @@ namespace Reveal.Sdk.Dom.Filters
         {
             SchemaTypeName = SchemaTypeNames.TabularGlobalFilterType;
             FieldName = fieldName;
-            Title = title;
+            Title = title ?? fieldName;
             DataDefinition.DataSourceItem = dataSourceItem;
             DataDefinition.Fields = dataSourceItem?.Fields.Clone();
         }
