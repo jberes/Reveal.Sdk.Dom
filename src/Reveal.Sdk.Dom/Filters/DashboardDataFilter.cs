@@ -17,10 +17,10 @@ namespace Reveal.Sdk.Dom.Filters
         internal DashboardDataFilter() : this(null) { }
 
         public DashboardDataFilter(DataSourceItem dataSourceItem)
-            : this (null, dataSourceItem)        {        }
+            : this(null, dataSourceItem) { }
 
         public DashboardDataFilter(string fieldName, DataSourceItem dataSourceItem)
-            : this (fieldName, null, dataSourceItem)        {        }
+            : this(fieldName, null, dataSourceItem) { }
 
         public DashboardDataFilter(string fieldName, string title, DataSourceItem dataSourceItem)
         {
