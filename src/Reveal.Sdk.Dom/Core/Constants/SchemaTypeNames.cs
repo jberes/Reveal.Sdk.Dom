@@ -16,6 +16,7 @@ namespace Reveal.Sdk.Dom.Core.Constants
         internal const string DateTimeFilterType = "DateTimeFilterType";
         internal const string StringFilterType = "StringFilterType";
         internal const string TimeFilterType = "TimeFilterType";
+        internal const string XmlaGlobalFilterType = "XmlaGlobalFilterType";
         internal const string XmlaDateFilterType = "XmlaDateFilterType";
         internal const string XmlaRegularFilterType = "XmlaRegularFilterType";
         internal const string XmlaStringFilterRuleType = "XmlaStringFilterRuleType";

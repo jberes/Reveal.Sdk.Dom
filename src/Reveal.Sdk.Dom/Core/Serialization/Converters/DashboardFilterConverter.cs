@@ -13,6 +13,7 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
             {
                 { SchemaTypeNames.DateGlobalFilterType, typeof(DashboardDateFilter) },
                 { SchemaTypeNames.TabularGlobalFilterType, typeof(DashboardDataFilter) },
+                { SchemaTypeNames.XmlaGlobalFilterType, typeof(DashboardXmlaFilter) }
             };
         }
     }
