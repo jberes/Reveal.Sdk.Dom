@@ -1,4 +1,6 @@
 ﻿using Reveal.Sdk.Dom.Core;
+using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
 using System.Collections.Generic;
 using Xunit;
@@ -108,6 +110,12 @@ namespace Reveal.Sdk.Dom.Tests.Core
             public string Description { get; set; }
             public IDataDefinition DataDefinition { get; }
             RdashDocument IParentDocument.Document { get; set; }
+            public List<Binding> FilterBindings { get; }
+
+            public DataSourceItem GetDataSourceItem()
+            {
+                throw new System.NotImplementedException();
+            }
         }
     }
 }
