@@ -53,6 +53,9 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonProperty]
         internal Dictionary<string, object> Properties { get; set; } = new Dictionary<string, object>();
 
+        [JsonConverter(typeof(StringEnumConverter))]
+        public SortingType Sorting { get; set; } = SortingType.None;
+
         /// <inheritdoc />
         public string TableAlias { get; set; } //used when joining data from multiple sources
     }
