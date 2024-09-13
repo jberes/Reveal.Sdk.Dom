@@ -10,30 +10,17 @@ using System.Linq;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class Visualization<TSettings> : Visualization, ISettingsProvider<TSettings>, IFilterBindings
+    public abstract class Visualization<TSettings> : Visualization, ISettingsProvider<TSettings>
         where TSettings : VisualizationSettings, new()
     {
         protected Visualization(string title, DataSourceItem dataSourceItem) 
             : base(title, dataSourceItem) { }
-
-        [JsonIgnore]
-        public List<Binding> FilterBindings
-        {
-            get { return ((DataDefinitionBase)DataDefinition).Bindings.Bindings; }
-        }
 
         [JsonProperty("ActionsModel", Order = 10)]
         public VisualizationLinker Linker { get; set; }
 
         [JsonProperty("VisualizationSettings", Order = 5)]
         public TSettings Settings { get; internal set; } = new TSettings();
-
-        //todo: is it possible to create a Filters property that can properly handle both Tabular and Xmla data specs?
-        //[JsonIgnore]
-        //public List<VisualizationFilter> Filters
-        //{
-        //    get { return DataDefinition.QuickFilters; } //this works for tabluar
-        //}
     }
 
     public abstract class Visualization : IVisualization, IParentDocument
@@ -73,6 +60,19 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// </summary>
         public string Description { get; set; }
 
+        [JsonIgnore]
+        public List<Binding> FilterBindings
+        {
+            get { return ((DataDefinitionBase)DataDefinition).Bindings.Bindings; }
+        }
+
+        //todo: is it possible to create a Filters property that can properly handle both Tabular and Xmla data specs?
+        //[JsonIgnore]
+        //public List<VisualizationFilter> Filters
+        //{
+        //    get { return DataDefinition.QuickFilters; } //this works for tabluar
+        //}
+
         /// <summary>
         /// Gets the data source item for the visualization.
         /// </summary>
@@ -96,7 +96,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// <summary>
         /// Updates the data source item and available fields for the visualization.
         /// </summary>
-        /// <param name="dataSourceItem">The <see cref="DataSourceItem"/> created with a data source builder.</param>
+        /// <param name="dataSourceItem">The <see cref="DataSourceItem"/>.</param>
         public void UpdateDataSourceItem(DataSourceItem dataSourceItem)
         {
             if (DataDefinition == null || dataSourceItem == null)
