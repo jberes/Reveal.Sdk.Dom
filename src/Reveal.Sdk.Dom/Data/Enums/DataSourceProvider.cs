@@ -25,6 +25,9 @@ namespace Reveal.Sdk.Dom.Data
         [EnumMember(Value = "DROPBOXPROVIDER")]
         Dropbox,
 
+        [EnumMember(Value = "GOOGLE_ADS")]
+        GoogleAds,
+
         [EnumMember(Value = "GOOGLE_ANALYTICS")]
         GoogleAnalytics,
 
@@ -120,8 +123,5 @@ namespace Reveal.Sdk.Dom.Data
 
         [EnumMember(Value = "WEBSERVICE")]
         WebService,
-
-        [EnumMember(Value = "GOOGLE_ADS")]
-        GoogleAds,
     }
 }
