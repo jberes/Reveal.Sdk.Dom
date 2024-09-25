@@ -96,9 +96,9 @@ namespace Reveal.Sdk.Dom
         /// Gets the collection of visualizations that are displayed in the dashboard.
         /// </summary>
         [JsonProperty("Widgets")]
-        public VisualizationCollection Visualizations 
-        { 
-            get => _visualizations; 
+        public VisualizationCollection Visualizations
+        {
+            get => _visualizations;
             internal set
             {
                 _visualizations = value;
@@ -120,9 +120,8 @@ namespace Reveal.Sdk.Dom
             //let's wait for feedback from customers
             //for now let's just clear any visualization filters that may be binding to a dashboard filter
             foreach (var viz in document.Visualizations)
-            {               
-                if (viz is IFilterBindings bindings)
-                    bindings.FilterBindings.Clear();
+            {
+                viz.FilterBindings.Clear();
             }
 
             DataSources.AddRange(document.DataSources); //add all data sources, unused data sources will be removed later during serialization
@@ -166,8 +165,7 @@ namespace Reveal.Sdk.Dom
             //todo: think about dashboard filters. should we bring them over? maybe some import options to control it?
             //let's wait for feedback from customers
             //for now let's just clear any visualization filters that may be binding to a dashboard filter
-            if (visualization is IFilterBindings bindings)
-                bindings.FilterBindings.Clear();
+            visualization.FilterBindings.Clear();
 
             DataSources.AddRange(document.DataSources); //add all data sources, unused data sources will be removed later during serialization
 
@@ -210,7 +208,7 @@ namespace Reveal.Sdk.Dom
         /// <param name="filePath">The file path to save the <see cref="RdashDocument"/> (must include the .rdash extensions).</param>
         public void Save(string filePath)
         {
-            RdashSerializer.Save(this, filePath);            
+            RdashSerializer.Save(this, filePath);
         }
 
         /// <summary>

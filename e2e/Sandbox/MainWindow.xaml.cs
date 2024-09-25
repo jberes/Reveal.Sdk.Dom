@@ -46,8 +46,8 @@ namespace Sandbox
     {
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Sales);
-        //readonly string _readFilePath = Path.Combine(_dashboardFilePath, "My Dashboard.rdash");
+        //readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Sales);
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "New Dashboard.rdash");
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);

@@ -1,5 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Core.Serialization.Converters;
+using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Filters;
+using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
@@ -14,5 +17,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         int RowSpan { get; set; }
         string Description { get; set; }
         IDataDefinition DataDefinition { get; }
+        List<Binding> FilterBindings { get; }
+        DataSourceItem GetDataSourceItem();
     }
 }
