@@ -120,5 +120,8 @@ namespace Reveal.Sdk.Dom.Data
 
         [EnumMember(Value = "WEBSERVICE")]
         WebService,
+
+        [EnumMember(Value = "GOOGLE_ADS")]
+        GoogleAds,
     }
 }
