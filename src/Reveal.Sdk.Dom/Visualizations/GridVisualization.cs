@@ -27,9 +27,18 @@ namespace Reveal.Sdk.Dom.Visualizations
         public GridVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.Grid; }
 
         [JsonIgnore]
-        public List<TabularColumn> Columns { get { return VisualizationDataSpec.Columns; } }
+        public List<TabularColumn> Columns { get {
+                if (VisualizationDataSpec is GridVisualizationDataSpec gds)
+                {
+                    return gds.Columns;
+                }
+                else 
+                {
+                    return new List<TabularColumn>();
+                }
+            } }
 
         [JsonProperty(Order = 7)]
-        GridVisualizationDataSpec VisualizationDataSpec { get; set; } = new GridVisualizationDataSpec();
+        VisualizationDataSpec VisualizationDataSpec { get; set; } = new GridVisualizationDataSpec();
     }
 }
