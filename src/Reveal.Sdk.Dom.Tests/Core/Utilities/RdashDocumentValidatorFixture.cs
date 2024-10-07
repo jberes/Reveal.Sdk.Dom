@@ -131,7 +131,27 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         }
 
         [Fact]
-        public void Validate_Adds_JoinTables()
+        public void Validate_PreventsDuplicate_JoinTables()
+        {
+            var dataSourceItem = new DataSourceItem("Test", new DataSource()).SetFields(new List<IField> { new TextField() });
+            var joinConditions = new List<JoinCondition> { new JoinCondition("left", "right") };
+            var dataSourceItemToJoin = new DataSourceItem().SetFields(new List<IField> { new TextField() });
+
+            dataSourceItem.Join("Alias", joinConditions, dataSourceItemToJoin);
+            dataSourceItem.Join("Alias", joinConditions, dataSourceItemToJoin);
+
+            var document = new RdashDocument();
+            document.Visualizations.Add(new GridVisualization(dataSourceItem));
+
+            Assert.Equal(2,document.Visualizations[0].DataDefinition.AsTabular().JoinTables.Count);
+
+            RdashDocumentValidator.Validate(document);
+
+            Assert.Single(document.Visualizations[0].DataDefinition.AsTabular().JoinTables);
+        }
+
+        [Fact]
+        public void Validate_JoinTables_JoinsAreNotDuplicated()
         {
             var dataSourceItem = new DataSourceItem("Test", new DataSource()).SetFields(new List<IField> { new TextField() });
             var joinConditions = new List<JoinCondition> { new JoinCondition("left", "right") };
@@ -142,10 +162,15 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
             var document = new RdashDocument();
             document.Visualizations.Add(new GridVisualization(dataSourceItem));
 
-            Assert.Empty(document.Visualizations[0].DataDefinition.AsTabular().JoinTables);
+            Assert.Single(document.Visualizations[0].DataDefinition.AsTabular().JoinTables);
 
             RdashDocumentValidator.Validate(document);
 
+            Assert.Single(document.Visualizations[0].DataDefinition.AsTabular().JoinTables);
+
+            RdashDocumentValidator.Validate(document);
+
+            //should still be single after another validate call
             Assert.Single(document.Visualizations[0].DataDefinition.AsTabular().JoinTables);
         }
 

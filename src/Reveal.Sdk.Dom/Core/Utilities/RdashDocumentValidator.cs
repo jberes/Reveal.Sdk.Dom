@@ -49,9 +49,11 @@ namespace Reveal.Sdk.Dom.Core.Utilities
 
         static void FixJoinedTables(TabularDataDefinition tdd)
         {
-            if (tdd.DataSourceItem.JoinTables != null)
+             // Check if there are duplicates
+            var hasDuplicates = tdd.JoinTables.GroupBy(jt => jt.Alias).Any(g => g.Count() > 1);
+            if (hasDuplicates)
             {
-                tdd.JoinTables.AddRange(tdd.DataSourceItem.JoinTables.Clone());
+                tdd.JoinTables = tdd.JoinTables.GroupBy(jt => jt.Alias).Select(g => g.First()).ToList();
             }
         }
 
