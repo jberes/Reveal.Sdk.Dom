@@ -107,9 +107,9 @@ namespace Reveal.Sdk.Dom.Visualizations
             {
                 tdd.Fields = dataSourceItem.Fields.Clone();
                 
-                if(tdd.DataSourceItem.JoinTables != null)
+                if(tdd.DataSourceItem.JoinTables != null && tdd.DataSourceItem.JoinTables.Count > 0)
                 {
-                    tdd.JoinTables.AddRange(tdd.DataSourceItem.JoinTables.Clone());
+                    tdd.JoinTables = tdd.DataSourceItem.JoinTables.Clone();
                 }
             }
         }
