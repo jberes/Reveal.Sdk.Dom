@@ -106,6 +106,11 @@ namespace Reveal.Sdk.Dom.Visualizations
             if (DataDefinition is TabularDataDefinition tdd)
             {
                 tdd.Fields = dataSourceItem.Fields.Clone();
+                
+                if(tdd.DataSourceItem.JoinTables != null && tdd.DataSourceItem.JoinTables.Count > 0)
+                {
+                    tdd.JoinTables = tdd.DataSourceItem.JoinTables.Clone();
+                }
             }
         }
 
