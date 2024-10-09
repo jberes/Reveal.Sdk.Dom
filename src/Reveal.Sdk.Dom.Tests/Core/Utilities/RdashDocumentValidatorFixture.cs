@@ -11,7 +11,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
     public class RdashDocumentValidatorFixture
     {
         [Fact]
-        public void DataSources_AddedToRdashDocument()
+        public void Validate_AddsDataSources_ToRdashDocument()
         {
             var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { new TextField("Test") });
 
@@ -26,7 +26,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         }
 
         [Fact]
-        public void DataSources_FromVisualizationsAreNotDuplicated()
+        public void Validate_PreventsDuplicateDataSources_FromVisualizations()
         {
             var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { new TextField("Test") });
 
@@ -46,7 +46,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         }
 
         [Fact]
-        public void DataSources_FromVisualizations_AndDataSources_AreNotDuplicated()
+        public void Validate_PreventsDuplicateDataSources_FromVisualizationsAndDataSources()
         {
             var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { new TextField("Test") });
             var dataSource = dataSourceItem.DataSource;
