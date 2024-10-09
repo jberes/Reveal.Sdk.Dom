@@ -92,7 +92,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
         }
 
         [Fact]
-        public void DataSourceItem_Join_AddsJoinTable()
+        public void DataSourceItem_Join_AddsJoinTableUsingJoinConditions()
         {
             // Arrange
             var dataSourceItem = new DataSourceItem();
@@ -101,6 +101,26 @@ namespace Reveal.Sdk.Dom.Tests.Data
 
             // Act
             dataSourceItem.Join("Alias", joinConditions, dataSourceItemToJoin);
+
+            // Assert
+            Assert.Single(dataSourceItem.JoinTables);
+            Assert.Equal("Alias", dataSourceItem.JoinTables[0].Alias);
+            Assert.Equal(dataSourceItemToJoin, dataSourceItem.JoinTables[0].DataDefinition.DataSourceItem);
+            Assert.Single(dataSourceItem.JoinTables[0].JoinConditions);
+            Assert.Equal("[left]", dataSourceItem.JoinTables[0].JoinConditions[0].LeftFieldName);
+            Assert.Equal("Alias.[right]", dataSourceItem.JoinTables[0].JoinConditions[0].RightFieldName);
+        }
+
+        [Fact]
+        public void DataSourceItem_Join_AddsJoinTableUsingLeftAndRightFieldNames()
+        {
+            // Arrange
+            var dataSourceItem = new DataSourceItem();
+            var joinConditions = new List<JoinCondition> { new JoinCondition("left", "right") };
+            var dataSourceItemToJoin = new DataSourceItem();
+
+            // Act
+            dataSourceItem.Join("Alias", "left", "right", dataSourceItemToJoin);
 
             // Assert
             Assert.Single(dataSourceItem.JoinTables);

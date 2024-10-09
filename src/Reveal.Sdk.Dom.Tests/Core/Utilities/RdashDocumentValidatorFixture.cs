@@ -151,7 +151,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         }
 
         [Fact]
-        public void Validate_JoinTables_JoinsAreNotDuplicated()
+        public void Validate_PreventsDuplicates_OnMultipleValidations()
         {
             var dataSourceItem = new DataSourceItem("Test", new DataSource()).SetFields(new List<IField> { new TextField() });
             var joinConditions = new List<JoinCondition> { new JoinCondition("left", "right") };
