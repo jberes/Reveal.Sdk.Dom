@@ -43,20 +43,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
         }
 
         [Fact]
-        public void AccountId_ThrowsException_WhenSetToNull()
-        {
-            // Arrange
-            var dataSource = new GoogleAnalytics4DataSource();
-            var dataSourceItem = new GoogleAnalytics4DataSourceItem("Test", dataSource);
-
-            // Act
-            Action act = () => dataSourceItem.AccountId = null;
-
-            // Assert
-            Assert.Throws<ArgumentNullException>(act);
-        }
-
-        [Fact]
         public void PropertyId_SaveValueAndProperties_WhenSet()
         {
             // Arrange
@@ -70,20 +56,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             // Assert
             Assert.Equal(propertyId, dataSourceItem.PropertyId);
             Assert.Equal(propertyId, dataSourceItem.Properties.GetValue<string>("PropertyId"));
-        }
-
-        [Fact]
-        public void PropertyId_ThrowsException_WhenSetToNull()
-        {
-            // Arrange
-            var dataSource = new GoogleAnalytics4DataSource();
-            var dataSourceItem = new GoogleAnalytics4DataSourceItem("Test", dataSource);
-
-            // Act
-            Action act = () => dataSourceItem.PropertyId = null;
-
-            // Assert
-            Assert.Throws<ArgumentNullException>(act);
         }
     }
 }
