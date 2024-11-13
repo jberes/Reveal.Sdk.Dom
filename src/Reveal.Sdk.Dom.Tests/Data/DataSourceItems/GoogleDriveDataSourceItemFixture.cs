@@ -12,6 +12,19 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
     public class GoogleDriveDataSourceItemFixture
     {
         [Fact]
+        public void GoogleDriveDataSourceItem_IsDataSourceItem_WhenConstructed()
+        {
+            // Arrange
+            var dataSource = new GoogleDriveDataSource();
+
+            // Act
+            var dataSourceItem = new GoogleDriveDataSourceItem("Test title", dataSource);
+
+            // Assert
+            Assert.True(dataSourceItem is DataSourceItem);
+        }
+
+        [Fact]
         public void Constructor_SetsTitleAndDatasource_AsProvided()
         {
             // Arrange

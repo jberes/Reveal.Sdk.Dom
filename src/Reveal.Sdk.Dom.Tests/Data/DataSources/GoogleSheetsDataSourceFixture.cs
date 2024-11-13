@@ -11,6 +11,17 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 {
     public class GoogleSheetsDataSourceFixture
     {
+
+        [Fact]
+        public void GoogleSheetsDataSource_IsDataSource_WhenConstructed()
+        {
+            // Act
+            var dataSource = new GoogleSheetsDataSource();
+
+            // Assert
+            Assert.True(dataSource is DataSource);
+        }
+
         [Fact]
         public void Constructor_SetProviderToGoogleSheets_WhenConstructed()
         {

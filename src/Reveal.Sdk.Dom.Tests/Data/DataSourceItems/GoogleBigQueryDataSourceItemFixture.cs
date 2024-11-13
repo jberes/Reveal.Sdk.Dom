@@ -11,6 +11,20 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
 {
     public class GoogleBigQueryDataSourceItemFixture
     {
+
+        [Fact]
+        public void GoogleBigQueryDataSourceItem_IsDataSourceItem_WhenConstructed()
+        {
+            // Arrange
+            var dataSource = new GoogleBigQueryDataSource();
+
+            // Act
+            var dataSourceItem = new GoogleBigQueryDataSourceItem("Test title", dataSource);
+
+            // Assert
+            Assert.True(dataSourceItem is DataSourceItem);
+        }
+
         [Fact]
         public void Constructor_SetsTitleAndDatasource_AsProvided()
         {

@@ -12,6 +12,19 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
     public class GoogleAnalytics4DataSourceItemFixture
     {
         [Fact]
+        public void GoogleAnalytics4DataSourceItem_IsDataSourceItem_WhenConstructed()
+        {
+            // Arrange
+            var dataSource = new GoogleAnalytics4DataSource();
+
+            // Act
+            var dataSourceItem = new GoogleAnalytics4DataSourceItem("Test title", dataSource);
+
+            // Assert
+            Assert.True(dataSourceItem is DataSourceItem);
+        }
+
+        [Fact]
         public void Constructor_SetsTitleAndDatasource_AsProvided()
         {
             // Arrange
