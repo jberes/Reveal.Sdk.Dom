@@ -12,47 +12,78 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
     public class GoogleAnalytics4DataSourceItemFixture
     {
         [Fact]
-        public void Constructor_SetsTitleAndDatasource_AsInputs()
+        public void Constructor_SetsTitleAndDatasource_AsProvided()
         {
             // Arrange
             var dataSource = new GoogleAnalytics4DataSource();
+            var title = "Test title";
 
             // Act
-            var dataSourceItem = new GoogleAnalytics4DataSourceItem("Test title", dataSource);
+            var dataSourceItem = new GoogleAnalytics4DataSourceItem(title, dataSource);
 
             // Assert
-            Assert.Equal("Test title", dataSourceItem.Title);
+            Assert.Equal(title, dataSourceItem.Title);
             Assert.Equal(dataSource, dataSourceItem.DataSource);
         }
 
         [Fact]
-        public void AccountId_GetAndSet_ShouldSetProperties()
+        public void AccountId_SaveValueAndProperties_WhenSet()
         {
             // Arrange
             var dataSource = new GoogleAnalytics4DataSource();
             var dataSourceItem = new GoogleAnalytics4DataSourceItem("Test", dataSource);
+            var accountId = "TestAccountId";
 
             // Act
-            dataSourceItem.AccountId = "TestAccountId";
+            dataSourceItem.AccountId = accountId;
 
             // Assert
-            Assert.Equal("TestAccountId", dataSourceItem.AccountId);
-            Assert.Equal("TestAccountId", dataSourceItem.Properties.GetValue<string>("AccountId"));
+            Assert.Equal(accountId, dataSourceItem.AccountId);
+            Assert.Equal(accountId, dataSourceItem.Properties.GetValue<string>("AccountId"));
         }
 
         [Fact]
-        public void PropertyId_GetAndSet_ShouldSetProperties()
+        public void AccountId_ThrowsException_WhenSetToNull()
         {
             // Arrange
             var dataSource = new GoogleAnalytics4DataSource();
             var dataSourceItem = new GoogleAnalytics4DataSourceItem("Test", dataSource);
 
             // Act
-            dataSourceItem.PropertyId = "TestPropertyId";
+            Action act = () => dataSourceItem.AccountId = null;
 
             // Assert
-            Assert.Equal("TestPropertyId", dataSourceItem.PropertyId);
-            Assert.Equal("TestPropertyId", dataSourceItem.Properties.GetValue<string>("PropertyId"));
+            Assert.Throws<ArgumentNullException>(act);
+        }
+
+        [Fact]
+        public void PropertyId_SaveValueAndProperties_WhenSet()
+        {
+            // Arrange
+            var dataSource = new GoogleAnalytics4DataSource();
+            var dataSourceItem = new GoogleAnalytics4DataSourceItem("Test", dataSource);
+            var propertyId = "TestPropertyId";
+
+            // Act
+            dataSourceItem.PropertyId = propertyId;
+
+            // Assert
+            Assert.Equal(propertyId, dataSourceItem.PropertyId);
+            Assert.Equal(propertyId, dataSourceItem.Properties.GetValue<string>("PropertyId"));
+        }
+
+        [Fact]
+        public void PropertyId_ThrowsException_WhenSetToNull()
+        {
+            // Arrange
+            var dataSource = new GoogleAnalytics4DataSource();
+            var dataSourceItem = new GoogleAnalytics4DataSourceItem("Test", dataSource);
+
+            // Act
+            Action act = () => dataSourceItem.PropertyId = null;
+
+            // Assert
+            Assert.Throws<ArgumentNullException>(act);
         }
     }
 }
