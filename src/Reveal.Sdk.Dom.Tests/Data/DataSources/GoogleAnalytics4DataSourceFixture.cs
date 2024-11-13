@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
     public class GoogleAnalytics4DataSourceFixture
     {
         [Fact]
-        public void Constructor_SetProvider_ToMicrosoftSqlServer()
+        public void Constructor_SetProviderToGoogleAnalytics4_WhenConstructed()
         {
             // Act
             var dataSource = new GoogleAnalytics4DataSource();
