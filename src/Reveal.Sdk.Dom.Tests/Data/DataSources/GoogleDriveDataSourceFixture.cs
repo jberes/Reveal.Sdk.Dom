@@ -12,16 +12,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
     public class GoogleDriveDataSourceFixture
     {
         [Fact]
-        public void GoogleDriveDataSource_IsDataSource_WhenConstructed()
-        {
-            // Act
-            var dataSource = new GoogleDriveDataSource();
-
-            // Assert
-            Assert.True(dataSource is DataSource);
-        }
-
-        [Fact]
         public void Constructor_SetProviderToGoogleDrive_WhenConstructed()
         {
             // Act

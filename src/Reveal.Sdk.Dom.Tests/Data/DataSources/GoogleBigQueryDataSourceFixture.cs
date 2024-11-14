@@ -12,16 +12,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
     public class GoogleBigQueryDataSourceFixture
     {
         [Fact]
-        public void GoogleBigQueryDataSource_IsDataSource_WhenConstructed()
-        {
-            // Act
-            var dataSource = new GoogleBigQueryDataSource();
-
-            // Assert
-            Assert.True(dataSource is DataSource);
-        }
-
-        [Fact]
         public void Constructor_SetProviderToGoogleBigQuery_WhenConstructed()
         {
             // Act

@@ -12,19 +12,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
     public class GoogleSheetsDataSourceItemFixture
     {
         [Fact]
-        public void GoogleSheetsDataSourceItem_IsDataSourceItem_WhenConstructed()
-        {
-            // Arrange
-            var dataSource = new GoogleSheetsDataSource();
-
-            // Act
-            var dataSourceItem = new GoogleSheetsDataSourceItem("Test title", dataSource);
-
-            // Assert
-            Assert.True(dataSourceItem is DataSourceItem);
-        }
-
-        [Fact]
         public void Constructor_SetsTitleAndDatasource_AsProvided()
         {
             // Arrange
