@@ -8,24 +8,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Reveal.Sdk.Data.Amazon.Athena" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Amazon.Redshift" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Amazon.S3" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Box" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Dropbox" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Google.Analytics4" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Google.BigQuery" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Google.Drive" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Microsoft.AnalysisServices" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Microsoft.OneDrive" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Microsoft.SqlServer" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Microsoft.SynapseAnalytics" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.MongoDB" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.MySql" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Oracle" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.PostgreSQL" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Data.Snowflake" Version="1.6.7" />
-    <PackageReference Include="Reveal.Sdk.Wpf" Version="1.6.7" />
+    <PackageReference Include="Reveal.Sdk.Data.Amazon.Athena" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Amazon.Redshift" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Amazon.S3" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Box" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Dropbox" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Google.Analytics4" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Google.BigQuery" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Google.Drive" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Microsoft.AnalysisServices" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Microsoft.OneDrive" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Microsoft.SqlServer" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Microsoft.SynapseAnalytics" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.MongoDB" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.MySql" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Oracle" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.PostgreSQL" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Data.Snowflake" Version="1.7.1" />
+    <PackageReference Include="Reveal.Sdk.Wpf" Version="1.7.1" />
   </ItemGroup>
 
   <ItemGroup>
