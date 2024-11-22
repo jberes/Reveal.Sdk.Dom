@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Schema;
 using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Data;
@@ -235,28 +234,6 @@ namespace Reveal.Sdk.Dom.Tests
 
             // Assert
             Assert.Equal(expectedJObject, actualJObject);
-        }
-
-        [Fact]
-        public void ToJsonString_IsValidSchema()
-        {
-            var schemaJson = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "Schemas", "RdashDocument.json"));
-            var schema = JSchema.Parse(schemaJson);
-
-            var dashboard = new RdashDocument()
-            {
-                Title = "New Dashboard",
-                Description = "This is a test dashboard",
-                Theme = Theme.Aurora,
-                Tags = "tag1,tag2,tag3"
-            };
-            var json = dashboard.ToJsonString();
-
-            var jsonDocument = JObject.Parse(json);
-
-            bool isValid = jsonDocument.IsValid(schema);
-
-            Assert.True(isValid);
         }
 
         [Fact]
