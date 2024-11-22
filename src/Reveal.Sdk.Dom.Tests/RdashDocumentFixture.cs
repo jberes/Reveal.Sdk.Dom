@@ -166,7 +166,12 @@ namespace Reveal.Sdk.Dom.Tests
         public void RdashDocument_LoadFromJson_ShouldLoadDocumentFromJsonString()
         {
             // Arrange
-            var json = "{\"Title\":\"My Dashboard\",\"ThemeName\":\"Mountain\"}";
+            var json = """
+            {
+                "Title":"My Dashboard",
+                "ThemeName":"Mountain"
+            }
+            """;
 
             // Act
             var document = RdashDocument.LoadFromJson(json);
@@ -211,19 +216,20 @@ namespace Reveal.Sdk.Dom.Tests
         {
             // Arrange
             var document = new RdashDocument();
-            string expectedJson = @"
+            string expectedJson = """
             {
-              ""Title"": ""New Dashboard"",
-              ""ThemeName"": ""rvDashboardMountainTheme"",
-              ""CreatedWith"": ""Reveal.Sdk.Dom"",
-              ""SavedWith"": """",
-              ""FormatVersion"": 6,
-              ""UseAutoLayout"": true,
-              ""DataSources"": [],
-              ""GlobalFilters"": [],
-              ""GlobalVariables"": [],
-              ""Widgets"": []
-            }";
+              "Title": "New Dashboard",
+              "ThemeName": "rvDashboardMountainTheme",
+              "CreatedWith": "Reveal.Sdk.Dom",
+              "SavedWith": "",
+              "FormatVersion": 6,
+              "UseAutoLayout": true,
+              "DataSources": [],
+              "GlobalFilters": [],
+              "GlobalVariables": [],
+              "Widgets": []
+            }
+            """;
 
             // Act
             var jsonString = document.ToJsonString();
