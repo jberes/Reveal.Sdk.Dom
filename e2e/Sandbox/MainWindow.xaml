@@ -14,13 +14,14 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <Button Click="Load_Dashboard">Load Dashboard</Button>
-            <Button Click="Read_Dashboard">Read Dashboard</Button>            
-            <Button Click="Create_Dashboard">Create Dashboard</Button>
-            <Button Click="Clear_Dashboard">Clear Dashboard</Button>
+            <Button Click="Read_Dashboard">Read Dashboard</Button>
+            <Button Click="Clear_Dashboard" Content="Clear Dashboard"/>
         </StackPanel>
 
         <rv:RevealView Grid.Row="1" x:Name="_revealView" ShowEditDataSource="True" ShowDataBlending="True"
-                       SaveDashboard="RevealView_SaveDashboard"/>
+                       SaveDashboard="RevealView_SaveDashboard" Margin="0,34,0,0"/>
+        <ComboBox Name="_dashboardTypeSelector" HorizontalAlignment="Left" Margin="1,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Create Dashboard with Type" Name="_createDashboardWithTypeBtn" HorizontalAlignment="Left" Margin="126,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="164" Click="CreateDashboardWithTypeBtn_Click"/>
     </Grid>
-    
+
 </Window>
