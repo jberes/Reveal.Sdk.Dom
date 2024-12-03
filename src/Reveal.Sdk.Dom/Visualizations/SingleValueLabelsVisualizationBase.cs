@@ -12,12 +12,38 @@ namespace Reveal.Sdk.Dom.Visualizations
         protected SingleValueLabelsVisualizationBase(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { }
 
         [JsonIgnore]
-        public List<DimensionColumn> Labels { get { return VisualizationDataSpec.Rows; } }
+        public List<DimensionColumn> Labels { 
+            get
+            {
+                if (VisualizationDataSpec is SingleValueLabelsVisualizationDataSpec vizSpec)
+                {
+                    return vizSpec.Rows;
+                }
+                else
+                {
+                    return new List<DimensionColumn>();
+                }
+            } 
+            }
 
         [JsonIgnore]
-        public List<MeasureColumn> Values { get { return VisualizationDataSpec.Value; } }
+        public List<MeasureColumn> Values { 
+            get
+            {
+                if (VisualizationDataSpec is SingleValueLabelsVisualizationDataSpec vizSpec)
+                {
+                    return vizSpec.Value;
+                }
+                else
+                {
+                    return new List<MeasureColumn>();
+                }
+            } 
+            }
 
+
+        //Some visualizations can be assigned a CategoryVisualizationDataSpec instead of a SingleValueLabelsVisualizationDataSpec
         [JsonProperty(Order = 7)]
-        SingleValueLabelsVisualizationDataSpec VisualizationDataSpec { get; set; } = new SingleValueLabelsVisualizationDataSpec();
+        VisualizationDataSpec VisualizationDataSpec { get; set; } = new SingleValueLabelsVisualizationDataSpec();
     }
 }
