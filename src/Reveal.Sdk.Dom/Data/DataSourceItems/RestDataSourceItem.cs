@@ -105,15 +105,6 @@ namespace Reveal.Sdk.Dom.Data
             Parameters.Add("config", BuildConfig(fields));
         }
 
-        //todo: this may need to go on the base class. wait until more data source items are created
-        private void UpdateResourceItemDataSource(DataSource dataSource)
-        {
-            ResourceItemDataSource.Id = dataSource.Id;
-            ResourceItemDataSource.Title = dataSource.Title ?? ResourceItem.Title;
-            ResourceItemDataSource.Subtitle = dataSource.Subtitle ?? ResourceItem.Subtitle;
-            ResourceItem.DataSourceId = ResourceItemDataSource.Id;
-        }
-
         private Dictionary<string, object> BuildConfig(IEnumerable<IField> fields)
         {
             Dictionary<string, object> config = new Dictionary<string, object>();
