@@ -13,8 +13,25 @@ namespace Reveal.Sdk.Dom.Visualizations
             SchemaTypeName = SchemaTypeNames.SummarizationValueFieldType;
             FieldLabel = fieldName;
         }
-        
-        public string FieldLabel { get; set; }
+
+        private string _fieldLabel;
+        public string FieldLabel
+        {
+            get => _fieldLabel;
+            set
+            {
+                _fieldLabel = value;
+                UserCaption = value;
+            }
+        }
+
+        /// <summary>
+        /// The UserCaption is used to display a custom label in the UI. 
+        /// However, the FieldLabel is also used to display a custom label in the UI and is generated from the data provides if it exists.
+        /// To simplify the API, we are using the FieldLabel as the primary label and hiding UserCaption from the public API
+        /// </summary>
+        [JsonProperty]
+        internal string UserCaption { get; set; }
 
         [JsonProperty]
         public bool IsHidden { get; set; }
