@@ -1,4 +1,4 @@
-using Reveal.Sdk.Data;
+﻿using Reveal.Sdk.Data;
 using Reveal.Sdk.Data.Amazon.Athena;
 using Reveal.Sdk.Data.Amazon.S3;
 using Reveal.Sdk.Data.Microsoft.AnalysisServices;
@@ -21,7 +21,7 @@ namespace Sandbox.RevealSDK
 {
     internal class AuthenticationProvider : IRVAuthenticationProvider
     {
-        public Task<IRVDataSourceCredential> ResolveCredentialsAsync(RVDashboardDataSource dataSource)
+        public async Task<IRVDataSourceCredential> ResolveCredentialsAsync(RVDashboardDataSource dataSource)
         {
             IRVDataSourceCredential userCredential = null;
             if (dataSource is RVAzureSqlDataSource)
@@ -35,6 +35,12 @@ namespace Sandbox.RevealSDK
             else if (dataSource is RVNativeAnalysisServicesDataSource)
             {
                 userCredential = new RVUsernamePasswordDataSourceCredential("username", "password", "domain");
+            } 
+            else if (dataSource is RVGoogleDriveDataSource)
+            {
+                var _token = await CreateJwtToken();
+
+                userCredential = new RVBearerTokenDataSourceCredential(_token, null);
             }
             else if (dataSource is RVSnowflakeDataSource)
             {
@@ -102,6 +108,17 @@ namespace Sandbox.RevealSDK
             }
 
             return Task.FromResult(userCredential);
+            return userCredential;
+        }
+
+        async Task<string> CreateGoogleSheetJwtToken()
+        {
+            var pathToJsonFile = Path.Combine(Environment.CurrentDirectory, "Data/GoogleServiceAccountAuth.json");
+            var credentials = GoogleCredential.FromFile(pathToJsonFile).CreateScoped("https://www.googleapis.com/auth/drive",
+                                                                                     "https://www.googleapis.com/auth/userinfo.email",
+                                                                                     "https://www.googleapis.com/auth/userinfo.profile");
+            var token = await credentials.UnderlyingCredential.GetAccessTokenForRequestAsync().ConfigureAwait(false);
+            return token;
         }
     }
 }
