@@ -47,7 +47,7 @@ namespace Sandbox
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
         //readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Sales);
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "New Dashboard.rdash");
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "Healthcare.rdash");
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -59,6 +59,7 @@ namespace Sandbox
             RevealSdkSettings.DataSourceProvider = new Sandbox.RevealSDK.DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
             RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices();
+            _dashboardTypeSelector.ItemsSource = Enum.GetValues(typeof(DataSourceType)).Cast<DataSourceType>();
 
             _revealView.LinkedDashboardProvider = (string dashboardId, string linkTitle) =>
             {
@@ -216,21 +217,34 @@ namespace Sandbox
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
         }
 
-        private async void Create_Dashboard(object sender, RoutedEventArgs e)
+        private async void CreateDashboardWithTypeBtn_Click(object sender, RoutedEventArgs e)
         {
-            //var document = MarketingDashboard.CreateDashboard();
-            var document = SalesDashboard.CreateDashboard();
-            //var document = CampaignsDashboard.CreateDashboard();
-            //var document = HealthcareDashboard.CreateDashboard();
-            //var document = ManufacturingDashboard.CreateDashboard();
-            //var document = CustomDashboard.CreateDashboard();
-            //var document = RestDataSourceDashboards.CreateDashboard();
-            //var document = SqlServerDataSourceDashboards.CreateDashboard();
-            //var document = DashboardLinkingDashboard.CreateDashboard();            
+            var selectedDSTypeItem = _dashboardTypeSelector.SelectedItem;
+            if (selectedDSTypeItem != null)
+            {
+                var dataSourceType = _dashboardTypeSelector.SelectedItem;
+                RdashDocument document = null;
+                switch (dataSourceType)
+                {
+                    case DataSourceType.REST:
+                        document = SalesDashboard.CreateDashboard();
+                        break;
+                    case DataSourceType.MicrosoftSqlServer:
+                        break;
+                    default:
+                        break;
+                }
 
-            var json = document.ToJsonString();
-
-            _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
+                if (document != null)
+                {
+                    var json = document.ToJsonString();
+                    _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
+                }
+                else
+                {
+                    _revealView.Dashboard = new RVDashboard();
+                }
+            }
         }
     }
 }
