@@ -30,6 +30,11 @@ namespace Reveal.Sdk.Dom.Visualizations
             }
         }
 
+        /// <summary>
+        /// The UserCaption is used to display a custom label in the UI. 
+        /// However, the FieldLabel is also used to display a custom label in the UI and is generated from the data provides if it exists.
+        /// To simplify the API, we are using the FieldLabel as the primary label and hiding UserCaption from the public API
+        /// </summary>
         [JsonProperty]
         internal string UserCaption { get; set; }
 

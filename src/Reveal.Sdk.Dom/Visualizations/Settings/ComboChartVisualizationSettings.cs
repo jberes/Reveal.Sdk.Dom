@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
 
 namespace Reveal.Sdk.Dom.Visualizations.Settings
 {
@@ -8,6 +9,46 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         public ComboChartVisualizationSettings()
         {
             ChartType = RdashChartType.Composite;
+        }
+
+        /// <summary>
+        /// Gets or sets the display mode for the axis.
+        /// </summary>
+        [JsonIgnore]
+        public AxisDisplayMode AxisDisplayMode
+        {
+            get
+            {
+                if (ShowAxisX && ShowAxisY) return AxisDisplayMode.Both;
+                if (!ShowAxisX && !ShowAxisY) return AxisDisplayMode.None;
+                if (ShowAxisX) return AxisDisplayMode.XAxis;
+                if (ShowAxisY) return AxisDisplayMode.YAxis;
+                throw new InvalidOperationException("Invalid axis visibility state.");
+            }
+            set
+            {
+                switch (value)
+                {
+                    case AxisDisplayMode.Both:
+                        ShowAxisX = true;
+                        ShowAxisY = true;
+                        break;
+                    case AxisDisplayMode.None:
+                        ShowAxisX = false;
+                        ShowAxisY = false;
+                        break;
+                    case AxisDisplayMode.XAxis:
+                        ShowAxisX = true;
+                        ShowAxisY = false;
+                        break;
+                    case AxisDisplayMode.YAxis:
+                        ShowAxisX = false;
+                        ShowAxisY = true;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
         }
 
         /// <summary>
@@ -53,7 +94,21 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         /// </summary>
         [JsonProperty]
         internal bool SingleAxisMode { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets if the visualization will display the X axis.
+        /// This property is being wrapped by the <see cref="AxisDisplayMode"/> to simplify the API.
+        /// </summary>
+        [JsonProperty]
+        internal bool ShowAxisX { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets if the visualization will display the Y axis.
+        /// This property is being wrapped by the <see cref="AxisDisplayMode"/> to simplify the API.
+        /// </summary>
+        [JsonProperty]
+        internal bool ShowAxisY { get; set; } = true;
+
         /// <summary>
         /// Gets or sets if the visualization will display the right axis.
         /// </summary>
