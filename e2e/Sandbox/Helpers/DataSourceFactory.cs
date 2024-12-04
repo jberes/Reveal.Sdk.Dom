@@ -211,4 +211,41 @@ namespace Sandbox.Helpers
             };
         }
     }
+
+    internal class PostgresDataSourceFactory
+    {
+        static DataSource _postgresDataSource = new PostgreSQLDataSource()
+        {
+            Id = "Postgres",
+            Title = "Postgres Data Source",
+            Subtitle = "The Data Source for Postgres",
+            Host = "revealdb01.infragistics.local",
+            Database = "northwind",
+            Port = 5432
+        };
+
+        internal static DataSourceItem GetEmployeeDSItem()
+        {
+            var employeesDSItem = new PostgreSqlDataSourceItem("Employees", _postgresDataSource)
+            {
+                Title = "Postgres Employee",
+                Subtitle = "Postgres DS Item for Employee",
+                Database = "northwind",
+                Table = "employees",
+                Fields = GetEmployeeColumnFields()
+            };
+
+            return employeesDSItem;
+        }
+
+        internal static List<IField> GetEmployeeColumnFields()
+        {
+            return new List<IField>
+            {
+                new NumberField("ReportsTo"),
+                new NumberField("EmployeeID"),
+                new TextField("Country"),
+            };
+        }
+    }
 }

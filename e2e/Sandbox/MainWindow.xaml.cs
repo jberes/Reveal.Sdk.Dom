@@ -158,6 +158,27 @@ namespace Sandbox
             sqlDSI.Table = "Customers";
             dsi.Add(sqlDSI);
 
+            var postgresDS = new RVPostgresDataSource
+            {
+                Id = "postgresId",
+                Title = "Postgres DS",
+                Host = "revealdb01.infragistics.local",
+                Database = "northwind",
+                Port = 5432,
+            };
+            ds.Add(postgresDS);
+
+            var postgresDSItem = new RVPostgresDataSourceItem(postgresDS)
+            {
+                Id = "postgresDSItemId",
+                Title = "Postgres DSItem",
+                Description = "Northwind Employees",
+                Database = "northwind",
+                Schema = "public",
+                Table = "employees"
+            };
+            dsi.Add(postgresDSItem);
+
             //var webDS = new RVWebResourceDataSource();
             //webDS.UseAnonymousAuthentication = true;
             //webDS.Title = "Web Resource";
@@ -237,6 +258,11 @@ namespace Sandbox
                 var selectedDashboard = _dashboardCreators.FirstOrDefault(x => x.Name == lastSelectedName);
                 _dashboardTypeSelector.SelectedItem = selectedDashboard;
             }
+        }
+
+        private void _dashboardTypeSelector_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
