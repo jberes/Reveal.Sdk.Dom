@@ -6,22 +6,25 @@
         xmlns:local="clr-namespace:Sandbox"        
         xmlns:rv="http://revealbi.io/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1080" Width="1920">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <Button Click="Load_Dashboard">Load Dashboard</Button>
-            <Button Click="Read_Dashboard">Read Dashboard</Button>
-            <Button Click="Clear_Dashboard" Content="Clear Dashboard"/>
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <Button Click="Load_Dashboard" Margin="2">Load Dashboard</Button>
+            <Button Click="Read_Dashboard" Margin="2">Read Dashboard</Button>
+            <Button Click="Clear_Dashboard" Margin="2">Clear Dashboard</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="3">
+            <ComboBox Name="_dashboardTypeSelector" Margin="2" Width="250" />
+            <Button Content="Create Dashboard with Type" Margin="2" Click="CreateDashboardWithTypeBtn_Click"/>
         </StackPanel>
 
-        <rv:RevealView Grid.Row="1" x:Name="_revealView" ShowEditDataSource="True" ShowDataBlending="True"
-                       SaveDashboard="RevealView_SaveDashboard" Margin="0,34,0,0"/>
-        <ComboBox Name="_dashboardTypeSelector" HorizontalAlignment="Left" Margin="1,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Create Dashboard with Type" Name="_createDashboardWithTypeBtn" HorizontalAlignment="Left" Margin="126,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="164" Click="CreateDashboardWithTypeBtn_Click"/>
+        <rv:RevealView Grid.Row="2" x:Name="_revealView" ShowEditDataSource="True" ShowDataBlending="True"
+                       SaveDashboard="RevealView_SaveDashboard"/>
     </Grid>
 
 </Window>
