@@ -48,7 +48,7 @@ namespace Sandbox
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
 
         //readonly string _readFilePath = Path.Combine(_dashboardFilePath, DashboardFileNames.Sales);
-        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "New Dashboard.rdash");
+        readonly string _readFilePath = Path.Combine(_dashboardFilePath, "Healthcare.rdash");
 
         readonly string _saveJsonToPath = Path.Combine(_dashboardFilePath, "MyDashboard.json");
         readonly string _saveRdashToPath = Path.Combine(_dashboardFilePath, DashboardFileNames.MyDashboard);
@@ -61,7 +61,7 @@ namespace Sandbox
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
             RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices();
             RevealSdkSettings.DataSources.RegisterMySql();
-            RevealSdkSettings.License = "eyJhbGciOiJQUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEwV1ZNMDAwMDAwTDY1ZDJBQyIsInByb2R1Y3RfY29kZSI6IkE4IiwicHJvZHVjdF92ZXJzaW9uIjoiNzAiLCJzZXJ2aWNlX2VuZF9kYXRlIjoiMjAzMS0wMS0wM1QwMDowMDowMC4wMDAwMDAwWiIsInNlcnZpY2VfbGV2ZWwiOiJQcmlvcml0eSIsImlhdCI6MTcwNjYzMTIzMCwibmJmIjoxNzA2NjMxMjMwfQ.NW9e1Nyo5PMBz9TYnF2DNrgW6EIb2dCRVzkEN_ovMBcM3vp4oCBmjBIRTs492EgpRktM7Bm1TMtfZO0A3wPEhR5sn9_1qxSWGmlyjF1ncFgT5zrEpXqfMzNx3DA9k7aJcD7VzcErXiF2RHTukHdP6x1jXBzBFJVbBBai806mOOnzoSp2C3584EmYE2ZQR9ArjcUk_8aoObh_YwtEGMoUsU1r_MKdoeZaHeiRVRpw6HcZV4RMqgeh8TqWCGHtgFSKeUCpD0XQcL7MIa71MLZ-NB1vVBykfaYmYIq4UQd9R6QThmapr48A_Mu8xmEnD_B1A7BlwqsqXTBCXFP03wRPGw";
+            _dashboardTypeSelector.ItemsSource = Enum.GetValues(typeof(DataSourceType)).Cast<DataSourceType>();
 
             _revealView.LinkedDashboardProvider = (string dashboardId, string linkTitle) =>
             {
@@ -240,7 +240,7 @@ namespace Sandbox
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
         }
 
-        private async void Create_Dashboard(object sender, RoutedEventArgs e)
+        private async void CreateDashboardWithTypeBtn_Click(object sender, RoutedEventArgs e)
         {
             //var document = MarketingDashboard.CreateDashboard();
             var document = SalesDashboard.CreateDashboard();
@@ -256,6 +256,32 @@ namespace Sandbox
             var json = document.ToJsonString();
 
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
+            var selectedDSTypeItem = _dashboardTypeSelector.SelectedItem;
+            if (selectedDSTypeItem != null)
+            {
+                var dataSourceType = _dashboardTypeSelector.SelectedItem;
+                RdashDocument document = null;
+                switch (dataSourceType)
+                {
+                    case DataSourceType.REST:
+                        document = SalesDashboard.CreateDashboard();
+                        break;
+                    case DataSourceType.MicrosoftSqlServer:
+                        break;
+                    default:
+                        break;
+                }
+
+                if (document != null)
+                {
+                    var json = document.ToJsonString();
+                    _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
+                }
+                else
+                {
+                    _revealView.Dashboard = new RVDashboard();
+                }
+            }
         }
     }
 }
