@@ -6,11 +6,13 @@ using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.Helpers;
 using DataSourceFactory = Sandbox.Helpers.DataSourceFactory;
 
-namespace Sandbox.Factories
+namespace Sandbox.DashboardFactories
 {
-    internal class CampaignsDashboard
+    internal class CampaignsDashboard: IDashboardCreator
     {
-        internal static RdashDocument CreateDashboard()
+        public string Name => "Campaigns";
+
+        public RdashDocument CreateDashboard()
         {
             var excelDataSourceItem = DataSourceFactory.GetMarketingDataSourceItem();
 

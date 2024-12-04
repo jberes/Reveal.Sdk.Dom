@@ -19,7 +19,7 @@
             <Button Click="Clear_Dashboard" Margin="2">Clear Dashboard</Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="3">
-            <ComboBox Name="_dashboardTypeSelector" Margin="2" Width="250" />
+            <ComboBox Name="_dashboardTypeSelector" DisplayMemberPath="Name" Margin="2" Width="250" />
             <Button Content="Create Dashboard with Type" Margin="2" Click="CreateDashboardWithTypeBtn_Click"/>
         </StackPanel>
 

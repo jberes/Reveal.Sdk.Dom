@@ -7,11 +7,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Sandbox.Factories
+namespace Sandbox.DashboardFactories
 {
-    internal class DashboardLinkingDashboard
+    internal class DashboardLinkingDashboard : IDashboardCreator
     {
-        internal static RdashDocument CreateDashboard()
+        public string Name => "Dashboard Linking";
+
+        public RdashDocument CreateDashboard()
         {
             var excelDataSourceItem = DataSourceFactory.GetMarketingDataSourceItem();
 
