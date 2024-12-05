@@ -6,11 +6,13 @@ using Sandbox.Helpers;
 using System.Linq;
 using DataSourceFactory = Sandbox.Helpers.DataSourceFactory;
 
-namespace Sandbox.Factories
+namespace Sandbox.DashboardFactories
 {
-    internal class SalesDashboard
+    internal class SalesDashboard : IDashboardCreator
     {
-        internal static RdashDocument CreateDashboard()
+        public string Name => "Sales";
+
+        public RdashDocument CreateDashboard()
         {
             var excelDataSourceItem = DataSourceFactory.GetSalesDataSourceItem();
 

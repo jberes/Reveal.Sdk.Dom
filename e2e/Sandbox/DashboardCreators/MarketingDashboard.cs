@@ -6,13 +6,15 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 using Sandbox.Helpers;
 using DataSourceFactory = Sandbox.Helpers.DataSourceFactory;
 
-namespace Sandbox.Factories
+namespace Sandbox.DashboardFactories
 {
-    internal class MarketingDashboard
+    internal class MarketingDashboard : IDashboardCreator
     {
+        public string Name => "Marketing";
+
         static Binding _globalDateFilterBinding = new DashboardDateFilterBinding("Date");
 
-        internal static RdashDocument CreateDashboard()
+        public RdashDocument CreateDashboard()
         {
             var document = new RdashDocument()
             {
