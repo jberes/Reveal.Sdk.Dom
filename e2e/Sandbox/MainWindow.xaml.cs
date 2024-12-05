@@ -180,13 +180,13 @@ namespace Sandbox
             //httpItem.Subtitle = "HTTP Analysis Services Item Subtitle";
             //httpItem.Cube = "Adventure Works";
             //dsi.Add(httpItem);
-            
+
             //var mysqlDS = new RVMySqlDataSource
             //{
             //    Id = "mysqlDS",
             //    Title = "MySQL DS",
             //    Subtitle = "My SQL Datasource",
-            //    Host = "revealdb01.infragistics.local",
+            //    Host = "mysqlserver.local",
             //    Database = "northwind",
             //    Port = 3306,
             //};

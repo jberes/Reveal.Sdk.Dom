@@ -78,7 +78,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 ProcessDataOnServerDefaultValue = true,
                 ProcessDataOnServerReadOnly = false,
                 Host = "mysqlserver.local",
-                Port = "3306",
+                Port = 3306,
                 Database = "northwind",
                 DefaultRefreshRate = "120",
             };

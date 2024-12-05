@@ -22,7 +22,7 @@ namespace Sandbox.RevealSDK
             }
             else if (dataSource is RVMySqlDataSource)
             {
-                userCredential = new RVUsernamePasswordDataSourceCredential("root", "armonsuites");
+                userCredential = new RVUsernamePasswordDataSourceCredential("username", "password");
             }
             return Task.FromResult(userCredential);
         }
