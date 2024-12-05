@@ -67,9 +67,9 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         }
 
         [Theory]
-        [InlineData("1234")]
+        [InlineData(3306)]
         [InlineData(null)]
-        public void Port_SetsAndGetsValue_WithDifferentInputs(string port)
+        public void Port_SetsAndGetsValue_WithDifferentInputs(int port)
         {
             // Arrange
             var dataSource = new MicrosoftSqlServerDataSource();
