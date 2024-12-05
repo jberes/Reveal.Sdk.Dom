@@ -16,13 +16,6 @@ namespace Reveal.Sdk.Dom.Data
             set => Properties.SetItem("ServerAggregation", value);
         }
 
-        [JsonIgnore]
-        public string ConnectionString
-        {
-            get => Properties.GetValue<string>("ConnectionString");
-            set => Properties.SetItem("ConnectionString", value);
-        }
-
         protected override DataSource CreateDataSourceInstance(DataSource dataSource)
         {
             return Create<MySQLDataSource>(dataSource);

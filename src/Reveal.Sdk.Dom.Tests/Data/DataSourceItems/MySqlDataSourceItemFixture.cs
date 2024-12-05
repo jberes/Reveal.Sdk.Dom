@@ -31,7 +31,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
 
 
         [Fact]
-        public void ProcessDataOnServer_SetsAndGetsValue_WithInputs()
+        public void ProcessDataOnServer_SetsAndGetsServerAggregationValue_WithInputs()
         {
             // Arrange
             var item = new MySqlDataSourceItem("Test Item", new MySQLDataSource());
@@ -103,13 +103,13 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
 
             var document = new RdashDocument("My Dashboard");
             document.Visualizations.Add(new GridVisualization("Test List", dataSourceItems).SetColumns("name"));
+            var expectedJObject = JObject.Parse(expectedJson);
 
             // Act
             RdashSerializer.SerializeObject(document);
             var json = document.ToJsonString();
             var jObject = JObject.Parse(json);
             var actualJObject = jObject["Widgets"][0]["DataSpec"]["DataSourceItem"];
-            var expectedJObject = JObject.Parse(expectedJson);
 
             // Assert
             Assert.Equal(expectedJObject, actualJObject);
