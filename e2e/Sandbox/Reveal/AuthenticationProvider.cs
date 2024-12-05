@@ -7,6 +7,7 @@ using Reveal.Sdk.Data.Snowflake;
 using Reveal.Sdk.Data.MySql;
 using Reveal.Sdk.Data.PostgreSQL;
 using Reveal.Sdk.Data.Oracle;
+using Reveal.Sdk.Data.MongoDB;
 using System.Threading.Tasks;
 using Reveal.Sdk.Data.Amazon.Redshift;
 using Reveal.Sdk.Data.Google.Analytics4;
@@ -50,6 +51,10 @@ namespace Sandbox.RevealSDK
                 var _token = RetrieveGoogleDriveBearerToken();
 
                 userCredential = new RVBearerTokenDataSourceCredential(_token, null);
+            }
+            else if (dataSource is RVMongoDBDataSource)
+            {
+                userCredential = new RVUsernamePasswordDataSourceCredential("user01", "*****", "admin");
             }
             else if (dataSource is RVSnowflakeDataSource)
             {
