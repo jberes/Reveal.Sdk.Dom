@@ -253,5 +253,13 @@ namespace Reveal.Sdk.Dom.Data
 
             throw new ArgumentException($"Invalid right field name format: {fieldName}");
         }
+
+        protected void UpdateResourceItemDataSource(DataSource dataSource)
+        {
+            ResourceItemDataSource.Id = dataSource.Id;
+            ResourceItemDataSource.Title = dataSource.Title ?? ResourceItem.Title;
+            ResourceItemDataSource.Subtitle = dataSource.Subtitle ?? ResourceItem.Subtitle;
+            ResourceItem.DataSourceId = ResourceItemDataSource.Id;
+        }
     }
 }
