@@ -163,13 +163,13 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             var document = new RdashDocument("My Dashboard");
             document.Visualizations.Add(new GridVisualization("Test List", dataSourceItems).SetColumns("name"));
+            var expectedJObject = JObject.Parse(expectedJson);
 
             // Act
             RdashSerializer.SerializeObject(document);
             var json = document.ToJsonString();
             var jObject = JObject.Parse(json);
             var actualJObject = jObject["DataSources"].LastOrDefault();
-            var expectedJObject = JObject.Parse(expectedJson);
 
             // Assert
             Assert.Equal(expectedJObject, actualJObject);

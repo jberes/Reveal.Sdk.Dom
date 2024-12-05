@@ -422,7 +422,81 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
 
             // Assert
             Assert.Equal(DataSourceProvider.REST, dataSource.Provider);
-            Assert.NotNull(dataSourceItem.Properties.GetValue<bool>("ServerAggregation"));
+            Assert.False(dataSourceItem.Properties.GetValue<bool>("ServerAggregation"));
+        }
+
+        [Fact]
+        public void ToJsonString_CreatesFormattedJson_ForWebServiceDataSource()
+        {
+            // Arrange
+            var expectedJson = @"
+            {
+              ""_type"": ""DataSourceItemType"",
+              ""Id"": ""RestItem"",
+              ""Title"": ""Rest DS Item"",
+              ""DataSourceId"": ""__JSON"",
+              ""HasTabularData"": true,
+              ""HasAsset"": false,
+              ""Properties"": {},
+              ""Parameters"": {
+                ""config"": {
+                  ""iterationDepth"": 0,
+                  ""columnsConfig"": [
+                    {
+                      ""key"": ""_id"",
+                      ""type"": 0
+                    },
+                    {
+                      ""key"": ""name"",
+                      ""type"": 0
+                    }
+                  ]
+                }
+              },
+              ""ResourceItem"": {
+                ""_type"": ""DataSourceItemType"",
+                ""Id"": ""RestItem"",
+                ""Title"": ""DB Test"",
+                ""DataSourceId"": ""Rest"",
+                ""HasTabularData"": true,
+                ""HasAsset"": false,
+                ""Properties"": {},
+                ""Parameters"": {}
+              }
+            }";
+
+            var dataSource = new RestDataSource()
+            {
+                Id = "Rest",
+                Title = "Rest DS",
+                DefaultRefreshRate = "120",
+                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
+                Subtitle = "Excel2Json"
+            };
+
+            var dataSourceItems = new RestDataSourceItem("DB Test", dataSource)
+            {
+                Id = "RestItem",
+                Title = "Rest DS Item",
+                Fields = new List<IField>
+                {
+                    new TextField("_id"),
+                    new TextField("name"),
+                }
+            };
+
+            var document = new RdashDocument("My Dashboard");
+            document.Visualizations.Add(new GridVisualization("Test List", dataSourceItems).SetColumns("name"));
+            var expectedJObject = JObject.Parse(expectedJson);
+
+            // Act
+            RdashSerializer.SerializeObject(document);
+            var json = document.ToJsonString();
+            var jObject = JObject.Parse(json);
+            var actualJObject = jObject["Widgets"].FirstOrDefault()["DataSpec"]["DataSourceItem"];
+
+            // Assert
+            Assert.Equal(expectedJObject, actualJObject);
         }
     }
 }
