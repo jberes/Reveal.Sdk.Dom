@@ -27,14 +27,14 @@ namespace Reveal.Sdk.Dom.Tests.Data
         {
             // Arrange
             var hostDataSource = new HostDataSource();
-            var expectedPort = "8080";
+            var expectedPort = 8080;
 
             // Act
             hostDataSource.Port = expectedPort;
 
             // Assert
             Assert.Equal(expectedPort, hostDataSource.Port);
-            Assert.Equal(expectedPort, hostDataSource.Properties.GetValue<string>("Port"));
+            Assert.Equal(expectedPort, hostDataSource.Properties.GetValue<int>("Port"));
         }
     }
 }
