@@ -1,10 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Core.Extensions;
 using Reveal.Sdk.Dom.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Data.DataSources
@@ -22,7 +17,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         }
 
         [Fact]
-        public void TrustServerCertificate_SaveValueAndProperties_WhenSet()
+        public void GetTrustServerCertificate_ReturnSameValue_WhenSet()
         {
             // Arrange
             var dataSource = new MicrosoftAzureSqlServerDataSource();
