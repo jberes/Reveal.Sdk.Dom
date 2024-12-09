@@ -19,16 +19,14 @@ namespace Sandbox.DashboardCreators
 
         public RdashDocument CreateDashboard()
         {
-            var dataSource = new WebServiceDataSource()
+            var document = new RdashDocument()
             {
-                Id = "webServiceId",
-                Title = "Web Data Source",
-                Subtitle = "Web Data Source Subtitle",
-                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
-                UseAnonymousAuthentication = true,
+                Title = "Webservice DS",
+                Description = "Example for Webservice",
+                UseAutoLayout = false,
             };
 
-            var dataSourceItems = new WebServiceDataSourceItem("DB Test", dataSource)
+            var dataSourceItems = new WebServiceDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
                 Id = "webServiceItemId",
                 Title = "Sales by Category",
@@ -40,13 +38,6 @@ namespace Sandbox.DashboardCreators
                     new TextField("ProductName"),
                     new NumberField("ProductSales"),
                 }
-            };
-
-            var document = new RdashDocument()
-            {
-                Title = "Webservice DS",
-                Description = "Example for Webservice",
-                UseAutoLayout = false,
             };
 
             var dateFilter = new DashboardDateFilter("My Date Filter");
