@@ -141,16 +141,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
               ""Properties"": {}
             }";
 
-            var dataSource = new RestDataSource()
-            {
-                Id = "Rest",
-                Title = "Rest DS",
-                DefaultRefreshRate = "120",
-                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
-                Subtitle = "Excel2Json"
-            };
-
-            var dataSourceItems = new RestDataSourceItem("DB Test", dataSource)
+            var dataSourceItems = new RestDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
                 Id = "RestItem",
                 Title = "Rest DS Item",
