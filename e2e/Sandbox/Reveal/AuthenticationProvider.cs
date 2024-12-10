@@ -1,4 +1,4 @@
-﻿using Reveal.Sdk.Data;
+using Reveal.Sdk.Data;
 using Reveal.Sdk.Data.Microsoft.AnalysisServices;
 using Reveal.Sdk.Data.Microsoft.SqlServer;
 using Reveal.Sdk.Data.MySql;
@@ -23,6 +23,10 @@ namespace Sandbox.RevealSDK
             else if (dataSource is RVMySqlDataSource)
             {
                 userCredential = new RVUsernamePasswordDataSourceCredential("username", "password");
+            }
+            else if (dataSource is RVPostgresDataSource)
+            {
+                userCredential = new RVUsernamePasswordDataSourceCredential("postgres", "postgres");
             }
             return Task.FromResult(userCredential);
         }
