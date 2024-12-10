@@ -22,6 +22,8 @@ using Reveal.Sdk.Data.PostgreSQL;
 using Reveal.Sdk.Data.Rest;
 using Reveal.Sdk.Data.Snowflake;
 using Reveal.Sdk.Dom;
+using Reveal.Sdk.Dom.Data;
+using Sandbox.DashboardCreators;
 using Sandbox.DashboardFactories;
 using Sandbox.RevealSDK;
 using System;
@@ -51,6 +53,7 @@ namespace Sandbox
             new RestDataSourceDashboard(),
             new SalesDashboard(),
             new SqlServerDataSourceDashboards(),
+            new OracleDataSourceDashboard(),
         };
 
         public MainWindow()
@@ -60,7 +63,8 @@ namespace Sandbox
             RevealSdkSettings.DataSourceProvider = new Sandbox.RevealSDK.DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
             RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices();
-
+            RevealSdkSettings.DataSources.RegisterOracle();
+            RevealSdkSettings.License = "eyJhbGciOiJQUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEwV1ZNMDAwMDAwTDY1ZDJBQyIsInByb2R1Y3RfY29kZSI6IkE4IiwicHJvZHVjdF92ZXJzaW9uIjoiNzAiLCJzZXJ2aWNlX2VuZF9kYXRlIjoiMjAzMS0wMS0wM1QwMDowMDowMC4wMDAwMDAwWiIsInNlcnZpY2VfbGV2ZWwiOiJQcmlvcml0eSIsImlhdCI6MTcwNjYzMTIzMCwibmJmIjoxNzA2NjMxMjMwfQ.NW9e1Nyo5PMBz9TYnF2DNrgW6EIb2dCRVzkEN_ovMBcM3vp4oCBmjBIRTs492EgpRktM7Bm1TMtfZO0A3wPEhR5sn9_1qxSWGmlyjF1ncFgT5zrEpXqfMzNx3DA9k7aJcD7VzcErXiF2RHTukHdP6x1jXBzBFJVbBBai806mOOnzoSp2C3584EmYE2ZQR9ArjcUk_8aoObh_YwtEGMoUsU1r_MKdoeZaHeiRVRpw6HcZV4RMqgeh8TqWCGHtgFSKeUCpD0XQcL7MIa71MLZ-NB1vVBykfaYmYIq4UQd9R6QThmapr48A_Mu8xmEnD_B1A7BlwqsqXTBCXFP03wRPGw";
             LoadDashboards();
 
             _revealView.LinkedDashboardProvider = (string dashboardId, string linkTitle) =>
@@ -175,7 +179,7 @@ namespace Sandbox
             //httpItem.Title = "HTTP Analysis Services Item";
             //httpItem.Subtitle = "HTTP Analysis Services Item Subtitle";
             //httpItem.Cube = "Adventure Works";
-            //dsi.Add(httpItem);
+            //dsi.Add(httpItem);           
 
             e.Callback(new RevealDataSources(ds, dsi, true));
         }
