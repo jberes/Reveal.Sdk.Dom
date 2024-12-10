@@ -2,16 +2,13 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
-using Sandbox.DashboardFactories;
-using Sandbox.Helpers;
-using System;
 using System.Collections.Generic;
 
-namespace Sandbox.Factories
+namespace Sandbox.DashboardFactories
 {
     internal class PostgresqlDashboard : IDashboardCreator
     {
-        public string Name => "PostgresQL Server Data Source";
+        public string Name => "PostgresQL Data Source";
 
         public RdashDocument CreateDashboard()
         {
@@ -52,19 +49,13 @@ namespace Sandbox.Factories
             var countryFilter = new DashboardDataFilter("Country", postgresDataSourceItem);
             document.Filters.Add(countryFilter);
 
-            document.Visualizations.Add(CreateEmployeeReportColumnVisualization(postgresDataSourceItem, countryFilter));
+            document.Visualizations.Add(new ColumnChartVisualization("Employees report", postgresDataSourceItem)
+                .SetLabel("ReportsTo")
+                .SetValue("EmployeeID")
+                .ConnectDashboardFilters(countryFilter)
+                .SetPosition(20, 11));
 
             return document;
         }
-
-        private static Visualization CreateEmployeeReportColumnVisualization(DataSourceItem postgresDSItem, params DashboardFilter[] filters)
-        {
-            return new ColumnChartVisualization("Employees report", postgresDSItem)
-                .SetLabel("ReportsTo")
-                .SetValue("EmployeeID")
-                .ConnectDashboardFilters(filters)
-                .SetPosition(20, 11);
-        }
-
     }
 }

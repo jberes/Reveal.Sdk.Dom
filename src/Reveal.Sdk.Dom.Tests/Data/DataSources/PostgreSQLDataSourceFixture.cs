@@ -57,12 +57,10 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             // Act
             var json = dataSource.ToJsonString();
-            var aJ = RdashSerializer.SerializeObject(dataSource);
             var expectedJObject = JObject.Parse(expectedJson);
             var actualJObject = JObject.Parse(json);
 
             // Assert
-            //JsonConvert.SerializeObject(dataSource, Newtonsoft.Json.Formatting.Indented).JsonEquals(expectedJson);
             Assert.Equal(expectedJObject, actualJObject);
 
         }

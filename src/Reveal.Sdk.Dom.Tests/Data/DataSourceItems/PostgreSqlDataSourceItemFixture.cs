@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Core.Extensions;
 using Reveal.Sdk.Dom.Data;
 using Xunit;
@@ -22,6 +23,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             Assert.Equal(expectedDSTitle, item.DataSource.Title);
             Assert.Equal(dataSource.Id, item.DataSource.Id);
             Assert.Equal(dataSource.Id, item.DataSourceId);
+            Assert.Same(dataSource, item.DataSource);
         }
 
         [Theory]
@@ -60,8 +62,10 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             Assert.Equal(expectedDSTitle, postgresDSItem.DataSource.Title);
             Assert.Equal(expectedDSItemTitle, postgresDSItem.Title);
             Assert.Equal(tableName, postgresDSItem.Table);
+            Assert.Equal(tableName, postgresDSItem.Properties.GetValue<string>("Table"));
             Assert.Equal(dataSource.Id, postgresDSItem.DataSource.Id);
             Assert.Equal(dataSource.Id, postgresDSItem.DataSourceId);
+            Assert.Same(dataSource, postgresDSItem.DataSource);
         }
 
         [Theory]
@@ -80,6 +84,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             Assert.Equal(expectedDSTitle, postgresDSItem.DataSource.Title);
             Assert.Equal(expectedDSItemTitle, postgresDSItem.Title);
             Assert.Equal(tableName, postgresDSItem.Table);
+            Assert.Equal(tableName, postgresDSItem.Properties.GetValue<string>("Table"));
             Assert.Equal(dataSource.Id, postgresDSItem.DataSource.Id);
             Assert.Equal(dataSource.Id, postgresDSItem.DataSourceId);
             Assert.IsType<PostgreSQLDataSource>(postgresDSItem.DataSource);
@@ -87,7 +92,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
         }
 
         [Fact]
-        public void ProcessDataOnServer_SetsAndGetsValue_WithInputs()
+        public void GetProcessDataOnServer_ReturnSameValue_WhenSetValue()
         {
             // Arrange
             var item = new PostgreSqlDataSourceItem("Test Item", new PostgreSQLDataSource());
@@ -98,6 +103,54 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             // Assert
             Assert.True(item.ProcessDataOnServer);
             Assert.True(item.Properties.GetValue<bool>("ServerAggregation"));
+        }
+
+        [Fact]
+        public void ToJsonString_CreatesFormattedJson_NoConditions()
+        {
+            // Arrange
+            var expectedJson = @"{
+              ""_type"": ""DataSourceItemType"",
+              ""Id"": ""pgSqlDSItemId"",
+              ""Title"": ""Postgres DSItem"",
+              ""Subtitle"": ""Northwind Employees For DS Item"",
+              ""DataSourceId"": ""pgSqlId"",
+              ""HasTabularData"": true,
+              ""HasAsset"": false,
+              ""Properties"": {
+                ""ServerAggregation"": true,
+                ""Database"": ""northwind"",
+                ""Table"": ""categories"",
+                ""Schema"": """"
+              },
+              ""Parameters"": {}
+            }";
+
+            var dataSource = new PostgreSQLDataSource()
+            {
+                Id = "pgSqlId",
+            };
+
+            var dataSourceItem = new PostgreSqlDataSourceItem("Postgres DSItem", dataSource)
+            {
+                Id = "pgSqlDSItemId",
+                Subtitle = "Northwind Employees For DS Item",
+                HasTabularData = true,
+                HasAsset = false,
+                ProcessDataOnServer = true,
+                Database = "northwind",
+                Table = "categories",
+                Schema = "",
+            };
+
+            // Act
+            var json = dataSourceItem.ToJsonString();
+            var expectedJObject = JObject.Parse(expectedJson);
+            var actualJObject = JObject.Parse(json);
+
+            // Assert
+            Assert.Equal(expectedJObject, actualJObject);
+
         }
     }
 }
