@@ -49,6 +49,7 @@ namespace Sandbox
             new HealthcareDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
+            new PostgresqlDashboard(),
             new RestDataSourceDashboard(),
             new SalesDashboard(),
             new SqlServerDataSourceDashboards(),
@@ -59,10 +60,10 @@ namespace Sandbox
         {
             InitializeComponent();
 
-            RevealSdkSettings.DataSourceProvider = new Sandbox.RevealSDK.DataSourceProvider();
+            RevealSdkSettings.DataSourceProvider = new DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
-            RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices();
-            
+            RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices().RegisterPostgreSQL();
+
             LoadDashboards();
 
             _revealView.LinkedDashboardProvider = (string dashboardId, string linkTitle) =>
@@ -159,6 +160,7 @@ namespace Sandbox
             sqlDSI.Subtitle = "SQL Server DSI Subtitle";
             sqlDSI.Table = "Customers";
             dsi.Add(sqlDSI);
+
 
             //var webDS = new RVWebResourceDataSource();
             //webDS.UseAnonymousAuthentication = true;
