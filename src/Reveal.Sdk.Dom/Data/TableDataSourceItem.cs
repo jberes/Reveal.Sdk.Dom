@@ -15,6 +15,5 @@ namespace Reveal.Sdk.Dom.Data
             get => Properties.GetValue<string>("Table");
             set => Properties.SetItem("Table", value);
         }
-
     }
 }
