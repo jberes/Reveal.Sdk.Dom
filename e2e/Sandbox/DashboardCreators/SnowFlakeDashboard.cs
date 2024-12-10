@@ -1,14 +1,13 @@
 ﻿using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
-using Sandbox.DashboardFactories;
 using System.Collections.Generic;
 
-namespace Sandbox.DashboardCreators
+namespace Sandbox.DashboardFactories
 {
     internal class SnowflakeDashboard : IDashboardCreator
     {
-        public string Name => "Snowflake Dashboard";
+        public string Name => "Snowflake Data Source";
 
         public RdashDocument CreateDashboard()
         {
