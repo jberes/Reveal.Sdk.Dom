@@ -16,11 +16,5 @@ namespace Reveal.Sdk.Dom.Data
             set => Properties.SetItem("Table", value);
         }
 
-        [JsonIgnore]
-        public string CustomQuery
-        {
-            get => Parameters.GetValue<string>("RPCustomQuery");
-            set => Parameters.SetItem("RPCustomQuery", value);
-        }
     }
 }

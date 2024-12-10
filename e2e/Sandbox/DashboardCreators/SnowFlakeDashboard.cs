@@ -2,11 +2,7 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.DashboardFactories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sandbox.DashboardCreators
 {
@@ -25,7 +21,6 @@ namespace Sandbox.DashboardCreators
                 DefaultRefreshRate = "120",
                 Host = "gpiskyj-al16914.snowflakecomputing.com",
                 Database = "SNOWFLAKE_SAMPLE_DATA",
-                //Role 
                 Warehouse = "COMPUTE_WH",
                 Schema = "TPCDS_SF100TCL"
             };
@@ -35,7 +30,6 @@ namespace Sandbox.DashboardCreators
                 Id = "SnowflakeDSItemId",
                 Title = "Snowflake data source Item",
                 Subtitle = "Snowflake data source Item Subtitle",
-                CustomQuery = "Select O_ORDERKEY, O_ORDERPRIORITY, O_CUSTKEY from ORDERS",
                 Schema = "TPCH_SF10",
                 Table = "ORDERS",
                 Database = "SNOWFLAKE_SAMPLE_DATA",

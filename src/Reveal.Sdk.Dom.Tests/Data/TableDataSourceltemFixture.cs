@@ -42,23 +42,5 @@ namespace Reveal.Sdk.Dom.Tests.Data
             Assert.Equal(expectedTable, tableDataSourceItem.Table);
             Assert.Equal(expectedTable, tableDataSourceItem.Properties.GetValue<string>("Table"));
         }
-
-        [Fact]
-        public void GetCustomQuery_ReturnSameValue_WithSetValue()
-        {
-            // Arrange
-            var title = "Title";
-            var dataSource = new DataSource();
-            var mock = new Mock<TableDataSourceItem>(title, dataSource);
-            var tableDataSourceItem = mock.Object;
-            var expectedCustomQuery = "Select FieldA, FieldB from SampleTable;";
-
-            // Act
-            tableDataSourceItem.CustomQuery = expectedCustomQuery;
-
-            // Assert
-            Assert.Equal(expectedCustomQuery, tableDataSourceItem.CustomQuery);
-            Assert.Equal(expectedCustomQuery, tableDataSourceItem.Parameters.GetValue<string>("RPCustomQuery"));
-        }
     }
 }

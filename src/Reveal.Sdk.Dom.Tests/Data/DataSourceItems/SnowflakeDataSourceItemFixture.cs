@@ -81,9 +81,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
                 ""Table"": ""CALL_CENTER"",
                 ""Schema"": ""TPCDS_SF100TCL""
               },
-              ""Parameters"": {
-                ""RPCustomQuery"": ""Select CC_CALL_CENTER_ID, CC_CALL_CENTER_SK from CALL_CENTER""
-              }
+              ""Parameters"": {}
             }";
 
             var dataSource = new SnowflakeDataSource()
@@ -98,7 +96,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
                 ProcessDataOnServer = true,
                 Table = "CALL_CENTER",
                 Schema = "TPCDS_SF100TCL",
-                CustomQuery = "Select CC_CALL_CENTER_ID, CC_CALL_CENTER_SK from CALL_CENTER",
             };
 
             var expectedJObject = JObject.Parse(expectedJson);
