@@ -19,7 +19,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 new object[] { new List<string> { "Authorization: Bearer token", "Content-Type: application/json" } },
                 new object[] { null }
             };
-        
+
         [Fact]
         public void Constructor_SetsProviderToREST_WhenConstructed()
         {
@@ -151,6 +151,92 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                     new TextField("name"),
                 }
             };
+
+            var document = new RdashDocument("My Dashboard");
+            document.Visualizations.Add(new GridVisualization("Test List", dataSourceItems).SetColumns("name"));
+            var expectedJObject = JObject.Parse(expectedJson);
+
+            // Act
+            RdashSerializer.SerializeObject(document);
+            var json = document.ToJsonString();
+            var jObject = JObject.Parse(json);
+            var actualJObject = jObject["DataSources"].LastOrDefault();
+
+            // Assert
+            Assert.Equal(expectedJObject, actualJObject);
+        }
+
+        [Fact]
+        public void ToJsonString_CreatesFormattedUseCsv_ForRestDataSource()
+        {
+            // Arrange
+            var expectedJson = @"
+            {
+              ""_type"": ""DataSourceType"",
+              ""Id"": ""ecca74a8-2082-4630-ae2b-e59e095bb87f"",
+              ""Provider"": ""REST"",
+              ""Description"": ""JSON DS"",
+              ""Subtitle"": ""JSON DS Subtitle"",
+              ""Properties"": {
+                ""Result-Type"": "".csv""
+              }
+            }";
+
+            var dataSourceItems = new RestDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
+            {
+                Id = "RestItem",
+                Title = "Rest DS Item",
+                Fields = new List<IField>
+                {
+                    new TextField("_id"),
+                    new TextField("name"),
+                }
+            };
+
+            dataSourceItems.UseCsv();
+
+            var document = new RdashDocument("My Dashboard");
+            document.Visualizations.Add(new GridVisualization("Test List", dataSourceItems).SetColumns("name"));
+            var expectedJObject = JObject.Parse(expectedJson);
+
+            // Act
+            RdashSerializer.SerializeObject(document);
+            var json = document.ToJsonString();
+            var jObject = JObject.Parse(json);
+            var actualJObject = jObject["DataSources"].LastOrDefault();
+
+            // Assert
+            Assert.Equal(expectedJObject, actualJObject);
+        }
+
+        [Fact]
+        public void ToJsonString_CreatesFormattedUseExcel_ForRestDataSource()
+        {
+            // Arrange
+            var expectedJson = @"
+            {
+              ""_type"": ""DataSourceType"",
+              ""Id"": ""2ed39a3b-f267-434f-a3ca-319801c1b7b5"",
+              ""Provider"": ""REST"",
+              ""Description"": ""JSON DS"",
+              ""Subtitle"": ""JSON DS Subtitle"",
+              ""Properties"": {
+                ""Result-Type"": "".xlsx""
+              }
+            }";
+
+            var dataSourceItems = new RestDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
+            {
+                Id = "RestItem",
+                Title = "Rest DS Item",
+                Fields = new List<IField>
+                {
+                    new TextField("_id"),
+                    new TextField("name"),
+                }
+            };
+
+            dataSourceItems.UseExcel();
 
             var document = new RdashDocument("My Dashboard");
             document.Visualizations.Add(new GridVisualization("Test List", dataSourceItems).SetColumns("name"));
