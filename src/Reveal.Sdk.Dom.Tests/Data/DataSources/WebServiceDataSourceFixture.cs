@@ -80,30 +80,19 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
             var expectedJson = @"
             {
               ""_type"": ""DataSourceType"",
-              ""Id"": ""webServiceId"",
+              ""Id"": ""1821521e-0225-4768-80c2-28c89f55b256"",
               ""Provider"": ""WEBSERVICE"",
-              ""Description"": ""Web Data Source"",
-              ""Subtitle"": ""Web Data Source Subtitle"",
-              ""Properties"": {
-                ""URL"": ""https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9"",
-                ""UseAnonymousAuthentication"": true
-              }
+              ""Description"": ""JSON DS"",
+              ""Subtitle"": ""JSON DS Subtitle"",
+              ""Properties"": {}
             }";
 
-            var dataSource = new WebServiceDataSource()
-            {
-                Id = "webServiceId",
-                Title = "Web Data Source",
-                Subtitle = "Web Data Source Subtitle",
-                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
-                UseAnonymousAuthentication = true,
-            };
-
-            var dataSourceItems = new WebServiceDataSourceItem("DB Test", dataSource)
+            var dataSourceItems = new WebServiceDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
                 Id = "webServiceItemId",
                 Title = "Sales by Category",
                 Subtitle = "Excel2Json",
+                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 Fields = new List<IField>
                 {
                     new NumberField("CategoryID"),
@@ -126,7 +115,111 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
             RdashSerializer.SerializeObject(document);
             var json = document.ToJsonString();
             var jObject = JObject.Parse(json);
-            var actualJObject = jObject["DataSources"].FirstOrDefault();
+            var actualJObject = jObject["DataSources"].LastOrDefault();
+
+            // Assert
+            Assert.Equal(expectedJObject, actualJObject);
+        }
+
+        [Fact]
+        public void ToJsonString_CreatesFormattedJsonUseCsv_ForWebServiceDataSource()
+        {
+            // Arrange
+            var expectedJson = @"
+            {
+              ""_type"": ""DataSourceType"",
+              ""Id"": ""a30dc863-47a4-4ea4-b9fb-9e8006281ce4"",
+              ""Provider"": ""WEBSERVICE"",
+              ""Description"": ""JSON DS"",
+              ""Subtitle"": ""JSON DS Subtitle"",
+              ""Properties"": {
+                ""Result-Type"": "".csv""
+              }
+            }";
+
+            var dataSourceItems = new WebServiceDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
+            {
+                Id = "webServiceItemId",
+                Title = "Sales by Category",
+                Subtitle = "Excel2Json",
+                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
+                Fields = new List<IField>
+                {
+                    new NumberField("CategoryID"),
+                    new TextField("CategoryName"),
+                    new TextField("ProductName"),
+                    new NumberField("ProductSales"),
+                }
+            };
+
+            dataSourceItems.UseCsv();
+
+            var document = new RdashDocument("My Dashboard");
+            document.Visualizations.Add(
+                new ColumnChartVisualization("Test List", dataSourceItems)
+                    .SetLabel("CategoryName")
+                    .SetValue("ProductName")
+                    );
+
+            var expectedJObject = JObject.Parse(expectedJson);
+
+            // Act
+            RdashSerializer.SerializeObject(document);
+            var json = document.ToJsonString();
+            var jObject = JObject.Parse(json);
+            var actualJObject = jObject["DataSources"].LastOrDefault();
+
+            // Assert
+            Assert.Equal(expectedJObject, actualJObject);
+        }
+
+        [Fact]
+        public void ToJsonString_CreatesFormattedJsonUseExcel_ForWebServiceDataSource()
+        {
+            // Arrange
+            var expectedJson = @"
+            {
+              ""_type"": ""DataSourceType"",
+              ""Id"": ""97018983-2f13-415b-a38c-e6ff4fa3f123"",
+              ""Provider"": ""WEBSERVICE"",
+              ""Description"": ""JSON DS"",
+              ""Subtitle"": ""JSON DS Subtitle"",
+              ""Properties"": {
+                ""Result-Type"": "".xlsx""
+              }
+            }";
+
+            var dataSourceItems = new WebServiceDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
+            {
+                Id = "webServiceItemId",
+                Title = "Sales by Category",
+                Subtitle = "Excel2Json",
+                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
+                Fields = new List<IField>
+                {
+                    new NumberField("CategoryID"),
+                    new TextField("CategoryName"),
+                    new TextField("ProductName"),
+                    new NumberField("ProductSales"),
+                }
+            };
+
+            dataSourceItems.UseExcel();
+
+            var document = new RdashDocument("My Dashboard");
+            document.Visualizations.Add(
+                new ColumnChartVisualization("Test List", dataSourceItems)
+                    .SetLabel("CategoryName")
+                    .SetValue("ProductName")
+                    );
+
+            var expectedJObject = JObject.Parse(expectedJson);
+
+            // Act
+            RdashSerializer.SerializeObject(document);
+            var json = document.ToJsonString();
+            var jObject = JObject.Parse(json);
+            var actualJObject = jObject["DataSources"].LastOrDefault();
 
             // Assert
             Assert.Equal(expectedJObject, actualJObject);

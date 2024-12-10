@@ -23,7 +23,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
 
             // Assert
             Assert.Equal(title, item.Title);
-            Assert.Equal(dataSource, item.DataSource);
         }
 
         [Theory]
@@ -71,11 +70,44 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
               ""Id"": ""webServiceItemId"",
               ""Title"": ""Sales by Category"",
               ""Subtitle"": ""Excel2Json"",
-              ""DataSourceId"": ""webServiceId"",
+              ""DataSourceId"": ""__JSON"",
               ""HasTabularData"": true,
               ""HasAsset"": false,
               ""Properties"": {},
-              ""Parameters"": {}
+              ""Parameters"": {
+                ""config"": {
+                  ""iterationDepth"": 0,
+                  ""columnsConfig"": [
+                    {
+                      ""key"": ""CategoryID"",
+                      ""type"": 1
+                    },
+                    {
+                      ""key"": ""CategoryName"",
+                      ""type"": 0
+                    },
+                    {
+                      ""key"": ""ProductName"",
+                      ""type"": 0
+                    },
+                    {
+                      ""key"": ""ProductSales"",
+                      ""type"": 1
+                    }
+                  ]
+                }
+              },
+              ""ResourceItem"": {
+                ""_type"": ""DataSourceItemType"",
+                ""Id"": ""webServiceItemId"",
+                ""Title"": ""DB Test"",
+                ""Subtitle"": ""Excel2Json"",
+                ""DataSourceId"": ""webServiceId"",
+                ""HasTabularData"": true,
+                ""HasAsset"": false,
+                ""Properties"": {},
+                ""Parameters"": {}
+              }
             }";
 
             var dataSource = new WebServiceDataSource()
