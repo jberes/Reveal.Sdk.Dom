@@ -1,6 +1,7 @@
 ﻿using Reveal.Sdk.Data;
 using Reveal.Sdk.Data.Microsoft.AnalysisServices;
 using Reveal.Sdk.Data.Microsoft.SqlServer;
+using Reveal.Sdk.Data.PostgreSQL;
 using System.Threading.Tasks;
 
 namespace Sandbox.RevealSDK
@@ -22,7 +23,10 @@ namespace Sandbox.RevealSDK
             {
                 userCredential = new RVUsernamePasswordDataSourceCredential("username", "password", "domain");
             }
-            
+            else if (dataSource is RVPostgresDataSource)
+            {
+                userCredential = new RVUsernamePasswordDataSourceCredential("postgres", "postgres");
+            }
             return Task.FromResult(userCredential);
         }
     }
