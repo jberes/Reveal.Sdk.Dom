@@ -13,9 +13,9 @@ namespace Reveal.Sdk.Dom.Data
         }
 
         [JsonIgnore]
-        public string Port
+        public int Port
         {
-            get => Properties.GetValue<string>("Port");
+            get => Properties.GetValue<int>("Port");
             set => Properties.SetItem("Port", value);
         }
     }
