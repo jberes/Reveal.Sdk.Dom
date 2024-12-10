@@ -7,5 +7,6 @@ namespace Reveal.Sdk.Dom.Data
         MySql,
         Oracle,
         PostgreSQL,
+        MongoDB,
     }
 }
