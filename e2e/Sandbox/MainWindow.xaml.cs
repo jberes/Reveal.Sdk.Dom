@@ -48,6 +48,7 @@ namespace Sandbox
             new HealthcareDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
+            new PostgresqlDashboard(),
             new RestDataSourceDashboard(),
             new SalesDashboard(),
             new SnowflakeDashboard(),
@@ -58,9 +59,10 @@ namespace Sandbox
         {
             InitializeComponent();
 
-            RevealSdkSettings.DataSourceProvider = new Sandbox.RevealSDK.DataSourceProvider();
+            RevealSdkSettings.DataSourceProvider = new DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
-            RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices().RegisterSnowflake();
+            RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices().RegisterPostgreSQL();
+            RevealSdkSettings.DataSources.RegisterSnowflake();
 
             LoadDashboards();
 
@@ -158,6 +160,7 @@ namespace Sandbox
             sqlDSI.Subtitle = "SQL Server DSI Subtitle";
             sqlDSI.Table = "Customers";
             dsi.Add(sqlDSI);
+
 
             //var webDS = new RVWebResourceDataSource();
             //webDS.UseAnonymousAuthentication = true;
