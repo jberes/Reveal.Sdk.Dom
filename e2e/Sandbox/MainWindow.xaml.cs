@@ -64,6 +64,7 @@ namespace Sandbox
             new MSAzureSqlServerDSDashboard(),
             new ODataDashboard(),
             new OracleDashboard(),
+            new MSAzureSynapseAnalyticsDashboard(),
             new PostgresqlDashboard(),
             new RestDataSourceDashboard(),
             new SalesDashboard(),
