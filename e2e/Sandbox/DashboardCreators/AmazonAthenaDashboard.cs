@@ -1,13 +1,7 @@
-﻿using DocumentFormat.OpenXml.Drawing.Charts;
-using Reveal.Sdk.Data.Amazon.Athena;
-using Reveal.Sdk.Dom;
+﻿using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sandbox.DashboardFactories
 {
@@ -38,10 +32,6 @@ namespace Sandbox.DashboardFactories
                     new TextField("country"),
                     new TextField("customerid"),
                     new TextField("customername")
-                    {
-                        IsCalculated = false,
-                        
-                    }
                 }
             };
 

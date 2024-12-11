@@ -25,7 +25,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             Assert.Same(dataSource, item.DataSource);
         }
 
-
         [Theory]
         [InlineData("DS Title", "DS Title", "DS Item Title", "DS Item Title")]
         [InlineData(null, "DS Item Title", "DS Item Title", "DS Item Title")]
@@ -69,7 +68,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             {
                 Id = "athenaDSId"
             };
-
             var dataSourceItem = new AmazonAthenaDataSourceItem("Athena DSItem", dataSource)
             {
                 Subtitle = "Athena DSItem Subtitle",
