@@ -66,17 +66,19 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
         public void ToJsonString_CreatesFormattedJson_ForMySQLDataSource()
         {
             // Arrange
-            var expectedJson = @"
-            {
-              ""_type"": ""DataSourceItemType"",
-              ""Id"": ""mySqlItemId"",
-              ""Title"": ""MySQL DS Item"",
-              ""DataSourceId"": ""mySqlId"",
-              ""HasTabularData"": true,
-              ""HasAsset"": false,
-              ""Properties"": {},
-              ""Parameters"": {}
-            }";
+            var expectedJson =
+                """
+                {
+                  "_type": "DataSourceItemType",
+                  "Id": "mySqlItemId",
+                  "Title": "MySQL DS Item",
+                  "DataSourceId": "mySqlId",
+                  "HasTabularData": true,
+                  "HasAsset": false,
+                  "Properties": {},
+                  "Parameters": {}
+                }
+                """;
 
             var dataSource = new MySQLDataSource()
             {

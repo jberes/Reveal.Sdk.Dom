@@ -54,22 +54,25 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void ToJsonString_CreatesFormattedJson_ForMySQLDataSource()
         {
             // Arrange
-            var expectedJson = @"
-            {
-                  ""_type"": ""DataSourceType"",
-                  ""Id"": ""mySqlId"",
-                  ""Provider"": ""MYSQL"",
-                  ""Description"": ""MySQL DS"",
-                  ""DefaultRefreshRate"": ""120"",
-                  ""Properties"": {
-                    ""ServerAggregationDefault"": true,
-                    ""ServerAggregationReadOnly"": false,
-                    ""Host"": ""mysqlserver.local"",
-                    ""Port"": ""3306"",
-                    ""Database"": ""northwind"",
-                    ""DefaultRefreshRate"": ""120""
+            var expectedJson = 
+                """
+                {
+                  "_type": "DataSourceType",
+                  "Id": "mySqlId",
+                  "Provider": "MYSQL",
+                  "Description": "MySQL DS",
+                  "Properties": {
+                    "ServerAggregationDefault": true,
+                    "ServerAggregationReadOnly": false,
+                    "Host": "mysqlserver.local",
+                    "Port": 3306,
+                    "Database": "northwind"
+                  },
+                  "Settings": {
+                    "DefaultRefreshRate": "120"
                   }
-            }";
+                }
+                """;
 
             var dataSource = new MySQLDataSource()
             {
