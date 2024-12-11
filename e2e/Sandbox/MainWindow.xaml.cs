@@ -48,6 +48,7 @@ namespace Sandbox
             new HealthcareDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
+            new MSAzureSqlServerDSDashboard(),
             new PostgresqlDashboard(),
             new RestDataSourceDashboard(),
             new SalesDashboard(),
