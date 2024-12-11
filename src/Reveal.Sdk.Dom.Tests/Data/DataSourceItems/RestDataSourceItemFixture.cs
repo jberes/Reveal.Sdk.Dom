@@ -426,51 +426,54 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
         }
 
         [Fact]
-        public void ToJsonString_CreatesFormattedJson_ForWebServiceDataSource()
+        public void ToJsonString_CreatesFormattedJson_ForRestDataSource()
         {
             // Arrange
-            var expectedJson = @"
-            {
-              ""_type"": ""DataSourceItemType"",
-              ""Id"": ""RestItem"",
-              ""Title"": ""Rest DS Item"",
-              ""DataSourceId"": ""__JSON"",
-              ""HasTabularData"": true,
-              ""HasAsset"": false,
-              ""Properties"": {},
-              ""Parameters"": {
-                ""config"": {
-                  ""iterationDepth"": 0,
-                  ""columnsConfig"": [
-                    {
-                      ""key"": ""_id"",
-                      ""type"": 0
-                    },
-                    {
-                      ""key"": ""name"",
-                      ""type"": 0
+            var expectedJson =
+                """
+                {
+                  "_type": "DataSourceItemType",
+                  "Id": "RestItem",
+                  "Title": "Rest DS Item",
+                  "DataSourceId": "__JSON",
+                  "HasTabularData": true,
+                  "HasAsset": false,
+                  "Properties": {},
+                  "Parameters": {
+                    "config": {
+                      "iterationDepth": 0,
+                      "columnsConfig": [
+                        {
+                          "key": "_id",
+                          "type": 0
+                        },
+                        {
+                          "key": "name",
+                          "type": 0
+                        }
+                      ]
                     }
-                  ]
+                  },
+                  "ResourceItem": {
+                    "_type": "DataSourceItemType",
+                    "Id": "RestItem",
+                    "Title": "DB Test",
+                    "DataSourceId": "Json",
+                    "HasTabularData": true,
+                    "HasAsset": false,
+                    "Properties": {
+                      "Url": "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9"
+                    },
+                    "Parameters": {}
+                  }
                 }
-              },
-              ""ResourceItem"": {
-                ""_type"": ""DataSourceItemType"",
-                ""Id"": ""RestItem"",
-                ""Title"": ""DB Test"",
-                ""DataSourceId"": ""Rest"",
-                ""HasTabularData"": true,
-                ""HasAsset"": false,
-                ""Properties"": {},
-                ""Parameters"": {}
-              }
-            }";
+                """;
 
-            var dataSource = new RestDataSource()
+            var dataSource = new DataSource()
             {
-                Id = "Rest",
-                Title = "Rest DS",
+                Id = "Json",
+                Title = "Json DS",
                 DefaultRefreshRate = "120",
-                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 Subtitle = "Excel2Json"
             };
 
@@ -478,6 +481,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             {
                 Id = "RestItem",
                 Title = "Rest DS Item",
+                Uri = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 Fields = new List<IField>
                 {
                     new TextField("_id"),
