@@ -77,15 +77,18 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void ToJsonString_CreatesFormattedJson_ForWebServiceDataSource()
         {
             // Arrange
-            var expectedJson = @"
-            {
-              ""_type"": ""DataSourceType"",
-              ""Id"": ""1821521e-0225-4768-80c2-28c89f55b256"",
-              ""Provider"": ""WEBSERVICE"",
-              ""Description"": ""JSON DS"",
-              ""Subtitle"": ""JSON DS Subtitle"",
-              ""Properties"": {}
-            }";
+            var expectedJson =
+                """
+                {
+                  "_type": "DataSourceType",
+                  "Id": "2eed07aa-a389-48e9-a8a0-c547581b13ee",
+                  "Provider": "WEBSERVICE",
+                  "Description": "JSON DS",
+                  "Subtitle": "JSON DS Subtitle",
+                  "Properties": {},
+                  "Settings": {}
+                }
+                """;
 
             var dataSourceItems = new WebServiceDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
@@ -125,17 +128,20 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void ToJsonString_CreatesFormattedJsonUseCsv_ForWebServiceDataSource()
         {
             // Arrange
-            var expectedJson = @"
-            {
-              ""_type"": ""DataSourceType"",
-              ""Id"": ""a30dc863-47a4-4ea4-b9fb-9e8006281ce4"",
-              ""Provider"": ""WEBSERVICE"",
-              ""Description"": ""JSON DS"",
-              ""Subtitle"": ""JSON DS Subtitle"",
-              ""Properties"": {
-                ""Result-Type"": "".csv""
-              }
-            }";
+            var expectedJson =
+                """
+                {
+                  "_type": "DataSourceType",
+                  "Id": "f092298a-ffbc-458a-bdfe-61801d4b1950",
+                  "Provider": "WEBSERVICE",
+                  "Description": "JSON DS",
+                  "Subtitle": "JSON DS Subtitle",
+                  "Properties": {
+                    "Result-Type": ".csv"
+                  },
+                  "Settings": {}
+                }
+                """;
 
             var dataSourceItems = new WebServiceDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
@@ -177,17 +183,20 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void ToJsonString_CreatesFormattedJsonUseExcel_ForWebServiceDataSource()
         {
             // Arrange
-            var expectedJson = @"
-            {
-              ""_type"": ""DataSourceType"",
-              ""Id"": ""97018983-2f13-415b-a38c-e6ff4fa3f123"",
-              ""Provider"": ""WEBSERVICE"",
-              ""Description"": ""JSON DS"",
-              ""Subtitle"": ""JSON DS Subtitle"",
-              ""Properties"": {
-                ""Result-Type"": "".xlsx""
-              }
-            }";
+            var expectedJson =
+                """
+                {
+                  "_type": "DataSourceType",
+                  "Id": "0976f91f-37f0-400a-822a-b0bec607cbc7",
+                  "Provider": "WEBSERVICE",
+                  "Description": "JSON DS",
+                  "Subtitle": "JSON DS Subtitle",
+                  "Properties": {
+                    "Result-Type": ".xlsx"
+                  },
+                  "Settings": {}
+                }
+                """;
 
             var dataSourceItems = new WebServiceDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {

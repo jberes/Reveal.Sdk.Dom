@@ -64,59 +64,61 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
         public void ToJsonString_CreatesFormattedJson_ForWebServiceDataSource()
         {
             // Arrange
-            var expectedJson = @"
-            {
-              ""_type"": ""DataSourceItemType"",
-              ""Id"": ""webServiceItemId"",
-              ""Title"": ""Sales by Category"",
-              ""Subtitle"": ""Excel2Json"",
-              ""DataSourceId"": ""__JSON"",
-              ""HasTabularData"": true,
-              ""HasAsset"": false,
-              ""Properties"": {},
-              ""Parameters"": {
-                ""config"": {
-                  ""iterationDepth"": 0,
-                  ""columnsConfig"": [
-                    {
-                      ""key"": ""CategoryID"",
-                      ""type"": 1
-                    },
-                    {
-                      ""key"": ""CategoryName"",
-                      ""type"": 0
-                    },
-                    {
-                      ""key"": ""ProductName"",
-                      ""type"": 0
-                    },
-                    {
-                      ""key"": ""ProductSales"",
-                      ""type"": 1
+            var expectedJson =
+                """
+                {
+                  "_type": "DataSourceItemType",
+                  "Id": "webServiceItemId",
+                  "Title": "Sales by Category",
+                  "Subtitle": "Excel2Json",
+                  "DataSourceId": "__JSON",
+                  "HasTabularData": true,
+                  "HasAsset": false,
+                  "Properties": {
+                    "Url": "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9"
+                  },
+                  "Parameters": {
+                    "config": {
+                      "iterationDepth": 0,
+                      "columnsConfig": [
+                        {
+                          "key": "CategoryID",
+                          "type": 1
+                        },
+                        {
+                          "key": "CategoryName",
+                          "type": 0
+                        },
+                        {
+                          "key": "ProductName",
+                          "type": 0
+                        },
+                        {
+                          "key": "ProductSales",
+                          "type": 1
+                        }
+                      ]
                     }
-                  ]
+                  },
+                  "ResourceItem": {
+                    "_type": "DataSourceItemType",
+                    "Id": "webServiceItemId",
+                    "Title": "DB Test",
+                    "Subtitle": "Excel2Json",
+                    "DataSourceId": "JSON",
+                    "HasTabularData": true,
+                    "HasAsset": false,
+                    "Properties": {},
+                    "Parameters": {}
+                  }
                 }
-              },
-              ""ResourceItem"": {
-                ""_type"": ""DataSourceItemType"",
-                ""Id"": ""webServiceItemId"",
-                ""Title"": ""DB Test"",
-                ""Subtitle"": ""Excel2Json"",
-                ""DataSourceId"": ""webServiceId"",
-                ""HasTabularData"": true,
-                ""HasAsset"": false,
-                ""Properties"": {},
-                ""Parameters"": {}
-              }
-            }";
+                """;
 
-            var dataSource = new WebServiceDataSource()
+            var dataSource = new DataSource()
             {
-                Id = "webServiceId",
-                Title = "Web Data Source",
-                Subtitle = "Web Data Source Subtitle",
-                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
-                UseAnonymousAuthentication = true,
+                Id = "JSON",
+                Title = "JSON Data Source",
+                Subtitle = "JSON Data Source Subtitle",
             };
 
             var dataSourceItems = new WebServiceDataSourceItem("DB Test", dataSource)
@@ -124,6 +126,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
                 Id = "webServiceItemId",
                 Title = "Sales by Category",
                 Subtitle = "Excel2Json",
+                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 Fields = new List<IField>
                 {
                     new NumberField("CategoryID"),
