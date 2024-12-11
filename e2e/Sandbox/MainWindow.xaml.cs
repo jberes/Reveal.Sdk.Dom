@@ -49,9 +49,11 @@ namespace Sandbox
             new HealthcareDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
+            new MSAzureSqlServerDSDashboard(),
             new PostgresqlDashboard(),
             new RestDataSourceDashboard(),
             new SalesDashboard(),
+            new SnowflakeDashboard(),
             new SqlServerDataSourceDashboards(),
         };
 
@@ -62,6 +64,7 @@ namespace Sandbox
             RevealSdkSettings.DataSourceProvider = new DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
             RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices().RegisterPostgreSQL().RegisterAmazonAthena();
+            RevealSdkSettings.DataSources.RegisterSnowflake();
 
             LoadDashboards();
 
