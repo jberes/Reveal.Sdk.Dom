@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Sandbox.DashboardFactories
 {
-    public class AmazonAthenaDashboard : IDashboardCreator
+    internal class AmazonAthenaDashboard : IDashboardCreator
     {
         public string Name => "Amazon Athena Data Source";
 
