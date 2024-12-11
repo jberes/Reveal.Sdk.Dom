@@ -3,10 +3,10 @@ using Reveal.Sdk.Dom.Core.Extensions;
 using Reveal.Sdk.Dom.Core.Serialization;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Data.DataSources
@@ -81,11 +81,13 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 """
                 {
                   "_type": "DataSourceType",
-                  "Id": "2eed07aa-a389-48e9-a8a0-c547581b13ee",
+                  "Id": "2885d0a3-723f-434e-ba89-08023e07638e",
                   "Provider": "WEBSERVICE",
                   "Description": "JSON DS",
                   "Subtitle": "JSON DS Subtitle",
-                  "Properties": {},
+                  "Properties": {
+                    "Url": "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9"
+                  },
                   "Settings": {}
                 }
                 """;
@@ -95,7 +97,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 Id = "webServiceItemId",
                 Title = "Sales by Category",
                 Subtitle = "Excel2Json",
-                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
+                Uri = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 Fields = new List<IField>
                 {
                     new NumberField("CategoryID"),
@@ -132,11 +134,12 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 """
                 {
                   "_type": "DataSourceType",
-                  "Id": "f092298a-ffbc-458a-bdfe-61801d4b1950",
+                  "Id": "d1ef7029-364b-433a-b46e-c1ba093dfd7c",
                   "Provider": "WEBSERVICE",
                   "Description": "JSON DS",
                   "Subtitle": "JSON DS Subtitle",
                   "Properties": {
+                    "Url": "https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto",
                     "Result-Type": ".csv"
                   },
                   "Settings": {}
@@ -148,7 +151,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 Id = "webServiceItemId",
                 Title = "Sales by Category",
                 Subtitle = "Excel2Json",
-                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
+                Uri = "https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto",
                 Fields = new List<IField>
                 {
                     new NumberField("CategoryID"),
@@ -187,11 +190,12 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 """
                 {
                   "_type": "DataSourceType",
-                  "Id": "0976f91f-37f0-400a-822a-b0bec607cbc7",
+                  "Id": "743126ef-8213-46c5-9462-e43bebb693c3",
                   "Provider": "WEBSERVICE",
                   "Description": "JSON DS",
                   "Subtitle": "JSON DS Subtitle",
                   "Properties": {
+                    "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
                     "Result-Type": ".xlsx"
                   },
                   "Settings": {}
@@ -203,7 +207,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 Id = "webServiceItemId",
                 Title = "Sales by Category",
                 Subtitle = "Excel2Json",
-                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
+                Uri = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
                 Fields = new List<IField>
                 {
                     new NumberField("CategoryID"),

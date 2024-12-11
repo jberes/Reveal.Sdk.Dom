@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class RestDataSourceItem : DataSourceItem
+    public class RestDataSourceItem : WebServiceDataSourceItem
     {
         DataSource _dataSource;
 
-        public RestDataSourceItem(string title) : 
+        public RestDataSourceItem(string title) :
             this(title, new DataSource())
         { }
 
@@ -24,66 +24,12 @@ namespace Reveal.Sdk.Dom.Data
             Uri = uri;
         }
 
-        public RestDataSourceItem(string title, DataSource dataSource) : 
+        public RestDataSourceItem(string title, DataSource dataSource) :
             base(title, new JsonDataSource())
         {
             _dataSource = dataSource ?? new DataSource();
             InitializeResourceItem(title);
             UpdateResourceItemDataSource(_dataSource);
-        }
-
-        [JsonIgnore]
-        public bool IsAnonymous
-        {
-            get { return ResourceItemDataSource.Properties.GetValue<bool>("_rpUseAnonymousAuthentication"); }
-            set { ResourceItemDataSource.Properties.SetItem("_rpUseAnonymousAuthentication", value); }
-        }
-
-        [JsonIgnore]
-        public string Uri 
-        { 
-            get { return ResourceItem.Properties.GetValue<string>("Url"); }
-            set 
-            {
-                ResourceItem.Properties.SetItem("Url", value);
-                ResourceItemDataSource.Properties.SetItem("Url", value);
-            } 
-        }
-
-        public void AddHeader(HeaderType headerType, string value)
-        {
-            var propertyKey = "Headers";
-
-            var headerValue = $"{AddDashesToEnumName(headerType.ToString())}={value}";
-
-            if (!ResourceItemDataSource.Properties.ContainsKey(propertyKey))
-            {
-                ResourceItemDataSource.Properties.Add(propertyKey, new List<string> { headerValue });
-            }
-            else
-            {
-                var headers = (List<string>)ResourceItemDataSource.Properties[propertyKey];
-                headers.Add(headerValue);
-            }
-        }
-
-        public void UseCsv()
-        {
-            ClearJsonConfig();
-            DataSource = new CsvDataSource();
-            ResourceItemDataSource.Properties.SetItem("Result-Type", ".csv");
-        }
-
-        public void UseExcel(string sheet = null, ExcelFileType fileType = ExcelFileType.Xlsx)
-        {
-            ClearJsonConfig();
-            DataSource = new ExcelDataSource();
-            
-            var fileExt = fileType == ExcelFileType.Xlsx ? ".xlsx" : ".xls";
-            ResourceItemDataSource.Properties.SetItem("Result-Type", fileExt);
-
-            if (sheet != null)
-                Properties.SetItem("Sheet", sheet);
         }
 
         protected void InitializeResourceItem(string title)
@@ -136,17 +82,6 @@ namespace Reveal.Sdk.Dom.Data
             config.Add("iterationDepth", 0);
             config.Add("columnsConfig", columnConfigs);
             return config;
-        }
-
-        void ClearJsonConfig()
-        {
-            if (Parameters.ContainsKey("config"))
-                Parameters.Remove("config");
-        }
-
-        string AddDashesToEnumName(string name)
-        {
-            return string.Concat(name.Select(x => char.IsUpper(x) ? "-" + x : x.ToString())).TrimStart('-');
         }
     }
 }

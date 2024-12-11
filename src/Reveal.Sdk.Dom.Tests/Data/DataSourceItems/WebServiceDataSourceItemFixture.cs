@@ -1,13 +1,13 @@
 using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Core.Extensions;
+using Reveal.Sdk.Dom.Core.Serialization;
 using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Visualizations;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System;
 using Xunit;
-using Reveal.Sdk.Dom.Visualizations;
-using Reveal.Sdk.Dom.Core.Serialization;
 
 namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
 {
@@ -25,20 +25,18 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             Assert.Equal(title, item.Title);
         }
 
-        [Theory]
-        [InlineData("https://example.com/api")]
-        [InlineData(null)]
-        public void Url_SetsAndGetsValue_WithDifferentInputs(string url)
+        [Fact]
+        public void Url_SetsAndGetsValue_WithDifferentInputs()
         {
             // Arrange
-            var item = new WebServiceDataSourceItem("Test Item", new WebServiceDataSource());
+            var restDataSourceItem = new WebServiceDataSourceItem("Test");
+            var uri = "https://example.com/api/data";
 
             // Act
-            item.Url = url;
+            restDataSourceItem.Uri = uri;
 
             // Assert
-            Assert.Equal(url, item.Url);
-            Assert.Equal(url, item.Properties.GetValue<string>("Url"));
+            Assert.Equal(uri, restDataSourceItem.Uri);
         }
 
         [Fact]
@@ -74,32 +72,8 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
                   "DataSourceId": "__JSON",
                   "HasTabularData": true,
                   "HasAsset": false,
-                  "Properties": {
-                    "Url": "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9"
-                  },
-                  "Parameters": {
-                    "config": {
-                      "iterationDepth": 0,
-                      "columnsConfig": [
-                        {
-                          "key": "CategoryID",
-                          "type": 1
-                        },
-                        {
-                          "key": "CategoryName",
-                          "type": 0
-                        },
-                        {
-                          "key": "ProductName",
-                          "type": 0
-                        },
-                        {
-                          "key": "ProductSales",
-                          "type": 1
-                        }
-                      ]
-                    }
-                  },
+                  "Properties": {},
+                  "Parameters": {},
                   "ResourceItem": {
                     "_type": "DataSourceItemType",
                     "Id": "webServiceItemId",
@@ -108,7 +82,9 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
                     "DataSourceId": "JSON",
                     "HasTabularData": true,
                     "HasAsset": false,
-                    "Properties": {},
+                    "Properties": {
+                      "Url": "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9"
+                    },
                     "Parameters": {}
                   }
                 }
@@ -126,7 +102,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
                 Id = "webServiceItemId",
                 Title = "Sales by Category",
                 Subtitle = "Excel2Json",
-                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
+                Uri = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 Fields = new List<IField>
                 {
                     new NumberField("CategoryID"),

@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
 using Reveal.Sdk.Dom.Core.Extensions;
 using Reveal.Sdk.Dom.Data;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Data.DataSources
@@ -14,7 +14,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 new object[] { new List<string> { "Authorization: Bearer token", "Content-Type: application/json" } },
                 new object[] { null }
             };
-        
+
         [Fact]
         public void Constructor_SetsProviderToREST_WhenConstructed()
         {
