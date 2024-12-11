@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Core.Extensions;
 using Reveal.Sdk.Dom.Data;
 using Xunit;
@@ -7,20 +8,17 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
     public class AmazonAthenaDataSourceFixture
     {
         [Fact]
-        public void Constructor_SetsProviderToAmazonAthena_Always()
+        public void Constructor_SetsProviderToAmazonAthena_NoConditions()
         {
-            // Arrange
+            // Act
             var dataSource = new AmazonAthenaDataSource();
 
-            // Act
-            var actualProvider = dataSource.Provider;
-
             // Assert
-            Assert.Equal(DataSourceProvider.AmazonAthena, actualProvider);
+            Assert.Equal(DataSourceProvider.AmazonAthena, dataSource.Provider);
         }
 
         [Fact]
-        public void DataCatalog_SetsAndGetsValue_ValidDataCatalog()
+        public void GetDataCatalog_ReturnSameValue_WithSetValue()
         {
             // Arrange
             var dataSource = new AmazonAthenaDataSource();
@@ -28,30 +26,14 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             // Act
             dataSource.DataCatalog = expectedDataCatalog;
-            var actualDataCatalog = dataSource.DataCatalog;
 
             // Assert
-            Assert.Equal(expectedDataCatalog, actualDataCatalog);
+            Assert.Equal(expectedDataCatalog, dataSource.DataCatalog);
+            Assert.Equal(expectedDataCatalog, dataSource.Properties.GetValue<string>("dataCatalog"));
         }
 
         [Fact]
-        public void DataCatalog_SetsValue_NullDataCatalog()
-        {
-            // Arrange
-            var dataSource = new AmazonAthenaDataSource();
-
-            // Act
-            dataSource.DataCatalog = null;
-            var actualDataCatalog = dataSource.DataCatalog;
-            var actualPropertyDataCatalog = dataSource.Properties.GetValue<string>("DataCatalog");
-
-            // Assert
-            Assert.Null(actualDataCatalog);
-            Assert.Null(actualPropertyDataCatalog);
-        }
-
-        [Fact]
-        public void OutputLocation_SetsAndGetsValue_ValidOutputLocation()
+        public void GetOutputLocation_ReturnSameValue_WithSetValue()
         {
             // Arrange
             var dataSource = new AmazonAthenaDataSource();
@@ -59,30 +41,14 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             // Act
             dataSource.OutputLocation = expectedOutputLocation;
-            var actualOutputLocation = dataSource.OutputLocation;
 
             // Assert
-            Assert.Equal(expectedOutputLocation, actualOutputLocation);
+            Assert.Equal(expectedOutputLocation, dataSource.OutputLocation);
+            Assert.Equal(expectedOutputLocation, dataSource.Properties.GetValue<string>("outputLocation"));
         }
 
         [Fact]
-        public void OutputLocation_SetsValue_NullOutputLocation()
-        {
-            // Arrange
-            var dataSource = new AmazonAthenaDataSource();
-
-            // Act
-            dataSource.OutputLocation = null;
-            var actualOutputLocation = dataSource.OutputLocation;
-            var actualPropertyOutputLocation = dataSource.Properties.GetValue<string>("OutputLocation");
-
-            // Assert
-            Assert.Null(actualOutputLocation);
-            Assert.Null(actualPropertyOutputLocation);
-        }
-
-        [Fact]
-        public void Region_SetsAndGetsValue_ValidRegion()
+        public void GetRegion_ReturnSameValue_WithSetValue()
         {
             // Arrange
             var dataSource = new AmazonAthenaDataSource();
@@ -90,30 +56,14 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             // Act
             dataSource.Region = expectedRegion;
-            var actualRegion = dataSource.Region;
 
             // Assert
-            Assert.Equal(expectedRegion, actualRegion);
+            Assert.Equal(expectedRegion, dataSource.Region);
+            Assert.Equal(expectedRegion, dataSource.Properties.GetValue<string>("region"));
         }
 
         [Fact]
-        public void Region_SetsValue_NullRegion()
-        {
-            // Arrange
-            var dataSource = new AmazonAthenaDataSource();
-
-            // Act
-            dataSource.Region = null;
-            var actualRegion = dataSource.Region;
-            var actualPropertyRegion = dataSource.Properties.GetValue<string>("Region");
-
-            // Assert
-            Assert.Null(actualRegion);
-            Assert.Null(actualPropertyRegion);
-        }
-
-        [Fact]
-        public void Workgroup_SetsAndGetsValue_ValidWorkgroup()
+        public void GetWorkgroup_ReturnSameValue_WithSetValue()
         {
             // Arrange
             var dataSource = new AmazonAthenaDataSource();
@@ -121,86 +71,49 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             // Act
             dataSource.Workgroup = expectedWorkgroup;
-            var actualWorkgroup = dataSource.Workgroup;
 
             // Assert
-            Assert.Equal(expectedWorkgroup, actualWorkgroup);
+            Assert.Equal(expectedWorkgroup, dataSource.Workgroup);
+            Assert.Equal(expectedWorkgroup, dataSource.Properties.GetValue<string>("workgroup"));
         }
 
         [Fact]
-        public void Workgroup_SetsValue_NullWorkgroup()
+        public void ToJsonString_HaveSameObject_WithRevealJson()
         {
             // Arrange
-            var dataSource = new AmazonAthenaDataSource();
+            var expectedJson = """
+            {
+              "_type": "DataSourceType",
+              "Id": "athenaDSId",
+              "Provider": "AMAZON_ATHENA",
+              "Description": "Athena",
+              "Properties": {
+                "region": "us-east-1",
+                "Database": "mydatabase",
+                "outputLocation": "s3://athena-bucket/Test",
+                "dataCatalog": "TestCatalog",
+                "workgroup": "TestWG"
+              }
+            }
+            """;
+            var dataSource = new AmazonAthenaDataSource()
+            {
+                Id = "athenaDSId",
+                Title = "Athena",
+                Region = "us-east-1",
+                Database = "mydatabase",
+                DataCatalog = "TestCatalog",
+                Workgroup = "TestWG",
+                OutputLocation = "outputLocation"
+            };
 
             // Act
-            dataSource.Workgroup = null;
-            var actualWorkgroup = dataSource.Workgroup;
-            var actualPropertyWorkgroup = dataSource.Properties.GetValue<string>("Workgroup");
+            var json = dataSource.ToJsonString();
+            var expectedJObject = JObject.Parse(expectedJson);
+            var actualJObject = JObject.Parse(json);
 
             // Assert
-            Assert.Null(actualWorkgroup);
-            Assert.Null(actualPropertyWorkgroup);
-        }
-
-        [Fact]
-        public void Properties_StoresDataCatalogValueCorrectly_ValidDataCatalog()
-        {
-            // Arrange
-            var dataSource = new AmazonAthenaDataSource();
-            var expectedDataCatalog = "TestCatalog";
-
-            // Act
-            dataSource.DataCatalog = expectedDataCatalog;
-            var actualPropertyDataCatalog = dataSource.Properties.GetValue<string>("DataCatalog");
-
-            // Assert
-            Assert.Equal(expectedDataCatalog, actualPropertyDataCatalog);
-        }
-
-        [Fact]
-        public void Properties_StoresOutputLocationValueCorrectly_ValidOutputLocation()
-        {
-            // Arrange
-            var dataSource = new AmazonAthenaDataSource();
-            var expectedOutputLocation = "s3://test-bucket/output/";
-
-            // Act
-            dataSource.OutputLocation = expectedOutputLocation;
-            var actualPropertyOutputLocation = dataSource.Properties.GetValue<string>("OutputLocation");
-
-            // Assert
-            Assert.Equal(expectedOutputLocation, actualPropertyOutputLocation);
-        }
-
-        [Fact]
-        public void Properties_StoresRegionValueCorrectly_ValidRegion()
-        {
-            // Arrange
-            var dataSource = new AmazonAthenaDataSource();
-            var expectedRegion = "us-west-2";
-
-            // Act
-            dataSource.Region = expectedRegion;
-            var actualPropertyRegion = dataSource.Properties.GetValue<string>("Region");
-
-            // Assert
-            Assert.Equal(expectedRegion, actualPropertyRegion);
-        }
-
-        [Fact]
-        public void Properties_StoresWorkgroupValueCorrectly_ValidWorkgroup()
-        {
-            // Arrange
-            var dataSource = new AmazonAthenaDataSource();
-            var expectedWorkgroup = "primary";
-
-            // Act
-            dataSource.Workgroup = expectedWorkgroup;
-            var actualPropertyWorkgroup = dataSource.Properties.GetValue<string>("Workgroup");
-
-            // Assert
-            Assert.Equal(expectedWorkgroup, actualPropertyWorkgroup);
+            Assert.Equal(expectedJObject, actualJObject);
         }
     }
 }
