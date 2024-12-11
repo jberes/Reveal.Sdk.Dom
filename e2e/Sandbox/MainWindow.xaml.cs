@@ -51,6 +51,7 @@ namespace Sandbox
             new PostgresqlDashboard(),
             new RestDataSourceDashboard(),
             new SalesDashboard(),
+            new SnowflakeDashboard(),
             new SqlServerDataSourceDashboards(),
         };
 
@@ -61,6 +62,7 @@ namespace Sandbox
             RevealSdkSettings.DataSourceProvider = new DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
             RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices().RegisterPostgreSQL();
+            RevealSdkSettings.DataSources.RegisterSnowflake();
 
             LoadDashboards();
 
