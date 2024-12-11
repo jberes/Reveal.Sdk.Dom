@@ -49,12 +49,16 @@ namespace Sandbox
             new HealthcareDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
+            new MongoDashboard(),
+            new MSAzureSqlDashboard(),
+            new MySqlDashboard(),
             new MSAzureSqlServerDSDashboard(),
             new PostgresqlDashboard(),
             new RestDataSourceDashboard(),
             new SalesDashboard(),
             new SnowflakeDashboard(),
             new SqlServerDataSourceDashboards(),
+            new WebServiceDataSourceDashboard(),
         };
 
         public MainWindow()
@@ -63,8 +67,16 @@ namespace Sandbox
 
             RevealSdkSettings.DataSourceProvider = new DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
-            RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices().RegisterPostgreSQL().RegisterAmazonAthena();
-            RevealSdkSettings.DataSources.RegisterSnowflake();
+            RevealSdkSettings.DataSources
+                .RegisterMicrosoftSqlServer()
+                .RegisterMicrosoftAnalysisServices()
+                .RegisterPostgreSQL()
+                .RegisterAmazonAthena()
+                .RegisterMicrosoftSynapseAnalytics()
+                .RegisterSnowflake()
+                .RegisterMySql()
+                .RegisterMongoDB()
+                .RegisterGoogleDrive();
 
             LoadDashboards();
 
@@ -223,6 +235,13 @@ namespace Sandbox
             if (creator != null)
             {
                 RdashDocument document = creator.CreateDashboard();
+
+                if(document == null)
+                {
+                    MessageBox.Show("Not implemented yet!");
+                    return;
+                }
+
                 var json = document.ToJsonString();
                 _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
 

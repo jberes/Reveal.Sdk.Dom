@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sandbox.DashboardFactories
 {
-    internal class SnowflakeDashboard : IDashboardCreator
+    internal class MySqlDashboard : IDashboardCreator
     {
-        public string Name => "Snowflake Data source";
+        public string Name => "MySql data source";
 
         public RdashDocument CreateDashboard()
         {
