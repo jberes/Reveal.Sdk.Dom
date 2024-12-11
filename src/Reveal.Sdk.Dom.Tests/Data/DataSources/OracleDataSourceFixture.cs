@@ -90,7 +90,8 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                     "Database": "HR",
                     "SID": "orcl",
                     "Port": 1521
-                  }
+                  },
+                  "Settings": {}
                 }
                 """;
 
