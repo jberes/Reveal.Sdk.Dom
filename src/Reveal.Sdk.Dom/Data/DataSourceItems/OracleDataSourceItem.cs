@@ -8,7 +8,7 @@
 
         protected override DataSource CreateDataSourceInstance(DataSource dataSource)
         {
-            return Create<MySQLDataSource>(dataSource);
+            return Create<OracleDataSource>(dataSource);
         }
     }
 }

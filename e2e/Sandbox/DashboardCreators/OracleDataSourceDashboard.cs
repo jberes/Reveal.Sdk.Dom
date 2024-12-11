@@ -38,9 +38,8 @@ namespace Sandbox.DashboardCreators
                 Table = "EMPLOYEES",
                 Fields = new List<IField>
                 {
-                    new NumberField("ReportsTo"),
-                    new NumberField("EmployeeID"),
-                    new TextField("Country"),
+                    new NumberField("MANAGER_ID"),
+                    new NumberField("EMPLOYEE_ID"),
                 }
             };
 
@@ -54,10 +53,7 @@ namespace Sandbox.DashboardCreators
             var dateFilter = new DashboardDateFilter("My Date Filter");
             document.Filters.Add(dateFilter);
 
-            var countryFilter = new DashboardDataFilter("Country", oracleDataSourceItem);
-            document.Filters.Add(countryFilter);
-
-            document.Visualizations.Add(CreateEmployeeReportColumnVisualization(oracleDataSourceItem, countryFilter));
+            document.Visualizations.Add(CreateEmployeeReportColumnVisualization(oracleDataSourceItem));
 
             return document;
         }
@@ -65,8 +61,8 @@ namespace Sandbox.DashboardCreators
         private static Visualization CreateEmployeeReportColumnVisualization(DataSourceItem dsi, params DashboardFilter[] filters)
         {
             return new ColumnChartVisualization("Employees report", dsi)
-                .SetLabel("ReportsTo")
-                .SetValue("EmployeeID")
+                .SetLabel("MANAGER_ID")
+                .SetValue("EMPLOYEE_ID")
                 .ConnectDashboardFilters(filters)
                 .SetPosition(20, 11);
         }
