@@ -78,7 +78,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         }
 
         [Fact]
-        public void ToJsonString_HaveSameObject_WithRevealJson()
+        public void ToJsonString_CreateSameObject_WithRevealJson()
         {
             // Arrange
             var expectedJson = """
@@ -93,6 +93,9 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 "outputLocation": "s3://athena-bucket/Test",
                 "dataCatalog": "TestCatalog",
                 "workgroup": "TestWG"
+              },
+              "Settings": {
+                "DefaultRefreshRate": 180
               }
             }
             """;
@@ -104,7 +107,8 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 Database = "mydatabase",
                 DataCatalog = "TestCatalog",
                 Workgroup = "TestWG",
-                OutputLocation = "outputLocation"
+                OutputLocation = "outputLocation",
+                DefaultRefreshRate = "180"
             };
 
             // Act
