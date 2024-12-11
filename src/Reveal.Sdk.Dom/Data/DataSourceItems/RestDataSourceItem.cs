@@ -45,43 +45,5 @@ namespace Reveal.Sdk.Dom.Data
             ResourceItemDataSource = ResourceItemDataSource;
             ResourceItem = ResourceItem;
         }
-
-        protected override void OnFieldsPropertyChanged(List<IField> fields)
-        {
-            Parameters.Add("config", BuildConfig(fields));
-        }
-
-        private Dictionary<string, object> BuildConfig(IEnumerable<IField> fields)
-        {
-            Dictionary<string, object> config = new Dictionary<string, object>();
-            List<ColumnConfig> columnConfigs = new List<ColumnConfig>();
-            foreach (var field in fields)
-            {
-                if (field == null)
-                    continue;
-
-                var columnConfig = new ColumnConfig
-                {
-                    Key = field.FieldName
-                };
-
-
-                int type = ((IFieldDataType)field).DataType switch
-                {
-                    DataType.Number => 1,
-                    DataType.Date => 2,
-                    DataType.DateTime => 3,
-                    DataType.Time => 4,
-                    _ => 0
-                };
-
-                columnConfig.Type = type;
-                columnConfigs.Add(columnConfig);
-            }
-
-            config.Add("iterationDepth", 0);
-            config.Add("columnsConfig", columnConfigs);
-            return config;
-        }
     }
 }
