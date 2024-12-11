@@ -131,15 +131,18 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void ToJsonString_CreatesFormattedJson_ForRestDataSource()
         {
             // Arrange
-            var expectedJson = @"
-            {
-              ""_type"": ""DataSourceType"",
-              ""Id"": ""Rest"",
-              ""Provider"": ""REST"",
-              ""Description"": ""Rest DS"",
-              ""Subtitle"": ""Excel2Json"",
-              ""Properties"": {}
-            }";
+            var expectedJson =
+                """
+                {
+                  "_type": "DataSourceType",
+                  "Id": "7473e6b8-ba86-4703-8e69-79f83d0742f3",
+                  "Provider": "REST",
+                  "Description": "JSON DS",
+                  "Subtitle": "JSON DS Subtitle",
+                  "Properties": {},
+                  "Settings": {}
+                }
+                """;
 
             var dataSourceItems = new RestDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
@@ -170,17 +173,20 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void ToJsonString_CreatesFormattedUseCsv_ForRestDataSource()
         {
             // Arrange
-            var expectedJson = @"
-            {
-              ""_type"": ""DataSourceType"",
-              ""Id"": ""ecca74a8-2082-4630-ae2b-e59e095bb87f"",
-              ""Provider"": ""REST"",
-              ""Description"": ""JSON DS"",
-              ""Subtitle"": ""JSON DS Subtitle"",
-              ""Properties"": {
-                ""Result-Type"": "".csv""
-              }
-            }";
+            var expectedJson =
+                """
+                {
+                  "_type": "DataSourceType",
+                  "Id": "717a8e83-15c5-403b-b621-e7f103f7a2ad",
+                  "Provider": "REST",
+                  "Description": "JSON DS",
+                  "Subtitle": "JSON DS Subtitle",
+                  "Properties": {
+                    "Result-Type": ".csv"
+                  },
+                  "Settings": {}
+                }
+                """;
 
             var dataSourceItems = new RestDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
@@ -213,17 +219,20 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void ToJsonString_CreatesFormattedUseExcel_ForRestDataSource()
         {
             // Arrange
-            var expectedJson = @"
-            {
-              ""_type"": ""DataSourceType"",
-              ""Id"": ""2ed39a3b-f267-434f-a3ca-319801c1b7b5"",
-              ""Provider"": ""REST"",
-              ""Description"": ""JSON DS"",
-              ""Subtitle"": ""JSON DS Subtitle"",
-              ""Properties"": {
-                ""Result-Type"": "".xlsx""
-              }
-            }";
+            var expectedJson =
+                """
+                {
+                  "_type": "DataSourceType",
+                  "Id": "20e1b99f-ddab-40dd-afd2-4b8b1fcf9917",
+                  "Provider": "REST",
+                  "Description": "JSON DS",
+                  "Subtitle": "JSON DS Subtitle",
+                  "Properties": {
+                    "Result-Type": ".xlsx"
+                  },
+                  "Settings": {}
+                }
+                """;
 
             var dataSourceItems = new RestDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
