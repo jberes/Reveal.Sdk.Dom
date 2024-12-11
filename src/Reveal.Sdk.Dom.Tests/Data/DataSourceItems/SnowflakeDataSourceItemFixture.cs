@@ -69,21 +69,22 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
         public void ToJsonString_CreatesFormattedJson_NoConditions()
         {
             // Arrange
-            var expectedJson = @"{
-              ""_type"": ""DataSourceItemType"",
-              ""Id"": ""a60ab508-0ed4-46e4-8d90-c3a9c09c29b8"",
-              ""Title"": ""SnowFlake DSI"",
-              ""DataSourceId"": ""snowflake_ds"",
-              ""HasTabularData"": true,
-              ""HasAsset"": false,
-              ""Properties"": {
-                ""ServerAggregation"": true,
-                ""Table"": ""CALL_CENTER"",
-                ""Schema"": ""TPCDS_SF100TCL""
+            var expectedJson = """
+            {
+              "_type": "DataSourceItemType",
+              "Id": "a60ab508-0ed4-46e4-8d90-c3a9c09c29b8",
+              "Title": "SnowFlake DSI",
+              "DataSourceId": "snowflake_ds",
+              "HasTabularData": true,
+              "HasAsset": false,
+              "Properties": {
+                "ServerAggregation": true,
+                "Table": "CALL_CENTER",
+                "Schema": "TPCDS_SF100TCL"
               },
-              ""Parameters"": {}
-            }";
-
+              "Parameters": {}
+            }
+            """;
             var dataSource = new SnowflakeDataSource()
             {
                 Id = "snowflake_ds",
@@ -97,7 +98,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
                 Table = "CALL_CENTER",
                 Schema = "TPCDS_SF100TCL",
             };
-
             var expectedJObject = JObject.Parse(expectedJson);
 
             // Act
@@ -106,7 +106,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
 
             // Assert
             Assert.Equal(expectedJObject, actualJObject);
-
         }
     }
 }

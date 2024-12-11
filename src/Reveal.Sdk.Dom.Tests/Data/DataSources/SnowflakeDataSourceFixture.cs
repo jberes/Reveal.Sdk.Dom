@@ -69,24 +69,27 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void ToJsonString_CreatesFormattedJson_NoConditions()
         {
             // Arrange
-            var expectedJson = @"{
-              ""_type"": ""DataSourceType"",
-              ""Id"": ""snowflake_ds"",
-              ""Provider"": ""SNOWFLAKE"",
-              ""Description"": ""Snowflake TEST"",
-              ""Subtitle"": ""Snowflake TEST Subtitle"",
-              ""Properties"": {
-                ""ServerAggregationDefault"": true,
-                ""ServerAggregationReadOnly"": false,
-                ""Host"": ""gpiskyj-al16914.snowflakecomputing.com"",
-                ""Database"": ""SNOWFLAKE_SAMPLE_DATA"",
-                ""Account"": ""pqwkobs-xb90908"",
-                ""Warehouse"": ""COMPUTE_WH"",
-                ""Schema"": ""TPCDS_SF100TCL""
+            var expectedJson = """
+            {
+              "_type": "DataSourceType",
+              "Id": "snowflake_ds",
+              "Provider": "SNOWFLAKE",
+              "Description": "Snowflake TEST",
+              "Subtitle": "Snowflake TEST Subtitle",
+              "Properties": {
+                "ServerAggregationDefault": true,
+                "ServerAggregationReadOnly": false,
+                "Host": "gpiskyj-al16914.snowflakecomputing.com",
+                "Database": "SNOWFLAKE_SAMPLE_DATA",
+                "Account": "pqwkobs-xb90908",
+                "Warehouse": "COMPUTE_WH",
+                "Schema": "TPCDS_SF100TCL"
               },
-              //""Settings"": {} // TODO: Update to check settings fields after Postgresql PR is merged
-            }";
-
+              "Settings": {
+                "DefaultRefreshRate": 180
+              }
+            }
+            """;
             var dataSource = new SnowflakeDataSource()
             {
                 Id = "snowflake_ds",
@@ -99,6 +102,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 Account = "pqwkobs-xb90908",
                 Warehouse = "COMPUTE_WH",
                 Schema = "TPCDS_SF100TCL",
+                DefaultRefreshRate = "180"
             };
             var expectedJObject = JObject.Parse(expectedJson);
 
@@ -108,7 +112,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             // Assert
             Assert.Equal(expectedJObject, actualJObject);
-
         }
     }
 }
