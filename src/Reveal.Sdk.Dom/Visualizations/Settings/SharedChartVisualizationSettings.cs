@@ -12,7 +12,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         /// <summary>
         /// Gets or sets a value that determines if the chart will automatcially rotate labels
         /// </summary>
-        public bool AutomaticLabelRotation { get; set; }
+        public bool AutomaticLabelRotation { get; set; } = true;
 
         /// <summary>
         /// Gets or sets a values that will sync the axis to the visible range.
