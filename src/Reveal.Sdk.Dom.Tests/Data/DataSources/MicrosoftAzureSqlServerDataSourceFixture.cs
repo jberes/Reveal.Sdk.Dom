@@ -36,24 +36,28 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void ToJsonString_CreateExpectedRevealJson_NoConditions()
         {
             // Arrange
-            var expectedJson = @"{
-              ""_type"": ""DataSourceType"",
-              ""Id"": ""azureSqlId"",
-              ""Provider"": ""AZURE_SQL"",
-              ""Description"": ""Azure SQL DS"",
-              ""Subtitle"": ""Azure SQL DS Item"",
-              ""Properties"": {
-                ""ServerAggregationDefault"": false,
-                ""ServerAggregationReadOnly"": true,
-                ""Host"": ""revealtesting.database.windows.net"",
-                ""Port"": 1433,
-                ""Database"": ""reveal"",
-                ""Schema"": ""azureSchema"",
-                ""TrustServerCertificate"": false,
-                ""Encrypt"": false
+            var expectedJson = """
+            {
+              "_type": "DataSourceType",
+              "Id": "azureSqlId",
+              "Provider": "AZURE_SQL",
+              "Description": "Azure SQL DS",
+              "Subtitle": "Azure SQL DS Item",
+              "Properties": {
+                "ServerAggregationDefault": false,
+                "ServerAggregationReadOnly": true,
+                "Host": "revealtesting.database.windows.net",
+                "Port": 1433,
+                "Database": "reveal",
+                "Schema": "azureSchema",
+                "TrustServerCertificate": false,
+                "Encrypt": false
               },
-             
-            }";
+              "Settings": {
+                "DefaultRefreshRate": 180
+              }
+            }
+            """;
             var dataSource = new MicrosoftAzureSqlServerDataSource()
             {
                 Id = "azureSqlId",
@@ -67,7 +71,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 Schema = "azureSchema",
                 TrustServerCertificate = false,
                 Encrypt = false,
-                //DefaultRefreshRate = "161" // TODO: Check the DefaultRefreshRate when get Json, after DefaultRefreshRate is moved to Settings field
+                DefaultRefreshRate = "180"
             };
 
             // Act
@@ -80,4 +84,3 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         }
     }
 }
-    

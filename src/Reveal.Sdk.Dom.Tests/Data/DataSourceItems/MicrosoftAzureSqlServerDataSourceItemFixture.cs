@@ -92,8 +92,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
                 HasAsset = false,
                 ProcessDataOnServer = true,
                 Database = "reveal",
-                Table = "Categories"
-                //DefaultRefreshRate = "161" // TODO: Check the DefaultRefreshRate when get Json, after DefaultRefreshRate is moved to Settings field
+                Table = "Categories",
             };
 
             // Act
