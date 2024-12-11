@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Sandbox.DashboardFactories
 {
-    public class MSAzureSqlServerDSDashboard : IDashboardCreator
+    internal class MSAzureSqlServerDSDashboard : IDashboardCreator
     {
         public string Name => "MS Azure Sql Server";
 
