@@ -42,6 +42,7 @@ namespace Sandbox
 
         List<IDashboardCreator> _dashboardCreators = new List<IDashboardCreator>
         {
+            new AmazonAthenaDashboard(),
             new CampaignsDashboard(),
             new CustomDashboard(),
             new DashboardLinkingDashboard(),
@@ -60,7 +61,7 @@ namespace Sandbox
 
             RevealSdkSettings.DataSourceProvider = new DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
-            RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices().RegisterPostgreSQL();
+            RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices().RegisterPostgreSQL().RegisterAmazonAthena();
 
             LoadDashboards();
 
