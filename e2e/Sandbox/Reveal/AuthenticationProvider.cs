@@ -1,4 +1,7 @@
 using Reveal.Sdk.Data;
+using Reveal.Sdk.Data.Amazon.Athena;
+using Reveal.Sdk.Data.Amazon.S3;
+using Reveal.Sdk.Data;
 using Reveal.Sdk.Data.Microsoft.AnalysisServices;
 using Reveal.Sdk.Data.Microsoft.SqlServer;
 using Reveal.Sdk.Data.Snowflake;
@@ -31,6 +34,10 @@ namespace Sandbox.RevealSDK
             else if (dataSource is RVPostgresDataSource)
             {
                 userCredential = new RVUsernamePasswordDataSourceCredential("postgres", "postgres");
+            }
+            else if (dataSource is RVAthenaDataSource || dataSource is RVS3DataSource)
+            {
+                userCredential = new RVAmazonWebServicesCredentials("key", "token");
             }
             return Task.FromResult(userCredential);
         }
