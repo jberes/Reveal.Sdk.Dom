@@ -48,7 +48,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
         }
 
         [Fact]
-        public void ToJsonString_CreatesFormattedJson_ForMySQLDataSource()
+        public void ToJsonString_CreatesFormattedJson_ForOracleDataSource()
         {
             // Arrange
             var expectedJson =
