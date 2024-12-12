@@ -24,7 +24,7 @@ namespace Sandbox.RevealSDK
 {
     internal class AuthenticationProvider : IRVAuthenticationProvider
     {
-        public async Task<IRVDataSourceCredential> ResolveCredentialsAsync(RVDashboardDataSource dataSource)
+        public Task<IRVDataSourceCredential> ResolveCredentialsAsync(RVDashboardDataSource dataSource)
         {
             IRVDataSourceCredential userCredential = null;
             if (dataSource is RVAzureSqlDataSource)
@@ -106,7 +106,7 @@ namespace Sandbox.RevealSDK
 
             }
 
-            return userCredential;
+            return Task.FromResult(userCredential);
         }
 
         internal string RetrieveGoogleDriveBearerToken()
