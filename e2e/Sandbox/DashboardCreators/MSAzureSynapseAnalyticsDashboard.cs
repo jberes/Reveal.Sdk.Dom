@@ -7,7 +7,7 @@ namespace Sandbox.DashboardFactories
 {
     internal class MSAzureSynapseAnalyticsDashboard : IDashboardCreator
     {
-        public string Name => "Azure Synapse Analytics Data Source";
+        public string Name => "MS Azure Synapse Analytics Data Source";
 
         public RdashDocument CreateDashboard()
         {
@@ -19,7 +19,8 @@ namespace Sandbox.DashboardFactories
                 Title = "Synapse data source title",
                 Host = "revealdb01.infragistics.local",
                 Database = "Northwind",
-                Port = 1433
+                Port = 1433,
+                TrustServerCertificate = false
             };
             var dataSourceItem = new MicrosoftAzureSynapseAnalyticsDataSourceItem("MS Azure Synapse DS Item", dataSource)
             {
