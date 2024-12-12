@@ -13,7 +13,7 @@ namespace Sandbox.DashboardFactories
 
         public RdashDocument CreateDashboard()
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

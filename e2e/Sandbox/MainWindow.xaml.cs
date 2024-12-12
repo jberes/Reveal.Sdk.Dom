@@ -43,16 +43,27 @@ namespace Sandbox
         List<IDashboardCreator> _dashboardCreators = new List<IDashboardCreator>
         {
             new AmazonAthenaDashboard(),
+            new AmazonS3Dashboard(),
+            new AmazonRedshiftDashboard(),
             new CampaignsDashboard(),
             new CustomDashboard(),
             new DashboardLinkingDashboard(),
+            new GoogleAnalytic4Dashboard(),
+            new GoogleBigQueryDashboard(),
+            new GoogleDriveDashboard(),
+            new GoogleSheetDashboard(),
             new HealthcareDashboard(),
+            new HttpAnalysisDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
             new MongoDashboard(),
+            new MSAnalysisServiceDashboard(),
+            new MSAzureAnalysisServiceDashboard(),
             new MSAzureSqlDashboard(),
             new MySqlDashboard(),
             new MSAzureSqlServerDSDashboard(),
+            new ODataDashboard(),
+            new OracleDashboard(),
             new PostgresqlDashboard(),
             new RestDataSourceDashboard(),
             new SalesDashboard(),
@@ -76,7 +87,13 @@ namespace Sandbox
                 .RegisterSnowflake()
                 .RegisterMySql()
                 .RegisterMongoDB()
-                .RegisterGoogleDrive();
+                .RegisterGoogleDrive()
+                .RegisterGoogleBigQuery()
+                .RegisterGoogleAnalytics4()
+                .RegisterAmazonRedshift()
+                .RegisterAmazonS3()
+                .RegisterGoogleDrive()
+                .RegisterOracle();
 
             LoadDashboards();
 
@@ -235,12 +252,6 @@ namespace Sandbox
             if (creator != null)
             {
                 RdashDocument document = creator.CreateDashboard();
-
-                if(document == null)
-                {
-                    MessageBox.Show("Not implemented yet!");
-                    return;
-                }
 
                 var json = document.ToJsonString();
                 _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);

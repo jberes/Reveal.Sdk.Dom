@@ -1,5 +1,4 @@
 ﻿using Reveal.Sdk.Dom;
-using Sandbox.DashboardFactories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sandbox.DashboardFactories
 {
-    internal class MSAzureSqlDashboard : IDashboardCreator
+    internal class AmazonRedshiftDashboard : IDashboardCreator
     {
-        public string Name => "MS Azure Sql Data Source";
+        public string Name => "Amazon Redshift Data Source";
 
         public RdashDocument CreateDashboard()
         {

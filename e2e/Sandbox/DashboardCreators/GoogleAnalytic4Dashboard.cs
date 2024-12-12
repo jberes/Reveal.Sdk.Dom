@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Sandbox.DashboardFactories
 {
-    internal class SnowflakeDashboard : IDashboardCreator
+    internal class GoogleAnalytic4Dashboard : IDashboardCreator
     {
-        public string Name => "Snowflake Data source";
+        public string Name => "Google Analytic4 Data Source";
 
         public RdashDocument CreateDashboard()
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }
