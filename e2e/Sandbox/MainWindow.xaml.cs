@@ -43,17 +43,34 @@ namespace Sandbox
 
         List<IDashboardCreator> _dashboardCreators = new List<IDashboardCreator>
         {
+            new AmazonAthenaDashboard(),
+            new AmazonS3Dashboard(),
+            new AmazonRedshiftDashboard(),
             new CampaignsDashboard(),
             new CustomDashboard(),
             new DashboardLinkingDashboard(),
+            new GoogleAnalytic4Dashboard(),
+            new GoogleBigQueryDashboard(),
+            new GoogleDriveDashboard(),
+            new GoogleSheetDashboard(),
             new HealthcareDashboard(),
+            new HttpAnalysisDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
-            new MySqlDataSourceDashboards(),
+            new MongoDashboard(),
+            new MSAnalysisServiceDashboard(),
+            new MSAzureAnalysisServiceDashboard(),
+            new MSAzureSqlDashboard(),
+            new MySqlDashboard(),
+            new MSAzureSqlServerDSDashboard(),
+            new ODataDashboard(),
+            new OracleDashboard(),
             new PostgresqlDashboard(),
             new RestDataSourceDashboard(),
             new SalesDashboard(),
+            new SnowflakeDashboard(),
             new SqlServerDataSourceDashboards(),
+            new WebServiceDataSourceDashboard(),
         };
 
         public MainWindow()
@@ -62,7 +79,22 @@ namespace Sandbox
 
             RevealSdkSettings.DataSourceProvider = new DataSourceProvider();
             RevealSdkSettings.AuthenticationProvider = new AuthenticationProvider();
-            RevealSdkSettings.DataSources.RegisterMicrosoftSqlServer().RegisterMicrosoftAnalysisServices().RegisterPostgreSQL();
+            RevealSdkSettings.DataSources
+                .RegisterMicrosoftSqlServer()
+                .RegisterMicrosoftAnalysisServices()
+                .RegisterPostgreSQL()
+                .RegisterAmazonAthena()
+                .RegisterMicrosoftSynapseAnalytics()
+                .RegisterSnowflake()
+                .RegisterMySql()
+                .RegisterMongoDB()
+                .RegisterGoogleDrive()
+                .RegisterGoogleBigQuery()
+                .RegisterGoogleAnalytics4()
+                .RegisterAmazonRedshift()
+                .RegisterAmazonS3()
+                .RegisterGoogleDrive()
+                .RegisterOracle();
             RevealSdkSettings.DataSources.RegisterMySql();
 
             LoadDashboards();
@@ -243,6 +275,7 @@ namespace Sandbox
             if (creator != null)
             {
                 RdashDocument document = creator.CreateDashboard();
+
                 var json = document.ToJsonString();
                 _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
 

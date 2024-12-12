@@ -1,4 +1,5 @@
 ﻿using Moq;
+using Reveal.Sdk.Dom.Core.Extensions;
 using Reveal.Sdk.Dom.Data;
 using Xunit;
 
@@ -39,6 +40,7 @@ namespace Reveal.Sdk.Dom.Tests.Data
 
             // Assert
             Assert.Equal(expectedTable, tableDataSourceItem.Table);
+            Assert.Equal(expectedTable, tableDataSourceItem.Properties.GetValue<string>("Table"));
         }
     }
 }
