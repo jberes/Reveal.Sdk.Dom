@@ -17,14 +17,14 @@ namespace Sandbox.DashboardCreators
 
         public RdashDocument CreateDashboard()
         {
-            var mysqlDS = new MySQLDataSource
+            var mysqlDS = new MySqlDataSource
             {
                 Id = "mysqlDS",
                 Title = "MySQL DS",
                 Subtitle = "My SQL Datasource",
                 Host = "revealdb01.infragistics.local",
                 Database = "northwind",
-                Port = "3306",
+                Port = 3306,
             };
 
             var mysqlDSItem = new MySqlDataSourceItem("employees report to ID", mysqlDS)

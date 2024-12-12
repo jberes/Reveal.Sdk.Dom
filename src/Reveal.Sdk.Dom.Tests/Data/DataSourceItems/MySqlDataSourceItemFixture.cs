@@ -19,7 +19,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
         public void Constructor_SetsTitleAndDataSource_WhenCalled(string title)
         {
             // Arrange
-            var dataSource = new MySQLDataSource();
+            var dataSource = new MySqlDataSource();
 
             // Act
             var item = new MySqlDataSourceItem(title, dataSource);
@@ -34,7 +34,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
         public void ProcessDataOnServer_SetsAndGetsServerAggregationValue_WithInputs()
         {
             // Arrange
-            var item = new MySqlDataSourceItem("Test Item", new MySQLDataSource());
+            var item = new MySqlDataSourceItem("Test Item", new MySqlDataSource());
 
             // Act
             item.ProcessDataOnServer = true;
@@ -80,7 +80,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
                 }
                 """;
 
-            var dataSource = new MySQLDataSource()
+            var dataSource = new MySqlDataSource()
             {
                 Id = "mySqlId",
                 Title = "MySQL DS",

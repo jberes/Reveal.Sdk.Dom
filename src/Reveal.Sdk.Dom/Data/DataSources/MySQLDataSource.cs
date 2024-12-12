@@ -2,9 +2,9 @@
 
 namespace Reveal.Sdk.Dom.Data
 {
-    public class MySQLDataSource : ProcessDataSource
+    public class MySqlDataSource : ProcessDataSource
     {
-        public MySQLDataSource()
+        public MySqlDataSource()
         {
             Provider = DataSourceProvider.MySQL;
         }

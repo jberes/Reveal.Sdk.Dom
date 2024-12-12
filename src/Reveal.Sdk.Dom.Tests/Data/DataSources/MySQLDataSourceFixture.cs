@@ -18,7 +18,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void Constructor_SetsProviderToMySQL_WhenConstructed()
         {
             // Act
-            var dataSource = new MySQLDataSource();
+            var dataSource = new MySqlDataSource();
 
             // Assert
             Assert.Equal(DataSourceProvider.MySQL, dataSource.Provider);
@@ -28,7 +28,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         public void Constructor_InitializesPropertiesToDefaultValues_WhenInstanceIsCreated()
         {
             // Act
-            var dataSource = new MySQLDataSource();
+            var dataSource = new MySqlDataSource();
 
             // Assert
             Assert.NotNull(dataSource);
@@ -74,7 +74,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                 }
                 """;
 
-            var dataSource = new MySQLDataSource()
+            var dataSource = new MySqlDataSource()
             {
                 Id = "mySqlId",
                 Title = "MySQL DS",
