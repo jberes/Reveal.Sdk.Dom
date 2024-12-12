@@ -4,8 +4,8 @@ namespace Reveal.Sdk.Dom.Data
     {
         REST,
         MicrosoftSqlServer,
-        Oracle,
         MySql,
+        Oracle,
         PostgreSQL,
     }
 }
