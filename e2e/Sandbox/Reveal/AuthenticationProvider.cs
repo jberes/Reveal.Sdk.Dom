@@ -16,6 +16,9 @@ using Reveal.Sdk.Data.MySql;
 using Reveal.Sdk.Data.OData;
 using Reveal.Sdk.Data.Oracle;
 using Reveal.Sdk.Data.Microsoft.SynapseAnalytics;
+using Google.Apis.Auth.OAuth2;
+using System.IO;
+using System.Text;
 
 namespace Sandbox.RevealSDK
 {
@@ -38,7 +41,7 @@ namespace Sandbox.RevealSDK
             } 
             else if (dataSource is RVGoogleDriveDataSource)
             {
-                var _token = await CreateJwtToken();
+                var _token = RetrieveGoogleDriveBearerToken();
 
                 userCredential = new RVBearerTokenDataSourceCredential(_token, null);
             }
@@ -69,10 +72,6 @@ namespace Sandbox.RevealSDK
             else if (dataSource is RVGoogleDriveDataSource)
             {
                 userCredential = new RVBearerTokenDataSourceCredential("token", null);
-            }
-            else if(dataSource is RVGoogleSheetDataSource)
-            {
-
             }
             else if(dataSource is RVHttpAnalysisServicesDataSource)
             {
@@ -107,18 +106,38 @@ namespace Sandbox.RevealSDK
 
             }
 
-            return Task.FromResult(userCredential);
             return userCredential;
         }
 
-        async Task<string> CreateGoogleSheetJwtToken()
+        internal string RetrieveGoogleDriveBearerToken()
         {
-            var pathToJsonFile = Path.Combine(Environment.CurrentDirectory, "Data/GoogleServiceAccountAuth.json");
-            var credentials = GoogleCredential.FromFile(pathToJsonFile).CreateScoped("https://www.googleapis.com/auth/drive",
+            var jsonKey = @"
+                {
+                  ""type"": ""service_account"",
+                  ""project_id"": ""testreveal-henry"",
+                  ""private_key_id"": ""***"",
+                  ""private_key"": ""******"",
+                  ""client_email"": ""henrytestreveal@testreveal-henry.iam.gserviceaccount.com"",
+                  ""client_id"": ""***"",
+                  ""auth_uri"": ""https://accounts.google.com/o/oauth2/auth"",
+                  ""token_uri"": ""https://oauth2.googleapis.com/token"",
+                  ""auth_provider_x509_cert_url"": ""https://www.googleapis.com/oauth2/v1/certs"",
+                  ""client_x509_cert_url"": ""https://www.googleapis.com/robot/v1/metadata/x509/henrytestreveal%40testreveal-henry.iam.gserviceaccount.com"",
+                  ""universe_domain"": ""googleapis.com""
+                }
+            ";
+
+            var memoryStream = new MemoryStream();
+            byte[] jsonKeyBytes = Encoding.UTF8.GetBytes(jsonKey);
+            memoryStream.Write(jsonKeyBytes, 0, jsonKeyBytes.Length);
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            var credential = GoogleCredential.FromStream(memoryStream).CreateScoped("https://www.googleapis.com/auth/drive",
                                                                                      "https://www.googleapis.com/auth/userinfo.email",
                                                                                      "https://www.googleapis.com/auth/userinfo.profile");
-            var token = await credentials.UnderlyingCredential.GetAccessTokenForRequestAsync().ConfigureAwait(false);
-            return token;
+
+            var accessToken = credential.UnderlyingCredential.GetAccessTokenForRequestAsync().Result;
+
+            return accessToken;
         }
     }
 }
