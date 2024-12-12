@@ -19,7 +19,7 @@ namespace Sandbox.DashboardCreators
             var jsonDataSourceItem = new WebServiceDataSourceItem("Sales by Category", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
             {
                 Subtitle = "JSON Data Source Item",
-                Uri = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
+                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 IsAnonymous = true,
                 Fields = DataSourceFactory.GetSalesByCategoryFields(),
             };
@@ -32,7 +32,7 @@ namespace Sandbox.DashboardCreators
                 new DataSource { Title = "Excel DS", Subtitle = "Excel DS Subtitle" })
             {
                 Subtitle = "Excel Data Source Item",
-                Uri = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+                Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
                 IsAnonymous = true,
                 Fields = DataSourceFactory.GetMarketingDataSourceFields(),
             };
@@ -45,7 +45,7 @@ namespace Sandbox.DashboardCreators
             {
                 Subtitle = "CSV Data Source Item",
                 IsAnonymous = true,
-                Uri = "https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto",
+                Url = "https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto",
                 Fields = DataSourceFactory.GetCsvDataSourceFields(),
             };
             csvDataSourceItem.UseCsv();

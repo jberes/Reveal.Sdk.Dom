@@ -14,14 +14,14 @@ namespace Reveal.Sdk.Dom.Data
             this(title, new DataSource())
         { }
 
-        public RestDataSourceItem(string title, string uri) :
-            this(title, uri, new DataSource())
+        public RestDataSourceItem(string title, string url) :
+            this(title, url, new DataSource())
         { }
 
-        public RestDataSourceItem(string title, string uri, DataSource dataSource) :
+        public RestDataSourceItem(string title, string url, DataSource dataSource) :
             this(title, dataSource)
         {
-            Uri = uri;
+            Url = url;
         }
 
         public RestDataSourceItem(string title, DataSource dataSource) :

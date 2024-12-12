@@ -13,14 +13,14 @@ namespace Reveal.Sdk.Dom.Data
             this(title, new DataSource())
         { }
 
-        public WebServiceDataSourceItem(string title, string uri) :
-            this(title, uri, new DataSource())
+        public WebServiceDataSourceItem(string title, string url) :
+            this(title, url, new DataSource())
         { }
 
-        public WebServiceDataSourceItem(string title, string uri, DataSource dataSource) :
+        public WebServiceDataSourceItem(string title, string url, DataSource dataSource) :
             this(title, dataSource)
         {
-            Uri = uri;
+            Url = url;
         }
 
         public WebServiceDataSourceItem(string title, DataSource dataSource) :
@@ -32,7 +32,7 @@ namespace Reveal.Sdk.Dom.Data
         }
 
         [JsonIgnore]
-        public string Uri
+        public string Url
         {
             get { return ResourceItem.Properties.GetValue<string>("Url"); }
             set
