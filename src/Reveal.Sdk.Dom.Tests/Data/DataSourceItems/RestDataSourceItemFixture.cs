@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
@@ -98,13 +99,13 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
         {
             // Arrange
             var restDataSourceItem = new RestDataSourceItem("Test");
-            var uri = "https://example.com/api/data";
+            var url = "https://example.com/api/data";
 
             // Act
-            restDataSourceItem.Uri = uri;
+            restDataSourceItem.Url = url;
 
             // Assert
-            Assert.Equal(uri, restDataSourceItem.Uri);
+            Assert.Equal(url, restDataSourceItem.Url);
         }
 
         [Fact]
@@ -481,7 +482,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             {
                 Id = "RestItem",
                 Title = "Rest DS Item",
-                Uri = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
+                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 Fields = new List<IField>
                 {
                     new TextField("_id"),

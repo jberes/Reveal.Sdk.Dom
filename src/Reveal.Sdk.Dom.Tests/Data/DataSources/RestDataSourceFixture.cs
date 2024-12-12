@@ -144,11 +144,13 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                   },
                   {
                     "_type": "DataSourceType",
-                    "Id": "400f6d1c-ba02-4b27-9d5b-4658e2baf859",
+                    "Id": "d15d7ca6-c993-4e53-97ae-db5b82d98707",
                     "Provider": "REST",
                     "Description": "JSON DS",
                     "Subtitle": "JSON DS Subtitle",
-                    "Properties": {},
+                    "Properties": {
+                      "Url": "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9"
+                    },
                     "Settings": {}
                   }
                 ]
@@ -158,6 +160,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
             {
                 Id = "RestItem",
                 Title = "Rest DS Item",
+                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9",
                 Fields = new List<IField>
                 {
                     new TextField("_id"),
@@ -200,11 +203,12 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                   },
                   {
                     "_type": "DataSourceType",
-                    "Id": "4885e4c2-4fc6-4c12-a42d-765f2ee7beb8",
+                    "Id": "0080bee5-05c5-4273-897b-96500002d4d3",
                     "Provider": "REST",
                     "Description": "JSON DS",
                     "Subtitle": "JSON DS Subtitle",
                     "Properties": {
+                      "Url": "https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto",
                       "Result-Type": ".csv"
                     },
                     "Settings": {}
@@ -216,6 +220,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
             {
                 Id = "RestItem",
                 Title = "Rest DS Item",
+                Url = "https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto",
                 Fields = new List<IField>
                 {
                     new TextField("_id"),
@@ -260,11 +265,12 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
                   },
                   {
                     "_type": "DataSourceType",
-                    "Id": "865b8a61-757c-4596-8995-560abde4f266",
+                    "Id": "db348353-0d70-40f1-b0d4-4c642d2ebbed",
                     "Provider": "REST",
                     "Description": "JSON DS",
                     "Subtitle": "JSON DS Subtitle",
                     "Properties": {
+                      "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
                       "Result-Type": ".xlsx"
                     },
                     "Settings": {}
@@ -276,6 +282,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
             {
                 Id = "RestItem",
                 Title = "Rest DS Item",
+                Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
                 Fields = new List<IField>
                 {
                     new TextField("_id"),
