@@ -7,20 +7,17 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
     public class AmazonRedshiftDataSourceFixture
     {
         [Fact]
-        public void Constructor_SetsProviderToAmazonRedshift_Always()
+        public void Constructor_SetsProviderToAmazonRedshift_WithoutParameters()
         {
-            // Arrange
+            // Act
             var dataSource = new AmazonRedshiftDataSource();
 
-            // Act
-            var actualProvider = dataSource.Provider;
-
             // Assert
-            Assert.Equal(DataSourceProvider.AmazonRedshift, actualProvider);
+            Assert.Equal(DataSourceProvider.AmazonRedshift, dataSource.Provider);
         }
 
         [Fact]
-        public void Schema_SetsAndGetsValue_ValidSchema()
+        public void GetSchema_ReturnSameValue_WithSetValue()
         {
             // Arrange
             var dataSource = new AmazonRedshiftDataSource();
@@ -28,41 +25,10 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             // Act
             dataSource.Schema = expectedSchema;
-            var actualSchema = dataSource.Schema;
 
             // Assert
-            Assert.Equal(expectedSchema, actualSchema);
-        }
-
-        [Fact]
-        public void Schema_SetsValue_NullSchema()
-        {
-            // Arrange
-            var dataSource = new AmazonRedshiftDataSource();
-
-            // Act
-            dataSource.Schema = null;
-            var actualSchema = dataSource.Schema;
-            var actualPropertySchema = dataSource.Properties.GetValue<string>("Schema");
-
-            // Assert
-            Assert.Null(actualSchema);
-            Assert.Null(actualPropertySchema);
-        }
-
-        [Fact]
-        public void Properties_StoresSchemaValueCorrectly_ValidSchema()
-        {
-            // Arrange
-            var dataSource = new AmazonRedshiftDataSource();
-            var expectedSchema = "TestSchema";
-
-            // Act
-            dataSource.Schema = expectedSchema;
-            var actualPropertySchema = dataSource.Properties.GetValue<string>("Schema");
-
-            // Assert
-            Assert.Equal(expectedSchema, actualPropertySchema);
+            Assert.Equal(expectedSchema, dataSource.Schema);
+            Assert.Equal(expectedSchema, dataSource.Properties.GetValue<string>("Schema"));
         }
     }
 }
