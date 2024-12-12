@@ -1,16 +1,9 @@
-﻿using Reveal.Sdk.Data.MySql;
-using Reveal.Sdk.Data.Rest;
-using Reveal.Sdk.Dom;
+﻿using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.DashboardFactories;
 using Sandbox.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sandbox.DashboardCreators
 {
@@ -51,7 +44,7 @@ namespace Sandbox.DashboardCreators
             var csvDataSourceItem = new WebServiceDataSourceItem("Illinois School Info", new DataSource() { Title = "CSV DS", Subtitle = "CSV DS Subtitle" })
             {
                 Subtitle = "CSV Data Source Item",
-                IsAnonymous= true,
+                IsAnonymous = true,
                 Uri = "https://query.data.world/s/y32gtgblzpemyyvtig47dz7tedgkto",
                 Fields = DataSourceFactory.GetCsvDataSourceFields(),
             };

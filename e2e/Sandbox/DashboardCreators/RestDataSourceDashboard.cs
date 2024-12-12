@@ -5,7 +5,7 @@ using Sandbox.Helpers;
 
 namespace Sandbox.DashboardFactories
 {
-    internal class RestDataSourceDashboard: IDashboardCreator
+    internal class RestDataSourceDashboard : IDashboardCreator
     {
         public string Name => "REST Data Source";
 
