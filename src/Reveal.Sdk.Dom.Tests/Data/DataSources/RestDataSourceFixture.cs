@@ -133,15 +133,25 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
             // Arrange
             var expectedJson =
                 """
-                {
-                  "_type": "DataSourceType",
-                  "Id": "7473e6b8-ba86-4703-8e69-79f83d0742f3",
-                  "Provider": "REST",
-                  "Description": "JSON DS",
-                  "Subtitle": "JSON DS Subtitle",
-                  "Properties": {},
-                  "Settings": {}
-                }
+                [
+                  {
+                    "_type": "DataSourceType",
+                    "Id": "__JSON",
+                    "Provider": "JSON",
+                    "Description": "DB Test",
+                    "Properties": {},
+                    "Settings": {}
+                  },
+                  {
+                    "_type": "DataSourceType",
+                    "Id": "400f6d1c-ba02-4b27-9d5b-4658e2baf859",
+                    "Provider": "REST",
+                    "Description": "JSON DS",
+                    "Subtitle": "JSON DS Subtitle",
+                    "Properties": {},
+                    "Settings": {}
+                  }
+                ]
                 """;
 
             var dataSourceItems = new RestDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
@@ -157,35 +167,49 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             var document = new RdashDocument("My Dashboard");
             document.Visualizations.Add(new GridVisualization("Test List", dataSourceItems).SetColumns("name"));
-            var expectedJObject = JObject.Parse(expectedJson);
+
+            var expectedJArray = JArray.Parse(expectedJson);
 
             // Act
-            RdashSerializer.SerializeObject(document);
             var json = document.ToJsonString();
             var jObject = JObject.Parse(json);
-            var actualJObject = jObject["DataSources"].LastOrDefault();
+            var actualJArray = (JArray)jObject["DataSources"];
 
             // Assert
-            Assert.Equal(expectedJObject, actualJObject);
+            Assert.Equal(expectedJArray.Count, actualJArray.Count);
+
+            for (int i = 0; i < expectedJArray.Count; i++)
+            {
+                Assert.Equal(expectedJArray[i], actualJArray[i]);
+            }
         }
 
         [Fact]
-        public void ToJsonString_CreatesFormattedUseCsv_ForRestDataSource()
+        public void ToJsonString_CreatesFormattedUseCsv_ForAllRestDataSources()
         {
             // Arrange
             var expectedJson =
                 """
-                {
-                  "_type": "DataSourceType",
-                  "Id": "717a8e83-15c5-403b-b621-e7f103f7a2ad",
-                  "Provider": "REST",
-                  "Description": "JSON DS",
-                  "Subtitle": "JSON DS Subtitle",
-                  "Properties": {
-                    "Result-Type": ".csv"
+                [
+                  {
+                    "_type": "DataSourceType",
+                    "Id": "__CSV",
+                    "Provider": "CSVLOCALFILEPROVIDER",
+                    "Properties": {},
+                    "Settings": {}
                   },
-                  "Settings": {}
-                }
+                  {
+                    "_type": "DataSourceType",
+                    "Id": "4885e4c2-4fc6-4c12-a42d-765f2ee7beb8",
+                    "Provider": "REST",
+                    "Description": "JSON DS",
+                    "Subtitle": "JSON DS Subtitle",
+                    "Properties": {
+                      "Result-Type": ".csv"
+                    },
+                    "Settings": {}
+                  }
+                ]
                 """;
 
             var dataSourceItems = new RestDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
@@ -203,16 +227,21 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             var document = new RdashDocument("My Dashboard");
             document.Visualizations.Add(new GridVisualization("Test List", dataSourceItems).SetColumns("name"));
-            var expectedJObject = JObject.Parse(expectedJson);
+
+            var expectedJArray = JArray.Parse(expectedJson);
 
             // Act
-            RdashSerializer.SerializeObject(document);
             var json = document.ToJsonString();
             var jObject = JObject.Parse(json);
-            var actualJObject = jObject["DataSources"].LastOrDefault();
+            var actualJArray = (JArray)jObject["DataSources"];
 
             // Assert
-            Assert.Equal(expectedJObject, actualJObject);
+            Assert.Equal(expectedJArray.Count, actualJArray.Count);
+
+            for (int i = 0; i < expectedJArray.Count; i++)
+            {
+                Assert.Equal(expectedJArray[i], actualJArray[i]);
+            }
         }
 
         [Fact]
@@ -221,17 +250,26 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
             // Arrange
             var expectedJson =
                 """
-                {
-                  "_type": "DataSourceType",
-                  "Id": "20e1b99f-ddab-40dd-afd2-4b8b1fcf9917",
-                  "Provider": "REST",
-                  "Description": "JSON DS",
-                  "Subtitle": "JSON DS Subtitle",
-                  "Properties": {
-                    "Result-Type": ".xlsx"
+                [
+                  {
+                    "_type": "DataSourceType",
+                    "Id": "__EXCEL",
+                    "Provider": "EXCELLOCALFILEPROVIDER",
+                    "Properties": {},
+                    "Settings": {}
                   },
-                  "Settings": {}
-                }
+                  {
+                    "_type": "DataSourceType",
+                    "Id": "865b8a61-757c-4596-8995-560abde4f266",
+                    "Provider": "REST",
+                    "Description": "JSON DS",
+                    "Subtitle": "JSON DS Subtitle",
+                    "Properties": {
+                      "Result-Type": ".xlsx"
+                    },
+                    "Settings": {}
+                  }
+                ]
                 """;
 
             var dataSourceItems = new RestDataSourceItem("DB Test", new DataSource { Title = "JSON DS", Subtitle = "JSON DS Subtitle" })
@@ -249,16 +287,21 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             var document = new RdashDocument("My Dashboard");
             document.Visualizations.Add(new GridVisualization("Test List", dataSourceItems).SetColumns("name"));
-            var expectedJObject = JObject.Parse(expectedJson);
+
+            var expectedJArray = JArray.Parse(expectedJson);
 
             // Act
-            RdashSerializer.SerializeObject(document);
             var json = document.ToJsonString();
             var jObject = JObject.Parse(json);
-            var actualJObject = jObject["DataSources"].LastOrDefault();
+            var actualJArray = (JArray)jObject["DataSources"];
 
             // Assert
-            Assert.Equal(expectedJObject, actualJObject);
+            Assert.Equal(expectedJArray.Count, actualJArray.Count);
+
+            for (int i = 0; i < expectedJArray.Count; i++)
+            {
+                Assert.Equal(expectedJArray[i], actualJArray[i]);
+            }
         }
     }
 }
