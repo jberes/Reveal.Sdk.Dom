@@ -5,6 +5,7 @@ namespace Reveal.Sdk.Dom.Data
         REST,
         MicrosoftSqlServer,
         MySql,
+        Oracle,
         PostgreSQL,
     }
 }

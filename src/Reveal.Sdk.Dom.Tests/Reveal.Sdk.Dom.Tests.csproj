@@ -36,6 +36,9 @@
     <None Update="Dashboards\Sales.rdash">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Dashboards\TestOracle.rdash">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Dashboards\TestGoogleSheet.rdash">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

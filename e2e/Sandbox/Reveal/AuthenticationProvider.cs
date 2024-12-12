@@ -6,6 +6,7 @@ using Reveal.Sdk.Data.Microsoft.SqlServer;
 using Reveal.Sdk.Data.Snowflake;
 using Reveal.Sdk.Data.MySql;
 using Reveal.Sdk.Data.PostgreSQL;
+using Reveal.Sdk.Data.Oracle;
 using System.Threading.Tasks;
 using Reveal.Sdk.Data.Amazon.Redshift;
 using Reveal.Sdk.Data.Google.Analytics4;
@@ -115,6 +116,10 @@ namespace Sandbox.RevealSDK
 
             }
 
+            else if (dataSource is RVOracleDataSource)
+            {
+                userCredential = new RVUsernamePasswordDataSourceCredential("username", "password");
+            }
             return Task.FromResult(userCredential);
         }
 
