@@ -21,7 +21,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             Assert.Equal(expectedTitle, dataSourceItem.Title);
             Assert.Equal(expectedTitle, dataSourceItem.DataSource.Title);
             Assert.NotNull(dataSourceItem.DataSource);
-            Assert.IsType<AmazonAthenaDataSource>(dataSourceItem.DataSource);
+            Assert.IsType<AmazonRedshiftDataSource>(dataSourceItem.DataSource);
         }
 
         [Theory]
@@ -42,7 +42,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             Assert.Equal(dataSource.Id, dataSourceItem.DataSource.Id);
             Assert.Equal(dataSource.Id, dataSourceItem.DataSourceId);
             Assert.NotSame(dataSource, dataSourceItem.DataSource);
-            Assert.IsType<AmazonAthenaDataSource>(dataSourceItem.DataSource);
+            Assert.IsType<AmazonRedshiftDataSource>(dataSourceItem.DataSource);
         }
 
         [Theory]
