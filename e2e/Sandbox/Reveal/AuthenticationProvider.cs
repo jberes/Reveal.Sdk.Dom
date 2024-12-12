@@ -18,10 +18,13 @@ using Reveal.Sdk.Data.MongoDB;
 using Reveal.Sdk.Data.MySql;
 using Reveal.Sdk.Data.OData;
 using Reveal.Sdk.Data.Oracle;
+using Reveal.Sdk.Data.Snowflake;
+using Reveal.Sdk.Data.PostgreSQL;
 using Reveal.Sdk.Data.Microsoft.SynapseAnalytics;
 using Google.Apis.Auth.OAuth2;
 using System.IO;
 using System.Text;
+
 
 namespace Sandbox.RevealSDK
 {
