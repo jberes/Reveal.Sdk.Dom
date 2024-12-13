@@ -12,7 +12,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
     public class GoogleBigQueryDataSourceFixture
     {
         [Fact]
-        public void Constructor_SetProviderToGoogleBigQuery_WhenConstructed()
+        public void Constructor_SetProviderToGoogleBigQuery_WithoutParameters()
         {
             // Act
             var dataSource = new GoogleBigQueryDataSource();
@@ -22,7 +22,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         }
 
         [Fact]
-        public void ProjectId_SaveValueAndProperties_WhenSet()
+        public void SetProjectId_ReturnSame_WithSetValue()
         {
             // Arrange
             var dataSource = new GoogleBigQueryDataSource();
@@ -33,7 +33,7 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
 
             // Assert
             Assert.Equal(projectId, dataSource.ProjectId);
-            Assert.Equal(projectId, dataSource.Properties.GetValue<string>("ProjectId"));
+            Assert.Equal(projectId, dataSource.Properties.GetValue<string>("projectId"));
         }
     }
 }

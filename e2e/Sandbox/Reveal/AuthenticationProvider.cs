@@ -85,7 +85,9 @@ namespace Sandbox.RevealSDK
             }
             else if (dataSource is RVBigQueryDataSource)
             {
-                userCredential = new RVBearerTokenDataSourceCredential("token", null);
+                var token_task = CreateJwtToken();
+                var token = token_task.Result;
+                userCredential = new RVBearerTokenDataSourceCredential(token, null);
             }
             else if (dataSource is RVGoogleDriveDataSource)
             {
@@ -160,6 +162,14 @@ namespace Sandbox.RevealSDK
             var accessToken = credential.UnderlyingCredential.GetAccessTokenForRequestAsync().Result;
 
             return accessToken;
+        }
+
+        async Task<string> CreateJwtToken()
+        {
+            var credentials = GoogleCredential.FromJson("credential-json");
+
+            var token = await credentials.UnderlyingCredential.GetAccessTokenForRequestAsync("https://bigquery.googleapis.com/").ConfigureAwait(false);
+            return token;
         }
     }
 }
