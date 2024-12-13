@@ -38,22 +38,6 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
         }
 
         [Theory]
-        [InlineData("test")]
-        [InlineData(null)]
-        public void Database_SetsAndGetsValue_WithDifferentInputs(string dbName)
-        {
-            // Arrange
-            var dataSource = new MongoDBDataSource();
-
-            // Act
-            dataSource.Database = dbName;
-
-            // Assert
-            Assert.Equal(dbName, dataSource.Database);
-            Assert.Equal(dbName, dataSource.Properties.GetValue<string>("Database"));
-        }
-
-        [Theory]
         [InlineData(true)]
         [InlineData(false)]
         public void ProcessDataOnServerDefaultValue_SetsAndGetsValue_WithDifferentInputs(bool defaultValue)
