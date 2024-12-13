@@ -1,4 +1,5 @@
-﻿using Reveal.Sdk.Dom.Core.Extensions;
+﻿using Newtonsoft.Json.Linq;
+using Reveal.Sdk.Dom.Core.Extensions;
 using Reveal.Sdk.Dom.Data;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,42 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSources
             // Assert
             Assert.Equal(projectId, dataSource.ProjectId);
             Assert.Equal(projectId, dataSource.Properties.GetValue<string>("projectId"));
+        }
+
+        [Fact]
+        public void ToJsonString_CreatesFormattedJson_NoConditions()
+        {
+            // Arrange
+            var expectedJson = """
+                {
+                  "_type": "DataSourceType",
+                  "Id": "ggBigQueryDSId",
+                  "Provider": "BIG_QUERY",
+                  "Description": "Big Query",
+                  "Subtitle": "Public Data",
+                  "Properties": {
+                    "projectId": "bigquery-public-data"
+                  },
+                  "Settings": {}
+                }
+            """;
+
+            var dataSource = new GoogleBigQueryDataSource()
+            {
+                Id = "ggBigQueryDSId",
+                Title = "Big Query",
+                Subtitle = "Public Data",
+                ProjectId = "bigquery-public-data"
+            };
+
+            // Act
+            var json = dataSource.ToJsonString();
+            var expectedJObject = JObject.Parse(expectedJson);
+            var actualJObject = JObject.Parse(json);
+
+            // Assert
+            Assert.Equal(expectedJObject, actualJObject);
+
         }
     }
 }

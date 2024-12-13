@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Core.Extensions;
 using Reveal.Sdk.Dom.Data;
@@ -115,6 +116,49 @@ namespace Reveal.Sdk.Dom.Tests.Data.DataSourceItems
             // Assert
             Assert.Equal(tableName, dataSourceItem.Table);
             Assert.Equal(tableName, dataSourceItem.Properties.GetValue<string>("tableId"));
+        }
+
+        [Fact]
+        public void ToJsonString_CreatesFormattedJson_NoConditions()
+        {
+            // Arrange
+            var expectedJson = """
+                {
+                  "_type": "DataSourceItemType",
+                  "Id": "bigqueryDSItemId",
+                  "Title": "Big Query",
+                  "Subtitle": "America Health rankings",
+                  "DataSourceId": "bigquery",
+                  "HasTabularData": true,
+                  "HasAsset": false,
+                  "Properties": {
+                    "datasetId": "america_health_rankings",
+                    "tableId": "ahr"
+                  },
+                  "Settings": {}
+                }
+            """;
+            var dataSource = new GoogleBigQueryDataSource()
+            {
+                Id = "bigquery",
+            };
+            var dataSourceItem = new GoogleBigQueryDataSourceItem("Big Query", dataSource)
+            {
+                Id = "bigqueryDSItemId",
+                Subtitle = "America Health rankings",
+                HasTabularData = true,
+                HasAsset = false,
+                DataSetId = "america_health_rankings",
+                Table = "ahr",
+            };
+            var expectedJObject = JObject.Parse(expectedJson);
+
+            // Act
+            var json = dataSourceItem.ToJsonString();
+            var actualJObject = JObject.Parse(json);
+
+            // Assert
+            Assert.Equal(expectedJObject, actualJObject);
         }
     }
 }
