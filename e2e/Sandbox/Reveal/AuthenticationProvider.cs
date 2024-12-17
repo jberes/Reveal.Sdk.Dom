@@ -7,6 +7,7 @@ using Reveal.Sdk.Data.Snowflake;
 using Reveal.Sdk.Data.MySql;
 using Reveal.Sdk.Data.PostgreSQL;
 using Reveal.Sdk.Data.Oracle;
+using Reveal.Sdk.Data.MongoDB;
 using System.Threading.Tasks;
 using Reveal.Sdk.Data.Amazon.Redshift;
 using Reveal.Sdk.Data.Google.Analytics4;
@@ -17,10 +18,13 @@ using Reveal.Sdk.Data.MongoDB;
 using Reveal.Sdk.Data.MySql;
 using Reveal.Sdk.Data.OData;
 using Reveal.Sdk.Data.Oracle;
+using Reveal.Sdk.Data.Snowflake;
+using Reveal.Sdk.Data.PostgreSQL;
 using Reveal.Sdk.Data.Microsoft.SynapseAnalytics;
 using Google.Apis.Auth.OAuth2;
 using System.IO;
 using System.Text;
+
 
 namespace Sandbox.RevealSDK
 {
@@ -50,6 +54,10 @@ namespace Sandbox.RevealSDK
                 var _token = RetrieveGoogleDriveBearerToken();
 
                 userCredential = new RVBearerTokenDataSourceCredential(_token, null);
+            }
+            else if (dataSource is RVMongoDBDataSource)
+            {
+                userCredential = new RVUsernamePasswordDataSourceCredential("user01", "*****", "admin");
             }
             else if (dataSource is RVSnowflakeDataSource)
             {
