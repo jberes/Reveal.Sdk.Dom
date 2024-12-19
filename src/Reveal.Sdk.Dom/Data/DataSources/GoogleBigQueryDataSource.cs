@@ -3,7 +3,7 @@ using Reveal.Sdk.Dom.Core.Extensions;
 
 namespace Reveal.Sdk.Dom.Data
 {
-    internal class GoogleBigQueryDataSource : DatabaseDataSource
+    public class GoogleBigQueryDataSource : DatabaseDataSource
     {
         public GoogleBigQueryDataSource()
         {
@@ -13,8 +13,8 @@ namespace Reveal.Sdk.Dom.Data
         [JsonIgnore]
         public string ProjectId
         {
-            get => Properties.GetValue<string>("ProjectId");
-            set => Properties.SetItem("ProjectId", value);
+            get => Properties.GetValue<string>("projectId");
+            set => Properties.SetItem("projectId", value);
         }
     }
 }
