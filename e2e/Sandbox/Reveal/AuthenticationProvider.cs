@@ -85,8 +85,7 @@ namespace Sandbox.RevealSDK
             }
             else if (dataSource is RVBigQueryDataSource)
             {
-                var token_task = CreateJwtToken();
-                var token = token_task.Result;
+                var token = RetrieveGoogleDriveBearerToken();
                 userCredential = new RVBearerTokenDataSourceCredential(token, null);
             }
             else if (dataSource is RVGoogleDriveDataSource)
@@ -156,20 +155,13 @@ namespace Sandbox.RevealSDK
             memoryStream.Write(jsonKeyBytes, 0, jsonKeyBytes.Length);
             memoryStream.Seek(0, SeekOrigin.Begin);
             var credential = GoogleCredential.FromStream(memoryStream).CreateScoped("https://www.googleapis.com/auth/drive",
+                                                                                     "https://www.googleapis.com/auth/bigquery",
                                                                                      "https://www.googleapis.com/auth/userinfo.email",
                                                                                      "https://www.googleapis.com/auth/userinfo.profile");
 
             var accessToken = credential.UnderlyingCredential.GetAccessTokenForRequestAsync().Result;
 
             return accessToken;
-        }
-
-        async Task<string> CreateJwtToken()
-        {
-            var credentials = GoogleCredential.FromJson("credential-json");
-
-            var token = await credentials.UnderlyingCredential.GetAccessTokenForRequestAsync("https://bigquery.googleapis.com/").ConfigureAwait(false);
-            return token;
         }
     }
 }
