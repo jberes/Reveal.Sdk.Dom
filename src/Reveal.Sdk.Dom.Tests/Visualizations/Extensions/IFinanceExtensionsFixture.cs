@@ -14,7 +14,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         public void SetOpen_UpdateOpen_WithFieldName()
         {
             // Arrange
-            var visualization = new MockIFiananceVisualization();
+            var visualization = new MockIFiananceVisualization() { Opens = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
             var fieldName = "TestFieldName";
             var field = new NumberDataField(fieldName);
             field.Formatting = new NumberFormatting()
@@ -37,7 +37,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         public void SetOpen_UpdateOpen_WithNumberDataField(bool isFormattingNull)
         {
             // Arrange
-            var visualization = new MockIFiananceVisualization();
+            var visualization = new MockIFiananceVisualization() { Opens = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
 
             var fieldFormat = isFormattingNull ? null : new NumberFormatting()
             {
@@ -62,7 +62,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         public void SetClose_UpdateClose_WithFieldName()
         {
             // Arrange
-            var visualization = new MockIFiananceVisualization();
+            var visualization = new MockIFiananceVisualization() { Closes = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
             var fieldName = "TestFieldName";
             var field = new NumberDataField(fieldName);
             field.Formatting = new NumberFormatting()
@@ -85,7 +85,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         public void SetClose_UpdateClose_WithNumberDataField(bool isFormattingNull)
         {
             // Arrange
-            var visualization = new MockIFiananceVisualization();
+            var visualization = new MockIFiananceVisualization() { Closes = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
 
             var fieldFormat = isFormattingNull ? null : new NumberFormatting()
             {
@@ -110,7 +110,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         public void SetHigh_UpdateHigh_WithFieldName()
         {
             // Arrange
-            var visualization = new MockIFiananceVisualization();
+            var visualization = new MockIFiananceVisualization() { Highs = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
             var fieldName = "TestFieldName";
             var field = new NumberDataField(fieldName);
             field.Formatting = new NumberFormatting()
@@ -133,7 +133,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         public void SetHigh_UpdateHigh_WithNumberDataField(bool isFormattingNull)
         {
             // Arrange
-            var visualization = new MockIFiananceVisualization();
+            var visualization = new MockIFiananceVisualization() { Highs = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
 
             var fieldFormat = isFormattingNull ? null : new NumberFormatting()
             {
@@ -158,7 +158,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         public void SetLow_UpdateLow_WithFieldName()
         {
             // Arrange
-            var visualization = new MockIFiananceVisualization();
+            var visualization = new MockIFiananceVisualization() { Lows = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
             var fieldName = "TestFieldName";
             var field = new NumberDataField(fieldName);
             field.Formatting = new NumberFormatting()
@@ -181,7 +181,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         public void SetLow_UpdateLow_WithNumberDataField(bool isFormattingNull)
         {
             // Arrange
-            var visualization = new MockIFiananceVisualization();
+            var visualization = new MockIFiananceVisualization() { Lows = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
 
             var fieldFormat = isFormattingNull ? null : new NumberFormatting()
             {
