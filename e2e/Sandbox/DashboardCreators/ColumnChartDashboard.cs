@@ -32,7 +32,7 @@ namespace Sandbox.DashboardCreators
             document.Visualizations.Add(new ColumnChartVisualization("Bar", excelDataSourceItem)
             {
                 IsTitleVisible = true,
-                Description = "Create Bar Visualization"
+                Description = "Create Column Visualization"
             }
             .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
             .SetValues("Paid Traffic", "Organic Traffic", "Other Traffic")
