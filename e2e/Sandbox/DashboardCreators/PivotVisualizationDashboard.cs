@@ -2,6 +2,7 @@
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
+using Sandbox.DashboardFactories;
 using Sandbox.Helpers;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Sandbox.DashboardCreators
 {
-    internal class PivotVisualizationDashboard
+    internal class PivotVisualizationDashboard : IDashboardCreator
     {
         public string Name => "Pibot Visualization";
 
