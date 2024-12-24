@@ -79,7 +79,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         }
 
         [Fact]
-        public void ToJsonString_CreatesFormattedJson_ForGridVisualization()
+        public void ToJsonString_GeneratesCorrectJson_WhenGridVisualizationIsSerialized()
         {
             // Arrange
             var expectedJson =
