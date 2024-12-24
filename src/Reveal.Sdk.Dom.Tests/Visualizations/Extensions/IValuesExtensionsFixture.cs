@@ -60,7 +60,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         }
 
         [Fact]
-        public void SetValue_AddValuesItem_WithListFieldNames()
+        public void SetValues_AddValuesItem_WithListFieldNames()
         {
             // Arrange
             var mockVS = new Mock<IValues>();
@@ -89,7 +89,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         }
 
         [Fact]
-        public void SetValue_AddValuesItem_WithListNumberFields()
+        public void SetValues_AddValuesItem_WithListNumberFields()
         {
             // Arrange
             var mockVS = new Mock<IValues>();
