@@ -22,13 +22,13 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
                 DecimalDigits = 0,
                 ShowGroupingSeparator = true
             };
-            var expectedOpen = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
+            var expectedOpens = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
             visualization.SetOpen(fieldName);
 
             // Assert
-            Assert.Equivalent(expectedOpen, visualization.Opens);
+            Assert.Equivalent(expectedOpens, visualization.Opens, true);
         }
 
         [Theory]
@@ -41,21 +41,27 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
 
             var fieldFormat = isFormattingNull ? null : new NumberFormatting()
             {
-                DecimalDigits = 2,
-                ShowGroupingSeparator = false
+                DecimalDigits = 0,
+                ShowGroupingSeparator = true,
+                ApplyMkFormat = false,
+                CurrencySymbol = "AUD",
+                FormatType = NumberFormattingType.Currency,
+                NegativeFormat = NegativeFormatType.Parenthesis,
+                OverrideDefaultSettings = true,
+                SchemaTypeName = "TestSchema"
             };
             var field = new NumberDataField("TestField")
             {
                 Formatting = fieldFormat
             };
 
-            var expectedOpen = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
+            var expectedOpens = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
             visualization.SetOpen(field);
 
             // Assert
-            Assert.Equivalent(expectedOpen, visualization.Opens);
+            Assert.Equivalent(expectedOpens, visualization.Opens, true);
         }
 
         [Fact]
@@ -70,13 +76,13 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
                 DecimalDigits = 0,
                 ShowGroupingSeparator = true
             };
-            var expectedClose = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
+            var expectedCloses = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
             visualization.SetClose(fieldName);
 
             // Assert
-            Assert.Equivalent(expectedClose, visualization.Closes);
+            Assert.Equivalent(expectedCloses, visualization.Closes, true);
         }
 
         [Theory]
@@ -89,21 +95,27 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
 
             var fieldFormat = isFormattingNull ? null : new NumberFormatting()
             {
-                DecimalDigits = 2,
-                ShowGroupingSeparator = false
+                DecimalDigits = 0,
+                ShowGroupingSeparator = true,
+                ApplyMkFormat = false,
+                CurrencySymbol = "AUD",
+                FormatType = NumberFormattingType.Currency,
+                NegativeFormat = NegativeFormatType.Parenthesis,
+                OverrideDefaultSettings = true,
+                SchemaTypeName = "TestSchema"
             };
             var field = new NumberDataField("TestField")
             {
                 Formatting = fieldFormat
             };
 
-            var expectedClose = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
+            var expectedCloses = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
             visualization.SetClose(field);
 
             // Assert
-            Assert.Equivalent(expectedClose, visualization.Closes);
+            Assert.Equivalent(expectedCloses, visualization.Closes, true);
         }
 
         [Fact]
@@ -118,13 +130,13 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
                 DecimalDigits = 0,
                 ShowGroupingSeparator = true
             };
-            var expectedHigh = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
+            var expectedHighs = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
             visualization.SetHigh(fieldName);
 
             // Assert
-            Assert.Equivalent(expectedHigh, visualization.Highs);
+            Assert.Equivalent(expectedHighs, visualization.Highs, true);
         }
 
         [Theory]
@@ -137,21 +149,27 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
 
             var fieldFormat = isFormattingNull ? null : new NumberFormatting()
             {
-                DecimalDigits = 2,
-                ShowGroupingSeparator = false
+                DecimalDigits = 0,
+                ShowGroupingSeparator = true,
+                ApplyMkFormat = false,
+                CurrencySymbol = "AUD",
+                FormatType = NumberFormattingType.Currency,
+                NegativeFormat = NegativeFormatType.Parenthesis,
+                OverrideDefaultSettings = true,
+                SchemaTypeName = "TestSchema"
             };
             var field = new NumberDataField("TestField")
             {
                 Formatting = fieldFormat
             };
 
-            var expectedHigh = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
+            var expectedHighs = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
             visualization.SetHigh(field);
 
             // Assert
-            Assert.Equivalent(expectedHigh, visualization.Highs);
+            Assert.Equivalent(expectedHighs, visualization.Highs, true);
         }
 
         [Fact]
@@ -166,13 +184,13 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
                 DecimalDigits = 0,
                 ShowGroupingSeparator = true
             };
-            var expectedLow = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
+            var expectedLows = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
-            visualization.SetLow(fieldName);
+            visualization.SetLow(field);
 
             // Assert
-            Assert.Equivalent(expectedLow, visualization.Lows);
+            Assert.Equivalent(expectedLows, visualization.Lows, true);
         }
 
         [Theory]
@@ -185,21 +203,27 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
 
             var fieldFormat = isFormattingNull ? null : new NumberFormatting()
             {
-                DecimalDigits = 2,
-                ShowGroupingSeparator = false
+                DecimalDigits = 0,
+                ShowGroupingSeparator = true,
+                ApplyMkFormat = false,
+                CurrencySymbol = "AUD",
+                FormatType = NumberFormattingType.Currency,
+                NegativeFormat = NegativeFormatType.Parenthesis,
+                OverrideDefaultSettings = true,
+                SchemaTypeName = "TestSchema"
             };
             var field = new NumberDataField("TestField")
             {
                 Formatting = fieldFormat
             };
 
-            var expectedLow = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
+            var expectedLows = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
             visualization.SetLow(field);
 
             // Assert
-            Assert.Equivalent(expectedLow, visualization.Lows);
+            Assert.Equivalent(expectedLows, visualization.Lows, true);
         }
 
 
