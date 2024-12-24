@@ -18,13 +18,13 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         public void Constructor_InitializesDefaultValues_WhenInstanceIsCreated()
         {
             // Act
-            var barChartVisualization = new ColumnChartVisualization();
+            var columnChartVisualization = new ColumnChartVisualization();
 
             // Assert
-            Assert.NotNull(barChartVisualization);
+            Assert.NotNull(columnChartVisualization);
             Assert.Equal(ChartType.Column, barChartVisualization.ChartType);
-            Assert.Null(barChartVisualization.Title);
-            Assert.Null(barChartVisualization.DataDefinition);
+            Assert.Null(columnChartVisualization.Title);
+            Assert.Null(columnChartVisualization.DataDefinition);
         }
 
         [Fact]
@@ -34,13 +34,13 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             var dataSourceItem = new DataSourceItem { HasTabularData = true };
 
             // Act
-            var barChartVisualization = new ColumnChartVisualization(dataSourceItem);
+            var columnChartVisualization = new ColumnChartVisualization(dataSourceItem);
 
             // Assert
-            Assert.NotNull(barChartVisualization);
-            Assert.Equal(ChartType.Column, barChartVisualization.ChartType);
-            Assert.Equal(dataSourceItem, barChartVisualization.DataDefinition.DataSourceItem);
-            Assert.Null(barChartVisualization.Title);
+            Assert.NotNull(columnChartVisualization);
+            Assert.Equal(ChartType.Column, columnChartVisualization.ChartType);
+            Assert.Equal(dataSourceItem, columnChartVisualization.DataDefinition.DataSourceItem);
+            Assert.Null(columnChartVisualization.Title);
         }
 
         [Theory]
@@ -53,12 +53,12 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             var dataSourceItem = string.IsNullOrEmpty(dataSourceName) ? null : new DataSourceItem { Title = dataSourceName };
 
             // Act
-            var barChartVisualization = new ColumnChartVisualization(title, dataSourceItem);
+            var columnChartVisualization = new ColumnChartVisualization(title, dataSourceItem);
 
             // Assert
-            Assert.Equal(title, barChartVisualization.Title);
-            Assert.Equal(ChartType.Column, barChartVisualization.ChartType);
-            Assert.Equal(dataSourceItem, barChartVisualization.DataDefinition?.DataSourceItem);
+            Assert.Equal(title, columnChartVisualization.Title);
+            Assert.Equal(ChartType.Column, columnChartVisualization.ChartType);
+            Assert.Equal(dataSourceItem, columnChartVisualization.DataDefinition?.DataSourceItem);
         }
 
         [Fact]
@@ -346,7 +346,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             document.Visualizations.Add(new ColumnChartVisualization("Bar", excelDataSourceItem)
             {
                 IsTitleVisible = true,
-                Description = "Create Bar Visualization"
+                Description = "Create Column Visualization"
             }
             .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
             .SetValues("Paid Traffic", "Organic Traffic", "Other Traffic")
