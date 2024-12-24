@@ -51,7 +51,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         }
 
         [Fact]
-        public void SetCategory_UpdateCategories_WithListFieldNames()
+        public void SetCategories_UpdateCategories_WithListFieldNames()
         {
             // Arrange
             var visualization = new MockICategories();
@@ -66,7 +66,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
         }
 
         [Fact]
-        public void SetCategory_UpdateCategories_WithListDimensionDataFields()
+        public void SetCategories_UpdateCategories_WithListDimensionDataFields()
         {
             // Arrange
             var visualization = new MockICategories();
