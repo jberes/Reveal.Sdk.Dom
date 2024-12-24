@@ -62,7 +62,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         }
 
         [Fact]
-        public void ToJsonString_GeneratesCorrectJson_WhenPivotVisualizationIsSerialized()
+        public void ToJsonString_GeneratesCorrectJson_WhenAreaChartVisualizationIsSerialized()
         {
             // Arrange
             var expectedJson =
