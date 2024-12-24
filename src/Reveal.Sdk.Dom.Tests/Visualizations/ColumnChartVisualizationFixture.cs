@@ -22,7 +22,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
 
             // Assert
             Assert.NotNull(columnChartVisualization);
-            Assert.Equal(ChartType.Column, barChartVisualization.ChartType);
+            Assert.Equal(ChartType.Column, columnChartVisualization.ChartType);
             Assert.Null(columnChartVisualization.Title);
             Assert.Null(columnChartVisualization.DataDefinition);
         }
