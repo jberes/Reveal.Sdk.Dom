@@ -29,7 +29,7 @@ namespace Sandbox.DashboardCreators
             };
             excelDataSourceItem.UseExcel("Marketing");
 
-            document.Visualizations.Add(new ColumnChartVisualization("Bar", excelDataSourceItem)
+            document.Visualizations.Add(new ColumnChartVisualization("Column", excelDataSourceItem)
             {
                 IsTitleVisible = true,
                 Description = "Create Column Visualization"
