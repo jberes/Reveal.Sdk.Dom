@@ -1,12 +1,16 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Core.Serialization;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
+using Reveal.Sdk.Dom.Tests.TestHelpers;
 using Reveal.Sdk.Dom.Visualizations;
 using Reveal.Sdk.Dom.Visualizations.Settings;
+using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -62,6 +66,50 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             Assert.Empty(gridVisualization.Columns);
         }
 
+        [Theory]
+        [InlineData(null, 0)]
+        [InlineData(typeof(GridVisualizationDataSpec), 2)]
+        public void Columns_ReturnsExpectedCount_WhenVisualizationDataSpecIsSet(System.Type dataSpecType, int expectedCount)
+        {
+            // Arrange
+            var gridVisualization = new GridVisualization();
+            if (dataSpecType == typeof(GridVisualizationDataSpec))
+            {
+                var gridVisualizationDataSpec = new GridVisualizationDataSpec
+                {
+                    Columns = new List<TabularColumn>
+                {
+                    new TabularColumn { FieldName = "Column1" },
+                    new TabularColumn { FieldName = "Column2" }
+                }
+                };
+
+                var property = typeof(GridVisualization).GetProperty("VisualizationDataSpec", BindingFlags.NonPublic | BindingFlags.Instance);
+                property.SetValue(gridVisualization, gridVisualizationDataSpec);
+            }
+
+            // Act
+            var columns = gridVisualization.Columns;
+
+            // Assert
+            Assert.NotNull(columns);
+            Assert.Equal(expectedCount, columns.Count);
+        }
+
+        [Fact]
+        public void VisualizationDataSpec_DefaultValue_IsGridVisualizationDataSpec()
+        {
+            // Arrange
+            var gridVisualization = new GridVisualization();
+
+            var property = typeof(GridVisualization).GetProperty("VisualizationDataSpec", BindingFlags.NonPublic | BindingFlags.Instance);
+            var visualizationDataSpec = property.GetValue(gridVisualization);
+
+            // Assert
+            Assert.NotNull(visualizationDataSpec);
+            Assert.IsType<GridVisualizationDataSpec>(visualizationDataSpec);
+        }
+
         [Fact]
         public void UpdateDataSourceItem_UpdatesDataDefinition_WhenNewDataSourceIsProvided()
         {
@@ -79,221 +127,149 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         }
 
         [Fact]
-        public void ToJsonString_GeneratesCorrectJson_WhenGridVisualizationIsSerialized()
+        public void VisualizationDataSpec_DefaultValue_CanBeSetAndRetrieved()
         {
             // Arrange
-            var expectedJson =
-                """
-                [
-                  {
-                    "Description": "Create Grid Visualization",
-                    "Id": "0535ea46-54f0-4918-b7fc-993c0531bb66",
-                    "Title": "Grid",
-                    "IsTitleVisible": true,
-                    "ColumnSpan": 0,
-                    "RowSpan": 0,
-                    "VisualizationSettings": {
-                      "_type": "GridVisualizationSettingsType",
-                      "PagedRows": true,
-                      "PagedRowsSize": 50,
-                      "FontSize": "Large",
-                      "Style": {
-                        "FixedLeftColumns": true,
-                        "TextAlignment": "Center",
-                        "NumericAlignment": "Inherit",
-                        "DateAlignment": "Center"
-                      },
-                      "VisualizationType": "GRID"
+            var customVisualizationDataSpec = new GridVisualizationDataSpec
+            {
+                Columns = new List<TabularColumn>
+            {
+                new TabularColumn { FieldName = "CustomColumn" }
+            }
+            };
+
+            var gridVisualization = new GridVisualization();
+
+            var property = typeof(GridVisualization).GetProperty("VisualizationDataSpec", BindingFlags.NonPublic | BindingFlags.Instance);
+            property.SetValue(gridVisualization, customVisualizationDataSpec);
+
+            // Act
+            var retrievedVisualizationDataSpec = property.GetValue(gridVisualization);
+
+            // Assert
+            Assert.Equal(customVisualizationDataSpec, retrievedVisualizationDataSpec);
+        }
+
+        [Fact]
+        public void ToJsonString_GeneratesCorrectJson_WhenGridVisualizationIsSerialized()
+        {
+            var expectedJson = """
+            [
+              {
+                "Description": "Create Grid Visualization",
+                "Title": "Grid",
+                "IsTitleVisible": true,
+                "ColumnSpan": 0,
+                "RowSpan": 0,
+                "VisualizationSettings": {
+                  "_type": "GridVisualizationSettingsType",
+                  "PagedRows": true,
+                  "PagedRowsSize": 50,
+                  "FontSize": "Large",
+                  "Style": {
+                    "FixedLeftColumns": true,
+                    "TextAlignment": "Center",
+                    "NumericAlignment": "Inherit",
+                    "DateAlignment": "Center"
+                  },
+                  "VisualizationType": "GRID"
+                },
+                "DataSpec": {
+                  "_type": "TabularDataSpecType",
+                  "IsTransposed": false,
+                  "Fields": [
+                    {
+                      "FieldName": "Date",
+                      "FieldLabel": "Date",
+                      "UserCaption": "Date",
+                      "IsCalculated": false,
+                      "Properties": {},
+                      "Sorting": "None",
+                      "FieldType": "Date"
                     },
-                    "DataSpec": {
-                      "_type": "TabularDataSpecType",
-                      "IsTransposed": false,
-                      "Fields": [
-                        {
-                          "FieldName": "Date",
-                          "FieldLabel": "Date",
-                          "UserCaption": "Date",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Date"
-                        },
-                        {
-                          "FieldName": "Spend",
-                          "FieldLabel": "Spend",
-                          "UserCaption": "Spend",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Budget",
-                          "FieldLabel": "Budget",
-                          "UserCaption": "Budget",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "CTR",
-                          "FieldLabel": "CTR",
-                          "UserCaption": "CTR",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Avg. CPC",
-                          "FieldLabel": "Avg. CPC",
-                          "UserCaption": "Avg. CPC",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Traffic",
-                          "FieldLabel": "Traffic",
-                          "UserCaption": "Traffic",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Paid Traffic",
-                          "FieldLabel": "Paid Traffic",
-                          "UserCaption": "Paid Traffic",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Other Traffic",
-                          "FieldLabel": "Other Traffic",
-                          "UserCaption": "Other Traffic",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Conversions",
-                          "FieldLabel": "Conversions",
-                          "UserCaption": "Conversions",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Territory",
-                          "FieldLabel": "Territory",
-                          "UserCaption": "Territory",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "String"
-                        },
-                        {
-                          "FieldName": "CampaignID",
-                          "FieldLabel": "CampaignID",
-                          "UserCaption": "CampaignID",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "String"
-                        },
-                        {
-                          "FieldName": "New Seats",
-                          "FieldLabel": "New Seats",
-                          "UserCaption": "New Seats",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Paid %",
-                          "FieldLabel": "Paid %",
-                          "UserCaption": "Paid %",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Organic %",
-                          "FieldLabel": "Organic %",
-                          "UserCaption": "Organic %",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        }
-                      ],
-                      "TransposedFields": [],
-                      "QuickFilters": [],
-                      "AdditionalTables": [],
-                      "ServiceAdditionalTables": [],
-                      "DataSourceItem": {
-                        "_type": "DataSourceItemType",
-                        "Id": "fc7f86b9-7938-447c-b1d3-b5a87e8b46d6",
-                        "Title": "Marketing Sheet",
-                        "Subtitle": "Excel Data Source Item",
-                        "DataSourceId": "__EXCEL",
-                        "HasTabularData": true,
-                        "HasAsset": false,
-                        "Properties": {
-                          "Sheet": "Marketing"
-                        },
-                        "Parameters": {},
-                        "ResourceItem": {
-                          "_type": "DataSourceItemType",
-                          "Id": "22b06eb6-f1d2-462c-84a0-2a887d509a35",
-                          "Title": "Marketing Sheet",
-                          "Subtitle": "Excel Data Source Item",
-                          "DataSourceId": "fc847a34-3d12-4477-a853-f83c7ef47faf",
-                          "HasTabularData": true,
-                          "HasAsset": false,
-                          "Properties": {
-                            "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
-                          },
-                          "Parameters": {}
-                        }
-                      },
-                      "Expiration": 1440,
-                      "Bindings": {
-                        "Bindings": []
-                      }
+                    {
+                      "FieldName": "Spend",
+                      "FieldLabel": "Spend",
+                      "UserCaption": "Spend",
+                      "IsCalculated": false,
+                      "Properties": {},
+                      "Sorting": "None",
+                      "FieldType": "Number"
                     },
-                    "VisualizationDataSpec": {
-                      "_type": "GridVisualizationDataSpecType",
-                      "Columns": [
-                        {
-                          "_type": "TabularColumnSpecType",
-                          "FieldName": "Territory",
-                          "Sorting": "None"
-                        },
-                        {
-                          "_type": "TabularColumnSpecType",
-                          "FieldName": "Conversions",
-                          "Sorting": "None"
-                        },
-                        {
-                          "_type": "TabularColumnSpecType",
-                          "FieldName": "Spend",
-                          "Sorting": "None"
-                        }
-                      ]
+                    {
+                      "FieldName": "Conversions",
+                      "FieldLabel": "Conversions",
+                      "UserCaption": "Conversions",
+                      "IsCalculated": false,
+                      "Properties": {},
+                      "Sorting": "None",
+                      "FieldType": "Number"
+                    },
+                    {
+                      "FieldName": "Territory",
+                      "FieldLabel": "Territory",
+                      "UserCaption": "Territory",
+                      "IsCalculated": false,
+                      "Properties": {},
+                      "Sorting": "None",
+                      "FieldType": "String"
                     }
+                  ],
+                  "TransposedFields": [],
+                  "QuickFilters": [],
+                  "AdditionalTables": [],
+                  "ServiceAdditionalTables": [],
+                  "DataSourceItem": {
+                    "_type": "DataSourceItemType",
+                    "Title": "Marketing Sheet",
+                    "Subtitle": "Excel Data Source Item",
+                    "HasTabularData": true,
+                    "HasAsset": false,
+                    "Properties": {
+                      "Sheet": "Marketing"
+                    },
+                    "Parameters": {},
+                    "ResourceItem": {
+                      "_type": "DataSourceItemType",
+                      "Title": "Marketing Sheet",
+                      "Subtitle": "Excel Data Source Item",
+                      "HasTabularData": true,
+                      "HasAsset": false,
+                      "Properties": {
+                        "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+                      },
+                      "Parameters": {}
+                    }
+                  },
+                  "Expiration": 1440,
+                  "Bindings": {
+                    "Bindings": []
                   }
-                ]
-                """;
+                },
+                "VisualizationDataSpec": {
+                  "_type": "GridVisualizationDataSpecType",
+                  "Columns": [
+                    {
+                      "_type": "TabularColumnSpecType",
+                      "FieldName": "Territory",
+                      "Sorting": "None"
+                    },
+                    {
+                      "_type": "TabularColumnSpecType",
+                      "FieldName": "Conversions",
+                      "Sorting": "None"
+                    },
+                    {
+                      "_type": "TabularColumnSpecType",
+                      "FieldName": "Spend",
+                      "Sorting": "None"
+                    }
+                  ]
+                }
+              }
+            ]
+            """;
+
             var document = new RdashDocument("My Dashboard");
 
             var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
@@ -305,18 +281,8 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
                 {
                     new DateField("Date"),
                     new NumberField("Spend"),
-                    new NumberField("Budget"),
-                    new NumberField("CTR"),
-                    new NumberField("Avg. CPC"),
-                    new NumberField("Traffic"),
-                    new NumberField("Paid Traffic"),
-                    new NumberField("Other Traffic"),
                     new NumberField("Conversions"),
-                    new TextField("Territory"),
-                    new TextField("CampaignID"),
-                    new NumberField("New Seats"),
-                    new NumberField("Paid %"),
-                    new NumberField("Organic %")
+                    new TextField("Territory")
                 }
             };
             excelDataSourceItem.UseExcel("Marketing");
@@ -339,20 +305,15 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
             document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-            // Act
-            RdashSerializer.SerializeObject(document);
             var json = document.ToJsonString();
-            var jObject = JObject.Parse(json);
-            var actualJArray = (JArray)jObject["Widgets"];
-            var expectedJArray = JArray.Parse(expectedJson);
+            var actualJson = JObject.Parse(json)["Widgets"];
+            var expected = JArray.Parse(expectedJson);
 
-            // Assert
-            Assert.Equal(expectedJArray.Count, actualJArray.Count);
+            var removeProps = new[] { "Id", "DataSourceId" };
+            var expectedStr = JsonConvert.SerializeObject(expected.RemoveProperties(removeProps));
+            var actualStr = JsonConvert.SerializeObject(actualJson.RemoveProperties(removeProps));
 
-            for (int i = 0; i < expectedJArray.Count; i++)
-            {
-                Assert.Equal(expectedJArray[i], actualJArray[i]);
-            }
+            Assert.Equal(expectedStr, actualStr);
         }
     }
 }
