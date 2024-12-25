@@ -152,129 +152,137 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         public void ToJsonString_GeneratesCorrectJson_WhenGridVisualizationIsSerialized()
         {
             var expectedJson = """
-            [
-              {
-                "Description": "Create Grid Visualization",
-                "Title": "Grid",
-                "IsTitleVisible": true,
-                "ColumnSpan": 0,
-                "RowSpan": 0,
-                "VisualizationSettings": {
-                  "_type": "GridVisualizationSettingsType",
-                  "PagedRows": true,
-                  "PagedRowsSize": 50,
-                  "FontSize": "Large",
-                  "Style": {
-                    "FixedLeftColumns": true,
-                    "TextAlignment": "Center",
-                    "NumericAlignment": "Inherit",
-                    "DateAlignment": "Center"
-                  },
-                  "VisualizationType": "GRID"
+            [ {
+              "Description" : "Create Grid Visualization",
+              "Id" : "f4aec0ff-a73f-4797-840d-6553be4fddee",
+              "Title" : "Grid",
+              "IsTitleVisible" : true,
+              "ColumnSpan" : 0,
+              "RowSpan" : 0,
+              "VisualizationSettings" : {
+                "_type" : "GridVisualizationSettingsType",
+                "PagedRows" : true,
+                "PagedRowsSize" : 50,
+                "FontSize" : "Large",
+                "Style" : {
+                  "FixedLeftColumns" : true,
+                  "TextAlignment" : "Center",
+                  "NumericAlignment" : "Inherit",
+                  "DateAlignment" : "Center"
                 },
-                "DataSpec": {
-                  "_type": "TabularDataSpecType",
-                  "IsTransposed": false,
-                  "Fields": [
-                    {
-                      "FieldName": "Date",
-                      "FieldLabel": "Date",
-                      "UserCaption": "Date",
-                      "IsCalculated": false,
-                      "Properties": {},
-                      "Sorting": "None",
-                      "FieldType": "Date"
-                    },
-                    {
-                      "FieldName": "Spend",
-                      "FieldLabel": "Spend",
-                      "UserCaption": "Spend",
-                      "IsCalculated": false,
-                      "Properties": {},
-                      "Sorting": "None",
-                      "FieldType": "Number"
-                    },
-                    {
-                      "FieldName": "Conversions",
-                      "FieldLabel": "Conversions",
-                      "UserCaption": "Conversions",
-                      "IsCalculated": false,
-                      "Properties": {},
-                      "Sorting": "None",
-                      "FieldType": "Number"
-                    },
-                    {
-                      "FieldName": "Territory",
-                      "FieldLabel": "Territory",
-                      "UserCaption": "Territory",
-                      "IsCalculated": false,
-                      "Properties": {},
-                      "Sorting": "None",
-                      "FieldType": "String"
-                    }
-                  ],
-                  "TransposedFields": [],
-                  "QuickFilters": [],
-                  "AdditionalTables": [],
-                  "ServiceAdditionalTables": [],
-                  "DataSourceItem": {
-                    "_type": "DataSourceItemType",
-                    "Title": "Marketing Sheet",
-                    "Subtitle": "Excel Data Source Item",
-                    "HasTabularData": true,
-                    "HasAsset": false,
-                    "Properties": {
-                      "Sheet": "Marketing"
-                    },
-                    "Parameters": {},
-                    "ResourceItem": {
-                      "_type": "DataSourceItemType",
-                      "Title": "Marketing Sheet",
-                      "Subtitle": "Excel Data Source Item",
-                      "HasTabularData": true,
-                      "HasAsset": false,
-                      "Properties": {
-                        "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
-                      },
-                      "Parameters": {}
-                    }
+                "VisualizationType" : "GRID"
+              },
+              "DataSpec" : {
+                "_type" : "TabularDataSpecType",
+                "IsTransposed" : false,
+                "Fields" : [ {
+                  "FieldName" : "Date",
+                  "FieldLabel" : "Date",
+                  "UserCaption" : "Date",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "Date"
+                }, {
+                  "FieldName" : "Spend",
+                  "FieldLabel" : "Spend",
+                  "UserCaption" : "Spend",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "Number"
+                }, {
+                  "FieldName" : "Conversions",
+                  "FieldLabel" : "Conversions",
+                  "UserCaption" : "Conversions",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "Number"
+                }, {
+                  "FieldName" : "Territory",
+                  "FieldLabel" : "Territory",
+                  "UserCaption" : "Territory",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "String"
+                } ],
+                "TransposedFields" : [ ],
+                "QuickFilters" : [ ],
+                "AdditionalTables" : [ ],
+                "ServiceAdditionalTables" : [ ],
+                "DataSourceItem" : {
+                  "_type" : "DataSourceItemType",
+                  "Id" : "51030e9e-7f1d-4552-a252-0256f1880fac",
+                  "Title" : "Marketing Sheet",
+                  "Subtitle" : "Excel Data Source Item",
+                  "DataSourceId" : "__EXCEL",
+                  "HasTabularData" : true,
+                  "HasAsset" : false,
+                  "Properties" : {
+                    "Sheet" : "Marketing"
                   },
-                  "Expiration": 1440,
-                  "Bindings": {
-                    "Bindings": []
+                  "Parameters" : { },
+                  "ResourceItem" : {
+                    "_type" : "DataSourceItemType",
+                    "Id" : "12aaddb8-42f4-4429-8c14-a4f212cca70f",
+                    "Title" : "Marketing Sheet",
+                    "Subtitle" : "Excel Data Source Item",
+                    "DataSourceId" : "0bc5b4b0-8d9c-4a7e-9ac3-326c79dd28b4",
+                    "HasTabularData" : true,
+                    "HasAsset" : false,
+                    "Properties" : {
+                      "Url" : "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+                    },
+                    "Parameters" : { }
                   }
                 },
-                "VisualizationDataSpec": {
-                  "_type": "GridVisualizationDataSpecType",
-                  "Columns": [
-                    {
-                      "_type": "TabularColumnSpecType",
-                      "FieldName": "Territory",
-                      "Sorting": "None"
-                    },
-                    {
-                      "_type": "TabularColumnSpecType",
-                      "FieldName": "Conversions",
-                      "Sorting": "None"
-                    },
-                    {
-                      "_type": "TabularColumnSpecType",
-                      "FieldName": "Spend",
-                      "Sorting": "None"
-                    }
-                  ]
+                "Expiration" : 1440,
+                "Bindings" : {
+                  "Bindings" : [ ]
                 }
+              },
+              "VisualizationDataSpec" : {
+                "_type" : "GridVisualizationDataSpecType",
+                "Columns" : [ {
+                  "_type" : "TabularColumnSpecType",
+                  "FieldName" : "Territory",
+                  "Sorting" : "None"
+                }, {
+                  "_type" : "TabularColumnSpecType",
+                  "FieldName" : "Conversions",
+                  "Sorting" : "None"
+                }, {
+                  "_type" : "TabularColumnSpecType",
+                  "FieldName" : "Spend",
+                  "Sorting" : "None"
+                } ]
               }
-            ]
+            } ]
             """;
 
             var document = new RdashDocument("My Dashboard");
 
             var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
             {
+                Id = "51030e9e-7f1d-4552-a252-0256f1880fac",
                 Subtitle = "Excel Data Source Item",
                 Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
                 IsAnonymous = true,
+                ResourceItem = new DataSourceItem()
+                {
+                    Id = "12aaddb8-42f4-4429-8c14-a4f212cca70f",
+                    DataSourceId = "0bc5b4b0-8d9c-4a7e-9ac3-326c79dd28b4",
+                    Title = "Marketing Sheet",
+                    Subtitle = "Excel Data Source Item",
+                    HasTabularData = true,
+                    HasAsset = false,
+                    Properties = new Dictionary<string, object>()
+                    {
+                        { "Url", "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx" }
+                    }
+                },
                 Fields = new List<IField>
                 {
                     new DateField("Date"),
@@ -287,6 +295,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
 
             document.Visualizations.Add(new GridVisualization("Grid", excelDataSourceItem)
             {
+                Id = "f4aec0ff-a73f-4797-840d-6553be4fddee",
                 IsTitleVisible = true,
                 Description = "Create Grid Visualization"
             }
@@ -307,9 +316,8 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             var actualJson = JObject.Parse(json)["Widgets"];
             var expected = JArray.Parse(expectedJson);
 
-            var removeProps = new[] { "Id", "DataSourceId" };
-            var expectedStr = JsonConvert.SerializeObject(expected.RemoveProperties(removeProps));
-            var actualStr = JsonConvert.SerializeObject(actualJson.RemoveProperties(removeProps));
+            var expectedStr = JsonConvert.SerializeObject(expected);
+            var actualStr = JsonConvert.SerializeObject(actualJson);
 
             Assert.Equal(expectedStr, actualStr);
         }

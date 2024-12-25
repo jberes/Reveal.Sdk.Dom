@@ -7,6 +7,7 @@ using Reveal.Sdk.Dom.Tests.TestExtensions;
 using Reveal.Sdk.Dom.Visualizations;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Xunit;
@@ -330,9 +331,23 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
 
             var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
             {
+                Id = "080cc17d-4a0a-4837-aa3f-ef2571ea443a",
                 Subtitle = "Excel Data Source Item",
                 Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
                 IsAnonymous = true,
+                ResourceItem = new DataSourceItem()
+                {
+                    Id = "d593dd79-7161-4929-afc9-c26393f5b650",
+                    DataSourceId = "33077d1e-19c5-44fe-b981-6765af3156a6",
+                    Title = "Marketing Sheet",
+                    Subtitle = "Excel Data Source Item",
+                    HasTabularData = true,
+                    HasAsset = false,
+                    Properties = new Dictionary<string, object>()
+                    {
+                        { "Url", "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx" }
+                    }
+                },
                 Fields = new List<IField>
                 {
                     new DateField("Date"),
@@ -345,8 +360,9 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
 
             document.Visualizations.Add(new PivotVisualization("Grid", excelDataSourceItem)
             {
+                Id = "60344a4a-d0ce-4364-9f8c-acfbb8caa32e",
                 IsTitleVisible = true,
-                Description = "Create Grid Visualization"
+                Description = "Create Grid Visualization",
             }
             .SetColumns("Territory", "Conversions", "Spend")
             .ConfigureSettings(settings =>
@@ -364,9 +380,8 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             var actualJson = JObject.Parse(json)["Widgets"];
             var expected = JArray.Parse(expectedJson);
 
-            var removeProps = new[] { "Id", "DataSourceId" };
-            var expectedStr = JsonConvert.SerializeObject(expected.RemoveProperties(removeProps));
-            var actualStr = JsonConvert.SerializeObject(actualJson.RemoveProperties(removeProps));
+            var expectedStr = JsonConvert.SerializeObject(expected);
+            var actualStr = JsonConvert.SerializeObject(actualJson);
 
             Assert.Equal(expectedStr, actualStr);
         }
