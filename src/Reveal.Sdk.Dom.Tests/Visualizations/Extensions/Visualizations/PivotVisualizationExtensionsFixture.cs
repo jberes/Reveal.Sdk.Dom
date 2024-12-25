@@ -8,7 +8,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions.Visualizations
     public class PivotVisualizationExtensionsFixture
     {
         [Fact]
-        public void ConfigureSettings_Works_NoConditions()
+        public void ConfigureSettings_UpdateVSSettingsField_WithoutConditions()
         {
             // Arrange
             var vs = new PivotVisualization();
