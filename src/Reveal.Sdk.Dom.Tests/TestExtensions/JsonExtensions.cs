@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reveal.Sdk.Dom.Tests.TestHelpers
+namespace Reveal.Sdk.Dom.Tests.TestExtensions
 {
     public static class JsonExtensions
     {
