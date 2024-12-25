@@ -35,6 +35,8 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             Assert.Empty(pivotVisualization.Rows);
             Assert.NotNull(pivotVisualization.Values);
             Assert.Empty(pivotVisualization.Values);
+            Assert.Null(pivotVisualization.Title);
+            Assert.Null(pivotVisualization.DataDefinition);
         }
 
         [Theory]
@@ -54,6 +56,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             Assert.Empty(pivotVisualization.Rows);
             Assert.NotNull(pivotVisualization.Values);
             Assert.Empty(pivotVisualization.Values);
+            Assert.Null(pivotVisualization.DataDefinition);
         }
 
         [Fact]

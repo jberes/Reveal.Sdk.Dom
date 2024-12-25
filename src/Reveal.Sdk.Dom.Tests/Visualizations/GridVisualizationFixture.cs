@@ -31,6 +31,8 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
             Assert.NotNull(gridVisualization.Columns);
             Assert.Empty(gridVisualization.Columns);
+            Assert.Null(gridVisualization.Title);
+            Assert.Null(gridVisualization.DataDefinition);
         }
 
         [Fact]
@@ -48,6 +50,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             Assert.Equal(dataSourceItem, gridVisualization.DataDefinition.DataSourceItem);
             Assert.NotNull(gridVisualization.Columns);
             Assert.Empty(gridVisualization.Columns);
+            Assert.Null(gridVisualization.Title);
         }
 
 
@@ -64,6 +67,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
             Assert.NotNull(gridVisualization.Columns);
             Assert.Empty(gridVisualization.Columns);
+            Assert.Null(gridVisualization.DataDefinition);
         }
 
         [Theory]
