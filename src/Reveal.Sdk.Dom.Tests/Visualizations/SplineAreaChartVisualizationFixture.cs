@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
+using Reveal.Sdk.Dom.Tests.TestExtensions;
 using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
@@ -58,28 +59,29 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         }
 
         [Fact]
-        public void ToJsonString_GeneratesCorrectJson_WhenGridVisualizationIsSerialized()
+        public void ToJsonString_GeneratesCorrectJson_WhenSplineAreaChartVisualizationIsSerialized()
         {
             var expectedJson = """
             [
               {
-                "Description": "Create Grid Visualization",
-                "Title": "Grid",
+                "Description": "Create Spline Area Visualization",
+                "Id": "ff37d2c3-62fd-4a8c-80f4-aeb0c087deea",
+                "Title": "SplineArea",
                 "IsTitleVisible": true,
                 "ColumnSpan": 0,
                 "RowSpan": 0,
                 "VisualizationSettings": {
-                  "_type": "GridVisualizationSettingsType",
-                  "PagedRows": true,
-                  "PagedRowsSize": 50,
-                  "FontSize": "Large",
-                  "Style": {
-                    "FixedLeftColumns": true,
-                    "TextAlignment": "Center",
-                    "NumericAlignment": "Inherit",
-                    "DateAlignment": "Center"
-                  },
-                  "VisualizationType": "GRID"
+                  "_type": "ChartVisualizationSettingsType",
+                  "ShowTotalsInTooltip": true,
+                  "TrendlineType": "ExponentialFit",
+                  "AutomaticLabelRotation": true,
+                  "SyncAxisVisibleRange": false,
+                  "ZoomScaleHorizontal": 1.0,
+                  "ZoomScaleVertical": 1.0,
+                  "LeftAxisLogarithmic": false,
+                  "ShowLegends": true,
+                  "ChartType": "SplineArea",
+                  "VisualizationType": "Area"
                 },
                 "DataSpec": {
                   "_type": "TabularDataSpecType",
@@ -104,22 +106,13 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
                       "FieldType": "Number"
                     },
                     {
-                      "FieldName": "Conversions",
-                      "FieldLabel": "Conversions",
-                      "UserCaption": "Conversions",
+                      "FieldName": "Budget",
+                      "FieldLabel": "Budget",
+                      "UserCaption": "Budget",
                       "IsCalculated": false,
                       "Properties": {},
                       "Sorting": "None",
                       "FieldType": "Number"
-                    },
-                    {
-                      "FieldName": "Territory",
-                      "FieldLabel": "Territory",
-                      "UserCaption": "Territory",
-                      "IsCalculated": false,
-                      "Properties": {},
-                      "Sorting": "None",
-                      "FieldType": "String"
                     }
                   ],
                   "TransposedFields": [],
@@ -128,8 +121,10 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
                   "ServiceAdditionalTables": [],
                   "DataSourceItem": {
                     "_type": "DataSourceItemType",
+                    "Id": "6ad41166-b8f5-4c4a-8440-48062ed2295b",
                     "Title": "Marketing Sheet",
                     "Subtitle": "Excel Data Source Item",
+                    "DataSourceId": "__EXCEL",
                     "HasTabularData": true,
                     "HasAsset": false,
                     "Properties": {
@@ -138,8 +133,10 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
                     "Parameters": {},
                     "ResourceItem": {
                       "_type": "DataSourceItemType",
+                      "Id": "82d63339-3119-4210-835b-6d77baae145c",
                       "Title": "Marketing Sheet",
                       "Subtitle": "Excel Data Source Item",
+                      "DataSourceId": "5ef06a26-a355-43da-9410-34a034acb536",
                       "HasTabularData": true,
                       "HasAsset": false,
                       "Properties": {
@@ -154,22 +151,47 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
                   }
                 },
                 "VisualizationDataSpec": {
-                  "_type": "GridVisualizationDataSpecType",
-                  "Columns": [
+                  "_type": "CategoryVisualizationDataSpecType",
+                  "Values": [
                     {
-                      "_type": "TabularColumnSpecType",
-                      "FieldName": "Territory",
-                      "Sorting": "None"
+                      "_type": "MeasureColumnSpecType",
+                      "SummarizationField": {
+                        "_type": "SummarizationValueFieldType",
+                        "FieldLabel": "Spend",
+                        "UserCaption": "Spend",
+                        "IsHidden": false,
+                        "AggregationType": "Sum",
+                        "Sorting": "None",
+                        "IsCalculated": false,
+                        "FieldName": "Spend"
+                      }
                     },
                     {
-                      "_type": "TabularColumnSpecType",
-                      "FieldName": "Conversions",
-                      "Sorting": "None"
-                    },
+                      "_type": "MeasureColumnSpecType",
+                      "SummarizationField": {
+                        "_type": "SummarizationValueFieldType",
+                        "FieldLabel": "Budget",
+                        "UserCaption": "Budget",
+                        "IsHidden": false,
+                        "AggregationType": "Sum",
+                        "Sorting": "None",
+                        "IsCalculated": false,
+                        "FieldName": "Budget"
+                      }
+                    }
+                  ],
+                  "FormatVersion": 0,
+                  "AdHocExpandedElements": [],
+                  "Rows": [
                     {
-                      "_type": "TabularColumnSpecType",
-                      "FieldName": "Spend",
-                      "Sorting": "None"
+                      "_type": "DimensionColumnSpecType",
+                      "SummarizationField": {
+                        "_type": "SummarizationDateFieldType",
+                        "DateAggregationType": "Month",
+                        "DrillDownElements": [],
+                        "ExpandedItems": [],
+                        "FieldName": "Date"
+                      }
                     }
                   ]
                 }
