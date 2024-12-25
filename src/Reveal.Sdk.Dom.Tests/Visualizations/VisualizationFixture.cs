@@ -9,21 +9,20 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Core.Utilities;
 using System;
+using Reveal.Sdk.Dom.Filters;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations
 {
     public class VisualizationFixture
     {
         [Fact]
-        public void Constructor_SetTitleAndChartType_WhenConstructed()
+        public void Constructor_SetTitleAndChartType_WhenConstructedWithoutDatasource()
         {
             // Arrange
-            var dataSource = new DataSource();
-            var dataSourceItem = new DataSourceItem { DataSource = dataSource };
             var testTitle = "testTitle";
 
             // Act
-            var visualization = new Mock<Visualization>(testTitle, dataSourceItem) { CallBase = true }.Object;
+            var visualization = new Mock<Visualization>(testTitle, null) { CallBase = true }.Object;
 
             // Assert
             Assert.Equal(testTitle, visualization.Title);
@@ -91,12 +90,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         public void Id_IsUnique_WhenConstructed()
         {
             // Arrange
-            var dataSource = new DataSource();
-            var dataSourceItem = new DataSourceItem
-            {
-                DataSource = dataSource,
-                HasTabularData = false,
-            };
+            var dataSourceItem = new DataSourceItem();
 
             // Act
             var visualization = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true }.Object;
@@ -112,12 +106,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         public void Id_GetSetCorrectly_WhenUsed()
         {
             // Arrange
-            var dataSource = new DataSource();
-            var dataSourceItem = new DataSourceItem
-            {
-                DataSource = dataSource,
-                HasTabularData = false,
-            };
+            var dataSourceItem = new DataSourceItem();
             var visualization = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true }.Object;
 
 
@@ -132,12 +121,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         public void Title_GetSetCorrectly_WhenUsed()
         {
             // Arrange
-            var dataSource = new DataSource();
-            var dataSourceItem = new DataSourceItem
-            {
-                DataSource = dataSource,
-                HasTabularData = false,
-            };
+            var dataSourceItem = new DataSourceItem();
             var visualization = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true }.Object;
 
 
@@ -219,11 +203,30 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         public void FilterBindings_EqualDataDefinitionBindings_WhenUsed()
         {
             // Arrange
-            var dataSource = new DataSource();
+            var dataSourceItem = new DataSourceItem();
+            var mock = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true };
+            var visualization = mock.Object;
+            var testBindings = new DataSpecBindings();
+            ((DataDefinitionBase)visualization.DataDefinition).Bindings = testBindings;
+
+            // Act
+            var filterBindings = visualization.FilterBindings;
+
+            // Assert
+            Assert.Equal(testBindings.Bindings, filterBindings);
+        }
+
+        [Fact]
+        public void GetDataSourceItem_ReturnsCorrectDataSourceItem_Always()
+        {
+            // Arrange
+            var dataSource = new DataSource()
+            {
+                Id = "DataSourceId",
+            };
             var dataSourceItem = new DataSourceItem
             {
                 DataSource = dataSource,
-                HasTabularData = true,
                 Fields = new List<IField>
                 {
                     new TextField("A"),
@@ -232,18 +235,71 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
                     new TextField("D"),
                 }
             };
+
             var mock = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true };
             var visualization = mock.Object;
 
+            var document = new RdashDocument();
+
+            document.Visualizations.Add(visualization);
+
+            RdashDocumentValidator.Validate(document);
+
             // Act
-            var filterBindings = visualization.FilterBindings;
+            var dataSourceItemResult = visualization.GetDataSourceItem();
 
             // Assert
-            Assert.Equal(((DataDefinitionBase)visualization.DataDefinition).Bindings.Bindings, filterBindings);
+            Assert.Equal(dataSourceItem, dataSourceItemResult);
+            Assert.Equal(dataSourceItemResult.DataSource.Id, dataSource.Id);
         }
 
         [Fact]
-        public void GetDataSourceItem_ReturnsCorrectDataSourceItem_WhenUseTabularData()
+        public void GetDataSourceItem_ReturnsCorrectResourceItemDataSource_WhenSetResourceItem()
+        {
+            // Arrange
+            var dataSource = new DataSource()
+            {
+                Id = "DataSourceId",
+            };
+            var dataSourceResourceItem = new DataSource()
+            {
+                Id = "dataSourceResourceItemId",
+            };
+            var dataSourceItem = new DataSourceItem
+            {
+                DataSource = dataSource,
+                Fields = new List<IField>
+                {
+                    new TextField("A"),
+                    new TextField("B"),
+                    new TextField("C"),
+                    new TextField("D"),
+                }
+            };
+            dataSourceItem.ResourceItem = new DataSourceItem()
+            {
+                DataSource = dataSourceResourceItem,
+                Id = "ResourceItem",
+            };
+
+            var mock = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true };
+            var visualization = mock.Object;
+
+            var document = new RdashDocument();
+            document.DataSources.Add(dataSourceResourceItem);
+            document.Visualizations.Add(visualization);
+
+            RdashDocumentValidator.Validate(document);
+
+            // Act
+            var dataSourceItemResult = visualization.GetDataSourceItem();
+
+            // Assert
+            Assert.Equal(dataSourceItemResult.ResourceItemDataSource.Id, dataSourceResourceItem.Id);
+        }
+
+        [Fact]
+        public void GetDataSourceItem_ReturnsCorrectFields_WhenUseTabularData()
         {
             // Arrange
             var dataSource = new DataSource()
