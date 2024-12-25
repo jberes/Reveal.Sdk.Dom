@@ -13,7 +13,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions.Visualizations
     public class GridVisualizationExtensionsFixture
     {
         [Fact]
-        public void ConfigureSettings_Works_NoConditions()
+        public void ConfigureSettings_UpdateSettingsField_WithoutConditions()
         {
             // Arrange
             var vs = new GridVisualization();
