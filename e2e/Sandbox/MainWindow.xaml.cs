@@ -45,7 +45,6 @@ namespace Sandbox
         {
             new AmazonAthenaDashboard(),
             new AmazonRedshiftDashboard(),
-            new AreaVisualizationDashboard(),
             new CampaignsDashboard(),
             new CustomDashboard(),
             new DashboardLinkingDashboard(),
