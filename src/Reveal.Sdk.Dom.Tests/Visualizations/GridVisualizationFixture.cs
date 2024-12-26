@@ -1,157 +1,164 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Reveal.Sdk.Dom.Data;
-using Reveal.Sdk.Dom.Filters;
-using Reveal.Sdk.Dom.Tests.TestExtensions;
-using Reveal.Sdk.Dom.Visualizations;
-using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Reveal.Sdk.Dom.Core.Serialization;
+using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Filters;
+using Reveal.Sdk.Dom.Visualizations;
+using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using Xunit;
 
-namespace Reveal.Sdk.Dom.Tests.Visualizations
+namespace Reveal.Sdk.Dom.Tests.Visualizations;
+
+public class GridVisualizationFixture
 {
-
-    public class GridVisualizationFixture
+    [Fact]
+    public void Constructor_InitializesDefaultValues_WhenInstanceIsCreated()
     {
-        [Fact]
-        public void Constructor_InitializesDefaultValues_WhenInstanceIsCreated()
+        // Act
+        var gridVisualization = new GridVisualization();
+
+        // Assert
+        Assert.NotNull(gridVisualization);
+        Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
+        Assert.NotNull(gridVisualization.Columns);
+        Assert.Empty(gridVisualization.Columns);
+        Assert.Null(gridVisualization.Title);
+        Assert.Null(gridVisualization.DataDefinition);
+    }
+
+    [Fact]
+    public void Constructor_InitializesGridVisualizationWithDataSource_WhenDataSourceItemIsProvided()
+    {
+        // Arrange
+        var dataSourceItem = new DataSourceItem { HasTabularData = true };
+
+        // Act
+        var gridVisualization = new GridVisualization(dataSourceItem);
+
+        // Assert
+        Assert.NotNull(gridVisualization);
+        Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
+        Assert.Equal(dataSourceItem, gridVisualization.DataDefinition.DataSourceItem);
+        Assert.NotNull(gridVisualization.Columns);
+        Assert.Empty(gridVisualization.Columns);
+        Assert.Null(gridVisualization.Title);
+    }
+
+
+    [Theory]
+    [InlineData("TestTitle", null)]
+    [InlineData(null, null)]
+    public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, DataSourceItem dataSourceItem)
+    {
+        // Act
+        var gridVisualization = new GridVisualization(title, dataSourceItem);
+
+        // Assert
+        Assert.Equal(title, gridVisualization.Title);
+        Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
+        Assert.NotNull(gridVisualization.Columns);
+        Assert.Empty(gridVisualization.Columns);
+        Assert.Null(gridVisualization.DataDefinition);
+    }
+
+    [Theory]
+    [InlineData(null, 0)]
+    [InlineData(typeof(GridVisualizationDataSpec), 2)]
+    public void Columns_ReturnsExpectedCount_WhenVisualizationDataSpecIsSet(Type dataSpecType, int expectedCount)
+    {
+        // Arrange
+        var gridVisualization = new GridVisualization();
+        if (dataSpecType == typeof(GridVisualizationDataSpec))
         {
-            // Act
-            var gridVisualization = new GridVisualization();
-
-            // Assert
-            Assert.NotNull(gridVisualization);
-            Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
-            Assert.NotNull(gridVisualization.Columns);
-            Assert.Empty(gridVisualization.Columns);
-            Assert.Null(gridVisualization.Title);
-            Assert.Null(gridVisualization.DataDefinition);
-        }
-
-        [Fact]
-        public void Constructor_InitializesGridVisualizationWithDataSource_WhenDataSourceItemIsProvided()
-        {
-            // Arrange
-            var dataSourceItem = new DataSourceItem { HasTabularData = true };
-
-            // Act
-            var gridVisualization = new GridVisualization(dataSourceItem);
-
-            // Assert
-            Assert.NotNull(gridVisualization);
-            Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
-            Assert.Equal(dataSourceItem, gridVisualization.DataDefinition.DataSourceItem);
-            Assert.NotNull(gridVisualization.Columns);
-            Assert.Empty(gridVisualization.Columns);
-            Assert.Null(gridVisualization.Title);
-        }
-
-
-        [Theory]
-        [InlineData("TestTitle", null)]
-        [InlineData(null, null)]
-        public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, DataSourceItem dataSourceItem)
-        {
-            // Act
-            var gridVisualization = new GridVisualization(title, dataSourceItem);
-
-            // Assert
-            Assert.Equal(title, gridVisualization.Title);
-            Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
-            Assert.NotNull(gridVisualization.Columns);
-            Assert.Empty(gridVisualization.Columns);
-            Assert.Null(gridVisualization.DataDefinition);
-        }
-
-        [Theory]
-        [InlineData(null, 0)]
-        [InlineData(typeof(GridVisualizationDataSpec), 2)]
-        public void Columns_ReturnsExpectedCount_WhenVisualizationDataSpecIsSet(System.Type dataSpecType, int expectedCount)
-        {
-            // Arrange
-            var gridVisualization = new GridVisualization();
-            if (dataSpecType == typeof(GridVisualizationDataSpec))
-            {
-                var gridVisualizationDataSpec = new GridVisualizationDataSpec
-                {
-                    Columns = new List<TabularColumn>
-                {
-                    new TabularColumn { FieldName = "Column1" },
-                    new TabularColumn { FieldName = "Column2" }
-                }
-                };
-
-                var property = typeof(GridVisualization).GetProperty("VisualizationDataSpec", BindingFlags.NonPublic | BindingFlags.Instance);
-                property.SetValue(gridVisualization, gridVisualizationDataSpec);
-            }
-
-            // Act
-            var columns = gridVisualization.Columns;
-
-            // Assert
-            Assert.NotNull(columns);
-            Assert.Equal(expectedCount, columns.Count);
-        }
-
-        [Fact]
-        public void VisualizationDataSpec_DefaultValue_IsGridVisualizationDataSpec()
-        {
-            // Arrange
-            var gridVisualization = new GridVisualization();
-
-            var property = typeof(GridVisualization).GetProperty("VisualizationDataSpec", BindingFlags.NonPublic | BindingFlags.Instance);
-            var visualizationDataSpec = property.GetValue(gridVisualization);
-
-            // Assert
-            Assert.NotNull(visualizationDataSpec);
-            Assert.IsType<GridVisualizationDataSpec>(visualizationDataSpec);
-        }
-
-        [Fact]
-        public void UpdateDataSourceItem_UpdatesDataDefinition_WhenNewDataSourceIsProvided()
-        {
-            // Arrange
-            var dataSourceItem = new DataSourceItem { HasTabularData = true };
-            var gridVisualization = new GridVisualization("Test", dataSourceItem);
-
-            var newDataSourceItem = new DataSourceItem();
-
-            // Act
-            gridVisualization.UpdateDataSourceItem(newDataSourceItem);
-
-            // Assert
-            Assert.Equal(newDataSourceItem, gridVisualization.DataDefinition.DataSourceItem);
-        }
-
-        [Fact]
-        public void VisualizationDataSpec_DefaultValue_CanBeSetAndRetrieved()
-        {
-            // Arrange
-            var customVisualizationDataSpec = new GridVisualizationDataSpec
+            var gridVisualizationDataSpec = new GridVisualizationDataSpec
             {
                 Columns = new List<TabularColumn>
-            {
-                new TabularColumn { FieldName = "CustomColumn" }
-            }
+                {
+                    new() { FieldName = "Column1" },
+                    new() { FieldName = "Column2" }
+                }
             };
 
-            var gridVisualization = new GridVisualization();
-
-            var property = typeof(GridVisualization).GetProperty("VisualizationDataSpec", BindingFlags.NonPublic | BindingFlags.Instance);
-            property.SetValue(gridVisualization, customVisualizationDataSpec);
-
-            // Act
-            var retrievedVisualizationDataSpec = property.GetValue(gridVisualization);
-
-            // Assert
-            Assert.Equal(customVisualizationDataSpec, retrievedVisualizationDataSpec);
+            var property = typeof(GridVisualization).GetProperty("VisualizationDataSpec",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+            property.SetValue(gridVisualization, gridVisualizationDataSpec);
         }
 
-        [Fact]
-        public void ToJsonString_GeneratesCorrectJson_WhenGridVisualizationIsSerialized()
+        // Act
+        var columns = gridVisualization.Columns;
+
+        // Assert
+        Assert.NotNull(columns);
+        Assert.Equal(expectedCount, columns.Count);
+    }
+
+    [Fact]
+    public void VisualizationDataSpec_DefaultValue_IsGridVisualizationDataSpec()
+    {
+        // Arrange
+        var gridVisualization = new GridVisualization();
+
+        var property =
+            typeof(GridVisualization).GetProperty("VisualizationDataSpec",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+        var visualizationDataSpec = property.GetValue(gridVisualization);
+
+        // Assert
+        Assert.NotNull(visualizationDataSpec);
+        Assert.IsType<GridVisualizationDataSpec>(visualizationDataSpec);
+    }
+
+    [Fact]
+    public void UpdateDataSourceItem_UpdatesDataDefinition_WhenNewDataSourceIsProvided()
+    {
+        // Arrange
+        var dataSourceItem = new DataSourceItem { HasTabularData = true };
+        var gridVisualization = new GridVisualization("Test", dataSourceItem);
+
+        var newDataSourceItem = new DataSourceItem();
+
+        // Act
+        gridVisualization.UpdateDataSourceItem(newDataSourceItem);
+
+        // Assert
+        Assert.Equal(newDataSourceItem, gridVisualization.DataDefinition.DataSourceItem);
+    }
+
+    [Fact]
+    public void VisualizationDataSpec_DefaultValue_CanBeSetAndRetrieved()
+    {
+        // Arrange
+        var customVisualizationDataSpec = new GridVisualizationDataSpec
         {
-            var expectedJson = """
+            Columns = new List<TabularColumn>
+            {
+                new() { FieldName = "CustomColumn" }
+            }
+        };
+
+        var gridVisualization = new GridVisualization();
+
+        var property =
+            typeof(GridVisualization).GetProperty("VisualizationDataSpec",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+        property.SetValue(gridVisualization, customVisualizationDataSpec);
+
+        // Act
+        var retrievedVisualizationDataSpec = property.GetValue(gridVisualization);
+
+        // Assert
+        Assert.Equal(customVisualizationDataSpec, retrievedVisualizationDataSpec);
+    }
+
+    [Fact]
+    public void ToJsonString_GeneratesCorrectJson_WhenGridVisualizationIsSerialized()
+    {
+        //Arrange
+        var expectedJson =
+            """
             [ {
               "Description" : "Create Grid Visualization",
               "Id" : "f4aec0ff-a73f-4797-840d-6553be4fddee",
@@ -262,38 +269,38 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             } ]
             """;
 
-            var document = new RdashDocument("My Dashboard");
+        var document = new RdashDocument("My Dashboard");
 
-            var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
+        var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
+        {
+            Id = "51030e9e-7f1d-4552-a252-0256f1880fac",
+            Subtitle = "Excel Data Source Item",
+            Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            IsAnonymous = true,
+            ResourceItem = new DataSourceItem
             {
-                Id = "51030e9e-7f1d-4552-a252-0256f1880fac",
+                Id = "12aaddb8-42f4-4429-8c14-a4f212cca70f",
+                DataSourceId = "0bc5b4b0-8d9c-4a7e-9ac3-326c79dd28b4",
+                Title = "Marketing Sheet",
                 Subtitle = "Excel Data Source Item",
-                Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
-                IsAnonymous = true,
-                ResourceItem = new DataSourceItem()
+                HasTabularData = true,
+                HasAsset = false,
+                Properties = new Dictionary<string, object>
                 {
-                    Id = "12aaddb8-42f4-4429-8c14-a4f212cca70f",
-                    DataSourceId = "0bc5b4b0-8d9c-4a7e-9ac3-326c79dd28b4",
-                    Title = "Marketing Sheet",
-                    Subtitle = "Excel Data Source Item",
-                    HasTabularData = true,
-                    HasAsset = false,
-                    Properties = new Dictionary<string, object>()
-                    {
-                        { "Url", "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx" }
-                    }
-                },
-                Fields = new List<IField>
-                {
-                    new DateField("Date"),
-                    new NumberField("Spend"),
-                    new NumberField("Conversions"),
-                    new TextField("Territory")
+                    { "Url", "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx" }
                 }
-            };
-            excelDataSourceItem.UseExcel("Marketing");
+            },
+            Fields = new List<IField>
+            {
+                new DateField("Date"),
+                new NumberField("Spend"),
+                new NumberField("Conversions"),
+                new TextField("Territory")
+            }
+        };
+        excelDataSourceItem.UseExcel("Marketing");
 
-            document.Visualizations.Add(new GridVisualization("Grid", excelDataSourceItem)
+        document.Visualizations.Add(new GridVisualization("Grid", excelDataSourceItem)
             {
                 Id = "f4aec0ff-a73f-4797-840d-6553be4fddee",
                 IsTitleVisible = true,
@@ -309,17 +316,19 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
                 settings.TextFieldAlignment = Alignment.Center;
             }));
 
-            document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
-            document.Filters.Add(new DashboardDateFilter("My Date Filter"));
+        document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
+        document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-            var json = document.ToJsonString();
-            var actualJson = JObject.Parse(json)["Widgets"];
-            var expected = JArray.Parse(expectedJson);
+        //Act
+        RdashSerializer.SerializeObject(document);
+        var json = document.ToJsonString();
+        var actualJson = JObject.Parse(json)["Widgets"];
+        var expected = JArray.Parse(expectedJson);
 
-            var expectedStr = JsonConvert.SerializeObject(expected);
-            var actualStr = JsonConvert.SerializeObject(actualJson);
+        var expectedStr = JsonConvert.SerializeObject(expected);
+        var actualStr = JsonConvert.SerializeObject(actualJson);
 
-            Assert.Equal(expectedStr, actualStr);
-        }
+        //Assert
+        Assert.Equal(expectedStr, actualStr);
     }
 }
