@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    internal class SingleValueVisualizationDataSpec : VisualizationDataSpec
+    public class SingleValueVisualizationDataSpec : VisualizationDataSpec
     {
         public List<MeasureColumn> Value { get; set; }
 
