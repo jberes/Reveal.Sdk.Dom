@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations
@@ -67,283 +68,185 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             // Arrange
             var expectedJson =
                 """
-                [
-                  {
-                    "Description": "Create Bar Visualization",
-                    "Id": "c24cc878-6032-48ce-a94f-de00467e47dc",
-                    "Title": "Bar",
-                    "IsTitleVisible": true,
-                    "ColumnSpan": 0,
-                    "RowSpan": 0,
-                    "VisualizationSettings": {
-                      "_type": "ChartVisualizationSettingsType",
-                      "ShowTotalsInTooltip": false,
-                      "TrendlineType": "LinearFit",
-                      "AutomaticLabelRotation": true,
-                      "SyncAxisVisibleRange": false,
-                      "ZoomScaleHorizontal": 1.0,
-                      "ZoomScaleVertical": 1.0,
-                      "LeftAxisLogarithmic": false,
-                      "ShowLegends": true,
-                      "ChartType": "Bar",
-                      "VisualizationType": "CHART"
-                    },
-                    "DataSpec": {
-                      "_type": "TabularDataSpecType",
-                      "IsTransposed": false,
-                      "Fields": [
-                        {
-                          "FieldName": "Date",
-                          "FieldLabel": "Date",
-                          "UserCaption": "Date",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Date"
-                        },
-                        {
-                          "FieldName": "Spend",
-                          "FieldLabel": "Spend",
-                          "UserCaption": "Spend",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Budget",
-                          "FieldLabel": "Budget",
-                          "UserCaption": "Budget",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "CTR",
-                          "FieldLabel": "CTR",
-                          "UserCaption": "CTR",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Avg. CPC",
-                          "FieldLabel": "Avg. CPC",
-                          "UserCaption": "Avg. CPC",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Traffic",
-                          "FieldLabel": "Traffic",
-                          "UserCaption": "Traffic",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Paid Traffic",
-                          "FieldLabel": "Paid Traffic",
-                          "UserCaption": "Paid Traffic",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Other Traffic",
-                          "FieldLabel": "Other Traffic",
-                          "UserCaption": "Other Traffic",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Conversions",
-                          "FieldLabel": "Conversions",
-                          "UserCaption": "Conversions",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Territory",
-                          "FieldLabel": "Territory",
-                          "UserCaption": "Territory",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "String"
-                        },
-                        {
-                          "FieldName": "CampaignID",
-                          "FieldLabel": "CampaignID",
-                          "UserCaption": "CampaignID",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "String"
-                        },
-                        {
-                          "FieldName": "New Seats",
-                          "FieldLabel": "New Seats",
-                          "UserCaption": "New Seats",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Paid %",
-                          "FieldLabel": "Paid %",
-                          "UserCaption": "Paid %",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        },
-                        {
-                          "FieldName": "Organic %",
-                          "FieldLabel": "Organic %",
-                          "UserCaption": "Organic %",
-                          "IsCalculated": false,
-                          "Properties": {},
-                          "Sorting": "None",
-                          "FieldType": "Number"
-                        }
-                      ],
-                      "TransposedFields": [],
-                      "QuickFilters": [],
-                      "AdditionalTables": [],
-                      "ServiceAdditionalTables": [],
-                      "DataSourceItem": {
-                        "_type": "DataSourceItemType",
-                        "Id": "c3ba024b-0f56-4b12-9918-389534b34fec",
-                        "Title": "Marketing Sheet",
-                        "Subtitle": "Excel Data Source Item",
-                        "DataSourceId": "__EXCEL",
-                        "HasTabularData": true,
-                        "HasAsset": false,
-                        "Properties": {
-                          "Sheet": "Marketing"
-                        },
-                        "Parameters": {},
-                        "ResourceItem": {
-                          "_type": "DataSourceItemType",
-                          "Id": "b4d0cc44-97ea-4ee9-8b46-76cb352f9919",
-                          "Title": "Marketing Sheet",
-                          "Subtitle": "Excel Data Source Item",
-                          "DataSourceId": "60478f89-b37d-40c5-845b-e330dff7e1b1",
-                          "HasTabularData": true,
-                          "HasAsset": false,
-                          "Properties": {
-                            "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
-                          },
-                          "Parameters": {}
-                        }
+                [ {
+                  "Description" : "Create Bar Visualization",
+                  "Id" : "c24cc878-6032-48ce-a94f-de00467e47dc",
+                  "Title" : "Bar",
+                  "IsTitleVisible" : true,
+                  "ColumnSpan" : 0,
+                  "RowSpan" : 0,
+                  "VisualizationSettings" : {
+                    "_type" : "ChartVisualizationSettingsType",
+                    "ShowTotalsInTooltip" : false,
+                    "TrendlineType" : "LinearFit",
+                    "AutomaticLabelRotation" : true,
+                    "SyncAxisVisibleRange" : false,
+                    "ZoomScaleHorizontal" : 1.0,
+                    "ZoomScaleVertical" : 1.0,
+                    "LeftAxisLogarithmic" : false,
+                    "ShowLegends" : true,
+                    "ChartType" : "Bar",
+                    "VisualizationType" : "CHART"
+                  },
+                  "DataSpec" : {
+                    "_type" : "TabularDataSpecType",
+                    "IsTransposed" : false,
+                    "Fields" : [ {
+                      "FieldName" : "Date",
+                      "FieldLabel" : "Date",
+                      "UserCaption" : "Date",
+                      "IsCalculated" : false,
+                      "Properties" : { },
+                      "Sorting" : "None",
+                      "FieldType" : "Date"
+                    }, {
+                      "FieldName" : "Paid Traffic",
+                      "FieldLabel" : "Paid Traffic",
+                      "UserCaption" : "Paid Traffic",
+                      "IsCalculated" : false,
+                      "Properties" : { },
+                      "Sorting" : "None",
+                      "FieldType" : "Number"
+                    }, {
+                      "FieldName" : "Organic Traffic",
+                      "FieldLabel" : "Organic Traffic",
+                      "UserCaption" : "Organic Traffic",
+                      "IsCalculated" : false,
+                      "Properties" : { },
+                      "Sorting" : "None",
+                      "FieldType" : "Number"
+                    }, {
+                      "FieldName" : "Other Traffic",
+                      "FieldLabel" : "Other Traffic",
+                      "UserCaption" : "Other Traffic",
+                      "IsCalculated" : false,
+                      "Properties" : { },
+                      "Sorting" : "None",
+                      "FieldType" : "Number"
+                    } ],
+                    "TransposedFields" : [ ],
+                    "QuickFilters" : [ ],
+                    "AdditionalTables" : [ ],
+                    "ServiceAdditionalTables" : [ ],
+                    "DataSourceItem" : {
+                      "_type" : "DataSourceItemType",
+                      "Id" : "c3ba024b-0f56-4b12-9918-389534b34fec",
+                      "Title" : "Marketing Sheet",
+                      "Subtitle" : "Excel Data Source Item",
+                      "DataSourceId" : "__EXCEL",
+                      "HasTabularData" : true,
+                      "HasAsset" : false,
+                      "Properties" : {
+                        "Sheet" : "Marketing"
                       },
-                      "Expiration": 1440,
-                      "Bindings": {
-                        "Bindings": []
+                      "Parameters" : { },
+                      "ResourceItem" : {
+                        "_type" : "DataSourceItemType",
+                        "Id" : "b4d0cc44-97ea-4ee9-8b46-76cb352f9919",
+                        "Title" : "Marketing Sheet",
+                        "Subtitle" : "Excel Data Source Item",
+                        "DataSourceId" : "60478f89-b37d-40c5-845b-e330dff7e1b1",
+                        "HasTabularData" : true,
+                        "HasAsset" : false,
+                        "Properties" : {
+                          "Url" : "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+                        },
+                        "Parameters" : { }
                       }
                     },
-                    "VisualizationDataSpec": {
-                      "_type": "CategoryVisualizationDataSpecType",
-                      "Values": [
-                        {
-                          "_type": "MeasureColumnSpecType",
-                          "SummarizationField": {
-                            "_type": "SummarizationValueFieldType",
-                            "FieldLabel": "Paid Traffic",
-                            "UserCaption": "Paid Traffic",
-                            "IsHidden": false,
-                            "AggregationType": "Sum",
-                            "Sorting": "None",
-                            "IsCalculated": false,
-                            "FieldName": "Paid Traffic"
-                          }
-                        },
-                        {
-                          "_type": "MeasureColumnSpecType",
-                          "SummarizationField": {
-                            "_type": "SummarizationValueFieldType",
-                            "FieldLabel": "Organic Traffic",
-                            "UserCaption": "Organic Traffic",
-                            "IsHidden": false,
-                            "AggregationType": "Sum",
-                            "Sorting": "None",
-                            "IsCalculated": false,
-                            "FieldName": "Organic Traffic"
-                          }
-                        },
-                        {
-                          "_type": "MeasureColumnSpecType",
-                          "SummarizationField": {
-                            "_type": "SummarizationValueFieldType",
-                            "FieldLabel": "Other Traffic",
-                            "UserCaption": "Other Traffic",
-                            "IsHidden": false,
-                            "AggregationType": "Sum",
-                            "Sorting": "None",
-                            "IsCalculated": false,
-                            "FieldName": "Other Traffic"
-                          }
-                        }
-                      ],
-                      "FormatVersion": 0,
-                      "AdHocExpandedElements": [],
-                      "Rows": [
-                        {
-                          "_type": "DimensionColumnSpecType",
-                          "SummarizationField": {
-                            "_type": "SummarizationDateFieldType",
-                            "DateAggregationType": "Month",
-                            "DrillDownElements": [],
-                            "ExpandedItems": [],
-                            "FieldName": "Date"
-                          }
-                        }
-                      ]
+                    "Expiration" : 1440,
+                    "Bindings" : {
+                      "Bindings" : [ ]
                     }
+                  },
+                  "VisualizationDataSpec" : {
+                    "_type" : "CategoryVisualizationDataSpecType",
+                    "Values" : [ {
+                      "_type" : "MeasureColumnSpecType",
+                      "SummarizationField" : {
+                        "_type" : "SummarizationValueFieldType",
+                        "FieldLabel" : "Paid Traffic",
+                        "UserCaption" : "Paid Traffic",
+                        "IsHidden" : false,
+                        "AggregationType" : "Sum",
+                        "Sorting" : "None",
+                        "IsCalculated" : false,
+                        "FieldName" : "Paid Traffic"
+                      }
+                    }, {
+                      "_type" : "MeasureColumnSpecType",
+                      "SummarizationField" : {
+                        "_type" : "SummarizationValueFieldType",
+                        "FieldLabel" : "Organic Traffic",
+                        "UserCaption" : "Organic Traffic",
+                        "IsHidden" : false,
+                        "AggregationType" : "Sum",
+                        "Sorting" : "None",
+                        "IsCalculated" : false,
+                        "FieldName" : "Organic Traffic"
+                      }
+                    }, {
+                      "_type" : "MeasureColumnSpecType",
+                      "SummarizationField" : {
+                        "_type" : "SummarizationValueFieldType",
+                        "FieldLabel" : "Other Traffic",
+                        "UserCaption" : "Other Traffic",
+                        "IsHidden" : false,
+                        "AggregationType" : "Sum",
+                        "Sorting" : "None",
+                        "IsCalculated" : false,
+                        "FieldName" : "Other Traffic"
+                      }
+                    } ],
+                    "FormatVersion" : 0,
+                    "AdHocExpandedElements" : [ ],
+                    "Rows" : [ {
+                      "_type" : "DimensionColumnSpecType",
+                      "SummarizationField" : {
+                        "_type" : "SummarizationDateFieldType",
+                        "DateAggregationType" : "Month",
+                        "DrillDownElements" : [ ],
+                        "ExpandedItems" : [ ],
+                        "FieldName" : "Date"
+                      }
+                    } ]
                   }
-                ]
+                } ]
                 """;
             var document = new RdashDocument("My Dashboard");
 
             var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
             {
+                Id = "c3ba024b-0f56-4b12-9918-389534b34fec",
                 Subtitle = "Excel Data Source Item",
                 Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
                 IsAnonymous = true,
+                ResourceItem = new DataSourceItem()
+                {
+                    Id = "b4d0cc44-97ea-4ee9-8b46-76cb352f9919",
+                    DataSourceId = "60478f89-b37d-40c5-845b-e330dff7e1b1",
+                    Title = "Marketing Sheet",
+                    Subtitle = "Excel Data Source Item",
+                    HasTabularData = true,
+                    HasAsset = false,
+                    Properties = new Dictionary<string, object>()
+                    {
+                        { "Url", "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx" }
+                    }
+                },
                 Fields = new List<IField>
                 {
                     new DateField("Date"),
-                    new NumberField("Spend"),
-                    new NumberField("Budget"),
-                    new NumberField("CTR"),
-                    new NumberField("Avg. CPC"),
-                    new NumberField("Traffic"),
                     new NumberField("Paid Traffic"),
+                    new NumberField("Organic Traffic"),
                     new NumberField("Other Traffic"),
-                    new NumberField("Conversions"),
-                    new TextField("Territory"),
-                    new TextField("CampaignID"),
-                    new NumberField("New Seats"),
-                    new NumberField("Paid %"),
-                    new NumberField("Organic %")
                 }
             };
             excelDataSourceItem.UseExcel("Marketing");
 
             document.Visualizations.Add(new BarChartVisualization("Bar", excelDataSourceItem)
             {
+                Id = "c24cc878-6032-48ce-a94f-de00467e47dc",
                 IsTitleVisible = true,
                 Description = "Create Bar Visualization"
             }
@@ -362,17 +265,14 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             // Act
             RdashSerializer.SerializeObject(document);
             var json = document.ToJsonString();
-            var jObject = JObject.Parse(json);
-            var actualJArray = (JArray)jObject["Widgets"];
-            var expectedJArray = JArray.Parse(expectedJson);
+            var actualJson = JObject.Parse(json)["Widgets"];
+            var expected = JArray.Parse(expectedJson);
+
+            var expectedStr = JsonConvert.SerializeObject(expected);
+            var actualStr = JsonConvert.SerializeObject(actualJson);
 
             // Assert
-            Assert.Equal(expectedJArray.Count, actualJArray.Count);
-
-            for (int i = 0; i < expectedJArray.Count; i++)
-            {
-                Assert.Equal(expectedJArray[i], actualJArray[i]);
-            }
+            Assert.Equal(expectedStr, actualStr);
         }
     }
 }
