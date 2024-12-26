@@ -24,6 +24,8 @@ using Reveal.Sdk.Data.Microsoft.SynapseAnalytics;
 using Google.Apis.Auth.OAuth2;
 using System.IO;
 using System.Text;
+using System.Linq;
+using System.Collections.Generic;
 
 
 namespace Sandbox.RevealSDK
@@ -51,7 +53,7 @@ namespace Sandbox.RevealSDK
             } 
             else if (dataSource is RVGoogleDriveDataSource)
             {
-                var _token = RetrieveGoogleDriveBearerToken();
+                var _token = RetrieveGoogleBearerToken(new List<string>() { "https://www.googleapis.com/auth/drive" });
 
                 userCredential = new RVBearerTokenDataSourceCredential(_token, null);
             }
@@ -85,7 +87,8 @@ namespace Sandbox.RevealSDK
             }
             else if (dataSource is RVBigQueryDataSource)
             {
-                userCredential = new RVBearerTokenDataSourceCredential("token", null);
+                var token = RetrieveGoogleBearerToken(new List<string>() { "https://www.googleapis.com/auth/bigquery" });
+                userCredential = new RVBearerTokenDataSourceCredential(token, null);
             }
             else if (dataSource is RVGoogleDriveDataSource)
             {
@@ -131,7 +134,7 @@ namespace Sandbox.RevealSDK
             return Task.FromResult(userCredential);
         }
 
-        internal string RetrieveGoogleDriveBearerToken()
+        internal string RetrieveGoogleBearerToken(List<string> scopes)
         {
             var jsonKey = @"
                 {
@@ -153,9 +156,9 @@ namespace Sandbox.RevealSDK
             byte[] jsonKeyBytes = Encoding.UTF8.GetBytes(jsonKey);
             memoryStream.Write(jsonKeyBytes, 0, jsonKeyBytes.Length);
             memoryStream.Seek(0, SeekOrigin.Begin);
-            var credential = GoogleCredential.FromStream(memoryStream).CreateScoped("https://www.googleapis.com/auth/drive",
-                                                                                     "https://www.googleapis.com/auth/userinfo.email",
-                                                                                     "https://www.googleapis.com/auth/userinfo.profile");
+            scopes.Add("https://www.googleapis.com/auth/userinfo.email");
+            scopes.Add("https://www.googleapis.com/auth/userinfo.profile");
+            var credential = GoogleCredential.FromStream(memoryStream).CreateScoped(scopes);
 
             var accessToken = credential.UnderlyingCredential.GetAccessTokenForRequestAsync().Result;
 
