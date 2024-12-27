@@ -22,13 +22,30 @@ public class CandleStickVisualizationFixture
         Assert.Equal(ChartType.Candlestick, candleStickVisualization.ChartType);
         Assert.Null(candleStickVisualization.Title);
         Assert.Null(candleStickVisualization.DataDefinition);
+        Assert.NotNull(candleStickVisualization.Closes);
+        Assert.Empty(candleStickVisualization.Closes);
+        Assert.NotNull(candleStickVisualization.Highs);
+        Assert.Empty(candleStickVisualization.Highs);
+        Assert.NotNull(candleStickVisualization.Lows);
+        Assert.Empty(candleStickVisualization.Lows);
+        Assert.NotNull(candleStickVisualization.Opens);
+        Assert.Empty(candleStickVisualization.Opens);
+        Assert.Equal(0, candleStickVisualization.ColumnSpan);
+        Assert.Equal(0, candleStickVisualization.RowSpan);
+        Assert.Null(candleStickVisualization.Description);
+        Assert.NotNull(candleStickVisualization.Labels);
+        Assert.Empty(candleStickVisualization.Labels);
+        Assert.True(candleStickVisualization.IsTitleVisible);
     }
 
-    [Fact]
-    public void Constructor_InitializesCandleStickVisualizationWithDataSource_WhenDataSourceItemIsProvided()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Constructor_InitializesCandleStickVisualizationWithDataSource_WhenDataSourceItemIsProvided(
+        bool hasTabularData)
     {
         // Arrange
-        var dataSourceItem = new DataSourceItem { HasTabularData = true };
+        var dataSourceItem = new DataSourceItem { HasTabularData = hasTabularData };
 
         // Act
         var candleStickVisualization = new CandleStickVisualization(dataSourceItem);
@@ -38,46 +55,38 @@ public class CandleStickVisualizationFixture
         Assert.Equal(ChartType.Candlestick, candleStickVisualization.ChartType);
         Assert.Equal(dataSourceItem, candleStickVisualization.DataDefinition.DataSourceItem);
         Assert.Null(candleStickVisualization.Title);
+        Assert.Equal(hasTabularData, candleStickVisualization.DataDefinition.DataSourceItem.HasTabularData);
     }
 
     [Theory]
-    [InlineData("Stock Prices", null)]
-    [InlineData(null, null)]
-    public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, DataSourceItem dataSourceItem)
+    [InlineData("Stock Prices", null, null)]
+    [InlineData(null, null, null)]
+    [InlineData("Stock Prices with Data Source", true, true)]
+    [InlineData("Stock Prices without Tabular Data", false, false)]
+    public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, bool? hasTabularData,
+        bool? expectedHasTabularData)
     {
+        // Arrange
+        var dataSourceItem = hasTabularData.HasValue
+            ? new DataSourceItem { HasTabularData = hasTabularData.Value }
+            : null;
+
         // Act
         var candleStickVisualization = new CandleStickVisualization(title, dataSourceItem);
 
         // Assert
         Assert.Equal(title, candleStickVisualization.Title);
         Assert.Equal(ChartType.Candlestick, candleStickVisualization.ChartType);
-        Assert.Null(candleStickVisualization.DataDefinition);
-    }
 
-    [Fact]
-    public void ChartType_HasCorrectValue_WhenInstanceIsCreated()
-    {
-        // Act
-        var candleStickVisualization = new CandleStickVisualization();
-
-        // Assert
-        Assert.Equal(ChartType.Candlestick, candleStickVisualization.ChartType);
-    }
-
-    [Fact]
-    public void DataDefinition_CanBeUpdated_WhenNewDataSourceItemIsSet()
-    {
-        // Arrange
-        var dataSourceItem = new DataSourceItem { HasTabularData = true };
-        var candleStickVisualization = new CandleStickVisualization("Stock Analysis", dataSourceItem);
-
-        var newDataSourceItem = new DataSourceItem();
-
-        // Act
-        candleStickVisualization.UpdateDataSourceItem(newDataSourceItem);
-
-        // Assert
-        Assert.Equal(newDataSourceItem, candleStickVisualization.DataDefinition.DataSourceItem);
+        if (dataSourceItem == null)
+        {
+            Assert.Null(candleStickVisualization.DataDefinition);
+        }
+        else
+        {
+            Assert.NotNull(candleStickVisualization.DataDefinition);
+            Assert.Equal(expectedHasTabularData, candleStickVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        }
     }
 
     [Fact]
@@ -95,50 +104,45 @@ public class CandleStickVisualizationFixture
               "RowSpan" : 0,
               "VisualizationSettings" : {
                 "_type" : "SampleSchema",
-                "FontSize" : "Large",
-                "Style" : {
-                  "FixedLeftColumns" : false,
-                  "TextAlignment" : "Center",
-                  "NumericAlignment" : "Inherit",
-                  "DateAlignment" : "Center"
-                },
+                "LeftAxisLogarithmic" : false,
+                "ChartType" : "Candlestick",
                 "VisualizationType" : "PivotVisualizationDataSpec"
               },
               "DataSpec" : {
                 "_type" : "TabularDataSpecType",
                 "IsTransposed" : false,
                 "Fields" : [ {
-                  "FieldName" : "Date",
-                  "FieldLabel" : "Date",
-                  "UserCaption" : "Date",
-                  "IsCalculated" : false,
-                  "Properties" : { },
-                  "Sorting" : "None",
-                  "FieldType" : "Date"
-                }, {
-                  "FieldName" : "Spend",
-                  "FieldLabel" : "Spend",
-                  "UserCaption" : "Spend",
+                  "FieldName" : "Open",
+                  "FieldLabel" : "Open",
+                  "UserCaption" : "Open",
                   "IsCalculated" : false,
                   "Properties" : { },
                   "Sorting" : "None",
                   "FieldType" : "Number"
                 }, {
-                  "FieldName" : "Conversions",
-                  "FieldLabel" : "Conversions",
-                  "UserCaption" : "Conversions",
+                  "FieldName" : "High",
+                  "FieldLabel" : "High",
+                  "UserCaption" : "High",
                   "IsCalculated" : false,
                   "Properties" : { },
                   "Sorting" : "None",
                   "FieldType" : "Number"
                 }, {
-                  "FieldName" : "Territory",
-                  "FieldLabel" : "Territory",
-                  "UserCaption" : "Territory",
+                  "FieldName" : "Low",
+                  "FieldLabel" : "Low",
+                  "UserCaption" : "Low",
                   "IsCalculated" : false,
                   "Properties" : { },
                   "Sorting" : "None",
-                  "FieldType" : "String"
+                  "FieldType" : "Number"
+                }, {
+                  "FieldName" : "Close",
+                  "FieldLabel" : "Close",
+                  "UserCaption" : "Close",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "Number"
                 } ],
                 "TransposedFields" : [ ],
                 "QuickFilters" : [ ],
@@ -176,37 +180,111 @@ public class CandleStickVisualizationFixture
                 }
               },
               "VisualizationDataSpec" : {
-                "_type" : "PivotVisualizationDataSpecType",
-                "Columns" : [ {
-                  "_type" : "DimensionColumnSpecType",
+                "_type" : "FinancialVisualizationDataSpecType",
+                "Open" : [ {
+                  "_type" : "MeasureColumnSpecType",
                   "SummarizationField" : {
-                    "_type" : "SummarizationRegularFieldType",
-                    "DrillDownElements" : [ ],
-                    "ExpandedItems" : [ ],
-                    "FieldName" : "Territory"
-                  }
-                }, {
-                  "_type" : "DimensionColumnSpecType",
-                  "SummarizationField" : {
-                    "_type" : "SummarizationRegularFieldType",
-                    "DrillDownElements" : [ ],
-                    "ExpandedItems" : [ ],
-                    "FieldName" : "Conversions"
-                  }
-                }, {
-                  "_type" : "DimensionColumnSpecType",
-                  "SummarizationField" : {
-                    "_type" : "SummarizationRegularFieldType",
-                    "DrillDownElements" : [ ],
-                    "ExpandedItems" : [ ],
-                    "FieldName" : "Spend"
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "Open",
+                    "UserCaption" : "Open",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "Formatting" : {
+                      "_type" : "NumberFormattingSpecType",
+                      "ApplyMkFormat" : false,
+                      "CurrencySymbol" : "$",
+                      "DecimalDigits" : 0,
+                      "FormatType" : "Number",
+                      "NegativeFormat" : "MinusSign",
+                      "ShowGroupingSeparator" : true,
+                      "OverrideDefaultSettings" : false
+                    },
+                    "FieldName" : "Open"
                   }
                 } ],
-                "Values" : [ ],
-                "ShowGrandTotals" : true,
+                "High" : [ {
+                  "_type" : "MeasureColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "High",
+                    "UserCaption" : "High",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "Formatting" : {
+                      "_type" : "NumberFormattingSpecType",
+                      "ApplyMkFormat" : false,
+                      "CurrencySymbol" : "$",
+                      "DecimalDigits" : 0,
+                      "FormatType" : "Number",
+                      "NegativeFormat" : "MinusSign",
+                      "ShowGroupingSeparator" : true,
+                      "OverrideDefaultSettings" : false
+                    },
+                    "FieldName" : "High"
+                  }
+                } ],
+                "Low" : [ {
+                  "_type" : "MeasureColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "Low",
+                    "UserCaption" : "Low",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "Formatting" : {
+                      "_type" : "NumberFormattingSpecType",
+                      "ApplyMkFormat" : false,
+                      "CurrencySymbol" : "$",
+                      "DecimalDigits" : 0,
+                      "FormatType" : "Number",
+                      "NegativeFormat" : "MinusSign",
+                      "ShowGroupingSeparator" : true,
+                      "OverrideDefaultSettings" : false
+                    },
+                    "FieldName" : "Low"
+                  }
+                } ],
+                "Close" : [ {
+                  "_type" : "MeasureColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "Close",
+                    "UserCaption" : "Close",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "Formatting" : {
+                      "_type" : "NumberFormattingSpecType",
+                      "ApplyMkFormat" : false,
+                      "CurrencySymbol" : "$",
+                      "DecimalDigits" : 0,
+                      "FormatType" : "Number",
+                      "NegativeFormat" : "MinusSign",
+                      "ShowGroupingSeparator" : true,
+                      "OverrideDefaultSettings" : false
+                    },
+                    "FieldName" : "Close"
+                  }
+                } ],
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
-                "Rows" : [ ]
+                "Rows" : [ {
+                  "_type" : "DimensionColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationDateFieldType",
+                    "DateAggregationType" : "Day",
+                    "DrillDownElements" : [ ],
+                    "ExpandedItems" : [ ],
+                    "FieldName" : "Date"
+                  }
+                } ]
               }
             } ]
             """;
@@ -235,27 +313,27 @@ public class CandleStickVisualizationFixture
             },
             Fields = new List<IField>
             {
-                new DateField("Date"),
-                new NumberField("Spend"),
-                new NumberField("Conversions"),
-                new TextField("Territory")
+                new NumberField("Open"),
+                new NumberField("High"),
+                new NumberField("Low"),
+                new NumberField("Close")
             }
         };
         excelDataSourceItem.UseExcel("Marketing");
 
-        document.Visualizations.Add(new PivotVisualization("Candle Stick Visualization", excelDataSourceItem)
+        document.Visualizations.Add(new CandleStickVisualization("Candle Stick Visualization", excelDataSourceItem)
             {
                 Id = "60344a4a-d0ce-4364-9f8c-acfbb8caa32e",
                 IsTitleVisible = true,
                 Description = "Create Candle Stick Visualization"
             }
-            .SetColumns("Territory", "Conversions", "Spend")
+            .SetLabel(new DateDataField("Date") { AggregationType = DateAggregationType.Day })
+            .SetOpen("Open")
+            .SetHigh("High")
+            .SetLow("Low")
+            .SetClose("Close")
             .ConfigureSettings(settings =>
             {
-                settings.FontSize = FontSize.Large;
-                settings.DateFieldAlignment = Alignment.Center;
-                settings.TextFieldAlignment = Alignment.Center;
-                settings.ShowGrandTotals = true;
                 settings.VisualizationType = "PivotVisualizationDataSpec";
                 settings.SchemaTypeName = "SampleSchema";
             }));
@@ -263,7 +341,6 @@ public class CandleStickVisualizationFixture
         document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
         document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-        //Act
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
