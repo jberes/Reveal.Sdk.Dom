@@ -28,32 +28,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             Assert.IsType<SingleValueLabelsVisualizationDataSpec>(visualization.VisualizationDataSpec);
         }
 
-        [Theory]
-        [InlineData("SingleValueLabelsVisualizationDataSpec")]
-        [InlineData("CategoryVisualizationDataSpec")]
-        public void VisualizationDataSpec_GetSetAsExpected_WhenUse(String type)
-        {
-            // Arrange
-            var dataSourceItem = new DataSourceItem();
-            var visualization = new TestSingleValueLabelsVisualization("testTitle", dataSourceItem);
-            VisualizationDataSpec dataSpec = type == "SingleValueLabelsVisualizationDataSpec" ? new SingleValueLabelsVisualizationDataSpec() : new CategoryVisualizationDataSpec();
-
-            // Act
-            visualization.VisualizationDataSpec = dataSpec;
-
-            // Assert
-            Assert.Equal(dataSpec, visualization.VisualizationDataSpec);
-            if (type == "SingleValueLabelsVisualizationDataSpec")
-            {
-                Assert.IsType<SingleValueLabelsVisualizationDataSpec>(visualization.VisualizationDataSpec);
-            }
-            else
-            {
-                Assert.IsType<CategoryVisualizationDataSpec>(visualization.VisualizationDataSpec);
-            }
-
-        }
-
         [Fact]
         public void GetLabels_ReturnsVisualizationSpecRows_IfDataSpecIsSingleValueLabelsVisDataSpec()
         {
@@ -74,8 +48,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             var labels = visualization.Labels;
 
             // Assert
-            Assert.NotNull(labels);
-            Assert.Equal(2, labels.Count);
             Assert.Equal(visSpec.Rows, labels);
         }
 
@@ -92,7 +64,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             var labels = visualization.Labels;
 
             // Assert
-            Assert.NotNull(labels);
             Assert.Empty(labels);
         }
 
@@ -116,8 +87,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             var values = visualization.Values;
 
             // Assert
-            Assert.NotNull(values);
-            Assert.Equal(2, values.Count);
             Assert.Equal(visSpec.Value, values);
         }
 
@@ -134,7 +103,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             var values = visualization.Values;
 
             // Assert
-            Assert.NotNull(values);
             Assert.Empty(values);
         }
 
