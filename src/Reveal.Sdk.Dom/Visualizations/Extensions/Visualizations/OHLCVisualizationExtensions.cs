@@ -3,7 +3,7 @@ using System;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public static class OHCLVisualizationExtensions
+    public static class OHLCVisualizationExtensions
     {
         public static OHLCVisualization ConfigureSettings(this OHLCVisualization visualization, Action<OHLCVisualizationSettings> settings)
         {
