@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Core.Serialization;
@@ -47,7 +46,7 @@ public class TimeSeriesVisualizationFixture
     }
 
     [Fact]
-    public void Date_CanBeSetAndRetrieved()
+    public void Date_CanBeSetAndRetrieved_WhenInitialized()
     {
         // Arrange
         var dateColumn = new DimensionColumn { DataField = new MockDimensionDataField("DateField") };
@@ -61,7 +60,7 @@ public class TimeSeriesVisualizationFixture
     }
 
     [Fact]
-    public void Category_CanBeSetAndRetrieved()
+    public void Category_CanBeSetAndRetrieved_WhenInitialized()
     {
         // Arrange
         var categoryColumn = new DimensionColumn { DataField = new MockDimensionDataField("CategoryField") };
@@ -84,21 +83,48 @@ public class TimeSeriesVisualizationFixture
             new() { DataField = new NumberDataField("Value2") }
         };
 
-        var visualizationDataSpec = new TimeSeriesVisualizationDataSpec
+        var visualization = new TimeSeriesVisualization
         {
-            Values = expectedValues
+            VisualizationDataSpec = new TimeSeriesVisualizationDataSpec
+            {
+                Values = expectedValues
+            }
         };
-
-        var visualization = new TimeSeriesVisualization();
-        var property = typeof(TimeSeriesVisualization).GetProperty("VisualizationDataSpec",
-            BindingFlags.NonPublic | BindingFlags.Instance);
-        property.SetValue(visualization, visualizationDataSpec);
 
         // Act
         var values = visualization.Values;
 
         // Assert
         Assert.Equal(expectedValues, values);
+    }
+
+    [Fact]
+    public void VisualizationDataSpec_CanBeSetAndRetrieved_WhenInitialized()
+    {
+        // Arrange
+        var expectedDataSpec = new TimeSeriesVisualizationDataSpec
+        {
+            Values = new List<MeasureColumn>
+            {
+                new() { DataField = new NumberDataField("Value1") }
+            },
+            Category = new DimensionColumn { DataField = new MockDimensionDataField("CategoryField") },
+            Rows = new List<DimensionColumn>
+            {
+                new DimensionColumn { DataField = new MockDimensionDataField("DateField") }
+            }
+        };
+
+        var visualization = new TimeSeriesVisualization();
+
+        // Act
+        visualization.VisualizationDataSpec = expectedDataSpec;
+
+        // Assert
+        Assert.Equal(expectedDataSpec, visualization.VisualizationDataSpec);
+        Assert.Equal(expectedDataSpec.Values, visualization.Values);
+        Assert.Equal(expectedDataSpec.Category, visualization.Category);
+        Assert.Equal(expectedDataSpec.Rows[0], visualization.Date);
     }
 
     [Fact]
