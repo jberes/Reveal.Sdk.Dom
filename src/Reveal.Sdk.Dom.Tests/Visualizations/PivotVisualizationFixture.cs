@@ -14,6 +14,14 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations;
 
 public class PivotVisualizationFixture
 {
+    public static IEnumerable<object[]> ConstructorTestData =>
+        new List<object[]>
+        {
+            new object[] { "TestTitle", null },
+            new object[] { null, null },
+            new object[] { "TestTitleWithDataSource", new DataSourceItem { HasTabularData = true } }
+        };
+    
     [Fact]
     public void Constructor_InitializesDefaultValues_WhenInstanceIsCreated()
     {
@@ -35,8 +43,7 @@ public class PivotVisualizationFixture
     }
 
     [Theory]
-    [InlineData("TestTitle", null)]
-    [InlineData(null, null)]
+    [MemberData(nameof(ConstructorTestData))]
     public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, DataSourceItem dataSourceItem)
     {
         // Act
@@ -52,6 +59,11 @@ public class PivotVisualizationFixture
         Assert.NotNull(pivotVisualization.Values);
         Assert.Empty(pivotVisualization.Values);
         Assert.NotNull(pivotVisualization.VisualizationDataSpec);
+
+        if (dataSourceItem != null)
+        {
+            Assert.Equal(dataSourceItem, pivotVisualization.DataDefinition.DataSourceItem);
+        }
     }
 
     [Fact]
