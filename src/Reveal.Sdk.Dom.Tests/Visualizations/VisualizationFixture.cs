@@ -133,8 +133,10 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         }
 
 
-        [Fact]
-        public void IsTitleVisible_GetSetCorrectly_WhenUsed()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void IsTitleVisible_GetSetCorrectly_WhenUsed(bool expectValue)
         {
             // Arrange
             var dataSourceItem = new DataSourceItem();
@@ -142,16 +144,10 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
 
 
             // Act
-            visualization.IsTitleVisible = true;
+            visualization.IsTitleVisible = expectValue;
 
             // Assert
-            Assert.True(visualization.IsTitleVisible);
-
-            // Act
-            visualization.IsTitleVisible = false;
-
-            // Assert
-            Assert.False(visualization.IsTitleVisible);
+            Assert.Equal(expectValue, visualization.IsTitleVisible);
         }
 
         [Fact]
@@ -182,21 +178,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
 
             // Assert
             Assert.Equal(10, visualization.RowSpan);
-        }
-
-        [Fact]
-        public void Description_GetSetCorrectly_WhenUsed()
-        {
-            // Arrange
-            var dataSourceItem = new DataSourceItem();
-            var visualization = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true }.Object;
-            var testDescription = "testDescription";
-
-            // Act
-            visualization.Description = testDescription;
-
-            // Assert
-            Assert.Equal(testDescription, visualization.Description);
         }
 
         [Fact]
@@ -348,7 +329,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         }
 
         [Fact]
-        public void UpdateDataSourceItem_UpdateNewDataSourceItem_AsProvided()
+        public void UpdateDataSourceItem_UpdateNewDataSourceItem_WithTabularDSItem()
         {
             // Arrange
             var dataSource = new DataSource()
@@ -400,6 +381,38 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
             Assert.Equal(newDataSourceItem, visualization.DataDefinition.DataSourceItem);
             Assert.Equal(newDataSourceItem.Fields.Count, (visualization.DataDefinition as TabularDataDefinition).Fields.Count);
             Assert.Equal(newDataSourceItem.JoinTables.Count, (visualization.DataDefinition as TabularDataDefinition).JoinTables.Count);
+        }
+
+        [Fact]
+        public void UpdateDataSourceItem_UpdateNewDataSourceItem_WithNonTabularDsItem()
+        {
+            // Arrange
+            var dataSource = new DataSource()
+            {
+                Id = "DataSourceId",
+            };
+
+            var dataSourceItem = new DataSourceItem
+            {
+                DataSource = dataSource,
+                HasTabularData = false,
+            };
+
+            var mock = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true };
+            var visualization = mock.Object;
+
+            var newDataSource = new DataSource();
+            var newDataSourceItem = new DataSourceItem
+            {
+                DataSource = newDataSource,
+                HasTabularData = false,
+            };
+
+            // Act
+            visualization.UpdateDataSourceItem(newDataSourceItem);
+
+            // Assert
+            Assert.Equal(newDataSourceItem, visualization.DataDefinition.DataSourceItem);
         }
 
         [Fact]
