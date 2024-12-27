@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Core.Serialization;
@@ -26,7 +25,8 @@ public class GridVisualizationFixture
         Assert.NotNull(gridVisualization.Columns);
         Assert.Empty(gridVisualization.Columns);
         Assert.Null(gridVisualization.Title);
-        Assert.Null(gridVisualization.DataDefinition);
+        Assert.NotNull(gridVisualization.VisualizationDataSpec);
+        Assert.IsType<GridVisualizationDataSpec>(gridVisualization.VisualizationDataSpec);
     }
 
     [Fact]
@@ -41,12 +41,10 @@ public class GridVisualizationFixture
         // Assert
         Assert.NotNull(gridVisualization);
         Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
-        Assert.Equal(dataSourceItem, gridVisualization.DataDefinition.DataSourceItem);
         Assert.NotNull(gridVisualization.Columns);
         Assert.Empty(gridVisualization.Columns);
         Assert.Null(gridVisualization.Title);
     }
-
 
     [Theory]
     [InlineData("TestTitle", null)]
@@ -61,7 +59,7 @@ public class GridVisualizationFixture
         Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
         Assert.NotNull(gridVisualization.Columns);
         Assert.Empty(gridVisualization.Columns);
-        Assert.Null(gridVisualization.DataDefinition);
+        Assert.NotNull(gridVisualization.VisualizationDataSpec);
     }
 
     [Theory]
@@ -72,8 +70,7 @@ public class GridVisualizationFixture
         // Arrange
         var gridVisualization = new GridVisualization();
         if (dataSpecType == typeof(GridVisualizationDataSpec))
-        {
-            var gridVisualizationDataSpec = new GridVisualizationDataSpec
+            gridVisualization.VisualizationDataSpec = new GridVisualizationDataSpec
             {
                 Columns = new List<TabularColumn>
                 {
@@ -81,11 +78,6 @@ public class GridVisualizationFixture
                     new() { FieldName = "Column2" }
                 }
             };
-
-            var property = typeof(GridVisualization).GetProperty("VisualizationDataSpec",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-            property.SetValue(gridVisualization, gridVisualizationDataSpec);
-        }
 
         // Act
         var columns = gridVisualization.Columns;
@@ -101,34 +93,13 @@ public class GridVisualizationFixture
         // Arrange
         var gridVisualization = new GridVisualization();
 
-        var property =
-            typeof(GridVisualization).GetProperty("VisualizationDataSpec",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-        var visualizationDataSpec = property.GetValue(gridVisualization);
-
         // Assert
-        Assert.NotNull(visualizationDataSpec);
-        Assert.IsType<GridVisualizationDataSpec>(visualizationDataSpec);
+        Assert.NotNull(gridVisualization.VisualizationDataSpec);
+        Assert.IsType<GridVisualizationDataSpec>(gridVisualization.VisualizationDataSpec);
     }
 
     [Fact]
-    public void UpdateDataSourceItem_UpdatesDataDefinition_WhenNewDataSourceIsProvided()
-    {
-        // Arrange
-        var dataSourceItem = new DataSourceItem { HasTabularData = true };
-        var gridVisualization = new GridVisualization("Test", dataSourceItem);
-
-        var newDataSourceItem = new DataSourceItem();
-
-        // Act
-        gridVisualization.UpdateDataSourceItem(newDataSourceItem);
-
-        // Assert
-        Assert.Equal(newDataSourceItem, gridVisualization.DataDefinition.DataSourceItem);
-    }
-
-    [Fact]
-    public void VisualizationDataSpec_DefaultValue_CanBeSetAndRetrieved()
+    public void VisualizationDataSpec_CanBeSetAndRetrieved_WhenInitialized()
     {
         // Arrange
         var customVisualizationDataSpec = new GridVisualizationDataSpec
@@ -141,17 +112,14 @@ public class GridVisualizationFixture
 
         var gridVisualization = new GridVisualization();
 
-        var property =
-            typeof(GridVisualization).GetProperty("VisualizationDataSpec",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-        property.SetValue(gridVisualization, customVisualizationDataSpec);
-
         // Act
-        var retrievedVisualizationDataSpec = property.GetValue(gridVisualization);
+        gridVisualization.VisualizationDataSpec = customVisualizationDataSpec;
 
         // Assert
-        Assert.Equal(customVisualizationDataSpec, retrievedVisualizationDataSpec);
+        Assert.Equal(customVisualizationDataSpec, gridVisualization.VisualizationDataSpec);
+        Assert.Equal(customVisualizationDataSpec.Columns, gridVisualization.Columns);
     }
+
 
     [Fact]
     public void ToJsonString_GeneratesCorrectJson_WhenGridVisualizationIsSerialized()

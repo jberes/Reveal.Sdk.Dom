@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Core.Constants;
@@ -31,7 +30,8 @@ public class PivotVisualizationFixture
         Assert.NotNull(pivotVisualization.Values);
         Assert.Empty(pivotVisualization.Values);
         Assert.Null(pivotVisualization.Title);
-        Assert.Null(pivotVisualization.DataDefinition);
+        Assert.NotNull(pivotVisualization.VisualizationDataSpec);
+        Assert.IsType<PivotVisualizationDataSpec>(pivotVisualization.VisualizationDataSpec);
     }
 
     [Theory]
@@ -51,7 +51,7 @@ public class PivotVisualizationFixture
         Assert.Empty(pivotVisualization.Rows);
         Assert.NotNull(pivotVisualization.Values);
         Assert.Empty(pivotVisualization.Values);
-        Assert.Null(pivotVisualization.DataDefinition);
+        Assert.NotNull(pivotVisualization.VisualizationDataSpec);
     }
 
     [Fact]
@@ -71,14 +71,9 @@ public class PivotVisualizationFixture
         // Arrange
         var pivotVisualization = new PivotVisualization();
 
-        var property =
-            typeof(PivotVisualization).GetProperty("VisualizationDataSpec",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-        var visualizationDataSpec = property.GetValue(pivotVisualization);
-
         // Assert
-        Assert.NotNull(visualizationDataSpec);
-        Assert.IsType<PivotVisualizationDataSpec>(visualizationDataSpec);
+        Assert.NotNull(pivotVisualization.VisualizationDataSpec);
+        Assert.IsType<PivotVisualizationDataSpec>(pivotVisualization.VisualizationDataSpec);
     }
 
     [Fact]
@@ -91,16 +86,13 @@ public class PivotVisualizationFixture
             new() { DataField = new MockDimensionDataField("Column2") }
         };
 
-        var pivotVisualizationDataSpec = new PivotVisualizationDataSpec
+        var pivotVisualization = new PivotVisualization
         {
-            Columns = expectedColumns
+            VisualizationDataSpec = new PivotVisualizationDataSpec
+            {
+                Columns = expectedColumns
+            }
         };
-
-        var pivotVisualization = new PivotVisualization();
-        var property =
-            typeof(PivotVisualization).GetProperty("VisualizationDataSpec",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-        property.SetValue(pivotVisualization, pivotVisualizationDataSpec);
 
         // Act
         var columns = pivotVisualization.Columns;
@@ -119,16 +111,13 @@ public class PivotVisualizationFixture
             new() { DataField = new MockDimensionDataField("Row2") }
         };
 
-        var pivotVisualizationDataSpec = new PivotVisualizationDataSpec
+        var pivotVisualization = new PivotVisualization
         {
-            Rows = expectedRows
+            VisualizationDataSpec = new PivotVisualizationDataSpec
+            {
+                Rows = expectedRows
+            }
         };
-
-        var pivotVisualization = new PivotVisualization();
-        var property =
-            typeof(PivotVisualization).GetProperty("VisualizationDataSpec",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-        property.SetValue(pivotVisualization, pivotVisualizationDataSpec);
 
         // Act
         var rows = pivotVisualization.Rows;
@@ -147,16 +136,13 @@ public class PivotVisualizationFixture
             new() { DataField = new NumberDataField("Value2") }
         };
 
-        var pivotVisualizationDataSpec = new PivotVisualizationDataSpec
+        var pivotVisualization = new PivotVisualization
         {
-            Values = expectedValues
+            VisualizationDataSpec = new PivotVisualizationDataSpec
+            {
+                Values = expectedValues
+            }
         };
-
-        var pivotVisualization = new PivotVisualization();
-        var property =
-            typeof(PivotVisualization).GetProperty("VisualizationDataSpec",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-        property.SetValue(pivotVisualization, pivotVisualizationDataSpec);
 
         // Act
         var values = pivotVisualization.Values;
@@ -175,16 +161,13 @@ public class PivotVisualizationFixture
             new() { DataField = new MockDimensionDataField("Column2") }
         };
 
-        var pivotVisualization = new PivotVisualization();
-        var pivotVisualizationDataSpec = new PivotVisualizationDataSpec
+        var pivotVisualization = new PivotVisualization
         {
-            Columns = expectedColumns
+            VisualizationDataSpec = new PivotVisualizationDataSpec
+            {
+                Columns = expectedColumns
+            }
         };
-
-        var property =
-            typeof(PivotVisualization).GetProperty("VisualizationDataSpec",
-                BindingFlags.NonPublic | BindingFlags.Instance);
-        property.SetValue(pivotVisualization, pivotVisualizationDataSpec);
 
         // Act
         var serializedJson = JsonConvert.SerializeObject(pivotVisualization);
