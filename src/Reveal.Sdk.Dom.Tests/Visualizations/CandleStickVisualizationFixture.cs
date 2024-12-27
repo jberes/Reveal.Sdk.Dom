@@ -41,7 +41,7 @@ public class CandleStickVisualizationFixture
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void Constructor_InitializesCandleStickVisualizationWithDataSource_WhenDataSourceItemIsProvided(
+    public void Constructor_InitializesCandleStickVisualizationWithDataSourceItem_WhenDataSourceItemIsProvided(
         bool hasTabularData)
     {
         // Arrange
@@ -106,7 +106,7 @@ public class CandleStickVisualizationFixture
                 "_type" : "SampleSchema",
                 "LeftAxisLogarithmic" : false,
                 "ChartType" : "Candlestick",
-                "VisualizationType" : "PivotVisualizationDataSpec"
+                "VisualizationType" : "CHART"
               },
               "DataSpec" : {
                 "_type" : "TabularDataSpecType",
@@ -334,7 +334,6 @@ public class CandleStickVisualizationFixture
             .SetClose("Close")
             .ConfigureSettings(settings =>
             {
-                settings.VisualizationType = "PivotVisualizationDataSpec";
                 settings.SchemaTypeName = "SampleSchema";
             }));
 
