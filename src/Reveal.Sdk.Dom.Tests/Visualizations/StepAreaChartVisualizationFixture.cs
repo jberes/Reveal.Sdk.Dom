@@ -5,6 +5,8 @@ using Reveal.Sdk.Dom.Core.Serialization;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
+using Reveal.Sdk.Dom.Visualizations.Settings;
+using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations;
@@ -14,44 +16,80 @@ public class StepAreaChartVisualizationFixture
     [Fact]
     public void Constructor_InitializesDefaultValues_WhenInstanceIsCreated()
     {
-        // Act
         var visualization = new StepAreaChartVisualization();
 
-        // Assert
         Assert.NotNull(visualization);
         Assert.Equal(ChartType.StepArea, visualization.ChartType);
-        Assert.Null(visualization.Title);
+        Assert.Null(visualization.Category);
+        Assert.Equal(0, visualization.ColumnSpan);
         Assert.Null(visualization.DataDefinition);
+        Assert.Null(visualization.Description);
+        Assert.NotNull(visualization.FilterBindings);
+        Assert.Empty(visualization.FilterBindings);
+        Assert.NotNull(visualization.Id);
+        Assert.True(visualization.IsTitleVisible);
+        Assert.NotNull(visualization.Labels);
+        Assert.Empty(visualization.Labels);
+        Assert.Null(visualization.Linker);
+        Assert.Equal(0, visualization.RowSpan);
+        Assert.NotNull(visualization.Settings);
+        Assert.IsType<StepAreaChartVisualizationSettings>(visualization.Settings);
+        Assert.Null(visualization.Title);
+        Assert.NotNull(visualization.Values);
+        Assert.Empty(visualization.Values);
+        Assert.NotNull(visualization.VisualizationDataSpec);
+        Assert.IsType<CategoryVisualizationDataSpec>(visualization.VisualizationDataSpec);
     }
 
     [Theory]
-    [InlineData("TestTitle", null)]
-    [InlineData(null, null)]
-    public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, DataSourceItem dataSourceItem)
-    {
-        // Act
-        var visualization = new StepAreaChartVisualization(title, dataSourceItem);
-
-        // Assert
-        Assert.Equal(title, visualization.Title);
-        Assert.Equal(ChartType.StepArea, visualization.ChartType);
-        Assert.Null(visualization.DataDefinition);
-    }
-
-    [Fact]
-    public void Constructor_InitializesStepAreaChartVisualizationWithDataSource_WhenDataSourceItemIsProvided()
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Constructor_InitializesStepAreaChartVisualizationWithDataSourceItem_WhenDataSourceItemIsProvided(
+        bool hasTabularData)
     {
         // Arrange
-        var dataSourceItem = new DataSourceItem { HasTabularData = true };
+        var dataSourceItem = new DataSourceItem { HasTabularData = hasTabularData };
 
         // Act
-        var gridVisualization = new StepAreaChartVisualization(dataSourceItem);
+        var stepAreaChartVisualization = new StepAreaChartVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(gridVisualization);
-        Assert.Equal(ChartType.StepArea, gridVisualization.ChartType);
-        Assert.Equal(dataSourceItem, gridVisualization.DataDefinition.DataSourceItem);
-        Assert.Null(gridVisualization.Title);
+        Assert.NotNull(stepAreaChartVisualization);
+        Assert.Equal(ChartType.StepArea, stepAreaChartVisualization.ChartType);
+        Assert.Equal(dataSourceItem, stepAreaChartVisualization.DataDefinition.DataSourceItem);
+        Assert.Null(stepAreaChartVisualization.Title);
+        Assert.Equal(hasTabularData, stepAreaChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+    }
+
+    [Theory]
+    [InlineData("Test Title", null, null)]
+    [InlineData(null, null, null)]
+    [InlineData("Test Title with Data Source", true, true)]
+    [InlineData("Test Title without Tabular Data", false, false)]
+    public void Constructor_SetsTitleAndDataSourceItem_WhenArgumentsAreProvided(string title, bool? hasTabularData,
+        bool? expectedHasTabularData)
+    {
+        // Arrange
+        var dataSourceItem = hasTabularData.HasValue
+            ? new DataSourceItem { HasTabularData = hasTabularData.Value }
+            : null;
+        // Act
+        var stepAreaChartVisualization = new StepAreaChartVisualization(title, dataSourceItem);
+
+        // Assert
+        Assert.Equal(title, stepAreaChartVisualization.Title);
+        Assert.Equal(ChartType.StepArea, stepAreaChartVisualization.ChartType);
+
+        if (dataSourceItem == null)
+        {
+            Assert.Null(stepAreaChartVisualization.DataDefinition);
+        }
+        else
+        {
+            Assert.NotNull(stepAreaChartVisualization.DataDefinition);
+            Assert.Equal(expectedHasTabularData,
+                stepAreaChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        }
     }
 
     [Fact]
