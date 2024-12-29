@@ -35,6 +35,8 @@ public class ColumnChartVisualizationFixture
         Assert.Null(columnChartVisualization.Title);
         Assert.NotNull(columnChartVisualization.Values);
         Assert.Empty(columnChartVisualization.Values);
+        Assert.NotNull(columnChartVisualization.VisualizationDataSpec);
+        Assert.IsType<CategoryVisualizationDataSpec>(columnChartVisualization.VisualizationDataSpec);
     }
 
 
