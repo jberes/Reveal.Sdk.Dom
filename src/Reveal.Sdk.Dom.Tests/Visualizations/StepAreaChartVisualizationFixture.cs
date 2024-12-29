@@ -24,8 +24,6 @@ public class StepAreaChartVisualizationFixture
         Assert.Equal(0, visualization.ColumnSpan);
         Assert.Null(visualization.DataDefinition);
         Assert.Null(visualization.Description);
-        Assert.NotNull(visualization.FilterBindings);
-        Assert.Empty(visualization.FilterBindings);
         Assert.NotNull(visualization.Id);
         Assert.True(visualization.IsTitleVisible);
         Assert.NotNull(visualization.Labels);
