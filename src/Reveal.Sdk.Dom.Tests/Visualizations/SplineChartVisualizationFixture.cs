@@ -5,6 +5,8 @@ using Reveal.Sdk.Dom.Core.Serialization;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
+using Reveal.Sdk.Dom.Visualizations.Settings;
+using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations;
@@ -14,21 +16,37 @@ public class SplineChartVisualizationFixture
     [Fact]
     public void Constructor_InitializesDefaultValues_WhenInstanceIsCreated()
     {
-        // Act
         var splineChartVisualization = new SplineChartVisualization();
 
-        // Assert
         Assert.NotNull(splineChartVisualization);
         Assert.Equal(ChartType.Spline, splineChartVisualization.ChartType);
-        Assert.Null(splineChartVisualization.Title);
+        Assert.Null(splineChartVisualization.Category);
+        Assert.Equal(0, splineChartVisualization.ColumnSpan);
         Assert.Null(splineChartVisualization.DataDefinition);
+        Assert.Null(splineChartVisualization.Description);
+        Assert.NotNull(splineChartVisualization.Id);
+        Assert.True(splineChartVisualization.IsTitleVisible);
+        Assert.NotNull(splineChartVisualization.Labels);
+        Assert.Empty(splineChartVisualization.Labels);
+        Assert.Null(splineChartVisualization.Linker);
+        Assert.Equal(0, splineChartVisualization.RowSpan);
+        Assert.NotNull(splineChartVisualization.Settings);
+        Assert.IsType<SplineChartVisualizationSettings>(splineChartVisualization.Settings);
+        Assert.Null(splineChartVisualization.Title);
+        Assert.NotNull(splineChartVisualization.Values);
+        Assert.Empty(splineChartVisualization.Values);
+        Assert.NotNull(splineChartVisualization.VisualizationDataSpec);
+        Assert.IsType<CategoryVisualizationDataSpec>(splineChartVisualization.VisualizationDataSpec);
     }
 
-    [Fact]
-    public void Constructor_InitializesSplineChartVisualizationWithDataSource_WhenDataSourceItemIsProvided()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Constructor_InitializesSplineChartVisualizationWithDataSourceItem_WhenDataSourceItemIsProvided(
+        bool hasTabularData)
     {
         // Arrange
-        var dataSourceItem = new DataSourceItem { HasTabularData = true };
+        var dataSourceItem = new DataSourceItem { HasTabularData = hasTabularData };
 
         // Act
         var splineChartVisualization = new SplineChartVisualization(dataSourceItem);
@@ -38,25 +56,37 @@ public class SplineChartVisualizationFixture
         Assert.Equal(ChartType.Spline, splineChartVisualization.ChartType);
         Assert.Equal(dataSourceItem, splineChartVisualization.DataDefinition.DataSourceItem);
         Assert.Null(splineChartVisualization.Title);
+        Assert.Equal(hasTabularData, splineChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
     }
 
     [Theory]
-    [InlineData("TestTitle", null)]
-    [InlineData(null, null)]
-    [InlineData("TestTitle", "DataSource")]
-    public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, string dataSourceName)
+    [InlineData("Test Title", null, null)]
+    [InlineData(null, null, null)]
+    [InlineData("Test Title with Data Source", true, true)]
+    [InlineData("Test Title without Tabular Data", false, false)]
+    public void Constructor_SetsTitleAndDataSourceItem_WhenArgumentsAreProvided(string title, bool? hasTabularData,
+        bool? expectedHasTabularData)
     {
         // Arrange
-        var dataSourceItem =
-            string.IsNullOrEmpty(dataSourceName) ? null : new DataSourceItem { Title = dataSourceName };
-
+        var dataSourceItem = hasTabularData.HasValue
+            ? new DataSourceItem { HasTabularData = hasTabularData.Value }
+            : null;
         // Act
         var splineChartVisualization = new SplineChartVisualization(title, dataSourceItem);
 
         // Assert
         Assert.Equal(title, splineChartVisualization.Title);
         Assert.Equal(ChartType.Spline, splineChartVisualization.ChartType);
-        Assert.Equal(dataSourceItem, splineChartVisualization.DataDefinition?.DataSourceItem);
+
+        if (dataSourceItem == null)
+        {
+            Assert.Null(splineChartVisualization.DataDefinition);
+        }
+        else
+        {
+            Assert.NotNull(splineChartVisualization.DataDefinition);
+            Assert.Equal(expectedHasTabularData, splineChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        }
     }
 
     [Fact]
