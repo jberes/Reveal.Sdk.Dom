@@ -5,6 +5,8 @@ using Reveal.Sdk.Dom.Core.Serialization;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
+using Reveal.Sdk.Dom.Visualizations.Settings;
+using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations;
@@ -14,44 +16,78 @@ public class SplineAreaChartVisualizationFixture
     [Fact]
     public void Constructor_InitializesDefaultValues_WhenInstanceIsCreated()
     {
-        // Act
         var visualization = new SplineAreaChartVisualization();
 
-        // Assert
         Assert.NotNull(visualization);
         Assert.Equal(ChartType.SplineArea, visualization.ChartType);
-        Assert.Null(visualization.Title);
+        Assert.Null(visualization.Category);
+        Assert.Equal(0, visualization.ColumnSpan);
         Assert.Null(visualization.DataDefinition);
+        Assert.Null(visualization.Description);
+        Assert.NotNull(visualization.Id);
+        Assert.True(visualization.IsTitleVisible);
+        Assert.NotNull(visualization.Labels);
+        Assert.Empty(visualization.Labels);
+        Assert.Null(visualization.Linker);
+        Assert.Equal(0, visualization.RowSpan);
+        Assert.NotNull(visualization.Settings);
+        Assert.IsType<SplineAreaChartVisualizationSettings>(visualization.Settings);
+        Assert.Null(visualization.Title);
+        Assert.NotNull(visualization.Values);
+        Assert.Empty(visualization.Values);
+        Assert.NotNull(visualization.VisualizationDataSpec);
+        Assert.IsType<CategoryVisualizationDataSpec>(visualization.VisualizationDataSpec);
     }
 
     [Theory]
-    [InlineData("TestTitle", null)]
-    [InlineData(null, null)]
-    public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, DataSourceItem dataSourceItem)
-    {
-        // Act
-        var visualization = new SplineAreaChartVisualization(title, dataSourceItem);
-
-        // Assert
-        Assert.Equal(title, visualization.Title);
-        Assert.Equal(ChartType.SplineArea, visualization.ChartType);
-        Assert.Null(visualization.DataDefinition);
-    }
-
-    [Fact]
-    public void Constructor_InitializesSplineAreaChartVisualizationWithDataSource_WhenDataSourceItemIsProvided()
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Constructor_InitializesColumnChartVisualizationWithDataSourceItem_WhenDataSourceItemIsProvided(
+        bool hasTabularData)
     {
         // Arrange
-        var dataSourceItem = new DataSourceItem { HasTabularData = true };
+        var dataSourceItem = new DataSourceItem { HasTabularData = hasTabularData };
 
         // Act
-        var gridVisualization = new SplineAreaChartVisualization(dataSourceItem);
+        var splineAreaChartVisualization = new SplineAreaChartVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(gridVisualization);
-        Assert.Equal(ChartType.SplineArea, gridVisualization.ChartType);
-        Assert.Equal(dataSourceItem, gridVisualization.DataDefinition.DataSourceItem);
-        Assert.Null(gridVisualization.Title);
+        Assert.NotNull(splineAreaChartVisualization);
+        Assert.Equal(ChartType.SplineArea, splineAreaChartVisualization.ChartType);
+        Assert.Equal(dataSourceItem, splineAreaChartVisualization.DataDefinition.DataSourceItem);
+        Assert.Null(splineAreaChartVisualization.Title);
+        Assert.Equal(hasTabularData, splineAreaChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+    }
+
+    [Theory]
+    [InlineData("Test Title", null, null)]
+    [InlineData(null, null, null)]
+    [InlineData("Test Title with Data Source", true, true)]
+    [InlineData("Test Title without Tabular Data", false, false)]
+    public void Constructor_SetsTitleAndDataSourceItem_WhenArgumentsAreProvided(string title, bool? hasTabularData,
+        bool? expectedHasTabularData)
+    {
+        // Arrange
+        var dataSourceItem = hasTabularData.HasValue
+            ? new DataSourceItem { HasTabularData = hasTabularData.Value }
+            : null;
+        // Act
+        var splineAreaChartVisualization = new SplineAreaChartVisualization(title, dataSourceItem);
+
+        // Assert
+        Assert.Equal(title, splineAreaChartVisualization.Title);
+        Assert.Equal(ChartType.SplineArea, splineAreaChartVisualization.ChartType);
+
+        if (dataSourceItem == null)
+        {
+            Assert.Null(splineAreaChartVisualization.DataDefinition);
+        }
+        else
+        {
+            Assert.NotNull(splineAreaChartVisualization.DataDefinition);
+            Assert.Equal(expectedHasTabularData,
+                splineAreaChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        }
     }
 
     [Fact]
