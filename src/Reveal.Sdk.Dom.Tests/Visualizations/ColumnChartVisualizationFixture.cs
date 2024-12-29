@@ -5,6 +5,8 @@ using Reveal.Sdk.Dom.Core.Serialization;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
+using Reveal.Sdk.Dom.Visualizations.Settings;
+using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations;
@@ -14,21 +16,36 @@ public class ColumnChartVisualizationFixture
     [Fact]
     public void Constructor_InitializesDefaultValues_WhenInstanceIsCreated()
     {
-        // Act
         var columnChartVisualization = new ColumnChartVisualization();
 
-        // Assert
         Assert.NotNull(columnChartVisualization);
         Assert.Equal(ChartType.Column, columnChartVisualization.ChartType);
-        Assert.Null(columnChartVisualization.Title);
+        Assert.Null(columnChartVisualization.Category);
+        Assert.Equal(0, columnChartVisualization.ColumnSpan);
         Assert.Null(columnChartVisualization.DataDefinition);
+        Assert.Null(columnChartVisualization.Description);
+        Assert.NotNull(columnChartVisualization.Id);
+        Assert.True(columnChartVisualization.IsTitleVisible);
+        Assert.NotNull(columnChartVisualization.Labels);
+        Assert.Empty(columnChartVisualization.Labels);
+        Assert.Null(columnChartVisualization.Linker);
+        Assert.Equal(0, columnChartVisualization.RowSpan);
+        Assert.NotNull(columnChartVisualization.Settings);
+        Assert.IsType<ColumnChartVisualizationSettings>(columnChartVisualization.Settings);
+        Assert.Null(columnChartVisualization.Title);
+        Assert.NotNull(columnChartVisualization.Values);
+        Assert.Empty(columnChartVisualization.Values);
     }
 
-    [Fact]
-    public void Constructor_InitializesBarChartVisualizationWithDataSource_WhenDataSourceItemIsProvided()
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Constructor_InitializesColumnChartVisualizationWithDataSourceItem_WhenDataSourceItemIsProvided(
+        bool hasTabularData)
     {
         // Arrange
-        var dataSourceItem = new DataSourceItem { HasTabularData = true };
+        var dataSourceItem = new DataSourceItem { HasTabularData = hasTabularData };
 
         // Act
         var columnChartVisualization = new ColumnChartVisualization(dataSourceItem);
@@ -38,25 +55,37 @@ public class ColumnChartVisualizationFixture
         Assert.Equal(ChartType.Column, columnChartVisualization.ChartType);
         Assert.Equal(dataSourceItem, columnChartVisualization.DataDefinition.DataSourceItem);
         Assert.Null(columnChartVisualization.Title);
+        Assert.Equal(hasTabularData, columnChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
     }
 
     [Theory]
-    [InlineData("TestTitle", null)]
-    [InlineData(null, null)]
-    [InlineData("TestTitle", "DataSource")]
-    public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, string dataSourceName)
+    [InlineData("Test Title", null, null)]
+    [InlineData(null, null, null)]
+    [InlineData("Test Title with Data Source", true, true)]
+    [InlineData("Test Title without Tabular Data", false, false)]
+    public void Constructor_SetsTitleAndDataSourceItem_WhenArgumentsAreProvided(string title, bool? hasTabularData,
+        bool? expectedHasTabularData)
     {
         // Arrange
-        var dataSourceItem =
-            string.IsNullOrEmpty(dataSourceName) ? null : new DataSourceItem { Title = dataSourceName };
-
+        var dataSourceItem = hasTabularData.HasValue
+            ? new DataSourceItem { HasTabularData = hasTabularData.Value }
+            : null;
         // Act
         var columnChartVisualization = new ColumnChartVisualization(title, dataSourceItem);
 
         // Assert
         Assert.Equal(title, columnChartVisualization.Title);
         Assert.Equal(ChartType.Column, columnChartVisualization.ChartType);
-        Assert.Equal(dataSourceItem, columnChartVisualization.DataDefinition?.DataSourceItem);
+
+        if (dataSourceItem == null)
+        {
+            Assert.Null(columnChartVisualization.DataDefinition);
+        }
+        else
+        {
+            Assert.NotNull(columnChartVisualization.DataDefinition);
+            Assert.Equal(expectedHasTabularData, columnChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        }
     }
 
     [Fact]
