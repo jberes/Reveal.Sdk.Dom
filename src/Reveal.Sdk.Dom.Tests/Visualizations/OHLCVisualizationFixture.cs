@@ -106,8 +106,6 @@ public class OHLCVisualizationFixture
         // Assert
         Assert.Equal(newDataSourceItem, ohlcVisualization.DataDefinition.DataSourceItem);
         Assert.False(ohlcVisualization.DataDefinition.DataSourceItem.HasTabularData);
-
-        // Ensure other properties remain unaffected
         Assert.Equal(ChartType.OHLC, ohlcVisualization.ChartType);
         Assert.Null(ohlcVisualization.Title);
         Assert.NotNull(ohlcVisualization.DataDefinition);
