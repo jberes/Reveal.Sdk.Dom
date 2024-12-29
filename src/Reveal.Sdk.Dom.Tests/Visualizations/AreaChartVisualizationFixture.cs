@@ -6,6 +6,7 @@ using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
 using Reveal.Sdk.Dom.Visualizations.Settings;
+using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations;
@@ -36,6 +37,8 @@ public class AreaChartVisualizationFixture
         Assert.NotNull(areaChartVisualization.Settings);
         Assert.IsType<AreaChartVisualizationSettings>(areaChartVisualization.Settings);
         Assert.NotNull(areaChartVisualization.Id);
+        Assert.NotNull(areaChartVisualization.VisualizationDataSpec);
+        Assert.IsType<CategoryVisualizationDataSpec>(areaChartVisualization.VisualizationDataSpec);
     }
 
     [Theory]
