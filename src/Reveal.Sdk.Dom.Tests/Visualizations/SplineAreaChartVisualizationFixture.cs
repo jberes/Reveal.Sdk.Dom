@@ -42,7 +42,7 @@ public class SplineAreaChartVisualizationFixture
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void Constructor_InitializesColumnChartVisualizationWithDataSourceItem_WhenDataSourceItemIsProvided(
+    public void Constructor_InitializesSplineAreaChartVisualizationWithDataSourceItem_WhenDataSourceItemIsProvided(
         bool hasTabularData)
     {
         // Arrange
