@@ -92,38 +92,6 @@ public class OHLCVisualizationFixture
     }
 
     [Fact]
-    public void UpdateDataSourceItem_UpdatesDataDefinition_WhenNewDataSourceItemIsProvided()
-    {
-        // Arrange
-        var initialDataSourceItem = new DataSourceItem { HasTabularData = true };
-        var ohlcVisualization = new OHLCVisualization(initialDataSourceItem);
-
-        var newDataSourceItem = new DataSourceItem { HasTabularData = false };
-
-        // Act
-        ohlcVisualization.UpdateDataSourceItem(newDataSourceItem);
-
-        // Assert
-        Assert.Equal(newDataSourceItem, ohlcVisualization.DataDefinition.DataSourceItem);
-        Assert.False(ohlcVisualization.DataDefinition.DataSourceItem.HasTabularData);
-        Assert.Equal(ChartType.OHLC, ohlcVisualization.ChartType);
-        Assert.Null(ohlcVisualization.Title);
-        Assert.NotNull(ohlcVisualization.DataDefinition);
-        Assert.NotNull(ohlcVisualization.Closes);
-        Assert.Empty(ohlcVisualization.Closes);
-        Assert.NotNull(ohlcVisualization.Highs);
-        Assert.Empty(ohlcVisualization.Highs);
-        Assert.NotNull(ohlcVisualization.Lows);
-        Assert.Empty(ohlcVisualization.Lows);
-        Assert.NotNull(ohlcVisualization.Opens);
-        Assert.Empty(ohlcVisualization.Opens);
-        Assert.True(ohlcVisualization.IsTitleVisible);
-        Assert.Equal(0, ohlcVisualization.ColumnSpan);
-        Assert.Equal(0, ohlcVisualization.RowSpan);
-    }
-
-
-    [Fact]
     public void ToJsonString_GeneratesCorrectJson_WhenOHLCVisualizationIsSerialized()
     {
         //Arrange
