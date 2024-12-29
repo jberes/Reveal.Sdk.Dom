@@ -5,6 +5,7 @@ using Reveal.Sdk.Dom.Core.Serialization;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
+using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using Xunit;
 
@@ -15,34 +16,77 @@ public class TimeSeriesVisualizationFixture
     [Fact]
     public void Constructor_InitializesDefaultValues_WhenInstanceIsCreated()
     {
-        // Act
         var visualization = new TimeSeriesVisualization();
 
-        // Assert
         Assert.NotNull(visualization);
         Assert.Equal(ChartType.TimeSeries, visualization.ChartType);
+        Assert.Null(visualization.Category);
+        Assert.Equal(0, visualization.ColumnSpan);
+        Assert.Null(visualization.DataDefinition);
+        Assert.Null(visualization.Date);
+        Assert.Null(visualization.Description);
+        Assert.NotNull(visualization.Id);
+        Assert.True(visualization.IsTitleVisible);
+        Assert.Null(visualization.Linker);
+        Assert.Equal(0, visualization.RowSpan);
+        Assert.NotNull(visualization.Settings);
+        Assert.IsType<TimeSeriesVisualizationSettings>(visualization.Settings);
         Assert.Null(visualization.Title);
         Assert.NotNull(visualization.Values);
         Assert.Empty(visualization.Values);
-        Assert.Null(visualization.Category);
-        Assert.Null(visualization.Date);
+        Assert.NotNull(visualization.VisualizationDataSpec);
+        Assert.IsType<TimeSeriesVisualizationDataSpec>(visualization.VisualizationDataSpec);
+    }
+
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Constructor_InitializesTimeSeriesChartVisualizationWithDataSourceItem_WhenDataSourceItemIsProvided(
+        bool hasTabularData)
+    {
+        // Arrange
+        var dataSourceItem = new DataSourceItem { HasTabularData = hasTabularData };
+
+        // Act
+        var timeSeriesVisualization = new TimeSeriesVisualization(dataSourceItem);
+
+        // Assert
+        Assert.NotNull(timeSeriesVisualization);
+        Assert.Equal(ChartType.TimeSeries, timeSeriesVisualization.ChartType);
+        Assert.Equal(dataSourceItem, timeSeriesVisualization.DataDefinition.DataSourceItem);
+        Assert.Null(timeSeriesVisualization.Title);
+        Assert.Equal(hasTabularData, timeSeriesVisualization.DataDefinition.DataSourceItem.HasTabularData);
     }
 
     [Theory]
-    [InlineData("TestTitle", null)]
-    [InlineData(null, null)]
-    public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, DataSourceItem dataSourceItem)
+    [InlineData("Test Title", null, null)]
+    [InlineData(null, null, null)]
+    [InlineData("Test Title with Data Source", true, true)]
+    [InlineData("Test Title without Tabular Data", false, false)]
+    public void Constructor_SetsTitleAndDataSourceItem_WhenArgumentsAreProvided(string title, bool? hasTabularData,
+        bool? expectedHasTabularData)
     {
+        // Arrange
+        var dataSourceItem = hasTabularData.HasValue
+            ? new DataSourceItem { HasTabularData = hasTabularData.Value }
+            : null;
         // Act
-        var visualization = new TimeSeriesVisualization(title, dataSourceItem);
+        var timeSeriesVisualization = new TimeSeriesVisualization(title, dataSourceItem);
 
         // Assert
-        Assert.Equal(title, visualization.Title);
-        Assert.Equal(ChartType.TimeSeries, visualization.ChartType);
-        Assert.NotNull(visualization.Values);
-        Assert.Empty(visualization.Values);
-        Assert.Null(visualization.Category);
-        Assert.Null(visualization.Date);
+        Assert.Equal(title, timeSeriesVisualization.Title);
+        Assert.Equal(ChartType.TimeSeries, timeSeriesVisualization.ChartType);
+
+        if (dataSourceItem == null)
+        {
+            Assert.Null(timeSeriesVisualization.DataDefinition);
+        }
+        else
+        {
+            Assert.NotNull(timeSeriesVisualization.DataDefinition);
+            Assert.Equal(expectedHasTabularData, timeSeriesVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        }
     }
 
     [Fact]
@@ -141,15 +185,17 @@ public class TimeSeriesVisualizationFixture
               "ColumnSpan" : 0,
               "RowSpan" : 0,
               "VisualizationSettings" : {
-                "_type" : "PivotVisualizationSettingsType",
-                "FontSize" : "Large",
-                "Style" : {
-                  "FixedLeftColumns" : false,
-                  "TextAlignment" : "Center",
-                  "NumericAlignment" : "Inherit",
-                  "DateAlignment" : "Center"
-                },
-                "VisualizationType" : "PIVOT"
+                "_type" : "ChartVisualizationSettingsType",
+                "ShowTotalsInTooltip" : true,
+                "TrendlineType" : "LinearFit",
+                "AutomaticLabelRotation" : true,
+                "SyncAxisVisibleRange" : false,
+                "ZoomScaleHorizontal" : 1.0,
+                "ZoomScaleVertical" : 1.0,
+                "LeftAxisLogarithmic" : false,
+                "ShowLegends" : true,
+                "ChartType" : "TimeSeries",
+                "VisualizationType" : "CHART"
               },
               "DataSpec" : {
                 "_type" : "TabularDataSpecType",
@@ -163,29 +209,29 @@ public class TimeSeriesVisualizationFixture
                   "Sorting" : "None",
                   "FieldType" : "Date"
                 }, {
-                  "FieldName" : "Spend",
-                  "FieldLabel" : "Spend",
-                  "UserCaption" : "Spend",
+                  "FieldName" : "Paid Traffic",
+                  "FieldLabel" : "Paid Traffic",
+                  "UserCaption" : "Paid Traffic",
                   "IsCalculated" : false,
                   "Properties" : { },
                   "Sorting" : "None",
                   "FieldType" : "Number"
                 }, {
-                  "FieldName" : "Conversions",
-                  "FieldLabel" : "Conversions",
-                  "UserCaption" : "Conversions",
+                  "FieldName" : "Organic Traffic",
+                  "FieldLabel" : "Organic Traffic",
+                  "UserCaption" : "Organic Traffic",
                   "IsCalculated" : false,
                   "Properties" : { },
                   "Sorting" : "None",
                   "FieldType" : "Number"
                 }, {
-                  "FieldName" : "Territory",
-                  "FieldLabel" : "Territory",
-                  "UserCaption" : "Territory",
+                  "FieldName" : "Other Traffic",
+                  "FieldLabel" : "Other Traffic",
+                  "UserCaption" : "Other Traffic",
                   "IsCalculated" : false,
                   "Properties" : { },
                   "Sorting" : "None",
-                  "FieldType" : "String"
+                  "FieldType" : "Number"
                 } ],
                 "TransposedFields" : [ ],
                 "QuickFilters" : [ ],
@@ -223,37 +269,56 @@ public class TimeSeriesVisualizationFixture
                 }
               },
               "VisualizationDataSpec" : {
-                "_type" : "PivotVisualizationDataSpecType",
-                "Columns" : [ {
-                  "_type" : "DimensionColumnSpecType",
+                "_type" : "TimeSeriesVisualizationDataSpecType",
+                "Values" : [ {
+                  "_type" : "MeasureColumnSpecType",
                   "SummarizationField" : {
-                    "_type" : "SummarizationRegularFieldType",
-                    "DrillDownElements" : [ ],
-                    "ExpandedItems" : [ ],
-                    "FieldName" : "Territory"
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "Paid Traffic",
+                    "UserCaption" : "Paid Traffic",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "FieldName" : "Paid Traffic"
                   }
                 }, {
-                  "_type" : "DimensionColumnSpecType",
+                  "_type" : "MeasureColumnSpecType",
                   "SummarizationField" : {
-                    "_type" : "SummarizationRegularFieldType",
-                    "DrillDownElements" : [ ],
-                    "ExpandedItems" : [ ],
-                    "FieldName" : "Conversions"
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "Organic Traffic",
+                    "UserCaption" : "Organic Traffic",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "FieldName" : "Organic Traffic"
                   }
                 }, {
-                  "_type" : "DimensionColumnSpecType",
+                  "_type" : "MeasureColumnSpecType",
                   "SummarizationField" : {
-                    "_type" : "SummarizationRegularFieldType",
-                    "DrillDownElements" : [ ],
-                    "ExpandedItems" : [ ],
-                    "FieldName" : "Spend"
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "Other Traffic",
+                    "UserCaption" : "Other Traffic",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "FieldName" : "Other Traffic"
                   }
                 } ],
-                "Values" : [ ],
-                "ShowGrandTotals" : false,
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
-                "Rows" : [ ]
+                "Rows" : [ {
+                  "_type" : "DimensionColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationDateFieldType",
+                    "DateAggregationType" : "Month",
+                    "DrillDownElements" : [ ],
+                    "ExpandedItems" : [ ],
+                    "FieldName" : "Date"
+                  }
+                } ]
               }
             } ]
             """;
@@ -283,31 +348,32 @@ public class TimeSeriesVisualizationFixture
             Fields = new List<IField>
             {
                 new DateField("Date"),
-                new NumberField("Spend"),
-                new NumberField("Conversions"),
-                new TextField("Territory")
+                new NumberField("Paid Traffic"),
+                new NumberField("Organic Traffic"),
+                new NumberField("Other Traffic"),
             }
         };
         excelDataSourceItem.UseExcel("Marketing");
 
-        document.Visualizations.Add(new PivotVisualization("Time Series Visualization", excelDataSourceItem)
+        document.Visualizations.Add(new TimeSeriesVisualization("Time Series Visualization", excelDataSourceItem)
             {
                 Id = "60344a4a-d0ce-4364-9f8c-acfbb8caa32e",
                 IsTitleVisible = true,
                 Description = "Create Time Series Visualization"
             }
-            .SetColumns("Territory", "Conversions", "Spend")
+            .SetDate(new DateDataField("Date") { AggregationType = DateAggregationType.Month })
+            .SetValues("Paid Traffic", "Organic Traffic", "Other Traffic")
             .ConfigureSettings(settings =>
             {
-                settings.FontSize = FontSize.Large;
-                settings.DateFieldAlignment = Alignment.Center;
-                settings.TextFieldAlignment = Alignment.Center;
+                settings.ShowLegend = true;
+                settings.ShowTotalsInTooltip = true;
+                settings.Trendline = TrendlineType.LinearFit;
+                settings.AutomaticLabelRotation = true;
             }));
 
         document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
         document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-        //Act
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
