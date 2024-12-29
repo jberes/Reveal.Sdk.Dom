@@ -6,6 +6,7 @@ using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
 using Reveal.Sdk.Dom.Visualizations.Settings;
+using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations;
@@ -36,6 +37,8 @@ public class BarChartVisualizationFixture
         Assert.Null(barChartVisualization.Title);
         Assert.NotNull(barChartVisualization.Values);
         Assert.Empty(barChartVisualization.Values);
+        Assert.NotNull(barChartVisualization.VisualizationDataSpec);
+        Assert.IsType<CategoryVisualizationDataSpec>(barChartVisualization.VisualizationDataSpec);
     }
 
 
