@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-	internal class PivotVisualizationDataSpec : HierarchyVisualizationDataSpec
+	public class PivotVisualizationDataSpec : HierarchyVisualizationDataSpec
     {        
 		public List<DimensionColumn> Columns { get; set; } = new List<DimensionColumn>();
 		public List<MeasureColumn> Values { get; set; } = new List<MeasureColumn>();
