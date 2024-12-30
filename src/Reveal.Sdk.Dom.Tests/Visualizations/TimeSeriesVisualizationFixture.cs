@@ -57,6 +57,11 @@ public class TimeSeriesVisualizationFixture
         Assert.Equal(dataSourceItem, timeSeriesVisualization.DataDefinition.DataSourceItem);
         Assert.Null(timeSeriesVisualization.Title);
         Assert.Equal(hasTabularData, timeSeriesVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        Assert.IsType(
+            hasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+            timeSeriesVisualization.DataDefinition);
     }
 
     [Theory]
@@ -86,6 +91,11 @@ public class TimeSeriesVisualizationFixture
         {
             Assert.NotNull(timeSeriesVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData, timeSeriesVisualization.DataDefinition.DataSourceItem.HasTabularData);
+            Assert.IsType(
+                hasTabularData.Value
+                    ? typeof(TabularDataDefinition)
+                    : typeof(XmlaDataDefinition),
+                timeSeriesVisualization.DataDefinition);
         }
     }
 
@@ -377,13 +387,11 @@ public class TimeSeriesVisualizationFixture
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
-        var expected = JArray.Parse(expectedJson);
+        var actualNormalized = JsonConvert.SerializeObject(actualJson, Formatting.Indented);
+        var expectedNormalized = JArray.Parse(expectedJson).ToString(Formatting.Indented);
 
-        var expectedStr = JsonConvert.SerializeObject(expected);
-        var actualStr = JsonConvert.SerializeObject(actualJson);
-
-        //Assert
-        Assert.Equal(expectedStr, actualStr);
+        // Assert
+        Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
 
