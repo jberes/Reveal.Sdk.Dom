@@ -47,7 +47,7 @@ public class GridVisualizationFixture
         Assert.Empty(gridVisualization.Columns);
         Assert.Null(gridVisualization.Title);
         Assert.IsType(
-            gridVisualization.DataDefinition.DataSourceItem.HasTabularData
+            hasTabularData
                 ? typeof(TabularDataDefinition)
                 : typeof(XmlaDataDefinition),
             gridVisualization.DataDefinition);
@@ -84,7 +84,7 @@ public class GridVisualizationFixture
             Assert.NotNull(gridVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData, gridVisualization.DataDefinition.DataSourceItem.HasTabularData);
             Assert.IsType(
-                gridVisualization.DataDefinition.DataSourceItem.HasTabularData
+                hasTabularData.Value
                     ? typeof(TabularDataDefinition)
                     : typeof(XmlaDataDefinition),
                 gridVisualization.DataDefinition);

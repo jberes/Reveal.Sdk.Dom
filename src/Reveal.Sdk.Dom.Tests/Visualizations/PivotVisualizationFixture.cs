@@ -64,7 +64,7 @@ public class PivotVisualizationFixture
         {
             Assert.Equal(dataSourceItem, pivotVisualization.DataDefinition.DataSourceItem);
             Assert.IsType(
-                pivotVisualization.DataDefinition.DataSourceItem.HasTabularData
+                hasTabularData.Value
                     ? typeof(TabularDataDefinition)
                     : typeof(XmlaDataDefinition),
                 pivotVisualization.DataDefinition);
@@ -89,7 +89,7 @@ public class PivotVisualizationFixture
         Assert.Empty(pivotVisualization.Columns);
         Assert.Null(pivotVisualization.Title);
         Assert.IsType(
-            pivotVisualization.DataDefinition.DataSourceItem.HasTabularData
+            hasTabularData
                 ? typeof(TabularDataDefinition)
                 : typeof(XmlaDataDefinition),
             pivotVisualization.DataDefinition);
