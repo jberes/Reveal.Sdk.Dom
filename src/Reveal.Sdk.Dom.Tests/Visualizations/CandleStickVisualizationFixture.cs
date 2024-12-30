@@ -18,7 +18,6 @@ public class CandleStickVisualizationFixture
         var candleStickVisualization = new CandleStickVisualization();
 
         // Assert
-        Assert.NotNull(candleStickVisualization);
         Assert.Equal(ChartType.Candlestick, candleStickVisualization.ChartType);
         Assert.Null(candleStickVisualization.Title);
         Assert.Null(candleStickVisualization.DataDefinition);
@@ -51,7 +50,6 @@ public class CandleStickVisualizationFixture
         var candleStickVisualization = new CandleStickVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(candleStickVisualization);
         Assert.Equal(ChartType.Candlestick, candleStickVisualization.ChartType);
         Assert.Equal(dataSourceItem, candleStickVisualization.DataDefinition.DataSourceItem);
         Assert.Null(candleStickVisualization.Title);
@@ -298,8 +296,7 @@ public class CandleStickVisualizationFixture
               }
             } ]
             """;
-
-        //Act
+        
         var document = new RdashDocument("My Dashboard");
 
         var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
