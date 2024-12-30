@@ -18,7 +18,6 @@ public class StepAreaChartVisualizationFixture
     {
         var visualization = new StepAreaChartVisualization();
 
-        Assert.NotNull(visualization);
         Assert.Equal(ChartType.StepArea, visualization.ChartType);
         Assert.Null(visualization.Category);
         Assert.Equal(0, visualization.ColumnSpan);
@@ -52,11 +51,15 @@ public class StepAreaChartVisualizationFixture
         var stepAreaChartVisualization = new StepAreaChartVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(stepAreaChartVisualization);
         Assert.Equal(ChartType.StepArea, stepAreaChartVisualization.ChartType);
         Assert.Equal(dataSourceItem, stepAreaChartVisualization.DataDefinition.DataSourceItem);
         Assert.Null(stepAreaChartVisualization.Title);
         Assert.Equal(hasTabularData, stepAreaChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        Assert.IsType(
+            hasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+            stepAreaChartVisualization.DataDefinition);
     }
 
     [Theory]
@@ -87,145 +90,151 @@ public class StepAreaChartVisualizationFixture
             Assert.NotNull(stepAreaChartVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData,
                 stepAreaChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+            Assert.IsType(
+                hasTabularData.Value
+                    ? typeof(TabularDataDefinition)
+                    : typeof(XmlaDataDefinition),
+                stepAreaChartVisualization.DataDefinition);
         }
     }
 
     [Fact]
     public void ToJsonString_GeneratesCorrectJson_WhenStepAreaChartVisualizationIsSerialized()
     {
-        var expectedJson = """
-                           [ {
-                             "Id" : "48994fce-d0c9-4f64-b934-969da0330f93",
-                             "Title" : "Step Area",
-                             "IsTitleVisible" : true,
-                             "ColumnSpan" : 0,
-                             "RowSpan" : 0,
-                             "VisualizationSettings" : {
-                               "_type" : "ChartVisualizationSettingsType",
-                               "ShowTotalsInTooltip" : false,
-                               "TrendlineType" : "ExponentialAverage",
-                               "AutomaticLabelRotation" : true,
-                               "SyncAxisVisibleRange" : false,
-                               "ZoomScaleHorizontal" : 1.0,
-                               "ZoomScaleVertical" : 1.0,
-                               "LeftAxisLogarithmic" : false,
-                               "ShowLegends" : true,
-                               "ChartType" : "StepArea",
-                               "VisualizationType" : "CHART"
-                             },
-                             "DataSpec" : {
-                               "_type" : "TabularDataSpecType",
-                               "IsTransposed" : false,
-                               "Fields" : [ {
-                                 "FieldName" : "Date",
-                                 "FieldLabel" : "Date",
-                                 "UserCaption" : "Date",
-                                 "IsCalculated" : false,
-                                 "Properties" : { },
-                                 "Sorting" : "None",
-                                 "FieldType" : "Date"
-                               }, {
-                                 "FieldName" : "Spend",
-                                 "FieldLabel" : "Spend",
-                                 "UserCaption" : "Spend",
-                                 "IsCalculated" : false,
-                                 "Properties" : { },
-                                 "Sorting" : "None",
-                                 "FieldType" : "Number"
-                               }, {
-                                 "FieldName" : "Conversions",
-                                 "FieldLabel" : "Conversions",
-                                 "UserCaption" : "Conversions",
-                                 "IsCalculated" : false,
-                                 "Properties" : { },
-                                 "Sorting" : "None",
-                                 "FieldType" : "Number"
-                               }, {
-                                 "FieldName" : "Territory",
-                                 "FieldLabel" : "Territory",
-                                 "UserCaption" : "Territory",
-                                 "IsCalculated" : false,
-                                 "Properties" : { },
-                                 "Sorting" : "None",
-                                 "FieldType" : "String"
-                               } ],
-                               "TransposedFields" : [ ],
-                               "QuickFilters" : [ ],
-                               "AdditionalTables" : [ ],
-                               "ServiceAdditionalTables" : [ ],
-                               "DataSourceItem" : {
-                                 "_type" : "DataSourceItemType",
-                                 "Id" : "080cc17d-4a0a-4837-aa3f-ef2571ea443a",
-                                 "Title" : "Marketing Sheet",
-                                 "Subtitle" : "Excel Data Source Item",
-                                 "DataSourceId" : "__EXCEL",
-                                 "HasTabularData" : true,
-                                 "HasAsset" : false,
-                                 "Properties" : {
-                                   "Sheet" : "Marketing"
-                                 },
-                                 "Parameters" : { },
-                                 "ResourceItem" : {
-                                   "_type" : "DataSourceItemType",
-                                   "Id" : "d593dd79-7161-4929-afc9-c26393f5b650",
-                                   "Title" : "Marketing Sheet",
-                                   "Subtitle" : "Excel Data Source Item",
-                                   "DataSourceId" : "33077d1e-19c5-44fe-b981-6765af3156a6",
-                                   "HasTabularData" : true,
-                                   "HasAsset" : false,
-                                   "Properties" : {
-                                     "Url" : "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
-                                   },
-                                   "Parameters" : { }
-                                 }
-                               },
-                               "Expiration" : 1440,
-                               "Bindings" : {
-                                 "Bindings" : [ ]
-                               }
-                             },
-                             "VisualizationDataSpec" : {
-                               "_type" : "CategoryVisualizationDataSpecType",
-                               "Values" : [ {
-                                 "_type" : "MeasureColumnSpecType",
-                                 "SummarizationField" : {
-                                   "_type" : "SummarizationValueFieldType",
-                                   "FieldLabel" : "Spend",
-                                   "UserCaption" : "Spend",
-                                   "IsHidden" : false,
-                                   "AggregationType" : "Sum",
-                                   "Sorting" : "None",
-                                   "IsCalculated" : false,
-                                   "FieldName" : "Spend"
-                                 }
-                               }, {
-                                 "_type" : "MeasureColumnSpecType",
-                                 "SummarizationField" : {
-                                   "_type" : "SummarizationValueFieldType",
-                                   "FieldLabel" : "Budget",
-                                   "UserCaption" : "Budget",
-                                   "IsHidden" : false,
-                                   "AggregationType" : "Sum",
-                                   "Sorting" : "None",
-                                   "IsCalculated" : false,
-                                   "FieldName" : "Budget"
-                                 }
-                               } ],
-                               "FormatVersion" : 0,
-                               "AdHocExpandedElements" : [ ],
-                               "Rows" : [ {
-                                 "_type" : "DimensionColumnSpecType",
-                                 "SummarizationField" : {
-                                   "_type" : "SummarizationDateFieldType",
-                                   "DateAggregationType" : "Month",
-                                   "DrillDownElements" : [ ],
-                                   "ExpandedItems" : [ ],
-                                   "FieldName" : "Date"
-                                 }
-                               } ]
-                             }
-                           } ]
-                           """;
+        var expectedJson =
+            """
+            [ {
+              "Id" : "48994fce-d0c9-4f64-b934-969da0330f93",
+              "Title" : "Step Area",
+              "IsTitleVisible" : true,
+              "ColumnSpan" : 0,
+              "RowSpan" : 0,
+              "VisualizationSettings" : {
+                "_type" : "ChartVisualizationSettingsType",
+                "ShowTotalsInTooltip" : false,
+                "TrendlineType" : "ExponentialAverage",
+                "AutomaticLabelRotation" : true,
+                "SyncAxisVisibleRange" : false,
+                "ZoomScaleHorizontal" : 1.0,
+                "ZoomScaleVertical" : 1.0,
+                "LeftAxisLogarithmic" : false,
+                "ShowLegends" : true,
+                "ChartType" : "StepArea",
+                "VisualizationType" : "CHART"
+              },
+              "DataSpec" : {
+                "_type" : "TabularDataSpecType",
+                "IsTransposed" : false,
+                "Fields" : [ {
+                  "FieldName" : "Date",
+                  "FieldLabel" : "Date",
+                  "UserCaption" : "Date",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "Date"
+                }, {
+                  "FieldName" : "Spend",
+                  "FieldLabel" : "Spend",
+                  "UserCaption" : "Spend",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "Number"
+                }, {
+                  "FieldName" : "Conversions",
+                  "FieldLabel" : "Conversions",
+                  "UserCaption" : "Conversions",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "Number"
+                }, {
+                  "FieldName" : "Territory",
+                  "FieldLabel" : "Territory",
+                  "UserCaption" : "Territory",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "String"
+                } ],
+                "TransposedFields" : [ ],
+                "QuickFilters" : [ ],
+                "AdditionalTables" : [ ],
+                "ServiceAdditionalTables" : [ ],
+                "DataSourceItem" : {
+                  "_type" : "DataSourceItemType",
+                  "Id" : "080cc17d-4a0a-4837-aa3f-ef2571ea443a",
+                  "Title" : "Marketing Sheet",
+                  "Subtitle" : "Excel Data Source Item",
+                  "DataSourceId" : "__EXCEL",
+                  "HasTabularData" : true,
+                  "HasAsset" : false,
+                  "Properties" : {
+                    "Sheet" : "Marketing"
+                  },
+                  "Parameters" : { },
+                  "ResourceItem" : {
+                    "_type" : "DataSourceItemType",
+                    "Id" : "d593dd79-7161-4929-afc9-c26393f5b650",
+                    "Title" : "Marketing Sheet",
+                    "Subtitle" : "Excel Data Source Item",
+                    "DataSourceId" : "33077d1e-19c5-44fe-b981-6765af3156a6",
+                    "HasTabularData" : true,
+                    "HasAsset" : false,
+                    "Properties" : {
+                      "Url" : "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+                    },
+                    "Parameters" : { }
+                  }
+                },
+                "Expiration" : 1440,
+                "Bindings" : {
+                  "Bindings" : [ ]
+                }
+              },
+              "VisualizationDataSpec" : {
+                "_type" : "CategoryVisualizationDataSpecType",
+                "Values" : [ {
+                  "_type" : "MeasureColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "Spend",
+                    "UserCaption" : "Spend",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "FieldName" : "Spend"
+                  }
+                }, {
+                  "_type" : "MeasureColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "Budget",
+                    "UserCaption" : "Budget",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "FieldName" : "Budget"
+                  }
+                } ],
+                "FormatVersion" : 0,
+                "AdHocExpandedElements" : [ ],
+                "Rows" : [ {
+                  "_type" : "DimensionColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationDateFieldType",
+                    "DateAggregationType" : "Month",
+                    "DrillDownElements" : [ ],
+                    "ExpandedItems" : [ ],
+                    "FieldName" : "Date"
+                  }
+                } ]
+              }
+            } ]
+            """;
 
         var document = new RdashDocument("My Dashboard");
 
@@ -274,16 +283,13 @@ public class StepAreaChartVisualizationFixture
         document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
         document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-        //Act
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
-        var expected = JArray.Parse(expectedJson);
-
-        var expectedStr = JsonConvert.SerializeObject(expected);
-        var actualStr = JsonConvert.SerializeObject(actualJson);
+        var actualNormalized = JsonConvert.SerializeObject(actualJson, Formatting.Indented);
+        var expectedNormalized = JArray.Parse(expectedJson).ToString(Formatting.Indented);
 
         // Assert
-        Assert.Equal(expectedStr, actualStr);
+        Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
