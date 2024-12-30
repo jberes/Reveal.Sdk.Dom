@@ -29,8 +29,10 @@ public class GridVisualizationFixture
         Assert.IsType<GridVisualizationDataSpec>(gridVisualization.VisualizationDataSpec);
     }
 
-    [Fact]
-    public void Constructor_InitializesGridVisualizationWithDataSource_WhenDataSourceItemIsProvided()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Constructor_InitializesGridVisualizationWithDataSource_WhenDataSourceItemIsProvided(bool hasTabularData)
     {
         // Arrange
         var dataSourceItem = new DataSourceItem { HasTabularData = true };
@@ -44,13 +46,26 @@ public class GridVisualizationFixture
         Assert.NotNull(gridVisualization.Columns);
         Assert.Empty(gridVisualization.Columns);
         Assert.Null(gridVisualization.Title);
+        Assert.IsType(
+            gridVisualization.DataDefinition.DataSourceItem.HasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+            gridVisualization.DataDefinition);
     }
 
     [Theory]
-    [InlineData("TestTitle", null)]
-    [InlineData(null, null)]
-    public void Constructor_SetsTitleAndDataSource_WhenArgumentsAreProvided(string title, DataSourceItem dataSourceItem)
+    [InlineData("Test Title", null, null)]
+    [InlineData(null, null, null)]
+    [InlineData("Test Title with Data Source", true, true)]
+    [InlineData("Test Title without Tabular Data", false, false)]
+    public void Constructor_SetsTitleAndDataSourceItem_WhenArgumentsAreProvided(string title, bool? hasTabularData,
+        bool? expectedHasTabularData)
     {
+        // Arrange
+        var dataSourceItem = hasTabularData.HasValue
+            ? new DataSourceItem { HasTabularData = hasTabularData.Value }
+            : null;
+
         // Act
         var gridVisualization = new GridVisualization(title, dataSourceItem);
 
@@ -60,6 +75,20 @@ public class GridVisualizationFixture
         Assert.NotNull(gridVisualization.Columns);
         Assert.Empty(gridVisualization.Columns);
         Assert.NotNull(gridVisualization.VisualizationDataSpec);
+        if (dataSourceItem == null)
+        {
+            Assert.Null(gridVisualization.DataDefinition);
+        }
+        else
+        {
+            Assert.NotNull(gridVisualization.DataDefinition);
+            Assert.Equal(expectedHasTabularData, gridVisualization.DataDefinition.DataSourceItem.HasTabularData);
+            Assert.IsType(
+                gridVisualization.DataDefinition.DataSourceItem.HasTabularData
+                    ? typeof(TabularDataDefinition)
+                    : typeof(XmlaDataDefinition),
+                gridVisualization.DataDefinition);
+        }
     }
 
     [Theory]
@@ -287,16 +316,13 @@ public class GridVisualizationFixture
         document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
         document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-        //Act
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
-        var expected = JArray.Parse(expectedJson);
+        var actualNormalized = JsonConvert.SerializeObject(actualJson, Formatting.Indented);
+        var expectedNormalized = JArray.Parse(expectedJson).ToString(Formatting.Indented);
 
-        var expectedStr = JsonConvert.SerializeObject(expected);
-        var actualStr = JsonConvert.SerializeObject(actualJson);
-
-        //Assert
-        Assert.Equal(expectedStr, actualStr);
+        // Assert
+        Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
