@@ -59,6 +59,11 @@ public class AreaChartVisualizationFixture
         Assert.Equal(dataSourceItem, areaChartVisualization.DataDefinition.DataSourceItem);
         Assert.Null(areaChartVisualization.Title);
         Assert.Equal(hasTabularData, areaChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        Assert.IsType(
+            hasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+            areaChartVisualization.DataDefinition);
     }
 
     [Theory]
@@ -88,6 +93,11 @@ public class AreaChartVisualizationFixture
         {
             Assert.NotNull(areaChartVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData, areaChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+            Assert.IsType(
+                hasTabularData.Value
+                    ? typeof(TabularDataDefinition)
+                    : typeof(XmlaDataDefinition),
+                areaChartVisualization.DataDefinition);
         }
     }
 
@@ -291,16 +301,13 @@ public class AreaChartVisualizationFixture
         document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
         document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-        // Act
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
-        var expected = JArray.Parse(expectedJson);
+        var actualNormalized = JsonConvert.SerializeObject(actualJson, Formatting.Indented);
+        var expectedNormalized = JArray.Parse(expectedJson).ToString(Formatting.Indented);
 
         // Assert
-        var expectedStr = JsonConvert.SerializeObject(expected);
-        var actualStr = JsonConvert.SerializeObject(actualJson);
-
-        Assert.Equal(expectedStr, actualStr);
+        Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
