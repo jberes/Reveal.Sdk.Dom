@@ -18,7 +18,6 @@ public class LineChartVisualizationFixture
     {
         var lineChartVisualization = new LineChartVisualization();
 
-        Assert.NotNull(lineChartVisualization);
         Assert.Equal(ChartType.Line, lineChartVisualization.ChartType);
         Assert.Null(lineChartVisualization.Category);
         Assert.Equal(0, lineChartVisualization.ColumnSpan);
@@ -52,11 +51,15 @@ public class LineChartVisualizationFixture
         var lineChartVisualization = new LineChartVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(lineChartVisualization);
         Assert.Equal(ChartType.Line, lineChartVisualization.ChartType);
         Assert.Equal(dataSourceItem, lineChartVisualization.DataDefinition.DataSourceItem);
         Assert.Null(lineChartVisualization.Title);
         Assert.Equal(hasTabularData, lineChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        Assert.IsType(
+            hasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+            lineChartVisualization.DataDefinition);
     }
 
     [Theory]
@@ -86,6 +89,11 @@ public class LineChartVisualizationFixture
         {
             Assert.NotNull(lineChartVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData, lineChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+            Assert.IsType(
+                hasTabularData.Value
+                    ? typeof(TabularDataDefinition)
+                    : typeof(XmlaDataDefinition),
+                lineChartVisualization.DataDefinition);
         }
     }
 
@@ -291,16 +299,13 @@ public class LineChartVisualizationFixture
 
         document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-        // Act
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
-        var expected = JArray.Parse(expectedJson);
-
-        var expectedStr = JsonConvert.SerializeObject(expected);
-        var actualStr = JsonConvert.SerializeObject(actualJson);
+        var actualNormalized = JsonConvert.SerializeObject(actualJson, Formatting.Indented);
+        var expectedNormalized = JArray.Parse(expectedJson).ToString(Formatting.Indented);
 
         // Assert
-        Assert.Equal(expectedStr, actualStr);
+        Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
