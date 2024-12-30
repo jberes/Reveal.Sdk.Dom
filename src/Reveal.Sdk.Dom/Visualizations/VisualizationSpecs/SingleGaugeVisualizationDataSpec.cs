@@ -2,7 +2,7 @@
 
 namespace Reveal.Sdk.Dom.Visualizations.VisualizationSpecs
 {
-    public class SingleGaugeVisualizationDataSpec : SingleValueVisualizationDataSpec
+    internal class SingleGaugeVisualizationDataSpec : SingleValueVisualizationDataSpec
     {
         public DimensionColumn Label { get; set; }
 
