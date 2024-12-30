@@ -57,6 +57,11 @@ public class OHLCVisualizationFixture
         Assert.Equal(dataSourceItem, ohlcVisualization.DataDefinition.DataSourceItem);
         Assert.Null(ohlcVisualization.Title);
         Assert.Equal(hasTabularData, ohlcVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        Assert.IsType(
+            ohlcVisualization.DataDefinition.DataSourceItem.HasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+            ohlcVisualization.DataDefinition);
     }
 
 
@@ -88,6 +93,11 @@ public class OHLCVisualizationFixture
         {
             Assert.NotNull(ohlcVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData, ohlcVisualization.DataDefinition.DataSourceItem.HasTabularData);
+            Assert.IsType(
+                ohlcVisualization.DataDefinition.DataSourceItem.HasTabularData
+                    ? typeof(TabularDataDefinition)
+                    : typeof(XmlaDataDefinition),
+                ohlcVisualization.DataDefinition);
         }
     }
 
@@ -95,7 +105,7 @@ public class OHLCVisualizationFixture
     public void ToJsonString_GeneratesCorrectJson_WhenOHLCVisualizationIsSerialized()
     {
         //Arrange
-        var expectedJson =
+        var expectedStr =
             """
             [ {
               "Description" : "Create OHLC Visualization",
@@ -334,10 +344,7 @@ public class OHLCVisualizationFixture
             .SetHigh("High")
             .SetLow("Low")
             .SetClose("Close")
-            .ConfigureSettings(settings =>
-            {
-                settings.SchemaTypeName = "SampleSchema";
-            }));
+            .ConfigureSettings(settings => { settings.SchemaTypeName = "SampleSchema"; }));
 
         document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
         document.Filters.Add(new DashboardDateFilter("My Date Filter"));
@@ -345,12 +352,10 @@ public class OHLCVisualizationFixture
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
-        var expected = JArray.Parse(expectedJson);
+        var actualNormalized = JsonConvert.SerializeObject(actualJson, Formatting.Indented);
+        var expectedNormalized = JArray.Parse(expectedStr).ToString(Formatting.Indented);
 
-        var expectedStr = JsonConvert.SerializeObject(expected);
-        var actualStr = JsonConvert.SerializeObject(actualJson);
-
-        //Assert
-        Assert.Equal(expectedStr, actualStr);
+        // Assert
+        Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
