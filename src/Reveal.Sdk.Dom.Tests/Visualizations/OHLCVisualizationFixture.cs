@@ -18,7 +18,6 @@ public class OHLCVisualizationFixture
         var ohlcVisualization = new OHLCVisualization();
 
         // Assert
-        Assert.NotNull(ohlcVisualization);
         Assert.Equal(ChartType.OHLC, ohlcVisualization.ChartType);
         Assert.Null(ohlcVisualization.Title);
         Assert.Null(ohlcVisualization.DataDefinition);
@@ -52,7 +51,6 @@ public class OHLCVisualizationFixture
         var ohlcVisualization = new OHLCVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(ohlcVisualization);
         Assert.Equal(ChartType.OHLC, ohlcVisualization.ChartType);
         Assert.Equal(dataSourceItem, ohlcVisualization.DataDefinition.DataSourceItem);
         Assert.Null(ohlcVisualization.Title);
@@ -300,8 +298,7 @@ public class OHLCVisualizationFixture
               }
             } ]
             """;
-
-        //Act
+        
         var document = new RdashDocument("My Dashboard");
 
         var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
