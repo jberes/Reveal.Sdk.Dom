@@ -18,7 +18,6 @@ public class SplineAreaChartVisualizationFixture
     {
         var visualization = new SplineAreaChartVisualization();
 
-        Assert.NotNull(visualization);
         Assert.Equal(ChartType.SplineArea, visualization.ChartType);
         Assert.Null(visualization.Category);
         Assert.Equal(0, visualization.ColumnSpan);
@@ -52,11 +51,15 @@ public class SplineAreaChartVisualizationFixture
         var splineAreaChartVisualization = new SplineAreaChartVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(splineAreaChartVisualization);
         Assert.Equal(ChartType.SplineArea, splineAreaChartVisualization.ChartType);
         Assert.Equal(dataSourceItem, splineAreaChartVisualization.DataDefinition.DataSourceItem);
         Assert.Null(splineAreaChartVisualization.Title);
         Assert.Equal(hasTabularData, splineAreaChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        Assert.IsType(
+            hasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+            splineAreaChartVisualization.DataDefinition);
     }
 
     [Theory]
@@ -87,138 +90,144 @@ public class SplineAreaChartVisualizationFixture
             Assert.NotNull(splineAreaChartVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData,
                 splineAreaChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+            Assert.IsType(
+                hasTabularData.Value
+                    ? typeof(TabularDataDefinition)
+                    : typeof(XmlaDataDefinition),
+                splineAreaChartVisualization.DataDefinition);
         }
     }
 
     [Fact]
     public void ToJsonString_GeneratesCorrectJson_WhenSplineAreaChartVisualizationIsSerialized()
     {
-        var expectedJson = """
-                           [ {
-                             "Description" : "Create Spline Area Visualization",
-                             "Id" : "ff37d2c3-62fd-4a8c-80f4-aeb0c087deea",
-                             "Title" : "SplineArea",
-                             "IsTitleVisible" : true,
-                             "ColumnSpan" : 0,
-                             "RowSpan" : 0,
-                             "VisualizationSettings" : {
-                               "_type" : "ChartVisualizationSettingsType",
-                               "ShowTotalsInTooltip" : true,
-                               "TrendlineType" : "ExponentialFit",
-                               "AutomaticLabelRotation" : true,
-                               "SyncAxisVisibleRange" : false,
-                               "ZoomScaleHorizontal" : 1.0,
-                               "ZoomScaleVertical" : 1.0,
-                               "LeftAxisLogarithmic" : false,
-                               "ShowLegends" : true,
-                               "ChartType" : "SplineArea",
-                               "VisualizationType" : "Area"
-                             },
-                             "DataSpec" : {
-                               "_type" : "TabularDataSpecType",
-                               "IsTransposed" : false,
-                               "Fields" : [ {
-                                 "FieldName" : "Date",
-                                 "FieldLabel" : "Date",
-                                 "UserCaption" : "Date",
-                                 "IsCalculated" : false,
-                                 "Properties" : { },
-                                 "Sorting" : "None",
-                                 "FieldType" : "Date"
-                               }, {
-                                 "FieldName" : "Spend",
-                                 "FieldLabel" : "Spend",
-                                 "UserCaption" : "Spend",
-                                 "IsCalculated" : false,
-                                 "Properties" : { },
-                                 "Sorting" : "None",
-                                 "FieldType" : "Number"
-                               }, {
-                                 "FieldName" : "Budget",
-                                 "FieldLabel" : "Budget",
-                                 "UserCaption" : "Budget",
-                                 "IsCalculated" : false,
-                                 "Properties" : { },
-                                 "Sorting" : "None",
-                                 "FieldType" : "Number"
-                               } ],
-                               "TransposedFields" : [ ],
-                               "QuickFilters" : [ ],
-                               "AdditionalTables" : [ ],
-                               "ServiceAdditionalTables" : [ ],
-                               "DataSourceItem" : {
-                                 "_type" : "DataSourceItemType",
-                                 "Id" : "080cc17d-4a0a-4837-aa3f-ef2571ea443a",
-                                 "Title" : "Marketing Sheet",
-                                 "Subtitle" : "Excel Data Source Item",
-                                 "DataSourceId" : "__EXCEL",
-                                 "HasTabularData" : true,
-                                 "HasAsset" : false,
-                                 "Properties" : {
-                                   "Sheet" : "Marketing"
-                                 },
-                                 "Parameters" : { },
-                                 "ResourceItem" : {
-                                   "_type" : "DataSourceItemType",
-                                   "Id" : "82d63339-3119-4210-835b-6d77baae145c",
-                                   "Title" : "Marketing Sheet",
-                                   "Subtitle" : "Excel Data Source Item",
-                                   "DataSourceId" : "33077d1e-19c5-44fe-b981-6765af3156a6",
-                                   "HasTabularData" : true,
-                                   "HasAsset" : false,
-                                   "Properties" : {
-                                     "Url" : "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
-                                   },
-                                   "Parameters" : { }
-                                 }
-                               },
-                               "Expiration" : 1440,
-                               "Bindings" : {
-                                 "Bindings" : [ ]
-                               }
-                             },
-                             "VisualizationDataSpec" : {
-                               "_type" : "CategoryVisualizationDataSpecType",
-                               "Values" : [ {
-                                 "_type" : "MeasureColumnSpecType",
-                                 "SummarizationField" : {
-                                   "_type" : "SummarizationValueFieldType",
-                                   "FieldLabel" : "Spend",
-                                   "UserCaption" : "Spend",
-                                   "IsHidden" : false,
-                                   "AggregationType" : "Sum",
-                                   "Sorting" : "None",
-                                   "IsCalculated" : false,
-                                   "FieldName" : "Spend"
-                                 }
-                               }, {
-                                 "_type" : "MeasureColumnSpecType",
-                                 "SummarizationField" : {
-                                   "_type" : "SummarizationValueFieldType",
-                                   "FieldLabel" : "Budget",
-                                   "UserCaption" : "Budget",
-                                   "IsHidden" : false,
-                                   "AggregationType" : "Sum",
-                                   "Sorting" : "None",
-                                   "IsCalculated" : false,
-                                   "FieldName" : "Budget"
-                                 }
-                               } ],
-                               "FormatVersion" : 0,
-                               "AdHocExpandedElements" : [ ],
-                               "Rows" : [ {
-                                 "_type" : "DimensionColumnSpecType",
-                                 "SummarizationField" : {
-                                   "_type" : "SummarizationDateFieldType",
-                                   "DateAggregationType" : "Month",
-                                   "DrillDownElements" : [ ],
-                                   "ExpandedItems" : [ ],
-                                   "FieldName" : "Date"
-                                 }
-                               } ]
-                             }
-                           } ]
-                           """;
+        var expectedJson =
+            """
+            [ {
+              "Description" : "Create Spline Area Visualization",
+              "Id" : "ff37d2c3-62fd-4a8c-80f4-aeb0c087deea",
+              "Title" : "SplineArea",
+              "IsTitleVisible" : true,
+              "ColumnSpan" : 0,
+              "RowSpan" : 0,
+              "VisualizationSettings" : {
+                "_type" : "ChartVisualizationSettingsType",
+                "ShowTotalsInTooltip" : true,
+                "TrendlineType" : "ExponentialFit",
+                "AutomaticLabelRotation" : true,
+                "SyncAxisVisibleRange" : false,
+                "ZoomScaleHorizontal" : 1.0,
+                "ZoomScaleVertical" : 1.0,
+                "LeftAxisLogarithmic" : false,
+                "ShowLegends" : true,
+                "ChartType" : "SplineArea",
+                "VisualizationType" : "Area"
+              },
+              "DataSpec" : {
+                "_type" : "TabularDataSpecType",
+                "IsTransposed" : false,
+                "Fields" : [ {
+                  "FieldName" : "Date",
+                  "FieldLabel" : "Date",
+                  "UserCaption" : "Date",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "Date"
+                }, {
+                  "FieldName" : "Spend",
+                  "FieldLabel" : "Spend",
+                  "UserCaption" : "Spend",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "Number"
+                }, {
+                  "FieldName" : "Budget",
+                  "FieldLabel" : "Budget",
+                  "UserCaption" : "Budget",
+                  "IsCalculated" : false,
+                  "Properties" : { },
+                  "Sorting" : "None",
+                  "FieldType" : "Number"
+                } ],
+                "TransposedFields" : [ ],
+                "QuickFilters" : [ ],
+                "AdditionalTables" : [ ],
+                "ServiceAdditionalTables" : [ ],
+                "DataSourceItem" : {
+                  "_type" : "DataSourceItemType",
+                  "Id" : "080cc17d-4a0a-4837-aa3f-ef2571ea443a",
+                  "Title" : "Marketing Sheet",
+                  "Subtitle" : "Excel Data Source Item",
+                  "DataSourceId" : "__EXCEL",
+                  "HasTabularData" : true,
+                  "HasAsset" : false,
+                  "Properties" : {
+                    "Sheet" : "Marketing"
+                  },
+                  "Parameters" : { },
+                  "ResourceItem" : {
+                    "_type" : "DataSourceItemType",
+                    "Id" : "82d63339-3119-4210-835b-6d77baae145c",
+                    "Title" : "Marketing Sheet",
+                    "Subtitle" : "Excel Data Source Item",
+                    "DataSourceId" : "33077d1e-19c5-44fe-b981-6765af3156a6",
+                    "HasTabularData" : true,
+                    "HasAsset" : false,
+                    "Properties" : {
+                      "Url" : "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+                    },
+                    "Parameters" : { }
+                  }
+                },
+                "Expiration" : 1440,
+                "Bindings" : {
+                  "Bindings" : [ ]
+                }
+              },
+              "VisualizationDataSpec" : {
+                "_type" : "CategoryVisualizationDataSpecType",
+                "Values" : [ {
+                  "_type" : "MeasureColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "Spend",
+                    "UserCaption" : "Spend",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "FieldName" : "Spend"
+                  }
+                }, {
+                  "_type" : "MeasureColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationValueFieldType",
+                    "FieldLabel" : "Budget",
+                    "UserCaption" : "Budget",
+                    "IsHidden" : false,
+                    "AggregationType" : "Sum",
+                    "Sorting" : "None",
+                    "IsCalculated" : false,
+                    "FieldName" : "Budget"
+                  }
+                } ],
+                "FormatVersion" : 0,
+                "AdHocExpandedElements" : [ ],
+                "Rows" : [ {
+                  "_type" : "DimensionColumnSpecType",
+                  "SummarizationField" : {
+                    "_type" : "SummarizationDateFieldType",
+                    "DateAggregationType" : "Month",
+                    "DrillDownElements" : [ ],
+                    "ExpandedItems" : [ ],
+                    "FieldName" : "Date"
+                  }
+                } ]
+              }
+            } ]
+            """;
 
         var document = new RdashDocument("My Dashboard");
 
@@ -270,16 +279,13 @@ public class SplineAreaChartVisualizationFixture
         document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
         document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-        //Act
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
-        var expected = JArray.Parse(expectedJson);
-
-        var expectedStr = JsonConvert.SerializeObject(expected);
-        var actualStr = JsonConvert.SerializeObject(actualJson);
+        var actualNormalized = JsonConvert.SerializeObject(actualJson, Formatting.Indented);
+        var expectedNormalized = JArray.Parse(expectedJson).ToString(Formatting.Indented);
 
         // Assert
-        Assert.Equal(expectedStr, actualStr);
+        Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
