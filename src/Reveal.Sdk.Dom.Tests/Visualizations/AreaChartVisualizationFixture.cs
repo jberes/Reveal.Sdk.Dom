@@ -20,7 +20,6 @@ public class AreaChartVisualizationFixture
         var areaChartVisualization = new AreaChartVisualization();
 
         // Assert
-        Assert.NotNull(areaChartVisualization);
         Assert.Equal(ChartType.Area, areaChartVisualization.ChartType);
         Assert.Null(areaChartVisualization.Title);
         Assert.Null(areaChartVisualization.DataDefinition);
@@ -54,7 +53,6 @@ public class AreaChartVisualizationFixture
         var areaChartVisualization = new AreaChartVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(areaChartVisualization);
         Assert.Equal(ChartType.Area, areaChartVisualization.ChartType);
         Assert.Equal(dataSourceItem, areaChartVisualization.DataDefinition.DataSourceItem);
         Assert.Null(areaChartVisualization.Title);
