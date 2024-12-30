@@ -74,7 +74,7 @@ public class PivotVisualizationFixture
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void Constructor_InitializesPinotVisualizationWithDataSource_WhenDataSourceItemIsProvided(bool hasTabularData)
+    public void Constructor_InitializesPivotVisualizationWithDataSource_WhenDataSourceItemIsProvided(bool hasTabularData)
     {
         // Arrange
         var dataSourceItem = new DataSourceItem { HasTabularData = true };
@@ -88,11 +88,7 @@ public class PivotVisualizationFixture
         Assert.NotNull(pivotVisualization.Columns);
         Assert.Empty(pivotVisualization.Columns);
         Assert.Null(pivotVisualization.Title);
-        Assert.IsType(
-            hasTabularData
-                ? typeof(TabularDataDefinition)
-                : typeof(XmlaDataDefinition),
-            pivotVisualization.DataDefinition);
+        Assert.IsType<TabularDataDefinition>(pivotVisualization.DataDefinition);
     }
     
     [Fact]
