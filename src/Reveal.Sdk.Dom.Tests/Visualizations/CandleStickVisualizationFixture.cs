@@ -56,6 +56,11 @@ public class CandleStickVisualizationFixture
         Assert.Equal(dataSourceItem, candleStickVisualization.DataDefinition.DataSourceItem);
         Assert.Null(candleStickVisualization.Title);
         Assert.Equal(hasTabularData, candleStickVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        Assert.IsType(
+          candleStickVisualization.DataDefinition.DataSourceItem.HasTabularData
+            ? typeof(TabularDataDefinition)
+            : typeof(XmlaDataDefinition),
+          candleStickVisualization.DataDefinition);
     }
 
     [Theory]
@@ -86,6 +91,11 @@ public class CandleStickVisualizationFixture
         {
             Assert.NotNull(candleStickVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData, candleStickVisualization.DataDefinition.DataSourceItem.HasTabularData);
+            Assert.IsType(
+              candleStickVisualization.DataDefinition.DataSourceItem.HasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+              candleStickVisualization.DataDefinition);
         }
     }
 
@@ -343,12 +353,10 @@ public class CandleStickVisualizationFixture
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
-        var expected = JArray.Parse(expectedJson);
+        var actualNormalized = JsonConvert.SerializeObject(actualJson, Formatting.Indented);
+        var expectedNormalized = JArray.Parse(expectedJson).ToString(Formatting.Indented);
 
-        var expectedStr = JsonConvert.SerializeObject(expected);
-        var actualStr = JsonConvert.SerializeObject(actualJson);
-
-        //Assert
-        Assert.Equal(expectedStr, actualStr);
+        // Assert
+        Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
