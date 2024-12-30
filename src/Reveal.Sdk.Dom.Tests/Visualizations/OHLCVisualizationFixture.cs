@@ -58,7 +58,7 @@ public class OHLCVisualizationFixture
         Assert.Null(ohlcVisualization.Title);
         Assert.Equal(hasTabularData, ohlcVisualization.DataDefinition.DataSourceItem.HasTabularData);
         Assert.IsType(
-            ohlcVisualization.DataDefinition.DataSourceItem.HasTabularData
+            hasTabularData
                 ? typeof(TabularDataDefinition)
                 : typeof(XmlaDataDefinition),
             ohlcVisualization.DataDefinition);
@@ -94,7 +94,7 @@ public class OHLCVisualizationFixture
             Assert.NotNull(ohlcVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData, ohlcVisualization.DataDefinition.DataSourceItem.HasTabularData);
             Assert.IsType(
-                ohlcVisualization.DataDefinition.DataSourceItem.HasTabularData
+                hasTabularData.Value
                     ? typeof(TabularDataDefinition)
                     : typeof(XmlaDataDefinition),
                 ohlcVisualization.DataDefinition);
