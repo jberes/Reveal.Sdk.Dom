@@ -19,7 +19,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         public void Constructor_SetTitleAndDataSource_WhenConstructed(String title)
         {
             // Arrange
-            // Arrange
             var dataSourceItem = new DataSourceItem();
 
             // Act
