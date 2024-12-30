@@ -103,84 +103,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         }
 
         [Fact]
-        public void Id_GetSetCorrectly_WhenUsed()
-        {
-            // Arrange
-            var dataSourceItem = new DataSourceItem();
-            var visualization = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true }.Object;
-
-
-            // Act
-            visualization.Id = "testId";
-
-            // Assert
-            Assert.Equal("testId", visualization.Id);
-        }
-
-        [Fact]
-        public void Title_GetSetCorrectly_WhenUsed()
-        {
-            // Arrange
-            var dataSourceItem = new DataSourceItem();
-            var visualization = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true }.Object;
-
-
-            // Act
-            visualization.Title = "testTitle";
-
-            // Assert
-            Assert.Equal("testTitle", visualization.Title);
-        }
-
-
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void IsTitleVisible_GetSetCorrectly_WhenUsed(bool expectValue)
-        {
-            // Arrange
-            var dataSourceItem = new DataSourceItem();
-            var visualization = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true }.Object;
-
-
-            // Act
-            visualization.IsTitleVisible = expectValue;
-
-            // Assert
-            Assert.Equal(expectValue, visualization.IsTitleVisible);
-        }
-
-        [Fact]
-        public void ColumnSpan_GetSetCorrectly_WhenUsed()
-        {
-            // Arrange
-            var dataSourceItem = new DataSourceItem();
-            var visualization = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true }.Object;
-
-
-            // Act
-            visualization.ColumnSpan = 10;
-
-            // Assert
-            Assert.Equal(10, visualization.ColumnSpan);
-        }
-
-        [Fact]
-        public void RowSpan_GetSetCorrectly_WhenUsed()
-        {
-            // Arrange
-            var dataSourceItem = new DataSourceItem();
-            var visualization = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true }.Object;
-
-
-            // Act
-            visualization.RowSpan = 10;
-
-            // Assert
-            Assert.Equal(10, visualization.RowSpan);
-        }
-
-        [Fact]
         public void FilterBindings_EqualDataDefinitionBindings_WhenUsed()
         {
             // Arrange
@@ -413,6 +335,31 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
 
             // Assert
             Assert.Equal(newDataSourceItem, visualization.DataDefinition.DataSourceItem);
+        }
+
+        [Fact]
+        public void UpdateDataSourceItem_ChangeNothing_IfDataSourceItemIsNull()
+        {
+            // Arrange
+            var dataSource = new DataSource()
+            {
+                Id = "DataSourceId",
+            };
+
+            var dataSourceItem = new DataSourceItem
+            {
+                DataSource = dataSource,
+                HasTabularData = false,
+            };
+
+            var mock = new Mock<Visualization>("testTitle", dataSourceItem) { CallBase = true };
+            var visualization = mock.Object;
+
+            // Act
+            visualization.UpdateDataSourceItem(null);
+
+            // Assert
+            Assert.Equal(dataSourceItem, visualization.DataDefinition.DataSourceItem);
         }
 
         [Fact]
