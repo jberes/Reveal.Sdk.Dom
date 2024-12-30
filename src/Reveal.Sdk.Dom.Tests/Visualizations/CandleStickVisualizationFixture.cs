@@ -57,7 +57,7 @@ public class CandleStickVisualizationFixture
         Assert.Null(candleStickVisualization.Title);
         Assert.Equal(hasTabularData, candleStickVisualization.DataDefinition.DataSourceItem.HasTabularData);
         Assert.IsType(
-          candleStickVisualization.DataDefinition.DataSourceItem.HasTabularData
+          hasTabularData
             ? typeof(TabularDataDefinition)
             : typeof(XmlaDataDefinition),
           candleStickVisualization.DataDefinition);
@@ -92,7 +92,7 @@ public class CandleStickVisualizationFixture
             Assert.NotNull(candleStickVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData, candleStickVisualization.DataDefinition.DataSourceItem.HasTabularData);
             Assert.IsType(
-              candleStickVisualization.DataDefinition.DataSourceItem.HasTabularData
+              hasTabularData.Value
                 ? typeof(TabularDataDefinition)
                 : typeof(XmlaDataDefinition),
               candleStickVisualization.DataDefinition);
