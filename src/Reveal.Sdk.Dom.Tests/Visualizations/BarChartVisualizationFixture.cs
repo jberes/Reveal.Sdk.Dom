@@ -20,7 +20,6 @@ public class BarChartVisualizationFixture
         var barChartVisualization = new BarChartVisualization();
 
         // Assert
-        Assert.NotNull(barChartVisualization);
         Assert.Equal(ChartType.Bar, barChartVisualization.ChartType);
         Assert.Null(barChartVisualization.Category);
         Assert.Equal(0, barChartVisualization.ColumnSpan);
@@ -55,11 +54,15 @@ public class BarChartVisualizationFixture
         var barChartVisualization = new BarChartVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(barChartVisualization);
         Assert.Equal(ChartType.Bar, barChartVisualization.ChartType);
         Assert.Equal(dataSourceItem, barChartVisualization.DataDefinition.DataSourceItem);
         Assert.Null(barChartVisualization.Title);
         Assert.Equal(hasTabularData, barChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        Assert.IsType(
+            hasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+            barChartVisualization.DataDefinition);
     }
 
     [Theory]
@@ -89,6 +92,11 @@ public class BarChartVisualizationFixture
         {
             Assert.NotNull(barChartVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData, barChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+            Assert.IsType(
+                hasTabularData.Value
+                    ? typeof(TabularDataDefinition)
+                    : typeof(XmlaDataDefinition),
+                barChartVisualization.DataDefinition);
         }
     }
 
@@ -243,6 +251,7 @@ public class BarChartVisualizationFixture
               }
             } ]
             """;
+        
         var document = new RdashDocument("My Dashboard");
 
         var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
@@ -292,16 +301,13 @@ public class BarChartVisualizationFixture
 
         document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-        // Act
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
-        var expected = JArray.Parse(expectedJson);
-
-        var expectedStr = JsonConvert.SerializeObject(expected);
-        var actualStr = JsonConvert.SerializeObject(actualJson);
+        var actualNormalized = JsonConvert.SerializeObject(actualJson, Formatting.Indented);
+        var expectedNormalized = JArray.Parse(expectedJson).ToString(Formatting.Indented);
 
         // Assert
-        Assert.Equal(expectedStr, actualStr);
+        Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
