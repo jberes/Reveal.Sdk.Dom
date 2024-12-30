@@ -18,7 +18,6 @@ public class StepLineChartVisualizationFixture
     {
         var visualization = new StepLineChartVisualization();
 
-        Assert.NotNull(visualization);
         Assert.Equal(ChartType.StepLine, visualization.ChartType);
         Assert.Null(visualization.Category);
         Assert.Equal(0, visualization.ColumnSpan);
@@ -52,11 +51,15 @@ public class StepLineChartVisualizationFixture
         var stepLineChartVisualization = new StepLineChartVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(stepLineChartVisualization);
         Assert.Equal(ChartType.StepLine, stepLineChartVisualization.ChartType);
         Assert.Equal(dataSourceItem, stepLineChartVisualization.DataDefinition.DataSourceItem);
         Assert.Null(stepLineChartVisualization.Title);
         Assert.Equal(hasTabularData, stepLineChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+        Assert.IsType(
+            hasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+            stepLineChartVisualization.DataDefinition);
     }
 
     [Theory]
@@ -87,6 +90,11 @@ public class StepLineChartVisualizationFixture
             Assert.NotNull(stepLineChartVisualization.DataDefinition);
             Assert.Equal(expectedHasTabularData,
                 stepLineChartVisualization.DataDefinition.DataSourceItem.HasTabularData);
+            Assert.IsType(
+                hasTabularData.Value
+                    ? typeof(TabularDataDefinition)
+                    : typeof(XmlaDataDefinition),
+                stepLineChartVisualization.DataDefinition);
         }
     }
 
@@ -275,16 +283,13 @@ public class StepLineChartVisualizationFixture
         document.Filters.Add(new DashboardDataFilter("Spend", excelDataSourceItem));
         document.Filters.Add(new DashboardDateFilter("My Date Filter"));
 
-        //Act
         RdashSerializer.SerializeObject(document);
         var json = document.ToJsonString();
         var actualJson = JObject.Parse(json)["Widgets"];
-        var expected = JArray.Parse(expectedJson);
-
-        var expectedStr = JsonConvert.SerializeObject(expected);
-        var actualStr = JsonConvert.SerializeObject(actualJson);
+        var actualNormalized = JsonConvert.SerializeObject(actualJson, Formatting.Indented);
+        var expectedNormalized = JArray.Parse(expectedJson).ToString(Formatting.Indented);
 
         // Assert
-        Assert.Equal(expectedStr, actualStr);
+        Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
