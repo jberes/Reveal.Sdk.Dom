@@ -46,11 +46,7 @@ public class GridVisualizationFixture
         Assert.NotNull(gridVisualization.Columns);
         Assert.Empty(gridVisualization.Columns);
         Assert.Null(gridVisualization.Title);
-        Assert.IsType(
-            hasTabularData
-                ? typeof(TabularDataDefinition)
-                : typeof(XmlaDataDefinition),
-            gridVisualization.DataDefinition);
+        Assert.IsType<TabularDataDefinition>(gridVisualization.DataDefinition);
     }
 
     [Theory]
