@@ -18,7 +18,6 @@ public class TimeSeriesVisualizationFixture
     {
         var visualization = new TimeSeriesVisualization();
 
-        Assert.NotNull(visualization);
         Assert.Equal(ChartType.TimeSeries, visualization.ChartType);
         Assert.Null(visualization.Category);
         Assert.Equal(0, visualization.ColumnSpan);
@@ -52,7 +51,6 @@ public class TimeSeriesVisualizationFixture
         var timeSeriesVisualization = new TimeSeriesVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(timeSeriesVisualization);
         Assert.Equal(ChartType.TimeSeries, timeSeriesVisualization.ChartType);
         Assert.Equal(dataSourceItem, timeSeriesVisualization.DataDefinition.DataSourceItem);
         Assert.Null(timeSeriesVisualization.Title);
@@ -333,7 +331,6 @@ public class TimeSeriesVisualizationFixture
             } ]
             """;
 
-        //Act
         var document = new RdashDocument("My Dashboard");
 
         var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
