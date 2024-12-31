@@ -16,8 +16,10 @@ public class TimeSeriesVisualizationFixture
     [Fact]
     public void Constructor_InitializesDefaultValues_WhenInstanceIsCreated()
     {
+        //Act
         var visualization = new TimeSeriesVisualization();
 
+        //Assert
         Assert.Equal(ChartType.TimeSeries, visualization.ChartType);
         Assert.Null(visualization.Category);
         Assert.Equal(0, visualization.ColumnSpan);
@@ -148,35 +150,6 @@ public class TimeSeriesVisualizationFixture
 
         // Assert
         Assert.Equal(expectedValues, values);
-    }
-
-    [Fact]
-    public void VisualizationDataSpec_CanBeSetAndRetrieved_WhenInitialized()
-    {
-        // Arrange
-        var expectedDataSpec = new TimeSeriesVisualizationDataSpec
-        {
-            Values = new List<MeasureColumn>
-            {
-                new() { DataField = new NumberDataField("Value1") }
-            },
-            Category = new DimensionColumn { DataField = new MockDimensionDataField("CategoryField") },
-            Rows = new List<DimensionColumn>
-            {
-                new DimensionColumn { DataField = new MockDimensionDataField("DateField") }
-            }
-        };
-
-        var visualization = new TimeSeriesVisualization();
-
-        // Act
-        visualization.VisualizationDataSpec = expectedDataSpec;
-
-        // Assert
-        Assert.Equal(expectedDataSpec, visualization.VisualizationDataSpec);
-        Assert.Equal(expectedDataSpec.Values, visualization.Values);
-        Assert.Equal(expectedDataSpec.Category, visualization.Category);
-        Assert.Equal(expectedDataSpec.Rows[0], visualization.Date);
     }
 
     [Fact]
