@@ -76,7 +76,7 @@ public class PivotVisualizationFixture
     public void Constructor_InitializesPivotVisualizationWithDataSource_WhenDataSourceItemIsProvided(bool hasTabularData)
     {
         // Arrange
-        var dataSourceItem = new DataSourceItem { HasTabularData = true };
+        var dataSourceItem = new DataSourceItem { HasTabularData = hasTabularData};
 
         // Act
         var pivotVisualization = new PivotVisualization(dataSourceItem);
