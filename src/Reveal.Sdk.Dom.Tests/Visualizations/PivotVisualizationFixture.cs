@@ -86,8 +86,11 @@ public class PivotVisualizationFixture
         Assert.NotNull(pivotVisualization.Columns);
         Assert.Empty(pivotVisualization.Columns);
         Assert.Null(pivotVisualization.Title);
-        Assert.IsType<TabularDataDefinition>(pivotVisualization.DataDefinition);
-    }
+        Assert.IsType(
+            hasTabularData
+                ? typeof(TabularDataDefinition)
+                : typeof(XmlaDataDefinition),
+            pivotVisualization.DataDefinition);    }
     
     [Fact]
     public void Columns_ReturnsExpectedColumns_WhenInitialize()
