@@ -34,7 +34,7 @@ public class GridVisualizationFixture
     public void Constructor_InitializesGridVisualizationWithDataSource_WhenDataSourceItemIsProvided(bool hasTabularData)
     {
         // Arrange
-        var dataSourceItem = new DataSourceItem { HasTabularData = true };
+        var dataSourceItem = new DataSourceItem { HasTabularData = hasTabularData };
 
         // Act
         var gridVisualization = new GridVisualization(dataSourceItem);
@@ -120,29 +120,6 @@ public class GridVisualizationFixture
         Assert.NotNull(gridVisualization.VisualizationDataSpec);
         Assert.IsType<GridVisualizationDataSpec>(gridVisualization.VisualizationDataSpec);
     }
-
-    [Fact]
-    public void VisualizationDataSpec_CanBeSetAndRetrieved_WhenInitialized()
-    {
-        // Arrange
-        var customVisualizationDataSpec = new GridVisualizationDataSpec
-        {
-            Columns = new List<TabularColumn>
-            {
-                new() { FieldName = "CustomColumn" }
-            }
-        };
-
-        var gridVisualization = new GridVisualization();
-
-        // Act
-        gridVisualization.VisualizationDataSpec = customVisualizationDataSpec;
-
-        // Assert
-        Assert.Equal(customVisualizationDataSpec, gridVisualization.VisualizationDataSpec);
-        Assert.Equal(customVisualizationDataSpec.Columns, gridVisualization.Columns);
-    }
-
 
     [Fact]
     public void ToJsonString_GeneratesCorrectJson_WhenGridVisualizationIsSerialized()

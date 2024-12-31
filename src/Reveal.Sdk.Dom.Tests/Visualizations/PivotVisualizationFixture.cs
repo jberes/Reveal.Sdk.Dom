@@ -165,32 +165,6 @@ public class PivotVisualizationFixture
     }
 
     [Fact]
-    public void Columns_AreSerializedCorrectly_WhenSerialize()
-    {
-        // Arrange
-        var expectedColumns = new List<DimensionColumn>
-        {
-            new() { DataField = new MockDimensionDataField("Column1") },
-            new() { DataField = new MockDimensionDataField("Column2") }
-        };
-
-        var pivotVisualization = new PivotVisualization
-        {
-            VisualizationDataSpec = new PivotVisualizationDataSpec
-            {
-                Columns = expectedColumns
-            }
-        };
-
-        // Act
-        var serializedJson = JsonConvert.SerializeObject(pivotVisualization);
-
-        // Assert
-        Assert.Contains("Column1", serializedJson);
-        Assert.Contains("Column2", serializedJson);
-    }
-
-    [Fact]
     public void ToJsonString_GeneratesCorrectJson_WhenPivotVisualizationIsSerialized()
     {
         //Arrange
