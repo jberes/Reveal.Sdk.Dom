@@ -21,7 +21,6 @@ public class PivotVisualizationFixture
         var pivotVisualization = new PivotVisualization();
 
         // Assert
-        Assert.NotNull(pivotVisualization);
         Assert.Equal(ChartType.Pivot, pivotVisualization.ChartType);
         Assert.NotNull(pivotVisualization.Columns);
         Assert.Empty(pivotVisualization.Columns);
@@ -83,7 +82,6 @@ public class PivotVisualizationFixture
         var pivotVisualization = new PivotVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(pivotVisualization);
         Assert.Equal(ChartType.Pivot, pivotVisualization.ChartType);
         Assert.NotNull(pivotVisualization.Columns);
         Assert.Empty(pivotVisualization.Columns);

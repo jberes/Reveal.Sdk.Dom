@@ -20,7 +20,6 @@ public class GridVisualizationFixture
         var gridVisualization = new GridVisualization();
 
         // Assert
-        Assert.NotNull(gridVisualization);
         Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
         Assert.NotNull(gridVisualization.Columns);
         Assert.Empty(gridVisualization.Columns);
@@ -41,7 +40,6 @@ public class GridVisualizationFixture
         var gridVisualization = new GridVisualization(dataSourceItem);
 
         // Assert
-        Assert.NotNull(gridVisualization);
         Assert.Equal(ChartType.Grid, gridVisualization.ChartType);
         Assert.NotNull(gridVisualization.Columns);
         Assert.Empty(gridVisualization.Columns);
