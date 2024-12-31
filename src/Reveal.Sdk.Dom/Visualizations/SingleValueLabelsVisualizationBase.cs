@@ -23,8 +23,8 @@ namespace Reveal.Sdk.Dom.Visualizations
                 {
                     return new List<DimensionColumn>();
                 }
-            } 
             }
+        }
 
         [JsonIgnore]
         public List<MeasureColumn> Values { 
@@ -44,6 +44,6 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         //Some visualizations can be assigned a CategoryVisualizationDataSpec instead of a SingleValueLabelsVisualizationDataSpec
         [JsonProperty(Order = 7)]
-        VisualizationDataSpec VisualizationDataSpec { get; set; } = new SingleValueLabelsVisualizationDataSpec();
+        internal VisualizationDataSpec VisualizationDataSpec { get; set; } = new SingleValueLabelsVisualizationDataSpec();
     }
 }
