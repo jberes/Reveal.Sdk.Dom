@@ -1,14 +1,10 @@
 ﻿using Moq;
-using Newtonsoft.Json;
 using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
-using Newtonsoft.Json;
 using System.Reflection;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
@@ -31,127 +27,74 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
             var updatedVisualization = visualization.SetPosition(rowSpan, columnSpan);
 
             // Assert
-            Assert.Equal(rowSpan, visualization.RowSpan);
-            Assert.Equal(columnSpan, visualization.ColumnSpan);
+            Assert.Equal(rowSpan, updatedVisualization.RowSpan);
+            Assert.Equal(columnSpan, updatedVisualization.ColumnSpan);
             Assert.Same(visualization, updatedVisualization);
         }
 
-        // TODO: We should find a faster way to create Generic constructor / method 
-        [Theory]
-        [InlineData(typeof(TextFilter), typeof(TextField))]
-        [InlineData(typeof(DateTimeFilter), typeof(DateTimeField))]
-        [InlineData(typeof(NumberFilter), typeof(NumberField))]
-        [InlineData(typeof(TimeFilter), typeof(TimeField))]
-        [InlineData(typeof(DateTimeFilter), typeof(DateField))]
-        public void AddDataFilter_UpdateDataDefinition_ForTabularDataDefinition(Type filterType, Type fieldType)
+        [Fact]
+        public void AddDataFilter_UpdateDataDefinition_ForTabularDataDefinition()
         {
             // Arrange
             var mockVS = new Mock<IVisualization>() { };
-
-            var dataDefinition = new TabularDataDefinition();
-
-            var fieldConstructor = fieldType.GetConstructor(new[] { typeof(string) });
-            var fieldObj = fieldConstructor.Invoke(new object[] { "testField" });
-            var field = (fieldType.IsAssignableFrom(fieldObj.GetType())) ? (dynamic)fieldObj : null;
-
-            dataDefinition.Fields.Add((IField)field);
-
-            mockVS.SetupGet(p => p.DataDefinition).Returns(dataDefinition);
-            var visualization = mockVS.Object;
-
-            var filterConstructor = filterType.GetConstructor(Type.EmptyTypes);
-            var filter = filterConstructor.Invoke(new object[] { });
-
-            var vsDataDefinitionFields = (visualization.DataDefinition as TabularDataDefinition).Fields;
-
-            foreach (var f in vsDataDefinitionFields)
+            var dataDefinition = new TabularDataDefinition()
             {
-                // Act
-                var addDataFilterMethod = typeof(IVisualizationExtensions).GetMethod(nameof(IVisualizationExtensions.AddDataFilter));
-                var addDataFilterGenericMethod = addDataFilterMethod.MakeGenericMethod(typeof(IVisualization), filterType);
-                addDataFilterGenericMethod.Invoke(visualization, new object[] { visualization, f.FieldName, filter });
-
-                Type genericFilterType = typeof(FieldBase<>).MakeGenericType(filterType);
-                var propertyInfo = genericFilterType.GetProperty("DataFilter");
-                var actualFilter = propertyInfo.GetValue(f);
-
-                // Assert
-                Assert.Same(filter, actualFilter);
-            }
-        }
-
-        // TODO: We should find a faster way to create Generic constructor / method
-        // TODO: Need to check how to write unit test to cover all the cases of the catch block
-        [Theory]
-        [InlineData(typeof(TextFilter), typeof(TextField))]
-        [InlineData(typeof(DateTimeFilter), typeof(DateTimeField))]
-        [InlineData(typeof(NumberFilter), typeof(NumberField))]
-        [InlineData(typeof(TimeFilter), typeof(TimeField))]
-        [InlineData(typeof(DateTimeFilter), typeof(DateField))]
-        public void AddDataFilter_ThrowException_WithNotFoundField(Type filterType, Type fieldType)
-        {
-            // Arrange
-            var mockVS = new Mock<IVisualization>() { };
-
-            var dataDefinition = new TabularDataDefinition();
-
-            var fieldConstructor = fieldType.GetConstructor(new[] { typeof(string) });
-            var fieldObj = fieldConstructor.Invoke(new object[] { "testField" });
-            var field = (fieldType.IsAssignableFrom(fieldObj.GetType())) ? (dynamic)fieldObj : null;
-
-            dataDefinition.Fields.Add((IField)field);
-
+                Fields = new List<IField>()
+                {
+                    new Mock_Field("testField")
+                }
+            };
             mockVS.SetupGet(p => p.DataDefinition).Returns(dataDefinition);
             var visualization = mockVS.Object;
 
-            var filterConstructor = filterType.GetConstructor(Type.EmptyTypes);
-            var filter = filterConstructor.Invoke(new object[] { });
-
+            var filter = new Mock_IFilter();
             var vsDataDefinitionFields = (visualization.DataDefinition as TabularDataDefinition).Fields;
 
             // Act
-            var addDataFilterMethod = typeof(IVisualizationExtensions).GetMethod(nameof(IVisualizationExtensions.AddDataFilter));
-            var addDataFilterGenericMethod = addDataFilterMethod.MakeGenericMethod(typeof(IVisualization), filterType);
-            var action = () => addDataFilterGenericMethod.Invoke(visualization, new object[] { visualization, "NotFoundField", filter });
+            visualization.AddDataFilter("testField", filter);
 
             // Assert
-            var ex = Assert.Throws<TargetInvocationException>(action);
-            Assert.IsType<Exception>(ex.InnerException);
-            Assert.Equal("AddDataFilter: Field NotFoundField cannot be found.", ex.InnerException.Message);
+            Assert.Equal(filter, ((FieldBase<Mock_IFilter>)(vsDataDefinitionFields.First())).DataFilter);
         }
 
-        // TODO: We should find a faster way to create Generic constructor / method
-        // TODO: Need to check how to write unit test to cover all the cases of the catch block
-        [Theory]
-        [InlineData(typeof(TextFilter), typeof(TextField))]
-        [InlineData(typeof(DateTimeFilter), typeof(DateTimeField))]
-        [InlineData(typeof(NumberFilter), typeof(NumberField))]
-        [InlineData(typeof(TimeFilter), typeof(TimeField))]
-        [InlineData(typeof(DateTimeFilter), typeof(DateField))]
-        public void AddDataFilter_ThrowException_WithGeneralException(Type filterType, Type fieldType)
+        [Fact]
+        public void AddDataFilter_ThrowException_WithNotFoundField()
         {
             // Arrange
             var mockVS = new Mock<IVisualization>() { };
-
             var dataDefinition = new TabularDataDefinition();
-
-            var fieldConstructor = fieldType.GetConstructor(new[] { typeof(string) });
-            var fieldObj = fieldConstructor.Invoke(new object[] { "testField" });
-            var field = (fieldType.IsAssignableFrom(fieldObj.GetType())) ? (dynamic)fieldObj : null;
-
-            dataDefinition.Fields.Add((IField)field);
-
+            var field = new Mock_Field("testField");
+            dataDefinition.Fields.Add(field);
             mockVS.SetupGet(p => p.DataDefinition).Returns(dataDefinition);
             var visualization = mockVS.Object;
 
-            var filterConstructor = filterType.GetConstructor(Type.EmptyTypes);
-            var filter = filterConstructor.Invoke(new object[] { });
-
+            var filter = new Mock_IFilter();
             var vsDataDefinitionFields = (visualization.DataDefinition as TabularDataDefinition).Fields;
 
+            // Act
+            var action = () => visualization.AddDataFilter("NotFoundField", filter);
+
+            // Assert
+            var ex = Assert.Throws<Exception>(action);
+            Assert.Equal("AddDataFilter: Field NotFoundField cannot be found.", ex.Message);
+        }
+
+        [Fact]
+        public void AddDataFilter_ThrowException_WithGeneralException()
+        {
+            // Arrange
+            var mockVS = new Mock<IVisualization>() { };
+            var dataDefinition = new TabularDataDefinition();
+            var field = new Mock_Field("testField");
+            dataDefinition.Fields.Add(field);
+            mockVS.SetupGet(p => p.DataDefinition).Returns(dataDefinition);
+            var visualization = mockVS.Object;
+
+            var filter = new TextFilter();
+            var vsDataDefinitionFields = (visualization.DataDefinition as TabularDataDefinition).Fields;
 
             // Act
-            var action = () => visualization.AddDataFilter("testField", (IFilter)filter);
+            var action = () => visualization.AddDataFilter("testField", filter);
 
             // Assert
             var ex = Assert.Throws<Exception>(action);
@@ -198,7 +141,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
             mockVS.SetupGet(p => p.DataDefinition).Returns(dataDefinition);
             var visualization = mockVS.Object;
             var expectedQuickFilters = new List<VisualizationFilter>();
-            foreach(var fieldName in fieldNames)
+            foreach (var fieldName in fieldNames)
             {
                 expectedQuickFilters.Add(new VisualizationFilter(fieldName));
             }
@@ -330,6 +273,14 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
 
             // Assert
             Assert.Equivalent(expectedDashboardFilterBindings, visualization.FilterBindings);
+        }
+
+        private class Mock_IFilter : IFilter { }
+
+        private class Mock_Field : FieldBase<Mock_IFilter>
+        {
+            public Mock_Field(string fieldName) : base(fieldName)
+            { }
         }
     }
 }
