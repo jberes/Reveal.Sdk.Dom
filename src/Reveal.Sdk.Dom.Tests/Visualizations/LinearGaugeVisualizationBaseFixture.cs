@@ -4,9 +4,6 @@ using Reveal.Sdk.Dom.Visualizations.Settings;
 using Reveal.Sdk.Dom.Visualizations.VisualizationSpecs;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations
@@ -19,7 +16,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
         [InlineData(null)]
         public void Constructor_SetTitleAndDataSource_WhenConstructed(String title)
         {
-            // Arrange
             // Arrange
             var dataSourceItem = new DataSourceItem();
 
