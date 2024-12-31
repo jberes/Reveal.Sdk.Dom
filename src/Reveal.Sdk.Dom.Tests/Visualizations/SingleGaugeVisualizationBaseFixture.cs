@@ -66,20 +66,14 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations
                 Label = new DimensionColumn(),
             };
             visualization.VisualizationDataSpec = visSpec;
+            var newLabel = new DimensionColumn();
 
             // Act 
-            var label = visualization.Label;
-
-            // Assert
-            Assert.NotNull(label);
-            Assert.Same(visSpec.Label, label);
-
-            // Act
-            var newLabel = new DimensionColumn();
             visualization.Label = newLabel;
 
             // Assert
             Assert.Same(newLabel, visualization.Label);
+            Assert.Same(newLabel, visSpec.Label);
         }
 
         private class TestSingleGaugeVisualizationBase : SingleGaugeVisualizationBase<TestVisualizationSettings>
