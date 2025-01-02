@@ -1,12 +1,8 @@
 using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Visualizations;
 using Reveal.Sdk.Dom.Core.Constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
+using Newtonsoft.Json;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
 {
@@ -42,16 +38,17 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
         public void ConvertToJson_OutputAsExpected_WhenCalled()
         {
             // Arrange
-            var column = new TabularColumn() {
+            var column = new TabularColumn()
+            {
                 FieldName = "test field",
                 Sorting = SortingType.Desc
-            }
+            };
 
-            var expectedJson =  JObject.Parse("""
+            var expectedJson = JObject.Parse("""
             {
-                "SchemaTypeName": "TabularColumnSpecType",
+                "_type": "TabularColumnSpecType",
                 "FieldName": "test field",
-                "Sorting": "Desc",
+                "Sorting": "Desc"
             }
             """);
 
@@ -64,6 +61,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
 
             // Assert
             Assert.Equal(expectedJson.ToString(), outputJson);
-
+        }
     }
 }
