@@ -364,17 +364,3 @@ public class TimeSeriesVisualizationFixture
         Assert.Equal(expectedNormalized.Trim(), actualNormalized.Trim());
     }
 }
-
-internal class MockDimensionDataField : IDimensionDataField
-{
-    public MockDimensionDataField(string fieldName)
-    {
-        FieldName = fieldName;
-    }
-
-    public string Caption { get; set; }
-    public IDictionary<string, object> Properties { get; } = new Dictionary<string, object>();
-
-    public string FieldName { get; set; }
-    public string Description { get; set; }
-}
