@@ -1,12 +1,8 @@
 using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Visualizations;
 using Reveal.Sdk.Dom.Core.Constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
+using Newtonsoft.Json;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
 {
@@ -27,7 +23,8 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
         public void Constructor_SchemaTypeIsDimensionColSpecType_WhenConstructedWithDataField()
         {
             // Arrange
-            var dataField = new TextDataField("test field");
+            var dataField = new NumberDataField("test field");
+
             // Act
             var column = new MeasureColumn(dataField);
 
@@ -40,20 +37,28 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
         {
             // Arrange
             var column = new MeasureColumn();
-            column.DataField = new TextDataField("test field");
+            column.DataField = new NumberDataField("test field");
             column.XmlaMeasure = new XmlaMeasure();
 
             var expectedJson =  JObject.Parse("""
             {
-                "SchemaTypeName": "MeasureColumnSpecType",
-                "SummarizationField": {
-                    "Name": "test field",
-                    "SchemaTypeName": "TextDataField"
-                },
-                "XmlaElement": {
-                    "Name": null,
-                    "SchemaTypeName": "XmlaMeasure"
-                }
+              "_type": "MeasureColumnSpecType",
+              "SummarizationField": {
+                "_type": "SummarizationValueFieldType",
+                "FieldLabel": "test field",
+                "UserCaption": "test field",
+                "IsHidden": false,
+                "AggregationType": "Sum",
+                "Sorting": "None",
+                "IsCalculated": false,
+                "FieldName": "test field"
+              },
+              "XmlaMeasure": {
+                "IsHidden": false,
+                "IsCalculated": false,
+                "Sorting": "None",
+                "Metadata": {}
+              }
             }
             """);
 
