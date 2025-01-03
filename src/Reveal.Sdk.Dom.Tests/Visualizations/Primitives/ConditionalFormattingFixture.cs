@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
@@ -25,5 +26,51 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
             Assert.Equivalent(expectedMinimum, conditionalFormatting.Minimum);
             Assert.Equivalent(expectedMaximum, conditionalFormatting.Maximum);
         }
-    }
+        [Fact]
+        public void ToJsonString_CreateCorrectJsonString_WithoutCondition()
+        {
+            // Arrange
+            var expectedJson = """
+            {
+                "Minimum": {
+                    "ValueType": "LowestValue"
+                },
+                "Maximum": {
+                    "ValueType": "HighestValue"
+                },
+                "Bands": [
+                    {
+                        "_type": "ConditionalFormattingBandType",
+                        "Shape": "Circle",
+                        "Type": "Percentage",
+                        "Color": "Green",
+                        "Value": 80.0
+                    },
+                    {
+                        "_type": "ConditionalFormattingBandType",
+                        "Shape": "Circle",
+                        "Type": "Percentage",
+                        "Color": "Yellow",
+                        "Value": 50.0
+                    },
+                    {
+                        "_type": "ConditionalFormattingBandType",
+                        "Shape": "Circle",
+                        "Type": "Percentage",
+                        "Color": "Red"
+                    }
+                ]
+            }
+            """;
+            var pivotVSDataSpec = new ConditionalFormatting();
+
+            // Act
+            var actualJson = pivotVSDataSpec.ToJsonString();
+            var expectedJObject = JObject.Parse(expectedJson);
+            var actualJObject = JObject.Parse(actualJson);
+
+            // Assert
+            Assert.Equal(expectedJObject, actualJObject);
+        }
+    }  
 }
