@@ -20,7 +20,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
             var expectedMiddle = new TestBand() { Color = BandColor.Yellow, Value = 50.0 };
             var expectedLower = new TestBand() { Color = BandColor.Red };
 
-            var expectedBands = new List<TBand>()
+            var expectedBands = new List<TestBand>()
             {
                 expectedUpper,
                 expectedMiddle,
@@ -31,10 +31,10 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
             var item = new TestConditionalFormattingBase();
 
             // Assert
-            Assert.Equal(expectedBands, item.Bands);
-            Assert.Equal(expectedUpper, item.UpperBand);
-            Assert.Equal(expectedMiddle, item.MiddleBand);
-            Assert.Equal(expectedLower, item.LowerBand);
+            Assert.Equivalent(expectedBands, item.Bands);
+            Assert.Equivalent(expectedUpper, item.UpperBand);
+            Assert.Equivalent(expectedMiddle, item.MiddleBand);
+            Assert.Equivalent(expectedLower, item.LowerBand);
         }
 
         [Fact]
