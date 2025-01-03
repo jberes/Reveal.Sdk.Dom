@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
 {
-    public class TabularColumnFixture
+    public class ConditionalFormattingBaseFixture
     {
         [Fact]
         public void Constructor_SetDefaultBands_WhenConstructed()
@@ -66,6 +66,41 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
 
             // Assert
             Assert.Equal(expectedValueComparisonType, result);
+        }
+
+        [Fact]
+        public void ToJsonString_CreateCorrectJsonString_WithoutCondition()
+        {
+            // Arrange
+            var expectedJson = """
+            {
+              "Bands": [
+                {
+                  "Type": "Percentage",
+                  "Color": "Green",
+                  "Value": 80.0
+                },
+                {
+                  "Type": "Percentage",
+                  "Color": "Yellow",
+                  "Value": 50.0
+                },
+                {
+                  "Type": "Percentage",
+                  "Color": "Red"
+                }
+              ]
+            }
+            """;
+            var pivotVSDataSpec = new TestConditionalFormattingBase();
+
+            // Act
+            var actualJson = pivotVSDataSpec.ToJsonString();
+            var expectedJObject = JObject.Parse(expectedJson);
+            var actualJObject = JObject.Parse(actualJson);
+
+            // Assert
+            Assert.Equal(expectedJObject, actualJObject);
         }
 
         private class TestConditionalFormattingBase : ConditionalFormattingBase<TestBand>
