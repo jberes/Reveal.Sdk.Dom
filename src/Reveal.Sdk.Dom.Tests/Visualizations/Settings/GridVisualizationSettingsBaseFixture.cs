@@ -15,7 +15,6 @@ public class GridVisualizationSettingsBaseFixture
         var settings = new TestGridVisualizationSettings();
 
         // Assert
-        Assert.NotNull(settings);
         Assert.Equal(default(FontSize), settings.FontSize);
         Assert.NotNull(settings.Style);
         Assert.Equal(default(Alignment), settings.DateFieldAlignment);
