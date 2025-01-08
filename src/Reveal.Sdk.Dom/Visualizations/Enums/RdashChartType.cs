@@ -26,6 +26,7 @@
         StackedBar,
         Doughnut,
         Funnel,
-        TimeSeries
+        TimeSeries,
+        Financial
     }
 }
