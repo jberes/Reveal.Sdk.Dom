@@ -9,7 +9,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
     public class ScatterVisualizationDataSpecFixture
     {
         [Fact]
-        public void Constructor_FieldsHaveDefaultValue()
+        public void Constructor_FieldsHaveDefaultValue_WithoutParameters()
         {
             // Act
             var scatterVSDataSpec = new ScatterVisualizationDataSpec();
