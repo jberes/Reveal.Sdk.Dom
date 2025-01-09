@@ -26,7 +26,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
             // Arrange
             var expectedJson = """
                 {
-                  "_type": "ChartVisualizationSettingsType",
+                  "_type": "CompositeChartVisualizationDataSpecType",
                   "Chart1": [],
                   "Chart2": [],
                   "AdHocFields": 15,
@@ -41,7 +41,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
                 AdHocFields = 15,
                 FormatVersion = 3,
                 Rows = new List<Dom.Visualizations.DimensionColumn>(),
-                SchemaTypeName = SchemaTypeNames.ChartVisualizationSettingsType,
                 Chart1 = new List<Dom.Visualizations.MeasureColumn>(),
                 Chart2 = new List<Dom.Visualizations.MeasureColumn>()
             };
