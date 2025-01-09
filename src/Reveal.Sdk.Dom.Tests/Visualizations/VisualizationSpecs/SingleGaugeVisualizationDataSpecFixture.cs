@@ -25,7 +25,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
             // Arrange
             var expectedJson = """
                 {
-                  "_type": "AssetVisualizationSettingsType",
+                  "_type": "SingleGaugeVisualizationDataSpecType",
                   "Label": {
                     "_type": "DimensionColumnSpecType"
                   },
@@ -34,7 +34,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
                 """;
             var singleGaugeVSDataSpec = new SingleGaugeVisualizationDataSpec()
             {
-                SchemaTypeName = SchemaTypeNames.AssetVisualizationSettingsType,
                 Label = new DimensionColumn(),
                 Value = new List<MeasureColumn>()
             };
