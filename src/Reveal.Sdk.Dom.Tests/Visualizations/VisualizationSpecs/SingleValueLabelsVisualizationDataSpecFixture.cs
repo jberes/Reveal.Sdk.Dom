@@ -25,7 +25,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
             // Arrange
             var expectedJson = """
                 {
-                  "_type": "BubbleVisualizationDataSpecType",
+                  "_type": "SingleValueLabelsVisualizationDataSpecType",
                   "Value": [],
                   "AdHocFields": 15,
                   "FormatVersion": 5,
@@ -39,7 +39,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
                 AdHocFields = 15,
                 FormatVersion = 5,
                 Rows = new List<Dom.Visualizations.DimensionColumn>(),
-                SchemaTypeName = SchemaTypeNames.BubbleVisualizationDataSpecType,
                 Value = new List<Dom.Visualizations.MeasureColumn>()
             };
 
