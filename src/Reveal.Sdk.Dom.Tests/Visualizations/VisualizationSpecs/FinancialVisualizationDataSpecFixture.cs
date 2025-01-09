@@ -28,7 +28,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
             // Arrange
             var expectedJson = """
                 {
-                  "_type": "ChartVisualizationSettingsType",
+                  "_type": "FinancialVisualizationDataSpecType",
                   "Open": [],
                   "High": [],
                   "Low": [],
@@ -45,7 +45,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
                 AdHocFields = 13,
                 FormatVersion = 5,
                 Rows = new List<Dom.Visualizations.DimensionColumn>(),
-                SchemaTypeName = SchemaTypeNames.ChartVisualizationSettingsType,
                 Open = new List<Dom.Visualizations.MeasureColumn>(),
                 Close = new List<Dom.Visualizations.MeasureColumn>(),
                 High = new List<Dom.Visualizations.MeasureColumn>(),
