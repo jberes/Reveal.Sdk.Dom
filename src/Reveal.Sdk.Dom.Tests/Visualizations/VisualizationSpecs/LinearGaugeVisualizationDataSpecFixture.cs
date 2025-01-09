@@ -26,7 +26,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
             // Arrange
             var expectedJson = """
                 {
-                  "_type": "ChartVisualizationSettingsType",
+                  "_type": "LinearGaugeVisualizationDataSpecType",
                   "Value": [],
                   "Target": [],
                   "AdHocFields": 6,
@@ -41,7 +41,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
                 AdHocFields = 6,
                 FormatVersion = 12,
                 Rows = new List<Dom.Visualizations.DimensionColumn>(),
-                SchemaTypeName = SchemaTypeNames.ChartVisualizationSettingsType,
                 Target = new List<Dom.Visualizations.MeasureColumn>(),
                 Value = new List<Dom.Visualizations.MeasureColumn>(),
             };
