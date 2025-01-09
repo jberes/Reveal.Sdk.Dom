@@ -32,7 +32,6 @@ public class FinancialVisualizationSettingsBaseFixture
             {
               "SchemaTypeName": "ChartVisualizationSettingsType",
               "VisualizationType": "CHART",
-              "ChartType": "Financial",
               "LeftAxisLogarithmic": true,
               "LeftAxisMinValue": 10.5,
               "LeftAxisMaxValue": 100.75
@@ -41,7 +40,6 @@ public class FinancialVisualizationSettingsBaseFixture
 
         var settings = new TestFinancialVisualizationSettingsBase
         {
-            ChartType = RdashChartType.Financial,
             LeftAxisIsLogarithmic = true,
             LeftAxisMinValue = 10.5,
             LeftAxisMaxValue = 100.75

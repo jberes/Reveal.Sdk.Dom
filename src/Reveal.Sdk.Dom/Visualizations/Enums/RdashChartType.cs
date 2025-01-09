@@ -27,6 +27,5 @@
         Doughnut,
         Funnel,
         TimeSeries,
-        Financial
     }
 }
