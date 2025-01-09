@@ -25,7 +25,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
             // Arrange
             var expectedJson = """
                 {
-                  "_type": "ChartVisualizationSettingsType",
+                  "_type": "SingleValueCategoryVisualizationDataSpecType",
                   "Value": [],
                   "Category": {
                     "_type": "DimensionColumnSpecType"
@@ -43,7 +43,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
                 Category = new Dom.Visualizations.DimensionColumn(),
                 FormatVersion = 2,
                 Rows = new List<Dom.Visualizations.DimensionColumn>(),
-                SchemaTypeName = SchemaTypeNames.ChartVisualizationSettingsType,
                 Value = new List<Dom.Visualizations.MeasureColumn>()
             };
 
