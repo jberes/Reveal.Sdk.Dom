@@ -24,7 +24,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
             // Arrange
             var expectedJson = """
                 {
-                  "_type": "ChartVisualizationSettingsType",
+                  "_type": "ChoroplethMapVisualizationDataSpecType",
                   "MapColor": {
                     "_type": "DimensionColumnSpecType"
                   },
@@ -42,7 +42,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
                 FormatVersion = 5,
                 MapColor = new Dom.Visualizations.DimensionColumn(),
                 Rows = new List<Dom.Visualizations.DimensionColumn>(),
-                SchemaTypeName = SchemaTypeNames.ChartVisualizationSettingsType,
                 Value = new List<Dom.Visualizations.MeasureColumn>(),
             };
 
