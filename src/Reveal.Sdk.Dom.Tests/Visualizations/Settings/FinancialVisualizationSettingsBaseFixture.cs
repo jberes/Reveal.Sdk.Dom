@@ -30,11 +30,12 @@ public class FinancialVisualizationSettingsBaseFixture
         var expectedJson =
             """
             {
-              "SchemaTypeName": "ChartVisualizationSettingsType",
-              "VisualizationType": "CHART",
-              "LeftAxisLogarithmic": true,
-              "LeftAxisMinValue": 10.5,
-              "LeftAxisMaxValue": 100.75
+              "_type" : "ChartVisualizationSettingsType",
+              "LeftAxisLogarithmic" : true,
+              "LeftAxisMinValue" : 10.5,
+              "LeftAxisMaxValue" : 100.75,
+              "ChartType" : "Column",
+              "VisualizationType" : "CHART"
             }
             """;
 
