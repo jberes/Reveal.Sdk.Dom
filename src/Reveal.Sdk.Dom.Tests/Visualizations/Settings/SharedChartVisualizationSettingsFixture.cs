@@ -28,8 +28,8 @@ public class SharedChartVisualizationSettingsFixture
     }
 
     [Theory]
-    [InlineData(RdashChartType.Bar, 0.5, 1.0, 0.5)]
-    [InlineData(RdashChartType.StackedBar, 0.8, 1, 0.8)]
+    [InlineData(RdashChartType.Bar, 0.5, 0.5, 1.0)]
+    [InlineData(RdashChartType.StackedBar, 0.8, 0.8, 1.0)] 
     [InlineData(RdashChartType.Column, 0.5, 1.0, 0.5)]
     internal void ZoomLevel_SetZoomLevel_BasedOnChartType(
         RdashChartType chartType,
@@ -52,10 +52,7 @@ public class SharedChartVisualizationSettingsFixture
         Assert.Equal(expectedZoomVertical, settings.ZoomScaleVertical);
         Assert.Equal(expectedZoomHorizontal, settings.ZoomScaleHorizontal);
     }
-
-
-
-
+    
     [Theory]
     [InlineData(1.2, 1.0)]
     [InlineData(-0.5, 0.0)]
@@ -76,8 +73,7 @@ public class SharedChartVisualizationSettingsFixture
         // Assert
         Assert.Equal(expectedValue, settings.ZoomScaleHorizontal);
     }
-
-
+    
     [Fact]
     public void ToJsonString_SerializesSettings_GeneratesCorrectJson()
     {
@@ -97,7 +93,15 @@ public class SharedChartVisualizationSettingsFixture
             }
             """;
 
-        var settings = new TestSharedChartVisualizationSettings();
+        var settings = new TestSharedChartVisualizationSettings()
+        {
+            AutomaticLabelRotation = false,
+            SyncAxis = true,
+            ZoomScaleHorizontal = 0.8,
+            ZoomScaleVertical = 0.6,
+            YAxisIsLogarithmic = true,
+            ShowLegend = false
+        };
 
         // Act
         var actualJson = settings.ToJsonString();
@@ -110,6 +114,5 @@ public class SharedChartVisualizationSettingsFixture
 
     private class TestSharedChartVisualizationSettings : SharedChartVisualizationSettings
     {
-        public RdashChartType ChartType { get; set; }
     }
 }
