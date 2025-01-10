@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Visualizations;
 using Reveal.Sdk.Dom.Visualizations.Settings;
 using Xunit;
@@ -20,18 +21,18 @@ public class PieChartVisualizationSettingsBaseFixture
         Assert.Equal(default(LabelDisplayMode), settings.SliceLabelDisplay);
         Assert.Null(settings.StartColorIndex);
         Assert.Equal(3.0, settings.OthersSliceThreshold);
-        Assert.Equal("CHART", settings.VisualizationType);
-        Assert.Equal("ChartVisualizationSettingsType", settings.SchemaTypeName);
+        Assert.Equal(VisualizationTypes.CHART, settings.VisualizationType);
+        Assert.Equal(SchemaTypeNames.ChartVisualizationSettingsType, settings.SchemaTypeName);
         Assert.Equal(default(RdashChartType), settings.ChartType);
     }
 
     [Theory]
-    [InlineData(-1.0, 0.0)]
-    [InlineData(0.0, 0.0)]
-    [InlineData(1.5, 2.0)]
-    [InlineData(3.3, 3.0)]
-    [InlineData(4.5, 4.0)]
-    [InlineData(5.0, 4.0)]
+    [InlineData(-1.0, 0.0)] // Values below 0.0 are coerced to 0.0
+    [InlineData(0.0, 0.0)] // Edge case: 0.0 should remain 0.0
+    [InlineData(1.5, 2.0)] // Values are rounded to the nearest integer using MidpointRounding.AwayFromZero
+    [InlineData(3.3, 3.0)] // Values between 0 and 4 are rounded to the nearest integer
+    [InlineData(4.5, 4.0)] // Values are rounded down to 4.0 if they're above 4.0 but within rounding range
+    [InlineData(5.0, 4.0)] // Values greater than 4.0 are coerced to 4.0 (upper limit)
     public void OthersSliceThreshold_CoercesValueToValidRange_WhenSet(double inputValue, double expectedValue)
     {
         // Arrange
