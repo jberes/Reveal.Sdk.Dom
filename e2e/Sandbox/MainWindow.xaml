@@ -21,10 +21,16 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="3">
             <ComboBox Name="_dashboardTypeSelector" DisplayMemberPath="Name" Margin="2" Width="250" />
             <Button Content="Create Dashboard with Type" Margin="2" Click="CreateDashboardWithTypeBtn_Click"/>
+            <Button Content="Show / Hide Json" Click="ToggleJsonTextBlock" Margin="2"/>
         </StackPanel>
-
+        
         <rv:RevealView Grid.Row="2" x:Name="_revealView" ShowEditDataSource="True" ShowDataBlending="True"
                        SaveDashboard="RevealView_SaveDashboard"/>
+
+        <TextBox  x:Name="_jsonBlock" Visibility="Collapsed" Background="BlanchedAlmond" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Reveal Dashboard Json" VerticalAlignment="Center" Height="978" Width="616">
+        </TextBox>
+        <Button Content="Copy Json" Visibility="Collapsed" Click="CopyJson" x:Name="_copyJsonBtn" HorizontalAlignment="Left" Margin="546,23,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+
     </Grid>
 
 </Window>
