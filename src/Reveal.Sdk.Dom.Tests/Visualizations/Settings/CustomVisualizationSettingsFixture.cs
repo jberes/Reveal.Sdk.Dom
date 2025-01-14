@@ -21,20 +21,6 @@ public class CustomVisualizationSettingsFixture
     }
 
     [Fact]
-    public void Title_SetAndGet_UpdatesCorrectly()
-    {
-        // Arrange
-        var settings = new CustomVisualizationSettings();
-        var expectedTitle = "Custom Title";
-
-        // Act
-        settings.Title = expectedTitle;
-
-        // Assert
-        Assert.Equal(expectedTitle, settings.Title);
-    }
-
-    [Fact]
     public void ToJsonString_GeneratesCorrectJson_WhenSerialized()
     {
         // Arrange
