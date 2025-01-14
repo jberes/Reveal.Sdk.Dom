@@ -50,6 +50,7 @@ namespace Sandbox
             new DashboardLinkingDashboard(),
             new GoogleBigQueryDashboard(),
             new GoogleSheetDashboard(),
+            new GridVisualizationDashboard(),
             new HealthcareDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
@@ -259,6 +260,8 @@ namespace Sandbox
             var document = RdashDocument.Load(_readFilePath);
             var json = document.ToJsonString();
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
+
+            _jsonBlock.Text = json;
         }
 
         private async void CreateDashboardWithTypeBtn_Click(object sender, RoutedEventArgs e)
@@ -270,6 +273,8 @@ namespace Sandbox
 
                 var json = document.ToJsonString();
                 _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
+
+                _jsonBlock.Text = json;
 
                 // Save the last selected item to application settings
                 Properties.Settings.Default.LastSelectedDashboard = creator.Name;
@@ -288,6 +293,17 @@ namespace Sandbox
                 var selectedDashboard = _dashboardCreators.FirstOrDefault(x => x.Name == lastSelectedName);
                 _dashboardTypeSelector.SelectedItem = selectedDashboard;
             }
+        }
+
+        private void ToggleJsonTextBlock(object sender, RoutedEventArgs e)
+        {
+            _jsonBlock.Visibility = _jsonBlock.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+            _copyJsonBtn.Visibility = _jsonBlock.Visibility;
+        }
+
+        private void CopyJson(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(_jsonBlock.Text);
         }
     }
 }
