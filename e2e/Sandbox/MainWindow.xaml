@@ -1,35 +1,51 @@
 ﻿<Window x:Class="Sandbox.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sandbox"        
         xmlns:rv="http://revealbi.io/"
-        mc:Ignorable="d"
+        xmlns:igPrim="http://schemas.infragistics.com/reveal/xaml/primitives"
         Title="MainWindow" Height="1080" Width="1920">
+
+    <Window.Resources>
+        <igPrim:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="5">
-            <Button Click="Load_Dashboard" Margin="2">Load Dashboard</Button>
-            <Button Click="Read_Dashboard" Margin="2">Read Dashboard</Button>
-            <Button Click="Clear_Dashboard" Margin="2">Clear Dashboard</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Button Click="Load_Dashboard" Margin="2">Load Dashboard</Button>
+                <Button Click="Read_Dashboard" Margin="2">Read Dashboard</Button>
+                <Button Click="Clear_Dashboard" Margin="2">Clear Dashboard</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="3">
+                <ComboBox Name="_dashboardTypeSelector" DisplayMemberPath="Name" Margin="2" Width="250" />
+                <Button Content="Create Dashboard with Type" Margin="2" Click="CreateDashboardWithTypeBtn_Click"/>
+                <ToggleButton x:Name="_jsonButtonToggle" Content="Show / Hide Json" Margin="2"/>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="3">
-            <ComboBox Name="_dashboardTypeSelector" DisplayMemberPath="Name" Margin="2" Width="250" />
-            <Button Content="Create Dashboard with Type" Margin="2" Click="CreateDashboardWithTypeBtn_Click"/>
-            <Button Content="Show / Hide Json" Click="ToggleJsonTextBlock" Margin="2"/>
-        </StackPanel>
-        
-        <rv:RevealView Grid.Row="2" x:Name="_revealView" ShowEditDataSource="True" ShowDataBlending="True"
-                       SaveDashboard="RevealView_SaveDashboard"/>
 
-        <TextBox  x:Name="_jsonBlock" Visibility="Collapsed" Background="BlanchedAlmond" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Reveal Dashboard Json" VerticalAlignment="Center" Height="978" Width="616">
-        </TextBox>
-        <Button Content="Copy Json" Visibility="Collapsed" Click="CopyJson" x:Name="_copyJsonBtn" HorizontalAlignment="Left" Margin="546,23,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <rv:RevealView Grid.Row="1" x:Name="_revealView" ShowEditDataSource="True" ShowDataBlending="True" SaveDashboard="RevealView_SaveDashboard"/>
+
+        <Grid Grid.Row="1" Grid.Column="1" Visibility="{Binding ElementName=_jsonButtonToggle, Path=IsChecked, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer>
+                <TextBox x:Name="_jsonTextBlock" Background="BlanchedAlmond" Margin="3" TextWrapping="Wrap" Width="616"/>
+            </ScrollViewer>            
+
+            <Button  Grid.Row="1" Height="55" Margin="5" Click="CopyJsonToClipboard">Copy JSON To Clipboard</Button>
+        </Grid>
 
     </Grid>
 

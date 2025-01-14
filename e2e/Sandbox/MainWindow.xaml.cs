@@ -247,11 +247,13 @@ namespace Sandbox
 
         private void Load_Dashboard(object sender, RoutedEventArgs e)
         {
+            SetJsonTextBlock(string.Empty);
             _revealView.Dashboard = new RVDashboard(_readFilePath);
         }
 
         private void Clear_Dashboard(object sender, RoutedEventArgs e)
         {
+            SetJsonTextBlock(string.Empty);
             _revealView.Dashboard = new RVDashboard();
         }
 
@@ -261,7 +263,7 @@ namespace Sandbox
             var json = document.ToJsonString();
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
 
-            _jsonBlock.Text = json;
+            SetJsonTextBlock(json);
         }
 
         private async void CreateDashboardWithTypeBtn_Click(object sender, RoutedEventArgs e)
@@ -274,7 +276,7 @@ namespace Sandbox
                 var json = document.ToJsonString();
                 _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
 
-                _jsonBlock.Text = json;
+                SetJsonTextBlock(json);
 
                 // Save the last selected item to application settings
                 Properties.Settings.Default.LastSelectedDashboard = creator.Name;
@@ -295,15 +297,14 @@ namespace Sandbox
             }
         }
 
-        private void ToggleJsonTextBlock(object sender, RoutedEventArgs e)
+        private void CopyJsonToClipboard(object sender, RoutedEventArgs e)
         {
-            _jsonBlock.Visibility = _jsonBlock.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
-            _copyJsonBtn.Visibility = _jsonBlock.Visibility;
+            Clipboard.SetText(_jsonTextBlock.Text);
         }
 
-        private void CopyJson(object sender, RoutedEventArgs e)
+        void SetJsonTextBlock(string json)
         {
-            Clipboard.SetText(_jsonBlock.Text);
+            _jsonTextBlock.Text = json;
         }
     }
 }
