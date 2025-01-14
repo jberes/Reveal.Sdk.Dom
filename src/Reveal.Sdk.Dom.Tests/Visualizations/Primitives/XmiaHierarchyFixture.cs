@@ -15,6 +15,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
 
             // Assert
             Assert.Equal(SchemaTypeNames.XmlaHierarchyType, instance.SchemaTypeName);
+            Assert.Null(instance.Cardinality);
         }
 
         [Fact]
