@@ -50,6 +50,7 @@ namespace Sandbox
             new DashboardLinkingDashboard(),
             new GoogleBigQueryDashboard(),
             new GoogleSheetDashboard(),
+            new GridVisualizationDashboard(),
             new HealthcareDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
