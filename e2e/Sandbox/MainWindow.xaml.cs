@@ -61,6 +61,7 @@ namespace Sandbox
             new PostgresqlDashboard(),
             new RestDataSourceDashboard(),
             new SalesDashboard(),
+            new ScatterMapVisualizationDashboard(),
             new SnowflakeDashboard(),
             new SqlServerDataSourceDashboards(),
             new OracleDataSourceDashboard(),
@@ -305,6 +306,12 @@ namespace Sandbox
         void SetJsonTextBlock(string json)
         {
             _jsonTextBlock.Text = json;
+        }
+
+        private void ReloadJson(object sender, RoutedEventArgs e)
+        {
+            var json = _revealView == null ? "" : _revealView.SerializeAsJson().Result;
+            SetJsonTextBlock(json);
         }
     }
 }

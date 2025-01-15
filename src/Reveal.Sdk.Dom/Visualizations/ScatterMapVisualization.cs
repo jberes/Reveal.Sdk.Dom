@@ -33,7 +33,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public DimensionColumn Label
         {
             get { return VisualizationDataSpec.Label; }
-            set { VisualizationDataSpec.Label = value; }
+            set { if(value.DataField != null) VisualizationDataSpec.Label = value; }
         }
 
         [JsonIgnore]
@@ -47,7 +47,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public DimensionColumn Latitude
         {
             get { return VisualizationDataSpec.Location; }
-            set { VisualizationDataSpec.Location = value; }
+            set { if(value.DataField != null) VisualizationDataSpec.Location = value; }
         }
 
         [JsonIgnore]
