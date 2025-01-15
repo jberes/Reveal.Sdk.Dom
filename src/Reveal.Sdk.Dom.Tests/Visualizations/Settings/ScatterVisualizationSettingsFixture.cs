@@ -52,7 +52,7 @@ public class ScatterVisualizationSettingsFixture
         var settings = new ScatterVisualizationSettings();
 
         // Act
-        var actualJson = JsonConvert.SerializeObject(settings);
+        var actualJson = settings.ToJsonString();
         var expectedJObject = JObject.Parse(expectedJson);
         var actualJObject = JObject.Parse(actualJson);
 
