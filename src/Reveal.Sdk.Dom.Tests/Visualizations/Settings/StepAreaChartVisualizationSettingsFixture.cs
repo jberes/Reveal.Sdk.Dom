@@ -48,10 +48,7 @@ public class StepAreaChartVisualizationSettingsFixture
               "ZoomScaleHorizontal" : 1.0,
               "ZoomScaleVertical" : 1.0,
               "LeftAxisLogarithmic" : false,
-              "LeftAxisMinValue" : null,
-              "LeftAxisMaxValue" : null,
               "ShowLegends" : true,
-              "BrushOffsetIndex" : null,
               "ChartType" : "StepArea",
               "VisualizationType" : "CHART"
             }
@@ -60,7 +57,7 @@ public class StepAreaChartVisualizationSettingsFixture
         var settings = new StepAreaChartVisualizationSettings();
 
         // Act
-        var actualJson = JsonConvert.SerializeObject(settings);
+        var actualJson = settings.ToJsonString();
         var expectedJObject = JObject.Parse(expectedJson);
         var actualJObject = JObject.Parse(actualJson);
 
