@@ -48,10 +48,7 @@ public class SplineAreaChartVisualizationSettingsFixture
               "ZoomScaleHorizontal" : 1.0,
               "ZoomScaleVertical" : 1.0,
               "LeftAxisLogarithmic" : false,
-              "LeftAxisMinValue" : null,
-              "LeftAxisMaxValue" : null,
               "ShowLegends" : true,
-              "BrushOffsetIndex" : null,
               "ChartType" : "SplineArea",
               "VisualizationType" : "CHART"
             }
@@ -60,7 +57,7 @@ public class SplineAreaChartVisualizationSettingsFixture
         var settings = new SplineAreaChartVisualizationSettings();
 
         // Act
-        var actualJson = JsonConvert.SerializeObject(settings);
+        var actualJson = settings.ToJsonString();
         var expectedJObject = JObject.Parse(expectedJson);
         var actualJObject = JObject.Parse(actualJson);
 
