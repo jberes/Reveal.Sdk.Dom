@@ -48,10 +48,7 @@ public class StepLineChartVisualizationSettingsFixture
               "ZoomScaleHorizontal" : 1.0,
               "ZoomScaleVertical" : 1.0,
               "LeftAxisLogarithmic" : false,
-              "LeftAxisMinValue" : null,
-              "LeftAxisMaxValue" : null,
               "ShowLegends" : true,
-              "BrushOffsetIndex" : null,
               "ChartType" : "StepLine",
               "VisualizationType" : "CHART"
             }
@@ -60,7 +57,7 @@ public class StepLineChartVisualizationSettingsFixture
         var settings = new StepLineChartVisualizationSettings();
 
         // Act
-        var actualJson = JsonConvert.SerializeObject(settings);
+        var actualJson = settings.ToJsonString();
         var expectedJObject = JObject.Parse(expectedJson);
         var actualJObject = JObject.Parse(actualJson);
 
