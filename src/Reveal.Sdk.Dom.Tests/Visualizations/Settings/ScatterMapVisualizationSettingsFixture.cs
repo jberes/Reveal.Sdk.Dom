@@ -51,8 +51,7 @@ public class ScatterMapVisualizationSettingsFixture
                 }, {
                   "_type" : "ConditionalFormattingBandType",
                   "Type" : "Percentage",
-                  "Color" : "Red",
-                  "Value" : null
+                  "Color" : "Red"
                 } ]
               },
               "ColorizationMode" : "Range",
@@ -66,7 +65,6 @@ public class ScatterMapVisualizationSettingsFixture
                 "Height" : 0.0
               },
               "ShowLegends" : true,
-              "Region" : null,
               "ColorIndex" : -1,
               "VisualizationType" : "SCATTER_MAP"
             }
@@ -80,7 +78,7 @@ public class ScatterMapVisualizationSettingsFixture
         };
 
         // Act
-        var actualJson = JsonConvert.SerializeObject(settings, Formatting.Indented);
+        var actualJson = settings.ToJsonString();
         var expectedJObject = JObject.Parse(expectedJson);
         var actualJObject = JObject.Parse(actualJson);
 
