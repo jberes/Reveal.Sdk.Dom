@@ -65,6 +65,7 @@ namespace Sandbox
             new SqlServerDataSourceDashboards(),
             new OracleDataSourceDashboard(),
             new WebServiceDataSourceDashboard(),
+            new KpiTargetVisualizationDashboard(),
         };
 
         public MainWindow()
