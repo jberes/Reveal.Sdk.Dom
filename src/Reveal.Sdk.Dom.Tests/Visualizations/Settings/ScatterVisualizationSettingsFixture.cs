@@ -37,13 +37,8 @@ public class ScatterVisualizationSettingsFixture
             {
               "_type" : "ChartVisualizationSettingsType",
               "RightAxisLogarithmic" : false,
-              "RightAxisMinValue" : null,
-              "RightAxisMaxValue" : null,
               "LeftAxisLogarithmic" : false,
-              "LeftAxisMinValue" : null,
-              "LeftAxisMaxValue" : null,
               "ShowLegends" : true,
-              "BrushOffsetIndex" : null,
               "ChartType" : "Scatter",
               "VisualizationType" : "CHART"
             }
