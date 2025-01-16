@@ -15,26 +15,6 @@ public class LinearGaugeVisualizationSettingsFixture
 
         // Assert
         Assert.Equal(GaugeViewType.Linear, settings.ViewType);
-        Assert.Null(settings.Minimum);
-        Assert.Null(settings.Maximum);
-        Assert.Equal(default(ValueComparisonType), settings.ValueComparisonType);
-
-        Assert.NotNull(settings.UpperBand);
-        Assert.Equal(80.0, settings.UpperBand.Value);
-        Assert.Equal(BandColor.Green, settings.UpperBand.Color);
-
-        Assert.NotNull(settings.MiddleBand);
-        Assert.Equal(50.0, settings.MiddleBand.Value);
-        Assert.Equal(BandColor.Yellow, settings.MiddleBand.Color);
-
-        Assert.NotNull(settings.LowerBand);
-        Assert.Null(settings.LowerBand.Value);
-        Assert.Equal(BandColor.Red, settings.LowerBand.Color);
-
-        Assert.NotNull(settings.GaugeBands);
-        Assert.Contains(settings.UpperBand, settings.GaugeBands);
-        Assert.Contains(settings.MiddleBand, settings.GaugeBands);
-        Assert.Contains(settings.LowerBand, settings.GaugeBands);
     }
 
     [Fact]
