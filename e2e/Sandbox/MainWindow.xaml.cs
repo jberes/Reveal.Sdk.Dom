@@ -54,6 +54,8 @@ namespace Sandbox
             new GridVisualizationDashboard(),
             new HealthcareDashboard(),
             new ImageVisualizationDashboard(),
+            new KpiTargetVisualizationDashboard(),
+            new KpiTimeVisualizationDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
             new MongoDashboard(),
@@ -72,7 +74,6 @@ namespace Sandbox
             new TextBoxVisualizationDashboard(),
             new TimeSeriesVisualizationDashboard(),
             new WebServiceDataSourceDashboard(),
-            new KpiTargetVisualizationDashboard(),
         };
 
         public MainWindow()
