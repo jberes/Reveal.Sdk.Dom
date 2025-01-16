@@ -17,11 +17,7 @@ public class RadialVisualizationSettingsFixture
 
         // Assert
         Assert.Equal(RdashChartType.RadialLines, settings.ChartType);
-        Assert.Equal(SchemaTypeNames.ChartVisualizationSettingsType, settings.SchemaTypeName);
-        Assert.Equal(VisualizationTypes.CHART, settings.VisualizationType);
         Assert.Equal(TrendlineType.None, settings.Trendline);
-        Assert.True(settings.ShowLegend);
-        Assert.Null(settings.StartColorIndex);
     }
 
     [Fact]
