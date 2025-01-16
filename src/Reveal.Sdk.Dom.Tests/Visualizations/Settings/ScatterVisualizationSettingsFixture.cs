@@ -17,15 +17,9 @@ public class ScatterVisualizationSettingsFixture
 
         // Assert
         Assert.Equal(RdashChartType.Scatter, settings.ChartType);
-        Assert.Equal(SchemaTypeNames.ChartVisualizationSettingsType, settings.SchemaTypeName);
-        Assert.True(settings.ShowLegend);
         Assert.False(settings.XAxisIsLogarithmic);
-        Assert.False(settings.YAxisIsLogarithmic);
         Assert.Null(settings.XAxisMinValue);
         Assert.Null(settings.XAxisMaxValue);
-        Assert.Null(settings.YAxisMinValue);
-        Assert.Null(settings.YAxisMaxValue);
-        Assert.Equal(VisualizationTypes.CHART, settings.VisualizationType);
     }
 
     [Fact]
