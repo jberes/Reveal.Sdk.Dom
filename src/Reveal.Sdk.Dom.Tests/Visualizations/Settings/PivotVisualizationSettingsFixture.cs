@@ -19,7 +19,6 @@ public class PivotVisualizationSettingsFixture
         Assert.Equal(SchemaTypeNames.PivotVisualizationSettingsType, settings.SchemaTypeName);
         Assert.Equal(VisualizationTypes.PIVOT, settings.VisualizationType);
         Assert.Null(settings._visualizationDataSpec);
-        Assert.False(settings.ShowGrandTotals);
     }
 
     [Fact]
@@ -37,6 +36,7 @@ public class PivotVisualizationSettingsFixture
                 "NumericAlignment" : "Right",
                 "DateAlignment" : "Left"
               },
+              "ShowGrandTotals": "true",
               "VisualizationType" : "PIVOT"
             }
             """;
@@ -50,7 +50,8 @@ public class PivotVisualizationSettingsFixture
                 TextAlignment = Alignment.Center,
                 NumericAlignment = Alignment.Right,
                 DateAlignment = Alignment.Left
-            }
+            },
+            ShowGrandTotals = true,
         };
 
         // Act
