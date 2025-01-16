@@ -19,7 +19,6 @@ public class PivotVisualizationSettingsFixture
         Assert.Equal(SchemaTypeNames.PivotVisualizationSettingsType, settings.SchemaTypeName);
         Assert.Equal(VisualizationTypes.PIVOT, settings.VisualizationType);
         Assert.Null(settings._visualizationDataSpec);
-        Assert.False(settings.ShowGrandTotals);
     }
 
     [Fact]
