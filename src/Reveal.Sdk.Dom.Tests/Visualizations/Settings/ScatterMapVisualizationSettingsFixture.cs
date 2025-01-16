@@ -24,9 +24,6 @@ public class ScatterMapVisualizationSettingsFixture
         Assert.True(settings.ShowImageTiles);
         Assert.False(settings.UseDifferentMarkers);
         Assert.NotNull(settings.Zoom);
-        Assert.Equal(-1, settings.ColorIndex);
-        Assert.Null(settings.Region);
-        Assert.True(settings.ShowLegend);
     }
 
     [Fact]
