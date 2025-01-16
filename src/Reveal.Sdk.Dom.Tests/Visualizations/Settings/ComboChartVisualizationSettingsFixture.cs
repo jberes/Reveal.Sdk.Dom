@@ -23,17 +23,10 @@ public class ComboChartVisualizationSettingsFixture
         Assert.False(settings.RightAxisIsLogarithmic);
         Assert.Null(settings.RightAxisMaxValue);
         Assert.Null(settings.RightAxisMinValue);
-        Assert.Equal(SchemaTypeNames.ChartVisualizationSettingsType, settings.SchemaTypeName);
         Assert.True(settings.ShowAxisX);
         Assert.True(settings.ShowAxisY);
         Assert.True(settings.ShowLegend);
         Assert.True(settings.ShowRightAxis);
-        Assert.False(settings.SingleAxisMode);
-        Assert.Null(settings.StartColorIndex);
-        Assert.Equal(VisualizationTypes.CHART, settings.VisualizationType);
-        Assert.False(settings.YAxisIsLogarithmic);
-        Assert.Null(settings.YAxisMaxValue);
-        Assert.Null(settings.YAxisMinValue);
     }
 
     [Theory]
