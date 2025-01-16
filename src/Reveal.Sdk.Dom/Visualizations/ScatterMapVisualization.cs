@@ -79,7 +79,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public List<MeasureColumn> BubbleRadius
         {
             get { return VisualizationDataSpec.Radius; }
-            set { VisualizationDataSpec.Radius = value; }
+            internal set { VisualizationDataSpec.Radius = value; }
         }
     }
 }

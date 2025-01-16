@@ -66,6 +66,8 @@ namespace Reveal.Sdk.Dom.Visualizations
             get { return ((DataDefinitionBase)DataDefinition).Bindings.Bindings; }
         }
 
+        // TODO: Add field to manage CustomBackgroundColor
+
         //todo: is it possible to create a Filters property that can properly handle both Tabular and Xmla data specs?
         //[JsonIgnore]
         //public List<VisualizationFilter> Filters
