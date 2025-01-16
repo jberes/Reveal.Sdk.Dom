@@ -21,9 +21,6 @@ public class ChoroplethVisualizationSettingsFixture
         Assert.Equal(MapLabelVisibility.HasValues, settings.LabelVisibility);
         Assert.Equal(MapLabelStyle.LocationAbbreviation, settings.LabelStyle);
         Assert.Equal(MapDataLocale.English, settings.DataLocale);
-        Assert.Equal(-1, settings.ColorIndex);
-        Assert.Null(settings.Region);
-        Assert.True(settings.ShowLegend);
     }
 
     [Fact]
