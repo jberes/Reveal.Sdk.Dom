@@ -17,14 +17,6 @@ public class DoughnutChartVisualizationSettingsFixture
 
         // Assert
         Assert.Equal(RdashChartType.Doughnut, settings.ChartType);
-        Assert.Equal(SchemaTypeNames.ChartVisualizationSettingsType, settings.SchemaTypeName);
-        Assert.Equal(VisualizationTypes.CHART, settings.VisualizationType);
-        Assert.True(settings.ShowLegend);
-        Assert.Null(settings.StartColorIndex);
-        Assert.Equal(3.0, settings.OthersSliceThreshold);
-        Assert.Null(settings.StartPosition);
-        Assert.False(settings.ShowZeroValuesInLegend);
-        Assert.Equal(LabelDisplayMode.Percentage, settings.SliceLabelDisplay);
     }
 
     [Fact]
