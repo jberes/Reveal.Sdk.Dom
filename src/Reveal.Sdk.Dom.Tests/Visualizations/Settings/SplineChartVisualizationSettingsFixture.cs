@@ -13,10 +13,10 @@ public class SplineChartVisualizationSettingsFixture
     public void Constructor_FieldsHaveDefaultValues_WhenInstanceIsCreated()
     {
         // Act
-        var settings = new SplineAreaChartVisualizationSettings();
+        var settings = new SplineChartVisualizationSettings();
 
         // Assert
-        Assert.Equal(RdashChartType.SplineArea, settings.ChartType);
+        Assert.Equal(RdashChartType.Spline, settings.ChartType);
     }
 
     [Fact]
@@ -35,12 +35,12 @@ public class SplineChartVisualizationSettingsFixture
               "ZoomScaleVertical" : 1.0,
               "LeftAxisLogarithmic" : false,
               "ShowLegends" : true,
-              "ChartType" : "SplineArea",
+              "ChartType" : "Spline",
               "VisualizationType" : "CHART"
             }
             """;
 
-        var settings = new SplineAreaChartVisualizationSettings();
+        var settings = new SplineChartVisualizationSettings();
 
         // Act
         var actualJson = settings.ToJsonString();
