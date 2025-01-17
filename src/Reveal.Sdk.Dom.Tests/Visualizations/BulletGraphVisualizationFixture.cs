@@ -131,14 +131,6 @@ public class BulletGraphVisualizationFixture
                   "Properties" : { },
                   "Sorting" : "None",
                   "FieldType" : "Number"
-                }, {
-                  "FieldName" : "Traffic",
-                  "FieldLabel" : "Traffic",
-                  "UserCaption" : "Traffic",
-                  "IsCalculated" : false,
-                  "Properties" : { },
-                  "Sorting" : "None",
-                  "FieldType" : "Number"
                 } ],
                 "TransposedFields" : [ ],
                 "QuickFilters" : [ ],
@@ -244,7 +236,6 @@ public class BulletGraphVisualizationFixture
                 new TextField("CampaignID"),
                 new NumberField("Budget"),
                 new NumberField("Spend"),
-                new NumberField("Traffic"),
             }
         };
         excelDataSourceItem.UseExcel("Marketing");
