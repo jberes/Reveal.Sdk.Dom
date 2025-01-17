@@ -31,17 +31,23 @@ public class ChoroplethVisualizationSettingsFixture
             """
             {
               "_type" : "ChoroplethMapVisualizationSettingsType",
-              "ColorizationStyle" : "BUCKETING",
+              "ColorizationStyle" : "SINGLE",
               "LabelVisibility" : "HAS VALUES",
-              "LabelStyle" : "ABBREVIATION",
-              "DataLocale" : "en",
+              "LabelStyle" : "VALUES",
+              "DataLocale" : "ja",
               "ShowLegends" : true,
               "ColorIndex" : -1,
               "VisualizationType" : "CHOROPLETH_MAP"
             }
             """;
 
-        var settings = new ChoroplethVisualizationSettings();
+        var settings = new ChoroplethVisualizationSettings()
+        {
+            ColorStyle = MapColorStyle.SingleColor,
+            LabelVisibility = MapLabelVisibility.HasValues,
+            LabelStyle = MapLabelStyle.Values,
+            DataLocale = MapDataLocale.Japanese
+        };
 
         // Act
         var actualJson = settings.ToJsonString();
