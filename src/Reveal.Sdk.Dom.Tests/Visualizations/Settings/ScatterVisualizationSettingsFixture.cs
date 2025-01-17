@@ -30,15 +30,22 @@ public class ScatterVisualizationSettingsFixture
             """
             {
               "_type" : "ChartVisualizationSettingsType",
-              "RightAxisLogarithmic" : false,
+              "RightAxisLogarithmic" : true,
+              "RightAxisMinValue" : 1.0,
               "LeftAxisLogarithmic" : false,
+              "LeftAxisMaxValue" : 90.0,
               "ShowLegends" : true,
               "ChartType" : "Scatter",
               "VisualizationType" : "CHART"
             }
             """;
 
-        var settings = new ScatterVisualizationSettings();
+        var settings = new ScatterVisualizationSettings()
+        {
+            XAxisIsLogarithmic = true,
+            XAxisMinValue = 1,
+            YAxisMaxValue = 90,
+        };
 
         // Act
         var actualJson = settings.ToJsonString();
