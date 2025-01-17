@@ -58,7 +58,8 @@ public class KpiTargetVisualizationSettingsFixture
             VisualizationDataSpec = new IndicatorTargetVisualizationDataSpec(),
             DifferenceMode = IndicatorDifferenceMode.Percentage,
             PositiveIsRed = false,
-            IncludeToday = true
+            IncludeToday = true,
+            GoalPeriod = KpiGoalPeriod.PreviousQuarter,
         };
 
         // Act
