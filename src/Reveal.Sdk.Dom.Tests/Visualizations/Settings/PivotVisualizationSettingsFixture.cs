@@ -36,13 +36,13 @@ public class PivotVisualizationSettingsFixture
                 "NumericAlignment" : "Right",
                 "DateAlignment" : "Left"
               },
-              "ShowGrandTotals": "true",
               "VisualizationType" : "PIVOT"
             }
             """;
 
         var settings = new PivotVisualizationSettings
         {
+            _visualizationDataSpec = new PivotVisualizationDataSpec(),
             FontSize = FontSize.Large,
             Style = new GridVisualizationStyle
             {
