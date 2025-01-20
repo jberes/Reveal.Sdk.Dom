@@ -131,7 +131,9 @@ public class ComboChartVisualizationSettingsFixture
             ShowAxisY = true,
             SingleAxisMode = false,
             RightAxisMinValue = null,
-            RightAxisMaxValue = null
+            RightAxisMaxValue = null,
+            ShowLegend = true,
+            ShowRightAxis = true,
         };
 
         // Act
