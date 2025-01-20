@@ -50,6 +50,7 @@ namespace Sandbox.DashboardFactories
                 settings.YAxisIsLogarithmic = true;
                 settings.YAxisMaxValue = 750000;
                 settings.YAxisMinValue = 100;
+                settings.AxisDisplayMode = AxisDisplayMode.None;
             });
 
             // Data Specs
