@@ -26,16 +26,35 @@ public class BubbleVisualizationSettingsFixture
         var expectedJson =
             """
             {
-              "_type" : "ChartVisualizationSettingsType",
-              "RightAxisLogarithmic" : false,
-              "LeftAxisLogarithmic" : false,
-              "ShowLegends" : true,
-              "ChartType" : "Bubble",
-              "VisualizationType" : "CHART"
+              "_type": "Test Bubble VS",
+              "RightAxisLogarithmic": true,
+              "RightAxisMinValue": 15.1,
+              "RightAxisMaxValue": 250.5,
+              "ShowAxisX": true,
+              "ShowAxisY": false,
+              "LeftAxisLogarithmic": true,
+              "LeftAxisMinValue": 16.2,
+              "LeftAxisMaxValue": 150.6,
+              "ShowLegends": true,
+              "BrushOffsetIndex": 3,
+              "ChartType": "Bubble",
+              "VisualizationType": "CHART"
             }
             """;
 
-        var settings = new BubbleVisualizationSettings();
+        var settings = new BubbleVisualizationSettings() { 
+            AxisDisplayMode = AxisDisplayMode.XAxis,
+            ChartType = RdashChartType.Bubble,
+            SchemaTypeName = "Test Bubble VS",
+            ShowLegend = true,
+            StartColorIndex = 3,
+            XAxisIsLogarithmic = true,
+            XAxisMinValue = 15.1,
+            XAxisMaxValue = 250.5,
+            YAxisMinValue = 16.2,
+            YAxisMaxValue = 150.6,
+            YAxisIsLogarithmic = true,
+        };
 
         // Act
         var actualJson = settings.ToJsonString();
