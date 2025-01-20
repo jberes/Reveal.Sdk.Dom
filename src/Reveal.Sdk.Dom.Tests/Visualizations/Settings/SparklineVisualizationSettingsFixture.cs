@@ -132,4 +132,48 @@ public class SparklineVisualizationSettingsFixture
         Assert.Equal(10, settings.NumberOfPeriods);
         Assert.Equal(10, settings._visualizationDataSpec.NumberOfPeriods);
     }
+    
+    [Theory]
+    [InlineData(IndicatorVisualizationType.LastDays, SparklineAggregationType.Days)]
+    [InlineData(IndicatorVisualizationType.LastMonths, SparklineAggregationType.Months)]
+    [InlineData(IndicatorVisualizationType.LastYears, SparklineAggregationType.Years)]
+    [InlineData((IndicatorVisualizationType)99, SparklineAggregationType.Years)]
+    internal void ConvertIndicatorVisualizationTypeToSparklineAggregationType_MapsCorrectly_WhenCalled(
+        IndicatorVisualizationType inputType, 
+        SparklineAggregationType expectedOutputType)
+    {
+        // Arrange
+        var settings = new SparklineVisualizationSettings
+        {
+            _visualizationDataSpec = new SparklineVisualizationDataSpec()
+        };
+
+        // Act
+        var result = settings.ConvertIndicatorVisualizationTypeToSparklineAggregationType(inputType);
+
+        // Assert
+        Assert.Equal(expectedOutputType, result);
+    }
+
+    [Theory]
+    [InlineData(SparklineAggregationType.Days, IndicatorVisualizationType.LastDays)]
+    [InlineData(SparklineAggregationType.Months, IndicatorVisualizationType.LastMonths)]
+    [InlineData(SparklineAggregationType.Years, IndicatorVisualizationType.LastYears)]
+    [InlineData((SparklineAggregationType)99, IndicatorVisualizationType.LastYears)]
+    internal void ConvertSparklineAggregationTypeToIndicatorVisualizationType_MapsCorrectly_WhenCalled(
+        SparklineAggregationType inputType, 
+        IndicatorVisualizationType expectedOutputType)
+    {
+        // Arrange
+        var settings = new SparklineVisualizationSettings
+        {
+            _visualizationDataSpec = new SparklineVisualizationDataSpec()
+        };
+
+        // Act
+        var result = settings.ConvertSparklineAggregationTypeToIndicatorVisualizationType(inputType);
+
+        // Assert
+        Assert.Equal(expectedOutputType, result);
+    }
 }
