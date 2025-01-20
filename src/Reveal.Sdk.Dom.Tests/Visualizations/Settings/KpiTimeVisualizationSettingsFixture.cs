@@ -22,6 +22,7 @@ public class KpiTimeVisualizationSettingsFixture
     }
 
     [Theory]
+    [InlineData(null, IndicatorVisualizationType.MonthToDatePreviousMonth)]
     [InlineData(KpiTimePeriod.MonthToDatePreviousMonth, IndicatorVisualizationType.MonthToDatePreviousMonth)]
     [InlineData(KpiTimePeriod.MonthToDatePreviousYear, IndicatorVisualizationType.MonthToDatePreviousYear)]
     [InlineData(KpiTimePeriod.QuarterToDatePreviousQuarter, IndicatorVisualizationType.QuarterToDatePreviousQuarter)]
