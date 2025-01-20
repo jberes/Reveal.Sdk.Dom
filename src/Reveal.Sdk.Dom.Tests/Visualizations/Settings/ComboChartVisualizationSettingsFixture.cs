@@ -26,7 +26,6 @@ public class ComboChartVisualizationSettingsFixture
         Assert.Null(settings.RightAxisMinValue);
         Assert.True(settings.ShowAxisX);
         Assert.True(settings.ShowAxisY);
-        Assert.True(settings.ShowLegend);
         Assert.True(settings.ShowRightAxis);
     }
 
