@@ -64,6 +64,7 @@ namespace Sandbox
             new RestDataSourceDashboard(),
             new SalesDashboard(),
             new ScatterMapVisualizationDashboard(),
+            new ScatterVisualizationDashboard(),
             new SnowflakeDashboard(),
             new SparklineVisualizationDashboard(),
             new SplineAreaChartVisualizationDashboard(),
