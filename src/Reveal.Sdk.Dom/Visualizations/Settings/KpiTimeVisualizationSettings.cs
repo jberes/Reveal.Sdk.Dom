@@ -24,7 +24,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
 
         internal IndicatorVisualizationDataSpec VisualizationDataSpec { get; set; }
 
-        IndicatorVisualizationType ConvertKpiTimePeriodToIndicatorVisualizationType(KpiTimePeriod timePeriod)
+        internal IndicatorVisualizationType ConvertKpiTimePeriodToIndicatorVisualizationType(KpiTimePeriod timePeriod)
         {
             return timePeriod switch
             {
@@ -37,7 +37,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
             };
         }
 
-        KpiTimePeriod ConvertIndicatorVisualizationTypeToKpiTimePeriod(IndicatorVisualizationType visualizationType)
+        internal KpiTimePeriod ConvertIndicatorVisualizationTypeToKpiTimePeriod(IndicatorVisualizationType visualizationType)
         {
             return visualizationType switch
             {

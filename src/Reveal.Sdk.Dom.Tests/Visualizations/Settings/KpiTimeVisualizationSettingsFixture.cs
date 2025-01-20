@@ -78,4 +78,43 @@ public class KpiTimeVisualizationSettingsFixture
         // Assert
         Assert.Equal(expectedJObject, actualJObject);
     }
+    
+    [Theory]
+    [InlineData(KpiTimePeriod.MonthToDatePreviousMonth, IndicatorVisualizationType.MonthToDatePreviousMonth)]
+    [InlineData(KpiTimePeriod.MonthToDatePreviousYear, IndicatorVisualizationType.MonthToDatePreviousYear)]
+    [InlineData(KpiTimePeriod.QuarterToDatePreviousQuarter, IndicatorVisualizationType.QuarterToDatePreviousQuarter)]
+    [InlineData(KpiTimePeriod.QuarterToDatePreviousYear, IndicatorVisualizationType.QuarterToDatePreviousYear)]
+    [InlineData(KpiTimePeriod.YearToDatePreviousYear, IndicatorVisualizationType.YearToDatePreviousYear)]
+    [InlineData((KpiTimePeriod)999, IndicatorVisualizationType.MonthToDatePreviousMonth)]
+    internal void ConvertKpiTimePeriodToIndicatorVisualizationType_MapCorrectly_WhenCalled(KpiTimePeriod input, IndicatorVisualizationType expected)
+    {
+        // Arrange
+        var settings = new KpiTimeVisualizationSettings();
+
+        // Act
+        var result = settings.ConvertKpiTimePeriodToIndicatorVisualizationType(input);
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData(IndicatorVisualizationType.MonthToDatePreviousMonth, KpiTimePeriod.MonthToDatePreviousMonth)]
+    [InlineData(IndicatorVisualizationType.MonthToDatePreviousYear, KpiTimePeriod.MonthToDatePreviousYear)]
+    [InlineData(IndicatorVisualizationType.QuarterToDatePreviousQuarter, KpiTimePeriod.QuarterToDatePreviousQuarter)]
+    [InlineData(IndicatorVisualizationType.QuarterToDatePreviousYear, KpiTimePeriod.QuarterToDatePreviousYear)]
+    [InlineData(IndicatorVisualizationType.YearToDatePreviousYear, KpiTimePeriod.YearToDatePreviousYear)]
+    [InlineData((IndicatorVisualizationType)999, KpiTimePeriod.MonthToDatePreviousMonth)]
+    internal void ConvertIndicatorVisualizationTypeToKpiTimePeriod_MapCorrectly_WhenCalled(IndicatorVisualizationType input, KpiTimePeriod expected)
+    {
+        // Arrange
+        var settings = new KpiTimeVisualizationSettings();
+
+        // Act
+        var result = settings.ConvertIndicatorVisualizationTypeToKpiTimePeriod(input);
+
+        // Assert
+        Assert.Equal(expected, result);
+    }
+
 }
