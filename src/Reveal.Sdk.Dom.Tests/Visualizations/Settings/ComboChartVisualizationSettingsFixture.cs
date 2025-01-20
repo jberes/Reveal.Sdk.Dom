@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json.Linq;
 using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Visualizations;
@@ -34,7 +35,7 @@ public class ComboChartVisualizationSettingsFixture
     [InlineData(false, false, AxisDisplayMode.None)]
     [InlineData(true, false, AxisDisplayMode.XAxis)]
     [InlineData(false, true, AxisDisplayMode.YAxis)]
-    public void AxisDisplayMode_Get_ReturnsCorrectValueBasedOnAxisVisibility(bool showAxisX, bool showAxisY, AxisDisplayMode expectedMode)
+    public void AxisDisplayMode_Get_WhenAxisVisibilityChanges(bool showAxisX, bool showAxisY, AxisDisplayMode expectedMode)
     {
         // Arrange
         var settings = new ComboChartVisualizationSettings
@@ -55,7 +56,7 @@ public class ComboChartVisualizationSettingsFixture
     [InlineData(AxisDisplayMode.None, false, false)]
     [InlineData(AxisDisplayMode.XAxis, true, false)]
     [InlineData(AxisDisplayMode.YAxis, false, true)]
-    public void AxisDisplayMode_Set_UpdatesAxisVisibility(AxisDisplayMode mode, bool expectedShowAxisX, bool expectedShowAxisY)
+    public void AxisDisplayMode_Set_WhenUpdateAxisVisibility(AxisDisplayMode mode, bool expectedShowAxisX, bool expectedShowAxisY)
     {
         // Arrange
         var settings = new ComboChartVisualizationSettings();
@@ -69,10 +70,23 @@ public class ComboChartVisualizationSettingsFixture
         Assert.Equal(mode, settings.AxisDisplayMode);
     }
     
+    [Fact]
+    public void AxisDisplayMode_Set_ThrowsArgumentOutOfRangeException_WhenInvalidValueAssigned()
+    {
+        // Arrange
+        var settings = new ComboChartVisualizationSettings();
+
+        // Act & Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
+        {
+            settings.AxisDisplayMode = (AxisDisplayMode)999;
+        });
+    }
+    
     [Theory]
     [InlineData(true, false)]
     [InlineData(false, true)]
-    public void ShowRightAxis_Set_UpdatesSingleAxisModeCorrectly(bool showRightAxis, bool expectedSingleAxisMode)
+    public void ShowRightAxis_Set_WhenUpdatesSingleAxisMode(bool showRightAxis, bool expectedSingleAxisMode)
     {
         // Arrange
         var settings = new ComboChartVisualizationSettings();
