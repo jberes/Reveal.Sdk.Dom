@@ -32,11 +32,11 @@ public class SparklineVisualizationSettingsFixture
             """
             {
               "_type" : "SparklineVisualizationSettingsType",
-              "ChartType" : "Area",
+              "ChartType" : "Line",
               "PositiveIsRed" : true,
               "ShowLastTwoValues" : false,
               "ShowDifference" : false,
-              "FontSize" : "Small",
+              "FontSize" : "Medium",
               "Style" : {
                 "FixedLeftColumns" : false,
                 "TextAlignment" : "Inherit",
@@ -49,10 +49,17 @@ public class SparklineVisualizationSettingsFixture
 
         var settings = new SparklineVisualizationSettings
         {
-            ChartType = SparklineChartType.Area,
+            _visualizationDataSpec = new SparklineVisualizationDataSpec()
+            {
+                IndicatorType = IndicatorVisualizationType.MonthToDatePreviousMonth
+            },
+            ChartType = SparklineChartType.Line,
             ShowLastTwoValues = false,
             ShowDifference = false,
-            PositiveIsRed = true
+            PositiveIsRed = true,
+            AggregationType = SparklineAggregationType.Days,
+            FontSize = FontSize.Medium,
+            NumberOfPeriods = 5,
         };
 
         // Act
