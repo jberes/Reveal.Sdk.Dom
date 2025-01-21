@@ -27,7 +27,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public ScatterVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.Scatter; }
 
         [JsonProperty(Order = 7)]
-        ScatterVisualizationDataSpec VisualizationDataSpec { get; set; } = new ScatterVisualizationDataSpec();
+        internal ScatterVisualizationDataSpec VisualizationDataSpec { get; set; } = new ScatterVisualizationDataSpec();
 
         [JsonIgnore]
         public List<DimensionColumn> Labels { get { return VisualizationDataSpec.Rows; } }
