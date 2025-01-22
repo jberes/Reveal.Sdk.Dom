@@ -32,6 +32,22 @@ namespace Sandbox.DashboardCreators
             {
                 ColumnSpan = 5,
                 RowSpan = 5,
+                Description = "Description for Image visualization",
+                IsTitleVisible = true,
+                Title = "Image VS 1 Title",
+                Linker = new VisualizationLinker()
+                {
+                    Links = new List<IVisualizationLink>()
+                    {
+                        new UrlLink()
+                        {
+                            Title = "Linker",
+                            Url = "https://help.revealbi.io/web/datasources/",
+                            Type = LinkType.OpenUrl
+                        }
+                    },
+                    Trigger = LinkTriggerType.SelectRow
+                }
             };
             vs1.SetUrl("Territory");
 
@@ -39,6 +55,9 @@ namespace Sandbox.DashboardCreators
             {
                 ColumnSpan = 5,
                 RowSpan = 5,
+                Description = "Description for Image visualization",
+                IsTitleVisible = true,
+                Title = "Image VS 2 Title",
             };
             vs2.SetUrl("Fixed image url");
 
