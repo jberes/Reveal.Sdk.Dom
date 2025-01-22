@@ -64,6 +64,7 @@ namespace Sandbox
             new SnowflakeDashboard(),
             new SqlServerDataSourceDashboards(),
             new OracleDataSourceDashboard(),
+            new TimeSeriesVisualizationDashboard(),
             new WebServiceDataSourceDashboard(),
         };
 
