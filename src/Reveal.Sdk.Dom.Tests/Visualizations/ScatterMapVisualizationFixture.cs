@@ -29,6 +29,7 @@ public class ScatterMapVisualizationFixture
         Assert.Null(visualization.MapColorCategory);
         Assert.NotNull(visualization.BubbleRadius);
         Assert.Empty(visualization.BubbleRadius);
+        Assert.True(visualization.VisualizationDataSpec.IsColorByValue);
     }
 
     [Fact]
@@ -41,6 +42,7 @@ public class ScatterMapVisualizationFixture
         var visualization = new ScatterMapVisualization(dataSourceItem);
 
         // Assert
+        Assert.Null(visualization.Title);
         Assert.Equal(dataSourceItem, visualization.DataDefinition.DataSourceItem);
         Assert.Equal(ChartType.ScatterMap, visualization.ChartType);
     }
