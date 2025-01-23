@@ -27,7 +27,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public ChoroplethVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.Choropleth; }
 
         [JsonProperty(Order = 7)]
-        ChoroplethVisualizationDataSpec VisualizationDataSpec { get; set; } = new ChoroplethVisualizationDataSpec();
+        internal ChoroplethVisualizationDataSpec VisualizationDataSpec { get; set; } = new ChoroplethVisualizationDataSpec();
 
         [JsonIgnore]
         public string Map
