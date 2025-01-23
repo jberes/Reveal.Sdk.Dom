@@ -31,25 +31,26 @@ namespace Sandbox.DashboardCreators
             };
             document.Filters.Add(campaignIdFilter);
 
-            var vis = CreateVisualization("Campaign Spend", "CampaignID", "Spend", excelDSItem);
-
-            vis.ConnectDashboardFilter(campaignIdFilter);
-
-            document.Visualizations.Add(vis);
-
-            return document;
-        }
-
-        private TextVisualization CreateVisualization(string title, string label, string value, DataSourceItem dsItem)
-        {
-            var vis = new TextVisualization(title, dsItem)
+            var vis = new TextVisualization("Campaign Spend", excelDSItem)
             {
                 ColumnSpan = 3,
                 RowSpan = 4,
             }
-            .SetLabel(label).SetValue(value);
+            .SetLabel("CampaignID").SetValue("Spend");
 
-            return vis;
+            vis.ConnectDashboardFilter(campaignIdFilter);
+
+            vis.ConfigureSettings((settings) =>
+            {
+                settings.ConditionalFormattingEnabled = true;
+                settings.UpperBand.Shape = ShapeType.ArrowUp;
+                settings.MiddleBand.Shape = ShapeType.Dash;
+                settings.LowerBand.Shape = ShapeType.ArrowDown;
+            });
+
+            document.Visualizations.Add(vis);
+
+            return document;
         }
     }
 }

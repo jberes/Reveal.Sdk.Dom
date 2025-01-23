@@ -63,9 +63,9 @@ namespace Sandbox
             new SalesDashboard(),
             new SnowflakeDashboard(),
             new SqlServerDataSourceDashboards(),
+            new TextVisualizationDashboard(),
             new OracleDataSourceDashboard(),
             new WebServiceDataSourceDashboard(),
-            new TextVisualizationDashboard(),
         };
 
         public MainWindow()
