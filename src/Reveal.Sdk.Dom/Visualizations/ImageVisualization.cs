@@ -33,6 +33,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonProperty(Order = 7)]
-        AssetVisualizationDataSpec VisualizationDataSpec { get; set; } = new AssetVisualizationDataSpec();
+        internal AssetVisualizationDataSpec VisualizationDataSpec { get; set; } = new AssetVisualizationDataSpec();
     }
 }
