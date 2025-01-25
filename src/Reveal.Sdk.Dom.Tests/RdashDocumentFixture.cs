@@ -66,6 +66,7 @@ namespace Reveal.Sdk.Dom.Tests
             // Act
             var document = new RdashDocument();
             document.Import(sourceDocument);
+            document.Validate();
 
             // Assert
             Assert.Equal(3, document.Visualizations.Count);
@@ -95,6 +96,7 @@ namespace Reveal.Sdk.Dom.Tests
             // Act
             var document = new RdashDocument();
             document.Import(sourceDocument, sourceDocument.Visualizations[1].Id);
+            document.Validate();
 
             // Assert
             Assert.Single(document.Visualizations);
@@ -132,6 +134,7 @@ namespace Reveal.Sdk.Dom.Tests
             {
                 document.Import(sourceDocument, visualization);
             }
+            document.Validate();
 
             // Assert
             Assert.Equal(3, document.Visualizations.Count);
@@ -149,6 +152,47 @@ namespace Reveal.Sdk.Dom.Tests
                 Assert.NotEqual(visualization.Id, importedVisualization.Id);
             }
             Assert.Equal(2, document.DataSources.Count);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void RdashDocument_Import_IncludeDashboardFilters(bool includeDashboardFilters)
+        {
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { new TextField("Test") });
+
+            var sourceDocument = new RdashDocument();
+            var dateFilter = new DashboardDateFilter("My Date Filter");
+            sourceDocument.Filters.Add(dateFilter);
+            var territoryFilter = new DashboardDataFilter("Territory", dataSourceItem);
+            sourceDocument.Filters.Add(territoryFilter);
+            var visualization = new GridVisualization(dataSourceItem).ConnectDashboardFilter(dateFilter).ConnectDashboardFilter(territoryFilter);
+            sourceDocument.Visualizations.Add(visualization);
+
+            // Ensure data sources are added to the data sources collection
+            sourceDocument.Validate();
+
+            var document = new RdashDocument();
+            document.Import(sourceDocument, visualization, new ImportOptions() { IncludeDashboardFilters = includeDashboardFilters });
+            document.Validate();
+
+            Assert.Single(document.Visualizations);
+            Assert.Equal(2, document.DataSources.Count);
+            if (includeDashboardFilters)
+            {
+                Assert.Equal(2, document.Filters.Count);
+                Assert.Equal(dateFilter.Title, document.Filters[0].Title);
+                Assert.Equal(territoryFilter.Title, document.Filters[1].Title);
+
+                Assert.Equal(2, document.Visualizations[0].FilterBindings.Count);
+                Assert.Equal(dateFilter.Id, (document.Visualizations[0].FilterBindings[0] as DashboardDateFilterBinding).Target.DashboardFilterId);
+                Assert.Equal(territoryFilter.Id, (document.Visualizations[0].FilterBindings[1] as DashboardDataFilterBinding).Target.DashboardFilterId);
+            }
+            else
+            {
+                Assert.Empty(document.Filters);
+                Assert.Empty(document.Visualizations[0].FilterBindings);
+            }
         }
 
         [Theory]
