@@ -103,6 +103,9 @@ namespace Reveal.Sdk.Dom.Tests
             Assert.Equal(sourceDocument.Visualizations[1].ColumnSpan, document.Visualizations[0].ColumnSpan);
             Assert.Equal(sourceDocument.Visualizations[1].RowSpan, document.Visualizations[0].RowSpan);
             Assert.Equal(sourceDocument.Visualizations[1].Description, document.Visualizations[0].Description);
+            Assert.Equal(sourceDocument.Visualizations[1].DataDefinition.DataSourceItem.DataSourceId, document.Visualizations[0].DataDefinition.DataSourceItem.DataSourceId);
+            Assert.Equal(sourceDocument.Visualizations[1].Filters.Count, document.Visualizations[0].Filters.Count);
+            Assert.Equal(sourceDocument.Visualizations[1].FilterBindings.Count, document.Visualizations[0].FilterBindings.Count);
             Assert.NotEqual(sourceDocument.Visualizations[1].Id, document.Visualizations[0].Id);
             Assert.Equal(2, document.DataSources.Count);
         }
