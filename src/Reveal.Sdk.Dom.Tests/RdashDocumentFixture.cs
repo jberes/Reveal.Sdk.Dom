@@ -111,6 +111,46 @@ namespace Reveal.Sdk.Dom.Tests
         }
 
         [Fact]
+        public void RdashDocument_Import_ShouldImportVisualizationMultipleTimes()
+        {
+            // Arrange
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { new TextField("Test") });
+
+            var sourceDocument = new RdashDocument();
+            var visualization = new GridVisualization(dataSourceItem);
+            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(visualization);
+            sourceDocument.Visualizations.Add(new PivotVisualization(dataSourceItem));
+
+            // Ensure data sources are added to the data sources collection
+            sourceDocument.Validate();
+
+            // Act
+            var document = new RdashDocument();
+            for (int i = 0; i < 3; i++)
+            {
+                document.Import(sourceDocument, visualization);
+            }
+
+            // Assert
+            Assert.Equal(3, document.Visualizations.Count);
+            foreach (var importedVisualization in document.Visualizations)
+            {
+                Assert.Equal(visualization.Title, importedVisualization.Title);
+                Assert.Equal(visualization.ChartType, importedVisualization.ChartType);
+                Assert.Equal(visualization.IsTitleVisible, importedVisualization.IsTitleVisible);
+                Assert.Equal(visualization.ColumnSpan, importedVisualization.ColumnSpan);
+                Assert.Equal(visualization.RowSpan, importedVisualization.RowSpan);
+                Assert.Equal(visualization.Description, importedVisualization.Description);
+                Assert.Equal(visualization.DataDefinition.DataSourceItem.DataSourceId, importedVisualization.DataDefinition.DataSourceItem.DataSourceId);
+                Assert.Equal(visualization.Filters.Count, importedVisualization.Filters.Count);
+                Assert.Equal(visualization.FilterBindings.Count, importedVisualization.FilterBindings.Count);
+                Assert.NotEqual(visualization.Id, importedVisualization.Id);
+            }
+            Assert.Equal(2, document.DataSources.Count);
+        }
+
+        [Fact]
         public void RdashDocument_Import_WithNullDocument_ShouldThrowArgumentNullException()
         {
             // Arrange
