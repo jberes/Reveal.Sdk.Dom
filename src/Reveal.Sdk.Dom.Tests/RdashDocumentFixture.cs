@@ -69,8 +69,11 @@ namespace Reveal.Sdk.Dom.Tests
             // Assert
             Assert.Equal(3, document.Visualizations.Count);
             Assert.Equal(sourceDocument.Visualizations[0].ChartType, document.Visualizations[0].ChartType);
+            Assert.NotEqual(sourceDocument.Visualizations[1].Id, document.Visualizations[0].Id);
             Assert.Equal(sourceDocument.Visualizations[1].ChartType, document.Visualizations[1].ChartType);
+            Assert.NotEqual(sourceDocument.Visualizations[2].Id, document.Visualizations[1].Id);
             Assert.Equal(sourceDocument.Visualizations[2].ChartType, document.Visualizations[2].ChartType);
+            Assert.NotEqual(sourceDocument.Visualizations[2].Id, document.Visualizations[2].Id);
             Assert.Equal(2, document.DataSources.Count);
         }
 
@@ -94,7 +97,13 @@ namespace Reveal.Sdk.Dom.Tests
 
             // Assert
             Assert.Single(document.Visualizations);
+            Assert.Equal(sourceDocument.Visualizations[1].Title, document.Visualizations[0].Title);
             Assert.Equal(sourceDocument.Visualizations[1].ChartType, document.Visualizations[0].ChartType);
+            Assert.Equal(sourceDocument.Visualizations[1].IsTitleVisible, document.Visualizations[0].IsTitleVisible);
+            Assert.Equal(sourceDocument.Visualizations[1].ColumnSpan, document.Visualizations[0].ColumnSpan);
+            Assert.Equal(sourceDocument.Visualizations[1].RowSpan, document.Visualizations[0].RowSpan);
+            Assert.Equal(sourceDocument.Visualizations[1].Description, document.Visualizations[0].Description);
+            Assert.NotEqual(sourceDocument.Visualizations[1].Id, document.Visualizations[0].Id);
             Assert.Equal(2, document.DataSources.Count);
         }
 
