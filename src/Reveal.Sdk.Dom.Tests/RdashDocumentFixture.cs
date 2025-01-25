@@ -212,6 +212,7 @@ namespace Reveal.Sdk.Dom.Tests
 
             var document = new RdashDocument();
             document.Import(sourceDocument, visualization, new ImportOptions() { IncludeVisualizationFilters = includeVisualizationFilters });
+            document.Validate();
 
             Assert.Single(document.Visualizations);
             if (includeVisualizationFilters)
