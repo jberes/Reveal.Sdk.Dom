@@ -56,8 +56,8 @@ namespace Reveal.Sdk.Dom.Tests
 
             var sourceDocument = new RdashDocument();
             sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
-            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
-            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new GridVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new PivotVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
             RdashDocumentValidator.Validate(sourceDocument);
@@ -68,9 +68,9 @@ namespace Reveal.Sdk.Dom.Tests
 
             // Assert
             Assert.Equal(3, document.Visualizations.Count);
-            Assert.Contains(sourceDocument.Visualizations[0], document.Visualizations);
-            Assert.Contains(sourceDocument.Visualizations[1], document.Visualizations);
-            Assert.Contains(sourceDocument.Visualizations[2], document.Visualizations);
+            Assert.Equal(sourceDocument.Visualizations[0].ChartType, document.Visualizations[0].ChartType);
+            Assert.Equal(sourceDocument.Visualizations[1].ChartType, document.Visualizations[1].ChartType);
+            Assert.Equal(sourceDocument.Visualizations[2].ChartType, document.Visualizations[2].ChartType);
             Assert.Equal(2, document.DataSources.Count);
         }
 
@@ -82,8 +82,8 @@ namespace Reveal.Sdk.Dom.Tests
 
             var sourceDocument = new RdashDocument();
             sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
-            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
-            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new GridVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new PivotVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
             sourceDocument.Validate();
@@ -94,7 +94,7 @@ namespace Reveal.Sdk.Dom.Tests
 
             // Assert
             Assert.Single(document.Visualizations);
-            Assert.Equal(sourceDocument.Visualizations[1], document.Visualizations[0]);
+            Assert.Equal(sourceDocument.Visualizations[1].ChartType, document.Visualizations[0].ChartType);
             Assert.Equal(2, document.DataSources.Count);
         }
 
