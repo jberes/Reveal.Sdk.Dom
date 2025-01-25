@@ -56,8 +56,8 @@ namespace Reveal.Sdk.Dom.Tests
 
             var sourceDocument = new RdashDocument();
             sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
-            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
-            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new GridVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new PivotVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
             RdashDocumentValidator.Validate(sourceDocument);
@@ -68,9 +68,12 @@ namespace Reveal.Sdk.Dom.Tests
 
             // Assert
             Assert.Equal(3, document.Visualizations.Count);
-            Assert.Contains(sourceDocument.Visualizations[0], document.Visualizations);
-            Assert.Contains(sourceDocument.Visualizations[1], document.Visualizations);
-            Assert.Contains(sourceDocument.Visualizations[2], document.Visualizations);
+            Assert.Equal(sourceDocument.Visualizations[0].ChartType, document.Visualizations[0].ChartType);
+            Assert.NotEqual(sourceDocument.Visualizations[1].Id, document.Visualizations[0].Id);
+            Assert.Equal(sourceDocument.Visualizations[1].ChartType, document.Visualizations[1].ChartType);
+            Assert.NotEqual(sourceDocument.Visualizations[2].Id, document.Visualizations[1].Id);
+            Assert.Equal(sourceDocument.Visualizations[2].ChartType, document.Visualizations[2].ChartType);
+            Assert.NotEqual(sourceDocument.Visualizations[2].Id, document.Visualizations[2].Id);
             Assert.Equal(2, document.DataSources.Count);
         }
 
@@ -82,8 +85,8 @@ namespace Reveal.Sdk.Dom.Tests
 
             var sourceDocument = new RdashDocument();
             sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
-            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
-            sourceDocument.Visualizations.Add(new KpiTimeVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new GridVisualization(dataSourceItem));
+            sourceDocument.Visualizations.Add(new PivotVisualization(dataSourceItem));
 
             // Ensure data sources are added to the data sources collection
             sourceDocument.Validate();
@@ -94,7 +97,16 @@ namespace Reveal.Sdk.Dom.Tests
 
             // Assert
             Assert.Single(document.Visualizations);
-            Assert.Equal(sourceDocument.Visualizations[1], document.Visualizations[0]);
+            Assert.Equal(sourceDocument.Visualizations[1].Title, document.Visualizations[0].Title);
+            Assert.Equal(sourceDocument.Visualizations[1].ChartType, document.Visualizations[0].ChartType);
+            Assert.Equal(sourceDocument.Visualizations[1].IsTitleVisible, document.Visualizations[0].IsTitleVisible);
+            Assert.Equal(sourceDocument.Visualizations[1].ColumnSpan, document.Visualizations[0].ColumnSpan);
+            Assert.Equal(sourceDocument.Visualizations[1].RowSpan, document.Visualizations[0].RowSpan);
+            Assert.Equal(sourceDocument.Visualizations[1].Description, document.Visualizations[0].Description);
+            Assert.Equal(sourceDocument.Visualizations[1].DataDefinition.DataSourceItem.DataSourceId, document.Visualizations[0].DataDefinition.DataSourceItem.DataSourceId);
+            Assert.Equal(sourceDocument.Visualizations[1].Filters.Count, document.Visualizations[0].Filters.Count);
+            Assert.Equal(sourceDocument.Visualizations[1].FilterBindings.Count, document.Visualizations[0].FilterBindings.Count);
+            Assert.NotEqual(sourceDocument.Visualizations[1].Id, document.Visualizations[0].Id);
             Assert.Equal(2, document.DataSources.Count);
         }
 

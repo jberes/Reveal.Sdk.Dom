@@ -22,6 +22,7 @@ using Reveal.Sdk.Data.PostgreSQL;
 using Reveal.Sdk.Data.Rest;
 using Reveal.Sdk.Data.Snowflake;
 using Reveal.Sdk.Dom;
+using Reveal.Sdk.Dom.Filters;
 using Sandbox.DashboardCreators;
 using Sandbox.DashboardFactories;
 using Sandbox.RevealSDK;
@@ -39,7 +40,7 @@ namespace Sandbox
     public partial class MainWindow : Window
     {
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
-        static readonly string _readFilePath = Path.Combine(_dashboardFilePath, "Healthcare.rdash");
+        static readonly string _readFilePath = Path.Combine(_dashboardFilePath, "Campaigns.rdash");
 
         List<IDashboardCreator> _dashboardCreators = new List<IDashboardCreator>
         {
@@ -261,7 +262,21 @@ namespace Sandbox
         private async void Read_Dashboard(object sender, RoutedEventArgs e)
         {
             var document = RdashDocument.Load(_readFilePath);
-            var json = document.ToJsonString();
+            //var json = document.ToJsonString();
+            var newDocument = new RdashDocument("Generated");
+            //newDocument.Import(document, new ImportOptions()
+            //{
+            //    IncludeDashboardFilters = true,
+            //});
+
+            newDocument.Import(document, document.Visualizations[5]);
+            newDocument.Import(document, document.Visualizations[5], new ImportOptions()
+            {
+                IncludeDashboardFilters = true,
+            });
+
+            var json = newDocument.ToJsonString();
+
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
 
             SetJsonTextBlock(json);
