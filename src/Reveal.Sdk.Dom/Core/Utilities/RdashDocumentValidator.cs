@@ -12,6 +12,7 @@ namespace Reveal.Sdk.Dom.Core.Utilities
         internal static void Validate(RdashDocument document)
         {
             FixVisualizations(document);
+            ReorderDashboardFilters(document);
         }
 
         static void FixVisualizations(RdashDocument document)
@@ -33,19 +34,6 @@ namespace Reveal.Sdk.Dom.Core.Utilities
             }
 
             UpdateDocumentDataSources(document, dataSources);
-
-            ReorderDashboardFilters(document);
-        }
-
-        private static void ReorderDashboardFilters(RdashDocument document)
-        {
-            //make sure the DashboardDateFilter is the first item in the collection
-            var dashboardDateFilter = document.Filters.FirstOrDefault(f => f is DashboardDateFilter);
-            if (dashboardDateFilter != null)
-            {
-                document.Filters.Remove(dashboardDateFilter);
-                document.Filters.Insert(0, dashboardDateFilter);
-            }
         }
 
         private static void FixFields(TabularDataDefinition tdd)
@@ -105,6 +93,17 @@ namespace Reveal.Sdk.Dom.Core.Utilities
         {
             var allDataSources = document.DataSources?.Union(dataSources.Values) ?? dataSources.Values;
             document.DataSources = allDataSources.ToList();
+        }
+
+        private static void ReorderDashboardFilters(RdashDocument document)
+        {
+            //make sure the DashboardDateFilter is the first item in the collection
+            var dashboardDateFilter = document.Filters.FirstOrDefault(f => f is DashboardDateFilter);
+            if (dashboardDateFilter != null)
+            {
+                document.Filters.Remove(dashboardDateFilter);
+                document.Filters.Insert(0, dashboardDateFilter);
+            }
         }
     }
 }
