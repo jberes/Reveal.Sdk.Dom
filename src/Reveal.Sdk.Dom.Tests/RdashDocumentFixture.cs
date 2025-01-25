@@ -2,6 +2,7 @@
 using Reveal.Sdk.Dom.Core.Constants;
 using Reveal.Sdk.Dom.Core.Utilities;
 using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
@@ -148,6 +149,36 @@ namespace Reveal.Sdk.Dom.Tests
                 Assert.NotEqual(visualization.Id, importedVisualization.Id);
             }
             Assert.Equal(2, document.DataSources.Count);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void RdashDocument_Import_IncludeVisualizationFilters(bool includeVisualizationFilters)
+        {
+            var dataSourceItem = new DataSourceItemFactory().Create(DataSourceType.REST, "", "").SetFields(new List<IField>() { new TextField("Test") });
+            
+            var sourceDocument = new RdashDocument();
+            var visualization = new GridVisualization(dataSourceItem);
+            visualization.Filters.Add(new VisualizationFilter("Test"));
+            sourceDocument.Visualizations.Add(visualization);
+
+            // Ensure data sources are added to the data sources collection
+            sourceDocument.Validate();
+
+            var document = new RdashDocument();
+            document.Import(sourceDocument, visualization, new ImportOptions() { IncludeVisualizationFilters = includeVisualizationFilters });
+
+            Assert.Single(document.Visualizations);
+            if (includeVisualizationFilters)
+            {
+                Assert.Single(document.Visualizations[0].Filters);
+                Assert.Equal(visualization.Filters[0].FieldName, document.Visualizations[0].Filters[0].FieldName);
+            }
+            else
+            {
+                Assert.Empty(document.Visualizations[0].Filters);
+            }
         }
 
         [Fact]
