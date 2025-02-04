@@ -53,6 +53,7 @@ namespace Sandbox
             new GoogleSheetDashboard(),
             new GridVisualizationDashboard(),
             new HealthcareDashboard(),
+            new ImageVisualizationDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
             new MongoDashboard(),
