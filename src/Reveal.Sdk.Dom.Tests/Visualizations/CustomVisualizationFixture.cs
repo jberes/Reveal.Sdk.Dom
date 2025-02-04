@@ -72,6 +72,7 @@ public class CustomVisualizationFixture
 
         // Assert
         Assert.Equal(expectedRows, rows);
+        Assert.Equal(expectedRows, visualization.VisualizationDataSpec.Rows);
     }
 
     [Fact]
@@ -87,6 +88,7 @@ public class CustomVisualizationFixture
 
         // Assert
         Assert.Equal(expectedValues, values);
+        Assert.Equal(expectedValues, visualization.VisualizationDataSpec.Values);
     }
 
     [Fact]
@@ -102,6 +104,7 @@ public class CustomVisualizationFixture
 
         // Assert
         Assert.Equal(expectedColumns, columns);
+        Assert.Equal(expectedColumns, visualization.VisualizationDataSpec.Columns);
     }
 
     [Fact]
