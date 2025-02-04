@@ -66,6 +66,7 @@ namespace Sandbox
             new SplineAreaChartVisualizationDashboard(),
             new SqlServerDataSourceDashboards(),
             new OracleDataSourceDashboard(),
+            new TimeSeriesVisualizationDashboard(),
             new WebServiceDataSourceDashboard(),
         };
 
