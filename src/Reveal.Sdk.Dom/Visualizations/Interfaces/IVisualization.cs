@@ -17,7 +17,8 @@ namespace Reveal.Sdk.Dom.Visualizations
         int RowSpan { get; set; }
         string Description { get; set; }
         IDataDefinition DataDefinition { get; }
-        List<Binding> FilterBindings { get; }
+        List<VisualizationFilter> Filters { get; set; }
+        List<Binding> FilterBindings { get; set; }
         DataSourceItem GetDataSourceItem();
     }
 }

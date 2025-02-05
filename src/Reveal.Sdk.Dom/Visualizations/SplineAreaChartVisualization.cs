@@ -6,6 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     /// <summary>
     /// The spline area visualization is used for rendering a collection of points connected by smooth curves with the area below the line filled in. Values are represented on the y-axis and categories are displayed on the x-axis.
     /// </summary>
+    /// TODO: Need settings for Show Axis AND Show total on Tooltip
     public sealed class SplineAreaChartVisualization : CategoryVisualizationBase<SplineAreaChartVisualizationSettings>
     {
         internal SplineAreaChartVisualization() : this(null) { }

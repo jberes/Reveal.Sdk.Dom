@@ -44,7 +44,8 @@
                 <TextBox x:Name="_jsonTextBlock" Background="BlanchedAlmond" Margin="3" TextWrapping="Wrap" Width="616"/>
             </ScrollViewer>            
 
-            <Button  Grid.Row="1" Height="55" Margin="5" Click="CopyJsonToClipboard">Copy JSON To Clipboard</Button>
+            <Button  Grid.Row="1" Height="55" Margin="319,5,5,5" Click="CopyJsonToClipboard">Copy JSON To Clipboard</Button>
+            <Button  Grid.Row="1" Height="55" Margin="5,5,319,5" Click="ReloadJson">Reload JSON</Button>
         </Grid>
 
     </Grid>

@@ -28,7 +28,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public ComboChartVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.Combo; }
 
         [JsonProperty(Order = 7)]
-        CompositeChartVisualizationDataSpec VisualizationDataSpec { get; set; } = new CompositeChartVisualizationDataSpec();
+        internal CompositeChartVisualizationDataSpec VisualizationDataSpec { get; set; } = new CompositeChartVisualizationDataSpec();
 
         [JsonIgnore]
         public List<MeasureColumn> Chart1 { get { return VisualizationDataSpec.Chart1; } }

@@ -1,4 +1,5 @@
 ﻿using Reveal.Sdk.Dom.Data;
+using Reveal.Sdk.Dom.Filters;
 using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Reveal.Sdk.Dom.Core.Utilities
         internal static void Validate(RdashDocument document)
         {
             FixVisualizations(document);
+            ReorderDashboardFilters(document);
         }
 
         static void FixVisualizations(RdashDocument document)
@@ -91,6 +93,17 @@ namespace Reveal.Sdk.Dom.Core.Utilities
         {
             var allDataSources = document.DataSources?.Union(dataSources.Values) ?? dataSources.Values;
             document.DataSources = allDataSources.ToList();
+        }
+
+        private static void ReorderDashboardFilters(RdashDocument document)
+        {
+            //make sure the DashboardDateFilter is the first item in the collection
+            var dashboardDateFilter = document.Filters.FirstOrDefault(f => f is DashboardDateFilter);
+            if (dashboardDateFilter != null)
+            {
+                document.Filters.Remove(dashboardDateFilter);
+                document.Filters.Insert(0, dashboardDateFilter);
+            }
         }
     }
 }

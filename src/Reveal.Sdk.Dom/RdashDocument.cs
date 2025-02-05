@@ -110,23 +110,14 @@ namespace Reveal.Sdk.Dom
         /// Import all visualizations from another document.
         /// </summary>
         /// <param name="document">The <see cref="RdashDocument"/> containing the visualizations to import.</param>
+        /// <param name="options">The import options.</param>
         /// <exception cref="ArgumentNullException">Thrown if the document is null</exception>
-        public void Import(RdashDocument document)
+        public void Import(RdashDocument document, ImportOptions options = null)
         {
             if (document == null)
                 throw new ArgumentNullException();
 
-            //todo: think about dashboard filters. should we bring them over? maybe some import options to control it?
-            //let's wait for feedback from customers
-            //for now let's just clear any visualization filters that may be binding to a dashboard filter
-            foreach (var viz in document.Visualizations)
-            {
-                viz.FilterBindings.Clear();
-            }
-
-            DataSources.AddRange(document.DataSources); //add all data sources, unused data sources will be removed later during serialization
-
-            Visualizations.AddRange(document.Visualizations);
+            RdashDocumentImporter.Import(this, document, null, options);
         }
 
         /// <summary>
@@ -134,9 +125,10 @@ namespace Reveal.Sdk.Dom
         /// </summary>
         /// <param name="document">The <see cref="RdashDocument"/> containing the visualization to import.</param>
         /// <param name="visualizationId">The ID of the visualization to import.</param>
+        /// <param name="options">The import options.</param>
         /// <exception cref="ArgumentNullException">Thrown if the document is null</exception>
         /// <exception cref="ArgumentException">Thrown if the visualizationId is null or empty.</exception>
-        public void Import(RdashDocument document, string visualizationId)
+        public void Import(RdashDocument document, string visualizationId, ImportOptions options = null)
         {
             if (document == null)
                 throw new ArgumentNullException();
@@ -145,7 +137,9 @@ namespace Reveal.Sdk.Dom
                 throw new ArgumentException("Value cannot be null or empty.", nameof(visualizationId));
 
             var visualization = document.Visualizations.Find(v => v.Id == visualizationId);
-            Import(document, visualization);
+            if (visualization != null)
+                RdashDocumentImporter.Import(this, document, visualization, options);
+
         }
 
         /// <summary>
@@ -153,8 +147,9 @@ namespace Reveal.Sdk.Dom
         /// </summary>
         /// <param name="document">The <see cref="RdashDocument"/> containing the visualization to import.</param>
         /// <param name="visualization">The visualization.</param>
+        /// <param name="options">The import options.</param>
         /// <exception cref="ArgumentNullException">Thrown if the document or visualization is null.</exception>
-        public void Import(RdashDocument document, IVisualization visualization)
+        public void Import(RdashDocument document, IVisualization visualization, ImportOptions options = null)
         {
             if (document == null)
                 throw new ArgumentNullException(nameof(document));
@@ -162,14 +157,7 @@ namespace Reveal.Sdk.Dom
             if (visualization == null)
                 throw new ArgumentNullException(nameof(visualization));
 
-            //todo: think about dashboard filters. should we bring them over? maybe some import options to control it?
-            //let's wait for feedback from customers
-            //for now let's just clear any visualization filters that may be binding to a dashboard filter
-            visualization.FilterBindings.Clear();
-
-            DataSources.AddRange(document.DataSources); //add all data sources, unused data sources will be removed later during serialization
-
-            Visualizations.Add(visualization);
+            RdashDocumentImporter.Import(this, document, visualization, options);
         }
 
         /// <summary>

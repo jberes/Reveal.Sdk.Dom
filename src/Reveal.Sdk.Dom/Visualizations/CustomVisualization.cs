@@ -27,7 +27,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public CustomVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.Custom; }
 
         [JsonProperty(Order = 7)]
-        PivotVisualizationDataSpec VisualizationDataSpec { get; set; } = new PivotVisualizationDataSpec();
+        internal PivotVisualizationDataSpec VisualizationDataSpec { get; set; } = new PivotVisualizationDataSpec();
 
         [JsonIgnore]
         public List<DimensionColumn> Rows { get { return VisualizationDataSpec.Rows; } }

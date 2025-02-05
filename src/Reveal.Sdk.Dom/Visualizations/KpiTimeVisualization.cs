@@ -50,6 +50,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonProperty(Order = 7)]
-        IndicatorVisualizationDataSpec VisualizationDataSpec { get; set; } = new IndicatorVisualizationDataSpec();
+        internal IndicatorVisualizationDataSpec VisualizationDataSpec { get; set; } = new IndicatorVisualizationDataSpec();
     }
 }

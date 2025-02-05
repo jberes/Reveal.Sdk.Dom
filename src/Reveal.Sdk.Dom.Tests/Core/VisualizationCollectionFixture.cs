@@ -110,7 +110,8 @@ namespace Reveal.Sdk.Dom.Tests.Core
             public string Description { get; set; }
             public IDataDefinition DataDefinition { get; }
             RdashDocument IParentDocument.Document { get; set; }
-            public List<Binding> FilterBindings { get; }
+            public List<VisualizationFilter> Filters { get; set; }
+            public List<Binding> FilterBindings { get; set;}
 
             public DataSourceItem GetDataSourceItem()
             {
