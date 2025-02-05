@@ -120,6 +120,8 @@ public class KpiTargetVisualizationFixture
 
         // Assert
         Assert.Equal(expectedTargets, targets);
+        Assert.Equal(expectedTargets, visualization.VisualizationDataSpec.Target);
+
     }
 
     [Fact]
