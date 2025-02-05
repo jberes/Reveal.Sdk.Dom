@@ -72,6 +72,7 @@ namespace Sandbox
             new TextBoxVisualizationDashboard(),
             new TimeSeriesVisualizationDashboard(),
             new WebServiceDataSourceDashboard(),
+            new KpiTargetVisualizationDashboard(),
         };
 
         public MainWindow()
