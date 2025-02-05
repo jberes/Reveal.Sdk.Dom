@@ -26,7 +26,23 @@ namespace Reveal.Sdk.Dom.Visualizations
         {
             return visualization.SetColorByValue(new NumberDataField(field));
         }
-        
+
+        public static ScatterMapVisualization SetRadius(this ScatterMapVisualization visualization, string field)
+        {
+            visualization.SetRadius(new NumberDataField(field));
+            return visualization;
+        }
+
+        public static ScatterMapVisualization SetRadius(this ScatterMapVisualization visualization, NumberDataField field)
+        {
+            visualization.VisualizationDataSpec.Radius.Clear();
+            visualization.VisualizationDataSpec.Radius.Add(new MeasureColumn()
+            {
+                DataField = field
+            });
+            return visualization;
+        }
+
         public static ScatterMapVisualization SetColorByValue(this ScatterMapVisualization visualization, NumberDataField field)
         {
             visualization.VisualizationDataSpec.IsColorByValue = true;
