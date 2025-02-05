@@ -27,7 +27,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public TextViewVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.TextView; }
 
         [JsonProperty(Order = 7)]
-        VisualizationDataSpec VisualizationDataSpec { get; set; } = new GridVisualizationDataSpec();
+        internal VisualizationDataSpec VisualizationDataSpec { get; set; } = new GridVisualizationDataSpec();
 
         [JsonIgnore]
         public List<TabularColumn> Columns
