@@ -26,6 +26,7 @@ public class KpiTargetVisualizationFixture
         Assert.Empty(visualization.Categories);
         Assert.NotNull(visualization.Targets);
         Assert.Empty(visualization.Targets);
+        Assert.NotNull(visualization.VisualizationDataSpec);
     }
 
     [Fact]
@@ -40,6 +41,7 @@ public class KpiTargetVisualizationFixture
         // Assert
         Assert.Equal(dataSourceItem, visualization.DataDefinition.DataSourceItem);
         Assert.Equal(ChartType.KpiTarget, visualization.ChartType);
+        Assert.Null(visualization.Title);
     }
 
     [Fact]
@@ -86,6 +88,7 @@ public class KpiTargetVisualizationFixture
 
         // Assert
         Assert.Equal(expectedValues, values);
+        Assert.Equal(expectedValues, visualization.VisualizationDataSpec.Value);
     }
 
     [Fact]
@@ -101,6 +104,7 @@ public class KpiTargetVisualizationFixture
 
         // Assert
         Assert.Equal(expectedCategories, categories);
+        Assert.Equal(expectedCategories, visualization.VisualizationDataSpec.Rows);
     }
 
     [Fact]
