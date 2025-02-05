@@ -69,6 +69,7 @@ namespace Sandbox
             new SqlServerDataSourceDashboards(),
             new TextVisualizationDashboard(),
             new OracleDataSourceDashboard(),
+            new TextBoxVisualizationDashboard(),
             new TimeSeriesVisualizationDashboard(),
             new WebServiceDataSourceDashboard(),
         };
