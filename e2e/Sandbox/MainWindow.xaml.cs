@@ -67,6 +67,7 @@ namespace Sandbox
             new SnowflakeDashboard(),
             new SplineAreaChartVisualizationDashboard(),
             new SqlServerDataSourceDashboards(),
+            new TextVisualizationDashboard(),
             new OracleDataSourceDashboard(),
             new TimeSeriesVisualizationDashboard(),
             new WebServiceDataSourceDashboard(),
