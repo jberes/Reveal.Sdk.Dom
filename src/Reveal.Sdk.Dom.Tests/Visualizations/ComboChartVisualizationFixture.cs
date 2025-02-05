@@ -70,6 +70,7 @@ public class ComboChartVisualizationFixture
 
         // Assert
         Assert.Equal(expectedChart1, chart1);
+        Assert.Equal(expectedChart1, visualization.VisualizationDataSpec.Chart1);
     }
 
     [Fact]
@@ -85,6 +86,7 @@ public class ComboChartVisualizationFixture
 
         // Assert
         Assert.Equal(expectedChart2, chart2);
+        Assert.Equal(expectedChart2, visualization.VisualizationDataSpec.Chart2);
     }
 
     [Fact]
@@ -100,6 +102,7 @@ public class ComboChartVisualizationFixture
 
         // Assert
         Assert.Equal(expectedLabels, labels);
+        Assert.Equal(expectedLabels, visualization.VisualizationDataSpec.Rows);
     }
 
     [Fact]
