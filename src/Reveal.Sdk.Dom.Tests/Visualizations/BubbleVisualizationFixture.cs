@@ -129,147 +129,164 @@ public class BubbleVisualizationFixture
         // Arrange
         var expectedJson =
             """
-            [ {
-              "Description" : "Bubble Visualization",
-              "Id" : "60344a4a-d0ce-4364-9f8c-acfbb8caa32e",
-              "Title" : "Bubble Visualization",
-              "IsTitleVisible" : true,
-              "ColumnSpan" : 0,
-              "RowSpan" : 0,
-              "VisualizationSettings" : {
-                "_type" : "ChartVisualizationSettingsType",
-                "RightAxisLogarithmic" : false,
-                "LeftAxisLogarithmic" : true,
-                "ShowLegends" : true,
-                "BrushOffsetIndex" : 1,
-                "ChartType" : "Bubble",
-                "VisualizationType" : "CHART"
-              },
-              "DataSpec" : {
-                "_type" : "TabularDataSpecType",
-                "IsTransposed" : false,
-                "Fields" : [ {
-                  "FieldName" : "CampaignID",
-                  "FieldLabel" : "CampaignID",
-                  "UserCaption" : "CampaignID",
-                  "IsCalculated" : false,
-                  "Properties" : { },
-                  "Sorting" : "None",
-                  "FieldType" : "String"
-                }, {
-                  "FieldName" : "Budget",
-                  "FieldLabel" : "Budget",
-                  "UserCaption" : "Budget",
-                  "IsCalculated" : false,
-                  "Properties" : { },
-                  "Sorting" : "None",
-                  "FieldType" : "Number"
-                }, {
-                  "FieldName" : "Spend",
-                  "FieldLabel" : "Spend",
-                  "UserCaption" : "Spend",
-                  "IsCalculated" : false,
-                  "Properties" : { },
-                  "Sorting" : "None",
-                  "FieldType" : "Number"
-                }, {
-                  "FieldName" : "Traffic",
-                  "FieldLabel" : "Traffic",
-                  "UserCaption" : "Traffic",
-                  "IsCalculated" : false,
-                  "Properties" : { },
-                  "Sorting" : "None",
-                  "FieldType" : "Number"
-                } ],
-                "TransposedFields" : [ ],
-                "QuickFilters" : [ ],
-                "AdditionalTables" : [ ],
-                "ServiceAdditionalTables" : [ ],
-                "DataSourceItem" : {
-                  "_type" : "DataSourceItemType",
-                  "Id" : "080cc17d-4a0a-4837-aa3f-ef2571ea443a",
-                  "Title" : "Marketing Sheet",
-                  "Subtitle" : "Excel Data Source Item",
-                  "DataSourceId" : "__EXCEL",
-                  "HasTabularData" : true,
-                  "HasAsset" : false,
-                  "Properties" : {
-                    "Sheet" : "Marketing"
-                  },
-                  "Parameters" : { },
-                  "ResourceItem" : {
-                    "_type" : "DataSourceItemType",
-                    "Id" : "d593dd79-7161-4929-afc9-c26393f5b650",
-                    "Title" : "Marketing Sheet",
-                    "Subtitle" : "Excel Data Source Item",
-                    "DataSourceId" : "33077d1e-19c5-44fe-b981-6765af3156a6",
-                    "HasTabularData" : true,
-                    "HasAsset" : false,
-                    "Properties" : {
-                      "Url" : "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+            [
+              {
+                "Description": "Bubble Visualization",
+                "Id": "60344a4a-d0ce-4364-9f8c-acfbb8caa32e",
+                "Title": "Bubble Visualization",
+                "IsTitleVisible": true,
+                "ColumnSpan": 0,
+                "RowSpan": 0,
+                "VisualizationSettings": {
+                  "_type": "ChartVisualizationSettingsType",
+                  "RightAxisLogarithmic": false,
+                  "ShowAxisX": true,
+                  "ShowAxisY": true,
+                  "LeftAxisLogarithmic": true,
+                  "ShowLegends": true,
+                  "BrushOffsetIndex": 1,
+                  "ChartType": "Bubble",
+                  "VisualizationType": "CHART"
+                },
+                "DataSpec": {
+                  "_type": "TabularDataSpecType",
+                  "IsTransposed": false,
+                  "Fields": [
+                    {
+                      "FieldName": "CampaignID",
+                      "FieldLabel": "CampaignID",
+                      "UserCaption": "CampaignID",
+                      "IsCalculated": false,
+                      "Properties": {},
+                      "Sorting": "None",
+                      "FieldType": "String"
                     },
-                    "Parameters" : { }
+                    {
+                      "FieldName": "Budget",
+                      "FieldLabel": "Budget",
+                      "UserCaption": "Budget",
+                      "IsCalculated": false,
+                      "Properties": {},
+                      "Sorting": "None",
+                      "FieldType": "Number"
+                    },
+                    {
+                      "FieldName": "Spend",
+                      "FieldLabel": "Spend",
+                      "UserCaption": "Spend",
+                      "IsCalculated": false,
+                      "Properties": {},
+                      "Sorting": "None",
+                      "FieldType": "Number"
+                    },
+                    {
+                      "FieldName": "Traffic",
+                      "FieldLabel": "Traffic",
+                      "UserCaption": "Traffic",
+                      "IsCalculated": false,
+                      "Properties": {},
+                      "Sorting": "None",
+                      "FieldType": "Number"
+                    }
+                  ],
+                  "TransposedFields": [],
+                  "QuickFilters": [],
+                  "AdditionalTables": [],
+                  "ServiceAdditionalTables": [],
+                  "DataSourceItem": {
+                    "_type": "DataSourceItemType",
+                    "Id": "080cc17d-4a0a-4837-aa3f-ef2571ea443a",
+                    "Title": "Marketing Sheet",
+                    "Subtitle": "Excel Data Source Item",
+                    "DataSourceId": "__EXCEL",
+                    "HasTabularData": true,
+                    "HasAsset": false,
+                    "Properties": {
+                      "Sheet": "Marketing"
+                    },
+                    "Parameters": {},
+                    "ResourceItem": {
+                      "_type": "DataSourceItemType",
+                      "Id": "d593dd79-7161-4929-afc9-c26393f5b650",
+                      "Title": "Marketing Sheet",
+                      "Subtitle": "Excel Data Source Item",
+                      "DataSourceId": "33077d1e-19c5-44fe-b981-6765af3156a6",
+                      "HasTabularData": true,
+                      "HasAsset": false,
+                      "Properties": {
+                        "Url": "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+                      },
+                      "Parameters": {}
+                    }
+                  },
+                  "Expiration": 1440,
+                  "Bindings": {
+                    "Bindings": []
                   }
                 },
-                "Expiration" : 1440,
-                "Bindings" : {
-                  "Bindings" : [ ]
+                "VisualizationDataSpec": {
+                  "_type": "BubbleVisualizationDataSpecType",
+                  "Radius": [
+                    {
+                      "_type": "MeasureColumnSpecType",
+                      "SummarizationField": {
+                        "_type": "SummarizationValueFieldType",
+                        "FieldLabel": "Traffic",
+                        "UserCaption": "Traffic",
+                        "IsHidden": false,
+                        "AggregationType": "Sum",
+                        "Sorting": "None",
+                        "IsCalculated": false,
+                        "FieldName": "Traffic"
+                      }
+                    }
+                  ],
+                  "XAxis": [
+                    {
+                      "_type": "MeasureColumnSpecType",
+                      "SummarizationField": {
+                        "_type": "SummarizationValueFieldType",
+                        "FieldLabel": "Budget",
+                        "UserCaption": "Budget",
+                        "IsHidden": false,
+                        "AggregationType": "Sum",
+                        "Sorting": "None",
+                        "IsCalculated": false,
+                        "FieldName": "Budget"
+                      }
+                    }
+                  ],
+                  "YAxis": [
+                    {
+                      "_type": "MeasureColumnSpecType",
+                      "SummarizationField": {
+                        "_type": "SummarizationValueFieldType",
+                        "FieldLabel": "Spend",
+                        "UserCaption": "Spend",
+                        "IsHidden": false,
+                        "AggregationType": "Sum",
+                        "Sorting": "None",
+                        "IsCalculated": false,
+                        "FieldName": "Spend"
+                      }
+                    }
+                  ],
+                  "FormatVersion": 0,
+                  "AdHocExpandedElements": [],
+                  "Rows": [
+                    {
+                      "_type": "DimensionColumnSpecType",
+                      "SummarizationField": {
+                        "_type": "SummarizationRegularFieldType",
+                        "DrillDownElements": [],
+                        "ExpandedItems": [],
+                        "FieldName": "CampaignID"
+                      }
+                    }
+                  ]
                 }
-              },
-              "VisualizationDataSpec" : {
-                "_type" : "BubbleVisualizationDataSpecType",
-                "Radius" : [ {
-                  "_type" : "MeasureColumnSpecType",
-                  "SummarizationField" : {
-                    "_type" : "SummarizationValueFieldType",
-                    "FieldLabel" : "Traffic",
-                    "UserCaption" : "Traffic",
-                    "IsHidden" : false,
-                    "AggregationType" : "Sum",
-                    "Sorting" : "None",
-                    "IsCalculated" : false,
-                    "FieldName" : "Traffic"
-                  }
-                } ],
-                "XAxis" : [ {
-                  "_type" : "MeasureColumnSpecType",
-                  "SummarizationField" : {
-                    "_type" : "SummarizationValueFieldType",
-                    "FieldLabel" : "Budget",
-                    "UserCaption" : "Budget",
-                    "IsHidden" : false,
-                    "AggregationType" : "Sum",
-                    "Sorting" : "None",
-                    "IsCalculated" : false,
-                    "FieldName" : "Budget"
-                  }
-                } ],
-                "YAxis" : [ {
-                  "_type" : "MeasureColumnSpecType",
-                  "SummarizationField" : {
-                    "_type" : "SummarizationValueFieldType",
-                    "FieldLabel" : "Spend",
-                    "UserCaption" : "Spend",
-                    "IsHidden" : false,
-                    "AggregationType" : "Sum",
-                    "Sorting" : "None",
-                    "IsCalculated" : false,
-                    "FieldName" : "Spend"
-                  }
-                } ],
-                "FormatVersion" : 0,
-                "AdHocExpandedElements" : [ ],
-                "Rows" : [ {
-                  "_type" : "DimensionColumnSpecType",
-                  "SummarizationField" : {
-                    "_type" : "SummarizationRegularFieldType",
-                    "DrillDownElements" : [ ],
-                    "ExpandedItems" : [ ],
-                    "FieldName" : "CampaignID"
-                  }
-                } ]
               }
-            } ]
+            ]
             """;
 
         var document = new RdashDocument("My Dashboard");
