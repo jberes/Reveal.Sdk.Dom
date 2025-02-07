@@ -24,6 +24,7 @@ using Reveal.Sdk.Data.Snowflake;
 using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Filters;
 using Sandbox.DashboardCreators;
+using Sandbox.DashboardCreators.Visualizations;
 using Sandbox.DashboardFactories;
 using Sandbox.RevealSDK;
 using System;
@@ -54,6 +55,7 @@ namespace Sandbox
             new GridVisualizationDashboard(),
             new HealthcareDashboard(),
             new ImageVisualizationDashboard(),
+            new KpiTargetVisualizationDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
             new MongoDashboard(),
@@ -72,9 +74,9 @@ namespace Sandbox
             new TextVisualizationDashboard(),
             new OracleDataSourceDashboard(),
             new TextBoxVisualizationDashboard(),
+            new TextViewVisualizationDashboard(),
             new TimeSeriesVisualizationDashboard(),
             new WebServiceDataSourceDashboard(),
-            new KpiTargetVisualizationDashboard(),
         };
 
         public MainWindow()
