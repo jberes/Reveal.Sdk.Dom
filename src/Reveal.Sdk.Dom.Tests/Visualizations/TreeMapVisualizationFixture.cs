@@ -69,6 +69,7 @@ public class TreeMapVisualizationFixture
 
         // Assert
         Assert.Equal(expectedLabels, labels);
+        Assert.Equal(expectedLabels, visualization.VisualizationDataSpec.Rows);
     }
 
     [Fact]
@@ -84,6 +85,7 @@ public class TreeMapVisualizationFixture
 
         // Assert
         Assert.Equal(expectedValues, values);
+        Assert.Equal(expectedValues, visualization.VisualizationDataSpec.Value);
     }
 
     [Fact]
