@@ -7,6 +7,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     /// <summary>
     /// The image visualization is used for displaying images, PDFs, or web content.
+    /// TODO: Missing Settings class for Image Visualization
     /// </summary>
     public sealed class ImageVisualization : Visualization<AssetVisualizationSettings>
     {
@@ -33,6 +34,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonProperty(Order = 7)]
-        AssetVisualizationDataSpec VisualizationDataSpec { get; set; } = new AssetVisualizationDataSpec();
+        internal AssetVisualizationDataSpec VisualizationDataSpec { get; set; } = new AssetVisualizationDataSpec();
     }
 }
