@@ -56,6 +56,7 @@ namespace Sandbox
             new HealthcareDashboard(),
             new ImageVisualizationDashboard(),
             new KpiTargetVisualizationDashboard(),
+            new KpiTimeVisualizationDashboard(),
             new ManufacturingDashboard(),
             new MarketingDashboard(),
             new MongoDashboard(),
