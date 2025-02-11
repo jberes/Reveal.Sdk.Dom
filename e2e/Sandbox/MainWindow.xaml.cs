@@ -46,6 +46,7 @@ namespace Sandbox
             new AmazonAthenaDashboard(),
             new AmazonRedshiftDashboard(),
             new CampaignsDashboard(),
+            new ComboVisualizationDashboard(),
             new CustomDashboard(),
             new DashboardLinkingDashboard(),
             new GoogleBigQueryDashboard(),
@@ -65,7 +66,6 @@ namespace Sandbox
             new SqlServerDataSourceDashboards(),
             new OracleDataSourceDashboard(),
             new WebServiceDataSourceDashboard(),
-            new ComboVisualizationDashboard(),
         };
 
         public MainWindow()
