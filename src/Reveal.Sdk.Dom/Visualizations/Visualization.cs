@@ -64,14 +64,32 @@ namespace Reveal.Sdk.Dom.Visualizations
         public List<Binding> FilterBindings
         {
             get { return ((DataDefinitionBase)DataDefinition).Bindings.Bindings; }
+            set { ((DataDefinitionBase)DataDefinition).Bindings.Bindings = value; }
         }
 
+        // TODO: Add field to manage CustomBackgroundColor
+
         //todo: is it possible to create a Filters property that can properly handle both Tabular and Xmla data specs?
-        //[JsonIgnore]
-        //public List<VisualizationFilter> Filters
-        //{
-        //    get { return DataDefinition.QuickFilters; } //this works for tabluar
-        //}
+        [JsonIgnore]
+        public List<VisualizationFilter> Filters
+        {
+            get 
+            {
+                if (DataDefinition is TabularDataDefinition tdd)
+                    return tdd.QuickFilters;
+                else
+                    return new List<VisualizationFilter>(); 
+                
+                //todo: implement this for Xmla data specs
+            }
+            set
+            {
+                if (DataDefinition is TabularDataDefinition tdd)
+                    tdd.QuickFilters = value;
+
+                //todo: implement this for Xmla data specs
+            }
+        }
 
         /// <summary>
         /// Gets the data source item for the visualization.

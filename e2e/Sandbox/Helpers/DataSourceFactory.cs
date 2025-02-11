@@ -72,6 +72,40 @@ namespace Sandbox.Helpers
             return excelDataSourceItem;
         }
 
+        internal static DataSourceItem GetScatterMapDataSourceItem()
+        {
+            var _scatterMapDS = new DataSource()
+            {
+                Title = "Scatter Map CSV",
+                Subtitle = "CSV data for Scatter Map",
+                Id = "ScatterMapDSId"
+            };
+            var scatterMapDSItem = new ExcelFileDataSourceItem("Scatter Map", _scatterMapDS)
+            {
+                Title = "CSV Scatter Map Item",
+                Subtitle = "CSV Scatter Map Item",
+                Path = "ScatterMap.xlsx",
+                Sheet = "Worksheet",
+                Fields = GetScatterMapFields(),
+
+            };
+            return scatterMapDSItem;
+        }
+
+        internal static List<IField> GetScatterMapFields()
+        {
+            return new List<IField>()
+            {
+                new NumberField("id"),
+                new TextField("first_name"),
+                new TextField("last_name"),
+                new TextField("email"),
+                new TextField("gender"),
+                new NumberField("latitude"),
+                new NumberField("longitude")
+            };
+        }
+
         internal static List<IField> GetRevenueDataSourceFields()
         {
             return new List<IField>()

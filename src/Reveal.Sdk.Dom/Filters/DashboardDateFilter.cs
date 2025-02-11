@@ -19,6 +19,7 @@ namespace Reveal.Sdk.Dom.Filters
         {
             SchemaTypeName = SchemaTypeNames.DateGlobalFilterType;
             Title = title;
+            Id = "_date";
         }
     }
 }

@@ -56,7 +56,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
         /// </summary>
         public bool ShowDifference { get; set; } = true;
 
-        SparklineAggregationType ConvertIndicatorVisualizationTypeToSparklineAggregationType(IndicatorVisualizationType indicatorVisualizationType)
+        internal SparklineAggregationType ConvertIndicatorVisualizationTypeToSparklineAggregationType(IndicatorVisualizationType indicatorVisualizationType)
         {
             return indicatorVisualizationType switch
             {
@@ -66,7 +66,7 @@ namespace Reveal.Sdk.Dom.Visualizations.Settings
             };
         }
 
-        IndicatorVisualizationType ConvertSparklineAggregationTypeToIndicatorVisualizationType(SparklineAggregationType sparklineIndicatorType)
+        internal IndicatorVisualizationType ConvertSparklineAggregationTypeToIndicatorVisualizationType(SparklineAggregationType sparklineIndicatorType)
         {
             return sparklineIndicatorType switch
             {

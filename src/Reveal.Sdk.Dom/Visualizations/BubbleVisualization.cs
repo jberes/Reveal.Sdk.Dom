@@ -27,7 +27,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public BubbleVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.Bubble; }
 
         [JsonProperty(Order = 7)]
-        BubbleVisualizationDataSpec VisualizationDataSpec { get; set; } = new BubbleVisualizationDataSpec();
+        internal BubbleVisualizationDataSpec VisualizationDataSpec { get; set; } = new BubbleVisualizationDataSpec();
 
         [JsonIgnore]
         public List<DimensionColumn> Labels { get { return VisualizationDataSpec.Rows; } }

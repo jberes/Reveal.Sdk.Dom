@@ -50,6 +50,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         [JsonProperty(Order = 7)]
-        SparklineVisualizationDataSpec VisualizationDataSpec { get; set; } = new SparklineVisualizationDataSpec();
+        internal SparklineVisualizationDataSpec VisualizationDataSpec { get; set; } = new SparklineVisualizationDataSpec();
     }
 }
