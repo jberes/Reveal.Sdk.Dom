@@ -50,6 +50,7 @@ namespace Sandbox
             new CampaignsDashboard(),
             new ComboVisualizationDashboard(),
             new CustomDashboard(),
+            new CustomVisualizationDashboard(),
             new DashboardLinkingDashboard(),
             new GoogleBigQueryDashboard(),
             new GoogleSheetDashboard(),
