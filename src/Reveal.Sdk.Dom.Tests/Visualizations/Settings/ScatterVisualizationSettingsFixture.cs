@@ -29,14 +29,19 @@ public class ScatterVisualizationSettingsFixture
         var expectedJson =
             """
             {
-              "_type" : "ChartVisualizationSettingsType",
-              "RightAxisLogarithmic" : true,
-              "RightAxisMinValue" : 1.0,
-              "LeftAxisLogarithmic" : false,
-              "LeftAxisMaxValue" : 90.0,
-              "ShowLegends" : true,
-              "ChartType" : "Scatter",
-              "VisualizationType" : "CHART"
+              "_type": "Testing Schema Type Name",
+              "RightAxisLogarithmic": true,
+              "RightAxisMinValue": 1.0,
+              "RightAxisMaxValue": 200.0,
+              "ShowAxisX": false,
+              "ShowAxisY": true,
+              "LeftAxisLogarithmic": true,
+              "LeftAxisMinValue": 100.0,
+              "LeftAxisMaxValue": 9000.0,
+              "ShowLegends": true,
+              "BrushOffsetIndex": 1,
+              "ChartType": "Scatter",
+              "VisualizationType": "CHART"
             }
             """;
 
@@ -44,7 +49,14 @@ public class ScatterVisualizationSettingsFixture
         {
             XAxisIsLogarithmic = true,
             XAxisMinValue = 1,
-            YAxisMaxValue = 90,
+            XAxisMaxValue = 200,
+            YAxisMinValue = 100,
+            YAxisMaxValue = 9000,
+            AxisDisplayMode = AxisDisplayMode.YAxis,
+            ShowLegend = true,
+            YAxisIsLogarithmic = true,
+            StartColorIndex = 1,
+            SchemaTypeName = "Testing Schema Type Name",
         };
 
         // Act

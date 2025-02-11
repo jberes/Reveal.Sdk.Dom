@@ -27,7 +27,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         public TreeMapVisualization(string title, DataSourceItem dataSourceItem) : base(title, dataSourceItem) { ChartType = ChartType.TreeMap; }
 
         [JsonProperty(Order = 7)]
-        TreeMapVisualizationDataSpec VisualizationDataSpec { get; set; } = new TreeMapVisualizationDataSpec();
+        internal TreeMapVisualizationDataSpec VisualizationDataSpec { get; set; } = new TreeMapVisualizationDataSpec();
 
         [JsonIgnore]
         public List<DimensionColumn> Labels { get { return VisualizationDataSpec.Rows; } }

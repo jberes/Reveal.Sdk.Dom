@@ -24,6 +24,7 @@ using Reveal.Sdk.Data.Snowflake;
 using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Filters;
 using Sandbox.DashboardCreators;
+using Sandbox.DashboardCreators.Visualizations;
 using Sandbox.DashboardFactories;
 using Sandbox.RevealSDK;
 using System;
@@ -66,12 +67,15 @@ namespace Sandbox
             new RestDataSourceDashboard(),
             new SalesDashboard(),
             new ScatterMapVisualizationDashboard(),
+            new ScatterVisualizationDashboard(),
             new SnowflakeDashboard(),
+            new SparklineVisualizationDashboard(),
             new SplineAreaChartVisualizationDashboard(),
             new SqlServerDataSourceDashboards(),
             new TextVisualizationDashboard(),
             new OracleDataSourceDashboard(),
             new TextBoxVisualizationDashboard(),
+            new TextViewVisualizationDashboard(),
             new TimeSeriesVisualizationDashboard(),
             new WebServiceDataSourceDashboard(),
         };
