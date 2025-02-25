@@ -256,7 +256,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 
                 Trace.Listeners.Remove(listener);
 
-                Assert.Equal("warn: Warning: Data source with id TEST not found in the RdashDocument.DataSources collection.\r\n", listener.GetOutput());
+                Assert.Equal("warn: Warning: Data source with id TEST not found in the RdashDocument.DataSources collection.", listener.GetOutput().Replace("\r","").Replace("\n", "")); //replace line endings to make the test work on either Windows and Linux
             }
         }
 
