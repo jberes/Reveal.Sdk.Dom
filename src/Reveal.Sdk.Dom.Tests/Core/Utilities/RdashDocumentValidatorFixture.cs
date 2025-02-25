@@ -3,6 +3,8 @@ using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using Xunit;
 
@@ -10,6 +12,35 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
 {
     public class RdashDocumentValidatorFixture
     {
+        private class DebugOutputListener : TraceListener
+        {
+            private readonly StringWriter _stringWriter = new StringWriter();
+
+            public override void Write(string message)
+            {
+                _stringWriter.Write(message);
+            }
+
+            public override void WriteLine(string message)
+            {
+                _stringWriter.WriteLine(message);
+            }
+
+            public string GetOutput()
+            {
+                return _stringWriter.ToString();
+            }
+
+            protected override void Dispose(bool disposing)
+            {
+                if (disposing)
+                {
+                    _stringWriter.Dispose();
+                }
+                base.Dispose(disposing);
+            }
+        }
+
         [Fact]
         public void Validate_AddsDataSources_ToRdashDocument()
         {
@@ -204,7 +235,7 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
         }
 
         [Fact]
-        public void Validate_ThrowsException_WhenDataSourceItem_WithDataSourceId_CantFindDataSource()
+        public void Validate_Warns_WhenDataSourceItem_WithDataSourceId_CantFindDataSource()
         {
             // Arrange
             var dataSourceItem = new DataSourceItem() { DataSourceId = "TEST", Fields = new List<IField>() { new TextField() } };
@@ -216,7 +247,17 @@ namespace Reveal.Sdk.Dom.Tests.Core.Utilities
             document.Visualizations.Add(viz);
 
             // Act & Assert
-            Assert.Throws<Exception>(() => RdashDocumentValidator.Validate(document));
+
+            using (var listener = new DebugOutputListener())
+            {
+                Trace.Listeners.Add(listener);
+
+                RdashDocumentValidator.Validate(document);
+
+                Trace.Listeners.Remove(listener);
+
+                Assert.Equal("warn: Warning: Data source with id TEST not found in the RdashDocument.DataSources collection.", listener.GetOutput().Replace("\r","").Replace("\n", "")); //replace line endings to make the test work on either Windows and Linux
+            }
         }
 
         [Fact]
