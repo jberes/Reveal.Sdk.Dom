@@ -1,5 +1,4 @@
-﻿using AngleSharp.Dom;
-using Reveal.Sdk.Dom;
+﻿using Reveal.Sdk.Dom;
 using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using System;

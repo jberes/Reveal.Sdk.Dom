@@ -207,6 +207,7 @@ public class CandleStickVisualizationFixture
                       "FormatType" : "Number",
                       "NegativeFormat" : "MinusSign",
                       "ShowGroupingSeparator" : true,
+                      "ShowDataLabelsInChart" : true,
                       "OverrideDefaultSettings" : false
                     },
                     "FieldName" : "Open"
@@ -230,6 +231,7 @@ public class CandleStickVisualizationFixture
                       "FormatType" : "Number",
                       "NegativeFormat" : "MinusSign",
                       "ShowGroupingSeparator" : true,
+                      "ShowDataLabelsInChart" : true,
                       "OverrideDefaultSettings" : false
                     },
                     "FieldName" : "High"
@@ -253,6 +255,7 @@ public class CandleStickVisualizationFixture
                       "FormatType" : "Number",
                       "NegativeFormat" : "MinusSign",
                       "ShowGroupingSeparator" : true,
+                      "ShowDataLabelsInChart" : true,
                       "OverrideDefaultSettings" : false
                     },
                     "FieldName" : "Low"
@@ -276,6 +279,7 @@ public class CandleStickVisualizationFixture
                       "FormatType" : "Number",
                       "NegativeFormat" : "MinusSign",
                       "ShowGroupingSeparator" : true,
+                      "ShowDataLabelsInChart" : true,
                       "OverrideDefaultSettings" : false
                     },
                     "FieldName" : "Close"

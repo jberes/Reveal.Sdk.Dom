@@ -39,7 +39,8 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
               "FormatType": "Currency",
               "NegativeFormat": "Parenthesis",
               "ShowGroupingSeparator": false,
-              "OverrideDefaultSettings": false
+              "OverrideDefaultSettings": false,
+              "ShowDataLabelsInChart": true
             }
             """;
 
