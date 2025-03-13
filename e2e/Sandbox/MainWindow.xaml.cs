@@ -41,7 +41,7 @@ namespace Sandbox
     public partial class MainWindow : Window
     {
         static readonly string _dashboardFilePath = Path.Combine(Environment.CurrentDirectory, "Dashboards");
-        static readonly string _readFilePath = Path.Combine(_dashboardFilePath, "Campaigns.rdash");
+        static readonly string _readFilePath = Path.Combine(_dashboardFilePath, "New Dashboard.rdash");
 
         List<IDashboardCreator> _dashboardCreators = new List<IDashboardCreator>
         {
@@ -172,35 +172,35 @@ namespace Sandbox
             //dsi.Add(jsonDSI);
 
             //REST Excel well defined
-            //var restExcelDS = new RVRESTDataSource();
-            //restExcelDS.Title = "REST Excel";
-            //restExcelDS.Subtitle = "Samples.xlsz";
-            //restExcelDS.UseAnonymousAuthentication = true;
-            //restExcelDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
-            //ds.Add(restExcelDS);
+            var restExcelDS = new RVRESTDataSource();
+            restExcelDS.Title = "REST Excel";
+            restExcelDS.Subtitle = "Samples.xlsz";
+            restExcelDS.UseAnonymousAuthentication = true;
+            restExcelDS.Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx";
+            ds.Add(restExcelDS);
 
-            //var restDSI = new RVRESTDataSourceItem(restExcelDS);
-            //restDSI.Title = "REST Data Source Item";
-            //restDSI.Subtitle = "REST DSI Subtitle";
+            var restDSI = new RVRESTDataSourceItem(restExcelDS);
+            restDSI.Title = "REST Data Source Item";
+            restDSI.Subtitle = "REST DSI Subtitle";
 
-            //var excelDSI = new RVExcelDataSourceItem(restDSI);
-            //excelDSI.Title = "Excel Data Source Item";
-            //excelDSI.Subtitle = "Marketing Sheet";
-            //excelDSI.Sheet = "Marketing";
-            //dsi.Add(excelDSI);
+            var excelDSI = new RVExcelDataSourceItem(restDSI);
+            excelDSI.Title = "Excel Data Source Item";
+            excelDSI.Subtitle = "Marketing Sheet";
+            excelDSI.Sheet = "Marketing";
+            dsi.Add(excelDSI);
 
-            var sqlDS = new RVSqlServerDataSource();
-            sqlDS.Title = "SQL Server Data Source";
-            sqlDS.Subtitle = "SQL Server DS Subtitle";
-            sqlDS.Host = "Brian-Desktop\\SQLEXPRESS";
-            sqlDS.Database = "Northwind"; //this is required
-            ds.Add(sqlDS);
+            //var sqlDS = new RVSqlServerDataSource();
+            //sqlDS.Title = "SQL Server Data Source";
+            //sqlDS.Subtitle = "SQL Server DS Subtitle";
+            //sqlDS.Host = "Brian-Desktop\\SQLEXPRESS";
+            //sqlDS.Database = "Northwind"; //this is required
+            //ds.Add(sqlDS);
 
-            var sqlDSI = new RVSqlServerDataSourceItem(sqlDS);
-            sqlDSI.Title = "SQL Server Data Source Item";
-            sqlDSI.Subtitle = "SQL Server DSI Subtitle";
-            sqlDSI.Table = "Customers";
-            dsi.Add(sqlDSI);
+            //var sqlDSI = new RVSqlServerDataSourceItem(sqlDS);
+            //sqlDSI.Title = "SQL Server Data Source Item";
+            //sqlDSI.Subtitle = "SQL Server DSI Subtitle";
+            //sqlDSI.Table = "Customers";
+            //dsi.Add(sqlDSI);
 
 
             //var webDS = new RVWebResourceDataSource();
@@ -275,20 +275,19 @@ namespace Sandbox
         private async void Read_Dashboard(object sender, RoutedEventArgs e)
         {
             var document = RdashDocument.Load(_readFilePath);
-            //var json = document.ToJsonString();
-            var newDocument = new RdashDocument("Generated");
+            var json = document.ToJsonString();
+            //var newDocument = new RdashDocument("Generated");
             //newDocument.Import(document, new ImportOptions()
             //{
             //    IncludeDashboardFilters = true,
             //});
 
-            newDocument.Import(document, document.Visualizations[5]);
-            newDocument.Import(document, document.Visualizations[5], new ImportOptions()
-            {
-                IncludeDashboardFilters = true,
-            });
-
-            var json = newDocument.ToJsonString();
+            //newDocument.Import(document, document.Visualizations[5]);
+            //newDocument.Import(document, document.Visualizations[5], new ImportOptions()
+            //{
+            //    IncludeDashboardFilters = true,
+            //});
+            //var json = newDocument.ToJsonString();
 
             _revealView.Dashboard = await RVDashboard.LoadFromJsonAsync(json);
 

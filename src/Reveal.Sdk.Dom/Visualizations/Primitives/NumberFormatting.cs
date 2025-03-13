@@ -24,5 +24,8 @@ namespace Reveal.Sdk.Dom.Visualizations
         public NegativeFormatType NegativeFormat { get; set; } = NegativeFormatType.MinusSign;
 
         public bool ShowGroupingSeparator { get; set; }
+
+        [JsonProperty("ShowDataLabelsInChart")]
+        public bool ShowDataLabels { get; set; } = true;
     }
 }

@@ -77,7 +77,8 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
                 "FormatType": "Number",
                 "NegativeFormat": "MinusSign",
                 "ShowGroupingSeparator": false,
-                "OverrideDefaultSettings": false
+                "OverrideDefaultSettings": false,
+                "ShowDataLabelsInChart": true
               },
               "ConditionalFormatting": {
                 "Minimum": {

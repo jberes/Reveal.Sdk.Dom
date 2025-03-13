@@ -117,6 +117,8 @@ namespace Reveal.Sdk.Dom.Tests.Core
             {
                 throw new System.NotImplementedException();
             }
+
+            public string BackgroundColor { get; set; }
         }
     }
 }

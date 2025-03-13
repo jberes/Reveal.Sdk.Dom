@@ -34,6 +34,9 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonProperty(Order = 0)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
+        [JsonProperty("CustomBackgroundColor")]
+        public string BackgroundColor { get; set; }
+
         [JsonIgnore]
         public ChartType ChartType { get; protected set; } = ChartType.Unknown;
 
@@ -66,8 +69,6 @@ namespace Reveal.Sdk.Dom.Visualizations
             get { return ((DataDefinitionBase)DataDefinition).Bindings.Bindings; }
             set { ((DataDefinitionBase)DataDefinition).Bindings.Bindings = value; }
         }
-
-        // TODO: Add field to manage CustomBackgroundColor
 
         //todo: is it possible to create a Filters property that can properly handle both Tabular and Xmla data specs?
         [JsonIgnore]
