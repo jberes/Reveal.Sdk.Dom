@@ -43,9 +43,9 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
             {
                 DecimalDigits = 0,
                 ShowGroupingSeparator = true,
-                ApplyMkFormat = false,
                 CurrencySymbol = "AUD",
                 FormatType = NumberFormattingType.Currency,
+                LargeNumberFormat = LargeNumberFormat.Auto,
                 NegativeFormat = NegativeFormatType.Parenthesis,
                 OverrideDefaultSettings = true,
                 SchemaTypeName = "TestSchema"
@@ -97,9 +97,9 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
             {
                 DecimalDigits = 0,
                 ShowGroupingSeparator = true,
-                ApplyMkFormat = false,
                 CurrencySymbol = "AUD",
                 FormatType = NumberFormattingType.Currency,
+                LargeNumberFormat = LargeNumberFormat.Auto,
                 NegativeFormat = NegativeFormatType.Parenthesis,
                 OverrideDefaultSettings = true,
                 SchemaTypeName = "TestSchema"
@@ -151,9 +151,9 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
             {
                 DecimalDigits = 0,
                 ShowGroupingSeparator = true,
-                ApplyMkFormat = false,
                 CurrencySymbol = "AUD",
                 FormatType = NumberFormattingType.Currency,
+                LargeNumberFormat = LargeNumberFormat.Auto,
                 NegativeFormat = NegativeFormatType.Parenthesis,
                 OverrideDefaultSettings = true,
                 SchemaTypeName = "TestSchema"
@@ -205,9 +205,9 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
             {
                 DecimalDigits = 0,
                 ShowGroupingSeparator = true,
-                ApplyMkFormat = false,
                 CurrencySymbol = "AUD",
                 FormatType = NumberFormattingType.Currency,
+                LargeNumberFormat = LargeNumberFormat.Auto,
                 NegativeFormat = NegativeFormatType.Parenthesis,
                 OverrideDefaultSettings = true,
                 SchemaTypeName = "TestSchema"

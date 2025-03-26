@@ -20,7 +20,7 @@ namespace Reveal.Sdk.Dom.Visualizations
 
         [JsonProperty("MKFormat")]
         [JsonConverter(typeof(StringEnumConverter))]        
-        public LargeNumberFormat LargeNumberFormat { get; set; } = LargeNumberFormat.Auto;
+        public LargeNumberFormat LargeNumberFormat { get; set; } = LargeNumberFormat.None;
 
         [JsonConverter(typeof(StringEnumConverter))]
         public NegativeFormatType NegativeFormat { get; set; } = NegativeFormatType.MinusSign;
