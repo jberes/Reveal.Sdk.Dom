@@ -67,7 +67,7 @@ namespace Sandbox.DashboardFactories
                         ShowGroupingSeparator = true,
                         CurrencySymbol = "$",
                         NegativeFormat = NegativeFormatType.MinusSign,
-                        ApplyMkFormat = true,
+                        LargeNumberFormat = LargeNumberFormat.Auto,
                     }
                 }
             });
@@ -230,7 +230,7 @@ namespace Sandbox.DashboardFactories
                         DecimalDigits = 2,
                         CurrencySymbol = "$",
                         NegativeFormat = NegativeFormatType.MinusSign,
-                        ApplyMkFormat = true,
+                        LargeNumberFormat = LargeNumberFormat.Auto,
                     }
                 }
             });

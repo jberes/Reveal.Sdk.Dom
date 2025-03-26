@@ -56,7 +56,7 @@ namespace Sandbox.DashboardFactories
                         ShowGroupingSeparator = true,
                         CurrencySymbol = "$",
                         NegativeFormat = NegativeFormatType.MinusSign,
-                        ApplyMkFormat = true,
+                        LargeNumberFormat = LargeNumberFormat.Auto,
                     }
                 })
                 .SetTarget("Forecasted")
@@ -104,7 +104,7 @@ namespace Sandbox.DashboardFactories
                         ShowGroupingSeparator = true,
                         CurrencySymbol = "$",
                         NegativeFormat = NegativeFormatType.MinusSign,
-                        ApplyMkFormat = false,
+                        LargeNumberFormat = LargeNumberFormat.Auto,
                     }
                 })
                 .SetCategory("Product")
@@ -131,7 +131,7 @@ namespace Sandbox.DashboardFactories
                         FormatType = NumberFormattingType.Currency,
                         DecimalDigits = 0,
                         ShowGroupingSeparator = true,
-                        ApplyMkFormat = true,
+                        LargeNumberFormat = LargeNumberFormat.Auto,
                     }
                 })
                 .ConnectDashboardFilters(filters)
@@ -158,7 +158,7 @@ namespace Sandbox.DashboardFactories
                         FormatType = NumberFormattingType.Percent,
                         DecimalDigits = 2,
                         ShowGroupingSeparator = false,
-                        ApplyMkFormat = true,
+                        LargeNumberFormat = LargeNumberFormat.Auto,
                     }
                 })
                 .ConfigureSettings(settings => 
