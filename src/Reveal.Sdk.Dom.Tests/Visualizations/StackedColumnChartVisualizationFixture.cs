@@ -235,6 +235,7 @@ public class StackedColumnChartVisualizationFixture
                     "FieldName" : "Other Traffic"
                   }
                 } ],
+                "FixedLines": [],
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
                 "Rows" : [ {

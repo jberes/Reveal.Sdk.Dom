@@ -213,6 +213,7 @@ public class SplineAreaChartVisualizationFixture
                     "FieldName" : "Budget"
                   }
                 } ],
+                "FixedLines": [],
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
                 "Rows" : [ {

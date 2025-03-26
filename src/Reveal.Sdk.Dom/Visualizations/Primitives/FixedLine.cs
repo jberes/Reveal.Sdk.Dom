@@ -18,7 +18,8 @@ namespace Reveal.Sdk.Dom.Visualizations
         public NumberFormatting Formatting { get; set; }
 
         //todo: is this public? can this be set externally? doesn't look like it
-        //this may be used to prevent the ui from allowing more than one of the same type, fixed line high, fixed line low, fixed line average only allow 1
+        //this may be used to prevent the ui from allowing more than one of the same type,
+        //fixed line high, fixed line low, fixed line average only allow 1
         //except for the Data, in that case this value is the name of the field - can have multiple, but not of the same field name
         //fixed values allow multiple lines
         [JsonProperty()]
@@ -27,7 +28,6 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonConverter(typeof(StringEnumConverter))]
         public ChartLineStyle LineStyle { get; set; } = ChartLineStyle.Solid;
 
-        //todo: this isn't public is it? This appears to only be used to indicate the line type of the class. figure this out
         [JsonProperty("LineType")]
         [JsonConverter(typeof(StringEnumConverter))]
         protected FixedLineType FixedLineType { get; set; } = FixedLineType.None;

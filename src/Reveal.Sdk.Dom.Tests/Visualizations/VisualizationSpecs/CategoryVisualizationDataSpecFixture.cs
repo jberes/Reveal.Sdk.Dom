@@ -30,6 +30,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.VisualizationSpecs
                     "_type": "DimensionColumnSpecType"
                   },
                   "Values": [],
+                  "FixedLines": [],
                   "AdHocFields": 13,
                   "FormatVersion": 5,
                   "AdHocExpandedElements": [],

@@ -234,6 +234,7 @@ public class StackedAreaChartVisualizationFixture
                     "FieldName" : "Other Traffic"
                   }
                 } ],
+                "FixedLines": [],
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
                 "Rows" : [ {

@@ -235,6 +235,7 @@ public class AreaChartVisualizationFixture
                     "FieldName" : "Other Traffic"
                   }
                 } ],
+                "FixedLines": [],
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
                 "Rows" : [ {

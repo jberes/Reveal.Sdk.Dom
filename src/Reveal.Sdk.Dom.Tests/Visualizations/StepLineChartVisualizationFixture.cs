@@ -220,6 +220,7 @@ public class StepLineChartVisualizationFixture
                     "FieldName" : "Budget"
                   }
                 } ],
+                "FixedLines": [],
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
                 "Rows" : [ {
