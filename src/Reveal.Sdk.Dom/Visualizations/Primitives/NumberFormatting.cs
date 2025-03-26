@@ -11,14 +11,16 @@ namespace Reveal.Sdk.Dom.Visualizations
             SchemaTypeName = SchemaTypeNames.NumberFormattingSpecType;
         }
 
-        public bool ApplyMkFormat { get; set; }
-
         public string CurrencySymbol { get; set; } = "$";
 
         public int DecimalDigits { get; set; } = 2;
 
         [JsonConverter(typeof(StringEnumConverter))]
         public NumberFormattingType FormatType { get; set; } = NumberFormattingType.Number;
+
+        [JsonProperty("MKFormat")]
+        [JsonConverter(typeof(StringEnumConverter))]        
+        public LargeNumberFormat LargeNumberFormat { get; set; } = LargeNumberFormat.None;
 
         [JsonConverter(typeof(StringEnumConverter))]
         public NegativeFormatType NegativeFormat { get; set; } = NegativeFormatType.MinusSign;

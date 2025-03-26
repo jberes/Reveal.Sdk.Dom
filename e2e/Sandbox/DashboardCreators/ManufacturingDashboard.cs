@@ -59,7 +59,7 @@ namespace Sandbox.DashboardFactories
                     FormatType = NumberFormattingType.Percent,
                     DecimalDigits = 0,
                     ShowGroupingSeparator = true,
-                    ApplyMkFormat = true
+                    LargeNumberFormat = LargeNumberFormat.Auto
                 };
             }
 
@@ -238,7 +238,7 @@ namespace Sandbox.DashboardFactories
                         FormatType = NumberFormattingType.Percent,
                         DecimalDigits = 2,
                         ShowGroupingSeparator = false,
-                        ApplyMkFormat = true,
+                        LargeNumberFormat = LargeNumberFormat.Auto
                     }
                 }
             });
@@ -285,7 +285,7 @@ namespace Sandbox.DashboardFactories
                         FormatType = NumberFormattingType.Percent,
                         DecimalDigits = 2,
                         ShowGroupingSeparator = false,
-                        ApplyMkFormat = true,
+                        LargeNumberFormat = LargeNumberFormat.Auto
                     }
                 }
             });
