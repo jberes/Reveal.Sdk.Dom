@@ -38,7 +38,7 @@ namespace Sandbox.DashboardCreators
                 .AddFixedLine(new FixedLineMaximum())
                 .AddFixedLine(new FixedLineData("Spend")
                 {
-                    LineStyle = ChartLineStyle.Dashed,
+                    LineStyle = LineStyle.Dashed,
                 })
                 .AddFixedLine(new FixedLineMinimum()));
 

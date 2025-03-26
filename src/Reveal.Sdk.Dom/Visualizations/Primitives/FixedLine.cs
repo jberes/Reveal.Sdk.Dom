@@ -26,7 +26,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Gets or sets the line style of the fixed line.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public ChartLineStyle LineStyle { get; set; } = ChartLineStyle.Solid;
+        public LineStyle LineStyle { get; set; } = LineStyle.Solid;
 
         /// <summary>
         /// The type of the fixed line. This is only used internally in the RevealView to determine the type of the fixed line.

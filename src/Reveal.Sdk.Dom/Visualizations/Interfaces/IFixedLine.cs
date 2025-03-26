@@ -8,7 +8,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     {
         int? Color { get; set; }
         NumberFormatting Formatting { get; set; }
-        ChartLineStyle LineStyle { get; set; }
+        LineStyle LineStyle { get; set; }
         double Thickness { get; set; }
         string Title { get; set; }
     }

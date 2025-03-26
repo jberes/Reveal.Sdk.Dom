@@ -1,6 +1,7 @@
 ﻿namespace Reveal.Sdk.Dom.Visualizations
 {
-    public enum ChartLineStyle
+    public enum LineStyle
+
     {
         Dashed,
         Solid,
