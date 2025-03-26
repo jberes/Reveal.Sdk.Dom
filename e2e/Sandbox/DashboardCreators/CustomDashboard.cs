@@ -11,8 +11,6 @@ namespace Sandbox.DashboardFactories
 
         public RdashDocument CreateDashboard()
         {
-            var factory = new DataSourceItemFactory();
-
             var excelDataSourceItem = new RestDataSourceItem("Marketing Sheet")
             {
                 Subtitle = "Excel Data Source Item",

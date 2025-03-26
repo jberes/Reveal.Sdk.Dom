@@ -14,8 +14,8 @@ namespace Reveal.Sdk.Dom.Core.Serialization.Converters
                 { SchemaTypeNames.FixedLineAverageType, typeof(FixedLineAverage) },
                 { SchemaTypeNames.FixedLineDataType, typeof(FixedLineData) },
                 { SchemaTypeNames.FixedLineFixedValueType, typeof(FixedLineFixedValue) },
-                { SchemaTypeNames.FixedLineHighestType, typeof(FixedLineHighest) },
-                { SchemaTypeNames.FixedLineLowestType, typeof(FixedLineLowest) }
+                { SchemaTypeNames.FixedLineHighestType, typeof(FixedLineMaximum) },
+                { SchemaTypeNames.FixedLineLowestType, typeof(FixedLineMinimum) }
             };
         }
     }

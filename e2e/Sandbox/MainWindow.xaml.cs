@@ -52,6 +52,7 @@ namespace Sandbox
             new CustomDashboard(),
             new CustomVisualizationDashboard(),
             new DashboardLinkingDashboard(),
+            new FixedLines(),
             new GoogleBigQueryDashboard(),
             new GoogleSheetDashboard(),
             new GridVisualizationDashboard(),

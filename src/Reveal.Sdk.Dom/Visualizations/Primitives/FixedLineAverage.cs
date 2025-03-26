@@ -2,12 +2,16 @@
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public class FixedLineAverage : FixedLine
+    public sealed class FixedLineAverage : FixedLine
     {
-        public FixedLineAverage()
+        public FixedLineAverage() : this("Average") { }
+
+        public FixedLineAverage(string title)
         {
             SchemaTypeName = SchemaTypeNames.FixedLineAverageType;
             FixedLineType = FixedLineType.Average;
+            Identifier = "_rp_fla_"; // hardcoded value used in RevealView
+            Title = title;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Reveal.Sdk.Dom.Visualizations
 {
-    public abstract class CategoryVisualizationBase<TSettings> : Visualization<TSettings>, ILabels, IValues, ICategory
+    public abstract class CategoryVisualizationBase<TSettings> : Visualization<TSettings>, ILabels, IValues, ICategory, IFixedLines
         where TSettings : ChartVisualizationSettingsBase, new()
     {
         protected CategoryVisualizationBase(DataSourceItem dataSourceItem) : this(null, dataSourceItem) { }
@@ -24,6 +24,9 @@ namespace Reveal.Sdk.Dom.Visualizations
             get { return VisualizationDataSpec.Category; }
             set { VisualizationDataSpec.Category = value; }
         }
+
+        [JsonIgnore]
+        public List<IFixedLine> FixedLines { get { return VisualizationDataSpec.FixedLines; } }
 
         [JsonProperty(Order = 7)]
         internal CategoryVisualizationDataSpec VisualizationDataSpec { get; set; } = new CategoryVisualizationDataSpec();

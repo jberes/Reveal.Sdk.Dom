@@ -6,34 +6,43 @@ namespace Reveal.Sdk.Dom.Visualizations
 {
     public abstract class FixedLine : SchemaType, IFixedLine
     {
-        //todo: figure out a better way to handle this
-        public static readonly string FIXED_LINE_AVERAGE_PREFIX = "_rp_fla_";
-        public static readonly string FIXED_LINE_DATA_PREFIX = "_rp_fld_";
-        public static readonly string FIXED_LINE_FIXEDVALUE_PREFIX = "_rp_flfv_";
-        public static readonly string FIXED_LINE_HIGHEST_PREFIX = "_rp_flh_";
-        public static readonly string FIXED_LINE_LOWEST_PREFIX = "_rp_fll_";
-
+        /// <summary>
+        /// Gets or sets the color of the fixed line.
+        /// </summary>
         public int? Color { get; set; }
 
-        public NumberFormatting Formatting { get; set; }
+        /// <summary>
+        /// Gets or sets the formatting of the fixed line.
+        /// </summary>
+        public NumberFormatting Formatting { get; set; } = new NumberFormatting();
 
-        //todo: is this public? can this be set externally? doesn't look like it
-        //this may be used to prevent the ui from allowing more than one of the same type,
-        //fixed line high, fixed line low, fixed line average only allow 1
-        //except for the Data, in that case this value is the name of the field - can have multiple, but not of the same field name
-        //fixed values allow multiple lines
+        /// <summary>
+        /// The identifier of the fixed line. This is only used internally in the RevealView to prevent multiple fixed lines with the same identifier.
+        /// </summary>
         [JsonProperty()]
         protected string Identifier { get; set; }
 
+        /// <summary>
+        /// Gets or sets the line style of the fixed line.
+        /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public ChartLineStyle LineStyle { get; set; } = ChartLineStyle.Solid;
 
+        /// <summary>
+        /// The type of the fixed line. This is only used internally in the RevealView to determine the type of the fixed line.
+        /// </summary>
         [JsonProperty("LineType")]
         [JsonConverter(typeof(StringEnumConverter))]
         protected FixedLineType FixedLineType { get; set; } = FixedLineType.None;
 
+        /// <summary>
+        /// Gets or sets the thickness of the fixed line.
+        /// </summary>
         public double Thickness { get; set; } = 2;
 
+        /// <summary>
+        /// Gets or sets the title of the fixed line.
+        /// </summary>
         public string Title { get; set; }
     }
 }
