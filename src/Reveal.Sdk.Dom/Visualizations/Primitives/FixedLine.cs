@@ -19,7 +19,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// <summary>
         /// The identifier of the fixed line. This is only used internally in the RevealView to prevent multiple fixed lines with the same identifier.
         /// </summary>
-        [JsonProperty()]
+        [JsonProperty]
         protected string Identifier { get; set; }
 
         /// <summary>

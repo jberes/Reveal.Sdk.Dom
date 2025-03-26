@@ -113,6 +113,8 @@ public class ColumnChartVisualizationFixture
               "RowSpan" : 0,
               "VisualizationSettings" : {
                 "_type" : "ChartVisualizationSettingsType",
+                "CategoryAxisGap": 0.4,
+                "CategoryAxisOverlap": -0.2,
                 "ShowTotalsInTooltip" : false,
                 "TrendlineType" : "LinearFit",
                 "AutomaticLabelRotation" : true,

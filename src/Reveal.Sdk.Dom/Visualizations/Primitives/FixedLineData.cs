@@ -25,7 +25,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         }
 
         //todo: one day we need to worry about XMLA
-        [JsonProperty()]
+        [JsonProperty]
         internal MeasureColumn DataField { get; set; }
     }
 }

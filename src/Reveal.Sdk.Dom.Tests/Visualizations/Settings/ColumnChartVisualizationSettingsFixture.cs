@@ -41,6 +41,8 @@ public class ColumnChartVisualizationSettingsFixture
             """
             {
               "_type" : "ChartVisualizationSettingsType",
+              "CategoryAxisGap": 0.4,
+              "CategoryAxisOverlap": -0.2,
               "ShowTotalsInTooltip" : false,
               "TrendlineType" : "None",
               "AutomaticLabelRotation" : true,
