@@ -80,6 +80,15 @@ namespace Reveal.Sdk.Dom.Core.Constants
         internal const string XmlaHierarchyType = "XmlaHierarchyType";
         internal const string XmlaSetType = "XmlaSetType";
 
+        //******************* Fixed Lines *****************
+        internal const string FixedLineAverageType = "FixedLineAverageType";
+        internal const string FixedLineDataType = "FixedLineDataType";
+        internal const string FixedLineFixedValueType = "FixedLineFixedValueType";
+        internal const string FixedLineHighestType = "FixedLineHighestType";
+        internal const string FixedLineLowestType = "FixedLineLowestType";
+
+
+
         //******************* not sure how these should be classified yet *****************
         internal const string FieldBindingSourceType = "FieldBindingSourceType";
         internal const string ParameterBindingSourceType = "ParameterBindingSourceType";
@@ -94,5 +103,6 @@ namespace Reveal.Sdk.Dom.Core.Constants
         internal const string GaugeBandType = "GaugeBandType";
         internal const string ConditionalFormattingBandType = "ConditionalFormattingBandType";
         internal const string TabularColumnSpecType = "TabularColumnSpecType";
+        
     }
 }

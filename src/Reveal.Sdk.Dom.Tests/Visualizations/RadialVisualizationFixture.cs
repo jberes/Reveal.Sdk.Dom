@@ -208,6 +208,7 @@ public class RadialVisualizationFixture
                     "FieldName" : "Budget"
                   }
                 } ],
+                "FixedLines": [],
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
                 "Rows" : [ {

@@ -233,6 +233,7 @@ public class LineChartVisualizationFixture
                     "FieldName" : "Other Traffic"
                   }
                 } ],
+                "FixedLines": [],
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
                 "Rows" : [ {

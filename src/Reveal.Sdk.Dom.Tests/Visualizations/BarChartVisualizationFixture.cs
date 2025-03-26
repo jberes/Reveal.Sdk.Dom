@@ -236,6 +236,7 @@ public class BarChartVisualizationFixture
                     "FieldName" : "Other Traffic"
                   }
                 } ],
+                "FixedLines": [],
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
                 "Rows" : [ {

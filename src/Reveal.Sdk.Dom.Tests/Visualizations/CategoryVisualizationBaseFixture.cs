@@ -170,6 +170,7 @@ public class CategoryVisualizationBaseFixture
               "VisualizationDataSpec" : {
                 "_type" : "CategoryVisualizationDataSpecType",
                 "Values" : [ ],
+                "FixedLines": [],
                 "FormatVersion" : 0,
                 "AdHocExpandedElements" : [ ],
                 "Rows" : [ ]
