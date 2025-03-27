@@ -6,7 +6,7 @@ namespace Reveal.Sdk.Dom.Visualizations
     [JsonConverter(typeof(FixedLineConverter))]
     public interface IFixedLine
     {
-        int? Color { get; set; }
+        string Color { get; set; }
         NumberFormatting Formatting { get; set; }
         LineStyle LineStyle { get; set; }
         double Thickness { get; set; }

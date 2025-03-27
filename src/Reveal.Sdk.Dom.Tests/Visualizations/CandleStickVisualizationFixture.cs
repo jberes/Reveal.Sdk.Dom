@@ -199,16 +199,16 @@ public class CandleStickVisualizationFixture
                     "AggregationType" : "Sum",
                     "Sorting" : "None",
                     "IsCalculated" : false,
-                    "Formatting" : {
-                      "_type" : "NumberFormattingSpecType",
-                      "CurrencySymbol" : "$",
-                      "DecimalDigits" : 0,
-                      "FormatType" : "Number",
+                    "Formatting": {
+                      "_type": "NumberFormattingSpecType",
+                      "CurrencySymbol": "$",
+                      "DecimalDigits": 2,
+                      "FormatType": "Number",
                       "MKFormat": "None",
-                      "NegativeFormat" : "MinusSign",
-                      "ShowGroupingSeparator" : true,
-                      "ShowDataLabelsInChart" : true,
-                      "OverrideDefaultSettings" : false
+                      "NegativeFormat": "MinusSign",
+                      "ShowGroupingSeparator": false,
+                      "ShowDataLabelsInChart": true,
+                      "OverrideDefaultSettings": false
                     },
                     "FieldName" : "Open"
                   }
@@ -223,16 +223,16 @@ public class CandleStickVisualizationFixture
                     "AggregationType" : "Sum",
                     "Sorting" : "None",
                     "IsCalculated" : false,
-                    "Formatting" : {
-                      "_type" : "NumberFormattingSpecType",
-                      "CurrencySymbol" : "$",
-                      "DecimalDigits" : 0,
-                      "FormatType" : "Number",
+                    "Formatting": {
+                      "_type": "NumberFormattingSpecType",
+                      "CurrencySymbol": "$",
+                      "DecimalDigits": 2,
+                      "FormatType": "Number",
                       "MKFormat": "None",
-                      "NegativeFormat" : "MinusSign",
-                      "ShowGroupingSeparator" : true,
-                      "ShowDataLabelsInChart" : true,
-                      "OverrideDefaultSettings" : false
+                      "NegativeFormat": "MinusSign",
+                      "ShowGroupingSeparator": false,
+                      "ShowDataLabelsInChart": true,
+                      "OverrideDefaultSettings": false
                     },
                     "FieldName" : "High"
                   }
@@ -247,16 +247,16 @@ public class CandleStickVisualizationFixture
                     "AggregationType" : "Sum",
                     "Sorting" : "None",
                     "IsCalculated" : false,
-                    "Formatting" : {
-                      "_type" : "NumberFormattingSpecType",
-                      "CurrencySymbol" : "$",
-                      "DecimalDigits" : 0,
-                      "FormatType" : "Number",
+                    "Formatting": {
+                      "_type": "NumberFormattingSpecType",
+                      "CurrencySymbol": "$",
+                      "DecimalDigits": 2,
+                      "FormatType": "Number",
                       "MKFormat": "None",
-                      "NegativeFormat" : "MinusSign",
-                      "ShowGroupingSeparator" : true,
-                      "ShowDataLabelsInChart" : true,
-                      "OverrideDefaultSettings" : false
+                      "NegativeFormat": "MinusSign",
+                      "ShowGroupingSeparator": false,
+                      "ShowDataLabelsInChart": true,
+                      "OverrideDefaultSettings": false
                     },
                     "FieldName" : "Low"
                   }
@@ -271,16 +271,16 @@ public class CandleStickVisualizationFixture
                     "AggregationType" : "Sum",
                     "Sorting" : "None",
                     "IsCalculated" : false,
-                    "Formatting" : {
-                      "_type" : "NumberFormattingSpecType",
-                      "CurrencySymbol" : "$",
-                      "DecimalDigits" : 0,
-                      "FormatType" : "Number",
+                    "Formatting": {
+                      "_type": "NumberFormattingSpecType",
+                      "CurrencySymbol": "$",
+                      "DecimalDigits": 2,
+                      "FormatType": "Number",
                       "MKFormat": "None",
-                      "NegativeFormat" : "MinusSign",
-                      "ShowGroupingSeparator" : true,
-                      "ShowDataLabelsInChart" : true,
-                      "OverrideDefaultSettings" : false
+                      "NegativeFormat": "MinusSign",
+                      "ShowGroupingSeparator": false,
+                      "ShowDataLabelsInChart": true,
+                      "OverrideDefaultSettings": false
                     },
                     "FieldName" : "Close"
                   }

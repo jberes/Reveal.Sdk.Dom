@@ -46,7 +46,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         
         public string Expression { get; set; }
 
-        public NumberFormatting Formatting { get; set; }
+        public NumberFormatting Formatting { get; set; } = new NumberFormatting();
         
         public ConditionalFormatting ConditionalFormatting { get; set; }
 
