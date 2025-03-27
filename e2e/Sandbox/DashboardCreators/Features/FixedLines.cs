@@ -3,11 +3,6 @@ using Reveal.Sdk.Dom.Data;
 using Reveal.Sdk.Dom.Visualizations;
 using Sandbox.DashboardFactories;
 using Sandbox.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sandbox.DashboardCreators
 {
@@ -39,6 +34,7 @@ namespace Sandbox.DashboardCreators
                 .AddFixedLine(new FixedLineData("Spend")
                 {
                     LineStyle = LineStyle.Dashed,
+                    Color = "#F06292",                    
                 })
                 .AddFixedLine(new FixedLineMinimum()));
 

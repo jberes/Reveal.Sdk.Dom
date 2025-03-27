@@ -7,9 +7,29 @@ namespace Reveal.Sdk.Dom.Visualizations
     public abstract class FixedLine : SchemaType, IFixedLine
     {
         /// <summary>
-        /// Gets or sets the color of the fixed line.
+        /// Internal integer color representation used for serialization.
         /// </summary>
-        public int? Color { get; set; }
+        [JsonProperty("Color")]
+        private int? colorInt;
+
+        /// <summary>
+        /// Gets or sets the color of the fixed line.
+        ///
+        /// Accepts:
+        /// - A hex string: #RRGGBB (opaque) or #RRGGBBAA (with alpha)
+        /// - An RGB/RGBA string: rgb(r, g, b) or rgba(r, g, b, a)
+        ///
+        /// Returns:
+        /// - A hex color string:
+        ///   - #RRGGBB if the color is fully opaque
+        ///   - #RRGGBBAA if an alpha value was specified
+        /// </summary>
+        [JsonIgnore]
+        public string Color
+        {
+            get => colorInt is null ? null : ColorUtility.IntToHexColorString(colorInt.Value);
+            set => colorInt = string.IsNullOrWhiteSpace(value) ? (int?)null : ColorUtility.FromColorString(value);
+        }
 
         /// <summary>
         /// Gets or sets the formatting of the fixed line.
