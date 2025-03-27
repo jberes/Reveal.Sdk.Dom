@@ -10,7 +10,7 @@ namespace Reveal.Sdk.Dom.Visualizations
         /// Internal integer color representation used for serialization.
         /// </summary>
         [JsonProperty("Color")]
-        private int? colorInt;
+        private int? ColorInt { get; set; }
 
         /// <summary>
         /// Gets or sets the color of the fixed line.
@@ -27,8 +27,8 @@ namespace Reveal.Sdk.Dom.Visualizations
         [JsonIgnore]
         public string Color
         {
-            get => colorInt is null ? null : ColorUtility.IntToHexColorString(colorInt.Value);
-            set => colorInt = string.IsNullOrWhiteSpace(value) ? (int?)null : ColorUtility.FromColorString(value);
+            get => ColorInt is null ? null : ColorUtility.IntToHexColorString(ColorInt.Value);
+            set => ColorInt = string.IsNullOrWhiteSpace(value) ? (int?)null : ColorUtility.FromColorString(value);
         }
 
         /// <summary>

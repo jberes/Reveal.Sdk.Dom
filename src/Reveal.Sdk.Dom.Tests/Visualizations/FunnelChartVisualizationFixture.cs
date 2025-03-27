@@ -192,6 +192,17 @@ public class FunnelChartVisualizationFixture
                     "AggregationType" : "Sum",
                     "Sorting" : "None",
                     "IsCalculated" : false,
+                    "Formatting": {
+                      "_type": "NumberFormattingSpecType",
+                      "CurrencySymbol": "$",
+                      "DecimalDigits": 2,
+                      "FormatType": "Number",
+                      "MKFormat": "None",
+                      "NegativeFormat": "MinusSign",
+                      "ShowGroupingSeparator": false,
+                      "ShowDataLabelsInChart": true,
+                      "OverrideDefaultSettings": false
+                    },
                     "FieldName" : "Conversions"
                   }
                 } ],

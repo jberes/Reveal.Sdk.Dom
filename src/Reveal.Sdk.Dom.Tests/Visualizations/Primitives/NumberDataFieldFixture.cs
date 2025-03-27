@@ -72,6 +72,17 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
               "AggregationType": "Sum",
               "Sorting": "None",
               "IsCalculated": false,
+              "Formatting": {
+                "_type": "NumberFormattingSpecType",
+                "ApplyMkFormat": false,
+                "CurrencySymbol": "$",
+                "DecimalDigits": 4,
+                "FormatType": "Currency",
+                "NegativeFormat": "Parenthesis",
+                "ShowGroupingSeparator": false,
+                "OverrideDefaultSettings": false,
+                "ShowDataLabelsInChart": true
+               },
               "FieldName": "FieldName"
             }
             """;

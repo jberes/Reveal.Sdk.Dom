@@ -40,7 +40,7 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
             column.DataField = new NumberDataField("test field");
             column.XmlaMeasure = new XmlaMeasure();
 
-            var expectedJson =  JObject.Parse("""
+            var expectedJson = JObject.Parse("""
             {
               "_type": "MeasureColumnSpecType",
               "SummarizationField": {
@@ -51,6 +51,17 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Primitives
                 "AggregationType": "Sum",
                 "Sorting": "None",
                 "IsCalculated": false,
+                "Formatting": {
+                  "_type": "NumberFormattingSpecType",
+                  "CurrencySymbol": "$",
+                  "DecimalDigits": 2,
+                  "FormatType": "Number",
+                  "MKFormat": "None",
+                  "NegativeFormat": "MinusSign",
+                  "ShowGroupingSeparator": false,
+                  "ShowDataLabelsInChart": true,
+                  "OverrideDefaultSettings": false
+                },
                 "FieldName": "test field"
               },
               "XmlaMeasure": {

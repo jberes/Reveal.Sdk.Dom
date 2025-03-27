@@ -17,11 +17,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
             var visualization = new MockIFiananceVisualization() { Opens = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
             var fieldName = "TestFieldName";
             var field = new NumberDataField(fieldName);
-            field.Formatting = new NumberFormatting()
-            {
-                DecimalDigits = 0,
-                ShowGroupingSeparator = true
-            };
             var expectedOpens = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
@@ -71,11 +66,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
             var visualization = new MockIFiananceVisualization() { Closes = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
             var fieldName = "TestFieldName";
             var field = new NumberDataField(fieldName);
-            field.Formatting = new NumberFormatting()
-            {
-                DecimalDigits = 0,
-                ShowGroupingSeparator = true
-            };
             var expectedCloses = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
@@ -125,11 +115,6 @@ namespace Reveal.Sdk.Dom.Tests.Visualizations.Extensions
             var visualization = new MockIFiananceVisualization() { Highs = new List<MeasureColumn>() { new MeasureColumn() { DataField = new NumberDataField("InitialField") } } };
             var fieldName = "TestFieldName";
             var field = new NumberDataField(fieldName);
-            field.Formatting = new NumberFormatting()
-            {
-                DecimalDigits = 0,
-                ShowGroupingSeparator = true
-            };
             var expectedHighs = new List<MeasureColumn> { new MeasureColumn() { DataField = field } };
 
             // Act
