@@ -7,8 +7,6 @@ jobs:
   build-and-test:
     name: Build & Test
     uses: ./.github/workflows/build-and-test.yml
-    with:
-      shouldPack: true
 
   create-draft-release:
     name: Create Draft Release
