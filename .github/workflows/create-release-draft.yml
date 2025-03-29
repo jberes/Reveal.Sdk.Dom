@@ -7,6 +7,8 @@ jobs:
   build-and-test:
     name: Build & Test
     uses: ./.github/workflows/build-and-test.yml
+    with:
+      shouldPack: true
 
   create-draft-release:
     name: Create Draft Release
@@ -18,29 +20,29 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v1
-      with:
-        versionSpec: '5.x'
-
-    - name: Run GitVersion
-      id: gitversion
-      uses: gittools/actions/gitversion/execute@v1
-
     - name: Download NuGet package
       uses: actions/download-artifact@v4
       with:
         name: nuget-package
         path: ./artifacts
 
+    - name: Extract NuGet version from .nupkg filename
+      id: nuget_version
+      run: |
+        file=$(ls ./artifacts/Reveal.Sdk.Dom.*.nupkg)
+        echo "NuGet Package: $file"
+        version=$(basename "$file" | sed -E 's/Reveal\.Sdk\.Dom\.([0-9A-Za-z\.-]+)\.nupkg/\1/')
+        echo "Version: $version"
+        echo "version=$version" >> "$GITHUB_OUTPUT"
+
     - name: Zip source code
-      run: git archive --format=zip --output ./artifacts/Reveal.Sdk.Dom.${{ steps.gitversion.outputs.SemVer }}.zip HEAD
+      run: git archive --format=zip --output ./artifacts/Reveal.Sdk.Dom.${{ steps.nuget_version.outputs.version }}.zip HEAD
 
     - name: Create GitHub draft release
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: ${{ steps.gitversion.outputs.SemVer }}
-        name: ${{ steps.gitversion.outputs.SemVer }}
+        tag_name: ${{ steps.nuget_version.outputs.version }}
+        name: ${{ steps.nuget_version.outputs.version }}
         draft: true
         generate_release_notes: true
         files: |
