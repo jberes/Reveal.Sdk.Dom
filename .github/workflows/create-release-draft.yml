@@ -34,9 +34,6 @@ jobs:
         echo "Version: $version"
         echo "version=$version" >> "$GITHUB_OUTPUT"
 
-    - name: Zip source code
-      run: git archive --format=zip --output ./artifacts/Reveal.Sdk.Dom.${{ steps.nuget_version.outputs.version }}.zip HEAD
-
     - name: Create GitHub draft release
       uses: softprops/action-gh-release@v1
       with:
@@ -46,6 +43,5 @@ jobs:
         generate_release_notes: true
         files: |
           ./artifacts/*.nupkg
-          ./artifacts/*.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

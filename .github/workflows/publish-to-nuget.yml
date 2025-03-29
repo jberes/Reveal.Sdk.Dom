@@ -9,11 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Download NuGet package
-      uses: actions/download-artifact@v4
-      with:
-        name: nuget-package
-        path: ./nupkgs
+    - name: Download release asset (.nupkg)
+      id: download
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        mkdir -p nupkg
+        release_url="https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ github.event.release.tag_name }}"
+        asset_url=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" $release_url | jq -r '.assets[] | select(.name | endswith(".nupkg")) | .url')
+        filename=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" $release_url | jq -r '.assets[] | select(.name | endswith(".nupkg")) | .name')
+        echo "Downloading $filename from $asset_url"
+        curl -L -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/octet-stream" "$asset_url" -o "./nupkg/$filename"
+        echo "filename=$filename" >> "$GITHUB_OUTPUT"
 
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v4
@@ -21,4 +28,4 @@ jobs:
         dotnet-version: 9.x
 
     - name: Push to NuGet.org
-      run: dotnet nuget push "./nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
+      run: dotnet nuget push "./nupkg/${{ steps.download.outputs.filename }}" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
