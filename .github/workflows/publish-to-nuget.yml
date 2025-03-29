@@ -1,0 +1,24 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download NuGet package
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-package
+        path: ./nupkgs
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.x
+
+    - name: Push to NuGet.org
+      run: dotnet nuget push "./nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
