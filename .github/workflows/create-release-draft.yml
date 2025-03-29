@@ -26,6 +26,7 @@ jobs:
 
     - name: Extract NuGet version from .nupkg filename
       id: nuget_version
+      shell: bash
       run: |
         file=$(ls ./artifacts/Reveal.Sdk.Dom.*.nupkg)
         echo "NuGet Package: $file"
