@@ -175,17 +175,24 @@ Now that you've created your first dashboard, explore more features:
 Add different chart types to your dashboard:
 
 ```csharp
-// Add a bar chart
+// Add a bar chart for top products
 var barChart = new BarChartVisualization("Top Products", dataSourceItem);
 barChart.Labels.Add(new DimensionDataField("ProductName"));
-barChart.Values.Add(new MeasureDataField("ProductSales"));
+barChart.Values.Add(new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum });
 document.Visualizations.Add(barChart);
 
-// Add a KPI
+// Add a KPI for total sales
 var kpi = new KpiTargetVisualization("Total Sales", dataSourceItem);
-kpi.Date = new DimensionDataField("Date");
+kpi.Date = new DateDataField("Date") { Aggregation = DateAggregationType.Month };
 kpi.Value = new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum };
+kpi.Target = new MeasureDataField("TargetSales") { Aggregation = AggregationType.Sum };
 document.Visualizations.Add(kpi);
+
+// Add a line chart for trends
+var lineChart = new LineChartVisualization("Sales Trend", dataSourceItem);
+lineChart.Labels.Add(new DateDataField("Date") { Aggregation = DateAggregationType.Month });
+lineChart.Values.Add(new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum });
+document.Visualizations.Add(lineChart);
 ```
 
 ### Load an Existing Dashboard
@@ -193,14 +200,23 @@ document.Visualizations.Add(kpi);
 Modify an existing `.rdash` file:
 
 ```csharp
+// Load existing dashboard
 var existingDocument = RdashDocument.Load("existing-dashboard.rdash");
 existingDocument.Title = "Updated Dashboard";
+
+// Add new visualization
+var newChart = new ColumnChartVisualization("New Chart", dataSourceItem);
+newChart.Labels.Add(new DimensionDataField("Category"));
+newChart.Values.Add(new MeasureDataField("Sales") { Aggregation = AggregationType.Sum });
+existingDocument.Visualizations.Add(newChart);
+
+// Save with new name
 existingDocument.Save("modified-dashboard.rdash");
 ```
 
 ### Use Different Data Sources
 
-Connect to SQL Server:
+#### SQL Server Example
 
 ```csharp
 var sqlDataSource = new MicrosoftSqlServerDataSource
@@ -212,21 +228,53 @@ var sqlDataSource = new MicrosoftSqlServerDataSource
 
 var sqlDataSourceItem = new TableDataSourceItem("Sales", sqlDataSource)
 {
-    Table = "SalesData"
+    Table = "SalesData",
+    Title = "Sales Transactions"
+};
+
+// Use in visualization
+var sqlChart = new BarChartVisualization("SQL Sales", sqlDataSourceItem);
+sqlChart.Labels.Add(new DimensionDataField("Region"));
+sqlChart.Values.Add(new MeasureDataField("Revenue") { Aggregation = AggregationType.Sum });
+```
+
+#### Excel File Example
+
+```csharp
+var excelDataSource = new ExcelDataSource
+{
+    Title = "Sales Spreadsheet"
+};
+
+var excelDataSourceItem = new ExcelDataSourceItem("Sales", excelDataSource)
+{
+    ResourcePath = @"C:\Data\Sales.xlsx",
+    Sheet = "Sheet1",
+    FirstRowContainsLabels = true,
+    Fields = new List<IField>
+    {
+        new TextField("Product"),
+        new NumberField("Revenue"),
+        new DateField("Date")
+    }
 };
 ```
 
-### Add Filters
+### Add Dashboard Filters
 
-Add dashboard-level filters:
+Make your dashboard interactive with filters:
 
 ```csharp
+// Add date range filter
 var dateFilter = new DashboardDateFilter("Date Range");
 document.Filters.Add(dateFilter);
 
+// Add category filter
 var categoryFilter = new DashboardDataFilter("Category", dataSourceItem);
 categoryFilter.SelectedField = new DimensionDataField("CategoryName");
 document.Filters.Add(categoryFilter);
+
+// Filters automatically connect to visualizations that use matching fields
 ```
 
 ## Learn More
@@ -236,22 +284,203 @@ document.Filters.Add(categoryFilter);
 - [How-To Guides](../how-to/README.md) - Task-specific guides
 - [Examples](../examples/README.md) - More complete examples
 
-## Common Patterns
+## Advanced Patterns
 
-### Builder Pattern (Alternative Approach)
+### Builder Pattern with Data Source Factory
 
-You can also use builders for a more fluent API:
+For larger applications, use a factory pattern to manage data sources:
 
 ```csharp
-var dataSourceItem = new RestServiceBuilder("https://api.example.com/data")
-    .SetTitle("My API Data")
-    .SetSubtitle("Sales Information")
-    .SetFields(new List<Field>
+public class DataSourceFactory
+{
+    private static readonly RestDataSource _excelSource = new RestDataSource
     {
-        new TextField("Name"),
-        new NumberField("Amount")
-    })
-    .Build();
+        Id = "SampleExcel",
+        Title = "Sample Excel Data",
+        Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
+    };
+
+    public static DataSourceItem GetSalesData()
+    {
+        var dataItem = new RestDataSourceItem("Sales", _excelSource)
+        {
+            Title = "Sales Data",
+            Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            IsAnonymous = true,
+            Fields = new List<IField>
+            {
+                new TextField("Territory"),
+                new DateField("Date"),
+                new NumberField("Revenue"),
+                new NumberField("Target"),
+                new TextField("Product")
+            }
+        };
+        dataItem.UseExcel("Sales");
+        return dataItem;
+    }
+
+    public static DataSourceItem GetMarketingData()
+    {
+        var dataItem = new RestDataSourceItem("Marketing", _excelSource)
+        {
+            Title = "Marketing Data",
+            Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
+            IsAnonymous = true,
+            Fields = new List<IField>
+            {
+                new DateField("Date"),
+                new NumberField("Spend"),
+                new NumberField("Budget"),
+                new NumberField("CTR"),
+                new TextField("CampaignID")
+            }
+        };
+        dataItem.UseExcel("Marketing");
+        return dataItem;
+    }
+}
+
+// Usage
+var salesData = DataSourceFactory.GetSalesData();
+var marketingData = DataSourceFactory.GetMarketingData();
+```
+
+### Complete Dashboard with Multiple Visualizations and Filters
+
+```csharp
+public RdashDocument CreateComprehensiveDashboard()
+{
+    var document = new RdashDocument("Business Performance Dashboard")
+    {
+        Description = "Comprehensive business metrics and KPIs",
+        UseAutoLayout = true,
+        Theme = Theme.Ocean
+    };
+
+    // Get data sources
+    var salesData = DataSourceFactory.GetSalesData();
+    var marketingData = DataSourceFactory.GetMarketingData();
+
+    // Add dashboard filters
+    var dateFilter = new DashboardDateFilter("Date Range");
+    document.Filters.Add(dateFilter);
+
+    var territoryFilter = new DashboardDataFilter("Territory", salesData);
+    territoryFilter.SelectedField = new DimensionDataField("Territory");
+    document.Filters.Add(territoryFilter);
+
+    // 1. Sales KPI with target
+    var salesKpi = new KpiTargetVisualization("Sales Performance", salesData)
+    {
+        IsTitleVisible = true
+    };
+    salesKpi.Date = new DimensionDataField("Date") { Aggregation = DateAggregationType.Month };
+    salesKpi.Value = new MeasureDataField("Revenue") 
+    { 
+        Aggregation = AggregationType.Sum,
+        Formatting = new NumberFormatting
+        {
+            FormatType = NumberFormattingType.Currency,
+            CurrencySymbol = "$",
+            ShowGroupingSeparator = true
+        }
+    };
+    salesKpi.Target = new MeasureDataField("Target") { Aggregation = AggregationType.Sum };
+    document.Visualizations.Add(salesKpi);
+
+    // 2. Revenue trend line chart
+    var revenueTrend = new LineChartVisualization("Revenue Trend", salesData);
+    revenueTrend.Labels.Add(new DimensionDataField("Date") { Aggregation = DateAggregationType.Month });
+    revenueTrend.Values.Add(new MeasureDataField("Revenue") { Aggregation = AggregationType.Sum });
+    document.Visualizations.Add(revenueTrend);
+
+    // 3. Sales by territory bar chart
+    var territoryChart = new BarChartVisualization("Sales by Territory", salesData);
+    territoryChart.Labels.Add(new DimensionDataField("Territory"));
+    territoryChart.Values.Add(new MeasureDataField("Revenue") 
+    { 
+        Aggregation = AggregationType.Sum,
+        Sorting = SortingType.Desc  // Sort by highest first
+    });
+    document.Visualizations.Add(territoryChart);
+
+    // 4. Marketing spend vs budget
+    var marketingKpi = new KpiTargetVisualization("Marketing Spend vs Budget", marketingData);
+    marketingKpi.Date = new DimensionDataField("Date") { Aggregation = DateAggregationType.Month };
+    marketingKpi.Value = new MeasureDataField("Spend") { Aggregation = AggregationType.Sum };
+    marketingKpi.Target = new MeasureDataField("Budget") { Aggregation = AggregationType.Sum };
+    document.Visualizations.Add(marketingKpi);
+
+    // 5. Campaign performance pivot table
+    var campaignPivot = new PivotVisualization("Campaign Performance", marketingData);
+    campaignPivot.Rows.Add(new DimensionDataField("CampaignID"));
+    campaignPivot.Values.Add(new MeasureDataField("Spend") { Aggregation = AggregationType.Sum });
+    campaignPivot.Values.Add(new MeasureDataField("CTR") 
+    { 
+        Aggregation = AggregationType.Average,
+        Formatting = new NumberFormatting { FormatType = NumberFormattingType.Percent }
+    });
+    document.Visualizations.Add(campaignPivot);
+
+    // 6. Product sales pie chart
+    var productPie = new PieChartVisualization("Sales by Product", salesData);
+    productPie.Labels.Add(new DimensionDataField("Product"));
+    productPie.Values.Add(new MeasureDataField("Revenue") { Aggregation = AggregationType.Sum });
+    document.Visualizations.Add(productPie);
+
+    return document;
+}
+```
+
+### Working with Manual Layout
+
+For precise dashboard layouts, use manual positioning:
+
+```csharp
+var document = new RdashDocument("Precision Dashboard")
+{
+    UseAutoLayout = false  // Enable manual positioning
+};
+
+// Top row - KPIs
+var kpi1 = new KpiTargetVisualization("Sales", salesData)
+{
+    Column = 0,      // Left position
+    Row = 0,         // Top position
+    ColumnSpan = 20, // Width (out of 48 columns)
+    RowSpan = 15     // Height
+};
+
+var kpi2 = new KpiTargetVisualization("Marketing", marketingData)
+{
+    Column = 20,     // Next to first KPI
+    Row = 0,
+    ColumnSpan = 20,
+    RowSpan = 15
+};
+
+// Bottom row - Charts
+var chart1 = new LineChartVisualization("Trend", salesData)
+{
+    Column = 0,
+    Row = 15,        // Below KPIs
+    ColumnSpan = 24, // Half width
+    RowSpan = 20
+};
+
+var chart2 = new BarChartVisualization("Comparison", salesData)
+{
+    Column = 24,     // Right side
+    Row = 15,
+    ColumnSpan = 24, // Half width
+    RowSpan = 20
+};
+
+document.Visualizations.Add(kpi1);
+document.Visualizations.Add(kpi2);
+document.Visualizations.Add(chart1);
+document.Visualizations.Add(chart2);
 ```
 
 ### Export to Reveal SDK

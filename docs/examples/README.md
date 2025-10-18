@@ -11,22 +11,26 @@ This section contains full, working examples that demonstrate how to create vari
 ### Business Dashboards
 
 - **[Sales Dashboard](sales-dashboard.md)** - Comprehensive sales analytics with KPIs, charts, and trends
-- **[Marketing Dashboard](marketing-dashboard.md)** - Marketing campaign performance and metrics
+- **[Marketing Dashboard](marketing-dashboard.md)** - Marketing campaign performance and metrics  
 - **[Healthcare Dashboard](healthcare-dashboard.md)** - Healthcare metrics and patient data visualization
+- **[Manufacturing Dashboard](manufacturing-dashboard.md)** - Production metrics and operational KPIs
+- **[Campaigns Dashboard](campaigns-dashboard.md)** - Campaign analytics and conversion tracking
 
 ### Data Source Examples
 
-- **SQL Server Dashboard** - Connecting to and visualizing SQL Server data
-- **REST API Dashboard** - Consuming and displaying REST API data
-- **Excel Dashboard** - Working with Excel data sources
-- **Multi-Source Dashboard** - Combining data from multiple sources
+- **[SQL Server Dashboard](sql-server-dashboard.md)** - Connecting to and visualizing SQL Server data
+- **[REST API Dashboard](rest-api-dashboard.md)** - Consuming and displaying REST API data
+- **[Excel Dashboard](excel-dashboard.md)** - Working with Excel data sources via REST
+- **[Multi-Source Dashboard](multi-source-dashboard.md)** - Combining data from multiple sources
+- **[Real-time Dashboard](realtime-dashboard.md)** - Working with live data sources
 
 ### Visualization Examples
 
-- **Charts Gallery** - Showcasing different chart types
-- **KPI Dashboard** - Creating effective KPI visualizations
-- **Geographic Dashboard** - Working with maps and geographic data
-- **Grid and Pivot** - Data tables and pivot tables
+- **[Charts Gallery](charts-gallery.md)** - Showcasing different chart types with real data
+- **[KPI Dashboard](kpi-dashboard.md)** - Creating effective KPI visualizations
+- **[Geographic Dashboard](geographic-dashboard.md)** - Working with maps and geographic data
+- **[Grid and Pivot](grid-pivot-dashboard.md)** - Data tables and pivot tables
+- **[Advanced Visualizations](advanced-visualizations.md)** - Sparklines, gauges, and bullet graphs
 
 ## Quick Examples
 
