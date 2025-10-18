@@ -5,6 +5,18 @@ The Reveal.Sdk.Dom is a Document Object Model (DOM) for the [Reveal](https://www
 
 The Reveal.Sdk.Dom is currently **BETA** so expect things to not work, or to possibly break in a future release.
 
+## Documentation
+
+📚 **[Complete Documentation](docs/README.md)** - Comprehensive guides, tutorials, and API reference
+
+- [Getting Started](docs/getting-started/installation.md) - Installation and quick start
+- [Core Concepts](docs/core-concepts/rdash-document.md) - Understanding the SDK
+- [How-To Guides](docs/how-to/data-sources/connect-to-sql-server.md) - Task-specific tutorials
+- [API Reference](docs/api-reference/data-sources/README.md) - Complete API documentation
+- [Examples](docs/examples/README.md) - Working code examples
+- [FAQ](docs/faq.md) - Common questions and answers
+- [Troubleshooting](docs/troubleshooting.md) - Solutions to common issues
+
 Check out the [Samples](https://github.com/RevealBi/Reveal.Sdk.Dom/tree/main/e2e/Sandbox/Factories) in the Sandbox application I am using to develop and test the API.
 
 ## Quick Start Guide
