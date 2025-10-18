@@ -2,6 +2,8 @@
 
 Understanding these fundamental concepts will help you work effectively with Reveal.Sdk.Dom.
 
+> **💡 Essential Reference**: Before diving in, familiarize yourself with the **[Types and Enums Reference](../core-concepts/types-and-enums.md)**. This guide covers all the field types, aggregation types, visualization types, and data source types you'll be working with. It's an essential reference that will help you understand the building blocks used throughout this guide.
+
 ## Overview
 
 Reveal.Sdk.Dom is designed around a hierarchical structure that mirrors the organization of a Reveal dashboard. At the highest level, you have a **Document**, which contains **Visualizations**, which display data from **Data Sources**.
@@ -132,9 +134,11 @@ dataSourceItem.Fields.Add(new DateField("Date"));
 
 **Field Types:**
 - `TextField` - String data
-- `NumberField` - Numeric data
+- `NumberField` - Numeric data  
 - `DateField` - Date/time data
 - `BooleanField` - Boolean data
+
+**💡 Key Types to Know**: Understanding field types is crucial for working with data. Each type corresponds to how your data is structured and determines what operations are available. For complete type information, see the **[Types and Enums Reference](../core-concepts/types-and-enums.md)**.
 
 ## Data Flow
 
@@ -202,6 +206,8 @@ var salesField = new MeasureDataField("Sales")
 - `Count` - Count number of records
 - `Min` - Minimum value
 - `Max` - Maximum value
+
+**💡 More Aggregation Types**: The SDK supports many more aggregation types including `DistinctCount`, `Median`, `StdDev`, and `Variance`. See the complete list in the **[Types and Enums Reference](../core-concepts/types-and-enums.md#aggregation-types)**.
 
 ## Filters
 

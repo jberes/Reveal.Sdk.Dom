@@ -23,6 +23,7 @@ Reveal.Sdk.Dom is a .NET library that allows developers to programmatically load
 
 ### Core Concepts
 - [RdashDocument](core-concepts/rdash-document.md) - The main dashboard document
+- [Types and Enums](core-concepts/types-and-enums.md) - **Essential reference** for field types, aggregations, and visualization types
 - [Data Sources](core-concepts/data-sources.md) - Understanding data sources and data source items
 - [Visualizations](core-concepts/visualizations.md) - Overview of visualization types and their properties
 - [Filters](core-concepts/filters.md) - Dashboard and visualization filters
