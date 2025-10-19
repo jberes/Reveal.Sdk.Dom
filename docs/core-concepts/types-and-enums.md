@@ -1,691 +1,541 @@
-# Types and Enums Reference
+# Understanding Types and Enums in Reveal.Sdk.Dom
 
-This guide provides a comprehensive reference for all the key types and enums used in Reveal.Sdk.Dom. Understanding these types is essential for creating effective dashboards and visualizations.
+Master the fundamental building blocks of Reveal.Sdk.Dom by understanding field types, data mappings, aggregations, and visualization types that power effective dashboard development.
 
-## Field Types
+## What You'll Learn
 
-Field types define the data schema for your data sources. Use these when defining fields in data source items.
+By the end of this guide, you'll understand:
 
-### TextField
-Used for string/text data, categories, and labels.
+- **Field Types** - How to define data schemas for your data sources
+- **Data Field Types** - How to map data to visualization components
+- **Aggregation Types** - How to transform raw data into meaningful insights
+- **Visualization Types** - How to choose the right visual representation
+- **Data Source Types** - How to connect to various data systems
+- **Integration Patterns** - How these types work together in real scenarios
+
+## Why This Matters
+
+Understanding types and enums is crucial because they form the foundation of every dashboard you create. These building blocks determine:
+
+- **Data Accuracy** - Proper field typing ensures correct data interpretation
+- **Visual Effectiveness** - Right visualization types convey insights clearly  
+- **Performance** - Appropriate aggregations optimize data processing
+- **Maintainability** - Consistent type usage makes dashboards easier to update
+- **User Experience** - Well-structured data creates intuitive, actionable dashboards
+
+Whether you're building sales analytics, operational dashboards, or executive reporting, mastering these fundamentals will enable you to create compelling, accurate visualizations that drive business decisions.
+
+> 💡 **Learning Path**: This guide builds on concepts from [Basic Concepts](../getting-started/basic-concepts.md) and prepares you for [Creating Visualizations](../how-to/visualizations/create-charts.md).
+
+## Data Foundation: Field Types
+
+Field types define the data schema for your data sources, establishing how Reveal.Sdk.Dom interprets your raw data. Think of them as the "blueprint" that describes what each column contains.
+
+### Understanding the Type System
+
+Reveal.Sdk.Dom uses a strongly-typed system where each data column must be explicitly defined. This ensures data integrity and enables the platform to provide appropriate visualization options and aggregation methods.
 
 ```csharp
-var nameField = new TextField("CustomerName")
+// Example: Defining a complete data schema
+var customerSchema = new List<IField>
 {
-    FieldLabel = "Customer Name"
+    new TextField("CustomerName") { FieldLabel = "Customer Name" },
+    new NumberField("Revenue") { FieldLabel = "Annual Revenue" },
+    new DateField("FirstPurchase") { FieldLabel = "First Purchase Date" },
+    new BooleanField("IsActive") { FieldLabel = "Active Customer" }
 };
 ```
 
-**Use Cases:**
-- Names, descriptions, categories
-- IDs and codes
-- Text-based lookup values
+### TextField: Working with Categorical Data
 
-### NumberField  
-Used for numeric data that can be used in calculations and aggregations.
+`TextField` represents textual information that typically serves as categories, labels, or identifiers.
+
+#### When to Use TextField
+
+- **Names and Identifiers** - Customer names, product codes, transaction IDs
+- **Categories** - Product categories, regions, departments, status values
+- **Descriptions** - Product descriptions, comments, notes
+- **Lookup Values** - Country codes, currency symbols, classification codes
+
+#### TextField Properties and Usage
 
 ```csharp
-var salesField = new NumberField("SalesAmount")
+// Basic text field
+var productName = new TextField("ProductName")
 {
-    FieldLabel = "Sales ($)"
+    FieldLabel = "Product Name",        // User-friendly display name
+    Description = "Product identifier"   // Optional description
+};
+
+// Text field for categories
+var region = new TextField("SalesRegion")
+{
+    FieldLabel = "Sales Region",
+    Description = "Geographic sales territory"
+};
+
+// Text field for codes/IDs
+var customerCode = new TextField("CustomerCode")
+{
+    FieldLabel = "Customer ID",
+    Description = "Unique customer identifier"
 };
 ```
 
-**Use Cases:**
-- Revenue, prices, quantities
-- Measurements and metrics
-- Calculated values
-
-### DateField
-Used for date and time data, including timestamps.
+#### Best Practices for TextField
 
 ```csharp
-var orderDateField = new DateField("OrderDate")
+// ✅ Good: Clear, descriptive labels
+var category = new TextField("ProductCategory")
 {
-    FieldLabel = "Order Date"
+    FieldLabel = "Product Category"  // Clear for end users
+};
+
+// ❌ Avoid: Technical field names as labels
+var badField = new TextField("prod_cat_cd")
+{
+    FieldLabel = "prod_cat_cd"  // Confusing for users
+};
+
+// ✅ Better: User-friendly labels for technical fields
+var goodField = new TextField("prod_cat_cd")
+{
+    FieldLabel = "Product Category"  // Technical name mapped to friendly label
 };
 ```
 
-**Use Cases:**
-- Transaction dates
-- Created/modified timestamps  
-- Scheduling and planning dates
+### NumberField: Handling Quantitative Data
 
-### BooleanField
-Used for true/false data and binary states.
+`NumberField` represents numeric data that can be used in mathematical operations and aggregations.
+
+#### When to Use NumberField
+
+- **Financial Data** - Revenue, costs, prices, profit margins
+- **Quantities** - Inventory levels, order quantities, employee counts
+- **Measurements** - Distances, weights, temperatures, scores
+- **Calculated Values** - Ratios, percentages, growth rates
+
+#### NumberField Properties and Configuration
 
 ```csharp
-var activeField = new BooleanField("IsActive")
+// Basic numeric field
+var revenue = new NumberField("TotalRevenue")
 {
-    FieldLabel = "Active Status"
+    FieldLabel = "Total Revenue"
+};
+
+// Numeric field with formatting hints
+var price = new NumberField("UnitPrice")
+{
+    FieldLabel = "Unit Price ($)",
+    Description = "Price per unit in USD"
+};
+
+// Percentage field
+var growthRate = new NumberField("GrowthPercentage")
+{
+    FieldLabel = "Growth Rate (%)",
+    Description = "Year-over-year growth percentage"
+};
+
+// Count/quantity field
+var orderQuantity = new NumberField("Quantity")
+{
+    FieldLabel = "Order Quantity",
+    Description = "Number of units ordered"
 };
 ```
 
-**Use Cases:**
-- Status flags (active/inactive, enabled/disabled)
-- Yes/No responses
-- Binary conditions
+### DateField: Managing Time-Based Data
 
-## Data Field Types
+`DateField` represents date and time information, enabling time-based analysis and temporal grouping.
 
-Data field types are used when mapping fields to visualization properties (labels, values, etc.).
+#### When to Use DateField
 
-### DimensionDataField
-Used for categorical data that provides context and grouping.
+- **Transaction Dates** - Order dates, payment dates, delivery dates
+- **Timeline Events** - Created dates, modified dates, milestone dates
+- **Scheduling Data** - Start dates, end dates, deadline dates
+- **Historical Analysis** - Comparative time periods, trend analysis
+
+### BooleanField: Representing Binary States
+
+`BooleanField` represents true/false data and binary conditions.
+
+#### When to Use BooleanField
+
+- **Status Flags** - Active/inactive, enabled/disabled, published/draft
+- **Binary Conditions** - Pass/fail, approved/rejected, completed/pending
+- **Feature Flags** - Premium customer, international, first-time buyer
+- **Compliance States** - Compliant/non-compliant, verified/unverified
+
+## Visualization Mapping: Data Field Types
+
+Data field types bridge the gap between your raw data (defined by Field Types) and visualization components. They determine how data appears in charts, tables, and other visual elements.
+
+### DimensionDataField: Creating Context and Categories
+
+`DimensionDataField` transforms categorical data into visual groupings, labels, and context.
+
+#### Understanding Dimensions
+
+Dimensions provide the "who, what, where, when" context for your data. They create the structure around which your measures are organized and compared.
+
+#### When to Use DimensionDataField
+
+- **Chart Axes** - X-axis labels, legend categories
+- **Grouping** - Organizing data by categories
+- **Filtering Context** - Drill-down hierarchies
+- **Row/Column Headers** - In grids and pivot tables
 
 ```csharp
-var categoryField = new DimensionDataField("ProductCategory")
+// Product analysis dimensions
+var productCategory = new DimensionDataField("ProductCategory")
 {
-    FieldLabel = "Product Category"
+    FieldLabel = "Product Category",
+    Description = "Product classification for analysis"
 };
 
-// Use in visualizations
-chart.Labels.Add(categoryField);
+var salesRegion = new DimensionDataField("SalesRegion")
+{
+    FieldLabel = "Sales Region",
+    Description = "Geographic sales territory"
+};
 ```
 
-**Characteristics:**
-- Non-numeric (typically)
-- Used for grouping and categorization
-- Appears on axes, legends, and labels
-- Examples: Product names, regions, categories
+### MeasureDataField: Quantifying Performance and Metrics
 
-### MeasureDataField
-Used for numeric data that can be aggregated and calculated.
+`MeasureDataField` transforms numeric data into aggregated metrics that provide quantitative insights.
+
+#### Understanding Measures
+
+Measures answer "how much" or "how many" questions. They're the numeric values that get calculated, aggregated, and compared across your dimensions.
+
+#### When to Use MeasureDataField
+
+- **Chart Values** - Bar heights, line values, pie slice sizes
+- **KPI Metrics** - Target values, actual values, variance calculations
+- **Aggregated Results** - Totals, averages, counts, ratios
+- **Calculated Fields** - Derived metrics, percentages, growth rates
 
 ```csharp
-var revenueField = new MeasureDataField("Revenue")
+// Revenue measures with different aggregations
+var totalRevenue = new MeasureDataField("Revenue")
 {
+    Aggregation = AggregationType.Sum,
     FieldLabel = "Total Revenue",
-    Aggregation = AggregationType.Sum
+    Description = "Sum of all revenue transactions"
 };
 
-// Use in visualizations
-chart.Values.Add(revenueField);
-```
-
-**Characteristics:**
-- Numeric data
-- Can be aggregated (sum, average, count, etc.)
-- Used for values, sizes, and metrics
-- Examples: Sales amounts, quantities, percentages
-
-### DateDataField
-Used for date/time data in visualizations, especially for time-based analysis.
-
-```csharp
-var dateField = new DateDataField("OrderDate")
+var averageOrderValue = new MeasureDataField("OrderValue")
 {
-    FieldLabel = "Order Date"
+    Aggregation = AggregationType.Average,
+    FieldLabel = "Average Order Value",
+    Description = "Mean value per order"
 };
-
-// Use in time-based charts
-lineChart.Labels.Add(dateField);
 ```
 
-**Characteristics:**
-- Date and time values
-- Supports time-based grouping (by year, month, day)
-- Used in trend analysis and time series
-- Automatically provides date hierarchies
+### DateDataField: Enabling Time-Based Analysis
 
-## Aggregation Types
+`DateDataField` specializes in temporal data, providing time-based grouping, trending, and chronological analysis capabilities.
 
-Aggregation types determine how numeric data is combined when grouping by dimensions.
+#### Understanding Time Dimensions
 
-### Sum
-Adds all values together.
+Time is often the most important dimension in business analysis, enabling trend identification, seasonal pattern recognition, and performance comparison across periods.
+
+#### When to Use DateDataField
+
+- **Trend Analysis** - Line charts showing changes over time
+- **Time Series** - Sequential data points with temporal relationships  
+- **Period Comparisons** - Year-over-year, month-over-month analysis
+- **Seasonal Patterns** - Identifying cyclical behaviors and trends
 
 ```csharp
-var totalSales = new MeasureDataField("Sales")
+// Monthly sales trend
+var monthlyDate = new DateDataField("OrderDate")
 {
-    Aggregation = AggregationType.Sum
+    Aggregation = DateAggregationType.Month,
+    FieldLabel = "Month",
+    Description = "Orders grouped by month"
 };
 ```
 
-**Use Cases:** Revenue, quantities, totals
+## Data Aggregation: Transforming Raw Data into Insights
 
-### Average
-Calculates the arithmetic mean.
+Aggregation types determine how multiple data values are combined to create meaningful summary information. Understanding aggregations is crucial for accurate data interpretation and effective visualizations.
+
+### Numeric Aggregations (AggregationType)
+
+#### Sum: Total Accumulation
+
+`Sum` adds all values together, providing total quantities, amounts, or cumulative measures.
+
+**When to Use Sum:**
+- Financial Totals - Total revenue, total cost, total profit
+- Quantity Totals - Total units sold, total inventory
+- Cumulative Metrics - Total hours worked, total distance traveled
 
 ```csharp
-var avgPrice = new MeasureDataField("Price")
+// Financial summation
+var totalRevenue = new MeasureDataField("Revenue")
 {
-    Aggregation = AggregationType.Average
+    Aggregation = AggregationType.Sum,
+    FieldLabel = "Total Revenue ($)",
+    Formatting = new NumberFormatting
+    {
+        FormatType = NumberFormattingType.Currency,
+        CurrencySymbol = "$",
+        DecimalPlaces = 2
+    }
 };
 ```
 
-**Use Cases:** Average price, mean score, typical values
+#### Average: Central Tendency
 
-### Count
-Counts the number of records.
+`Average` calculates the arithmetic mean, providing typical or representative values.
+
+**When to Use Average:**
+- Performance Metrics - Average response time, average score
+- Financial Ratios - Average order value, average price
+- Quality Indicators - Average rating, average satisfaction score
 
 ```csharp
+// Performance averages
+var avgResponseTime = new MeasureDataField("ResponseTimeMs")
+{
+    Aggregation = AggregationType.Average,
+    FieldLabel = "Avg Response Time (ms)",
+    Formatting = new NumberFormatting
+    {
+        FormatType = NumberFormattingType.Number,
+        DecimalPlaces = 2
+    }
+};
+```
+
+#### Count: Frequency and Volume
+
+`Count` calculates the number of records, providing frequency and volume metrics.
+
+**When to Use Count:**
+- Activity Volume - Number of orders, transactions, visits
+- Participation Metrics - Number of participants, attendees, users
+- Frequency Analysis - Number of occurrences, events, incidents
+
+```csharp
+// Transaction counting
 var orderCount = new MeasureDataField("OrderID")
 {
-    Aggregation = AggregationType.Count
+    Aggregation = AggregationType.Count,
+    FieldLabel = "Number of Orders",
+    Formatting = new NumberFormatting
+    {
+        FormatType = NumberFormattingType.Number,
+        DecimalPlaces = 0,
+        ShowThousandsSeparator = true
+    }
 };
 ```
 
-**Use Cases:** Number of transactions, record counts
+#### DistinctCount: Unique Value Analysis
 
-### DistinctCount
-Counts the number of unique values.
+`DistinctCount` counts unique values, providing insights into diversity and uniqueness.
+
+**When to Use DistinctCount:**
+- Customer Analysis - Unique customers, distinct buyers
+- Product Diversity - Unique products sold, distinct categories
+- Geographic Reach - Unique locations, distinct regions
 
 ```csharp
+// Customer uniqueness
 var uniqueCustomers = new MeasureDataField("CustomerID")
 {
-    Aggregation = AggregationType.DistinctCount
+    Aggregation = AggregationType.DistinctCount,
+    FieldLabel = "Unique Customers",
+    Formatting = new NumberFormatting
+    {
+        FormatType = NumberFormattingType.Number,
+        DecimalPlaces = 0,
+        ShowThousandsSeparator = true
+    }
 };
 ```
 
-**Use Cases:** Unique customers, distinct products
+#### Min/Max: Range and Extremes
 
-### Min
-Finds the minimum value.
+`Min` and `Max` identify the smallest and largest values, revealing ranges and extreme points.
+
+**When to Use Min/Max:**
+- Price Analysis - Lowest/highest prices, price ranges
+- Performance Bounds - Best/worst performance, limits
+- Time Boundaries - Earliest/latest dates, time spans
 
 ```csharp
+// Price range analysis
 var minPrice = new MeasureDataField("Price")
 {
-    Aggregation = AggregationType.Min
+    Aggregation = AggregationType.Min,
+    FieldLabel = "Minimum Price ($)",
+    Formatting = new NumberFormatting
+    {
+        FormatType = NumberFormattingType.Currency,
+        CurrencySymbol = "$",
+        DecimalPlaces = 2
+    }
 };
 ```
 
-**Use Cases:** Lowest price, earliest date, minimum score
+### Date Aggregations (DateAggregationType)
 
-### Max
-Finds the maximum value.
+Date aggregations group temporal data into meaningful time periods for trend analysis and pattern recognition.
+
+#### Year: Annual Analysis
 
 ```csharp
-var maxSales = new MeasureDataField("Sales")
+var yearlyDate = new DateDataField("TransactionDate")
 {
-    Aggregation = AggregationType.Max
+    Aggregation = DateAggregationType.Year,
+    FieldLabel = "Year",
+    Description = "Annual grouping for year-over-year analysis"
 };
 ```
 
-**Use Cases:** Highest value, latest date, peak performance
-
-### Median
-Finds the middle value when sorted.
+#### Quarter: Seasonal Analysis
 
 ```csharp
-var medianIncome = new MeasureDataField("Income")
+var quarterlyDate = new DateDataField("OrderDate")
 {
-    Aggregation = AggregationType.Median
+    Aggregation = DateAggregationType.Quarter,
+    FieldLabel = "Quarter",
+    Description = "Quarterly grouping for seasonal pattern analysis"
 };
 ```
 
-**Use Cases:** Typical values, reducing outlier impact
-
-### StdDev
-Calculates standard deviation.
+#### Month: Monthly Trends
 
 ```csharp
-var salesVariability = new MeasureDataField("Sales")
+var monthlyDate = new DateDataField("ActivityDate")
 {
-    Aggregation = AggregationType.StdDev
+    Aggregation = DateAggregationType.Month,
+    FieldLabel = "Month",
+    Description = "Monthly grouping for trend identification"
 };
 ```
 
-**Use Cases:** Measuring variability, quality control
+### Aggregation Decision Matrix
 
-### Variance
-Calculates variance.
+| Business Question | Recommended Aggregation | Example Use Case |
+|-------------------|------------------------|------------------|
+| "What's the total?" | `Sum` | Total revenue, total quantity |
+| "What's typical?" | `Average` or `Median` | Average order value, typical response time |
+| "How many occurred?" | `Count` | Number of orders, transaction volume |
+| "How many different?" | `DistinctCount` | Unique customers, distinct products |
+| "What's the range?" | `Min` and `Max` | Price range, performance bounds |
+| "How consistent?" | `StdDev` or `Variance` | Quality consistency, sales predictability |
 
-```csharp
-var priceVariance = new MeasureDataField("Price")
-{
-    Aggregation = AggregationType.Variance
-};
-```
-
-**Use Cases:** Statistical analysis, risk measurement
-
-## Visualization Types
+## Visualization Types Reference
 
 ### Chart Visualizations
 
-#### BarChartVisualization
-Horizontal bar chart for comparing categories.
-
-```csharp
-var barChart = new BarChartVisualization("Sales by Region", dataSourceItem);
-```
-
-**Best For:** Category comparisons, ranking data
-
-#### ColumnChartVisualization  
-Vertical column chart for comparing categories.
-
-```csharp
-var columnChart = new ColumnChartVisualization("Monthly Sales", dataSourceItem);
-```
-
-**Best For:** Time series, category comparisons
-
-#### LineChartVisualization
-Connected line segments showing trends over time.
-
-```csharp
-var lineChart = new LineChartVisualization("Sales Trend", dataSourceItem);
-```
-
-**Best For:** Trends over time, continuous data
-
-#### AreaChartVisualization
-Filled area under a line, showing cumulative values.
-
-```csharp
-var areaChart = new AreaChartVisualization("Cumulative Sales", dataSourceItem);
-```
-
-**Best For:** Showing parts of a whole over time
-
-#### PieChartVisualization
-Circular sectors showing parts of a whole.
-
-```csharp
-var pieChart = new PieChartVisualization("Market Share", dataSourceItem);
-```
-
-**Best For:** Showing proportions, parts of a whole
-
-#### DoughnutChartVisualization
-Pie chart with a hollow center.
-
-```csharp
-var doughnutChart = new DoughnutChartVisualization("Sales Distribution", dataSourceItem);
-```
-
-**Best For:** Proportions with additional center content
-
-#### ScatterChartVisualization
-Points plotted on X/Y axes showing relationships.
-
-```csharp
-var scatterChart = new ScatterChartVisualization("Price vs Quantity", dataSourceItem);
-```
-
-**Best For:** Correlations, relationships between variables
-
-#### BubbleChartVisualization
-Scatter plot with sized bubbles for a third dimension.
-
-```csharp
-var bubbleChart = new BubbleChartVisualization("Sales Analysis", dataSourceItem);
-```
-
-**Best For:** Three-dimensional comparisons
+- **BarChartVisualization** - Horizontal bars for comparing categories
+- **ColumnChartVisualization** - Vertical columns for comparing categories  
+- **LineChartVisualization** - Connected lines showing trends over time
+- **AreaChartVisualization** - Filled areas under lines
+- **PieChartVisualization** - Circular sectors showing proportions
+- **ScatterChartVisualization** - Points showing relationships between variables
 
 ### Gauge Visualizations
 
-#### LinearGaugeVisualization
-Progress indicator on a linear scale.
-
-```csharp
-var linearGauge = new LinearGaugeVisualization("Progress", dataSourceItem);
-```
-
-**Best For:** Progress tracking, target achievement
-
-#### CircularGaugeVisualization
-Progress indicator on a circular scale.
-
-```csharp
-var circularGauge = new CircularGaugeVisualization("Performance", dataSourceItem);
-```
-
-**Best For:** KPIs, performance metrics
-
-#### BulletGraphVisualization
-Linear gauge with target and performance ranges.
-
-```csharp
-var bulletGraph = new BulletGraphVisualization("Sales Target", dataSourceItem);
-```
-
-**Best For:** Performance vs target comparison
-
-#### RadialGaugeVisualization
-Segmented circular gauge.
-
-```csharp
-var radialGauge = new RadialGaugeVisualization("Score", dataSourceItem);
-```
-
-**Best For:** Categorical performance levels
+- **LinearGaugeVisualization** - Progress indicator on linear scale
+- **CircularGaugeVisualization** - Progress indicator on circular scale
+- **BulletGraphVisualization** - Linear gauge with target ranges
 
 ### Data Visualizations
 
-#### GridVisualization
-Standard data table with rows and columns.
-
-```csharp
-var grid = new GridVisualization("Data Details", dataSourceItem);
-```
-
-**Best For:** Detailed data inspection, raw data display
-
-#### PivotVisualization
-Interactive pivot table for data analysis.
-
-```csharp
-var pivot = new PivotVisualization("Sales Analysis", dataSourceItem);
-```
-
-**Best For:** Data exploration, cross-tabulation
+- **GridVisualization** - Standard data table
+- **PivotVisualization** - Interactive pivot table for analysis
 
 ### KPI Visualizations
 
-#### KpiTargetVisualization
-Key performance indicator with target comparison.
+- **KpiTargetVisualization** - Key performance indicator with target
+- **SparklineVisualization** - Compact trend line visualization
+
+## Field Type Selection Guide
+
+| Field Type | Chart Labels | Chart Values | Filters | Grouping |
+|------------|--------------|--------------|---------|----------|
+| `TextField` | ✅ Excellent | ❌ No | ✅ Yes | ✅ Yes |
+| `NumberField` | ⚠️ Limited | ✅ Excellent | ✅ Yes | ⚠️ Limited |
+| `DateField` | ✅ Excellent | ❌ No | ✅ Yes | ✅ Yes |
+| `BooleanField` | ✅ Good | ❌ No | ✅ Yes | ✅ Yes |
+
+## Practical Integration Example
 
 ```csharp
-var kpi = new KpiTargetVisualization("Revenue KPI", dataSourceItem);
-```
-
-**Best For:** Single metric tracking, goal monitoring
-
-#### SparklineVisualization
-Compact trend line visualization.
-
-```csharp
-var sparkline = new SparklineVisualization("Mini Trend", dataSourceItem);
-```
-
-**Best For:** Inline trends, dashboard overviews
-
-### Map Visualizations
-
-#### ChoroplethVisualization
-Map with colored regions based on data values.
-
-```csharp
-var map = new ChoroplethVisualization("Sales by State", dataSourceItem);
-```
-
-**Best For:** Geographic data, regional comparisons
-
-#### ScatterMapVisualization
-Map with plotted points.
-
-```csharp
-var scatterMap = new ScatterMapVisualization("Store Locations", dataSourceItem);
-```
-
-**Best For:** Location-based data, point mapping
-
-### Other Visualizations
-
-#### TextBoxVisualization
-Static text content and labels.
-
-```csharp
-var textBox = new TextBoxVisualization("Dashboard Title");
-```
-
-**Best For:** Titles, descriptions, instructions
-
-#### ImageVisualization
-Display images and logos.
-
-```csharp
-var image = new ImageVisualization("Company Logo");
-```
-
-**Best For:** Branding, visual elements
-
-## Theme Types
-
-Control the overall appearance of your dashboard.
-
-### Theme.MountainLight
-Light theme with mountain-inspired colors.
-
-```csharp
-document.Theme = Theme.MountainLight;
-```
-
-### Theme.MountainDark
-Dark theme with mountain-inspired colors.
-
-```csharp
-document.Theme = Theme.MountainDark;
-```
-
-### Theme.OceanLight
-Light theme with ocean-inspired colors.
-
-```csharp
-document.Theme = Theme.OceanLight;
-```
-
-### Theme.OceanDark
-Dark theme with ocean-inspired colors.
-
-```csharp
-document.Theme = Theme.OceanDark;
-```
-
-## Data Source Types
-
-### Database Sources
-
-#### MicrosoftSqlServerDataSource
-Connect to SQL Server databases.
-
-```csharp
-var sqlSource = new MicrosoftSqlServerDataSource
+// Complete example showing type integration
+public RdashDocument CreateSalesDashboard()
 {
-    Host = "server.database.windows.net",
-    Database = "SalesDB",
-    Title = "Sales Database"
-};
+    var document = new RdashDocument("Sales Analytics Dashboard");
+    
+    // Define data source with field types
+    var sqlSource = new MicrosoftSqlServerDataSource
+    {
+        Host = "server.database.windows.net",
+        Database = "SalesDB"
+    };
+    
+    var salesData = new TableDataSourceItem("Sales", sqlSource)
+    {
+        Fields = new List<IField>
+        {
+            new TextField("Region") { FieldLabel = "Sales Region" },
+            new TextField("Product") { FieldLabel = "Product Name" },
+            new NumberField("Revenue") { FieldLabel = "Revenue Amount" },
+            new NumberField("Quantity") { FieldLabel = "Units Sold" },
+            new DateField("OrderDate") { FieldLabel = "Order Date" },
+            new BooleanField("IsReturned") { FieldLabel = "Returned" }
+        }
+    };
+    
+    // Create visualization using data field types
+    var regionalSales = new ColumnChartVisualization("Sales by Region", salesData);
+    
+    // Dimension for grouping
+    regionalSales.Labels.Add(new DimensionDataField("Region")
+    {
+        FieldLabel = "Sales Region"
+    });
+    
+    // Measure with aggregation
+    regionalSales.Values.Add(new MeasureDataField("Revenue")
+    {
+        Aggregation = AggregationType.Sum,
+        FieldLabel = "Total Revenue",
+        Formatting = new NumberFormatting
+        {
+            FormatType = NumberFormattingType.Currency,
+            CurrencySymbol = "$"
+        }
+    });
+    
+    document.Visualizations.Add(regionalSales);
+    return document;
+}
 ```
 
-#### PostgreSQLDataSource
-Connect to PostgreSQL databases.
+## Next Steps
 
-```csharp
-var pgSource = new PostgreSQLDataSource
-{
-    Host = "localhost",
-    Database = "analytics",
-    Title = "Analytics DB"
-};
-```
+Now that you understand the fundamental types and enums, you're ready to:
 
-#### MySqlDataSource
-Connect to MySQL databases.
+1. **[Create Your First Dashboard](../getting-started/quick-start.md)** - Apply these concepts in practice
+2. **[Explore Visualization Types](../how-to/visualizations/create-charts.md)** - Learn specific chart implementations  
+3. **[Connect Data Sources](../how-to/data-sources/connect-to-sql-server.md)** - Link to real data systems
+4. **[Advanced Formatting](../how-to/visualizations/customize-settings.md)** - Polish your visualizations
 
-```csharp
-var mysqlSource = new MySqlDataSource
-{
-    Host = "mysql.example.com",
-    Database = "inventory",
-    Title = "Inventory DB"
-};
-```
+## Related Topics
 
-#### OracleDataSource
-Connect to Oracle databases.
+- **[RDash Document Structure](rdash-document.md)** - Understanding dashboard architecture
+- **[Data Sources Overview](data-sources.md)** - Connecting to data systems
+- **[Visualizations API Reference](../api-reference/visualizations/README.md)** - Complete type reference
+- **[Best Practices Guide](../best-practices.md)** - Professional dashboard development
 
-```csharp
-var oracleSource = new OracleDataSource
-{
-    Host = "oracle.company.com",
-    ServiceName = "ORCL",
-    Title = "Oracle DB"
-};
-```
-
-### File Sources
-
-#### ExcelDataSource
-Read data from Excel files.
-
-```csharp
-var excelSource = new ExcelDataSource
-{
-    Title = "Sales Data"
-};
-```
-
-#### CsvDataSource
-Read data from CSV files.
-
-```csharp
-var csvSource = new CsvDataSource
-{
-    Title = "Customer Data"
-};
-```
-
-### Web Sources
-
-#### RestDataSource
-Connect to REST APIs.
-
-```csharp
-var restSource = new RestDataSource
-{
-    Url = "https://api.example.com/sales",
-    Title = "Sales API"
-};
-```
-
-#### ODataDataSource
-Connect to OData services.
-
-```csharp
-var odataSource = new ODataDataSource
-{
-    Url = "https://services.odata.org/Northwind",
-    Title = "Northwind OData"
-};
-```
-
-## Data Source Item Types
-
-### TableDataSourceItem
-Represents a database table or view.
-
-```csharp
-var tableItem = new TableDataSourceItem("Sales Data", "Sales", dataSource)
-{
-    Subtitle = "Historical sales transactions"
-};
-```
-
-### ProcedureDataSourceItem
-Represents a stored procedure.
-
-```csharp
-var procItem = new ProcedureDataSourceItem("Monthly Sales", "GetMonthlySales", dataSource);
-```
-
-### FunctionDataSourceItem
-Represents a database function.
-
-```csharp
-var funcItem = new FunctionDataSourceItem("Sales Calc", "CalculateSales", dataSource);
-```
-
-### RestDataSourceItem
-Represents a REST API endpoint.
-
-```csharp
-var restItem = new RestDataSourceItem("Products", restDataSource)
-{
-    Subtitle = "Product catalog from API"
-};
-```
-
-## Quick Reference Guide
-
-### When to Use Each Field Type
-
-| Data Type | Field Type | Example | Use Case |
-|-----------|------------|---------|----------|
-| Text/String | `TextField` | Customer Name | Labels, categories |
-| Numbers | `NumberField` | Sales Amount | Calculations, metrics |
-| Dates | `DateField` | Order Date | Time analysis |
-| True/False | `BooleanField` | Is Active | Status flags |
-
-### When to Use Each Data Field Type
-
-| Purpose | Data Field Type | Example |
-|---------|-----------------|---------|
-| Grouping/Labels | `DimensionDataField` | Product Category |
-| Values/Metrics | `MeasureDataField` | Total Sales |
-| Time Analysis | `DateDataField` | Transaction Date |
-
-### Common Aggregation Patterns
-
-| Goal | Aggregation | Example |
-|------|-------------|---------|
-| Total amount | `Sum` | Total Revenue |
-| Typical value | `Average` | Average Price |
-| Record count | `Count` | Number of Orders |
-| Unique count | `DistinctCount` | Unique Customers |
-| Range analysis | `Min`/`Max` | Price Range |
-
-### Visualization Selection Guide
-
-| Data Pattern | Recommended Visualization |
-|--------------|---------------------------|
-| Categories comparison | `BarChart` or `ColumnChart` |
-| Trends over time | `LineChart` or `AreaChart` |
-| Parts of whole | `PieChart` or `DoughnutChart` |
-| Correlation | `ScatterChart` |
-| Single metric | `KpiTargetVisualization` |
-| Detailed data | `GridVisualization` |
-| Geographic data | `ChoroplethVisualization` |
-
-## Examples by Scenario
-
-### E-commerce Dashboard
-
-```csharp
-// Revenue trend over time
-var revenueTrend = new LineChartVisualization("Revenue Trend", salesData);
-revenueTrend.Labels.Add(new DateDataField("OrderDate"));
-revenueTrend.Values.Add(new MeasureDataField("Revenue") { Aggregation = AggregationType.Sum });
-
-// Top products
-var topProducts = new BarChartVisualization("Top Products", salesData);
-topProducts.Labels.Add(new DimensionDataField("ProductName"));
-topProducts.Values.Add(new MeasureDataField("Quantity") { Aggregation = AggregationType.Sum });
-
-// Customer count KPI
-var customerKPI = new KpiTargetVisualization("Customer Count", customerData);
-customerKPI.Value = new MeasureDataField("CustomerID") { Aggregation = AggregationType.DistinctCount };
-```
-
-### Financial Dashboard
-
-```csharp
-// Portfolio performance gauge
-var performance = new CircularGaugeVisualization("Portfolio Performance", portfolioData);
-performance.Value = new MeasureDataField("ROI") { Aggregation = AggregationType.Average };
-
-// Risk vs return scatter
-var riskReturn = new ScatterChartVisualization("Risk vs Return", investmentData);
-riskReturn.XAxis = new MeasureDataField("Risk") { Aggregation = AggregationType.Average };
-riskReturn.YAxis = new MeasureDataField("Return") { Aggregation = AggregationType.Average };
-```
-
-### Operations Dashboard
-
-```csharp
-// Production efficiency over time
-var efficiency = new AreaChartVisualization("Production Efficiency", productionData);
-efficiency.Labels.Add(new DateDataField("ProductionDate"));
-efficiency.Values.Add(new MeasureDataField("EfficiencyPercent") { Aggregation = AggregationType.Average });
-
-// Equipment status
-var status = new PieChartVisualization("Equipment Status", equipmentData);
-status.Labels.Add(new DimensionDataField("Status"));
-status.Values.Add(new MeasureDataField("EquipmentID") { Aggregation = AggregationType.Count });
-```
-
-This reference guide provides the foundation for understanding and working with types and enums in Reveal.Sdk.Dom. Refer back to this guide when choosing the appropriate types for your specific dashboard requirements.
+> 💡 **Deep Dive**: For comprehensive aggregation examples and advanced patterns, see [Creating Charts Guide](../how-to/visualizations/create-charts.md#aggregation-types).

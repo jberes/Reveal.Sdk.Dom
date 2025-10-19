@@ -1,10 +1,137 @@
 # How to Create Charts
 
-Learn how to create various chart types in Reveal.Sdk.Dom.
+Learn how to create various chart types in Reveal.Sdk.Dom with comprehensive examples covering data fields, aggregation options, and best practices.
 
 ## Overview
 
-Charts are the most common visualization type for displaying data trends, comparisons, and relationships. Reveal.Sdk.Dom supports 20+ chart types.
+Charts are the most common visualization type for displaying data trends, comparisons, and relationships. Reveal.Sdk.Dom supports 20+ chart types, each optimized for specific data scenarios and analytical needs.
+
+### Understanding Chart Components
+
+Every chart in Reveal.Sdk.Dom consists of several key components:
+
+- **Data Source** - The connection to your data (SQL Server, Excel, REST API, etc.)
+- **Data Fields** - The specific columns/fields from your data source
+- **Aggregation** - How numeric values are calculated (Sum, Average, Count, etc.)
+- **Visual Elements** - Labels, values, series, and formatting options
+
+### Chart Data Fields
+
+Charts use different types of data fields depending on the data type and purpose:
+
+#### Dimension Fields (`DimensionDataField`)
+
+Used for categorical data like regions, products, or departments. These typically appear on axes as labels or in legends for grouping data.
+
+```csharp
+// Example: Product categories
+var categoryField = new DimensionDataField("ProductCategory")
+{
+    FieldLabel = "Product Category"
+};
+```
+
+#### Measure Fields (`MeasureDataField`)
+
+Used for numeric data that can be aggregated. These represent the quantitative values being analyzed.
+
+```csharp
+// Example: Sales revenue with aggregation
+var salesField = new MeasureDataField("SalesAmount")
+{
+    Aggregation = AggregationType.Sum,
+    FieldLabel = "Total Sales"
+};
+```
+
+#### Date Fields (`DateDataField`)
+
+Specialized for time-based data, supporting time-based aggregations and formatting.
+
+```csharp
+// Example: Order dates for time series
+var dateField = new DateDataField("OrderDate")
+{
+    Aggregation = DateAggregationType.Month,
+    FieldLabel = "Order Month"
+};
+```
+
+### Aggregation Types
+
+Aggregation determines how multiple data values are combined into a single result. The choice of aggregation significantly impacts your chart's meaning and insights.
+
+#### Numeric Aggregations (`AggregationType`)
+
+| Aggregation | Use Case | Example |
+|------------|----------|---------|
+| **Sum** | Total amounts, quantities | Total sales revenue, sum of units sold |
+| **Average** | Mean values, rates | Average order value, mean customer rating |
+| **Count** | Record quantities | Number of orders, count of customers |
+| **DistinctCount** | Unique value counts | Unique products sold, distinct customers |
+| **Min** | Lowest values | Minimum price, earliest date |
+| **Max** | Highest values | Maximum temperature, latest order |
+| **Median** | Middle values | Median income, typical response time |
+| **StdDev** | Data variation | Sales volatility, quality consistency |
+
+#### Date Aggregations (`DateAggregationType`)
+
+| Aggregation | Description | Example Use |
+|------------|-------------|-------------|
+| **Year** | Group by year | Annual revenue trends |
+| **Quarter** | Group by quarter | Quarterly performance |
+| **Month** | Group by month | Monthly sales patterns |
+| **Day** | Group by day | Daily activity levels |
+| **Hour** | Group by hour | Hourly traffic patterns |
+
+### Common Aggregation Patterns
+
+```csharp
+// Financial totals - use Sum
+var totalRevenue = new MeasureDataField("Revenue") 
+{ 
+    Aggregation = AggregationType.Sum,
+    FieldLabel = "Total Revenue"
+};
+
+// Performance metrics - use Average
+var avgResponseTime = new MeasureDataField("ResponseTime") 
+{ 
+    Aggregation = AggregationType.Average,
+    FieldLabel = "Avg Response Time"
+};
+
+// Activity counts - use Count
+var orderCount = new MeasureDataField("OrderID") 
+{ 
+    Aggregation = AggregationType.Count,
+    FieldLabel = "Number of Orders"
+};
+
+// Time-based grouping - use DateAggregationType
+var monthlyDate = new DateDataField("OrderDate") 
+{ 
+    Aggregation = DateAggregationType.Month,
+    FieldLabel = "Month"
+};
+```
+
+### Choosing the Right Chart Type
+
+Different chart types excel at different analytical scenarios:
+
+| Chart Type | Best For | Data Requirements |
+|-----------|----------|-------------------|
+| **Bar/Column** | Comparing categories | 1+ dimensions, 1+ measures |
+| **Line** | Trends over time | Date field, 1+ measures |
+| **Area** | Volume trends, composition | Date field, 1+ measures |
+| **Pie/Doughnut** | Part-to-whole relationships | 1 dimension, 1 measure |
+| **Scatter** | Correlation analysis | 2+ measures, optional dimension |
+| **Combo** | Multiple metrics with different scales | 1+ dimensions, 2+ measures |
+
+> 💡 **Tip**: For detailed information about all available aggregation options and field types, see the [Visualizations API Reference](../../api-reference/visualizations/README.md#aggregation-types).
+
+## Chart Examples
 
 ## Bar Charts
 
@@ -433,6 +560,7 @@ ChartHelper.ApplyStandardStyle(lineChart);
 ### Chart Shows No Data
 
 Check that:
+
 1. Field names match data source
 2. Aggregation is appropriate
 3. Data source has data

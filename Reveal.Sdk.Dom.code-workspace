@@ -1,0 +1,143 @@
+{
+  "folders": [
+    {
+      "name": "Reveal.Sdk.Dom",
+      "path": ".."
+    }
+  ],
+  "settings": {
+    // Markdown preview settings
+    "markdown.preview.openMarkdownLinks": "inPreview",
+    "markdown.preview.typographer": true,
+    "markdown.preview.linkify": true,
+    "markdown.preview.breaks": false,
+    "markdown.preview.fontSize": 14,
+    "markdown.preview.lineHeight": 1.6,
+    "markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+    
+    // File explorer settings for docs
+    "explorer.sortOrder": "type",
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+      "*.md": "${capture}.html,${capture}.pdf"
+    },
+    
+    // Auto-save for documentation editing
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    
+    // Markdown editing enhancements
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
+    "editor.minimap.enabled": false,
+    "editor.lineNumbers": "off",
+    "editor.glyphMargin": false,
+    "editor.folding": false,
+    "editor.lineDecorationsWidth": 0,
+    "editor.lineNumbersMinChars": 0,
+    
+    // Spell checking for documentation
+    "cSpell.enabled": true,
+    "cSpell.words": [
+      "Reveal",
+      "rdash",
+      "RdashDocument", 
+      "DataSource",
+      "DataSourceItem",
+      "ColumnChart",
+      "BarChart",
+      "LineChart",
+      "PieChart",
+      "DoughnutChart",
+      "ScatterChart",
+      "BubbleChart",
+      "AreaChart",
+      "SparklineChart",
+      "GridVisualization",
+      "PivotVisualization",
+      "LinearGauge",
+      "CircularGauge",
+      "BulletGraph",
+      "RadialGauge",
+      "KpiTarget",
+      "TextBox",
+      "ChoroplethVisualization",
+      "ScatterMapVisualization",
+      "DimensionDataField",
+      "MeasureDataField",
+      "DateDataField",
+      "TextField",
+      "NumberField",
+      "DateField",
+      "BooleanField",
+      "AggregationType",
+      "MicrosoftSqlServer",
+      "PostgreSQL",
+      "MySql",
+      "OData",
+      "RestDataSource",
+      "ExcelDataSource",
+      "CsvDataSource"
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "yzhang.markdown-all-in-one",
+      "shd101wyy.markdown-preview-enhanced", 
+      "streetsidesoftware.code-spell-checker",
+      "davidanson.vscode-markdownlint",
+      "bierner.markdown-mermaid",
+      "ms-vscode.vscode-json"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Generate Documentation TOC",
+        "type": "shell",
+        "command": "./scripts/generate-toc.sh",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Open Documentation TOC",
+        "type": "shell", 
+        "command": "code",
+        "args": ["docs/TABLE_OF_CONTENTS.md"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "silent",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Preview Documentation",
+        "type": "shell",
+        "command": "echo",
+        "args": ["Open any .md file and press Ctrl+Shift+V (Cmd+Shift+V on Mac) to preview"],
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
+}
