@@ -1,24 +1,97 @@
-# Quick Start Guide
+# Quick Start: Build Your First Sales Dashboard
 
-Get started with Reveal.Sdk.Dom by creating your first dashboard in just a few minutes.
+Transform raw sales data into a professional, interactive dashboard in 15 minutes using Reveal.Sdk.Dom.
 
-## Your First Dashboard
+## Learning Scenario: From Data to Insights
 
-This guide will walk you through creating a simple dashboard with a pie chart visualization using data from a REST API.
+**Imagine this scenario:** You're a business analyst who has been given a REST API containing sales data by product category. Your manager needs a professional dashboard to visualize this data for tomorrow's executive meeting. You need to create an interactive dashboard that shows sales performance by category with just a few lines of code.
 
-### Step 1: Create a New Project
+## What You'll Learn
 
-If you haven't already, create a new .NET console application:
+By completing this quick start, you'll understand:
 
-```bash
-dotnet new console -n MyRevealDashboard
-cd MyRevealDashboard
-dotnet add package Reveal.Sdk.Dom
+- **Dashboard Development Workflow** - The complete process from data to visualization
+- **Data Source Integration** - How to connect to REST APIs and define data schemas
+- **Visualization Creation** - Building charts with proper field mappings and aggregations
+- **Document Architecture** - Understanding RdashDocument structure and properties
+- **Code-First Approach** - Creating dashboards programmatically vs. manual design tools
+- **Best Practices** - Professional patterns for reusable, maintainable dashboard code
+
+## Why This Matters
+
+This quick start demonstrates the **power of code-first dashboard development**:
+
+- **Speed** - Create dashboards in minutes, not hours
+- **Consistency** - Standardized styling and structure across all dashboards
+- **Version Control** - Track dashboard changes like any other code
+- **Automation** - Generate dashboards dynamically from templates
+- **Integration** - Embed dashboard creation into your application workflows
+- **Scalability** - Build once, deploy everywhere
+
+## Learning Outcomes
+
+After completing this guide, you'll have:
+
+✅ **A working sales dashboard** (.rdash file) with professional pie chart visualization  
+✅ **Practical experience** with the core Reveal.Sdk.Dom concepts  
+✅ **Reusable code patterns** for connecting to APIs and creating visualizations  
+✅ **Foundation knowledge** to build complex multi-visualization dashboards  
+✅ **Confidence** to integrate dashboard generation into your applications
+
+> 💡 **Time Investment**: 15 minutes to complete | **Prerequisites**: .NET development environment with Visual Studio or VS Code
+
+## The Complete Journey: Step-by-Step
+
+Let's build a professional sales dashboard that transforms this raw JSON data:
+
+```json
+[
+  { "CategoryID": 1, "CategoryName": "Electronics", "ProductName": "Laptop", "ProductSales": 15000 },
+  { "CategoryID": 1, "CategoryName": "Electronics", "ProductName": "Phone", "ProductSales": 12000 },
+  { "CategoryID": 2, "CategoryName": "Clothing", "ProductName": "Jacket", "ProductSales": 8000 }
+]
 ```
 
-### Step 2: Import Namespaces
+Into this beautiful, interactive dashboard visualization:
+- **Professional pie chart** showing sales distribution by category
+- **Proper data aggregation** summing sales across products
+- **Interactive elements** for drilling down into data
+- **Clean, modern styling** ready for executive presentation
 
-Open `Program.cs` and add the necessary using statements:
+Into this beautiful, interactive dashboard visualization:
+
+- **Professional pie chart** showing sales distribution by category
+- **Proper data aggregation** summing sales across products
+- **Interactive elements** for drilling down into data
+- **Clean, modern styling** ready for executive presentation
+
+## Phase 1: Environment Setup (3 minutes)
+
+### What We're Doing
+Setting up a .NET project with Reveal.Sdk.Dom package and understanding the development environment.
+
+### Why This Step Matters
+A proper project setup ensures you have all dependencies and can focus on dashboard logic rather than configuration issues.
+
+### Step 1: Create Your Project Foundation
+
+```bash
+# Create a new console application
+dotnet new console -n SalesDashboardQuickStart
+
+# Navigate to your project
+cd SalesDashboardQuickStart
+
+# Add the Reveal.Sdk.Dom package
+dotnet add package Reveal.Sdk.Dom
+
+# Verify installation
+dotnet restore
+```
+
+### Step 2: Prepare Your Development Environment
+
+Open `Program.cs` and replace the entire content with this foundation:
 
 ```csharp
 using Reveal.Sdk.Dom;
@@ -27,474 +100,517 @@ using Reveal.Sdk.Dom.Visualizations;
 using System;
 using System.Collections.Generic;
 using System.IO;
-```
 
-### Step 3: Create a Dashboard with a Visualization
-
-Replace the contents of your `Program.cs` with the following code:
-
-```csharp
-using Reveal.Sdk.Dom;
-using Reveal.Sdk.Dom.Data;
-using Reveal.Sdk.Dom.Visualizations;
-using System.Collections.Generic;
-using System.IO;
-
-namespace MyRevealDashboard
+namespace SalesDashboardQuickStart
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // Step 1: Create the dashboard document
-            var document = new RdashDocument("Sales by Category");
-            document.Description = "My first Reveal dashboard created with code!";
-
-            // Step 2: Create a REST data source
-            var restDataSource = new RestDataSource
-            {
-                Title = "Sales Data",
-                Subtitle = "Product Sales by Category",
-                Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9"
-            };
-
-            // Step 3: Create a data source item with field definitions
-            var dataSourceItem = new RestDataSourceItem("Sales Data", restDataSource);
-            dataSourceItem.Fields.Add(new NumberField("CategoryID"));
-            dataSourceItem.Fields.Add(new TextField("CategoryName"));
-            dataSourceItem.Fields.Add(new TextField("ProductName"));
-            dataSourceItem.Fields.Add(new NumberField("ProductSales"));
-
-            // Step 4: Create a pie chart visualization
-            var pieChart = new PieChartVisualization("Sales by Category", dataSourceItem)
-            {
-                IsTitleVisible = true,
-                Description = "Product sales broken down by category"
-            };
+            Console.WriteLine("🚀 Building your first sales dashboard...");
             
-            // Configure the chart
-            pieChart.Labels.Add(new DimensionDataField("CategoryName"));
-            pieChart.Values.Add(new MeasureDataField("ProductSales")
-            {
-                Aggregation = AggregationType.Sum
-            });
-
-            // Step 5: Add the visualization to the dashboard
-            document.Visualizations.Add(pieChart);
-
-            // Step 6: Save the dashboard
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "MySalesDashboard.rdash");
-            document.Save(filePath);
-
-            Console.WriteLine($"Dashboard created successfully!");
-            Console.WriteLine($"Location: {filePath}");
+            // We'll build our dashboard here step by step
+            
+            Console.WriteLine("✅ Dashboard creation complete!");
         }
     }
 }
 ```
 
-### Step 4: Run the Application
+**Checkpoint:** Run `dotnet run` to ensure everything compiles without errors.
 
-Run your application:
+```bash
+dotnet run
+# Expected output:
+# 🚀 Building your first sales dashboard...
+# ✅ Dashboard creation complete!
+```
+
+## Phase 2: Data Connection (4 minutes)
+
+### What We're Doing
+Connecting to a live REST API containing sales data and defining the data schema that Reveal needs to understand the structure.
+
+### Why This Step Matters
+Data sources are the foundation of any dashboard. Understanding how to connect to APIs and define schemas is essential for real-world dashboard development.
+
+### Step 3: Create Your Data Source Connection
+
+Add this code inside your `Main` method, replacing the comment:
+
+```csharp
+// Step 3: Create the dashboard document
+var document = new RdashDocument("Sales Performance Dashboard")
+{
+    Description = "Executive sales overview - Built with Reveal.Sdk.Dom",
+    Theme = Theme.Mountain  // Professional theme for business presentations
+};
+
+// Step 4: Connect to our sales data API
+var salesAPI = new RestDataSource
+{
+    Title = "Sales Data Service",
+    Subtitle = "Live sales data by product category", 
+    Url = "https://excel2json.io/api/share/6e0f06b3-72d3-4fec-7984-08da43f56bb9"
+};
+
+Console.WriteLine("📊 Connected to sales data API...");
+```
+
+### Step 4: Define Your Data Schema
+
+APIs don't automatically provide schema information like databases do, so we must explicitly define what fields are available:
+
+```csharp
+// Step 5: Create data source item with explicit schema definition
+var salesDataset = new RestDataSourceItem("Product Sales", salesAPI)
+{
+    Title = "Product Sales by Category",
+    Subtitle = "Aggregated sales performance data"
+};
+
+// Step 6: Define the data fields (CRITICAL for API sources)
+salesDataset.Fields.Add(new NumberField("CategoryID") 
+{ 
+    FieldLabel = "Category ID" 
+});
+
+salesDataset.Fields.Add(new TextField("CategoryName") 
+{ 
+    FieldLabel = "Product Category" 
+});
+
+salesDataset.Fields.Add(new TextField("ProductName") 
+{ 
+    FieldLabel = "Product Name" 
+});
+
+salesDataset.Fields.Add(new NumberField("ProductSales") 
+{ 
+    FieldLabel = "Sales Amount ($)" 
+});
+
+Console.WriteLine("📋 Defined data schema with 4 fields...");
+```
+
+**Understanding the Schema:**
+- `NumberField` - For numeric data (IDs, sales amounts, quantities)
+- `TextField` - For text data (names, categories, descriptions)  
+- `DateField` - For dates and timestamps
+- `BooleanField` - For true/false values
+
+## Phase 3: Visualization Creation (5 minutes)
+
+### What We're Doing
+Creating a professional pie chart that aggregates sales data by category, with proper formatting and interactive features.
+
+### Why This Step Matters
+Visualizations transform raw data into insights. Understanding field mapping and aggregation is crucial for creating meaningful charts.
+
+### Step 5: Build Your Professional Pie Chart
+
+```csharp
+// Step 7: Create an executive-ready pie chart
+var salesPieChart = new PieChartVisualization("Sales Distribution by Category", salesDataset)
+{
+    IsTitleVisible = true,
+    Description = "Revenue breakdown across product categories"
+};
+
+// Step 8: Configure the chart data mapping
+// Labels: What categories to show (CategoryName field)
+salesPieChart.Labels.Add(new DimensionDataField("CategoryName") 
+{
+    FieldLabel = "Product Category"
+});
+
+// Values: What to measure (ProductSales field, summed up)
+salesPieChart.Values.Add(new MeasureDataField("ProductSales") 
+{
+    FieldLabel = "Total Sales ($)",
+    Aggregation = AggregationType.Sum  // Sum all sales within each category
+});
+
+Console.WriteLine("📈 Created professional pie chart visualization...");
+```
+
+**Understanding the Field Mapping:**
+- **Labels (Dimensions)** - How to group/categorize the data (CategoryName)
+- **Values (Measures)** - What to calculate/aggregate (ProductSales summed by category)
+- **Aggregation** - How to combine multiple values (Sum, Average, Count, etc.)
+
+### Step 6: Add Visualization to Dashboard
+
+```csharp
+// Step 9: Add the chart to our dashboard
+document.Visualizations.Add(salesPieChart);
+
+Console.WriteLine("✨ Added visualization to dashboard...");
+```
+
+## Phase 4: Dashboard Generation (3 minutes)
+
+### What We're Doing
+Saving our dashboard to a .rdash file and understanding the output format for integration with Reveal applications.
+
+### Why This Step Matters
+The .rdash file is the portable dashboard format that can be loaded by Reveal SDK applications, shared with team members, or modified later.
+
+### Step 7: Generate Your Dashboard File
+
+```csharp
+// Step 10: Save the dashboard to a file
+var outputPath = Path.Combine(Directory.GetCurrentDirectory(), "SalesPerformanceDashboard.rdash");
+document.Save(outputPath);
+
+// Step 11: Provide success feedback
+Console.WriteLine($"🎉 Dashboard saved successfully!");
+Console.WriteLine($"📁 Location: {outputPath}");
+Console.WriteLine($"📊 Contains: {document.Visualizations.Count} visualization(s)");
+Console.WriteLine($"🏷️  Title: {document.Title}");
+```
+
+### Step 8: Test Your Complete Solution
+
+Your final `Program.cs` should now contain the complete dashboard creation code. Run it to see your dashboard come to life:
 
 ```bash
 dotnet run
 ```
 
-You should see output similar to:
-
+**Expected Output:**
+```bash
+🚀 Building your first sales dashboard...
+📊 Connected to sales data API...
+📋 Defined data schema with 4 fields...
+📈 Created professional pie chart visualization...
+✨ Added visualization to dashboard...
+🎉 Dashboard saved successfully!
+📁 Location: C:\path\to\SalesPerformanceDashboard.rdash
+📊 Contains: 1 visualization(s)
+🏷️  Title: Sales Performance Dashboard
+✅ Dashboard creation complete!
 ```
-Dashboard created successfully!
-Location: C:\path\to\MySalesDashboard.rdash
+
+**Expected Output:**
+
+```bash
+🚀 Building your first sales dashboard...
+📊 Connected to sales data API...
+📋 Defined data schema with 4 fields...
+📈 Created professional pie chart visualization...
+✨ Added visualization to dashboard...
+🎉 Dashboard saved successfully!
+📁 Location: C:\path\to\SalesPerformanceDashboard.rdash
+📊 Contains: 1 visualization(s)
+🏷️  Title: Sales Performance Dashboard
+✅ Dashboard creation complete!
 ```
 
-### Step 5: View Your Dashboard
+## Understanding What You Built
 
-You can now:
+Let's examine the key concepts you just implemented:
 
-1. **Use the Reveal SDK** to load and display the `.rdash` file in your application
-2. **Open it in Reveal** if you have the Reveal application installed
-3. **Inspect the file** - it's a JSON-based format that you can examine
-
-## Understanding the Code
-
-Let's break down what we just did:
-
-### Creating the Document
+### The Dashboard Architecture
 
 ```csharp
-var document = new RdashDocument("Sales by Category");
+var document = new RdashDocument("Sales Performance Dashboard")
 ```
 
-The `RdashDocument` is the root object that represents your entire dashboard. You can set properties like title, description, and theme.
+**RdashDocument** is the root container that represents your entire dashboard. It's like a canvas that holds:
 
-### Defining the Data Source
+- **Metadata** - Title, description, theme
+- **Visualizations** - Charts, grids, KPIs
+- **Filters** - Interactive controls
+- **Layout** - How components are arranged
+
+### The Data Connection Pattern
 
 ```csharp
-var restDataSource = new RestDataSource
-{
-    Url = "https://excel2json.io/api/share/..."
-};
+var salesAPI = new RestDataSource();           // Connection layer
+var salesDataset = new RestDataSourceItem();   // Dataset layer
 ```
 
-Data sources define where your data comes from. Reveal.Sdk.Dom supports 30+ data source types including SQL Server, Excel, REST APIs, and more.
+This **two-tier architecture** separates concerns:
 
-### Creating a Data Source Item
+- **DataSource** - "How do I connect?" (URL, authentication, connection settings)
+- **DataSourceItem** - "What data do I get?" (specific endpoints, field definitions)
 
-```csharp
-var dataSourceItem = new RestDataSourceItem("Sales Data", restDataSource);
-dataSourceItem.Fields.Add(new NumberField("CategoryID"));
-```
-
-Data source items represent a specific dataset from a data source (like a table, query result, or API response). You must define the fields returned by the data.
-
-### Creating a Visualization
+### Field Mapping and Aggregation
 
 ```csharp
-var pieChart = new PieChartVisualization("Sales by Category", dataSourceItem);
 pieChart.Labels.Add(new DimensionDataField("CategoryName"));
-pieChart.Values.Add(new MeasureDataField("ProductSales"));
+pieChart.Values.Add(new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum });
 ```
 
-Visualizations display your data. Each visualization type has specific properties for labels, values, colors, etc.
+**Understanding the difference:**
 
-### Saving the Dashboard
+- **Dimensions** - Categorical data for grouping (CategoryName, Region, Product)
+- **Measures** - Numeric data for calculation (Sales, Revenue, Quantity)
+- **Aggregation** - How to combine values (Sum, Average, Count, Min, Max)
 
-```csharp
-document.Save(filePath);
+### Dashboard Output Format
+
+The `.rdash` file is a JSON-based format that contains:
+
+```json
+{
+  "Title": "Sales Performance Dashboard",
+  "Description": "Executive sales overview...",
+  "Visualizations": [...],
+  "DataSources": [...],
+  "Filters": [...]
+}
 ```
 
-This saves your dashboard to a `.rdash` file that can be loaded by the Reveal SDK or modified later.
+This format can be:
 
-## Next Steps
+- **Loaded by Reveal SDK** applications
+- **Shared with team members**
+- **Version controlled** like any code file
+- **Modified programmatically** for dynamic dashboards
 
-Now that you've created your first dashboard, explore more features:
+## Your Next Learning Steps
 
-### Add More Visualizations
+Now that you've mastered the basics, expand your dashboard capabilities:
 
-Add different chart types to your dashboard:
+### 1. Add Multiple Visualizations (Next 10 minutes)
+
+Enhance your dashboard with additional charts:
 
 ```csharp
-// Add a bar chart for top products
-var barChart = new BarChartVisualization("Top Products", dataSourceItem);
-barChart.Labels.Add(new DimensionDataField("ProductName"));
-barChart.Values.Add(new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum });
-document.Visualizations.Add(barChart);
+// Add a bar chart for product comparison
+var productBarChart = new BarChartVisualization("Top Products by Sales", salesDataset);
+productBarChart.Labels.Add(new DimensionDataField("ProductName"));
+productBarChart.Values.Add(new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum });
+document.Visualizations.Add(productBarChart);
 
 // Add a KPI for total sales
-var kpi = new KpiTargetVisualization("Total Sales", dataSourceItem);
-kpi.Date = new DateDataField("Date") { Aggregation = DateAggregationType.Month };
-kpi.Value = new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum };
-kpi.Target = new MeasureDataField("TargetSales") { Aggregation = AggregationType.Sum };
-document.Visualizations.Add(kpi);
+var totalSalesKPI = new KpiTargetVisualization("Total Sales Performance", salesDataset);
+totalSalesKPI.Value = new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum };
+document.Visualizations.Add(totalSalesKPI);
 
-// Add a line chart for trends
-var lineChart = new LineChartVisualization("Sales Trend", dataSourceItem);
-lineChart.Labels.Add(new DateDataField("Date") { Aggregation = DateAggregationType.Month });
-lineChart.Values.Add(new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum });
-document.Visualizations.Add(lineChart);
+// Add a data grid for detailed view
+var salesGrid = new GridVisualization("Sales Detail", salesDataset);
+salesGrid.Columns.Add(new DimensionDataField("CategoryName"));
+salesGrid.Columns.Add(new DimensionDataField("ProductName"));
+salesGrid.Columns.Add(new MeasureDataField("ProductSales"));
+document.Visualizations.Add(salesGrid);
 ```
 
-### Load an Existing Dashboard
+### 2. Connect to Different Data Sources (Next tutorial)
 
-Modify an existing `.rdash` file:
-
-```csharp
-// Load existing dashboard
-var existingDocument = RdashDocument.Load("existing-dashboard.rdash");
-existingDocument.Title = "Updated Dashboard";
-
-// Add new visualization
-var newChart = new ColumnChartVisualization("New Chart", dataSourceItem);
-newChart.Labels.Add(new DimensionDataField("Category"));
-newChart.Values.Add(new MeasureDataField("Sales") { Aggregation = AggregationType.Sum });
-existingDocument.Visualizations.Add(newChart);
-
-// Save with new name
-existingDocument.Save("modified-dashboard.rdash");
-```
-
-### Use Different Data Sources
-
-#### SQL Server Example
+Explore other data source types:
 
 ```csharp
-var sqlDataSource = new MicrosoftSqlServerDataSource
+// SQL Server database
+var sqlSource = new MicrosoftSqlServerDataSource
 {
     Host = "your-server.database.windows.net",
-    Database = "SalesDB",
-    Title = "Sales Database"
+    Database = "SalesDB"
 };
 
-var sqlDataSourceItem = new TableDataSourceItem("Sales", sqlDataSource)
-{
-    Table = "SalesData",
-    Title = "Sales Transactions"
-};
-
-// Use in visualization
-var sqlChart = new BarChartVisualization("SQL Sales", sqlDataSourceItem);
-sqlChart.Labels.Add(new DimensionDataField("Region"));
-sqlChart.Values.Add(new MeasureDataField("Revenue") { Aggregation = AggregationType.Sum });
-```
-
-#### Excel File Example
-
-```csharp
-var excelDataSource = new ExcelDataSource
-{
-    Title = "Sales Spreadsheet"
-};
-
-var excelDataSourceItem = new ExcelDataSourceItem("Sales", excelDataSource)
+// Excel file
+var excelSource = new ExcelDataSource();
+var excelData = new ExcelDataSourceItem("Sales", excelSource)
 {
     ResourcePath = @"C:\Data\Sales.xlsx",
-    Sheet = "Sheet1",
-    FirstRowContainsLabels = true,
-    Fields = new List<IField>
-    {
-        new TextField("Product"),
-        new NumberField("Revenue"),
-        new DateField("Date")
-    }
+    Sheet = "Sheet1"
 };
+
+// Google Sheets
+var googleSource = new GoogleSheetsDataSource();
+var sheetData = new GoogleSheetsDataSourceItem("Sales", googleSource);
 ```
 
-### Add Dashboard Filters
+### 3. Add Interactive Filters (Advanced topic)
 
-Make your dashboard interactive with filters:
+Make your dashboard interactive:
 
 ```csharp
-// Add date range filter
+// Date range filter
 var dateFilter = new DashboardDateFilter("Date Range");
 document.Filters.Add(dateFilter);
 
-// Add category filter
-var categoryFilter = new DashboardDataFilter("Category", dataSourceItem);
+// Category filter
+var categoryFilter = new DashboardDataFilter("Category", salesDataset);
 categoryFilter.SelectedField = new DimensionDataField("CategoryName");
 document.Filters.Add(categoryFilter);
-
-// Filters automatically connect to visualizations that use matching fields
 ```
 
-## Learn More
+## Real-World Application Patterns
 
-- [Basic Concepts](basic-concepts.md) - Understand key concepts
-- [Core Concepts](../core-concepts/rdash-document.md) - Deep dive into the document structure
-- [How-To Guides](../how-to/README.md) - Task-specific guides
-- [Examples](../examples/README.md) - More complete examples
+### Pattern 1: Data Source Factory
 
-## Advanced Patterns
-
-### Builder Pattern with Data Source Factory
-
-For larger applications, use a factory pattern to manage data sources:
+For production applications, use a factory pattern:
 
 ```csharp
-public class DataSourceFactory
+public static class DataSourceFactory
 {
-    private static readonly RestDataSource _excelSource = new RestDataSource
+    public static DataSourceItem GetSalesData(string environment)
     {
-        Id = "SampleExcel",
-        Title = "Sample Excel Data",
-        Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx"
-    };
-
-    public static DataSourceItem GetSalesData()
-    {
-        var dataItem = new RestDataSourceItem("Sales", _excelSource)
+        var apiUrl = environment switch
         {
-            Title = "Sales Data",
-            Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
-            IsAnonymous = true,
-            Fields = new List<IField>
-            {
-                new TextField("Territory"),
-                new DateField("Date"),
-                new NumberField("Revenue"),
-                new NumberField("Target"),
-                new TextField("Product")
-            }
+            "production" => "https://prod-api.company.com/sales",
+            "staging" => "https://staging-api.company.com/sales",
+            _ => "https://dev-api.company.com/sales"
         };
-        dataItem.UseExcel("Sales");
-        return dataItem;
-    }
 
-    public static DataSourceItem GetMarketingData()
-    {
-        var dataItem = new RestDataSourceItem("Marketing", _excelSource)
-        {
-            Title = "Marketing Data",
-            Url = "http://dl.infragistics.com/reportplus/reveal/samples/Samples.xlsx",
-            IsAnonymous = true,
-            Fields = new List<IField>
-            {
-                new DateField("Date"),
-                new NumberField("Spend"),
-                new NumberField("Budget"),
-                new NumberField("CTR"),
-                new TextField("CampaignID")
-            }
-        };
-        dataItem.UseExcel("Marketing");
-        return dataItem;
+        var source = new RestDataSource { Url = apiUrl };
+        var dataset = new RestDataSourceItem("Sales", source);
+        
+        // Add field definitions...
+        
+        return dataset;
     }
 }
-
-// Usage
-var salesData = DataSourceFactory.GetSalesData();
-var marketingData = DataSourceFactory.GetMarketingData();
 ```
 
-### Complete Dashboard with Multiple Visualizations and Filters
+### Pattern 2: Dashboard Template System
+
+Create reusable dashboard templates:
 
 ```csharp
-public RdashDocument CreateComprehensiveDashboard()
+public class SalesDashboardTemplate
 {
-    var document = new RdashDocument("Business Performance Dashboard")
+    public static RdashDocument CreateExecutiveDashboard(DataSourceItem salesData)
     {
-        Description = "Comprehensive business metrics and KPIs",
-        UseAutoLayout = true,
-        Theme = Theme.Ocean
-    };
-
-    // Get data sources
-    var salesData = DataSourceFactory.GetSalesData();
-    var marketingData = DataSourceFactory.GetMarketingData();
-
-    // Add dashboard filters
-    var dateFilter = new DashboardDateFilter("Date Range");
-    document.Filters.Add(dateFilter);
-
-    var territoryFilter = new DashboardDataFilter("Territory", salesData);
-    territoryFilter.SelectedField = new DimensionDataField("Territory");
-    document.Filters.Add(territoryFilter);
-
-    // 1. Sales KPI with target
-    var salesKpi = new KpiTargetVisualization("Sales Performance", salesData)
-    {
-        IsTitleVisible = true
-    };
-    salesKpi.Date = new DimensionDataField("Date") { Aggregation = DateAggregationType.Month };
-    salesKpi.Value = new MeasureDataField("Revenue") 
-    { 
-        Aggregation = AggregationType.Sum,
-        Formatting = new NumberFormatting
+        var document = new RdashDocument("Executive Sales Dashboard")
         {
-            FormatType = NumberFormattingType.Currency,
-            CurrencySymbol = "$",
-            ShowGroupingSeparator = true
-        }
-    };
-    salesKpi.Target = new MeasureDataField("Target") { Aggregation = AggregationType.Sum };
-    document.Visualizations.Add(salesKpi);
+            Theme = Theme.Mountain,
+            UseAutoLayout = true
+        };
 
-    // 2. Revenue trend line chart
-    var revenueTrend = new LineChartVisualization("Revenue Trend", salesData);
-    revenueTrend.Labels.Add(new DimensionDataField("Date") { Aggregation = DateAggregationType.Month });
-    revenueTrend.Values.Add(new MeasureDataField("Revenue") { Aggregation = AggregationType.Sum });
-    document.Visualizations.Add(revenueTrend);
+        // Add standard executive visualizations
+        document.Visualizations.Add(CreateSalesKPI(salesData));
+        document.Visualizations.Add(CreateTrendChart(salesData));
+        document.Visualizations.Add(CreateCategoryBreakdown(salesData));
 
-    // 3. Sales by territory bar chart
-    var territoryChart = new BarChartVisualization("Sales by Territory", salesData);
-    territoryChart.Labels.Add(new DimensionDataField("Territory"));
-    territoryChart.Values.Add(new MeasureDataField("Revenue") 
-    { 
-        Aggregation = AggregationType.Sum,
-        Sorting = SortingType.Desc  // Sort by highest first
-    });
-    document.Visualizations.Add(territoryChart);
+        return document;
+    }
 
-    // 4. Marketing spend vs budget
-    var marketingKpi = new KpiTargetVisualization("Marketing Spend vs Budget", marketingData);
-    marketingKpi.Date = new DimensionDataField("Date") { Aggregation = DateAggregationType.Month };
-    marketingKpi.Value = new MeasureDataField("Spend") { Aggregation = AggregationType.Sum };
-    marketingKpi.Target = new MeasureDataField("Budget") { Aggregation = AggregationType.Sum };
-    document.Visualizations.Add(marketingKpi);
+    private static KpiTargetVisualization CreateSalesKPI(DataSourceItem data)
+    {
+        var kpi = new KpiTargetVisualization("Sales Performance", data);
+        kpi.Value = new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum };
+        return kpi;
+    }
+    
+    // Additional helper methods...
+}
+```
 
-    // 5. Campaign performance pivot table
-    var campaignPivot = new PivotVisualization("Campaign Performance", marketingData);
-    campaignPivot.Rows.Add(new DimensionDataField("CampaignID"));
-    campaignPivot.Values.Add(new MeasureDataField("Spend") { Aggregation = AggregationType.Sum });
-    campaignPivot.Values.Add(new MeasureDataField("CTR") 
-    { 
-        Aggregation = AggregationType.Average,
-        Formatting = new NumberFormatting { FormatType = NumberFormattingType.Percent }
-    });
-    document.Visualizations.Add(campaignPivot);
+### Pattern 3: Configuration-Driven Dashboards
 
-    // 6. Product sales pie chart
-    var productPie = new PieChartVisualization("Sales by Product", salesData);
-    productPie.Labels.Add(new DimensionDataField("Product"));
-    productPie.Values.Add(new MeasureDataField("Revenue") { Aggregation = AggregationType.Sum });
-    document.Visualizations.Add(productPie);
+Generate dashboards from configuration:
 
+```csharp
+public class DashboardConfiguration
+{
+    public string Title { get; set; }
+    public string DataSourceUrl { get; set; }
+    public List<VisualizationConfig> Visualizations { get; set; }
+}
+
+public class VisualizationConfig
+{
+    public string Type { get; set; }  // "pie", "bar", "line"
+    public string Title { get; set; }
+    public string LabelField { get; set; }
+    public string ValueField { get; set; }
+}
+
+public static RdashDocument CreateFromConfig(DashboardConfiguration config)
+{
+    var document = new RdashDocument(config.Title);
+    var dataSource = CreateDataSource(config.DataSourceUrl);
+    
+    foreach (var vizConfig in config.Visualizations)
+    {
+        var visualization = vizConfig.Type switch
+        {
+            "pie" => CreatePieChart(vizConfig, dataSource),
+            "bar" => CreateBarChart(vizConfig, dataSource),
+            "line" => CreateLineChart(vizConfig, dataSource),
+            _ => throw new ArgumentException($"Unknown visualization type: {vizConfig.Type}")
+        };
+        
+        document.Visualizations.Add(visualization);
+    }
+    
     return document;
 }
 ```
 
-### Working with Manual Layout
+## Troubleshooting Your Dashboard
 
-For precise dashboard layouts, use manual positioning:
+### Common Issues and Solutions
 
+**Problem:** "Fields not found" error
 ```csharp
-var document = new RdashDocument("Precision Dashboard")
-{
-    UseAutoLayout = false  // Enable manual positioning
-};
+// ❌ Incorrect field name
+pieChart.Labels.Add(new DimensionDataField("Category"));  // Field doesn't exist
 
-// Top row - KPIs
-var kpi1 = new KpiTargetVisualization("Sales", salesData)
-{
-    Column = 0,      // Left position
-    Row = 0,         // Top position
-    ColumnSpan = 20, // Width (out of 48 columns)
-    RowSpan = 15     // Height
-};
-
-var kpi2 = new KpiTargetVisualization("Marketing", marketingData)
-{
-    Column = 20,     // Next to first KPI
-    Row = 0,
-    ColumnSpan = 20,
-    RowSpan = 15
-};
-
-// Bottom row - Charts
-var chart1 = new LineChartVisualization("Trend", salesData)
-{
-    Column = 0,
-    Row = 15,        // Below KPIs
-    ColumnSpan = 24, // Half width
-    RowSpan = 20
-};
-
-var chart2 = new BarChartVisualization("Comparison", salesData)
-{
-    Column = 24,     // Right side
-    Row = 15,
-    ColumnSpan = 24, // Half width
-    RowSpan = 20
-};
-
-document.Visualizations.Add(kpi1);
-document.Visualizations.Add(kpi2);
-document.Visualizations.Add(chart1);
-document.Visualizations.Add(chart2);
+// ✅ Correct field name (matches what you defined)
+pieChart.Labels.Add(new DimensionDataField("CategoryName"));  // Matches field definition
 ```
 
-### Export to Reveal SDK
-
-Convert your dashboard to JSON for use in the Reveal SDK:
-
+**Problem:** No data showing in visualization
 ```csharp
-var json = document.ToJsonString();
-// Use with Reveal SDK:
-// var revealDashboard = await RVDashboard.LoadFromJsonAsync(json);
+// ❌ Missing aggregation for measures
+pieChart.Values.Add(new MeasureDataField("ProductSales"));  // No aggregation
+
+// ✅ Proper aggregation specified
+pieChart.Values.Add(new MeasureDataField("ProductSales") { Aggregation = AggregationType.Sum });
 ```
 
-## Need Help?
+**Problem:** API connection issues
+```csharp
+// ✅ Add error handling for production
+try
+{
+    var document = CreateDashboard();
+    document.Save("dashboard.rdash");
+    Console.WriteLine("Dashboard created successfully!");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error creating dashboard: {ex.Message}");
+    // Log error details for debugging
+}
+```
 
-- Check the [FAQ](../faq.md) for common questions
-- See [Troubleshooting](../troubleshooting.md) for solutions to common issues
-- Visit [GitHub Issues](https://github.com/RevealBi/Reveal.Sdk.Dom/issues) to report problems
+## Congratulations! 🎉
+
+You've successfully completed your first Reveal.Sdk.Dom dashboard! You now understand:
+
+✅ **The complete workflow** from data source to visualization  
+✅ **Core architecture concepts** that apply to all dashboard development  
+✅ **Professional patterns** for reusable, maintainable code  
+✅ **Foundation skills** to build complex, multi-visualization dashboards
+
+## Continue Your Learning Journey
+
+Ready to take your dashboard skills to the next level?
+
+### Immediate Next Steps
+
+1. **[Basic Concepts](basic-concepts.md)** - Deep dive into core concepts and terminology
+2. **[Data Sources Guide](../core-concepts/data-sources.md)** - Master all 30+ data source types
+3. **[Visualization Guide](../how-to/visualizations/create-charts.md)** - Explore all chart types and customization options
+
+### Skill-Building Tutorials
+
+4. **[Connect to SQL Server](../how-to/data-sources/connect-to-sql-server.md)** - Enterprise database integration
+5. **[Multi-Source Dashboards](../examples/multi-source-dashboard.md)** - Combine data from multiple systems
+6. **[Advanced Filtering](../how-to/filters/dashboard-filters.md)** - Create interactive, drill-down experiences
+
+### Professional Development
+
+7. **[Best Practices](../best-practices.md)** - Production-ready patterns and performance optimization
+8. **[Enterprise Examples](../examples/README.md)** - Real-world dashboard implementations
+9. **[API Reference](../api-reference/README.md)** - Complete technical documentation
+
+> 💡 **Pro Tip**: The concepts you learned here (data sources, visualizations, field mapping) apply to every dashboard you'll build. Master these fundamentals, and complex dashboards become simple combinations of these building blocks.
+
+Ready to build your next dashboard? Start with the scenario that matches your needs!

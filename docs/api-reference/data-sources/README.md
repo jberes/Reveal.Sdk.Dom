@@ -1,59 +1,338 @@
 # Data Sources API Reference
 
-Complete reference for all supported data sources in Reveal.Sdk.Dom.
+Complete reference with code samples for all 30+ supported data sources in Reveal.Sdk.Dom.
 
-## Overview
+## Quick Navigation
 
-This section provides detailed information about all data source types supported by Reveal.Sdk.Dom. Each data source has specific properties and configuration options.
+Jump directly to the data source you need:
+
+### 🗄️ Database Data Sources
+- [Microsoft SQL Server](#microsoft-sql-server) | [Azure SQL](#microsoft-azure-sql-server) | [MySQL](#mysql) | [PostgreSQL](#postgresql) | [Oracle](#oracle) | [MongoDB](#mongodb)
+- [Amazon Redshift](#amazon-redshift) | [Snowflake](#snowflake)
+
+### ☁️ Cloud Storage Data Sources  
+- [Microsoft OneDrive](#microsoft-onedrive) | [SharePoint](#microsoft-sharepoint) | [Google Drive](#google-drive) | [Google Sheets](#google-sheets)
+- [Dropbox](#dropbox) | [Box](#box) | [Amazon S3](#amazon-s3)
+
+### 📊 Analytics Platform Data Sources
+- [Analysis Services](#microsoft-analysis-services) | [Azure Analysis Services](#microsoft-azure-analysis-services) | [Azure Synapse](#microsoft-azure-synapse-analytics)
+- [Google Analytics 4](#google-analytics-4) | [Google BigQuery](#google-bigquery) | [Amazon Athena](#amazon-athena)
+
+### 🌐 Web Services & APIs
+- [REST API](#rest-api) | [OData](#odata) | [Web Services (SOAP)](#web-service-soap)
+
+### 📁 File-Based Data Sources
+- [Excel Files](#excel-files) | [CSV Files](#csv-files) | [JSON Files](#json-files) | [Local Files](#local-files)
+
+### 🔧 Reference Information
+- [Data Source Item Types](#data-source-item-types) | [Field Types](#field-types) | [Authentication](#authentication) | [Common Properties](#common-properties)
+
+---
 
 ## Database Data Sources
 
 ### Microsoft SQL Server
 
-**Class**: `MicrosoftSqlServerDataSource`
+Connect to Microsoft SQL Server databases with full support for tables, views, stored procedures, and functions.
 
-**Properties**:
+**Class:** `Microsoft.SqlServerDataSource`
+
+**Key Properties:**
 - `Host` (string) - Server address
 - `Database` (string) - Database name
-- `Port` (int) - Optional port number
-- `Title` (string) - Display name
-- `Subtitle` (string) - Optional subtitle
+- `Port` (int) - Server port (default: 1433)
 
-**Data Source Items**:
+**Supported Items:**
 - `TableDataSourceItem` - For tables and views
-- `ProcedureDataSourceItem` - For stored procedures
+- `ProcedureDataSourceItem` - For stored procedures  
 - `FunctionDataSourceItem` - For functions
 
-**Example**:
+**Complete Example:**
+
 ```csharp
-var dataSource = new MicrosoftSqlServerDataSource
+using Reveal.Sdk.Dom;
+using Reveal.Sdk.Dom.Data;
+
+// Create SQL Server data source
+var sqlDataSource = new MicrosoftSqlServerDataSource()
 {
-    Host = "server.database.windows.net",
+    Id = "SqlServerDataSource",
+    Title = "Sales Database",
+    Host = "sql-server.company.com",
     Database = "SalesDB",
-    Title = "Sales Database"
+    Port = 1433
 };
 
-var tableItem = new TableDataSourceItem("Sales", dataSource)
+// Add table data source item
+var salesTableItem = new TableDataSourceItem("Sales_Orders", sqlDataSource)
 {
-    Table = "SalesData"
+    Id = "SalesOrdersTable",
+    Title = "Sales Orders"
 };
+
+// Add stored procedure item
+var salesReportProc = new ProcedureDataSourceItem("sp_GetSalesReport", sqlDataSource)
+{
+    Id = "SalesReportProc",
+    Title = "Monthly Sales Report",
+    Parameters = new List<FunctionParameter>
+    {
+        new FunctionParameter { Name = "@StartDate", DataType = DataType.Date },
+        new FunctionParameter { Name = "@EndDate", DataType = DataType.Date }
+    }
+};
+
+// Create dashboard with SQL Server data
+var document = new RdashDocument("Sales Dashboard");
+document.DataSources.Add(sqlDataSource);
+
+// Create visualization using the table
+var chartVisualization = new ColumnChartVisualization("Sales by Month", salesTableItem)
+{
+    IsTitleVisible = true
+};
+chartVisualization.Values.Add(new MeasureColumn("OrderAmount"));
+chartVisualization.Category = new DimensionColumn("OrderDate");
+
+document.Visualizations.Add(chartVisualization);
 ```
 
 ### Microsoft Azure SQL Server
 
-**Class**: `MicrosoftAzureSqlServerDataSource`
+Connect to Azure SQL Database with enhanced security and authentication options.
 
-Same as `MicrosoftSqlServerDataSource` with Azure-specific optimizations.
+**Class:** `Microsoft.AzureSqlDataSource`
+
+**Key Properties:**
+- `Host` (string) - Azure SQL server address (.database.windows.net)
+- `Database` (string) - Database name
+- `EncryptConnection` (bool) - Enable SSL encryption (recommended: true)
+
+**Complete Example:**
+
+```csharp
+// Create Azure SQL data source
+var azureSqlDataSource = new MicrosoftAzureSqlDataSource()
+{
+    Id = "AzureSqlDataSource",
+    Title = "Cloud Analytics DB",
+    Host = "mycompany-analytics.database.windows.net",
+    Database = "AnalyticsDB",
+    EncryptConnection = true
+};
+
+// Create table item with specific schema
+var customerAnalyticsTable = new TableDataSourceItem("dbo.CustomerAnalytics", azureSqlDataSource)
+{
+    Id = "CustomerAnalyticsTable",
+    Title = "Customer Analytics Data"
+};
+
+// Create dashboard
+var document = new RdashDocument("Azure Analytics Dashboard");
+document.DataSources.Add(azureSqlDataSource);
+
+// Create pie chart for customer segments
+var pieChart = new PieChartVisualization("Customer Segments", customerAnalyticsTable)
+{
+    IsTitleVisible = true
+};
+pieChart.Values.Add(new MeasureColumn("CustomerCount"));
+pieChart.Category = new DimensionColumn("Segment");
+
+document.Visualizations.Add(pieChart);
+```
 
 ### MySQL
 
-**Class**: `MySQLDataSource`
+Connect to MySQL databases with support for all standard MySQL features.
 
-**Properties**:
-- `Host` (string) - Server address
+**Class:** `MySQL.MySqlDataSource`
+
+**Key Properties:**
+- `Host` (string) - MySQL server address
+- `Database` (string) - Database name  
+- `Port` (int) - Server port (default: 3306)
+
+**Complete Example:**
+
+```csharp
+// Create MySQL data source
+var mysqlDataSource = new MySqlDataSource()
+{
+    Id = "MySqlDataSource", 
+    Title = "Product Catalog DB",
+    Host = "mysql.company.com",
+    Database = "ProductCatalog",
+    Port = 3306
+};
+
+// Add product table
+var productsTable = new TableDataSourceItem("products", mysqlDataSource)
+{
+    Id = "ProductsTable",
+    Title = "Products"
+};
+
+// Create dashboard
+var document = new RdashDocument("Product Analytics");
+document.DataSources.Add(mysqlDataSource);
+
+// Create bar chart for product categories
+var barChart = new BarChartVisualization("Products by Category", productsTable)
+{
+    IsTitleVisible = true
+};
+barChart.Values.Add(new MeasureColumn("ProductCount"));
+barChart.Category = new DimensionColumn("CategoryName");
+
+document.Visualizations.Add(barChart);
+```
+
+### PostgreSQL
+
+Connect to PostgreSQL databases with full schema and advanced feature support.
+
+**Class:** `PostgreSQL.PostgreSqlDataSource`
+
+**Key Properties:**
+- `Host` (string) - PostgreSQL server address
 - `Database` (string) - Database name
-- `Port` (int) - Port (default: 3306)
-- `Title` (string) - Display name
+- `Port` (int) - Server port (default: 5432)
+- `Schema` (string) - Schema name (default: "public")
+
+**Complete Example:**
+
+```csharp
+// Create PostgreSQL data source
+var postgresDataSource = new PostgreSqlDataSource()
+{
+    Id = "PostgreSqlDataSource",
+    Title = "Analytics Database",
+    Host = "postgres.company.com", 
+    Database = "analytics",
+    Port = 5432,
+    Schema = "reporting"
+};
+
+// Add view from specific schema
+var monthlyStatsView = new TableDataSourceItem("monthly_stats", postgresDataSource)
+{
+    Id = "MonthlyStatsView",
+    Title = "Monthly Statistics"
+};
+
+// Create dashboard
+var document = new RdashDocument("PostgreSQL Analytics");
+document.DataSources.Add(postgresDataSource);
+
+// Create line chart for trends
+var lineChart = new LineChartVisualization("Monthly Trends", monthlyStatsView)
+{
+    IsTitleVisible = true
+};
+lineChart.Values.Add(new MeasureColumn("Revenue"));
+lineChart.Category = new DimensionColumn("Month");
+
+document.Visualizations.Add(lineChart);
+```
+
+### Oracle
+
+Connect to Oracle databases with comprehensive support for Oracle-specific features.
+
+**Class:** `Oracle.OracleDataSource`
+
+**Key Properties:**
+- `Host` (string) - Oracle server address
+- `Database` (string) - Database name/SID
+- `Port` (int) - Server port (default: 1521)
+- `ServiceName` (string) - Oracle service name
+
+**Complete Example:**
+
+```csharp
+// Create Oracle data source
+var oracleDataSource = new OracleDataSource()
+{
+    Id = "OracleDataSource",
+    Title = "Enterprise Database",
+    Host = "oracle.company.com",
+    Database = "ORCL",
+    Port = 1521,
+    ServiceName = "ENTERPRISE"
+};
+
+// Add Oracle function
+var salesFunction = new FunctionDataSourceItem("GET_SALES_DATA", oracleDataSource)
+{
+    Id = "SalesFunction", 
+    Title = "Sales Data Function",
+    Parameters = new List<FunctionParameter>
+    {
+        new FunctionParameter { Name = "p_year", DataType = DataType.Number },
+        new FunctionParameter { Name = "p_region", DataType = DataType.String }
+    }
+};
+
+// Create dashboard
+var document = new RdashDocument("Oracle Enterprise Dashboard");
+document.DataSources.Add(oracleDataSource);
+
+// Create spline chart
+var splineChart = new SplineChartVisualization("Sales Trend", salesFunction)
+{
+    IsTitleVisible = true
+};
+splineChart.Values.Add(new MeasureColumn("SalesAmount"));
+splineChart.Category = new DimensionColumn("SalesDate");
+
+document.Visualizations.Add(splineChart);
+```
+
+### MongoDB
+
+Connect to MongoDB collections with document-based querying support.
+
+**Class:** `MongoDB.MongoDbDataSource`
+
+**Key Properties:**
+- `ConnectionString` (string) - MongoDB connection string
+- `Database` (string) - Database name
+
+**Complete Example:**
+
+```csharp
+// Create MongoDB data source
+var mongoDataSource = new MongoDbDataSource()
+{
+    Id = "MongoDataSource",
+    Title = "User Activity DB",
+    ConnectionString = "mongodb://mongo.company.com:27017",
+    Database = "UserActivity"
+};
+
+// Add collection item
+var userEventsCollection = new TableDataSourceItem("user_events", mongoDataSource)
+{
+    Id = "UserEventsCollection",
+    Title = "User Events"
+};
+
+// Create dashboard
+var document = new RdashDocument("MongoDB Analytics");
+document.DataSources.Add(mongoDataSource);
+
+// Create area chart for user activity
+var areaChart = new AreaChartVisualization("User Activity Over Time", userEventsCollection)
+{
+    IsTitleVisible = true
+};
+areaChart.Values.Add(new MeasureColumn("EventCount"));
+areaChart.Category = new DimensionColumn("EventDate"));
+
+document.Visualizations.Add(areaChart);
+```
 
 ### PostgreSQL
 

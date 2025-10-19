@@ -68,7 +68,7 @@ class DocumentationHandler(BaseHTTPRequestHandler):
     def serve_index(self):
         """Serve the main documentation interface"""
         try:
-            index_path = self.server_root / "index.html"
+            index_path = self.server_root / "index-fixed.html"
             with open(index_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
